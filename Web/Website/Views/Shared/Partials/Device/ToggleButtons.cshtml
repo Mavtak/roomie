@@ -1,0 +1,46 @@
+﻿@model DeviceModel
+@*
+
+*@<div class="buttonGroup two">@*
+
+*@@using (Ajax.BeginForm(
+            actionName: "PowerOff",
+            controllerName: "Device",
+            routeValues: new
+                {
+                    id = Model.Id,
+                    returnUrl = Request.Path
+                },
+            ajaxOptions: new AjaxOptions
+                {
+                    HttpMethod = "Post",
+                },
+            htmlAttributes: new
+                {
+                    @class = "button leftmost" + (Model.IsOff ? " activated" : "")
+                }
+            )){<button class="button" >Off</button>}@*
+
+*@@using (Ajax.BeginForm(
+            actionName: "PowerOn",
+            controllerName: "Device",
+            routeValues: new
+                {
+                    id = Model.Id,
+                    returnUrl = Request.Path
+                },
+            ajaxOptions: new AjaxOptions
+                {
+                    HttpMethod = "Post",
+                },
+            htmlAttributes: new
+                {
+                    @class = "button rightmost" + (Model.IsOn ? " activated" : "")
+                }
+            )){<button class="button">On</button>}@*
+
+
+
+*@</div>@*
+
+*@

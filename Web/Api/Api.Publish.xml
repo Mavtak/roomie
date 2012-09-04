@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="R:\api.roomiebot.com\web\content" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Rackspace CloudSites Hosting" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/System.Web.WebPages.xml" publishTime="12/19/2010 22:59:38" />
+    <file relUrl="Global.asax" publishTime="08/08/2012 08:59:56" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="06/13/2011 21:03:50" />
+    <file relUrl="bin/Roomie.Common.dll" publishTime="08/04/2012 15:00:43" />
+    <file relUrl="bin/Roomie.Web.WebHook.pdb" publishTime="08/08/2012 09:39:38" />
+    <file relUrl="bin/System.Web.WebPages.Razor.dll" publishTime="01/05/2011 14:45:38" />
+    <file relUrl="bin/System.Web.WebPages.Deployment.xml" publishTime="12/20/2010 09:52:36" />
+    <file relUrl="packages.config" publishTime="08/08/2012 09:00:00" />
+    <file relUrl="bin/System.Web.Helpers.dll" publishTime="01/05/2011 14:45:38" />
+    <file relUrl="bin/System.Web.WebPages.dll" publishTime="01/05/2011 14:45:38" />
+    <file relUrl="bin/Roomie.Web.Models.pdb" publishTime="08/08/2012 09:39:37" />
+    <file relUrl="bin/System.Web.Mvc.xml" publishTime="02/09/2011 10:26:24" />
+    <file relUrl="bin/System.Web.WebPages.Razor.xml" publishTime="12/20/2010 09:52:36" />
+    <file relUrl="bin/Roomie.Common.HomeAutomation.dll" publishTime="08/08/2012 09:39:37" />
+    <file relUrl="bin/System.Web.Razor.xml" publishTime="12/20/2010 09:52:36" />
+    <file relUrl="bin/Roomie.Web.WebHook.dll" publishTime="08/08/2012 09:39:38" />
+    <file relUrl="bin/System.Web.Mvc.dll" publishTime="01/05/2011 16:42:16" />
+    <file relUrl="bin/Roomie.Web.Models.dll" publishTime="08/08/2012 09:39:38" />
+    <file relUrl="bin/Microsoft.Web.Infrastructure.xml" publishTime="12/20/2010 09:52:36" />
+    <file relUrl="bin/Roomie.Web.Api.pdb" publishTime="08/08/2012 09:39:38" />
+    <file relUrl="bin/Roomie.Web.Api.dll" publishTime="08/08/2012 09:39:38" />
+    <file relUrl="bin/System.Web.Razor.dll" publishTime="01/05/2011 14:45:38" />
+    <file relUrl="bin/System.Web.WebPages.Deployment.dll" publishTime="01/05/2011 14:45:38" />
+    <file relUrl="bin/Microsoft.Web.Infrastructure.dll" publishTime="01/05/2011 14:45:38" />
+    <file relUrl="Web.config" publishTime="08/08/2012 09:39:38" />
+    <file relUrl="bin/Roomie.Common.pdb" publishTime="08/04/2012 15:00:43" />
+    <file relUrl="bin/Roomie.Common.HomeAutomation.pdb" publishTime="08/08/2012 09:39:37" />
+    <file relUrl="bin/Roomie.Common.Exceptions.pdb" publishTime="08/08/2012 09:39:37" />
+    <file relUrl="bin/EntityFramework.dll" publishTime="06/13/2011 21:03:50" />
+    <file relUrl="bin/WebCommunicator.dll" publishTime="08/08/2012 09:39:37" />
+    <file relUrl="bin/Roomie.Common.Exceptions.dll" publishTime="08/08/2012 09:39:37" />
+    <file relUrl="bin/WebCommunicator.pdb" publishTime="08/08/2012 09:39:37" />
+    <file relUrl="bin/System.Web.Helpers.xml" publishTime="12/19/2010 22:59:38" />
+  </publishProfile>
+</publishData>

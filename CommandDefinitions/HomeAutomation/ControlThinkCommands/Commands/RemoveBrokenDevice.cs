@@ -1,0 +1,15 @@
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
+
+namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands.Commands.ControlThink
+{
+    public class RemoveBrokenDevice : SingleDeviceControlCommand
+    {
+        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        {
+            var device = context.Device as ZWaveDevice;
+            var network = context.Network as ZWaveNetwork;
+
+            network.ZWaveController.Devices.Remove(device.BackingObject.NodeID);
+        }
+    }
+}

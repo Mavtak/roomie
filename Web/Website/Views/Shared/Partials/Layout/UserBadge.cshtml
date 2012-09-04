@@ -1,0 +1,4 @@
+﻿@if(ViewBag.User == null)
+{<text>[@Html.ActionLink("Sign In", "SignIn", "User")]</text>}
+else
+{<text>@ViewBag.User.Alias  [@Html.ActionLink("Sign Out", "SignOut", "User")]</text>}

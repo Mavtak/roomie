@@ -1,0 +1,144 @@
+﻿* {
+   margin: 0px;
+   padding: 0px;
+}
+
+body
+{
+    margin: 0px;
+    padding: 0px;
+    font-family: Sans-Serif;
+}
+
+div
+{
+    padding: 0px;
+    margin: 0px;
+}
+a
+{
+    color: inherit;
+}
+
+form
+{
+    margin: 0px;
+    padding: 0px;
+    display: inline;
+}
+
+
+/* ==================================================
+    Level one -- page
+   ================================================== */
+#page
+{
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+.horizontalCrossSection
+{
+    max-width: 1000px;
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==================================================
+    Level two -- three top, middle, and bottom blocks.
+   ================================================== */
+#colorStrip
+{
+    display: block;
+    padding: 0px;
+    margin: 0px;
+
+    border-bottom: 1px solid black;
+}
+
+
+/* ==================================================
+    Level three -- the left and right (sidebar and content) areas
+   ================================================== */
+.sidebarColumn
+{
+
+    padding: 0px;
+    margin: 0px;
+    width: 125px;
+    float: left;
+    overflow: hidden;
+}
+
+.mainColumn /* includes #header, #content, and #footer */
+{
+    display: block;
+    margin: 0px;
+    padding: 5px;
+    overflow: auto;    
+}
+
+/* ==================================================
+   #header (and children #title, account), #content,
+   and #footer styles.
+   ==================================================
+*/
+#colorStrip, #content
+{
+    border: 1px solid black;
+}
+
+#colorStrip
+{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+#colorStrip
+{
+    font-size: 150%;
+    font-weight: normal;
+}
+
+#logo
+{
+    padding-top: 5px;
+    display: block;
+    text-decoration: inherit;
+}
+
+#title /* #title is the first child of #header */
+,#account
+{
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    font-size: inherit;
+    font-weight: inherit;
+    
+}
+
+#title
+{
+}
+
+#account /* #account is the second child of #header */
+{
+    float: right;
+}
+
+#content /* #content is the second child of the middle page slice */
+{
+
+    
+    min-height: 250px;
+    padding-bottom: 0px;
+    -webkit-overflow-scrolling: touch;
+}
+
+#footer /* page/.../footer */
+{
+    text-align: center;
+    font-size: 75%;
+}

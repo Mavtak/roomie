@@ -1,0 +1,60 @@
+﻿@model ComputerModel
+@*
+
+  <div class="header">@*
+    <div class="name">WebHook Settings</div>@*
+  </div>@*
+  *@<div class="data">@*
+    *@<div class="wide item">@*
+        *@<div class="key">Access Key: </div>@*
+        *@<div class="value">@Model.AccessKey</div>@*
+    *@</div>@*
+    *@<div class="wide item">@*
+        *@<div class="key">Encryption Key: </div>@*
+        *@<div class="value">@Model.EncryptionKey</div>@*
+    *@</div>@*
+        *@<div class="wide item">@*
+        *@<div class="key">Last Ping: </div>@*
+        *@<div class="value">@Model.LastPing</div>@*
+    *@</div>@*
+    *@<div class="wide item">@*
+        *@<div class="key">Script thing</div>@*
+        *@<div class="value"><textarea class="code"><WebHook.Connect ComputerName="@Model.Name" CommunicationURL="http://@(Request.Url.Host)@(@Request.Url.IsDefaultPort?"":":"+Request.Url.Port)/communicator/" AccessKey="@Model.AccessKey" EncryptionKey="@Model.EncryptionKey" /></textarea></div>@*
+    *@</div>@*
+  *@</div>@*
+  *@<div class="buttonGroup two">@*
+    *@@using (Ajax.BeginForm(
+    actionName: "RenewWebHookKeys",
+    controllerName: "Computer",
+    routeValues: new
+    {
+        Id = Model.Id
+    },
+    ajaxOptions: new AjaxOptions
+    {
+        HttpMethod = "POST"
+    },
+    htmlAttributes: new
+    {
+        
+    }
+    )){<button class="button" type="submit" name="submit">Generate New Keys</button>}@*
+    *@@using (Ajax.BeginForm(
+    actionName: "DisableWebhook",
+    controllerName: "Computer",
+    routeValues: new
+    {
+        Id = Model.Id
+    },
+    ajaxOptions: new AjaxOptions
+    {
+        HttpMethod = "POST"
+    },
+    htmlAttributes: new
+    {
+        
+    }
+    )){<button class="button" type="submit" name="submit">Disable</button>}@*
+  *@</div>@*
+
+*@

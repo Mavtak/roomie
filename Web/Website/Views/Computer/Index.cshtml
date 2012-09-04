@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ComputerModel>
+@{
+    ViewBag.Title = "Computers";
+}@*
+
+*@@if (Model == null || !Model.Any())
+{
+    @Html.Partial("Partials/BotMessage/Empty")
+}
+else
+{
+    foreach (var computer in Model)
+    {
+        var viewModel = new ComputerViewModel(computer, Url);
+        @Html.Partial("Partials/Computer/Computer", viewModel);
+    }
+}@*
+
+*@@Html.Partial(
+    partialViewName: "Partials/Computer/Create",
+    model: new ComputerModel() //would rather null, but I'll //TODO: fix that later
+)

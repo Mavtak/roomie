@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Roomie.Web.Models;
+using System.Web.Mvc;
+
+namespace Roomie.Web.ViewModels
+{
+    public class ComputerViewModel
+    {
+        public WidgetData WidgetData { get; set; }
+        public ComputerModel Computer { get; set; }
+        public bool DisplayWebhookSettings { get; set; }
+
+        public ComputerViewModel(ComputerModel computer, UrlHelper urlHelper)
+        {
+            Computer = computer;
+
+            var status = (Computer.IsConnected ? "connected" : "disconnected");
+            var target = urlHelper.Action(
+                actionName: "Details",
+                controllerName: "Computer",
+                routeValues: new
+                {
+                    id = Computer.Id,
+                    name = (Computer.Name != null) ? (Computer.Name.Replace(' ', '_')) : (null)
+                }
+            );
+            WidgetData = new WidgetData
+            {
+                DebugText = Computer.ToString(),
+                DivId = Computer.DivId,
+                Name = Computer.Name,
+                Status = status,
+                Target = target,
+                Type = "computer"
+            };
+
+            DisplayWebhookSettings = false;
+        }
+    }
+}

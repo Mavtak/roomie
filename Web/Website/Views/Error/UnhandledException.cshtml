@@ -1,0 +1,13 @@
+﻿@model Exception
+
+@{
+    ViewBag.Title = "Unhandled Exception";
+}
+
+@Html.Partial("Partials/BotMessage/Exception")
+
+<h2>@Model.Message</h2>
+
+Exception type: @Model.GetType().Name
+
+<pre>@Model.StackTrace</pre>

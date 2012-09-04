@@ -1,0 +1,25 @@
+﻿@model UserModel
+
+@{
+    ViewBag.Title = "Account Settings";
+}
+
+@using (Html.BeginForm(
+    actionName: "Edit",
+    controllerName: "User",
+    routeValues: new
+    {
+        id = Model.Id
+    },
+    method: FormMethod.Post,
+    htmlAttributes: null
+))
+{
+  <p>
+    @Html.LabelFor(u => Model.Alias)
+    @Html.EditorFor(u => Model.Alias)
+  </p>
+  <p>
+    <button type="submit">Change</button>
+  </p>  
+}

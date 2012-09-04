@@ -1,0 +1,64 @@
+﻿@model Roomie.Web.Models.SavedScriptModel
+@*
+*@@using (Html.BeginForm(
+    actionName: null,
+    controllerName: "Script",
+    method: FormMethod.Post,
+    htmlAttributes: new
+    {
+        id = Model.DivId,
+        @class = "widget script"
+    },
+    routeValues: new
+    {
+        id = Model.Id
+    }
+  ))
+  {@*
+  *@<div class="header">@*
+    *@<div class="name">@Model.Name</div>@*
+  *@</div>@*
+
+    *@<div class="data">@*
+
+    *@<div class="item origin">@*
+      *@<div class="key">Modified: </div>@*
+      *@<div class="value">@Model.ModificationTimestamp</div>@*
+    *@</div>@*
+
+    *@<div class="item creationTimestamp">@*
+      *@<div class="key">Created:</div>@*
+      *@<div class="value">@Model.Script.CreationTimestamp</div>@*
+    *@</div>@*
+
+    *@<div class="item Target">@*
+      *@<div class="key">Last Run:</div>@*
+      *@<div class="value">@Model.Script.LastRunTimestamp</div>@*
+    *@</div>@*
+
+    *@<div class="item creationTimestamp">@*
+      *@<div class="key">Run Count:</div>@*
+      *@<div class="value">@Model.Script.RunCount</div>@*
+    *@</div>@*
+
+  *@</div>@*
+
+
+  *@<textarea class="code">@Model.Script.Text</textarea>@*
+  *@<div class="buttonGroup three">@*
+    *@@Html.ActionLink(
+        linkText: "Edit",
+        actionName: "Edit",
+        routeValues: new
+        {
+            id = Model.Id
+        },
+        htmlAttributes: new
+        {
+            @class = "button leftmost"
+        }
+    )@*
+    *@<button class="button middle" type="submit">Delete</button>@*
+    *@<button class="button rightmost" type="submit">Run</button>@*
+  *@</div>@*
+*@}

@@ -1,0 +1,120 @@
+﻿@model DeviceViewModel
+@{
+    var widgetData = Model.WidgetData;
+    var device = Model.Device;
+    //var location = (Model.Location == null) ? (null) : (Model.Location.Name);
+    //var status = (Model.IsAvailable ? "connected" : "disconnected");
+    //var target = Url.Action(
+    //    actionName: "Details",
+    //    controllerName: "Device",
+    //    routeValues: new
+    //    {
+    //        id = Model.Id,
+    //        name = (Model.Name != null) ? (Model.Name.Replace(' ', '_')) : (null)
+    //    }
+    //);
+    //var widgetData = new WidgetData
+    //{
+    //    DebugText = Model.ToString(),
+    //    DivId = Model.DivId,
+    //    Location = location,
+    //    Name = Model.Name,
+    //    Status = status,
+    //    Target = target,
+    //    Type = "device"
+    //};
+}
+@helper RenderDimmerButtons(){@*
+*@for (int power = 0; power <= 100; power += 10)
+  {@*
+  *@<button class="@{
+    if (power == 0)
+        {<text>leftmost</text>}
+        else if (power == 100)
+        {<text>rightmost</text>}
+        else
+        {<text>middle</text>}
+
+        if ((Model.Device.Percentage > (power - 10))
+            && (Model.Device.Percentage <= (power)))
+        {<text> activated</text>}
+} button" type="submit" name="power" value="@power">@{
+    if (power == 0)
+    {<text>Off</text>}
+    else if (power == 100)
+    {<text>On</text>}
+    else
+    {<text></text>}
+}</button>}}@*
+
+
+*@@helper RenderToggleButtons(){@*
+*@<button class="button leftmost@{
+    if (Model.Device.Power == 0)
+  {<text> activated</text>}}" type="submit" name="power" value="0">Off</button>@*
+*@<button class="button rightmost@{
+    if (Model.Device.Power > 0)
+  {<text> activated</text>}}" type="submit" name="power" value="100">On</button>@*
+*@}@*
+
+*@@helper RenderUsbControllerButtons()
+{@*
+   *@<button class="button leftmost">Add Device</button>@* 
+   *@<button class="button rightmost">Remove Device</button>@* 
+*@}@*
+
+
+*@@Html.Partial("Partials/WidgetStart", widgetData)@*
+      
+  *@@if (device.Type.CanControl || device.Type.IsController)
+  {
+       var buttonGroupClass = "dimmer";
+       if (!device.Type.CanDim)
+       {
+           buttonGroupClass = "toggle";
+       }
+       if (device.Type.IsController)
+       {
+           buttonGroupClass = "two";
+       }
+
+
+       if (Model.DisplayButtons)
+       {
+           if (buttonGroupClass == "toggle")
+           {@Html.Partial("Partials/Device/ToggleButtons", Model.Device)}
+           else
+           {
+               using (Ajax.BeginForm(
+                    actionName: "Dim",
+                    controllerName: "Device",
+                    routeValues: new
+                    {
+                        id = device.Id,
+                        returnUrl = Request.Path
+                    },
+                    ajaxOptions: new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                    },
+                    htmlAttributes: new
+                    {
+                        @class = "buttonGroup " + buttonGroupClass
+                    }
+                    ))
+               {
+                   if (device.Type.CanDim)
+                   {@RenderDimmerButtons()}
+                   else if (device.Type.IsController)
+                   {@RenderUsbControllerButtons()}
+               }
+           }
+       }
+  }@*
+
+*@@if (Model.DisplayEditor)
+  {@Html.Partial("Partials/Device/Editor", Model.Device)}@*
+
+*@@Html.Partial("Partials/WidgetEnd", widgetData)@*
+
+*@

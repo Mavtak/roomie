@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "DeviceAddresses";
+}
+
+<p>
+  Here is are several examples of valid addresses for the same device.
+</p>
+
+<tt>
+  <ul>
+    <li>Blacksburg Z-Wave Network [ZWave15220962]\TV Room: Decorative Lights [4]</li>
+    <li>Blacksburg Z-Wave Network\TV Room: Decorative Lights</li>
+    <li>TV Room: Decorative Lights</li>
+    <li>Blacksburg Z-Wave Network\[4]</li>
+    <li>[ZWave15220962]\TV Room: Decorative Lights</li>
+    <li>[ZWave15220962]\[4]</li>
+    <li>[4]</li>
+  </ul>
+</tt>
+
+<p>
+  If there were not other devices with the name <tt>Decorative Lights</tt> registered, then the following would also be valid addresses:
+</p>
+
+<tt>
+  <ul>
+    <li>Blacksburg Network\Decorative Lights</li>
+    <li>[ZWave15220962]\Decorative Lights</li>
+    <li>Decorative Lights</li>
+  </ul>
+</tt>
+
+<p>
+  Basically, an address needs to contain enough information for Roomie to know for sure what device you intend to select.  Beyond that, just keep it in the form <tt>NetworkName [NetworkId]\LocationName: DeviceName [DeviceId]</tt>.
+</p>

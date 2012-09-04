@@ -1,0 +1,299 @@
+﻿/* widget
+-----------------------------------------------------------*/
+.widget,
+.widget .group
+{
+    padding: 5px;
+}
+
+.widget,
+.widget .group
+{
+    margin: 5px;
+}
+
+.widget,
+.widget .content,
+.widget .group
+{
+    overflow: hidden;
+    display: block;
+}
+
+.widget .group
+{
+    margin: 0px;
+}
+
+.widget
+{
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 2px;
+    padding: 0px;
+}
+
+.widget,
+.widget .data,
+.widget .status,
+.widget .code,
+.widget .buttonGroup,
+.widget .content
+{
+    border: 1px solid black;
+}
+
+.widget .data,
+.widget .code,
+.widget .buttonGroup
+{
+    border-bottom: none;
+    border-left:none;
+    border-right: none;
+}
+
+.widget .content
+{
+    border: none;
+}
+
+.widget .header
+{
+    display: block;
+    text-align: left;
+    text-decoration: inherit;
+    padding: 3px;
+}
+
+.widget .status
+{
+    height: 15px;
+    width: 12px;
+    float: left;
+    border-radius: 10px;
+    margin: 3px 3px 3px 3px;
+}
+
+.widget .location
+{
+    display: inline;
+    float: right;
+    padding: 0px;
+    margin: 0px;
+    text-overflow: ellipses;
+    white-space: nowrap;
+}
+
+.widget .location.unknown
+{
+    display: none;
+}
+
+.widget .name
+{
+    display: inline-block;
+    text-decoration: inherit;
+    padding: 0px;
+    margin: 0px;
+    font-weight: bold;
+}
+
+/*******************************
+ * Button/Button Group styles
+ *******************************/
+.widget .buttonGroup
+{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.widget .buttonGroup .button
+{
+    display: inline-block;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    border: black solid 0px;
+    text-transform: lowercase;
+    font-size: 150%;
+    cursor: pointer;
+    text-decoration: inherit;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.widget .buttonGroup .one .button
+{
+    width: 100%;
+}
+
+.widget .buttonGroup.two .leftmost.button,
+.widget .buttonGroup.two .rightmost.button
+{
+    width: 50%;
+}
+
+.widget .buttonGroup .button .button
+{
+    width: 100%;
+    font-size: inherit;
+}
+
+.widget .buttonGroup.three .button
+{
+    width: 33%;
+}
+.widget .buttonGroup.three middle.button
+{
+    width: 34%;
+}
+
+.widget .only.button
+{
+    width: 100%;
+    font-size: 200%;
+}
+.widget .middle.button
+{
+    border-left-width: 1px;
+    font-size: 115%;
+    
+}
+.widget .leftmost.button, .widget .rightmost.button
+{
+    
+}
+
+.widget .rightmost.button
+{
+    border-left-width: 1px;
+}
+
+/* toggle */
+.widget .buttonGroup.toggle .leftmost.button, .widget .buttonGroup.toggle .rightmost.button
+{
+    width: 50%;
+   
+}
+
+/* dim */
+.widget .buttonGroup.dimmer .leftmost.button, .widget .buttonGroup.dimmer .rightmost.button
+{
+    /* there are two of these */
+    width: 20%;
+
+}
+.widget .buttonGroup.dimmer .middle.button
+{
+    /* there are 9 of these */
+    width: 6.667%;
+}
+
+
+/*******************************
+ * Code Styles
+ *******************************/
+
+.widget .code
+{
+    width: 100%;
+    height: 50px;
+    overflow: visible;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/*******************************
+ * Data Line Styles
+ *******************************/
+
+.widget .data
+{
+    display: block;
+    padding: 5px;
+}
+
+.widget .data .item
+{
+    display: inline-block;
+    width: 50%;
+}
+.widget .data .wide.item
+{
+    width: 100%;
+}
+.widget .data .item .key
+{
+    display: inline-block;
+    width: 30%;
+    font-weight: bold;
+}
+.widget .data .item .value
+{
+    display: inline-block;
+    width: 70%;
+}
+.widget .data .item,
+.widget .data .item .key,
+.widget .data .item .value
+{
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+}
+/*******************************
+ * Form Styles
+ *******************************/
+.widget .data input,
+.widget .data select
+ {
+     display: block;
+     width: 100%;
+ }
+.widget .data button
+ {
+     float: right;
+ }
+ 
+ 
+ /***********************
+* commands widgets
+**************************/
+.widget.command .type,
+.widget.command .optional,
+.widget.command .required,
+.widget.command .default
+{
+    display: inline;
+    margin-right: 5px;
+}
+
+.widget.command .type
+{
+    font-family: Monospace;
+}
+
+.widget.command .optional,
+.widget.command .required
+{
+    float: left;
+}
+
+.widget.command .default
+{
+    text-decoration: underline;
+    margin-right: 5px;
+}
+
+.widget.command .description
+{
+}
+
+.widget.command .description.empty
+{
+    font-style: italic;
+}

@@ -1,0 +1,19 @@
+﻿.navigationItem
+{
+    background-color: transparent;
+}
+.navigationItem:hover
+{
+    background-color: rgba(0, 0, 0, .15);
+}
+
+.navigationItem.selected:hover
+{
+    background-color: rgba(0, 0, 0, .25);
+}
+
+.navigationItem.selected
+{
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, .1);
+}

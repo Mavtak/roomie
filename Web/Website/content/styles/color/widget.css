@@ -1,0 +1,73 @@
+﻿.widget .content
+{
+    background-color: rgb(102, 1, 152);
+}
+
+.widget .header .location
+{
+    opacity: .75;
+}
+
+.widget .buttonGroup
+{
+    background-color: rgba(255 ,255, 255, .95);
+}
+
+.widget .buttonGroup .button
+{
+    background-color: transparent;
+    float: none;
+}
+.widget .button.activated
+{
+    background-color: rgba(0, 0, 0, .2);
+}
+
+.widget .button.activated:hover
+{
+    background-color: rgba(0, 0, 0, .35);
+}
+
+.widget .button:hover
+{
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.widget .code
+{
+    background-color: rgba(255, 255, 255, .8);
+}
+.widget .code:focus,
+widget .code:hover
+{
+    background-color: rgba(255, 255, 255, .95);
+}   
+
+.widget .data,
+.widget .group
+{
+    background-color: rgba(255, 255, 255, .95);
+}
+
+
+
+.widget.disconnected .content,
+.widget.waiting .content,
+.widget.expired .content,
+.widget .widget.disconnected .content,
+.widget .widget.waiting .content,
+.widget .widget.expired .content
+{
+
+    opacity: .5;
+}
+
+.widget.disconnected,
+.widget.waiting,
+.widget.expired,
+.widget .widget.disconnected,
+.widget .widget.waiting,
+.widget .widget.expired
+{
+    background-color: white;
+}

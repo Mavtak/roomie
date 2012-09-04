@@ -1,0 +1,14 @@
+﻿@model IEnumerable<SavedScriptModel>
+@{
+    ViewBag.Title = "Scripts";
+}@*
+
+*@@if (Model == null || !Model.Any())
+{@Html.Partial("Partials/BotMessage/Empty")}
+else
+{
+    foreach (var script in Model)
+    {
+        @Html.Partial("Partials/SavedScript/SavedScript", script)
+    }
+}

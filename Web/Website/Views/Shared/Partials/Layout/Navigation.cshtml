@@ -1,0 +1,43 @@
+﻿@functions
+{
+    MvcHtmlString NavigationItem(string text, string controller, bool anonymous = true, string action = "Index")
+    {
+        object attributes = null;
+        
+        string selectedItem = ViewBag.NavigationItem??ViewContext.RouteData.Values["controller"];
+
+        bool selected = selectedItem.Equals(controller);
+        
+        if(!anonymous && !selected)
+        {
+            if (ViewBag.User == null)
+                return null;
+        }
+        
+        return Html.ActionLink(
+                linkText: text,
+                actionName: action,
+                controllerName: controller,
+                routeValues: null,
+                htmlAttributes: new
+                {
+                    @class = "navigationItem" + (selected?" selected":"")
+                }
+           );
+    }
+    MvcHtmlString NavigationItem(string text, bool anonymous = true)
+    {
+        return NavigationItem(text, text.Replace(" ", ""), anonymous);
+    }
+}@*
+*@<nav id="navigation">@*
+  *@@NavigationItem("Home")@*
+  *@@NavigationItem("Account", "User", false, "Edit")@*
+  @NavigationItem("Control Panels", "ControlPanel", false)@*
+  *@@NavigationItem("Networks", "Network", false)@*
+  *@@NavigationItem("Devices", "Device", false)@*
+  *@@NavigationItem("Computers", "Computer", false)@*
+  @NavigationItem("Scripts", "Script", false)@*
+  *@@NavigationItem("Task Queue", "Task", false)@*
+  *@@NavigationItem("Help")@*
+*@</nav>

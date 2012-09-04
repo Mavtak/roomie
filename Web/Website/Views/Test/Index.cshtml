@@ -1,0 +1,18 @@
+﻿@model Roomie.Web.Controllers.TestController
+
+@{
+    ViewBag.Title = "Tests";
+}
+
+
+<ul>
+@foreach (var method in Model.GetType().GetMethods())
+{
+    if (method.ReturnType.Equals(typeof(ActionResult)))
+    {
+        <text><li><a href="/Test/@method.Name">@method.Name</a></li></text>
+    }
+}
+</ul>
+    bleh!
+

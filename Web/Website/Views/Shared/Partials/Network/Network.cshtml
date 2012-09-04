@@ -1,0 +1,78 @@
+﻿@model NetworkModel
+@{
+    var status = ((Model.IsAvailable == true) ? "connected" : "disconnected");
+    var target = Url.Action(
+        actionName: "Details",
+        controllerName: "Network",
+        routeValues: new
+        {
+            id = Model.Id,
+            name = (Model.Name != null) ? (Model.Name.Replace(' ', '_')) : (null)
+        }
+    );
+    var widgetData = new WidgetData
+    {
+        DebugText = Model.ToString(),
+        DivId = Model.DivId,
+        Name = Model.Name,
+        Status = status,
+        Target = target,
+        Type = "network"
+    };
+}
+@*
+
+*@@helper ComputerLink(ComputerModel computer)
+    {
+        if (computer != null)
+        {
+        @Html.ActionLink(
+            actionName: "Details",
+            controllerName: "Computer",
+            routeValues: new
+            {
+                id = computer.Id,
+                name = (computer.Name != null) ? (computer.Name.Replace(' ', '_')) : (null)
+            },
+            linkText: computer.Name,
+            htmlAttributes: null
+        )
+        }
+        else
+        {<text>none</text>}
+}@*
+
+*@@Html.Partial("Partials/WidgetStart", widgetData)@*
+
+  *@<div class="data">@*
+    *@<div class="item">@*
+    *@<div class="key">Devices:</div>@*
+    *@<div class="value">@Model.Devices.Count</div>@*
+  *@</div>@*
+    *@<div class="item">@*
+    *@<div class="key">Last Ping:</div>@*
+    *@<div class="value">@if (Model.LastPing.HasValue)
+                         {@Model.LastPing}
+                         else
+                         {<text>(never)</text>}</div>@*
+  *@</div>@*
+    *@<div class="item">@*
+      *@<div class="key">Computer:</div>@*
+      *@<div class="value">@ComputerLink(Model.AttatchedComputer)</div>@*
+    *@</div>@*
+  *@</div>@*
+
+  *@<div class="group">@*
+    *@@foreach (var device in Model.Devices)
+      {
+          var deviceViewModel = new DeviceViewModel(device, Url)
+          {
+              DisplayButtons = false
+          };
+       @Html.Partial("Partials/Device/Device", deviceViewModel);
+      }@*
+  *@</div>@*
+
+*@@Html.Partial("Partials/WidgetEnd", widgetData)@*
+
+*@

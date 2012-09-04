@@ -1,0 +1,6 @@
+[submodule "Libraries/WebCommunicator"]
+	path = Libraries/WebCommunicator
+	url = https://github.com/Mavtak/WebCommunicator.git
+[submodule "Libraries/External"]
+	path = Libraries/External
+	url = https://github.com/Mavtak/RoomieExternalLibraries.git

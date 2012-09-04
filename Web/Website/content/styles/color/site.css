@@ -1,0 +1,22 @@
+﻿body
+{
+    background-color: rgb(253, 245, 255);
+}
+
+#colorStrip,
+.widget .content
+{
+    background-color: rgb(195, 20, 20);
+    background-color: #660198;
+}
+.widget .header,
+#colorStrip
+{
+    color: White;
+    text-decoration: inherit;
+}
+
+#footer
+{
+    color: gray;
+}

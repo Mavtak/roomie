@@ -1,0 +1,23 @@
+﻿@model IEnumerable<DeviceModel>
+@{
+    ViewBag.Title = "Devices";
+}@*
+
+*@<script type="text/javascript">updateDevicesContinuously();</script>@*
+
+*@@if (Model == null || !Model.Any())
+{
+    @Html.Partial("Partials/BotMessage/Empty")
+}
+else
+{
+    foreach (var device in Model)
+    {
+        var deviceViewModel = new DeviceViewModel(device, Url);
+        
+        @Html.Partial(
+                partialViewName: "Partials/Device/Device",
+                 model: deviceViewModel
+        )
+    }
+}

@@ -1,0 +1,10 @@
+﻿@model WidgetData
+@*
+*@<div class="widget @Model.Type @Model.Status" id="@Model.DivId">@*
+  *@<div class="content">@*
+    *@<a class="header" href="@Model.Target" title="@Model.DebugText">@*
+      *@<div class="location@((Model.Location==null)?" unknown":"")">@((Model.Location!=null)?(Model.Location):("(undefined)"))</div>@*
+      *@<div class="name">@Model.Name</div>@*
+    *@</a>@*
+    
+*@

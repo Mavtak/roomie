@@ -1,0 +1,34 @@
+﻿@model NetworkModel
+@*
+*@<div id="@(Model.DivId)Editor" class="widget device @((Model.IsAvailable == true) ? "connected" : "disconnected")">@*
+  *@<div class="header">@*
+    *@<div class="name">Edit Settings</div>@*
+  *@</div>@*
+*@@using (Html.BeginForm(
+    actionName: "Edit",
+    controllerName: "Network",
+    routeValues: new
+    {
+        id = Model.Id
+    },
+    method: FormMethod.Post,
+    htmlAttributes: new
+    {
+        @class = "data"
+    }
+))
+{@*
+    *@<div class="item wide">@*
+      *@<div class="key">@Html.LabelFor(n => n.Name):</div>@*
+      *@<div class="value">@Html.TextBoxFor(n => n.Name)</div>@*
+    *@</div>@*
+    *@<div class="item wide">@*
+      *@<div class="key"></div>@*
+      *@<div class="value"><button type="submit" name="delete" value="true">Delete</button></div>@*
+    *@</div>@*
+    *@<div class="item wide">@*
+      *@<div class="key"></div>@*
+      *@<div class="value"><button type="submit">Change</button></div>@*
+    *@</div>@*
+*@}@*
+*@</div>

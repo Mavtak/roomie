@@ -1,0 +1,17 @@
+﻿@model IEnumerable<NetworkModel>
+
+@{
+    ViewBag.Title = "Control Panels";
+}
+
+@if (Model == null || !Model.Any())
+{
+    @Html.Partial("Partials/BotMessage/Empty")
+}
+else
+{
+    foreach (var network in Model)
+    {
+        @Html.Partial("Partials/Script/Script", network);
+    }
+}

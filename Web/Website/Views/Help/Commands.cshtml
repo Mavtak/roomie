@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Roomie.Desktop.Engine.RoomieCommand>
+@*
+*@@{
+    ViewBag.Title = "Commands";
+}@*
+
+
+*@@foreach (var command in Model)
+{
+    var widgetData = new WidgetData
+    {
+        Name = command.Name,
+        Location = command.Group,
+        Type = "command"
+    };@*
+    *@@Html.Partial("Partials/WidgetStart", widgetData)@*
+
+
+      *@<div class="data wide">@*
+
+      *@@if (command.HasDescription)
+      {<div class="description">@command.Description</div>}
+      else
+      {<div class="description empty">no description</div>}
+      @foreach (var parameter in command.Arguments)
+      {@*
+        *@<div class="item wide parameter">@*
+          *@<div class="key name">@parameter.Name</div>@*
+          *@<div class="value">@*
+            *@<div class="type" title="Data Type">@parameter.Type</div>@*
+            *@<div class="@(parameter.HasDefault ? "optional" : "required")">@(parameter.HasDefault ? "Optional" : "Required")</div>@*
+            *@@if (parameter.HasDefault)
+              {<div class="default" title="Default value">@parameter.DefaultValue</div>}@*
+          *@</div>@*
+        *@</div>@*
+      *@}@*
+      *@</div>@*
+    *@@Html.Partial("Partials/WidgetEnd", widgetData)@*
+*@}@*
+
+*@

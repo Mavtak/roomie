@@ -1,0 +1,16 @@
+﻿@model DeviceModel
+@{
+    ViewBag.Title = "Devices: " + Model.Name;
+
+    if (Model.Location.IsSet)
+    {
+        ViewBag.Title += " in the " + Model.Location.Name; 
+    }
+    
+    var deviceViewModel = new DeviceViewModel(Model, Url)
+    {
+        DisplayEditor = true
+    };
+}
+
+@Html.Partial("Partials/Device/Device", deviceViewModel)

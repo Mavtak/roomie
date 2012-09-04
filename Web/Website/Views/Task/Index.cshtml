@@ -1,0 +1,17 @@
+﻿@model IEnumerable<TaskModel>
+
+@{
+    ViewBag.Title = "Task Queue";
+}
+
+@if (Model == null || !Model.Any())
+{
+    @Html.Partial("Partials/BotMessage/Empty")
+}
+else
+{
+    foreach (var task in Model)
+    {
+        @Html.Partial("Partials/Task/Task", task);
+    }
+}
