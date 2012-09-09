@@ -5,8 +5,6 @@ namespace Roomie.Desktop.Engine
 {
     public class RoomieCommandContext
     {
-        //TODO: Should engine.GlobalScope be accessible through here?
-        //TODO: Should engine.Threads be accessible through here?
         //TODO: Should Engine *not* be accessible through here?
 
         public RoomieCommandInterpreter Interpreter { get; private set; }
@@ -27,12 +25,25 @@ namespace Roomie.Desktop.Engine
                 return Engine.DataStore;
             }
         }
-
+        public RoomieCommandScope GlobalScope
+        {
+            get
+            {
+                return Engine.GlobalScope;
+            }
+        }
         public RoomieCommandLibrary CommandLibrary
         {
             get
             {
                 return Engine.CommandLibrary;
+            }
+        }
+        public ThreadPool Threads
+        {
+            get
+            {
+                return Engine.Threads;
             }
         }
 

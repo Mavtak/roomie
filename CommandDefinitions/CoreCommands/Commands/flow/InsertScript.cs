@@ -14,7 +14,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
     {
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var engine = context.Engine;
+            var threads = context.Threads;
             var interpreter = context.Interpreter;
             var scope = context.Scope;
             var originalCommand = context.OriginalCommand;
@@ -48,7 +48,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
                 case "New Thread":
                     if (string.IsNullOrEmpty(threadName))
                         throw new MissingArgumentsException("NewThreadName");
-                    RoomieThread newThread = engine.Threads.CreateNewThread(threadName);
+                    RoomieThread newThread = threads.CreateNewThread(threadName);
                     newThread.AddCommands(commandsToAdd);
                     return;
                 default:

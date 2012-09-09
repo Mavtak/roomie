@@ -21,7 +21,6 @@ namespace Roomie.CommandDefinitions.EmailCommands
 
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var engine = context.Engine;
             var dataStore = context.DataStore;
             var scope = context.Scope;
 

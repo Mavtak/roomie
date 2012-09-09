@@ -11,7 +11,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
     {
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var engine = context.Engine;
+            var globalScope = context.GlobalScope;
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
@@ -26,7 +26,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             bool global = scope.GetBoolean("Global");
 
             if (global)
-                engine.GlobalScope.ModifyVariableValue(name, value);
+                globalScope.ModifyVariableValue(name, value);
             else
                 scope.HigherScope.ModifyVariableValue(name, value);
         }

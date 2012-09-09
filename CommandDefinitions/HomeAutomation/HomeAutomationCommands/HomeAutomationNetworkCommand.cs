@@ -12,7 +12,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         protected override void Execute_HomeAutomation(HomeAutomationCommandContext context)
         {
-            var engine = context.Engine;
             var interpreter = context.Interpreter;
             var scope = context.Scope;
             var originalXml = context.OriginalCommand;

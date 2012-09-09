@@ -9,7 +9,6 @@ namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
     {
         protected override void Execute_WebHookCommand(WebhookCommandContext context)
         {
-            var engine = context.Engine;
             var interpreter = context.Interpreter;
             var scope = context.Scope;
             var originalCommand = context.OriginalCommand;

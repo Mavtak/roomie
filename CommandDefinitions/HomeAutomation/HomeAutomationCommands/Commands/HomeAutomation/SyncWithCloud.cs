@@ -24,14 +24,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
         {
             var interpreter = context.Interpreter;
-            var engine = context.Engine;
             var network = context.Network;
 
             interpreter.WriteEvent("Syncing Home Automation Devices with the cloud...");
 
             Message request = buildRequest(network);
 
-            Message response = WebHookConnector.SendMessage(engine, request);
+            Message response = WebHookConnector.SendMessage(context, request);
 
             //TODO: use LINQ?
             foreach (var deviceElement in response.Payload)

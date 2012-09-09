@@ -15,20 +15,22 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
     internal static class WebHookConnector
     {
-        internal static bool WebHookPresent(RoomieEngine roomieController)
+        internal static bool WebHookPresent(RoomieCommandContext context)
         {
-            return roomieController.CommandLibrary.ContainsCommandGroup("WebHook");
+            return context.CommandLibrary.ContainsCommandGroup("WebHook");
         }
 
-        internal static Message SendMessage(RoomieEngine roomieController, Message outMessage)
+        internal static Message SendMessage(RoomieCommandContext context, Message outMessage)
         {
             //TODO: that's not too conclusive. 
-            if (!WebHookPresent(roomieController))
+            if (!WebHookPresent(context))
+            {
                 throw new RoomieRuntimeException("WebHook not present.");
+            }
 
-             Message response = WebHookCommands.Common.SendMessage(roomieController.DataStore, outMessage);
+            Message response = WebHookCommands.Common.SendMessage(context.DataStore, outMessage);
 
-             return response;
+            return response;
         }
     }
 }

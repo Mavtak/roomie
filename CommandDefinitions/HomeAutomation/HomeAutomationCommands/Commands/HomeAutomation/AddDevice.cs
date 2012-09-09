@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             interpreter.WriteEvent("Device Added: " + device);
 
-            if (WebHookConnector.WebHookPresent(engine))
+            if (WebHookConnector.WebHookPresent(context))
             {
                 context.AddSyncWithCloud();
             }

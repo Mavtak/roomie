@@ -5,7 +5,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     {
         protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
         {
-            var engine = context.Engine;
             var interpreter = context.Interpreter;
             var network = context.Network;
 
@@ -15,7 +14,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             interpreter.WriteEvent("Device removed: " + device);
 
-            if (WebHookConnector.WebHookPresent(engine))
+            if (WebHookConnector.WebHookPresent(context))
             {
                 context.AddSyncWithCloud();
             }
