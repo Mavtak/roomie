@@ -10,5 +10,10 @@ namespace Roomie.Web.Website.Controllers
         {
             return View();
         }
+
+        public ActionResult Source()
+        {
+            return Redirect("http://github.com/Mavtak/Roomie");
+        }
     }
 }

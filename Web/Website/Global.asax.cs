@@ -64,7 +64,17 @@ namespace Roomie.Web
                     controller = "User",
                     action = "Edit"
                 }
-            );                
+            );
+
+            routes.MapRoute(
+                name: "Source code redirect shortcut",
+                url: "Source",
+                defaults: new
+                {
+                    controller = "Home",
+                    action = "Source"
+                }
+            );  
 
             routes.MapRoute(
                 name: "Index shortcut",
