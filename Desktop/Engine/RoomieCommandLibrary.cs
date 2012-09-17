@@ -55,14 +55,26 @@ namespace Roomie.Desktop.Engine
 
         public void AddCommand(RoomieCommand newCommand)
         {
+            var key = newCommand.FullName;
+
             lock (commands)
             {
-                //TODO: check for duplicate commands
-                commands.Add(newCommand.FullName, newCommand);
-
-                if (newCommand.IsDynamic)
+                if (commands.ContainsKey(key))
                 {
-                    customCommands.Add((RoomieDynamicCommand)newCommand);
+                    commands.Remove(key);
+                }
+
+                commands.Add(key, newCommand);
+
+                var dynamic = newCommand as RoomieDynamicCommand;
+
+                if (dynamic != null)
+                {
+                    if (customCommands.Contains(dynamic))
+                    {
+                        customCommands.Remove(dynamic);
+                    }
+                    customCommands.Add(dynamic);
                 }
 
                 if (!groups.Contains(newCommand.Group))
