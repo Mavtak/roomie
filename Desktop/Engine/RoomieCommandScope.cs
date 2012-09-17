@@ -108,7 +108,7 @@ namespace Roomie.Desktop.Engine
         }
         public string GetValue(string name)
         {
-            return ReplaceVariables(GetLiteralValue(name));
+            return ReplaceVariables(name, GetLiteralValue(name));
         }
         public bool GetBoolean(string name)
         {
@@ -185,7 +185,7 @@ namespace Roomie.Desktop.Engine
             return result;
         }
 
-        public string ReplaceVariables(string text)
+        public string ReplaceVariables(string name, string text)
         {
             var builder = new StringBuilder(text);
 
@@ -195,9 +195,24 @@ namespace Roomie.Desktop.Engine
                 variables = VariablesInString(builder.ToString());
                 foreach (string variable in variables)
                 {
-                    var replacement = GetValue(variable.Replace("${", "").Replace("}", ""));
+                    var variableName = variable.Replace("${", "").Replace("}", "");
+                    string replacement;
+                    if (variableName != name)
+                    {
+                        replacement = GetValue(variableName);
+                    }
+                    else if (HigherScope != null)
+                    {
+                        replacement = HigherScope.GetValue(variableName);
+                    }
+                    else
+                    {
+                        replacement = null;
+                    }
+
                     if (replacement == null)
                     {
+                        //TODO: make this an explicit exception type
                         throw new VariableException("Variable \"" + variable + "\" not defined");
                     }
                     builder.Replace(variable, replacement);//TODO
