@@ -75,7 +75,7 @@ form
 {
     display: block;
     margin: 0px;
-    padding: 5px;
+    padding: 0px;
     overflow: auto;    
 }
 
@@ -108,6 +108,11 @@ form
     text-decoration: inherit;
 }
 
+#header
+{
+    padding: 5px;
+    
+}
 #title /* #title is the first child of #header */
 ,#account
 {
@@ -141,4 +146,5 @@ form
 {
     text-align: center;
     font-size: 75%;
+    padding: 3px;
 }
