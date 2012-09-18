@@ -87,6 +87,10 @@
       <Project>{B8225CD9-0CDA-4022-BC70-DA6D0CF7E097}</Project>
       <Name>ScriptingLanguage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\TextUtilities\TextUtilities.csproj">
+      <Project>{BD67D062-FBD1-4A00-8A44-639CB8537AC8}</Project>
+      <Name>TextUtilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Desktop\Engine\Engine.csproj">
       <Project>{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}</Project>
       <Name>Engine</Name>
