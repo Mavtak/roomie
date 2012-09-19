@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Roomie.Common.ScriptingLanguage;
+using System.Collections;
 
 namespace Roomie.Desktop.Engine
 {
     //TODO: make disposible?
-    public class ThreadPool
+    public class ThreadPool : IEnumerable<RoomieThread>
     {
         private RoomieEngine engine;
         string name;
@@ -118,6 +119,16 @@ namespace Roomie.Desktop.Engine
             {
                 return threads.Contains(thread);
             }
+        }
+
+        IEnumerator<RoomieThread> IEnumerable<RoomieThread>.GetEnumerator()
+        {
+            return threads.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return threads.GetEnumerator();
         }
     }
 }
