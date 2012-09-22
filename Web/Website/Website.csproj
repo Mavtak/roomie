@@ -118,8 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\images\hello.png" />
-    <Content Include="content\images\icon %28144x144%29.png" />
-    <Content Include="content\images\icon %2864x64%29.png" />
     <Content Include="content\images\icon.png" />
     <Content Include="content\images\nothing.png" />
     <Content Include="content\images\sick.png" />
@@ -135,44 +133,9 @@
     <Content Include="content\styles\structure\Misc.css" />
     <Content Include="content\styles\structure\navigation.css" />
     <Content Include="content\Scripts\PageReady.js" />
-    <Content Include="content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="content\themes\base\jquery.ui.accordion.css" />
-    <Content Include="content\themes\base\jquery.ui.all.css" />
-    <Content Include="content\themes\base\jquery.ui.autocomplete.css" />
-    <Content Include="content\themes\base\jquery.ui.base.css" />
-    <Content Include="content\themes\base\jquery.ui.button.css" />
-    <Content Include="content\themes\base\jquery.ui.core.css" />
-    <Content Include="content\themes\base\jquery.ui.datepicker.css" />
-    <Content Include="content\themes\base\jquery.ui.dialog.css" />
-    <Content Include="content\themes\base\jquery.ui.progressbar.css" />
-    <Content Include="content\themes\base\jquery.ui.resizable.css" />
-    <Content Include="content\themes\base\jquery.ui.selectable.css" />
-    <Content Include="content\themes\base\jquery.ui.slider.css" />
-    <Content Include="content\themes\base\jquery.ui.tabs.css" />
-    <Content Include="content\themes\base\jquery.ui.theme.css" />
     <Content Include="content\styles\structure\widget.css" />
     <Content Include="Global.asax" />
-    <Content Include="content\Scripts\Libraries\jquery-1.5.1-vsdoc.js" />
-    <Content Include="content\Scripts\Libraries\jquery-1.5.1.js" />
     <Content Include="content\Scripts\Libraries\jquery-1.5.1.min.js" />
-    <Content Include="content\Scripts\Libraries\jquery-ui-1.8.11.js" />
-    <Content Include="content\Scripts\Libraries\jquery-ui-1.8.11.min.js" />
-    <Content Include="content\Scripts\Libraries\jquery.validate-vsdoc.js" />
-    <Content Include="content\Scripts\Libraries\jquery.validate.js" />
-    <Content Include="content\Scripts\Libraries\jquery.validate.min.js" />
-    <Content Include="content\Scripts\Libraries\modernizr-1.7.js" />
     <Content Include="content\Scripts\Libraries\modernizr-1.7.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -186,16 +149,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="content\styles\structure\site.css" />
-    <Content Include="content\Scripts\Libraries\jquery.unobtrusive-ajax.js" />
-    <Content Include="content\Scripts\Libraries\jquery.unobtrusive-ajax.min.js" />
     <Content Include="content\Scripts\Libraries\jquery.validate.unobtrusive.js" />
-    <Content Include="content\Scripts\Libraries\jquery.validate.unobtrusive.min.js" />
-    <Content Include="content\Scripts\Libraries\MicrosoftAjax.js" />
-    <Content Include="content\Scripts\Libraries\MicrosoftAjax.debug.js" />
-    <Content Include="content\Scripts\Libraries\MicrosoftMvcAjax.js" />
-    <Content Include="content\Scripts\Libraries\MicrosoftMvcAjax.debug.js" />
-    <Content Include="content\Scripts\Libraries\MicrosoftMvcValidation.js" />
-    <Content Include="content\Scripts\Libraries\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
