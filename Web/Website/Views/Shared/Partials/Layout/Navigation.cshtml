@@ -6,7 +6,7 @@
         
         string selectedItem = ViewBag.NavigationItem??ViewContext.RouteData.Values["controller"];
 
-        bool selected = selectedItem.Equals(controller);
+        bool selected = selectedItem.Equals(controller, StringComparison.InvariantCultureIgnoreCase);
         
         if(!anonymous && !selected)
         {
