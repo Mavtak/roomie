@@ -1,7 +1,4 @@
-﻿
-navigationVisible = true;
-
-function debug(message) {
+﻿function debug(message) {
     return;
     $('#navigation').append('<div class="debugMessage">' + message + '</div>');
 }
