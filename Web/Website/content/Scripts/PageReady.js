@@ -21,8 +21,7 @@ function fixUrl() {
 }
 
 $(window).resize(function () {
-    //setTimeout('adjustLayout()', 100);
-    adjustLayout();
+    
 });
 
 $(document).ready(function () {
