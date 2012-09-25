@@ -40,34 +40,6 @@ function fixUrl() {
     }
 }
 
-function showNavigation() {
-    navigationVisible = true;
-    $('.sidebarColumn').css('display', '');
-    $('#navigationSlice').css('display', 'none');
-    $('#content').css('border-top', 'none');
-
-    adjustLayout();
-}
-
-function hideNavigation() {
-    navigationVisible = false;
-    $('.sidebarColumn').css('display', 'none');
-    $('#navigationSlice').css('display', '');
-    $('#content').css('border-top', '');
-
-    adjustLayout();
-}
-
-function toggleNavigation() {
-    if (navigationVisible) {
-        hideNavigation();
-    }
-    else {
-        showNavigation();
-    }
-
-}
-
 $(window).resize(function () {
     //setTimeout('adjustLayout()', 100);
     adjustLayout();
@@ -78,8 +50,6 @@ $(document).ready(function () {
     fixLinks();
     fixUrl();
 
-    hideNavigation();
-    $('#colorStrip').click(function () { toggleNavigation(); });
     /*
     $('.button').mouseup(function () {
     debug('click!');
