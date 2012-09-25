@@ -84,7 +84,7 @@ form
    and #footer styles.
    ==================================================
 */
-#colorStrip, #content
+#colorStrip
 {
     border: 1px solid black;
 }
