@@ -59,17 +59,8 @@ form
 
 
 /* ==================================================
-    Level three -- the left and right (sidebar and content) areas
+    Level three -- the content areas
    ================================================== */
-.sidebarColumn
-{
-
-    padding: 0px;
-    margin: 0px;
-    width: 125px;
-    float: left;
-    overflow: hidden;
-}
 
 .mainColumn /* includes #header, #content, and #footer */
 {
