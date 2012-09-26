@@ -39,6 +39,30 @@ form
 }
 .horizontalCrossSection
 {
+    display: block;
+}
+
+/* ==================================================
+    Level two -- three top, middle, and bottom blocks.
+   ================================================== */
+.colorStrip
+{
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+/* ==================================================
+    Level three -- the content areas
+   ================================================== */
+
+.mainColumn /* includes #header, #content, and #footer */
+{
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    overflow: auto;
     max-width: 1000px;
     min-width: 300px;
     margin-left: auto;
@@ -46,59 +70,18 @@ form
 }
 
 /* ==================================================
-    Level two -- three top, middle, and bottom blocks.
-   ================================================== */
-#colorStrip
-{
-    display: block;
-    padding: 0px;
-    margin: 0px;
-
-    border-bottom: 1px solid black;
-}
-
-
-/* ==================================================
-    Level three -- the left and right (sidebar and content) areas
-   ================================================== */
-.sidebarColumn
-{
-
-    padding: 0px;
-    margin: 0px;
-    width: 125px;
-    float: left;
-    overflow: hidden;
-}
-
-.mainColumn /* includes #header, #content, and #footer */
-{
-    display: block;
-    margin: 0px;
-    padding: 0px;
-    overflow: auto;    
-}
-
-/* ==================================================
    #header (and children #title, account), #content,
    and #footer styles.
    ==================================================
 */
-#colorStrip, #content
-{
-    border: 1px solid black;
-}
-
-#colorStrip
-{
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-#colorStrip
+#page #header
 {
     font-size: 150%;
-    font-weight: normal;
+}
+
+#page #footer
+{
+    font-size: 90%;
 }
 
 #logo
@@ -139,7 +122,6 @@ form
     
     min-height: 250px;
     padding-bottom: 0px;
-    -webkit-overflow-scrolling: touch;
 }
 
 #footer /* page/.../footer */

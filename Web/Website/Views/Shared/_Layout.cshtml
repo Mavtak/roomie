@@ -62,27 +62,19 @@
   *@<body>@*
     *@<div id="page">@*
 
-      *@<div id="colorStrip">@*
-        *@<div class="horizontalCrossSection">@*
-          *@<div class="sidebarColumn">@*
-            *@@*<div id="logo" >Roomie</div>*@&nbsp;@*
-          *@</div>@*
 
-          *@<div id="header" class="mainColumn">@*
-            *@<div id="account">@Html.Partial("Partials/Layout/UserBadge")</div>@*
-            *@<h1 id="title">@{if (@ViewBag.Title != null)
-                               {<text>@ViewBag.Title</text>}
-                               else
-                               {<text>Roomie</text>}}</h1>@*
-          *@</div>@*
+      *@<div class="horizontalCrossSection colorStrip">@*
+        *@<div id="header" class="mainColumn">@*
+          *@<div id="account">@Html.Partial("Partials/Layout/UserBadge")</div>@*
+          *@<h1 id="title">@{if (@ViewBag.Title != null)
+                             {<text>@ViewBag.Title</text>}
+                             else
+                             {<text>Roomie</text>}}</h1>@*
         *@</div>@*
-      *@</div>@* <-- close #colorStrip
+      *@</div>@* <-- close horizontalCrossSection for #header
 
 
       *@<div id="navigationSlice" class="horizontalCrossSection">@*
-        *@<div class="sidebarColumn">@*
-          *@&nbsp;@*
-        *@</div>@*
         *@<div class="mainColumn">@*
           *@<div class="topNavigation">@Html.Partial("Partials/Layout/Navigation")</div>@*
         *@</div>@*
@@ -90,19 +82,17 @@
 
 
       *@<div class="horizontalCrossSection">@*
-        *@<div id="sidebar" class="sidebarColumn">@*
-          *@@Html.Partial("Partials/Layout/Navigation")@*
-        *@</div>@*
         *@<div id="content" class="mainColumn">@*
           *@@RenderBody()@*
         *@</div>@*
-      *@</div>@*
+      *@</div>@* <-- close horizontalCrossSection for #content
 
 
-      *@<div class="horizontalCrossSection">@*
-        *@<div class="sidebarColumn">&nbsp;</div>@* just to bump the header columb over
-        *@<div id="footer" class="mainColumn"><a href="http://davidmcgrath.com/roomie">Roomie</a> is an <a href="/source">open source</a> project by <a href="http://davidmcgrath.com">David McGrath</a>.</div>@*
-      *@</div>@*
+      *@<div class="horizontalCrossSection colorStrip">@*
+        *@<div id="footer" class="mainColumn">@*
+          *@<a href="http://davidmcgrath.com/roomie">Roomie</a> is an <a href="/source">open source</a> project by <a href="http://davidmcgrath.com">David McGrath</a>.@*
+        *@</div>@*
+      *@</div>@* <-- close horizontalCrossSection for #footer
 
     *@</div>@* <-- close #page
 
