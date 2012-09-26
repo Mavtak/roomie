@@ -39,22 +39,17 @@ form
 }
 .horizontalCrossSection
 {
-    max-width: 1000px;
-    min-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+    display: block;
 }
 
 /* ==================================================
     Level two -- three top, middle, and bottom blocks.
    ================================================== */
-#colorStrip
+.colorStrip
 {
     display: block;
     padding: 0px;
     margin: 0px;
-
-    border-bottom: 1px solid black;
 }
 
 
@@ -67,7 +62,11 @@ form
     display: block;
     margin: 0px;
     padding: 0px;
-    overflow: auto;    
+    overflow: auto;
+    max-width: 1000px;
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* ==================================================
@@ -75,21 +74,14 @@ form
    and #footer styles.
    ==================================================
 */
-#colorStrip
-{
-    border: 1px solid black;
-}
-
-#colorStrip
-{
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-#colorStrip
+#page #header
 {
     font-size: 150%;
-    font-weight: normal;
+}
+
+#page #footer
+{
+    font-size: 90%;
 }
 
 #logo
