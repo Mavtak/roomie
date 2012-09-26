@@ -3,11 +3,12 @@
    padding: 0px;
 }
 
-body
+html, body
 {
     margin: 0px;
     padding: 0px;
     font-family: Sans-Serif;
+    height: 100%;
 }
 
 div
@@ -36,6 +37,8 @@ form
     display: block;
     padding: 0px;
     margin: 0px;
+    min-height: 100%;
+    height: 100%;
 }
 .horizontalCrossSection
 {
@@ -45,12 +48,6 @@ form
 /* ==================================================
     Level two -- three top, middle, and bottom blocks.
    ================================================== */
-.colorStrip
-{
-    display: block;
-    padding: 0px;
-    margin: 0px;
-}
 
 
 /* ==================================================

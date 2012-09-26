@@ -63,7 +63,7 @@
     *@<div id="page">@*
 
 
-      *@<div class="horizontalCrossSection colorStrip">@*
+      *@<div id="headerRow" class="horizontalCrossSection">@*
         *@<div id="header" class="mainColumn">@*
           *@<div id="account">@Html.Partial("Partials/Layout/UserBadge")</div>@*
           *@<h1 id="title">@{if (@ViewBag.Title != null)
@@ -74,21 +74,21 @@
       *@</div>@* <-- close horizontalCrossSection for #header
 
 
-      *@<div id="navigationSlice" class="horizontalCrossSection">@*
+      *@<div id="navigationRow" class="horizontalCrossSection">@*
         *@<div class="mainColumn">@*
           *@<div class="topNavigation">@Html.Partial("Partials/Layout/Navigation")</div>@*
         *@</div>@*
       *@</div>@*
 
 
-      *@<div class="horizontalCrossSection">@*
+      *@<div id="contentRow" class="horizontalCrossSection">@*
         *@<div id="content" class="mainColumn">@*
           *@@RenderBody()@*
         *@</div>@*
       *@</div>@* <-- close horizontalCrossSection for #content
 
 
-      *@<div class="horizontalCrossSection colorStrip">@*
+      *@<div id="footerRow" class="horizontalCrossSection">@*
         *@<div id="footer" class="mainColumn">@*
           *@<a href="http://davidmcgrath.com/roomie">Roomie</a> is an <a href="/source">open source</a> project by <a href="http://davidmcgrath.com">David McGrath</a>.@*
         *@</div>@*
