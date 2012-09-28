@@ -114,9 +114,6 @@ form
 
 #content /* #content is the second child of the middle page slice */
 {
-
-    
-    min-height: 250px;
     padding-bottom: 0px;
 }
 
