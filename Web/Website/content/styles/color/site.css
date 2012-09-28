@@ -1,16 +1,23 @@
-﻿body
+﻿body,
+#contentRow
 {
     background-color: White;
 }
 
-.colorStrip
+#page
 {
     background-color: rgb(195, 20, 20);
     background-color: #660198;
 }
+
+#navigationRow
+{
+    background-color: rgb(240, 240, 240);
+}
+
 .widget .header,
-.colorStrip,
-#footer
+#headerRow,
+#footerRow
 {
     color: White;
     text-decoration: inherit;
