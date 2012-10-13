@@ -38,15 +38,13 @@ namespace Roomie.Desktop.Engine
             //Reflect on the parameters
             foreach (ParameterAttribute parameter in this.GetType().GetCustomAttributes(typeof(ParameterAttribute), true))
             {
-                //TODO: improve
-                if (parameter.HasDefault)
-                {
-                    addArgument(new RoomieCommandArgument(parameter.Name, parameter.Type, parameter.Default));
-                }
-                else
-                {
-                    addArgument(new RoomieCommandArgument(parameter.Name, parameter.Type));
-                }
+                var argument = new RoomieCommandArgument(
+                    name: parameter.Name,
+                    type: parameter.Type,
+                    defaultValue: parameter.Default,
+                    hasDefault: parameter.HasDefault
+                    );
+                arguments.Add(argument);
             }
 
             if (description != null)
@@ -68,19 +66,6 @@ namespace Roomie.Desktop.Engine
             if (this.GetType().GetCustomAttributes(typeof(NotFinishedAttribute), true).Any())
             {
                 finalized = false;
-            }
-        }
-
-        private void addArgument(RoomieCommandArgument argument)
-        {
-            if (Finalized)
-            {
-                throw new CommandImplementationException(this, "Cannot add arguments to a command that is finalized.");
-            }
-
-            lock (arguments)
-            {
-                arguments.Add(argument);
             }
         }
 
@@ -263,7 +248,9 @@ namespace Roomie.Desktop.Engine
             get
             {
                 if (cashedSource == null)
+                {
                     cashedSource = System.Reflection.Assembly.GetAssembly(GetType()).CodeBase;
+                }
 
                 return cashedSource;
             }
@@ -343,7 +330,7 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                return this.GetType().Equals(typeof(RoomieDynamicCommand));
+                return this is RoomieDynamicCommand;
             }
         }
 

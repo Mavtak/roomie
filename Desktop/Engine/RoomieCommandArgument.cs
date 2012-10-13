@@ -11,17 +11,12 @@ namespace Roomie.Desktop.Engine
         public readonly string DefaultValue;
         public readonly bool HasDefault;
 
-        public RoomieCommandArgument(string name, string type, string defaultValue)
+        public RoomieCommandArgument(string name, string type, string defaultValue = null, bool hasDefault = false)
         {
             this.Name = name;
             this.Type = type;
             this.DefaultValue = defaultValue;
-            this.HasDefault = true;
-        }
-        public RoomieCommandArgument(string name, string type)
-            : this(name, type, null)
-        {
-            this.HasDefault = false;
+            this.HasDefault = hasDefault;
         }
         public RoomieCommandArgument(XmlNode node)
         {
