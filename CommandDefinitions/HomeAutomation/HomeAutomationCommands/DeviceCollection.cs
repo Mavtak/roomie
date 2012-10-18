@@ -1,6 +1,5 @@
-﻿using Roomie.Common.HomeAutomation.Exceptions;
+﻿using BaseDevice = Roomie.Common.HomeAutomation.Device;
 using BaseDeviceCollection = Roomie.Common.HomeAutomation.DeviceCollection;
-using BaseDevice = Roomie.Common.HomeAutomation.Device;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 
-using System.Xml;
-
-using Roomie.Desktop.Engine;
-using Roomie.Desktop.Engine.Exceptions;
-using WebCommunicator;
-using Roomie.CommandDefinitions.WebHookCommands;
 using Roomie.Common.Exceptions;
+using Roomie.Desktop.Engine;
+using WebCommunicator;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {

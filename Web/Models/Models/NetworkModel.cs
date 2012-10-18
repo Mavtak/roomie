@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Roomie.Web.Models.Helpers;
 using BaseNetwork = Roomie.Common.HomeAutomation.Network;
-using System.ComponentModel.DataAnnotations;
 
 namespace Roomie.Web.Models
 {

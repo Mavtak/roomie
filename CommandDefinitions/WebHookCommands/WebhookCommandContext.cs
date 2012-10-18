@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 using Roomie.Desktop.Engine;
-using Roomie.Desktop.Engine.Exceptions;
-using WebCommunicator;
 
 namespace Roomie.CommandDefinitions.WebHookCommands
 {

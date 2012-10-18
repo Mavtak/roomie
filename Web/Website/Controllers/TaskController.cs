@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Roomie.Web.Helpers;
 using Roomie.Web.Models;
 using Roomie.Web.Website.Helpers;
 

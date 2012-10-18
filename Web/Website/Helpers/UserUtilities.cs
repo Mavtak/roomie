@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web;
 using System.Web.Security;
-using Roomie.Web.Models;
 using Roomie.Web.Helpers;
+using Roomie.Web.Models;
 
 
 namespace Roomie.Web.Website.Helpers

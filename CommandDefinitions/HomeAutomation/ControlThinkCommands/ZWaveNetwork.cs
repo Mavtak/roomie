@@ -1,7 +1,7 @@
 ﻿using System;
-using Roomie.Common.HomeAutomation.Exceptions;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
+using Roomie.Common.HomeAutomation.Exceptions;
 
 namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
 {

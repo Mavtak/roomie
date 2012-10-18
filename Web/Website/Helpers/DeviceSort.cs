@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Roomie.Web.Models;
 
 namespace Roomie.Web.Website.Helpers

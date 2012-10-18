@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.RelyingParty;
-using Roomie.Web.Helpers;
 using Roomie.Web.Models;
 using Roomie.Web.Website.Helpers;
 

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Reflection;
 using System.Text;
-
-using System.Reflection;
 using Roomie.Common.Exceptions;
 
 namespace Roomie.Desktop.Engine.Exceptions

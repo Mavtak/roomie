@@ -1,5 +1,5 @@
-﻿using Roomie.Common.HomeAutomation.Exceptions;
-using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
+using Roomie.Common.HomeAutomation.Exceptions;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {

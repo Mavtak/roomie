@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Roomie.Desktop.Engine;
+﻿
 using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
+using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {

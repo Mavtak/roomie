@@ -3,7 +3,6 @@ using System.Xml;
 using System.Xml.Linq;
 using Roomie.Common;
 using BaseNetwork = Roomie.Common.HomeAutomation.Network;
-using Roomie.Common.HomeAutomation.Exceptions;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {

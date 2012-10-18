@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Roomie.Common.HomeAutomation.Exceptions;
-using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using BaseNetworkCollection = Roomie.Common.HomeAutomation.NetworkCollection;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands

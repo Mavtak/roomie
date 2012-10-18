@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using System.Xml;
 
-using WebCommunicator;
 using Roomie.Web.Models;
-using Roomie.Web.Helpers;
 
 namespace Roomie.Web.WebHook.ActionHandlers
 {

@@ -1,6 +1,6 @@
-﻿using Roomie.Web.Models.Helpers;
+﻿using System.ComponentModel.DataAnnotations;
+using Roomie.Web.Models.Helpers;
 using BaseDeviceLocation = Roomie.Common.HomeAutomation.DeviceLocation;
-using System.ComponentModel.DataAnnotations;
 
 namespace Roomie.Web.Models
 {

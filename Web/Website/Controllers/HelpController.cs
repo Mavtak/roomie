@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using Roomie.Web.Helpers;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers

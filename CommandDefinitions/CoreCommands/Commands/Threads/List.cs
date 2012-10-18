@@ -1,8 +1,7 @@
 ﻿using System;
-using Roomie.Desktop.Engine;
-using Roomie.Desktop.Engine.Commands;
-using Roomie.Common.TextUtilities;
 using System.Linq;
+using Roomie.Common.TextUtilities;
+using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Threads
 {

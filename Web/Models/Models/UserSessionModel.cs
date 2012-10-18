@@ -1,7 +1,6 @@
 ﻿using System;
-using Roomie.Web.Models.Helpers;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
+using Roomie.Web.Models.Helpers;
 
 namespace Roomie.Web.Models
 {
