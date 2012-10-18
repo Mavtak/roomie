@@ -10,7 +10,7 @@ using Roomie.Web.Models;
 using Roomie.Web.Helpers;
 using Roomie.Web.WebHook;
 
-namespace Roomie.Web
+namespace Roomie.Web.Website
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
