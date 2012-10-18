@@ -1,7 +1,7 @@
 Param (
     [string]$filename = $(throw "filename is required")
 )
-
+Exit
 [regex]$version_regex = "[0-9]+[.][0-9]+[.][0-9]+[.][0-9]+";
 
 Write-Host ("Parsing " + $filename)
