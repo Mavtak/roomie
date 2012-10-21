@@ -13,17 +13,13 @@ namespace Roomie.Web.Website
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {
-            filters.Add(new HandleErrorAttribute());
-        }
 
         protected void Application_Start()
         {
             Database.SetInitializer<RoomieDatabaseContext>(new RoomieDatabaseInitializer());
             AreaRegistration.RegisterAllAreas();
 
-            RegisterGlobalFilters(GlobalFilters.Filters);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //var database = new RoomieDatabaseContext();
