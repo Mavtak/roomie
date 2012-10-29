@@ -12,12 +12,13 @@ namespace Roomie.Web.Website.Controllers
     {
         private static OpenIdRelyingParty openId = new OpenIdRelyingParty();
 
+        [WebsiteRestrictedAccess]
         public ActionResult Index()
         {
             return View();
         }
 
-        [UsersOnly]
+        [WebsiteRestrictedAccess]
         public ActionResult Settings()
         {
 
@@ -94,8 +95,8 @@ namespace Roomie.Web.Website.Controllers
             }
             return new EmptyResult();
         }
-        
-        [UsersOnly]
+
+        [WebsiteRestrictedAccess]
         public ActionResult Edit()
         {
             return View(User);
@@ -103,6 +104,7 @@ namespace Roomie.Web.Website.Controllers
 
         
         [HttpPost]
+        [WebsiteRestrictedAccess]
         public ActionResult Edit(UserModel user)
         {
             this.User.Alias = user.Alias;

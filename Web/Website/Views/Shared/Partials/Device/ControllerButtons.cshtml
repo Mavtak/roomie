@@ -1,0 +1,46 @@
+﻿@model DeviceViewModel
+@*
+
+*@<div class="buttonGroup two">@*
+
+*@@using (Ajax.BeginForm(
+    actionName: "Add",
+    controllerName: "Device",
+    routeValues: new
+    {
+        id = Model.Device.Id,
+        returnUrl = Request.Path
+    },
+    ajaxOptions: new AjaxOptions
+    {
+        HttpMethod = "Post",
+    },
+    htmlAttributes: new
+    {
+        @class = "button leftmost"
+    }
+    ))
+    {<button class="button">Add Device</button>}@*
+
+*@@using (Ajax.BeginForm(
+    actionName: "Remove",
+    controllerName: "Device",
+    routeValues: new
+    {
+        id = Model.Device.Id,
+        returnUrl = Request.Path
+    },
+    ajaxOptions: new AjaxOptions
+    {
+        HttpMethod = "Post",
+    },
+    htmlAttributes: new
+    {
+        @class = "button rightmost"
+    }
+    ))
+    {<button class="button">Remove Device</button>}@*
+
+*@</div>@*
+
+*@

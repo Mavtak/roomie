@@ -1,0 +1,47 @@
+﻿@model DeviceViewModel
+@*
+
+
+*@@using (Ajax.BeginForm(
+                    actionName: "Dim",
+                    controllerName: "Device",
+                    routeValues: new
+                    {
+                        id = Model.Device.Id,
+                        returnUrl = Request.Path
+                    },
+                    ajaxOptions: new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                    },
+                    htmlAttributes: new
+                    {
+                        @class = "buttonGroup dimmer"
+                    }
+                    ))
+    {@*
+
+        *@for (int power = 0; power <= 100; power += 10)
+          {@*
+          *@<button class="@{
+            if (power == 0)
+                {<text>leftmost</text>}
+                else if (power == 100)
+                {<text>rightmost</text>}
+                else
+                {<text>middle</text>}
+
+                if ((Model.Device.Percentage > (power - 10))
+                    && (Model.Device.Percentage <= (power)))
+                {<text> activated</text>}
+        } button" type="submit" name="power" value="@power">@{
+            if (power == 0)
+            {<text>Off</text>}
+            else if (power == 100)
+            {<text>On</text>}
+            else
+            {<text></text>}
+        }</button>}@*
+
+    *@}@*
+*@

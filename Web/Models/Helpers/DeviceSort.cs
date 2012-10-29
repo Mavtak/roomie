@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Roomie.Web.Models;
 
-namespace Roomie.Web.Website.Helpers
+namespace Roomie.Web.Models.Helpers
 {
     public class DeviceSort : IComparer<DeviceModel>
     {

@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Roomie.Desktop.Engine;
 using Roomie.Web.Helpers;
 using Roomie.Web.Models;
+using Roomie.Web.Website.Controllers;
 
 namespace Roomie.Web.Website.Helpers
 {
-    public class RoomieBaseController : System.Web.Mvc.Controller
+    public class RoomieBaseController : System.Web.Mvc.Controller, IRoomieController
     {
-        protected RoomieDatabaseContext Database;
+        public RoomieDatabaseContext Database { get; set; }
         protected RoomieCommandLibrary Commands;
-        new protected UserModel User;
+        new public UserModel User { get; set; }
 
         private const string userKey = "_RoomieUser";
         private const string requestedControllerKey = "_RequestedController";
@@ -36,16 +36,17 @@ namespace Roomie.Web.Website.Helpers
                 {
                     ViewBag.User = HttpContext.Items[userKey];
                 }
+
+                ViewBag.UserAuthenticated = (User != null);
             }
             catch (Exception exception)
             {
-                if (!this.GetType().Name.Equals("ErrorController")
-                    && !this.GetType().Name.Equals("TestController"))
+                if (!(this is ErrorController)
+                    && !(this is TestController))
+                {
                     throw exception;
+                }
             }
-
-            ViewBag.UserAuthenticated = (User != null);
-
 
             if (HttpContext.Items[requestedControllerKey] == null)
             {
@@ -57,104 +58,9 @@ namespace Roomie.Web.Website.Helpers
                 ViewBag.NavigationItem = HttpContext.Items[requestedControllerKey];
             }
 
-            try
-            {
-                //TODO: remove this hack;
-                var networks = User.HomeAutomationNetworks.ToList();
-                var devices = Database.Devices.ToList();
-                var locations = Database.DeviceLocations.ToList();
-                var computers = User.Computers.ToList();
-                var users = Database.Users.ToList();
-                var scripts = Database.Scripts.ToList();
-            }
-            catch
-            { }
-
-            // Redirect to sign in page if the action is users-only.
-            if (User == null)
-            {
-                var attributes = filterContext.ActionDescriptor.GetCustomAttributes(typeof(UsersOnlyAttribute), false);
-                if (attributes.Length > 0)
-                {
-                    filterContext.Result = RedirectToAction(
-                        actionName: "SignIn",
-                        controllerName: "User"
-                    );
-                }
-            }
+            this.RefreshDatabaseHack();
 
             base.OnActionExecuting(filterContext);
-        }
-
-        protected DeviceModel SelectDevice(int id)
-        {
-            var device = Database.Devices.Find(id);
-            if (device == null)
-            {
-                throw new HttpException(404, "Device not found");
-            }
-
-            var users = Database.Users.ToList();
-
-            if (device.Network == null)
-            {
-                throw new HttpException(404, "Device not found");
-            }
-
-            if (device.Network.Owner != User)
-            {
-                throw new HttpException(404, "Device not found");
-            }
-
-            return device;
-        }
-
-        protected NetworkModel SelectNetwork(int id)
-        {
-            var network = Database.Networks.Find(id);
-            if (network == null)
-            {
-                throw new HttpException(404, "Device not found");
-            }
-
-            if (network.Owner != User)
-            {
-                throw new Exception("You do not own that network.");
-            }
-
-            return network;
-        }
-
-        protected SavedScriptModel SelectSavedScript(int id)
-        {
-            var script = Database.SavedScripts.Find(id);
-            if (script == null)
-            {
-                throw new HttpException(404, "Script not found");
-            }
-
-            if (script.Owner != User)
-            {
-                throw new HttpException(404, "Script not found");
-            }
-
-            return script;
-        }
-
-        protected ComputerModel SelectComputer(int id)
-        {
-            var computer = Database.Computers.Find(id);
-            if (computer == null)
-            {
-                throw new HttpException(404, "Computer not found");
-            }
-
-            if (computer.Owner != User)
-            {
-                throw new HttpException(404, "Computer not found");
-            }
-
-            return computer;
         }
 
         protected JsonResult AjaxSuccess()

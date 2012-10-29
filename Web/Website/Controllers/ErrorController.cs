@@ -37,6 +37,8 @@ namespace Roomie.Web.Website.Controllers
 
                 switch (httpException.GetHttpCode())
                 {
+                    case 403:
+                        return Http403(httpException);
                     case 404:
                         return Http404(httpException);
                 }
@@ -54,6 +56,14 @@ namespace Roomie.Web.Website.Controllers
         {
             Response.StatusCode = 404;
             return View("Http404");
+        }
+
+        public ActionResult Http403(HttpException exception)
+        {
+            return RedirectToAction(
+                actionName: "SignIn",
+                controllerName: "User"
+                );
         }
     }
 }

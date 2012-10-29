@@ -3,35 +3,25 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Roomie.Web.Models;
+using Roomie.Web.Models.Helpers;
 using Roomie.Web.ViewModels;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers
 {
+    [WebsiteRestrictedAccess]
     public class DeviceController : RoomieBaseController
     {
-        [UsersOnly]
         public ActionResult Index()
         {
-            var devices = new List<DeviceModel>();
-
-            foreach (var network in User.HomeAutomationNetworks)
-            {
-                foreach (DeviceModel device in network.Devices)
-                {
-                    devices.Add(device);
-                }
-            }
-
-            devices.Sort(new DeviceSort());
+            var devices = User.GetAllDevices();
 
             return View(devices);
         }
 
-        [UsersOnly]
         public ActionResult Details(int id)
         {
-            var device = SelectDevice(id);
+            var device = this.SelectDevice(id);
 
             return View(device);
         }
@@ -53,10 +43,9 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
-        [UsersOnly]
         public ActionResult Dim(int id, int power, string returnUrl)
         {
-            var device = SelectDevice(id);
+            var device = this.SelectDevice(id);
 
             addTask(
                 computer: device.Network.AttatchedComputer,
@@ -77,10 +66,9 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
-        [UsersOnly]
         public ActionResult PowerOn(int id, string returnUrl)
         {
-            var device = SelectDevice(id);
+            var device = this.SelectDevice(id);
 
             addTask(
                 computer: device.Network.AttatchedComputer,
@@ -101,10 +89,9 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
-        [UsersOnly]
         public ActionResult PowerOff(int id, string returnUrl)
         {
-            var device = SelectDevice(id);
+            var device = this.SelectDevice(id);
 
             addTask(
                 computer: device.Network.AttatchedComputer,
@@ -124,11 +111,10 @@ namespace Roomie.Web.Website.Controllers
             );
         }
 
-        [UsersOnly]
         [HttpPost]
         public ActionResult Edit(int id, string name, string location, string type, string returnUrl)
         {
-            var device = SelectDevice(id);
+            var device = this.SelectDevice(id);
 
             if (name != null)
             {
@@ -170,7 +156,6 @@ namespace Roomie.Web.Website.Controllers
             });
         }
 
-        [UsersOnly]
         [HttpPost]
         public ActionResult IndexAjax()
         {
@@ -207,7 +192,6 @@ namespace Roomie.Web.Website.Controllers
             );
         }
 
-        [UsersOnly]
         [HttpPost]
         public ActionResult IndexAjaxJson()
         {

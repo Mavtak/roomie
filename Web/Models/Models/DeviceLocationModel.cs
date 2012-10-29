@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Roomie.Web.Models.Helpers;
 using BaseDeviceLocation = Roomie.Common.HomeAutomation.DeviceLocation;
 
@@ -11,7 +12,7 @@ namespace Roomie.Web.Models
         
         public UserModel Owner { get; set; }
         //public string Name { get; set; }
-        //public virtual ICollection<DeviceModel> Devices { get; set; }
+        public virtual ICollection<DeviceModel> Devices { get; set; }
 
         //public override string ToString()
         //{

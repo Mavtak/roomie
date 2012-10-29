@@ -6,10 +6,9 @@ using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers
 {
+    [WebsiteRestrictedAccess]
     public class TaskController : RoomieBaseController
     {
-        
-        [UsersOnly]
         public ActionResult Index(int page = 1, int count = 50)
         {
             //TODO: remove this hack
@@ -24,7 +23,6 @@ namespace Roomie.Web.Website.Controllers
             return View(tasks);
         }
 
-        [UsersOnly]
         public ActionResult Details(int id)
         {
             return View(Database.Tasks.Find(id));

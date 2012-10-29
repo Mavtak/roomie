@@ -13,7 +13,7 @@ namespace Roomie.Web.Models
         [Key]
         public int Id { get; set; }
 
-        public NetworkModel Network
+        public virtual NetworkModel Network
         {
             get
             {
@@ -37,7 +37,7 @@ namespace Roomie.Web.Models
             }
         }
 
-        public DeviceLocationModel Location
+        public virtual DeviceLocationModel Location
         {
             get
             {

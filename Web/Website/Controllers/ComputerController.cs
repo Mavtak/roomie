@@ -6,26 +6,26 @@ using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers
 {
+    [WebsiteRestrictedAccess]
     public class ComputerController : RoomieBaseController
     {
-        [UsersOnly]
         public ActionResult Index()
         {
             return View(User.Computers);
         }
 
-        [UsersOnly]
         public ActionResult Details(int id)
         {
-            return View(SelectComputer(id));
+            var computer = this.SelectComputer(id);
+
+            return View(computer);
         }
 
         [HttpPost]
-        [UsersOnly]
         [ValidateInput(false)]
         public ActionResult RunScript(int id, string script, string returnUrl)
         {
-            var computer = SelectComputer(id);
+            var computer = this.SelectComputer(id);
 
             var task = new TaskModel
             {
@@ -53,10 +53,9 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
-        [UsersOnly]
         public ActionResult RenewWebHookKeys(int id)
         {
-            var computer = SelectComputer(id);
+            var computer = this.SelectComputer(id);
 
             computer.RenewWebhookKeys();
             Database.SaveChanges();
@@ -68,10 +67,9 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
-        [UsersOnly]
         public ActionResult DisableWebhook(int id)
         {
-            var computer = SelectComputer(id);
+            var computer = this.SelectComputer(id);
 
             computer.DisableWebhook();
             Database.SaveChanges();

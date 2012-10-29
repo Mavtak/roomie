@@ -3,53 +3,47 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Roomie.Web.Models;
+using Roomie.Web.Models.Helpers;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers
 {
+    [WebsiteRestrictedAccess]
     public class NetworkController : RoomieBaseController
     {
-        private static void SortDevices(NetworkModel network)
-        {
-            var devices = network.Devices.ToList();
-            devices.Sort(new DeviceSort());
-            network.Devices = devices;
-        }
         private NetworkModel GetNetwork(int id)
         {
-            var network = SelectNetwork(id);
+            var network = this.SelectNetwork(id);
 
             return network;
         }
 
-        [UsersOnly]
         public ActionResult Index()
         {
             var networks = User.HomeAutomationNetworks.ToList();
 
             foreach (var network in networks)
             {
-                SortDevices(network);
+                network.SortDevices();
             }
+
             return View(networks);
         }
 
-        [UsersOnly]
         public ActionResult Details(int id)
         {
             //TODO: Verify User
-            var network = SelectNetwork(id);
+            var network = this.SelectNetwork(id);
 
-            SortDevices(network);
+            network.SortDevices();
 
             return View(network);
         }
 
-        [UsersOnly]
         [HttpPost]
         public ActionResult Edit(int id, string name, string returnUrl, bool? delete)
         {
-            var network = SelectNetwork(id);
+            var network = this.SelectNetwork(id);
 
             network.Name = name;
             if (delete == true)

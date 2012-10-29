@@ -25,7 +25,7 @@ namespace Roomie.Web.Models
                 base.address = value;
             }
         }
-        public ComputerModel AttatchedComputer { get; set; }
+        public virtual ComputerModel AttatchedComputer { get; set; }
 
         public NetworkModel()
             : base(null)

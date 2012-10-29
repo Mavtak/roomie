@@ -5,9 +5,9 @@ using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers
 {
+    [WebsiteRestrictedAccess]
     public class ScriptController : RoomieBaseController
     {
-        [UsersOnly]
         public ActionResult Index()
         {
             return View(User.SavedScripts);
@@ -15,10 +15,11 @@ namespace Roomie.Web.Website.Controllers
 
         public ActionResult Details(int id)
         {
-            return View(SelectSavedScript(id));
+            var script = this.SelectSavedScript(id);
+
+            return View(script);
         }
 
-        [UsersOnly]
         public ActionResult New()
         {
             var model = new SavedScriptModel
@@ -33,7 +34,6 @@ namespace Roomie.Web.Website.Controllers
             return View(model);
         }
 
-        [UsersOnly]
         [HttpPost]
         public ActionResult New(SavedScriptModel model, string returnUrl)
         {
