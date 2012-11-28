@@ -25,18 +25,6 @@ namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
             }
         }
 
-        public string Address
-        {
-            get
-            {
-                return base.address;
-            }
-            set
-            {
-                throw new HomeAutomationException("Cannot modify address");
-            }
-        }
-
         public override void PowerOn()
         {
             try

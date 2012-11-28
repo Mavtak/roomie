@@ -29,7 +29,7 @@ namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
                 ZWaveController.Connect();
                 //TODO: clean this up
                 Name = "ZWave" + ZWaveController.HomeID.ToString();
-                base.address = Name;
+                Address = Name;
             }
             catch (Exception e)
             {

@@ -37,9 +37,8 @@ namespace Roomie.Web.WebHook.ActionHandlers
             if (network == null)
             {
                 //responseText.Append("Adding network '" + networkAddress + "'");
-                network = new NetworkModel
+                network = new NetworkModel(networkAddress)
                 {
-                    Address = networkAddress,
                     Owner = user
                 };
                 database.Networks.Add(network);

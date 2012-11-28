@@ -7,15 +7,7 @@ using BaseNetwork = Roomie.Common.HomeAutomation.Network;
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
     public abstract class Network : BaseNetwork
-    {
-        public string Address
-        {
-            get
-            {
-                return base.address;
-            }
-        }
-        
+    {        
         public Network()
             : base(null)
         {

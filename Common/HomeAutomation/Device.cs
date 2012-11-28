@@ -6,7 +6,7 @@ namespace Roomie.Common.HomeAutomation
     public abstract class Device : HomeAutomationEntity
     {
         protected Network network { get; set; }
-        internal Network Network
+        internal Network Network_Hack
         {
             get
             {
@@ -15,7 +15,7 @@ namespace Roomie.Common.HomeAutomation
         }
 
         protected DeviceLocation location { get; set; }
-        internal DeviceLocation Location
+        internal DeviceLocation Location_Hack
         {
             get
             {
@@ -127,12 +127,12 @@ namespace Roomie.Common.HomeAutomation
 
                 remarksBuilder.Append(", connected to ");
 
-                if (this.Network != null)
+                if (this.Network_Hack != null)
                 {
-                    if (this.Network.Name != null)
+                    if (this.Network_Hack.Name != null)
                     {
                         remarksBuilder.Append("the ");
-                        remarksBuilder.Append(this.Network.Name);
+                        remarksBuilder.Append(this.Network_Hack.Name);
                     }
                     else
                     {
@@ -155,8 +155,8 @@ namespace Roomie.Common.HomeAutomation
             //TODO: Lock?
             var result = base.ToXElement("HomeAutomationDevice");
 
-            if (Location.IsSet)
-                result.Add(new XAttribute("Location", Location.Name));
+            if (Location_Hack.IsSet)
+                result.Add(new XAttribute("Location", Location_Hack.Name));
 
             result.Add(new XAttribute("Type", Type));
             //TODO: LastPoll

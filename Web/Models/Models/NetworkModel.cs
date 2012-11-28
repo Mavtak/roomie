@@ -14,17 +14,7 @@ namespace Roomie.Web.Models
         public UserModel Owner { get; set; }
         //public string Address { get; set; }
         //public string Name { get; set; }
-        public string Address
-        {
-            get
-            {
-                return base.address;
-            }
-            set
-            {
-                base.address = value;
-            }
-        }
+
         public virtual ComputerModel AttatchedComputer { get; set; }
 
         public NetworkModel()
@@ -32,6 +22,12 @@ namespace Roomie.Web.Models
         {
             base.devices = new Roomie.Common.HomeAutomation.DeviceCollection(this);
 
+        }
+
+        public NetworkModel(string address)
+            : this()
+        {
+            Address = address;
         }
 
         #region LastPing

@@ -25,18 +25,6 @@ namespace Roomie.Web.Models
             }
         }
 
-        public string Address
-        {
-            get
-            {
-                return base.address;
-            }
-            set
-            {
-                base.address = value;
-            }
-        }
-
         public virtual DeviceLocationModel Location
         {
             get

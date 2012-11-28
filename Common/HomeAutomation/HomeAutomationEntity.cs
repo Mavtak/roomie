@@ -25,13 +25,13 @@ namespace Roomie.Common.HomeAutomation
         }
 
         protected string address;
-        internal string Address
+        public virtual string Address
         {
             get
             {
                 return address;
             }
-            set
+            protected set
             {
                 address = value;
             }
