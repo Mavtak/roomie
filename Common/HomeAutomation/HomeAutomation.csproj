@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VirtualAddress.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceCollection.cs" />

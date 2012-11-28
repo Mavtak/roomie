@@ -63,7 +63,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public override string ToString()
         {
-            return this.BuildAddress();
+            return BuildVirtualAddress(true, false);
         }
 
     }

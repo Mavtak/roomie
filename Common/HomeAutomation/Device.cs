@@ -76,7 +76,7 @@ namespace Roomie.Common.HomeAutomation
         {
             get
             {
-                return this.BuildAddress();
+                return BuildVirtualAddress(true, false);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Roomie.Common.HomeAutomation
         {
             get
             {
-                return this.BuildAddress(true);
+                return BuildVirtualAddress(true, false);
             }
         }
 
@@ -92,51 +92,62 @@ namespace Roomie.Common.HomeAutomation
         {
             get
             {
-                var remarks = new StringBuilder();
+                return BuildVirtualAddress(true, true);
+            }
+        }
+
+        public string BuildVirtualAddress(bool justAddress, bool includeDescription)
+        {
+            string remarks = null;
+            if (includeDescription)
+            {
+                var remarksBuilder = new StringBuilder();
 
                 if (this.Name != null)
                 {
-                    remarks.Append("The ");
-                    remarks.Append(this.Name);
+                    remarksBuilder.Append("The ");
+                    remarksBuilder.Append(this.Name);
                 }
                 else
                 {
-                    remarks.Append("an unnamed device");
+                    remarksBuilder.Append("an unnamed device");
                 }
 
-                remarks.Append(" in ");
+                remarksBuilder.Append(" in ");
 
                 if (this.location.IsSet)
                 {
-                    remarks.Append("The ");
-                    remarks.Append(this.location.Name);
+                    remarksBuilder.Append("The ");
+                    remarksBuilder.Append(this.location.Name);
                 }
                 else
                 {
-                    remarks.Append(" an unknown location");
+                    remarksBuilder.Append(" an unknown location");
                 }
 
-                remarks.Append(", connected to ");
+                remarksBuilder.Append(", connected to ");
 
                 if (this.Network_Hack != null)
                 {
                     if (this.Network_Hack.Name != null)
                     {
-                        remarks.Append("the ");
-                        remarks.Append(this.Network_Hack.Name);
+                        remarksBuilder.Append("the ");
+                        remarksBuilder.Append(this.Network_Hack.Name);
                     }
                     else
                     {
-                        remarks.Append("an unnamed network");
+                        remarksBuilder.Append("an unnamed network");
                     }
                 }
                 else
                 {
-                    remarks.Append("no network");
+                    remarksBuilder.Append("no network");
                 }
 
-                return this.BuildAddress(true, remarks.ToString());
+                remarks = remarksBuilder.ToString();
             }
+
+            return VirtualAddress.Format(this, justAddress, remarks);
         }
 
         public XElement ToXElement()
