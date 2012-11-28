@@ -5,6 +5,16 @@
     display: block;
 }
 
+#navigation .left
+{
+    float: left;
+}
+
+#navigation .right
+{
+    float: right;
+}
+
 .navigationItem
 {
     padding-top: 2px;

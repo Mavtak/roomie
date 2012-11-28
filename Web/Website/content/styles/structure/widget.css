@@ -112,7 +112,7 @@
 .widget .buttonGroup .button
 {
     display: inline-block;
-    height: 40px;
+    height: 1.5em;
     vertical-align: middle;
     text-align: center;
     border: black solid 0px;
@@ -154,12 +154,10 @@
 .widget .only.button
 {
     width: 100%;
-    font-size: 200%;
 }
 .widget .middle.button
 {
     border-left-width: 1px;
-    font-size: 115%;
     
 }
 .widget .leftmost.button, .widget .rightmost.button

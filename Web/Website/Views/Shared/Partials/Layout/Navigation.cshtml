@@ -31,13 +31,17 @@
     }
 }@*
 *@<nav id="navigation">@*
-  *@@NavigationItem("Home")@*
-  *@@NavigationItem("Account", "User", false, "Edit")@*
-  @NavigationItem("Control Panels", "ControlPanel", false)@*
-  *@@NavigationItem("Networks", "Network", false)@*
-  *@@NavigationItem("Devices", "Device", false)@*
-  *@@NavigationItem("Computers", "Computer", false)@*
-  @NavigationItem("Scripts", "Script", false)@*
-  *@@NavigationItem("Task Queue", "Task", false)@*
-  *@@NavigationItem("Help")@*
+  *@<div class="left">@*
+      *@@NavigationItem("Home")@*
+      @NavigationItem("Control Panels", "ControlPanel", false)@*
+      *@@NavigationItem("Networks", "Network", false)@*
+      *@@NavigationItem("Devices", "Device", false)@*
+      *@@NavigationItem("Computers", "Computer", false)@*
+      @NavigationItem("Scripts", "Script", false)@*
+      *@@NavigationItem("Task Queue", "Task", false)@*
+  *@</div>@*
+  *@<div class="right">@*
+      *@@NavigationItem("Help")@*
+      *@@NavigationItem("Account", "User", false, "Edit")@*
+  *@</div>@*
 *@</nav>
