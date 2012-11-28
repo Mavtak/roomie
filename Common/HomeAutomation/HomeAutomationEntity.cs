@@ -25,7 +25,7 @@ namespace Roomie.Common.HomeAutomation
         }
 
         protected string address;
-        internal string Address_Hack
+        internal string Address
         {
             get
             {

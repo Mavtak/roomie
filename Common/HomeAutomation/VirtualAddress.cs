@@ -143,18 +143,18 @@ namespace Roomie.Common.HomeAutomation
 
         public static string Format(Device device, bool justAddresses = false, string remarks = null)
         {
-            var network = device.Network_Hack;
+            var network = device.Network;
 
             var virtualAddress = new VirtualAddress
             {
-                NetworkNodeId = network.Address_Hack,
+                NetworkNodeId = network.Address,
                 NetworkName = (justAddresses) ? (null) : (network.Name),
                 //TODO: fix this
                 NetworkLocation = null, //(justAddresses) ? (null) : network.Location_Hack,
 
-                DeviceNodeId =  device.Address_Hack,
+                DeviceNodeId =  device.Address,
                 DeviceName = (justAddresses) ? (null) : (device.Name),
-                DeviceLocation = (justAddresses) ? (null) : (device.Location_Hack.Name),
+                DeviceLocation = (justAddresses) ? (null) : (device.Location.Name),
 
                 Remark = remarks
             };

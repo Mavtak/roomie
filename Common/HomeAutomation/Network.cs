@@ -5,7 +5,7 @@ namespace Roomie.Common.HomeAutomation
     public abstract class Network : HomeAutomationEntity
     {
         protected DeviceCollection devices { get; set; }
-        internal DeviceCollection Devices_Hack
+        internal DeviceCollection Devices
         {
             get
             {

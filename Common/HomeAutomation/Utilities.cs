@@ -63,10 +63,11 @@ namespace Roomie.Common.HomeAutomation
                 NetworkLocation = networkLocation,
                 DeviceNodeId = deviceAddress,
                 DeviceName = deviceName,
-                DeviceLocation = deviceLocation
+                DeviceLocation = deviceLocation,
+                Remark = remarks
             };
 
-            return virtualAddress.Format(remarks);
+            return virtualAddress.Format();
         }
         #endregion
     }

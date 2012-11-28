@@ -56,10 +56,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-
         //TODO: min and max power values
-
-        
 
         public override string ToString()
         {

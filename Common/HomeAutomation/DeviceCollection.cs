@@ -17,10 +17,10 @@ namespace Roomie.Common.HomeAutomation
 
         public virtual void Add(Device device)
         {
-            if (this.ContainsAddress(device.Address_Hack))
+            if (this.ContainsAddress(device.Address))
             {
                 //TODO: better exception?
-                throw new MultipleMatchingDevicesException(device.Address_Hack, new Device[] { this[device.Address_Hack] });
+                throw new MultipleMatchingDevicesException(device.Address, new Device[] { this[device.Address] });
             }
 
             devices.Add(device);
@@ -28,7 +28,7 @@ namespace Roomie.Common.HomeAutomation
 
         public bool ContainsAddress(string key)
         {
-            return devices.Any(device => device.Address_Hack == key);
+            return devices.Any(device => device.Address == key);
         }
         public bool ContainsName(string key)
         {
@@ -52,7 +52,7 @@ namespace Roomie.Common.HomeAutomation
             get
             {
                 var result = from device in devices
-                             where device.Address_Hack == key
+                             where device.Address == key
                              || device.Name == key
                              select device;
 

@@ -103,14 +103,14 @@ namespace Roomie.Common.HomeAutomation
                 }
                 else
                 {
-                    searchSet = defaultNetwork.Devices_Hack;
+                    searchSet = defaultNetwork.Devices;
                 }
             }
             else
             {
                 try
                 {
-                    searchSet = this[networkName].Devices_Hack;
+                    searchSet = this[networkName].Devices;
                 }
                 catch (NoMatchingNetworkException exception)
                 {
@@ -124,11 +124,11 @@ namespace Roomie.Common.HomeAutomation
             results = from d in searchSet
                         where true
                         //TODO: add networkLocation
-                        && ((networkName == null) || d.Network_Hack.Name == networkName)
-                        && ((networkId == null) || d.Network_Hack.Address_Hack == networkId)
-                        && ((deviceName == null) || (d.Name == deviceName || d.Address_Hack == deviceName))
-                        && ((locationName == null) || d.Location_Hack.Name == locationName)
-                        && ((deviceId == null) || d.Address_Hack == deviceId)
+                        && ((networkName == null) || d.Network.Name == networkName)
+                        && ((networkId == null) || d.Network.Address == networkId)
+                        && ((deviceName == null) || (d.Name == deviceName || d.Address == deviceName))
+                        && ((locationName == null) || d.Location.Name == locationName)
+                        && ((deviceId == null) || d.Address == deviceId)
                         select d;
 
             var count = results.Count();
@@ -153,7 +153,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 foreach (var network in this)
                 {
-                    foreach (var device in network.Devices_Hack)
+                    foreach (var device in network.Devices)
                     {
                         yield return device;
                     }
