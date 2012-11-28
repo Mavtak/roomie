@@ -52,7 +52,7 @@ namespace Roomie.Web.Website.Controllers
                 origin: "Web Interface",
                 scriptText: String.Format(//TODO: improve this script
                     "<HomeAutomation.Dim Device=\"{0}\" Power=\"{1}\" />\n<HomeAutomation.SyncWithCloud />",
-                    device.BareFullAddressWithDescription, power)
+                    device.BuildVirtualAddress(true, true), power)
             );
 
             Database.SaveChanges();
@@ -75,7 +75,7 @@ namespace Roomie.Web.Website.Controllers
                 origin: "Web Interface",
                 scriptText: String.Format(//TODO: improve this script
                     "<HomeAutomation.PowerOn Device=\"{0}\" />\n<HomeAutomation.SyncWithCloud />",
-                    device.BareFullAddressWithDescription)
+                    device.BuildVirtualAddress(true, true))
             );
 
             Database.SaveChanges();
@@ -98,7 +98,7 @@ namespace Roomie.Web.Website.Controllers
                 origin: "Web Interface",
                 scriptText: String.Format(//TODO: improve this script
                     "<HomeAutomation.PowerOff Device=\"{0}\" />\n<HomeAutomation.SyncWithCloud />",
-                    device.BareFullAddressWithDescription)
+                    device.BuildVirtualAddress(true, true))
             );
 
             Database.SaveChanges();

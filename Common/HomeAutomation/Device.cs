@@ -6,7 +6,7 @@ namespace Roomie.Common.HomeAutomation
     public abstract class Device : HomeAutomationEntity
     {
         protected Network network { get; set; }
-        internal Network Network_Hack
+        internal Network Network
         {
             get
             {
@@ -15,7 +15,7 @@ namespace Roomie.Common.HomeAutomation
         }
 
         protected DeviceLocation location { get; set; }
-        internal DeviceLocation Location_Hack
+        internal DeviceLocation Location
         {
             get
             {
@@ -72,30 +72,6 @@ namespace Roomie.Common.HomeAutomation
             }
         }
 
-        public string FullAddress
-        {
-            get
-            {
-                return BuildVirtualAddress(true, false);
-            }
-        }
-
-        public string BareFullAddress
-        {
-            get
-            {
-                return BuildVirtualAddress(true, false);
-            }
-        }
-
-        public string BareFullAddressWithDescription
-        {
-            get
-            {
-                return BuildVirtualAddress(true, true);
-            }
-        }
-
         public string BuildVirtualAddress(bool justAddress, bool includeDescription)
         {
             string remarks = null;
@@ -127,12 +103,12 @@ namespace Roomie.Common.HomeAutomation
 
                 remarksBuilder.Append(", connected to ");
 
-                if (this.Network_Hack != null)
+                if (this.Network != null)
                 {
-                    if (this.Network_Hack.Name != null)
+                    if (this.Network.Name != null)
                     {
                         remarksBuilder.Append("the ");
-                        remarksBuilder.Append(this.Network_Hack.Name);
+                        remarksBuilder.Append(this.Network.Name);
                     }
                     else
                     {
@@ -155,8 +131,8 @@ namespace Roomie.Common.HomeAutomation
             //TODO: Lock?
             var result = base.ToXElement("HomeAutomationDevice");
 
-            if (Location_Hack.IsSet)
-                result.Add(new XAttribute("Location", Location_Hack.Name));
+            if (Location.IsSet)
+                result.Add(new XAttribute("Location", Location.Name));
 
             result.Add(new XAttribute("Type", Type));
             //TODO: LastPoll

@@ -24,7 +24,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             foreach (var device in network.Devices)
             {
-                addressLength = Math.Max(addressLength, device.FullAddress.Length);
+                addressLength = Math.Max(addressLength, device.BuildVirtualAddress(true, false).Length);
             }
 
             var tableBuilder = new TextTable(new int[] { addressLength, 10, 9, 5 });
@@ -35,6 +35,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             foreach (Device device in network.Devices)
             {
+                var address = device.BuildVirtualAddress(true, false);
+
                 string power = "";
 
                 if (poll && device.Type.CanControl)
@@ -71,7 +73,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
                 var connected = (device.IsConnected == true)?"Yes":" - ";
 
-                interpreter.WriteEvent(tableBuilder.ContentLine(device.FullAddress, device.Type, connected, power));
+                interpreter.WriteEvent(tableBuilder.ContentLine(address, device.Type, connected, power));
             }
 
             interpreter.WriteEvent(tableBuilder.EndOfTable());
