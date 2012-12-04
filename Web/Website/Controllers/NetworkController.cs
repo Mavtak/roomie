@@ -73,5 +73,33 @@ namespace Roomie.Web.Website.Controllers
             });
         }
 
+        [HttpPost]
+        public ActionResult AddDevice(int id)
+        {
+            return networkAction(id, "AddDevice");
+        }
+
+        [HttpPost]
+        public ActionResult RemoveDevice(int id)
+        {
+            return networkAction(id, "RemoveDevice");
+        }
+
+        private ActionResult networkAction(int id, string actionName)
+        {
+            var network = this.SelectNetwork(id);
+
+            string text = String.Format("<HomeAutomation.{0} Network=\"{1}\" />\n<HomeAutomation.SyncWithCloud />", actionName, network.Address);
+
+            addTask(
+                computer: network.AttatchedComputer,
+                origin: "RoomieBot",
+                scriptText: text
+                );
+
+            Database.SaveChanges();
+
+            return AjaxSuccess();
+        }
     }
 }

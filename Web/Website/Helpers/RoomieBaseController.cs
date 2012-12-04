@@ -8,6 +8,7 @@ using Roomie.Web.Website.Controllers;
 
 namespace Roomie.Web.Website.Helpers
 {
+    [ValidateInput(false)]
     public class RoomieBaseController : System.Web.Mvc.Controller, IRoomieController
     {
         public RoomieDatabaseContext Database { get; set; }
@@ -101,6 +102,22 @@ namespace Roomie.Web.Website.Helpers
 
                 return writer.GetStringBuilder().ToString();
             }
+        }
+
+        protected void addTask(ComputerModel computer, string origin, string scriptText)
+        {
+            var task = new TaskModel
+            {
+                Owner = User,
+                Target = computer,
+                Origin = origin,
+                Script = new ScriptModel
+                {
+                    Mutable = false,
+                    Text = scriptText
+                }
+            };
+            Database.Tasks.Add(task);
         }
 
         protected override void Dispose(bool disposing)

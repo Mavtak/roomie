@@ -4,8 +4,8 @@
 *@<div class="buttonGroup two">@*
 
 *@@using (Ajax.BeginForm(
-    actionName: "Add",
-    controllerName: "Device",
+    actionName: "AddDevice",
+    controllerName: "Network",
     routeValues: new
     {
         id = Model.Device.Id,
@@ -23,8 +23,8 @@
     {<button class="button">Add Device</button>}@*
 
 *@@using (Ajax.BeginForm(
-    actionName: "Remove",
-    controllerName: "Device",
+    actionName: "RemoveDevice",
+    controllerName: "Network",
     routeValues: new
     {
         id = Model.Device.Id,
