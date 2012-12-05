@@ -1,4 +1,4 @@
-﻿@model DeviceViewModel
+﻿@model NetworkModel
 @*
 
 *@<div class="buttonGroup two">@*
@@ -8,7 +8,7 @@
     controllerName: "Network",
     routeValues: new
     {
-        id = Model.Device.Id,
+        id = Model.Id,
         returnUrl = Request.Path
     },
     ajaxOptions: new AjaxOptions
@@ -27,7 +27,7 @@
     controllerName: "Network",
     routeValues: new
     {
-        id = Model.Device.Id,
+        id = Model.Id,
         returnUrl = Request.Path
     },
     ajaxOptions: new AjaxOptions
