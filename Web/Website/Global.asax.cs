@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Roomie.Web.Helpers;
 using Roomie.Web.WebHook;
+using System.Web.Optimization;
 
 namespace Roomie.Web.Website
 {
@@ -23,6 +24,7 @@ namespace Roomie.Web.Website
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundes(BundleTable.Bundles);
 
             //var database = new RoomieDatabaseContext();
             //database.CreateTables();

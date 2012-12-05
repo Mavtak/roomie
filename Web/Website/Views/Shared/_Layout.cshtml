@@ -38,23 +38,13 @@
     *@<meta name="viewport" content="width=device-width, initial-scale=1.0"/>@*
 
     //TODO: one CSS file
-    *@@Css("structure/site.css")@*
-    *@@Css("structure/navigation.css")@*
-    *@@Css("structure/content.css")@*
-    *@@Css("structure/widget.css")@*
-    *@@Css("structure/botMessage.css")@*
-
-    *@@Css("color/site.css")@*
-    *@@Css("color/navigation.css")@*
-    *@@Css("color/widget.css")@*
-    *@@Css("color/content.css")@*
-
-    //TODO: javascript to resize buttons
     *@@Js("Libraries/jquery-1.5.1.min.js")@*
     *@@Js("Libraries/jquery.unobtrusive-ajax.min.js")@*
     *@@Js("Libraries/modernizr-1.7.min.js")@*
-    *@@Js("PageReady.js")@*
-    *@@Js("AjaxFunctions.js")@*
+    *@@Styles.Render(Roomie.Web.Website.BundleConfig.StyleBundlePath)@*
+
+    //TODO: javascript to resize buttons
+    *@@Scripts.Render(Roomie.Web.Website.BundleConfig.ScriptBundlePath)@*
     Be
   *@</head>@*
 
