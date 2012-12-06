@@ -45,11 +45,11 @@ namespace Roomie.Web.Website
             var scriptDirectory = "~/content/Scripts/";
 
             var bundle = new ScriptBundle(ScriptBundlePath)
-                .Include(scriptDirectory + "PageReady.js")
-                .Include(scriptDirectory + "AjaxFunctions.js")
                 .Include(scriptDirectory + "Libraries/jquery-1.5.1.min.js")
                 .Include(scriptDirectory + "Libraries/jquery.unobtrusive-ajax.min.js")
                 .Include(scriptDirectory + "Libraries/modernizr-1.7.min.js")
+                .Include(scriptDirectory + "PageReady.js")
+                .Include(scriptDirectory + "AjaxFunctions.js")
                 ;
 
             bundles.Add(bundle);

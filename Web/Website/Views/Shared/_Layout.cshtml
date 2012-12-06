@@ -1,22 +1,5 @@
 ﻿@*
 
-*@@helper Css(string path, bool inline = false)
-{
-    if (inline)
-    {<style type="text/css">@Html.InlineCss("~/content/styles/" + path)</style>}
-    else
-    {<link href="@Url.Content("~/content/styles/" + path)" rel="stylesheet" type="text/css" />}
-}@*
-
-*@@helper Js(string path, bool inline = false)
-{
-    if (inline)
-    {<script type="text/javascript">@Html.InlineCss("~/content/scripts/" + path)</script>}
-    else
-    {<script type="text/javascript" src="@Url.Content("~/content/scripts/" + path)"></script>}
-}@*
-
-
 *@<!DOCTYPE html>
 <html>@*
 
@@ -38,9 +21,6 @@
     *@<meta name="viewport" content="width=device-width, initial-scale=1.0"/>@*
 
     //TODO: one CSS file
-    *@@Js("Libraries/jquery-1.5.1.min.js")@*
-    *@@Js("Libraries/jquery.unobtrusive-ajax.min.js")@*
-    *@@Js("Libraries/modernizr-1.7.min.js")@*
     *@@Styles.Render(Roomie.Web.Website.BundleConfig.StyleBundlePath)@*
 
     //TODO: javascript to resize buttons
