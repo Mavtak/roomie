@@ -21,7 +21,7 @@
     *@<meta name="viewport" content="width=device-width, initial-scale=1.0"/>@*
 
     //TODO: one CSS file
-    *@@Styles.Render(Roomie.Web.Website.BundleConfig.StyleBundlePath)@*
+    *@@Html.Raw(Styles.Render(Roomie.Web.Website.BundleConfig.StyleBundlePath).ToString().Replace("\n", ""))@*
 
   *@</head>@*
 
@@ -64,7 +64,7 @@
     *@</div>@* <-- close #page
 
     //TODO: javascript to resize buttons
-    *@@Scripts.Render(Roomie.Web.Website.BundleConfig.ScriptBundlePath)@*
+    *@@Html.Raw(Scripts.Render(Roomie.Web.Website.BundleConfig.ScriptBundlePath).ToString().Replace("\n", ""))@*
 
   *@</body>@*
 
