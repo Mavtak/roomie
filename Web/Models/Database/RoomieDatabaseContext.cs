@@ -22,6 +22,13 @@ namespace Roomie.Web.Helpers
         //public DbSet<StringStringPair> StringStringDictionary { get; set; }
         //public DbSet<HomeModel> Homes { get; set; }
 
+        public static string ConnectionString { private get; set; }
+
+        public RoomieDatabaseContext()
+            : base(ConnectionString??"RoomieDatabaseContext")
+        {
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add<Roomie.Common.HomeAutomation.DeviceType>(new DeviceTypeMapping());
