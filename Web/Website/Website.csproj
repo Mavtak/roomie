@@ -303,7 +303,7 @@
     <Content Include="Views\Shared\Partials\Device\DimmerButtons.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Partials\Device\ControllerButtons.cshtml" />
+    <Content Include="Views\Shared\Partials\Network\AddRemoveDeviceButtons.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
