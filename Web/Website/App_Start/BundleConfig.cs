@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
+using System.Web.Mvc;
 using System.Web.Optimization;
 
 namespace Roomie.Web.Website
@@ -53,6 +51,22 @@ namespace Roomie.Web.Website
                 ;
 
             bundles.Add(bundle);
+        }
+
+        public static IHtmlString RenderStyles(this HtmlHelper htmlHelper)
+        {
+            var html = Styles.Render(StyleBundlePath).ToString().Replace("\n", "");
+            var result = new HtmlString(html);
+
+            return result;
+        }
+
+        public static IHtmlString RenderScripts(this HtmlHelper htmlHelper)
+        {
+            var html = Scripts.Render(ScriptBundlePath).ToString().Replace("\n", "");
+            var result = new HtmlString(html);
+
+            return result;
         }
     }
 }

@@ -20,8 +20,7 @@
     *@<link rel="apple-touch-icon" href="@Url.Content("~/Content/images/icon (144x144).png")" />@*
     *@<meta name="viewport" content="width=device-width, initial-scale=1.0"/>@*
 
-    //TODO: one CSS file
-    *@@Html.Raw(Styles.Render(Roomie.Web.Website.BundleConfig.StyleBundlePath).ToString().Replace("\n", ""))@*
+    *@@Html.RenderStyles()@*
 
   *@</head>@*
 
@@ -64,7 +63,7 @@
     *@</div>@* <-- close #page
 
     //TODO: javascript to resize buttons
-    *@@Html.Raw(Scripts.Render(Roomie.Web.Website.BundleConfig.ScriptBundlePath).ToString().Replace("\n", ""))@*
+    *@@Html.RenderScripts()@*
 
   *@</body>@*
 
