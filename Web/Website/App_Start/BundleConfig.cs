@@ -8,7 +8,7 @@ namespace Roomie.Web.Website
     {
         private const string bundlesPath = "~/content/";
         public const string StyleBundlePath = bundlesPath + "styles.css";
-        public const string ScriptBundlePath = bundlesPath + "scripts.css";
+        public const string ScriptBundlePath = bundlesPath + "scripts.js";
 
         public static void RegisterBundes(BundleCollection bundles)
         {
