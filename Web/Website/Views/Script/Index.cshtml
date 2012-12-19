@@ -3,6 +3,19 @@
     ViewBag.Title = "Scripts";
 }@*
 
+
+*@@using(Html.BeginForm(
+    actionName: "New",
+    controllerName: "Script",
+    method: FormMethod.Post,
+    htmlAttributes: null
+    ))
+    {@*
+        *@<input type="hidden" name="name" value="new script" />@*
+        *@<input type="hidden" name="text" value="<Core.Print Text=&quot;Hi there!&quot; />" />@*
+        *@<button type="submit">New</button>@*
+    *@}@*
+
 *@@if (Model == null || !Model.Any())
 {@Html.Partial("Partials/BotMessage/Empty")}
 else

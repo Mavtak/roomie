@@ -1,25 +1,57 @@
 ﻿@model Roomie.Web.Models.SavedScriptModel
 @*
-*@@using (Html.BeginForm(
-    actionName: null,
-    controllerName: "Script",
-    method: FormMethod.Post,
-    htmlAttributes: new
-    {
-        id = Model.DivId,
-        @class = "widget script"
-    },
-    routeValues: new
-    {
-        id = Model.Id
-    }
-  ))
-  {@*
-  *@<div class="header">@*
-    *@<div class="name">@Model.Name</div>@*
-  *@</div>@*
 
-    *@<div class="data">@*
+*@@helper BuildLinkButton(string text, string action, string position)
+{
+    @Html.ActionLink(
+        linkText: text,
+        actionName: action,
+        routeValues: new
+        {
+            id = Model.Id
+        },
+        htmlAttributes: new
+        {
+            @class = "button " + position
+        }
+    )
+}@*
+
+*@@helper BuildFormButton(string text, string action, string position)
+{
+    using (Html.BeginForm(
+        actionName: action,
+        controllerName: "Script",
+        routeValues: new
+        {
+            id = Model.Id
+        },
+        method: FormMethod.Post,
+        htmlAttributes: new
+        {
+            @class = "button " + position
+        }
+        
+    ))
+    {@*
+      *@<button class="button">@text</button>@*  
+    *@}
+}@*
+
+*@@{
+
+var widgetData = new WidgetData
+    {
+        DebugText = Model.ToString(),
+        DivId = Model.DivId,
+        Name = Model.Name,
+        Type = "script"
+    };
+
+}@*
+*@@Html.Partial("Partials/WidgetStart", widgetData)@*
+
+  *@<div class="data">@*
 
     *@<div class="item origin">@*
       *@<div class="key">Modified: </div>@*
@@ -45,20 +77,12 @@
 
 
   *@<textarea class="code">@Model.Script.Text</textarea>@*
+
   *@<div class="buttonGroup three">@*
-    *@@Html.ActionLink(
-        linkText: "Edit",
-        actionName: "Edit",
-        routeValues: new
-        {
-            id = Model.Id
-        },
-        htmlAttributes: new
-        {
-            @class = "button leftmost"
-        }
-    )@*
-    *@<button class="button middle" type="submit">Delete</button>@*
-    *@<button class="button rightmost" type="submit">Run</button>@*
+    *@@BuildLinkButton("Edit", "edit", "leftmost")@*
+    *@@BuildFormButton("Delete", "delete", "middle")@*
+    *@@BuildFormButton("Run", "run", "rightmost")@*
   *@</div>@*
-*@}
+
+  *@@Html.Partial("Partials/WidgetEnd", widgetData)@*
+*@
