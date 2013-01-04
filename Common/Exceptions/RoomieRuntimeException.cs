@@ -1,7 +1,7 @@
 ﻿using System;
-
 namespace Roomie.Common.Exceptions
 {
+    [Serializable]
     public class RoomieRuntimeException : Exception
     {
         public RoomieRuntimeException(string message)

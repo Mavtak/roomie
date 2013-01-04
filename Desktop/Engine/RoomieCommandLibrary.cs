@@ -8,7 +8,7 @@ using Roomie.Desktop.Engine.Exceptions;
 namespace Roomie.Desktop.Engine
 {
     //TODO: catch loading exceptions
-    public class RoomieCommandLibrary
+    public sealed class RoomieCommandLibrary
         : IEnumerable<RoomieCommand>, System.Collections.IEnumerable
     {
         public event RoomieCommandLibraryEventDelegate Message;

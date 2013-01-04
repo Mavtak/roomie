@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Roomie.Common.HomeAutomation.Exceptions
 {
+    [Serializable]
     public class MultipleMatchingNetworksException : HomeAutomationException
     {
         public MultipleMatchingNetworksException(string address, IEnumerable<Network> networks, Exception innerException = null)
@@ -24,7 +25,7 @@ namespace Roomie.Common.HomeAutomation.Exceptions
             result.Append("\"");
             result.Append(" could refer to multiple devices: ");
 
-            if (networks == null || networks.Count() == 0)
+            if (networks == null || !networks.Any())
             {
                 result.Append("(no devices given)");
             }

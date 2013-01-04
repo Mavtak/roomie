@@ -5,6 +5,7 @@ using Roomie.Common.Exceptions;
 
 namespace Roomie.Common.ScriptingLanguage.Exceptions
 {
+    [Serializable]
     public class RoomieScriptSyntaxErrorException : RoomieRuntimeException
     {
         public RoomieScriptSyntaxErrorException(Exception innerException)

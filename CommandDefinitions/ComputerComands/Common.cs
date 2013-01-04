@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Net;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Roomie.Common.Exceptions;
 
@@ -81,15 +80,11 @@ namespace Roomie.CommandDefinitions.ComputerCommands
             }
         }
 
-
-        [DllImport("user32.dll")]
-        private static extern void LockWorkStation();
-
         internal static void LockComputer()
         {
             try
             {
-                LockWorkStation();
+                NativeMethods.LockWorkStation();
             }
             catch (Exception exception)
             {

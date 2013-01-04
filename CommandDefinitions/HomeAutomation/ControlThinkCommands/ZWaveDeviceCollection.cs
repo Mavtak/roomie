@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using Roomie.CommandDefinitions.ControlThinkCommands;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 
 

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Roomie.Common.HomeAutomation.Exceptions
 {
+    [Serializable]
     public class MultipleMatchingDevicesException : HomeAutomationException
     {
-
         public MultipleMatchingDevicesException(string address, IEnumerable<Device> devices, Exception innerException = null)
             : base(buildMessage(address, devices), innerException)
         {
@@ -15,7 +15,6 @@ namespace Roomie.Common.HomeAutomation.Exceptions
             this.Data.Add("Address", address);
             this.Data.Add("Devices", devices);
         }
-
 
         private static string buildMessage(string address, IEnumerable<Device> devices)
         {

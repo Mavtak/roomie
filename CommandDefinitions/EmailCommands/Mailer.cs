@@ -5,7 +5,7 @@ using System.Net.Mail;
 
 namespace Roomie.CommandDefinitions.EmailCommands
 {
-    public class Mailer
+    public sealed class Mailer : IDisposable
     {
         System.Net.Mail.SmtpClient smtpClient;
 
@@ -50,14 +50,15 @@ namespace Roomie.CommandDefinitions.EmailCommands
 
         public Mailer(string host, int port, bool enableSsl, string username, string password)
         {
-            smtpClient = new SmtpClient();
-            smtpClient.Host = host;
-            smtpClient.Port = port;
-            smtpClient.EnableSsl = enableSsl;
-            smtpClient.Credentials = new NetworkCredential(username, password);
+            smtpClient = new SmtpClient
+            {
+                Host = host,
+                Port = port,
+                EnableSsl = enableSsl,
+                Credentials = new NetworkCredential(username, password),
+                DeliveryMethod = SmtpDeliveryMethod.Network
+            };
             //smtpClient.Timeout = 10;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-
         }
 
         #region Send Message methods
@@ -108,6 +109,11 @@ namespace Roomie.CommandDefinitions.EmailCommands
                     return new MailAddress(DefaultFromAddress);
                 return new MailAddress(DefaultFromAddress, DefaultFromName);
             }
+        }
+
+        public void Dispose()
+        {
+            smtpClient.Dispose();
         }
     }
 }

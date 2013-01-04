@@ -1,9 +1,11 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Text;
 using Roomie.Common.Exceptions;
 
 namespace Roomie.Desktop.Engine.Exceptions
 {
+    [Serializable]
     public class LoadPluginException : RoomieRuntimeException
     {
         public LoadPluginException(Assembly assembly, ReflectionTypeLoadException exception)

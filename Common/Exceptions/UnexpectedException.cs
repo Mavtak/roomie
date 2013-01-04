@@ -3,6 +3,7 @@ using System.Text;
 
 namespace Roomie.Common.Exceptions
 {
+    [Serializable]
     public class UnexpectedException : RoomieRuntimeException
     {
         public UnexpectedException(string message, Exception innerException = null)

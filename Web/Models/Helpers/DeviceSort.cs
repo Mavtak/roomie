@@ -4,7 +4,7 @@ using Roomie.Web.Models;
 
 namespace Roomie.Web.Models.Helpers
 {
-    public class DeviceSort : IComparer<DeviceModel>
+    public sealed class DeviceSort : IComparer<DeviceModel>
     {
         int IComparer<DeviceModel>.Compare(DeviceModel x, DeviceModel y)
         {

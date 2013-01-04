@@ -59,7 +59,7 @@ namespace Roomie.Web.Helpers
             {
                 triesLeft--;
                 if (triesLeft <= 0 || !exception.Message.Contains("rop"))
-                    throw exception;
+                    throw;
             }
 
         }

@@ -12,19 +12,6 @@ namespace Roomie.Web.Website.Controllers
     {
         private static OpenIdRelyingParty openId = new OpenIdRelyingParty();
 
-        [WebsiteRestrictedAccess]
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [WebsiteRestrictedAccess]
-        public ActionResult Settings()
-        {
-
-            return View(User);
-        }
-
         public ActionResult SignOut()
         {
             UserUtilities.SignOff();
