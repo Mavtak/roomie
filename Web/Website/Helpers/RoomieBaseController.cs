@@ -2,8 +2,8 @@
 using System.Web;
 using System.Web.Mvc;
 using Roomie.Desktop.Engine;
-using Roomie.Web.Helpers;
-using Roomie.Web.Models;
+using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Controllers;
 
 namespace Roomie.Web.Website.Helpers

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
+using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Models.Helpers
+namespace Roomie.Web.Persistence.Helpers
 {
     public static class NetworkModelExtensions
     {

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using Roomie.Web.Models;
-using Roomie.Web.Models.Helpers;
+using Roomie.Web.Persistence.Helpers;
+using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 using System.Runtime.Serialization;
 

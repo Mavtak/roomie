@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
-using Roomie.Web.Models;
+using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Helpers
+namespace Roomie.Web.Persistence.Database
 {
     public class RoomieDatabaseContext : DbContext
     {

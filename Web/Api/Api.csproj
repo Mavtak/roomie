@@ -22,6 +22,10 @@
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
     <UpgradeBackupLocation />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -119,9 +123,9 @@
       <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
       <Name>Common %28Common\Common%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{B89555A4-7FBF-4B56-A040-B18445B4224B}</Project>
-      <Name>Models</Name>
+      <Name>Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebHook\WebHook.csproj">
       <Project>{F1C594D7-933B-4E72-AE4A-CC47B82F0F3C}</Project>

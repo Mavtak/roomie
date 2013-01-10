@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Roomie.Web.Helpers;
+﻿using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Models.Helpers
+namespace Roomie.Web.Persistence.Helpers
 {
     public static class RoomieDatabaseHelpers
     {

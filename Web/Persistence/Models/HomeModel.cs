@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Roomie.Web.Models
+namespace Roomie.Web.Persistence.Models
 {
     public class HomeModel
     {

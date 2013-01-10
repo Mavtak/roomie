@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Roomie.Web.Models;
+using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Models.Helpers
+namespace Roomie.Web.Persistence.Helpers
 {
     public sealed class DeviceSort : IComparer<DeviceModel>
     {

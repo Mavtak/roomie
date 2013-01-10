@@ -1,12 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
-using Roomie.Web.Models.Helpers;
+using Roomie.Web.Persistence.Helpers;
 using BaseDevice = Roomie.Common.HomeAutomation.Device;
 using BaseLocation = Roomie.Common.HomeAutomation.DeviceLocation;
 using BaseNetwork = Roomie.Common.HomeAutomation.Network;
 
-namespace Roomie.Web.Models
+namespace Roomie.Web.Persistence.Models
 {
     public class DeviceModel : BaseDevice, IHasDivId
     {

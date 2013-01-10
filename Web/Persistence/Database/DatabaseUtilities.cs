@@ -3,8 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Objects;
 
-
-namespace Roomie.Web.Helpers
+namespace Roomie.Web.Persistence.Database
 {
     public static class DatabaseUtilities
     {

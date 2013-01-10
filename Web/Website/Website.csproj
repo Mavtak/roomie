@@ -18,6 +18,10 @@
     <UseIISExpress>false</UseIISExpress>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -291,9 +295,9 @@
       <Project>{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}</Project>
       <Name>Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
+    <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{B89555A4-7FBF-4B56-A040-B18445B4224B}</Project>
-      <Name>Models</Name>
+      <Name>Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebHook\WebHook.csproj">
       <Project>{F1C594D7-933B-4E72-AE4A-CC47B82F0F3C}</Project>

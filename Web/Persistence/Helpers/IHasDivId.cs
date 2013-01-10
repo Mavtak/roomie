@@ -1,5 +1,5 @@
 ﻿
-namespace Roomie.Web.Models.Helpers
+namespace Roomie.Web.Persistence.Helpers
 {
     public interface IHasDivId
     {

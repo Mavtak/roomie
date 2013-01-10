@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Desktop\Engine\Engine.csproj", "{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal", "Desktop\Terminal\Terminal.csproj", "{F4E218AF-2C16-4F57-B80A-52A1B2335D2D}"
@@ -30,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{A6D0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHook", "Web\WebHook\WebHook.csproj", "{F1C594D7-933B-4E72-AE4A-CC47B82F0F3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Web\Models\Models.csproj", "{B89555A4-7FBF-4B56-A040-B18445B4224B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Web\Persistence\Persistence.csproj", "{B89555A4-7FBF-4B56-A040-B18445B4224B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5FEFCDCA-4821-43FC-A023-ABEA06CD236A}"
 EndProject

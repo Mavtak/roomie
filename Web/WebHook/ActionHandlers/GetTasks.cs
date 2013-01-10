@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using System.Xml.Linq;
-
-using Roomie.Web.Models;
+using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.WebHook.ActionHandlers
 {

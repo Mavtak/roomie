@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
-using Roomie.Web.Models;
 using System.Diagnostics;
 
 namespace Roomie.Web.Website.Controllers.Api

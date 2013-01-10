@@ -1,6 +1,5 @@
-﻿
-using Roomie.Web.Helpers;
-using Roomie.Web.Models;
+﻿using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Models;
 using WebCommunicator;
 
 namespace Roomie.Web.WebHook

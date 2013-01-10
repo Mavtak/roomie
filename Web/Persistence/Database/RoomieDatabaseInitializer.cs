@@ -1,7 +1,7 @@
 ﻿
 using System.Data.Entity;
 
-namespace Roomie.Web.Helpers
+namespace Roomie.Web.Persistence.Database
 {
     public class RoomieDatabaseInitializer : CreateDatabaseIfNotExists<RoomieDatabaseContext>
     {
