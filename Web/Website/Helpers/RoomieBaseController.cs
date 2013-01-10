@@ -11,7 +11,7 @@ namespace Roomie.Web.Website.Helpers
     [ValidateInput(false)]
     public class RoomieBaseController : System.Web.Mvc.Controller, IRoomieController
     {
-        public RoomieDatabaseContext Database { get; set; }
+        public IRoomieDatabaseContext Database { get; set; }
         protected RoomieCommandLibrary Commands;
         new public UserModel User { get; set; }
 

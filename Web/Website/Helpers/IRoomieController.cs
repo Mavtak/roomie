@@ -9,7 +9,7 @@ namespace Roomie.Web.Website.Helpers
 {
     public interface IRoomieController
     {
-        RoomieDatabaseContext Database { get; set; }
+        IRoomieDatabaseContext Database { get; set; }
         UserModel User { get; set; }
     }
 }

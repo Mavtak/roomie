@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DatabaseUtilities.cs" />
+    <Compile Include="Database\ExtensionsToIRoomieDatabaseContext.cs" />
+    <Compile Include="Database\IRoomieDatabaseContext.cs" />
     <Compile Include="Helpers\RoomieDatabaseHelpers.cs" />
     <Compile Include="Helpers\DeviceSort.cs" />
     <Compile Include="Helpers\NetworkModelExtensions.cs" />

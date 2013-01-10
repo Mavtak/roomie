@@ -12,14 +12,14 @@ namespace Roomie.Web.Website.Helpers
     {
         private static string sessionTokenName = "roomie_session";
 
-        private static UserModel GetUserByToken(RoomieDatabaseContext database, string token)
+        private static UserModel GetUserByToken(IRoomieDatabaseContext database, string token)
         {
             return (from r in database.Users
                     where r.Token == token
                     select r).FirstOrDefault();
         }
 
-        public static UserSessionModel GetCurrentUserSession(RoomieDatabaseContext database)
+        public static UserSessionModel GetCurrentUserSession(IRoomieDatabaseContext database)
         {
             var request = HttpContext.Current.Request;
             if (request.Cookies[sessionTokenName] == null)
@@ -50,7 +50,7 @@ namespace Roomie.Web.Website.Helpers
             return session;
         }
 
-        public static UserModel GetCurrentUser(RoomieDatabaseContext database)
+        public static UserModel GetCurrentUser(IRoomieDatabaseContext database)
         {
             var session = GetCurrentUserSession(database);
             if (session == null)
@@ -59,7 +59,7 @@ namespace Roomie.Web.Website.Helpers
             return session.User;
         }
 
-        public static void SignIn(RoomieDatabaseContext database, DotNetOpenAuth.OpenId.Identifier identifier)
+        public static void SignIn(IRoomieDatabaseContext database, DotNetOpenAuth.OpenId.Identifier identifier)
         {
             var response = HttpContext.Current.Response;
 

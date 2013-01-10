@@ -69,7 +69,7 @@ namespace Roomie.Web.Persistence.Database
             context.Database.ExecuteSqlCommand(script);
         }
 
-        public static void Seed(this RoomieDatabaseContext context)
+        public static void Seed(this IRoomieDatabaseContext context)
         {
             //TODO: fill in with good, general user stuff
         }
