@@ -27,7 +27,7 @@ namespace Roomie.Web.Website
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundes(BundleTable.Bundles);
             DatabaseConfig.RegisterConnectionStrings();
-
+            DependencyResolver.SetResolver(DependencyResolverConfig.CreateDependencyResolver());
             //var database = new RoomieDatabaseContext();
             //database.CreateTables();
             //database.Seed();

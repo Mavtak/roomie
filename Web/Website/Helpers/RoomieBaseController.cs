@@ -5,6 +5,7 @@ using Roomie.Desktop.Engine;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Controllers;
+using System.Web.Http;
 
 namespace Roomie.Web.Website.Helpers
 {
@@ -20,7 +21,7 @@ namespace Roomie.Web.Website.Helpers
 
         public RoomieBaseController()
         {
-            Database = new RoomieDatabaseContext();
+            Database = DependencyResolver.Current.GetService(typeof(IRoomieDatabaseContext)) as IRoomieDatabaseContext;
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

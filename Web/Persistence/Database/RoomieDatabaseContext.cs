@@ -26,9 +26,9 @@ namespace Roomie.Web.Persistence.Database
 
         private readonly EntityFrameworkRoomieDatabaseBackend database;
 
-        public RoomieDatabaseContext(EntityFrameworkRoomieDatabaseBackend database)
+        public RoomieDatabaseContext()
         {
-            this.database = database;
+            this.database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
             Users = new DbContextAdapter<UserModel>(database.Users);
             UserSessions = new DbContextAdapter<UserSessionModel>(database.UserSessions);
@@ -39,11 +39,6 @@ namespace Roomie.Web.Persistence.Database
             SavedScripts = new DbContextAdapter<SavedScriptModel>(database.SavedScripts);
             WebHookSessions = new DbContextAdapter<WebHookSessionModel>(database.WebHookSessions);
             DeviceLocations = new DbContextAdapter<DeviceLocationModel>(database.DeviceLocations);
-        }
-
-        public RoomieDatabaseContext()
-            : this(new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext"))
-        {
         }
 
         public void Reset()
