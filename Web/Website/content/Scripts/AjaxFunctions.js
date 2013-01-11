@@ -7,15 +7,18 @@
 
 
 function updateDevicesContinuously() {
-    updateDevices(function ()
+
+    success = function ()
+    {
+        setTimeout('updateDevicesContinuously()', 1000);
+    };
+
+    failure = function ()
     {
         setTimeout('updateDevicesContinuously()', 5000);
-    },
-    function ()
-    {
-        setTimeout('updateDevicesContinuously()', 10000);
-    }
-    );
+    };
+
+    updateDevices(success, failure);
 }
 
 function updateDevices(success, failure) {
@@ -23,7 +26,7 @@ function updateDevices(success, failure) {
     $.ajax({
         url: "/Device/IndexAjax",
         dataType: "json",
-        type: 'post',
+        type: 'get',
         success: function (data) {
             replaceDivs(data);
             debug('...success');

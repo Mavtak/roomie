@@ -141,7 +141,7 @@ namespace Roomie.Web.Website.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult IndexAjax()
         {
             var replacements = new List<object>();
@@ -173,7 +173,8 @@ namespace Roomie.Web.Website.Controllers
                 {
                     replacements = replacements,
                     devices = devices
-                }
+                },
+                JsonRequestBehavior.AllowGet
             );
         }
 
