@@ -2,8 +2,8 @@
 using System.Web;
 using System.Web.Mvc;
 using Roomie.Desktop.Engine;
-using Roomie.Web.Helpers;
-using Roomie.Web.Models;
+using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Controllers;
 
 namespace Roomie.Web.Website.Helpers
@@ -11,7 +11,7 @@ namespace Roomie.Web.Website.Helpers
     [ValidateInput(false)]
     public class RoomieBaseController : System.Web.Mvc.Controller, IRoomieController
     {
-        public RoomieDatabaseContext Database { get; set; }
+        public IRoomieDatabaseContext Database { get; set; }
         protected RoomieCommandLibrary Commands;
         new public UserModel User { get; set; }
 

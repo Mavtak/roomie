@@ -1,4 +1,5 @@
-﻿@model TaskModel
+﻿@using Roomie.Web.Persistence.Models
+@model Roomie.Web.Persistence.Models.TaskModel
 @{
     string status = "";
     if(Model.Received == true)
@@ -82,7 +83,7 @@
   *@</div>@*
 
 
-  *@<textarea name="script" class="code" readonly="true">@Model.Script.Text</textarea>@*
+  *@<textarea name="script" class="code" readonly="readonly">@Model.Script.Text</textarea>@*
 
 *@@Html.Partial("Partials/WidgetEnd", widgetData)@*
 

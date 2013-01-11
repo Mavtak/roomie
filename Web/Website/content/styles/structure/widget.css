@@ -81,7 +81,7 @@
     float: right;
     padding: 0px;
     margin: 0px;
-    text-overflow: ellipses;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 

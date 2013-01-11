@@ -1,9 +1,10 @@
 ﻿using System;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
+using Roomie.CommandDefinitions.ZWave.ControlThinkCommands;
 using Roomie.Common.HomeAutomation.Exceptions;
 
-namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
+namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     public class ZWaveNetwork : Network
     {

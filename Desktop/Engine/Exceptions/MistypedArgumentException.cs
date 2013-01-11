@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
 using Roomie.Common.Exceptions;
 
 namespace Roomie.Desktop.Engine.Exceptions
 {
+    [Serializable]
     class MistypedArgumentException : RoomieRuntimeException
     {
         //TODO

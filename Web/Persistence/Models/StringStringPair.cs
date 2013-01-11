@@ -1,5 +1,5 @@
 ﻿
-namespace Roomie.Web.Models
+namespace Roomie.Web.Persistence.Models
 {
     public class StringStringPair
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Roomie.Web.Models;
+using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Models.Helpers
+namespace Roomie.Web.Persistence.Helpers
 {
-    public class DeviceSort : IComparer<DeviceModel>
+    public sealed class DeviceSort : IComparer<DeviceModel>
     {
         int IComparer<DeviceModel>.Compare(DeviceModel x, DeviceModel y)
         {

@@ -1,6 +1,8 @@
-﻿
+﻿using System;
+
 namespace Roomie.Common.HomeAutomation.Exceptions
 {
+    [Serializable]
     public class DeviceNotFoundException : HomeAutomationException
     {
         public DeviceNotFoundException(string deviceName)

@@ -89,10 +89,13 @@ namespace Roomie.CommandDefinitions.WebHookCommands
 
         public void RunAsync()
         {
-            if (parallelThread == null)
-                parallelThread = new System.Threading.Thread(new System.Threading.ThreadStart(Run));
-            lock (parallelThread)
+            lock (this)
             {
+                if (parallelThread == null)
+                {
+                    parallelThread = new System.Threading.Thread(new System.Threading.ThreadStart(Run));
+                }
+
                 parallelThread.Start();
             }
         }
@@ -194,13 +197,13 @@ namespace Roomie.CommandDefinitions.WebHookCommands
             }
             catch (RoomieRuntimeException exception)
             {
-                throw exception;
+                throw;
             }
             catch (Exception exception)
             {
                 //TODO:
                 if (exception.Message.Equals("Thread was being aborted.", StringComparison.InvariantCultureIgnoreCase))
-                    throw exception;
+                    throw;
 
                 throw new RoomieRuntimeException("REALLY unexpected error transmitting: " + exception.ToString(), exception);
             }

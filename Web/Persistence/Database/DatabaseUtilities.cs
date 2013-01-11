@@ -3,8 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Objects;
 
-
-namespace Roomie.Web.Helpers
+namespace Roomie.Web.Persistence.Database
 {
     public static class DatabaseUtilities
     {
@@ -59,7 +58,7 @@ namespace Roomie.Web.Helpers
             {
                 triesLeft--;
                 if (triesLeft <= 0 || !exception.Message.Contains("rop"))
-                    throw exception;
+                    throw;
             }
 
         }
@@ -70,7 +69,7 @@ namespace Roomie.Web.Helpers
             context.Database.ExecuteSqlCommand(script);
         }
 
-        public static void Seed(this RoomieDatabaseContext context)
+        public static void Seed(this IRoomieDatabaseContext context)
         {
             //TODO: fill in with good, general user stuff
         }

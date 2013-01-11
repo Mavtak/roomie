@@ -5,7 +5,7 @@ using Roomie.Common.ScriptingLanguage;
 namespace Roomie.Desktop.Engine
 {
     //TODO: make disposible?
-    public class ThreadPool : IEnumerable<RoomieThread>
+    public sealed class ThreadPool : IEnumerable<RoomieThread>
     {
         private RoomieEngine engine;
         string name;

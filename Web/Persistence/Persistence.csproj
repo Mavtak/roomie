@@ -8,8 +8,8 @@
     <ProjectGuid>{B89555A4-7FBF-4B56-A040-B18445B4224B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Roomie.Web.Models</RootNamespace>
-    <AssemblyName>Roomie.Web.Models</AssemblyName>
+    <RootNamespace>Roomie.Web.Persistence</RootNamespace>
+    <AssemblyName>Roomie.Web.Persistence</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DatabaseUtilities.cs" />
+    <Compile Include="Database\ExtensionsToIRoomieDatabaseContext.cs" />
+    <Compile Include="Database\IRoomieDatabaseContext.cs" />
     <Compile Include="Helpers\RoomieDatabaseHelpers.cs" />
     <Compile Include="Helpers\DeviceSort.cs" />
     <Compile Include="Helpers\NetworkModelExtensions.cs" />

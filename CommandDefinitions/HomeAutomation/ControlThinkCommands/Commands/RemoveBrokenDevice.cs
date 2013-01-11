@@ -1,4 +1,5 @@
-﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
+﻿using Roomie.CommandDefinitions.ControlThinkCommands;
+using Roomie.CommandDefinitions.HomeAutomationCommands;
 
 namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands.Commands.ControlThink
 {

@@ -1,4 +1,5 @@
-﻿@model NetworkModel
+﻿@using Roomie.Web.Persistence.Models
+@model Roomie.Web.Persistence.Models.NetworkModel
 @{
     var status = ((Model.IsAvailable == true) ? "connected" : "disconnected");
     var target = Url.Action(

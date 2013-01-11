@@ -36,10 +36,10 @@ namespace Roomie.Desktop.Engine
         /// event handler for CommandLibrary
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="eventArgs"></param>
-        private void CommandLibrary_Message(object sender, Delegates.RoomieCommandLibraryEventArgs eventArgs)
+        /// <param name="e"></param>
+        private void CommandLibrary_Message(object sender, Delegates.RoomieCommandLibraryEventArgs e)
         {
-            SimpleOutputText(RootThread, eventArgs.Message);
+            SimpleOutputText(RootThread, e.Message);
         }
 
         public void Start()

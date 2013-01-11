@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Roomie.Web.Helpers;
+﻿using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Models.Helpers
+namespace Roomie.Web.Persistence.Helpers
 {
     public static class RoomieDatabaseHelpers
     {
-        public static DeviceModel GetDevice(this RoomieDatabaseContext database, UserModel user, int id)
+        public static DeviceModel GetDevice(this IRoomieDatabaseContext database, UserModel user, int id)
         {
             var device = database.Devices.Find(id);
 
@@ -20,7 +17,7 @@ namespace Roomie.Web.Models.Helpers
             return device;
         }
 
-        public static NetworkModel GetNetwork(this RoomieDatabaseContext database, UserModel user, int id)
+        public static NetworkModel GetNetwork(this IRoomieDatabaseContext database, UserModel user, int id)
         {
             var network = database.Networks.Find(id);
 
@@ -32,7 +29,7 @@ namespace Roomie.Web.Models.Helpers
             return network;
         }
 
-        public static SavedScriptModel GetSavedScript(this RoomieDatabaseContext database, UserModel user, int id)
+        public static SavedScriptModel GetSavedScript(this IRoomieDatabaseContext database, UserModel user, int id)
         {
             var script = database.SavedScripts.Find(id);
 
@@ -44,7 +41,7 @@ namespace Roomie.Web.Models.Helpers
             return script;
         }
 
-        public static ComputerModel GetComputer(this RoomieDatabaseContext database, UserModel user, int id)
+        public static ComputerModel GetComputer(this IRoomieDatabaseContext database, UserModel user, int id)
         {
             var computer = database.Computers.Find(id);
 
@@ -56,7 +53,7 @@ namespace Roomie.Web.Models.Helpers
             return computer;
         }
 
-        public static TaskModel GetTask(this RoomieDatabaseContext database, UserModel user, int id)
+        public static TaskModel GetTask(this IRoomieDatabaseContext database, UserModel user, int id)
         {
             var task = database.Tasks.Find(id);
 

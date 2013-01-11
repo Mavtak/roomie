@@ -2,13 +2,13 @@
 
 namespace Roomie.Common.HomeAutomation.Exceptions
 {
+    [Serializable]
     public class NoMatchingNetworkException : HomeAutomationException
     {
-
         public NoMatchingNetworkException(string networkName, Exception innerException = null)
             : base(buildMessage(networkName), innerException)
         {
-            this.Data.Add("NetworkName", networkName);
+            Data.Add("NetworkName", networkName);
         }
 
         private static string buildMessage(string networkName)

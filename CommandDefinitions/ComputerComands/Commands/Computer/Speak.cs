@@ -8,7 +8,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
     [Parameter("Text", "String")]
     [Parameter("Async", "Boolean", "False")]
     [Description("This command uses speach synthesis to translate the given text to audio.")]
-    public class Speak : RoomieCommand
+    public sealed class Speak : RoomieCommand, IDisposable
     {
         private SpeechSynthesizer synthesizer;
         protected override void Execute_Definition(RoomieCommandContext context)
@@ -28,6 +28,11 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
                 synthesizer.SpeakAsync(text);
             else
                 synthesizer.Speak(text);
+        }
+
+        public void Dispose()
+        {
+            synthesizer.Dispose();
         }
     }
 }

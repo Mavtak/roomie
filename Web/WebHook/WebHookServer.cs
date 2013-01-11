@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
-using Roomie.Web.Helpers;
-using Roomie.Web.Models;
+using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Models;
 using WebCommunicator;
 using WebCommunicator.EventArgs;
 

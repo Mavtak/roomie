@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Roomie.Web.Helpers;
-using Roomie.Web.Models;
+using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Website.Helpers
 {
     public interface IRoomieController
     {
-        RoomieDatabaseContext Database { get; set; }
+        IRoomieDatabaseContext Database { get; set; }
         UserModel User { get; set; }
     }
 }

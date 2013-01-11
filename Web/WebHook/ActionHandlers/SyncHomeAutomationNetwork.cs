@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Roomie.Web.Persistence.Models;
 
-
-using Roomie.Web.Models;
 
 namespace Roomie.Web.WebHook.ActionHandlers
 {

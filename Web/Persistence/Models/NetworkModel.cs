@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Roomie.Web.Models.Helpers;
 using BaseNetwork = Roomie.Common.HomeAutomation.Network;
+using Roomie.Web.Persistence.Helpers;
 
-namespace Roomie.Web.Models
+namespace Roomie.Web.Persistence.Models
 {
     public class NetworkModel : BaseNetwork, IHasDivId
     {

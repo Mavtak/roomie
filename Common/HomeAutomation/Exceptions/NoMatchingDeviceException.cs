@@ -3,9 +3,9 @@ using System.Text;
 
 namespace Roomie.Common.HomeAutomation.Exceptions
 {
+    [Serializable]
     public class NoMatchingDeviceException : HomeAutomationException
     {
-
         public NoMatchingDeviceException(string address, Exception innerException = null)
             : base(buildMessage(address), innerException)
         {

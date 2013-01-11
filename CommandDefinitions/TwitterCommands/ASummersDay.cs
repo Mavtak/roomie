@@ -1,6 +1,6 @@
 ﻿namespace CheesyShakespeareCodeMonkeyCrossovers
 {
-    public class ASummersDay : System.IComparable
+    public sealed class ASummersDay : System.IComparable
     {
         public ASummersDay()
         {

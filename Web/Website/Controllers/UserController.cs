@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.RelyingParty;
-using Roomie.Web.Models;
+using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers
@@ -11,19 +11,6 @@ namespace Roomie.Web.Website.Controllers
     public class UserController : RoomieBaseController
     {
         private static OpenIdRelyingParty openId = new OpenIdRelyingParty();
-
-        [WebsiteRestrictedAccess]
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [WebsiteRestrictedAccess]
-        public ActionResult Settings()
-        {
-
-            return View(User);
-        }
 
         public ActionResult SignOut()
         {
