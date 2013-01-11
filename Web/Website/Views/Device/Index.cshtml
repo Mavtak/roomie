@@ -3,7 +3,9 @@
     ViewBag.Title = "Devices";
 }@*
 
-*@<script type="text/javascript">updateDevicesContinuously();</script>@*
+*@@section PageSpecificScripts{@*
+    *@<script type="text/javascript">updateDevicesContinuously();</script>@*
+*@}@*
 
 *@@if (Model == null || !Model.Any())
 {
