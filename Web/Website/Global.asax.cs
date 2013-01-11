@@ -19,7 +19,7 @@ namespace Roomie.Web.Website
 
         protected void Application_Start()
         {
-            Database.SetInitializer<RoomieDatabaseContext>(new RoomieDatabaseInitializer());
+            Database.SetInitializer<EntityFrameworkRoomieDatabaseBackend>(new RoomieDatabaseInitializer());
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

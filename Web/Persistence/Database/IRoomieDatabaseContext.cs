@@ -6,16 +6,16 @@ namespace Roomie.Web.Persistence.Database
 {
     public interface IRoomieDatabaseContext : IDisposable
     {
-        DbSet<UserModel> Users { get; set; }
-        DbSet<UserSessionModel> UserSessions { get; set; }
-        DbSet<ComputerModel> Computers { get; set; }
-        DbSet<NetworkModel> Networks { get; set; }
-        DbSet<DeviceModel> Devices { get; set; }
-        DbSet<TaskModel> Tasks { get; set; }
-        DbSet<ScriptModel> Scripts { get; set; }
-        DbSet<SavedScriptModel> SavedScripts { get; set; }
-        DbSet<WebHookSessionModel> WebHookSessions { get; set; }
-        DbSet<DeviceLocationModel> DeviceLocations { get; set; }
+        IRoomieEntitySet<UserModel> Users { get; set; }
+        IRoomieEntitySet<UserSessionModel> UserSessions { get; set; }
+        IRoomieEntitySet<ComputerModel> Computers { get; set; }
+        IRoomieEntitySet<NetworkModel> Networks { get; set; }
+        IRoomieEntitySet<DeviceModel> Devices { get; set; }
+        IRoomieEntitySet<TaskModel> Tasks { get; set; }
+        IRoomieEntitySet<ScriptModel> Scripts { get; set; }
+        IRoomieEntitySet<SavedScriptModel> SavedScripts { get; set; }
+        IRoomieEntitySet<WebHookSessionModel> WebHookSessions { get; set; }
+        IRoomieEntitySet<DeviceLocationModel> DeviceLocations { get; set; }
         int SaveChanges();
         void Reset();
         //public DbSet<StringStringPair> StringStringDictionary { get; set; }

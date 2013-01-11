@@ -15,6 +15,6 @@ namespace Roomie.Web.WebHook
                 return Computer.Owner;
             }
         }
-        public RoomieDatabaseContext Database { get; set; }
+        public IRoomieDatabaseContext Database { get; set; }
     }
 }

@@ -7,44 +7,124 @@ using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Database
 {
-    public sealed class RoomieDatabaseContext : DbContext, IRoomieDatabaseContext
+    public sealed class RoomieDatabaseContext : IRoomieDatabaseContext
     {
-        public DbSet<UserModel> Users { get; set; }
-        public DbSet<UserSessionModel> UserSessions { get; set; }
-        public DbSet<ComputerModel> Computers { get; set; }
-        public DbSet<NetworkModel> Networks { get; set; }
-        public DbSet<DeviceModel> Devices { get; set; }
-        public DbSet<TaskModel> Tasks { get; set; }
-        public DbSet<ScriptModel> Scripts { get; set; }
-        public DbSet<SavedScriptModel> SavedScripts { get; set; }
-        public DbSet<WebHookSessionModel> WebHookSessions { get; set; }
-        public DbSet<DeviceLocationModel> DeviceLocations { get; set; }
-        //public DbSet<StringStringPair> StringStringDictionary { get; set; }
-        //public DbSet<HomeModel> Homes { get; set; }
+        public IRoomieEntitySet<UserModel> Users { get; set; }
+        public IRoomieEntitySet<UserSessionModel> UserSessions { get; set; }
+        public IRoomieEntitySet<ComputerModel> Computers { get; set; }
+        public IRoomieEntitySet<NetworkModel> Networks { get; set; }
+        public IRoomieEntitySet<DeviceModel> Devices { get; set; }
+        public IRoomieEntitySet<TaskModel> Tasks { get; set; }
+        public IRoomieEntitySet<ScriptModel> Scripts { get; set; }
+        public IRoomieEntitySet<SavedScriptModel> SavedScripts { get; set; }
+        public IRoomieEntitySet<WebHookSessionModel> WebHookSessions { get; set; }
+        public IRoomieEntitySet<DeviceLocationModel> DeviceLocations { get; set; }
+        //public IRoomieEntitySet<StringStringPair> StringStringDictionary { get; set; }
+        //public IRoomieEntitySet<HomeModel> Homes { get; set; }
 
         public static string ConnectionString { private get; set; }
 
-        public RoomieDatabaseContext()
-            : base(ConnectionString??"RoomieDatabaseContext")
+        private readonly EntityFrameworkRoomieDatabaseBackend database;
+
+        public RoomieDatabaseContext(EntityFrameworkRoomieDatabaseBackend database)
         {
+            this.database = database;
+
+            Users = new DbContextAdapter<UserModel>(database.Users);
+            UserSessions = new DbContextAdapter<UserSessionModel>(database.UserSessions);
+            Computers = new DbContextAdapter<ComputerModel>(database.Computers);
+            Devices = new DbContextAdapter<DeviceModel>(database.Devices);
+            Tasks = new DbContextAdapter<TaskModel>(database.Tasks);
+            Scripts = new DbContextAdapter<ScriptModel>(database.Scripts);
+            SavedScripts = new DbContextAdapter<SavedScriptModel>(database.SavedScripts);
+            WebHookSessions = new DbContextAdapter<WebHookSessionModel>(database.WebHookSessions);
+            DeviceLocations = new DbContextAdapter<DeviceLocationModel>(database.DeviceLocations);
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public RoomieDatabaseContext()
+            : this(new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext"))
         {
-            modelBuilder.Configurations.Add<Roomie.Common.HomeAutomation.DeviceType>(new DeviceTypeMapping());
         }
 
         public void Reset()
         {
-            DatabaseUtilities.Reset(this);
+            DatabaseUtilities.Reset(database);
         }
-    }
 
-    public class DeviceTypeMapping : ComplexTypeConfiguration<Roomie.Common.HomeAutomation.DeviceType>
-    {
-        public DeviceTypeMapping()
+        public int SaveChanges()
         {
-            this.Property(p => p.Name);
+            return database.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            database.Dispose();
+        }
+
+        private sealed class DbContextAdapter<TEntityType> : IRoomieEntitySet<TEntityType>
+            where TEntityType : class
+        {
+            private DbSet<TEntityType> set;
+            private IQueryable<TEntityType> queriable;
+
+            public DbContextAdapter(DbSet<TEntityType> set)
+            {
+                this.set = set;
+                queriable = (IQueryable<TEntityType>)set;
+            }
+
+            #region IRoomieEntitySet implementation
+            void IRoomieEntitySet<TEntityType>.Add(TEntityType entity)
+            {
+                set.Add(entity);
+            }
+
+            void IRoomieEntitySet<TEntityType>.Remove(TEntityType entity)
+            {
+                set.Remove(entity);
+            }
+
+            TEntityType IRoomieEntitySet<TEntityType>.Find(object id)
+            {
+                return set.Find(id);
+            }
+            #endregion
+
+            #region IQueriable implementation
+            Type IQueryable.ElementType
+            {
+                get
+                {
+                    return queriable.ElementType;
+                }
+            }
+
+            System.Linq.Expressions.Expression IQueryable.Expression
+            {
+                get
+                {
+                    return queriable.Expression;
+                }
+            }
+
+            IQueryProvider IQueryable.Provider
+            {
+                get
+                {
+                    return queriable.Provider;
+                }
+            }
+
+            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+            {
+                return queriable.GetEnumerator();
+            }
+
+            IEnumerator<TEntityType> IEnumerable<TEntityType>.GetEnumerator()
+            {
+                return queriable.GetEnumerator();
+            }
+            #endregion
         }
     }
 }
