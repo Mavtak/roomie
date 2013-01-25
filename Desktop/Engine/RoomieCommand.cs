@@ -349,9 +349,9 @@ namespace Roomie.Desktop.Engine
             writer.WriteEndElement();
         }
 
-        public ScriptCommand BlankCommandCall()
+        public IScriptCommand BlankCommandCall()
         {
-            return new ScriptCommand(this.FullName);
+            return new TextScriptCommand(this.FullName);
         }
 
         public string ToConsoleFriendlyString()

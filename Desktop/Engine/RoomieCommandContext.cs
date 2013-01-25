@@ -9,7 +9,7 @@ namespace Roomie.Desktop.Engine
 
         public RoomieCommandInterpreter Interpreter { get; private set; }
         public RoomieCommandScope Scope { get; private set; }
-        public ScriptCommand OriginalCommand { get; private set; }
+        public IScriptCommand OriginalCommand { get; private set; }
 
         public RoomieEngine Engine
         {
@@ -47,7 +47,7 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        internal RoomieCommandContext(RoomieCommandInterpreter interpreter, RoomieCommandScope scope, ScriptCommand originalCommand)
+        internal RoomieCommandContext(RoomieCommandInterpreter interpreter, RoomieCommandScope scope, IScriptCommand originalCommand)
         {
             this.Interpreter = interpreter;
             this.Scope = scope;
@@ -58,7 +58,7 @@ namespace Roomie.Desktop.Engine
             : this(that.Interpreter, that.Scope, that.OriginalCommand)
         { }
 
-        public ScriptCommand GetBlankCommand(Type commandType)
+        public IScriptCommand GetBlankCommand(Type commandType)
         {
             var command = CommandLibrary.GetCommandFromType(commandType);
             var scriptCommand = command.BlankCommandCall();

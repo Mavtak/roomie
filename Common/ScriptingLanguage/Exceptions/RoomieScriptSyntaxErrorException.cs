@@ -8,6 +8,10 @@ namespace Roomie.Common.ScriptingLanguage.Exceptions
     [Serializable]
     public class RoomieScriptSyntaxErrorException : RoomieRuntimeException
     {
+        public RoomieScriptSyntaxErrorException(string message = null)
+            : base(message)
+        { }
+
         public RoomieScriptSyntaxErrorException(Exception innerException)
             : base(niceMessage(innerException), innerException)
         { }

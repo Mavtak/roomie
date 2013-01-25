@@ -43,9 +43,12 @@
     <Compile Include="Common.cs" />
     <Compile Include="Exceptions\RoomieScriptSyntaxErrorException.cs" />
     <Compile Include="InternalLibraryVersion.cs" />
+    <Compile Include="IScriptCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomieScript.cs" />
-    <Compile Include="ScriptCommand.cs" />
+    <Compile Include="ScriptCommandExtensions.cs" />
+    <Compile Include="TextScriptCommand.cs" />
+    <Compile Include="XmlScriptCommand.cs" />
     <Compile Include="ScriptCommandList.cs" />
     <Compile Include="ScriptCommandParameter.cs" />
     <Compile Include="ScriptCommandParameterExtensions.cs" />

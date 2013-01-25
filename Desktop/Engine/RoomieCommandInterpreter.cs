@@ -50,7 +50,7 @@ namespace Roomie.Desktop.Engine
             return true;
         }
 
-        private bool executeCommand(ScriptCommand languageCommand)
+        private bool executeCommand(IScriptCommand languageCommand)
         {
             if (languageCommand.FullName.Equals("RoomieScript"))
             {
@@ -113,7 +113,7 @@ namespace Roomie.Desktop.Engine
 
         private bool executeNextCommand()
         {
-            ScriptCommand command;
+            IScriptCommand command;
             lock (CommandQueue)
             {
                 command = this.CommandQueue.PopFirst();

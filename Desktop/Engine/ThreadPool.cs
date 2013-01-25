@@ -51,7 +51,7 @@ namespace Roomie.Desktop.Engine
             return CreateNewThread();
         }
 
-        public void AddCommand(ScriptCommand command)
+        public void AddCommand(IScriptCommand command)
         {
             lock (this)
             {
@@ -62,7 +62,7 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public void AddCommands(IEnumerable<ScriptCommand> commands)
+        public void AddCommands(IEnumerable<IScriptCommand> commands)
         {
             lock (this)
             {

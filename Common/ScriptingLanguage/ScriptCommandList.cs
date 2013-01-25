@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Roomie.Common.ScriptingLanguage.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 
@@ -6,14 +9,14 @@ namespace Roomie.Common.ScriptingLanguage
 {
     //TODO: is it bad practice to lock in 'this'?
     //TODO: eliminate use of System.Xml
-    public class ScriptCommandList : IEnumerable<ScriptCommand>
+    public class ScriptCommandList : IEnumerable<IScriptCommand>
     {
-        private LinkedList<ScriptCommand> commands;
+        private LinkedList<IScriptCommand> commands;
         public string OriginalText { get; private set; }
 
         public ScriptCommandList()
         {
-            this.commands = new LinkedList<ScriptCommand>();
+            this.commands = new LinkedList<IScriptCommand>();
         }
 
         public ScriptCommandList(XmlNodeList nodes, string originalText)
@@ -45,7 +48,7 @@ namespace Roomie.Common.ScriptingLanguage
         }
 
         #region add
-        public void Add(ScriptCommand command)
+        public void Add(IScriptCommand command)
         {
             lock (this)
             {
@@ -54,9 +57,9 @@ namespace Roomie.Common.ScriptingLanguage
         }
         public void Add(XmlNode node)
         {
-            Add(new ScriptCommand(node));
+            Add(new XmlScriptCommand(node));
         }
-        public void Add(IEnumerable<ScriptCommand> commands)
+        public void Add(IEnumerable<IScriptCommand> commands)
         {
             lock (this)
             {
@@ -94,20 +97,31 @@ namespace Roomie.Common.ScriptingLanguage
         }
         public void Add(string text)
         {
-            var nodes = Common.GetXml(text);
-            Add(nodes);
+            try
+            {
+                var nodes = Common.GetXml(text);
+                Add(nodes);
+            }
+            catch (RoomieScriptSyntaxErrorException)
+            {
+                //TODO: This is not the best way to detect the script format >.<
+
+                var newCommands = TextScriptCommand.FromLines(text);
+                Add(newCommands);
+            }
+            
         }
         #endregion
 
         #region AddBeginning
-        public void AddBeginning(ScriptCommand command)
+        public void AddBeginning(IScriptCommand command)
         {
             lock (this)
             {
                 this.commands.AddFirst(command); 
             }
         }
-        public void AddBeginning(IEnumerable<ScriptCommand> commands)
+        public void AddBeginning(IEnumerable<IScriptCommand> commands)
         {
             lock (this)
             {
@@ -119,13 +133,13 @@ namespace Roomie.Common.ScriptingLanguage
         }
         public void AddBeginning(IEnumerable<XmlNode> nodes)
         {
-            var commands = new LinkedList<ScriptCommand>();
+            var commands = new LinkedList<XmlScriptCommand>();
 
             foreach (var node in nodes)
             {
                 if (node.NodeType == XmlNodeType.Element)
                 {
-                    commands.AddLast(new ScriptCommand(node));
+                    commands.AddLast(new XmlScriptCommand(node));
                 }
             }
 
@@ -162,14 +176,14 @@ namespace Roomie.Common.ScriptingLanguage
             this.commands.Clear();
         }
 
-        public ScriptCommand PopFirst()
+        public IScriptCommand PopFirst()
         {
             var result = this.commands.First.Value;
             this.commands.RemoveFirst();
             return result;
         }
 
-        public ScriptCommand Select(string name)
+        public IScriptCommand Select(string name)
         {
             //this is used for commands that require inner command lists to be specified. (see If and DefineCommand)
             foreach (var command in this)
@@ -184,7 +198,7 @@ namespace Roomie.Common.ScriptingLanguage
         }
 
         #region IEnumerable Interface
-        IEnumerator<ScriptCommand> IEnumerable<ScriptCommand>.GetEnumerator()
+        IEnumerator<IScriptCommand> IEnumerable<IScriptCommand>.GetEnumerator()
         {
             return commands.GetEnumerator();
         }

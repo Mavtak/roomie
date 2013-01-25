@@ -2,13 +2,14 @@
 
 namespace Roomie.Common.ScriptingLanguage
 {
-    public class RoomieScript : IEnumerable<ScriptCommand>
+    public class RoomieScript : IEnumerable<IScriptCommand>
     {
         public string Source { get; private set; }
         public ScriptCommandList Commands { get; private set; }
 
         private RoomieScript()
-        { }
+        {
+        }
 
         public static RoomieScript FromFile(string path)
         {
@@ -21,14 +22,15 @@ namespace Roomie.Common.ScriptingLanguage
             return result;
         }
 
-        IEnumerator<ScriptCommand> IEnumerable<ScriptCommand>.GetEnumerator()
+        //TODO: avoid casting
+        IEnumerator<IScriptCommand> IEnumerable<IScriptCommand>.GetEnumerator()
         {
-            return ((IEnumerable<ScriptCommand>)Commands).GetEnumerator();
+            return ((IEnumerable<IScriptCommand>)Commands).GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable<ScriptCommand>)Commands).GetEnumerator();
+            return ((IEnumerable<IScriptCommand>)Commands).GetEnumerator();
         }
     }
 }

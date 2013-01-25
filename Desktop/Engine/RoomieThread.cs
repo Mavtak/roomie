@@ -69,12 +69,12 @@ namespace Roomie.Desktop.Engine
         }
 
         #region Add Commands
-        public void AddCommand(ScriptCommand command)
+        public void AddCommand(IScriptCommand command)
         {
             interpreter.CommandQueue.Add(command);
         }
 
-        public void AddCommands(IEnumerable<ScriptCommand> commands)
+        public void AddCommands(IEnumerable<IScriptCommand> commands)
         {
             interpreter.CommandQueue.Add(commands);
         }

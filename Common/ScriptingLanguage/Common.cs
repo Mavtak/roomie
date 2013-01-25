@@ -29,6 +29,11 @@ namespace Roomie.Common.ScriptingLanguage
 
             var rootNode = xmlDocument.ChildNodes[xmlDocument.ChildNodes.Count - 1];
 
+            if (rootNode.InnerText == rootNode.InnerXml)
+            {
+                throw new RoomieScriptSyntaxErrorException("this is not xml.  It's just plain text");
+            }
+
             var result = new List<System.Xml.XmlNode>(rootNode.ChildNodes.Count);
 
             foreach (XmlNode node in rootNode.ChildNodes)

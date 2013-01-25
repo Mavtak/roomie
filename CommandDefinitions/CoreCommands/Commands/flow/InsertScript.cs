@@ -24,7 +24,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
             string threadName = scope.GetValue("NewThreadName");
             string path = scope.GetValue("Path");
 
-            IEnumerable<ScriptCommand> commandsToAdd;
+            IEnumerable<IScriptCommand> commandsToAdd;
 
             if (string.IsNullOrEmpty(path))
             {

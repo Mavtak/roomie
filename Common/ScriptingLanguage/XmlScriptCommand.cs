@@ -3,14 +3,14 @@ using System.Xml;
 
 namespace Roomie.Common.ScriptingLanguage
 {
-    public class ScriptCommand
+    public class XmlScriptCommand : IScriptCommand
     {
         public string FullName { get; private set; }
         public ScriptCommandParameters Parameters { get; private set; }
         public ScriptCommandList InnerCommands { get; private set; }
         public string OriginalText { get; private set; }
 
-        public ScriptCommand(XmlNode node)
+        public XmlScriptCommand(XmlNode node)
         {
             this.OriginalText = node.OuterXml;
 
@@ -26,29 +26,19 @@ namespace Roomie.Common.ScriptingLanguage
 
             InnerCommands = new ScriptCommandList(node.ChildNodes, node.OuterXml);
         }
-        public ScriptCommand(string fullName, ScriptCommandParameters parameters = null)
+
+        public XmlScriptCommand(string fullName, ScriptCommandParameters parameters = null)
         {
             this.FullName = fullName;
             this.Parameters = parameters ?? new ScriptCommandParameters();
             this.InnerCommands = new ScriptCommandList();
             this.OriginalText = "";//TODO: set something?
         }
+
         public override string ToString()
         {
-            var result = new StringBuilder();
-
-            result.Append(FullName);
-
-            foreach (var parameter in Parameters)
-            {
-                result.Append(" ");
-                result.Append(parameter.Name);
-                result.Append("=\"");
-                result.Append(parameter.Value);
-                result.Append("\"");
-            }
-
-            return result.ToString();
+            return this.Format();
         }
+
     }
 }
