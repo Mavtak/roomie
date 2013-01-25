@@ -36,7 +36,7 @@ namespace Roomie.Web.Website.Controllers
                 computer: device.Network.AttatchedComputer,
                 origin: "Web Interface",
                 scriptText: String.Format(//TODO: improve this script
-                    "<HomeAutomation.Dim Device=\"{0}\" Power=\"{1}\" />\n<HomeAutomation.SyncWithCloud />",
+                    "HomeAutomation.Dim Device=\"{0}\" Power=\"{1}\"\nHomeAutomation.SyncWithCloud",
                     device.BuildVirtualAddress(true, true), power)
             );
 
@@ -59,7 +59,7 @@ namespace Roomie.Web.Website.Controllers
                 computer: device.Network.AttatchedComputer,
                 origin: "Web Interface",
                 scriptText: String.Format(//TODO: improve this script
-                    "<HomeAutomation.PowerOn Device=\"{0}\" />\n<HomeAutomation.SyncWithCloud />",
+                    "HomeAutomation.PowerOn Device=\"{0}\"\nHomeAutomation.SyncWithCloud",
                     device.BuildVirtualAddress(true, true))
             );
 
@@ -82,7 +82,7 @@ namespace Roomie.Web.Website.Controllers
                 computer: device.Network.AttatchedComputer,
                 origin: "Web Interface",
                 scriptText: String.Format(//TODO: improve this script
-                    "<HomeAutomation.PowerOff Device=\"{0}\" />\n<HomeAutomation.SyncWithCloud />",
+                    "HomeAutomation.PowerOff Device=\"{0}\"\nHomeAutomation.SyncWithCloud",
                     device.BuildVirtualAddress(true, true))
             );
 
@@ -119,7 +119,7 @@ namespace Roomie.Web.Website.Controllers
             addTask(
                 computer: device.Network.AttatchedComputer,
                 origin: "RoomieBot",
-                scriptText: "<HomeAutomation.SyncWithCloud />"
+                scriptText: "HomeAutomation.SyncWithCloud"
             );
 
             Database.SaveChanges();
