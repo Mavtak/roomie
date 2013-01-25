@@ -21,12 +21,16 @@ namespace Roomie.Web.Website
             return resolver;
         }
 
+        private static void BindAllTheThings(IKernel kernel)
+        {
+            kernel.Bind<IRoomieDatabaseContext>().To<RoomieDatabaseContext>();
+        }
+
         private static IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
-
-            kernel.Bind<IRoomieDatabaseContext>().To<RoomieDatabaseContext>();
+            BindAllTheThings(kernel);
 
             return kernel;
         }
