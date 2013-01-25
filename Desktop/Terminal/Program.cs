@@ -28,21 +28,27 @@ namespace Roomie.Desktop.Terminal
                 line = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(line))
                 {
-                    input += line;
-
-                    try
+                    if (input.Length > 0)
                     {
-                        xmlInput.LoadXml(input);
-                        Console.WriteLine("Command accepted.");
-                        engine.RootThread.AddCommands(ScriptCommandList.FromText(input));
-
-                        input = "";
+                        input += "\n";
                     }
-                    catch
+                    input += line.TrimEnd('_');
+                    //TODO: read multiple lines
+                    if (!line.EndsWith("_"))
                     {
-                        //Looks like the line is not valid XML yet...
+                        try
+                        {
+                            var script = ScriptCommandList.FromText(input);
+                            engine.RootThread.AddCommands(script);
+                            Console.WriteLine("Command accepted.");
+                            input = "";
+                        }
+                        catch (Exception exception)
+                        {
+                            Console.WriteLine("Error. " + exception.Message);
+                        }
                     }
-                    
+
                 }
                 else
                 {
