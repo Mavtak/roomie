@@ -133,10 +133,12 @@ namespace Roomie.Common.ScriptingLanguage
 
         public IScriptCommand PopFirst()
         {
-            //TODO: lock
-            var result = _commands.First.Value;
-            _commands.RemoveFirst();
-            return result;
+            lock (this)
+            {
+                var result = _commands.First.Value;
+                _commands.RemoveFirst();
+                return result;
+            }
         }
 
         public IScriptCommand Select(string name)
