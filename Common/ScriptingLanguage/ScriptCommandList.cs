@@ -10,12 +10,12 @@ namespace Roomie.Common.ScriptingLanguage
     //TODO: is it bad practice to lock in 'this'?
     public class ScriptCommandList : IEnumerable<IScriptCommand>
     {
-        private LinkedList<IScriptCommand> commands;
+        private readonly LinkedList<IScriptCommand> _commands;
         public string OriginalText { get; private set; }
 
         public ScriptCommandList()
         {
-            this.commands = new LinkedList<IScriptCommand>();
+            _commands = new LinkedList<IScriptCommand>();
         }
 
         public static ScriptCommandList FromFile(string path)
@@ -23,7 +23,7 @@ namespace Roomie.Common.ScriptingLanguage
             try
             {
                 var text = File.ReadAllText(path);
-                var result = ScriptCommandList.FromText(text);
+                var result = FromText(text);
 
                 return result;
             }
@@ -49,7 +49,7 @@ namespace Roomie.Common.ScriptingLanguage
         {
             lock (this)
             {
-                this.commands.AddLast(command);
+                _commands.AddLast(command);
             }
         }
 
@@ -90,7 +90,7 @@ namespace Roomie.Common.ScriptingLanguage
         {
             lock (this)
             {
-                this.commands.AddFirst(command); 
+                _commands.AddFirst(command); 
             }
         }
 
@@ -113,7 +113,7 @@ namespace Roomie.Common.ScriptingLanguage
             {
                 lock (this)
                 {
-                    return this.commands.Count;
+                    return _commands.Count;
                 }
             }
         }
@@ -128,41 +128,33 @@ namespace Roomie.Common.ScriptingLanguage
 
         public void Clear()
         {
-            this.commands.Clear();
+            _commands.Clear();
         }
 
         public IScriptCommand PopFirst()
         {
             //TODO: lock
-            var result = this.commands.First.Value;
-            this.commands.RemoveFirst();
+            var result = _commands.First.Value;
+            _commands.RemoveFirst();
             return result;
         }
 
         public IScriptCommand Select(string name)
         {
             //this is used for commands that require inner command lists to be specified. (see If and DefineCommand)
-            foreach (var command in this)
-            {
-                if (command.FullName.Equals(name))
-                {
-                    return command;
-                }
-            }
-
-            return null;
+            return this.FirstOrDefault(command => command.FullName.Equals(name));
         }
 
         #region IEnumerable Interface
 
         IEnumerator<IScriptCommand> IEnumerable<IScriptCommand>.GetEnumerator()
         {
-            return commands.GetEnumerator();
+            return _commands.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return commands.GetEnumerator();
+            return _commands.GetEnumerator();
         }
 
         #endregion
