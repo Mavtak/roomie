@@ -24,7 +24,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             foreach (var device in network.Devices)
             {
-                addressLength = Math.Max(addressLength, device.BuildVirtualAddress(true, false).Length);
+                addressLength = Math.Max(addressLength, device.BuildVirtualAddress(false, false).Length);
             }
 
             var tableBuilder = new TextTable(new int[] { addressLength, 10, 9, 5 });
@@ -35,7 +35,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             foreach (Device device in network.Devices)
             {
-                var address = device.BuildVirtualAddress(true, false);
+                var address = device.BuildVirtualAddress(false, false);
 
                 string power = "";
 
