@@ -1,14 +1,13 @@
-﻿using Roomie.Common.ScriptingLanguage.Exceptions;
+﻿using Roomie.Common.Exceptions;
+using Roomie.Common.ScriptingLanguage.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
 
 namespace Roomie.Common.ScriptingLanguage
 {
     //TODO: is it bad practice to lock in 'this'?
-    //TODO: eliminate use of System.Xml
     public class ScriptCommandList : IEnumerable<IScriptCommand>
     {
         private LinkedList<IScriptCommand> commands;
@@ -19,24 +18,21 @@ namespace Roomie.Common.ScriptingLanguage
             this.commands = new LinkedList<IScriptCommand>();
         }
 
-        public ScriptCommandList(XmlNodeList nodes, string originalText)
-            : this()
-        {
-            this.OriginalText = originalText;
-            Add(nodes);
-        }
-
         public static ScriptCommandList FromFile(string path)
         {
-            var result = new ScriptCommandList();
+            try
+            {
+                var text = File.ReadAllText(path);
+                var result = ScriptCommandList.FromText(text);
 
-            //TODO: improve
-            var nodes = Common.LoadXml(path);
-            result.OriginalText = nodes.OuterXml;
-            result.Add(nodes);
-
-            return result;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                throw new UnexpectedException(exception);
+            }
         }
+
         public static ScriptCommandList FromText(string text)
         {
             var result = new ScriptCommandList();
@@ -48,6 +44,7 @@ namespace Roomie.Common.ScriptingLanguage
         }
 
         #region add
+
         public void Add(IScriptCommand command)
         {
             lock (this)
@@ -55,10 +52,7 @@ namespace Roomie.Common.ScriptingLanguage
                 this.commands.AddLast(command);
             }
         }
-        public void Add(XmlNode node)
-        {
-            Add(new XmlScriptCommand(node));
-        }
+
         public void Add(IEnumerable<IScriptCommand> commands)
         {
             lock (this)
@@ -69,38 +63,14 @@ namespace Roomie.Common.ScriptingLanguage
                 }
             }
         }
-        public void Add(IEnumerable<XmlNode> nodes)
-        {
-            lock (this)
-            {
-                foreach (var node in nodes)
-                {
-                    if (node.NodeType == XmlNodeType.Element)
-                    {
-                        Add(node);
-                    }
-                }
-            }
-        }
-        public void Add(XmlNodeList nodes)
-        {
-            lock (this)
-            {
-                foreach (XmlNode node in nodes)
-                {
-                    if (node.NodeType == XmlNodeType.Element)
-                    {
-                        Add(node);
-                    }
-                }
-            }
-        }
+
         public void Add(string text)
         {
             try
             {
                 var nodes = Common.GetXml(text);
-                Add(nodes);
+                var newCommands = XmlScriptCommand.FromNodes(nodes);
+                Add(newCommands);
             }
             catch (RoomieScriptSyntaxErrorException)
             {
@@ -111,9 +81,11 @@ namespace Roomie.Common.ScriptingLanguage
             }
             
         }
+
         #endregion
 
         #region AddBeginning
+
         public void AddBeginning(IScriptCommand command)
         {
             lock (this)
@@ -121,6 +93,7 @@ namespace Roomie.Common.ScriptingLanguage
                 this.commands.AddFirst(command); 
             }
         }
+
         public void AddBeginning(IEnumerable<IScriptCommand> commands)
         {
             lock (this)
@@ -131,25 +104,7 @@ namespace Roomie.Common.ScriptingLanguage
                 }
             }
         }
-        public void AddBeginning(IEnumerable<XmlNode> nodes)
-        {
-            var commands = new LinkedList<XmlScriptCommand>();
 
-            foreach (var node in nodes)
-            {
-                if (node.NodeType == XmlNodeType.Element)
-                {
-                    commands.AddLast(new XmlScriptCommand(node));
-                }
-            }
-
-            AddBeginning(commands);
-        }
-        public void AddBeginning(string text)
-        {
-            var nodes = Common.GetXml(text);
-            AddBeginning(nodes);
-        }
         #endregion
 
         public int Count
@@ -178,6 +133,7 @@ namespace Roomie.Common.ScriptingLanguage
 
         public IScriptCommand PopFirst()
         {
+            //TODO: lock
             var result = this.commands.First.Value;
             this.commands.RemoveFirst();
             return result;
@@ -198,6 +154,7 @@ namespace Roomie.Common.ScriptingLanguage
         }
 
         #region IEnumerable Interface
+
         IEnumerator<IScriptCommand> IEnumerable<IScriptCommand>.GetEnumerator()
         {
             return commands.GetEnumerator();
@@ -207,6 +164,7 @@ namespace Roomie.Common.ScriptingLanguage
         {
             return commands.GetEnumerator();
         }
+
         #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 
 namespace Roomie.Common.ScriptingLanguage
@@ -24,7 +25,7 @@ namespace Roomie.Common.ScriptingLanguage
                 Parameters.Add(parameter);
             }
 
-            InnerCommands = new ScriptCommandList(node.ChildNodes, node.OuterXml);
+            InnerCommands = ScriptCommandList.FromText(node.InnerXml);
         }
 
         public XmlScriptCommand(string fullName, ScriptCommandParameters parameters = null)
@@ -33,6 +34,24 @@ namespace Roomie.Common.ScriptingLanguage
             this.Parameters = parameters ?? new ScriptCommandParameters();
             this.InnerCommands = new ScriptCommandList();
             this.OriginalText = "";//TODO: set something?
+        }
+
+        public static IEnumerable<IScriptCommand> FromNodes(IEnumerable<XmlNode> nodes)
+        {
+            foreach (XmlNode node in nodes)
+            {
+                if (node.NodeType == XmlNodeType.Element)
+                {
+                    var result = new XmlScriptCommand(node);
+
+                    yield return result;
+                }
+            }
+        }
+
+        public static IEnumerable<IScriptCommand> FromNodes(XmlNodeList nodes)
+        {
+            return FromNodes(nodes.OfType<XmlNode>());
         }
 
         public override string ToString()

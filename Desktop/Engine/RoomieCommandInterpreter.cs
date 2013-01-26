@@ -52,6 +52,7 @@ namespace Roomie.Desktop.Engine
 
         private bool executeCommand(IScriptCommand languageCommand)
         {
+            //TODO: move this check's logic into IScriptCommand
             if (languageCommand.FullName.Equals("RoomieScript"))
             {
                 //TODO: just make a "RoomieScript" command?
