@@ -1,0 +1,32 @@
+﻿<Window x:Class="Roomie.Desktop.Graphical.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="300" Width="600">
+    <DockPanel>
+        <DockPanel
+            DockPanel.Dock="Bottom"
+            Height="50"
+            >
+            <Button DockPanel.Dock="Right" Name="RunButton" Width="50" Click="RunButton_Click">Run</Button>
+            <TextBox
+                Name="Input"
+                TextWrapping="Wrap"
+                Text="Core.Print Text=&quot;hi!&quot;"
+                AcceptsReturn="True"
+                PreviewKeyDown="Input_OnPreviewKeyDown"
+                />
+            
+        </DockPanel>
+        <DataGrid
+            Name="EventListing"
+            FontFamily="Courier New"
+            ItemsSource="{Binding}"
+            CanUserAddRows="False"
+            GridLinesVisibility="None"
+            IsReadOnly="True"
+            MinHeight="100"
+            VerticalAlignment="Stretch"
+            KeyDown="EventListing_OnKeyDown"
+            />
+    </DockPanel>
+</Window>
