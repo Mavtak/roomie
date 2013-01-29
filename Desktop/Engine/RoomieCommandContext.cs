@@ -49,14 +49,15 @@ namespace Roomie.Desktop.Engine
 
         internal RoomieCommandContext(RoomieCommandInterpreter interpreter, RoomieCommandScope scope, IScriptCommand originalCommand)
         {
-            this.Interpreter = interpreter;
-            this.Scope = scope;
-            this.OriginalCommand = originalCommand;
+            Interpreter = interpreter;
+            Scope = scope;
+            OriginalCommand = originalCommand;
         }
 
         protected RoomieCommandContext(RoomieCommandContext that)
             : this(that.Interpreter, that.Scope, that.OriginalCommand)
-        { }
+        {
+        }
 
         public IScriptCommand GetBlankCommand(Type commandType)
         {

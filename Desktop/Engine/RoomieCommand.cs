@@ -13,27 +13,20 @@ namespace Roomie.Desktop.Engine
 {
     public abstract class RoomieCommand
     {
-        private List<RoomieCommandArgument> arguments;
+        private readonly List<RoomieCommandArgument> _arguments;
 
-        public RoomieCommand()
-            : this((string)null, (string)null, (string)null, (Version)null, new List<RoomieCommandArgument>(), (bool?) null)
-        { }
+        protected RoomieCommand()
+            : this(group: null, name: null, source: null, version: null, arguments: new List<RoomieCommandArgument>(), finalized: null)
+        {
+        }
 
-        /// <summary>
-        /// Only Commands in this library can use this constructor.  It is for the CustomCommand command.
-        /// </summary>
-        /// <param name="group"></param>
-        /// <param name="name"></param>
-        /// <param name="requiredArguments"></param>
-        /// <param name="argumentDefaults"></param>
-        /// <param name="argumentTypes"></param>
         protected internal RoomieCommand(string group, string name, string source, Version version, List<RoomieCommandArgument> arguments, bool? finalized, string description = null)
         {
-            this.cachedGroup = group;
-            this.cachedName = name;
-            this.cashedSource = source;
-            this.cachedPluginVersion = version;
-            this.arguments = arguments;
+            _cachedGroup = group;
+            _cachedName = name;
+            _cashedSource = source;
+            _cachedPluginVersion = version;
+            _arguments = arguments;
 
             //Reflect on the parameters
             foreach (ParameterAttribute parameter in this.GetType().GetCustomAttributes(typeof(ParameterAttribute), true))
@@ -76,7 +69,9 @@ namespace Roomie.Desktop.Engine
             var scope = context.Scope;
 
             if (!Finalized)
+            {
                 throw new CommandImplementationException(this, "Can not execute a command that is not finalized.");
+            }
 
             //print call if neccisary
             StringBuilder call = null;
@@ -97,19 +92,25 @@ namespace Roomie.Desktop.Engine
 
             //require specified arguments
 
-            List<string> missingArguments = new List<string>();
-            foreach (RoomieCommandArgument argument in arguments)
+            var missingArguments = new List<string>();
+            foreach (var argument in _arguments)
             {
                 if (!argument.HasDefault & !scope.VariableDefinedInThisScope(argument.Name))
+                {
                     missingArguments.Add(argument.Name);
+                }
             }
+
             if (missingArguments.Count > 0)
+            {
                 throw new MissingArgumentsException(missingArguments);
+            }
 
             //here we know that all undefined arguments have available defaults.
 
             //fill in defaults
-            foreach (RoomieCommandArgument argument in arguments)
+            foreach (var argument in _arguments)
+            {
                 if (!scope.VariableDefinedInThisScope(argument.Name))
                 {
                     scope.DeclareVariable(argument.Name, argument.DefaultValue);
@@ -117,7 +118,9 @@ namespace Roomie.Desktop.Engine
                     if (interpreter.Engine.PrintCommandCalls)
                     {
                         if (!defaultsUsed)
+                        {
                             call.Append(" (with defaults");
+                        }
                         call.Append(" ");
                         call.Append(argument.Name);
                         call.Append("=\"");
@@ -127,20 +130,27 @@ namespace Roomie.Desktop.Engine
 
                     defaultsUsed = true;
                 }
+            }
+
             if (interpreter.Engine.PrintCommandCalls && defaultsUsed)
+            {
                 call.Append(")");
+            }
 
             //print out the command call
             if (interpreter.Engine.PrintCommandCalls)
+            {
                 interpreter.WriteEvent(call.ToString());
+            }
 
             //now we know that all arguments are defined, but must still check the types.
 
             //check argument types
-            List<string> mistypedArguments = new List<string>();
-            foreach (RoomieCommandArgument argument in arguments)
+            var mistypedArguments = new List<string>();
+            foreach (var argument in _arguments)
             {
-                string value = scope.GetValue(argument.Name);
+                var value = scope.GetValue(argument.Name);
+                //TODO: make this extensible
                 switch (argument.Type)
                 {
                     case "String":
@@ -161,7 +171,7 @@ namespace Roomie.Desktop.Engine
                     case "Integer":
                         try
                         {
-                            System.Convert.ToInt32(value);
+                            Convert.ToInt32(value);
                         }
                         catch
                         {
@@ -172,7 +182,7 @@ namespace Roomie.Desktop.Engine
                     case "Byte":
                         try
                         {
-                            System.Convert.ToByte(value);
+                            Convert.ToByte(value);
                         }
                         catch
                         {
@@ -189,6 +199,7 @@ namespace Roomie.Desktop.Engine
                         if (!TimeUtils.IsDateTime(value))
                             mistypedArguments.Add(argument.Name);
                         break;
+
                     default:
                         throw new RoomieRuntimeException("Unknown argument type \"" + argument.Type + "\".");
                 }
@@ -202,12 +213,12 @@ namespace Roomie.Desktop.Engine
         protected abstract void Execute_Definition(RoomieCommandContext context);
 
         #region names
-        private string cachedGroup = null;
+        private string _cachedGroup;
         public string Group
         {
             get
             {
-                if (cachedGroup == null)
+                if (_cachedGroup == null)
                 {
                     try
                     {
@@ -215,7 +226,7 @@ namespace Roomie.Desktop.Engine
                         result = result.Substring(result.LastIndexOf(".Commands.") + ".Commands.".Length);
                         if (string.IsNullOrEmpty(result))
                             throw new Exception("just goin' to the catch block"); //TODO: review this.  It seems awful
-                        cachedGroup = result;
+                        _cachedGroup = result;
                     }
                     catch
                     {
@@ -224,84 +235,88 @@ namespace Roomie.Desktop.Engine
                     }
                 }
 
-                return cachedGroup;
+                return _cachedGroup;
             }
         }
 
-        private string cachedName = null;
+        private string _cachedName;
         public string Name
         {
             get
             {
-                if (cachedName == null)
+                if (_cachedName == null)
                 {
-                    cachedName = GetType().Name;
+                    _cachedName = GetType().Name;
                 }
 
-                return cachedName;
+                return _cachedName;
             }
         }
 
-        private string cashedSource;
+        private string _cashedSource;
         public string Source
         {
             get
             {
-                if (cashedSource == null)
+                if (_cashedSource == null)
                 {
-                    cashedSource = System.Reflection.Assembly.GetAssembly(GetType()).CodeBase;
+                    _cashedSource = Assembly.GetAssembly(GetType()).CodeBase;
                 }
 
-                return cashedSource;
+                return _cashedSource;
             }
         }
 
-        private string cachedPluginName = null;
+        private string _cachedPluginName;
         public string ExtensionName
         {
             get
             {
-                if (cachedPluginName == null)
+                if (_cachedPluginName == null)
                 {
-                    var temp = this.GetType().Namespace;
+                    var temp = GetType().Namespace;
                     temp = temp.Substring(0, temp.LastIndexOf(".Commands."));
 
-                    cachedPluginName = temp;
+                    _cachedPluginName = temp;
                 }
-                return cachedPluginName;
+
+                return _cachedPluginName;
             }
         }
 
-        private Version cachedPluginVersion;
+        private Version _cachedPluginVersion;
         //private static string[] possibleVersionClassNames = { "LibraryVersion", "Common", "Version", "InternalLibraryVersion" };
         //private static string[] possibleVersionMethodNames = { "Get", "GetVersion", "GetLibraryVersion" };
         public Version ExtensionVersion
         {
             get
             {
-                if(cachedPluginVersion == null)
+                if(_cachedPluginVersion == null)
                 {
                     //TODO: make this more dynamic
 
-                    Assembly assembly = Assembly.GetAssembly(GetType());
+                    var assembly = Assembly.GetAssembly(GetType());
 
                     //cachedPluginVersion = (Version)RoomieUtils.TryInvoke(assembly, possibleVersionClassNames, possibleVersionMethodNames, new object[] { }, typeof(Version));
 
-                    cachedPluginVersion = assembly.GetName().Version;
+                    _cachedPluginVersion = assembly.GetName().Version;
                 }
 
-                return cachedPluginVersion;
+                return _cachedPluginVersion;
             }
         }
 
-        private string cashedFullName = null;
+        private string _cashedFullName;
         public string FullName
         {
             get
             {
-                if (cashedFullName == null)
-                    cashedFullName = Group + "." + Name;
-                return cashedFullName;
+                if (_cashedFullName == null)
+                {
+                    _cashedFullName = Group + "." + Name;
+                }
+
+                return _cashedFullName;
             }
         }
 
@@ -309,9 +324,10 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                return new List<RoomieCommandArgument>(arguments);
+                return new List<RoomieCommandArgument>(_arguments);
             }
         }
+
         #endregion
 
         public string Description { get; private set; }
@@ -341,17 +357,23 @@ namespace Roomie.Desktop.Engine
                 writer.WriteAttributeString("PluginName", ExtensionName);
                 writer.WriteAttributeString("Group", Group);
                 writer.WriteAttributeString("Name", Name);
+                
                 if (!String.IsNullOrEmpty(Description))
+                {
                     writer.WriteAttributeString("Description", Description);
+                }
+
                 foreach (RoomieCommandArgument argument in Arguments)
+                {
                     argument.WriteToXml(writer);
+                }
             }
             writer.WriteEndElement();
         }
 
         public IScriptCommand BlankCommandCall()
         {
-            return new TextScriptCommand(this.FullName);
+            return new TextScriptCommand(FullName);
         }
 
         public string ToConsoleFriendlyString()
@@ -359,17 +381,17 @@ namespace Roomie.Desktop.Engine
             var builder = new StringBuilder();
 
             builder.Append("Command: ");
-            builder.Append(this.FullName);
+            builder.Append(FullName);
             builder.AppendLine();
 
-            if (!this.IsDynamic)
+            if (!IsDynamic)
             {
                 builder.Append("Source: ");
-                builder.Append(this.Source);
+                builder.Append(Source);
                 builder.AppendLine();
 
                 builder.Append("Version: ");
-                builder.Append(this.ExtensionVersion);
+                builder.Append(ExtensionVersion);
                 builder.AppendLine();
             }
             else
@@ -379,18 +401,18 @@ namespace Roomie.Desktop.Engine
             }
 
             builder.Append("Description: ");
-            builder.Append(this.Description);
+            builder.Append(Description);
             builder.AppendLine();
 
             builder.Append("Arguments:");
 
-            if (this.Arguments.Count == 0)
+            if (Arguments.Count == 0)
             {
                 builder.Append(" (none)");
             }
             else
             {
-                foreach (var argument in this.Arguments)
+                foreach (var argument in Arguments)
                 {
                     builder.AppendLine();
                     builder.Append("\t");

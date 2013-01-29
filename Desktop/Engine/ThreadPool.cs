@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Roomie.Common.ScriptingLanguage;
 
 namespace Roomie.Desktop.Engine
@@ -7,40 +8,40 @@ namespace Roomie.Desktop.Engine
     //TODO: make disposible?
     public sealed class ThreadPool : IEnumerable<RoomieThread>
     {
-        private RoomieEngine engine;
-        string name;
-        List<RoomieThread> threads;
+        private readonly RoomieEngine _engine;
+        readonly string _name;
+        readonly List<RoomieThread> _threads;
 
         public ThreadPool(RoomieEngine engine, string name)
         {
-            this.engine = engine;
-            this.name = name;
-            this.threads = new List<RoomieThread>();
+            _engine = engine;
+            _name = name;
+            _threads = new List<RoomieThread>();
         }
 
         public RoomieThread CreateNewThread(string name)
         {
-            lock (threads)
+            lock (_threads)
             {
-                RoomieThread result = new RoomieThread(engine, name);
-                lock (threads)
+                var result = new RoomieThread(_engine, name);
+                lock (_threads)
                 {
-                    threads.Add(result);
+                    _threads.Add(result);
                 }
                 return result;
             }
         }
         public RoomieThread CreateNewThread()
         {
-            lock (threads)
+            lock (_threads)
             {
-                return CreateNewThread(name + " thread " + (threads.Count + 1));
+                return CreateNewThread(_name + " thread " + (_threads.Count + 1));
             }
         }
 
-        private RoomieThread getFreeThread()
+        private RoomieThread GetFreeThread()
         {
-            foreach (var existingThread in threads)
+            foreach (var existingThread in _threads)
             {
                 if (!existingThread.IsBusy)
                 {
@@ -55,7 +56,7 @@ namespace Roomie.Desktop.Engine
         {
             lock (this)
             {
-                var thread = getFreeThread();
+                var thread = GetFreeThread();
                 
                 thread.ResetLocalScope();
                 thread.AddCommand(command);
@@ -66,7 +67,7 @@ namespace Roomie.Desktop.Engine
         {
             lock (this)
             {
-                var thread = getFreeThread();
+                var thread = GetFreeThread();
 
                 thread.ResetLocalScope();
                 thread.AddCommands(commands);
@@ -84,21 +85,23 @@ namespace Roomie.Desktop.Engine
             AddCommands(commands.OuterXml);
         }
 
-        
-
         public void Print(string text)
         {
-            RoomieThread thread = getFreeThread();
+            var thread = GetFreeThread();
+
             thread.WriteEvent(text);
         }
 
         public void ShutDown()
         {
-            lock (threads)
+            lock (_threads)
             {
-                foreach (RoomieThread thread in threads)
+                foreach (RoomieThread thread in _threads)
+                {
                     thread.ShutDown();
-                threads.Clear();
+                }
+
+                _threads.Clear();
             }
         }
 
@@ -106,29 +109,26 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                foreach (var thread in threads)
-                    if (thread.IsBusy)
-                        return true;
-                return false;
+                return _threads.Any(thread => thread.IsBusy);
             }
         }
 
         public bool Contains(RoomieThread thread)
         {
-            lock (threads)
+            lock (_threads)
             {
-                return threads.Contains(thread);
+                return _threads.Contains(thread);
             }
         }
 
         IEnumerator<RoomieThread> IEnumerable<RoomieThread>.GetEnumerator()
         {
-            return threads.GetEnumerator();
+            return _threads.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return threads.GetEnumerator();
+            return _threads.GetEnumerator();
         }
     }
 }

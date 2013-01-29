@@ -16,12 +16,12 @@ namespace Roomie.Desktop.Engine
 
         internal RoomieCommandInterpreter(RoomieThread parentThread, RoomieCommandScope parentScope, string name)
         {
-            this.ParentThread = parentThread;
-            this.Scope = parentScope.CreateLowerScope();
-            this.Name = name;
+            ParentThread = parentThread;
+            Scope = parentScope.CreateLowerScope();
+            Name = name;
 
-            this.CommandQueue = new ScriptCommandList();
-            this.IsBusy = false;
+            CommandQueue = new ScriptCommandList();
+            IsBusy = false;
         }
 
         internal RoomieEngine Engine
@@ -37,7 +37,7 @@ namespace Roomie.Desktop.Engine
             while (CommandQueue.HasCommands)
             {
                 IsBusy = true;
-                bool success = executeNextCommand();
+                bool success = ExecuteNextCommand();
 
                 if (!success)
                 {
@@ -50,13 +50,13 @@ namespace Roomie.Desktop.Engine
             return true;
         }
 
-        private bool executeCommand(IScriptCommand languageCommand)
+        private bool ExecuteCommand(IScriptCommand languageCommand)
         {
             //TODO: move this check's logic into IScriptCommand
             if (languageCommand.FullName.Equals("RoomieScript"))
             {
                 //TODO: just make a "RoomieScript" command?
-                this.CommandQueue.AddBeginning(languageCommand.InnerCommands);
+                CommandQueue.AddBeginning(languageCommand.InnerCommands);
                 return true;
             }
 
@@ -112,21 +112,20 @@ namespace Roomie.Desktop.Engine
             return true;
         }
 
-        private bool executeNextCommand()
+        private bool ExecuteNextCommand()
         {
-            IScriptCommand command;
-            lock (CommandQueue)
-            {
-                command = this.CommandQueue.PopFirst();
-            }
-            return executeCommand(command);
+            var command = CommandQueue.PopFirst();
+
+            return ExecuteCommand(command);
         }
 
         //This should be wrapped into the CommandLibrary class
-        public RoomieCommand ChooseCommand(string commandFullName)
+        private RoomieCommand ChooseCommand(string commandFullName)
         {
             if (!Engine.CommandLibrary.ContainsCommandFullName(commandFullName))
+            {
                 throw new CommandNotFoundException(commandFullName);
+            }
 
             return Engine.CommandLibrary.GetCommandFromFullName(commandFullName);
         }

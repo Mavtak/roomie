@@ -9,24 +9,24 @@ namespace Roomie.Desktop.Engine
 {
     //TODO: catch loading exceptions
     public sealed class RoomieCommandLibrary
-        : IEnumerable<RoomieCommand>, System.Collections.IEnumerable
+        : IEnumerable<RoomieCommand>
     {
         public event RoomieCommandLibraryEventDelegate Message;
 
-        private readonly Dictionary<string, RoomieCommand> commands;
-        private readonly HashSet<string> groups;
+        private readonly Dictionary<string, RoomieCommand> _commands;
+        private readonly HashSet<string> _groups;
 
         // Could this be componentized into the CoreCommands extension?
-        private readonly List<RoomieDynamicCommand> customCommands;
+        private readonly List<RoomieDynamicCommand> _customCommands;
         
         public RoomieCommandLibrary()
         {
-            commands = new Dictionary<string, RoomieCommand>();
-            groups = new HashSet<string>();
-            customCommands = new List<RoomieDynamicCommand>();
+            _commands = new Dictionary<string, RoomieCommand>();
+            _groups = new HashSet<string>();
+            _customCommands = new List<RoomieDynamicCommand>();
         }
 
-        private void writeMessage(string message)
+        private void WriteMessage(string message)
         {
             if (Message == null)
             {
@@ -39,13 +39,13 @@ namespace Roomie.Desktop.Engine
 
         internal void Clear()
         {
-            lock (commands)
+            lock (_commands)
             {
-                lock (customCommands)
+                lock (_customCommands)
                 {
-                    commands.Clear();
-                    customCommands.Clear();
-                    groups.Clear();
+                    _commands.Clear();
+                    _customCommands.Clear();
+                    _groups.Clear();
                 }
             }
         }
@@ -57,43 +57,43 @@ namespace Roomie.Desktop.Engine
         {
             var key = newCommand.FullName;
 
-            lock (commands)
+            lock (_commands)
             {
-                if (commands.ContainsKey(key))
+                if (_commands.ContainsKey(key))
                 {
-                    commands.Remove(key);
+                    _commands.Remove(key);
                 }
 
-                commands.Add(key, newCommand);
+                _commands.Add(key, newCommand);
 
                 var dynamic = newCommand as RoomieDynamicCommand;
 
                 if (dynamic != null)
                 {
-                    if (customCommands.Contains(dynamic))
+                    if (_customCommands.Contains(dynamic))
                     {
-                        customCommands.Remove(dynamic);
+                        _customCommands.Remove(dynamic);
                     }
-                    customCommands.Add(dynamic);
+                    _customCommands.Add(dynamic);
                 }
 
-                if (!groups.Contains(newCommand.Group))
+                if (!_groups.Contains(newCommand.Group))
                 {
-                    groups.Add(newCommand.Group);
+                    _groups.Add(newCommand.Group);
                 }
             }
 
             if (!newCommand.Finalized)
-                writeMessage("Warning: " + newCommand.FullName + " is not finalized.");
+                WriteMessage("Warning: " + newCommand.FullName + " is not finalized.");
 
             if (newCommand.Name.Equals("StartupTasks") && !newCommand.GetType().IsSubclassOf(typeof(StartupCommand)))
             {
-                writeMessage("Command \"" + newCommand.Name + "\" is labeled as a Startup command, but is not implemented correctly.");
+                WriteMessage("Command \"" + newCommand.Name + "\" is labeled as a Startup command, but is not implemented correctly.");
             }
 
             if (newCommand.Name.Equals("ShutdownTasks") && !newCommand.GetType().IsSubclassOf(typeof(ShutdownCommand)))
             {
-                writeMessage("Command \"" + newCommand.Name + "\" is labeled as a Shutdown command, but is not implemented correctly.");
+                WriteMessage("Command \"" + newCommand.Name + "\" is labeled as a Shutdown command, but is not implemented correctly.");
             }
                 
         }
@@ -108,13 +108,13 @@ namespace Roomie.Desktop.Engine
         {
             try
             {
-                foreach (Type type in assembly.GetTypes())
+                foreach (var type in assembly.GetTypes())
                 {
                     if (type.IsSubclassOf(typeof(RoomieCommand))
                         && type.FullName.Contains(".Commands.")
                         && !type.IsAbstract)
                     {
-                        System.Reflection.ConstructorInfo constructorInfo = type.GetConstructor(new Type[0]);
+                        var constructorInfo = type.GetConstructor(new Type[0]);
                         try
                         {
                             object command = constructorInfo.Invoke(new object[0]);
@@ -122,7 +122,7 @@ namespace Roomie.Desktop.Engine
                         }
                         catch (System.Reflection.TargetInvocationException exception)
                         {
-                            writeMessage("Error loading " + type.FullName + ". " + exception.InnerException.Message);
+                            WriteMessage("Error loading " + type.FullName + ". " + exception.InnerException.Message);
                         }
                     }
                 }
@@ -151,7 +151,7 @@ namespace Roomie.Desktop.Engine
                 }
                 catch (LoadPluginException exception)
                 {
-                    writeMessage(exception.Message);
+                    WriteMessage(exception.Message);
                 }
             }
         }
@@ -162,7 +162,7 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                return commands.Count;
+                return _commands.Count;
             }
         }
 
@@ -202,7 +202,7 @@ namespace Roomie.Desktop.Engine
 
         public bool ContainsCommandGroup(string groupName)
         {
-            return groups.Contains(groupName);
+            return _groups.Contains(groupName);
         }
 
         public IEnumerable<string> Groups
@@ -210,23 +210,23 @@ namespace Roomie.Desktop.Engine
             get
             {
                 //TODO: can this be done without copying elements?
-                return groups.ToList();
+                return _groups.ToList();
             }
         }
 
         public RoomieCommand GetCommandFromFullName(string fullName)
         {
-            return commands[fullName];
+            return _commands[fullName];
         }
 
         public bool ContainsCommandFullName(string fullName)
         {
-            return commands.ContainsKey(fullName);
+            return _commands.ContainsKey(fullName);
         }
 
         public RoomieCommand GetCommandFromType(Type type)
         {
-            foreach (var command in this.commands.Values)
+            foreach (var command in this._commands.Values)
             {
                 if (command.GetType().Equals(type))
                 {
@@ -241,11 +241,11 @@ namespace Roomie.Desktop.Engine
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return commands.Values.GetEnumerator();
+            return _commands.Values.GetEnumerator();
         }
-        System.Collections.Generic.IEnumerator<RoomieCommand> IEnumerable<RoomieCommand>.GetEnumerator()
+        IEnumerator<RoomieCommand> IEnumerable<RoomieCommand>.GetEnumerator()
         {
-            return commands.Values.GetEnumerator();
+            return _commands.Values.GetEnumerator();
         }
 
         public void WriteToXml(XmlWriter writer, bool includeCustomCommands)

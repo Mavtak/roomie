@@ -8,10 +8,12 @@ namespace Roomie.Desktop.Engine
     {
         public static string NiceList(List<string> items)
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             builder.Append("{");
             foreach (string item in items)
+            {
                 builder.Append(item + " ");
+            }
             builder.Append("}");
             return builder.ToString();
         }

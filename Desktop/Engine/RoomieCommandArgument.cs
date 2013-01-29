@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Xml;
 
 namespace Roomie.Desktop.Engine
@@ -13,25 +12,15 @@ namespace Roomie.Desktop.Engine
 
         public RoomieCommandArgument(string name, string type, string defaultValue = null, bool hasDefault = false)
         {
-            this.Name = name;
-            this.Type = type;
-            this.DefaultValue = defaultValue;
-            this.HasDefault = hasDefault;
-        }
-        public RoomieCommandArgument(XmlNode node)
-        {
-            Name = node.Attributes["Name"].Value;
-            Type = node.Attributes["Type"].Value;
-            HasDefault = Convert.ToBoolean(node.Attributes["HasDefault"]);
-            if (!HasDefault || node.Attributes["DefaultValue"] == null)
-                DefaultValue = null;
-            else
-                DefaultValue = node.Attributes["DefaultValue"].Value;
+            Name = name;
+            Type = type;
+            DefaultValue = defaultValue;
+            HasDefault = hasDefault;
         }
 
         public override string ToString()
         {
-            StringBuilder result = new StringBuilder();
+            var result = new StringBuilder();
             result.Append(Name);
             result.Append(" (");
             result.Append(Type);

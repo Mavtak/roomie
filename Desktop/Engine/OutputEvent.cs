@@ -4,22 +4,22 @@ namespace Roomie.Desktop.Engine
 {
     public class OutputEvent
     {
-        private DateTime timestamp;
-        private RoomieThread thread;
-        private string message;
+        private readonly DateTime _timestamp;
+        private readonly RoomieThread _thread;
+        private readonly string _message;
 
         public OutputEvent(RoomieThread thread, string message)
         {
-            this.timestamp = DateTime.Now;
-            this.thread = thread;
-            this.message = message;
+            _timestamp = DateTime.Now;
+            _thread = thread;
+            _message = message;
         }
 
         public DateTime TimeStamp
         {
             get
             {
-                return timestamp;
+                return _timestamp;
             }
         }
 
@@ -27,7 +27,7 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                return timestamp.ToUniversalTime();
+                return _timestamp.ToUniversalTime();
             }
         }
 
@@ -35,7 +35,7 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                return thread;
+                return _thread;
             }
         }
 
@@ -43,7 +43,7 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                return message;
+                return _message;
             }
         }
     }

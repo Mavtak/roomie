@@ -9,39 +9,39 @@ namespace Roomie.Desktop.Engine
     {
         public readonly RoomieEngine Engine;
         public string Name { get; private set; }
-        private readonly RoomieCommandInterpreter interpreter;
-        private Thread parallelThread;
+        private readonly RoomieCommandInterpreter _interpreter;
+        private Thread _parallelThread;
 
         public RoomieThread(RoomieEngine engine, string name)
         {
-            this.Engine = engine;
-            this.Name = name;
-            this.interpreter = new RoomieCommandInterpreter(this, this.Engine.GlobalScope, this.Name);
-            this.run();
+            Engine = engine;
+            Name = name;
+            _interpreter = new RoomieCommandInterpreter(this, this.Engine.GlobalScope, this.Name);
+            Run();
         }
 
-        private void run()
+        private void Run()
         {
             //the following code block ensures that this method executes in the object's parallel thread
-            if (parallelThread == null)
+            if (_parallelThread == null)
             {
-                parallelThread = new System.Threading.Thread(new ThreadStart(run));
-                parallelThread.Start();
+                _parallelThread = new System.Threading.Thread(new ThreadStart(Run));
+                _parallelThread.Start();
                 return;
             }
 
-            if (Thread.CurrentThread != parallelThread)
+            if (Thread.CurrentThread != _parallelThread)
             {
                 throw new RoomieRuntimeException("Thread \"" + Name + "\" started incorrectly.");
             }
 
             while (true)
             {
-                while (!interpreter.CommandQueue.HasCommands)//TODO: signalling?
+                while (!_interpreter.CommandQueue.HasCommands)//TODO: signalling?
                 {
-                    System.Threading.Thread.Sleep(100);
+                    Thread.Sleep(100);
                 }
-                interpreter.ProcessQueue();
+                _interpreter.ProcessQueue();
             }
         }
 
@@ -51,11 +51,11 @@ namespace Roomie.Desktop.Engine
 
             lock (this)
             {
-                interpreter.CommandQueue.Clear();
+                _interpreter.CommandQueue.Clear();
 
-                if (parallelThread != null && parallelThread.IsAlive)
+                if (_parallelThread != null && _parallelThread.IsAlive)
                 {
-                    parallelThread.Abort();
+                    _parallelThread.Abort();
                 }
             }
         }
@@ -64,25 +64,27 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                return interpreter.IsBusy;
+                return _interpreter.IsBusy;
             }
         }
 
         #region Add Commands
+
         public void AddCommand(IScriptCommand command)
         {
-            interpreter.CommandQueue.Add(command);
+            _interpreter.CommandQueue.Add(command);
         }
 
         public void AddCommands(IEnumerable<IScriptCommand> commands)
         {
-            interpreter.CommandQueue.Add(commands);
+            _interpreter.CommandQueue.Add(commands);
         }
+
         #endregion
 
         public void ResetLocalScope()
         {
-            interpreter.ResetLocalScope();
+            _interpreter.ResetLocalScope();
         }
 
         public void WriteEvent(string message)

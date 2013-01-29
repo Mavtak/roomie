@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using System.Text.RegularExpressions;
@@ -13,32 +14,24 @@ namespace Roomie.Desktop.Engine
         public const string VariableNamePattern = "[A-Za-z0-9-_ ]+?";
         public const string VariableFormatPattern = @"\$\{" + VariableNamePattern + @"\}";
 
-        private Dictionary<string, string> variables;
-        private RoomieCommandScope higherScope;
+        private readonly Dictionary<string, string> _variables;
+        public RoomieCommandScope HigherScope { get; private set; }
 
         public RoomieCommandScope(RoomieCommandScope higherScope)
         {
-            this.higherScope = higherScope;
-            variables = new Dictionary<string, string>();
+            HigherScope = higherScope;
+            _variables = new Dictionary<string, string>();
         }
         public RoomieCommandScope()
             : this(null)
         {
         }
 
-        public RoomieCommandScope HigherScope
-        {
-            get
-            {
-                return higherScope;
-            }
-        }
-
         public ICollection<string> Names
         {
             get
             {
-                return variables.Keys;
+                return _variables.Keys;
             }
         }
 
@@ -49,19 +42,19 @@ namespace Roomie.Desktop.Engine
 
         public bool ContainsVariableInScope(string name)
         {
-            return variables.ContainsKey(name);
+            return _variables.ContainsKey(name);
         }
 
         public void DeclareVariable(string name, string value)
         {
-            if (!isValidVariableName(name))
+            if (!IsValidVariableName(name))
                 throw new VariableException("\"" + name + "\" is not a valid variable name");
 
-            lock (variables)
+            lock (_variables)
             {
                 if (ContainsVariableInScope(name))
                     throw new VariableException("Variable \"" + name + "\" already exists.");
-                variables.Add(name, value);
+                _variables.Add(name, value);
             }
         }
         public void DeclareVariable(string name)
@@ -79,17 +72,17 @@ namespace Roomie.Desktop.Engine
 
         public void ModifyVariableValue(string name, string value)
         {
-            lock (variables)
+            lock (_variables)
             {
-                if (variables.ContainsKey(name))
+                if (_variables.ContainsKey(name))
                 {
-                    variables.Remove(name);
-                    variables.Add(name, value);
+                    _variables.Remove(name);
+                    _variables.Add(name, value);
                     return;
                 }
-                if (higherScope == null)
+                if (HigherScope == null)
                     throw new VariableException("Variable " + name + " doesn't exist");
-                higherScope.ModifyVariableValue(name, value);
+                HigherScope.ModifyVariableValue(name, value);
 
             }
         }
@@ -97,13 +90,13 @@ namespace Roomie.Desktop.Engine
         #region Get Values
         public string GetLiteralValue(string name)
         {
-            lock (variables)
+            lock (_variables)
             {
-                if (variables.ContainsKey(name))
-                    return variables[name];
-                if (higherScope == null)
+                if (_variables.ContainsKey(name))
+                    return _variables[name];
+                if (HigherScope == null)
                     throw new VariableException("Variable " + name + " not set");
-                return higherScope.GetLiteralValue(name);
+                return HigherScope.GetLiteralValue(name);
             }
         }
         public string GetValue(string name)
@@ -163,26 +156,24 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                return new List<string>(variables.Keys);
+                return new List<string>(_variables.Keys);
             }
         }
 
       
-        public bool isValidVariableName(string name)
+        public bool IsValidVariableName(string name)
         {
-            Regex pattern = new Regex(@"\A" + VariableNamePattern + @"\Z");
+            var pattern = new Regex(@"\A" + VariableNamePattern + @"\Z");
             return pattern.IsMatch(name);
         }
 
-        public List<string> VariablesInString(string input)
+        public IEnumerable<string> VariablesInString(string input)
         {
-            List<string> result = new List<string>();
-
-            Regex pattern = new Regex(VariableFormatPattern);
+            var pattern = new Regex(VariableFormatPattern);
             foreach (Match match in pattern.Matches(input))
-                result.Add(match.Value);
-
-            return result;
+            {
+                yield return match.Value;
+            }
         }
 
         public string ReplaceVariables(string name, string text)
@@ -192,7 +183,7 @@ namespace Roomie.Desktop.Engine
             List<string> variables;
             do
             {
-                variables = VariablesInString(builder.ToString());
+                variables = VariablesInString(builder.ToString()).ToList();
                 foreach (string variable in variables)
                 {
                     var variableName = variable.Replace("${", "").Replace("}", "");
@@ -224,20 +215,20 @@ namespace Roomie.Desktop.Engine
 
         public bool VariableDefinedInThisScope(string name)
         {
-            return variables.ContainsKey(name);
+            return _variables.ContainsKey(name);
         }
         public bool VariableIsDefined(string name)
         {
             if (VariableDefinedInThisScope(name))
                 return true;
-            if (higherScope == null)
+            if (HigherScope == null)
                 return false;
-            return higherScope.VariableIsDefined(name);
+            return HigherScope.VariableIsDefined(name);
         }
 
         public void ResetLocalScope()
         {
-            variables.Clear();
+            _variables.Clear();
         }
     }
 }

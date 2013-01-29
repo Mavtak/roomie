@@ -9,32 +9,32 @@ namespace Roomie.Desktop.Engine.Commands
         public string Type { get; private set; }
         public string Default { get; set; }
 
-        private bool hasDefault;
+        private bool _hasDefault;
         public bool HasDefault
         {
             get
             {
-                return hasDefault || (Default != null);
+                return _hasDefault || (Default != null);
             }
             set
             {
-                hasDefault = value;
+                _hasDefault = value;
             }
         }
 
         public ParameterAttribute(string name, string type)
         {
-            this.Name = name;
-            this.Type = type;
-            this.Default = null;
-            this.HasDefault = false;
+            Name = name;
+            Type = type;
+            Default = null;
+            HasDefault = false;
         }
 
         public ParameterAttribute(string name, string type, string @default)
             : this(name, type)
         {
-            this.Default = @default;
-            this.HasDefault = true;
+            Default = @default;
+            HasDefault = true;
         }
     }
 }

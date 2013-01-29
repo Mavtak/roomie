@@ -7,21 +7,19 @@ namespace Roomie.Desktop.Engine
     //TODO: make disposible
     public class RoomieEventTextStream
     {
-        private RoomieEngine engine;
-        private TextWriter output;
+        private readonly TextWriter output;
 
-        private TimeSpan timeStampInterval;
-        private DateTime lastTimestamp;
-        private RoomieThread lastThread;
+        private readonly TimeSpan timeStampInterval;
+        private DateTime _lastTimestamp;
+        private RoomieThread _lastThread;
 
         public RoomieEventTextStream(RoomieEngine engine, TextWriter output,  TimeSpan timeStampInterval)
         {
-            this.engine = engine;
             this.output = output;
             this.timeStampInterval = timeStampInterval;
 
-            this.lastTimestamp = DateTime.MinValue;
-            this.lastThread = null;
+            _lastTimestamp = DateTime.MinValue;
+            _lastThread = null;
 
             engine.ScriptMessageSent += new RoomieThreadEventHandler(engine_ScriptMessageSent);
         }
@@ -32,15 +30,15 @@ namespace Roomie.Desktop.Engine
             lock (this)
             {
                 var now = DateTime.Now;
-                var timeSinceLastTimestamp = now.Subtract(lastTimestamp);
+                var timeSinceLastTimestamp = now.Subtract(_lastTimestamp);
                 if (timeSinceLastTimestamp >= timeStampInterval)
                 {
                     builder.AppendLine();
                     builder.AppendLine(now + ":");
-                    lastTimestamp = now;
+                    _lastTimestamp = now;
                 }
 
-                if (lastThread == null || lastThread != eventArgs.Thread)
+                if (_lastThread == null || _lastThread != eventArgs.Thread)
                 {
                     builder.AppendLine();//extra line break
 
@@ -55,7 +53,7 @@ namespace Roomie.Desktop.Engine
                 builder.Append(eventArgs.Message);
                 builder.AppendLine();
 
-                lastThread = eventArgs.Thread;
+                _lastThread = eventArgs.Thread;
             }
 
             output.Write(builder.ToString());

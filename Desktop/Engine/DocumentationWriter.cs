@@ -91,7 +91,7 @@ namespace Roomie.Desktop.Engine
 
 
 
-                            foreach(RoomieCommandArgument argument in command.Arguments)
+                            foreach(var argument in command.Arguments)
                             {
                             writer.WriteStartElement("tr");
                             {
@@ -125,10 +125,12 @@ namespace Roomie.Desktop.Engine
         }
         public static string WriteCommandDocumentation(string binFolder, string commandDocumentationClass)
         {
-            StringBuilder builder = new StringBuilder();
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.OmitXmlDeclaration = true;
-            XmlWriter writer = XmlWriter.Create(builder, settings);
+            var builder = new StringBuilder();
+            var settings = new XmlWriterSettings
+            {
+                OmitXmlDeclaration = true
+            };
+            var writer = XmlWriter.Create(builder, settings);
 
             WriteCommandDocumentation(writer, getCommands(binFolder), commandDocumentationClass);
 

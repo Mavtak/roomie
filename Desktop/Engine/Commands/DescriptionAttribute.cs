@@ -9,7 +9,7 @@ namespace Roomie.Desktop.Engine.Commands
 
         public DescriptionAttribute(string value)
         {
-            this.Value = value;
+            Value = value;
         }
     }
 }
