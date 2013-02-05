@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using Roomie.Desktop.Engine.Exceptions;
 
 namespace Roomie.Desktop.Engine
 {
@@ -113,7 +114,9 @@ namespace Roomie.Desktop.Engine
             + @"(?: / (?<day>   \d{1,2} )  )"
             + @")?"//close date group
 
-            + @"\s*"
+            +@"(?<WeekRelativeDay>(monday|tuesday|wednesday|thursday|friday|saturday|sunday|weekday|weekend))"
+
+            + @"\s*(at)?\s*"
 
             //time optional
             + @"(?<time>"
@@ -153,9 +156,9 @@ namespace Roomie.Desktop.Engine
         {
             DateTime now = DateTime.Now;
 
-            int year = 0;
-            int month = 0;
-            int day = 0;
+            int year;
+            int month;
+            int day;
 
             int hour = 0;
             int minute = 0;
@@ -186,38 +189,108 @@ namespace Roomie.Desktop.Engine
             }
 
             if (match.Groups["hour"].Success)
+            {
                 hour = Convert.ToInt32(match.Groups["hour"].Value);
+            }
             if (match.Groups["minute"].Success)
+            {
                 minute = Convert.ToInt32(match.Groups["minute"].Value);
+            }
             if (match.Groups["second"].Success)
+            {
                 second = Convert.ToInt32(match.Groups["second"].Value);
+            }
 
             if (match.Groups["AmPm"].Success && match.Groups["AmPm"].Value.ToLower().Replace(".", "").Equals("pm"))
             {
                 if (hour > 12)
+                {
                     throw new ArgumentOutOfRangeException("invalid hour");
+                }
+
                 hour = (hour + 12) % 24;
             }
 
             if (hour > 23)
+            {
                 throw new ArgumentOutOfRangeException("invalid hour");
+            }
             if (minute > 59)
+            {
                 throw new ArgumentOutOfRangeException("invalid minute");
+            }
             if (second > 59)
+            {
                 throw new ArgumentOutOfRangeException("invalid second");
+            }
 
-            DateTime result = new DateTime(year, month, day, hour, minute, second);
+            var result = new DateTime(year, month, day, hour, minute, second);
 
             if (result < now)
             {
                 if (!match.Groups["date"].Success)
+                {
                     result = result.AddDays(1);
+                }
                 else if (!match.Groups["year"].Success)
+                {
                     result = result.AddYears(1);
+                }
+            }
+
+            if (match.Groups["WeekRelativeDay"].Success)
+            {
+                var weekRelativeDay = match.Groups["WeekRelativeDay"].Value;
+
+                for (int i = 0; i < 8; i++)
+                {
+                    if (i == 7)
+                    {
+                        throw new ArgumentOutOfRangeException("Could not decifer week-relative day \"" + weekRelativeDay + "\"");
+                    }
+                    if (DayOfWeekMatches(result.DayOfWeek, weekRelativeDay))
+                    {
+                        break;
+                    }
+
+                    result = result.AddDays(1);
+                }
             }
 
             return result;
 
+        }
+
+        private static bool DayOfWeekMatches(DayOfWeek dayOfWeek, string weekRelativeDay)
+        {
+            if (dayOfWeek.ToString().Equals(weekRelativeDay, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return true;
+            }
+
+            switch (dayOfWeek)
+            {
+                    case DayOfWeek.Monday:
+                    case DayOfWeek.Tuesday:
+                    case DayOfWeek.Wednesday:
+                    case DayOfWeek.Thursday:
+                    case DayOfWeek.Friday:
+                    if (weekRelativeDay.Equals("weekday", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        return true;
+                    }
+                    break;
+
+                    case DayOfWeek.Saturday:
+                    case DayOfWeek.Sunday:
+                    if (weekRelativeDay.Equals("weekend", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        return true;
+                    }
+                    break;
+            }
+
+            return false;
         }
 
         /// <summary>
