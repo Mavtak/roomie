@@ -72,8 +72,12 @@ namespace Roomie.Common.ScriptingLanguage
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                var result = new TextScriptCommand(line);
-                yield return result;
+                line = line.TrimStart();
+                if (line.Any())
+                {
+                    var result = new TextScriptCommand(line);
+                    yield return result;
+                }
             }
         }
 
