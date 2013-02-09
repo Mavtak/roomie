@@ -9,7 +9,7 @@ namespace Roomie.Common.HomeAutomation
     {
 
         #region name
-        internal const string namePattern = @"[a-z0-9][a-z0-9._ -]*[a-z0-9._-]*";
+        internal const string namePattern = @"[a-z0-9][-a-z0-9._ ']*[-a-z0-9._]*";
 
         private static Regex nameRegex = new Regex("^" + namePattern + "$", RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
