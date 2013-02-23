@@ -7,7 +7,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     [AutoConnectParameterAttribute]
-    [Parameter("Poll", BooleanParameterType.Key, "False")]
+    [BooleanParameter("Poll", "False")]
     public class ListDevices : HomeAutomationNetworkCommand
     {
         protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)

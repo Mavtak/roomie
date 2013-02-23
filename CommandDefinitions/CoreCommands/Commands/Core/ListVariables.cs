@@ -4,7 +4,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("LiteralValues", BooleanParameterType.Key, "False")]
+    [BooleanParameter("LiteralValues", "False")]
     [Description("Prints a list of all variables in the scope higherarchy.")]
     public class ListVariables : RoomieCommand
     {

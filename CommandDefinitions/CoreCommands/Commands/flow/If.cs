@@ -6,7 +6,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
 {
     [NotFinished]
-    [Parameter("Value", BooleanParameterType.Key)]
+    [BooleanParameter("Value")]
     [Description("Switches execution based on the value of %{Value}.  "
                 + " The inner XML can either be the code to be executed on true or two nodes named \"true\" and \"false\", each with their respective conditional code.")]
     public class If : RoomieCommand

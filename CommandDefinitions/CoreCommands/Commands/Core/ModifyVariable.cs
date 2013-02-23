@@ -6,8 +6,8 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
     [StringParameter("Name")]
     [StringParameter("Value")]
-    [Parameter("Global", BooleanParameterType.Key, "False")]
-    [Parameter("Literal", BooleanParameterType.Key, "False")]
+    [BooleanParameter("Global", "False")]
+    [BooleanParameter("Literal", "False")]
     public class ModifyVariable : RoomieCommand
     {
         protected override void Execute_Definition(RoomieCommandContext context)

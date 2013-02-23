@@ -3,10 +3,10 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Attributes
 {
-    public class AutoConnectParameterAttribute : ParameterAttribute
+    public class AutoConnectParameterAttribute : BooleanParameterAttribute
     {
         public AutoConnectParameterAttribute()
-            : base("AutoConnect", BooleanParameterType.Key, "True")
+            : base("AutoConnect", "True")
         { }
     }
 }

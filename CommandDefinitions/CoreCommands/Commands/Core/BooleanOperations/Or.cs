@@ -4,8 +4,8 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.BooleanOperations
 {
-    [Parameter("Value1", BooleanParameterType.Key)]
-    [Parameter("Value2", BooleanParameterType.Key)]
+    [BooleanParameter("Value1")]
+    [BooleanParameter("Value2")]
     [StringParameter("ResultName")]
     [Description("Sets the variable in ResultName to the result of ${Value1}||${Value2}.")]
     public class Or : RoomieCommand

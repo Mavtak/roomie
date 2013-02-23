@@ -4,7 +4,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("Value", BooleanParameterType.Key, "True")]
+    [BooleanParameter("Value", "True")]
     public class SetCommandPrinting : RoomieCommand
     {
         protected override void Execute_Definition(RoomieCommandContext context)

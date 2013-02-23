@@ -5,7 +5,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {
-    [Parameter("Force", BooleanParameterType.Key, "True")]
+    [BooleanParameter("Force", "True")]
     [Description("This command hybernates the computer")]
     public class Hibernate : RoomieCommand
     {
