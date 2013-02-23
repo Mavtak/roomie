@@ -81,6 +81,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomieEngine.cs" />
     <Compile Include="RoomieCommandScope.cs" />
+    <Compile Include="IRoomieCommandArgumentType.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\BooleanParameterType.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\ByteParameterType.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\DateTimeParameterType.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\TimeSpanParameterType.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\IntegerParameterType.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\StringParameterType.cs" />
     <Compile Include="ShutdownCommand.cs" />
     <Compile Include="StartupCommand.cs" />
     <Compile Include="Delegates\TerminalOutputEventArgs.cs" />

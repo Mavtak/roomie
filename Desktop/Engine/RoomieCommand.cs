@@ -150,61 +150,21 @@ namespace Roomie.Desktop.Engine
             foreach (var argument in _arguments)
             {
                 var value = scope.GetValue(argument.Name);
-                //TODO: make this extensible
-                switch (argument.Type)
+                var type = argument.Type;
+                if (type == null)
                 {
-                    case "String":
-                        //no problem
-                        break;
-
-                    case "Boolean":
-                        try
-                        {
-                            Convert.ToBoolean(value);
-                        }
-                        catch
-                        {
-                            mistypedArguments.Add(argument.Name);
-                        }
-                        break;
-
-                    case "Integer":
-                        try
-                        {
-                            Convert.ToInt32(value);
-                        }
-                        catch
-                        {
-                            mistypedArguments.Add(argument.Name);
-                        }
-                        break;
-
-                    case "Byte":
-                        try
-                        {
-                            Convert.ToByte(value);
-                        }
-                        catch
-                        {
-                            mistypedArguments.Add(argument.Name);
-                        }
-                        break;
-
-                    case "TimeSpan":
-                        if(!TimeUtils.IsTimeSpan(value))
-                            mistypedArguments.Add(argument.Name);
-                        break;
-
-                    case "DateTime":
-                        if (!TimeUtils.IsDateTime(value))
-                            mistypedArguments.Add(argument.Name);
-                        break;
-
-                    default:
-                        throw new RoomieRuntimeException("Unknown argument type \"" + argument.Type + "\".");
+                    throw new RoomieRuntimeException("Command " + this.FullName + " specifies an unknown type for parameter " + argument.Name);
                 }
-                if (mistypedArguments.Count != 0)
-                    throw new MistypedArgumentException(mistypedArguments);
+                var isValid = type.Validate(value);
+
+                if (!isValid)
+                {
+                    mistypedArguments.Add(argument.Name);
+                }
+            }
+            if (mistypedArguments.Count != 0)
+            {
+                throw new MistypedArgumentException(mistypedArguments);
             }
 
             Execute_Definition(context);

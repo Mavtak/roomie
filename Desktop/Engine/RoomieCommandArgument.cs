@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
+using System;
+using System.Text;
 using System.Xml;
 
 namespace Roomie.Desktop.Engine
@@ -6,16 +8,44 @@ namespace Roomie.Desktop.Engine
     public class RoomieCommandArgument
     {
         public readonly string Name;
-        public readonly string Type;
+        public readonly IRoomieCommandArgumentType Type;
         public readonly string DefaultValue;
         public readonly bool HasDefault;
 
         public RoomieCommandArgument(string name, string type, string defaultValue = null, bool hasDefault = false)
         {
             Name = name;
-            Type = type;
+            Type = StringTypeToClassType(type);
             DefaultValue = defaultValue;
             HasDefault = hasDefault;
+        }
+
+        private IRoomieCommandArgumentType StringTypeToClassType(string type)
+        {
+            
+            switch (type)
+                {
+                    case "String":
+                        return new StringParameterType();
+
+                    case "Boolean":
+                        return new BooleanParameterType();
+
+                    case "Integer":
+                        return new IntegerParameterType();
+
+                    case "Byte":
+                        return new ByteParameterType();
+
+                    case "TimeSpan":
+                        return new TimeSpanParameterType();
+
+                    case "DateTime":
+                        return new DateTimeParameterType();
+
+                    default:
+                        return null;
+                }
         }
 
         public override string ToString()
@@ -49,7 +79,7 @@ namespace Roomie.Desktop.Engine
             writer.WriteStartElement("Argument");
             {
                 writer.WriteAttributeString("Name", Name);
-                writer.WriteAttributeString("Type", Type);
+                writer.WriteAttributeString("Type", Type.Name);
                 writer.WriteAttributeString("HasDefault", HasDefault.ToString());
                 if (HasDefault && DefaultValue != null)
                     writer.WriteAttributeString("DefaultValue", DefaultValue);
