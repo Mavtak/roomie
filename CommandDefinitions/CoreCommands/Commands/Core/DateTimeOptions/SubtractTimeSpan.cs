@@ -5,7 +5,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.DateTimeOperations
 {
-    [Parameter("DateTime", "DateTime")]
+    [Parameter("DateTime", DateTimeParameterType.Key)]
     [Parameter("TimeSpan", TimeSpanParameterType.Key)]
     [Parameter("ResultName", StringParameterType.Key)]
     [Description("Sets the variable in ResultName to the result of ${Value1}-${Value2}.")]

@@ -7,7 +7,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
 {
     [Parameter("Host", StringParameterType.Key)]
-    [Parameter("Port", "Integer")]
+    [Parameter("Port", IntegerParameterType.Key)]
     [Parameter("UseSSL", BooleanParameterType.Key)]
     [Parameter("Username", StringParameterType.Key)]
     [Parameter("Password", StringParameterType.Key)]

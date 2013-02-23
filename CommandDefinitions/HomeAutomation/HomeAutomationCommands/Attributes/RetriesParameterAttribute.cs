@@ -1,4 +1,5 @@
 ﻿using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Attributes
 {
@@ -7,7 +8,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Attributes
         public const string Key = "Retries";
 
         public RetriesParameterAttribute()
-            : base(Key, "Integer", "3")
+            : base(Key, IntegerParameterType.Key, "3")
         {
         }
     }
