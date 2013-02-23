@@ -5,7 +5,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
 {
-    [Parameter("Duration", TimeSpanParameterType.Key)]
+    [TimeSpanParameter("Duration")]
     [Description("This command waits for the specified amount of time.  Example duration is \"1 Second\" or \"120 Seconds\"")]
     public class Wait : RoomieCommand
     {

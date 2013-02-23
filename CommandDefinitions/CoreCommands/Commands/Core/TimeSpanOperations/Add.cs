@@ -5,8 +5,8 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperations
 {
-    [Parameter("Value1", TimeSpanParameterType.Key)]
-    [Parameter("Value2", TimeSpanParameterType.Key)]
+    [TimeSpanParameter("Value1")]
+    [TimeSpanParameter("Value2")]
     [StringParameter("ResultName")]
     [Description("Sets the variable in ResultName to the result of ${Value1}+${Value2}.")]
     public class Add : RoomieCommand

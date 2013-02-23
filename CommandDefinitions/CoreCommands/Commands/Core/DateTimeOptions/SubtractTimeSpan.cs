@@ -5,8 +5,8 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.DateTimeOperations
 {
-    [Parameter("DateTime", DateTimeParameterType.Key)]
-    [Parameter("TimeSpan", TimeSpanParameterType.Key)]
+    [DateTimeParameter("DateTime")]
+    [TimeSpanParameter("TimeSpan")]
     [StringParameter("ResultName")]
     [Description("Sets the variable in ResultName to the result of ${Value1}-${Value2}.")]
     public class SubtractTimeSpan : RoomieCommand

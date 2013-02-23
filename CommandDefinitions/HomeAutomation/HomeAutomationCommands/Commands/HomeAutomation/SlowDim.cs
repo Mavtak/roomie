@@ -5,9 +5,9 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     //TODO: Roll start and end power into PowerAttribute?
-    [Parameter("StartPower", ByteParameterType.Key)]
-    [Parameter("EndPower", ByteParameterType.Key)]
-    [Parameter("Duration", TimeSpanParameterType.Key)]
+    [ByteParameter("StartPower")]
+    [ByteParameter("EndPower")]
+    [TimeSpanParameter("Duration")]
     public class SlowDim : HomeAutomationSingleDeviceCommand
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)

@@ -5,8 +5,8 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.Math
 {
-    [Parameter("Min", IntegerParameterType.Key)]
-    [Parameter("Max", IntegerParameterType.Key)]
+    [IntegerParameter("Min")]
+    [IntegerParameter("Max")]
     [StringParameter("ResultName")]
     [Description("Returns an Integer (in the variable specified by ResultName) between Min and Max (inclusive)")]
     public class RandomInteger : RoomieCommand

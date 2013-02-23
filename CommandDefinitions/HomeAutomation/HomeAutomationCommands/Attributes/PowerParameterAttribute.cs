@@ -3,10 +3,10 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Attributes
 {
-    public class PowerParameterAttribute : ParameterAttribute
+    public class PowerParameterAttribute : IntegerParameterAttribute
     {
         public PowerParameterAttribute()
-            : base("Power", IntegerParameterType.Key)
+            : base("Power")
         { }
     }
 }

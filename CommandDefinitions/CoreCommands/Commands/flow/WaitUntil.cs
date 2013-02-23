@@ -5,7 +5,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
 {
-    [Parameter("Time", DateTimeParameterType.Key)]
+    [DateTimeParameter("Time")]
     public class WaitUntil : RoomieCommand
     {
 
