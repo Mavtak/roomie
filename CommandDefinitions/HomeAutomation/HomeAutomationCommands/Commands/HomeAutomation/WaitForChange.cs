@@ -2,10 +2,11 @@
 using Roomie.Common.Exceptions;
 using Roomie.Common.HomeAutomation.Exceptions;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
-    [Parameter("PollInterval", "TimeSpan", "1 Second")]
+    [Parameter("PollInterval", TimeSpanParameterType.Key, "1 Second")]
     [Parameter("MaxErrors", "Integer", "5")]
     public class WaitForChange : HomeAutomationSingleDeviceCommand
     {
