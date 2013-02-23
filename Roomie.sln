@@ -78,6 +78,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Web\Website\Webs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphical", "Desktop\Graphical\Graphical.csproj", "{8D346BF8-664E-4690-9EEF-CD24DB365273}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptingLanguage.Tests", "Common\ScriptingLanguage.Tests\ScriptingLanguage.Tests.csproj", "{752F5DB0-48FA-4EF7-91D3-5776E35952A2}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Roomie1.vsmdi
@@ -484,6 +486,21 @@ Global
 		{8D346BF8-664E-4690-9EEF-CD24DB365273}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8D346BF8-664E-4690-9EEF-CD24DB365273}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8D346BF8-664E-4690-9EEF-CD24DB365273}.Release|x86.ActiveCfg = Release|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug Roomie.Mvc3|Any CPU.ActiveCfg = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug Roomie.Mvc3|Any CPU.Build.0 = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug Roomie.Mvc3|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug Roomie.Mvc3|Mixed Platforms.Build.0 = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug Roomie.Mvc3|x86.ActiveCfg = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -516,5 +533,6 @@ Global
 		{610FD55B-DE30-475D-AEBD-A5539815D056} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
 		{E9421EEF-6269-4F5E-9893-5C0003B6E400} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
 		{96934CBD-3597-4432-AE32-ED730377D3AA} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
+		{752F5DB0-48FA-4EF7-91D3-5776E35952A2} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
 	EndGlobalSection
 EndGlobal
