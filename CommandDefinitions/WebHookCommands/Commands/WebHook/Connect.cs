@@ -3,10 +3,10 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
 {
-    [Parameter("ComputerName", StringParameterType.Key)]
-    [Parameter("CommunicationURL", StringParameterType.Key)]
-    [Parameter("AccessKey", StringParameterType.Key)]
-    [Parameter("EncryptionKey", StringParameterType.Key)]
+    [StringParameter("ComputerName")]
+    [StringParameter("CommunicationURL")]
+    [StringParameter("AccessKey")]
+    [StringParameter("EncryptionKey")]
     [Description("This command creates a connection to a Roomie WebHook server.")]
     public class Connect : WebHookCommand
     {

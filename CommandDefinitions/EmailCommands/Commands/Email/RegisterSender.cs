@@ -6,12 +6,12 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
 {
-    [Parameter("Host", StringParameterType.Key)]
+    [StringParameter("Host")]
     [Parameter("Port", IntegerParameterType.Key)]
     [Parameter("UseSSL", BooleanParameterType.Key)]
-    [Parameter("Username", StringParameterType.Key)]
-    [Parameter("Password", StringParameterType.Key)]
-    [Parameter("DisplayName", StringParameterType.Key)]
+    [StringParameter("Username")]
+    [StringParameter("Password")]
+    [StringParameter("DisplayName")]
     [Description("Saves email information for later calls to Email.Send")]
     public class RegisterSender : EmailCommand
     {

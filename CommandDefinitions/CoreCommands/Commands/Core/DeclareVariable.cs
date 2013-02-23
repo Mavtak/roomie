@@ -4,8 +4,8 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("Name", StringParameterType.Key)]
-    [Parameter("Value", StringParameterType.Key, null)]//TODO: should default value be an empty string instead?
+    [StringParameter("Name")]
+    [StringParameter("Value", null)]//TODO: should default value be an empty string instead?
     [Parameter("Global", BooleanParameterType.Key, "False")]
     [Description("This command declares a variable with a given value.  \"Global\" creates the element in global scope.")]
     public class DeclareVariable : RoomieCommand

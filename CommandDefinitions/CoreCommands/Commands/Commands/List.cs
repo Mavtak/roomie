@@ -8,7 +8,7 @@ using System.Linq;
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
 {
     [Description("This command lists available Roomie commands.")]
-    [Parameter("Group", StringParameterType.Key, "")]
+    [StringParameter("Group", "")]
     public class List : RoomieCommand
     {
         protected override void Execute_Definition(RoomieCommandContext context)

@@ -6,7 +6,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {
-    [Parameter("Text", StringParameterType.Key)]
+    [StringParameter("Text")]
     [Parameter("Async", BooleanParameterType.Key, "False")]
     [Description("This command uses speach synthesis to translate the given text to audio.")]
     public sealed class Speak : RoomieCommand, IDisposable

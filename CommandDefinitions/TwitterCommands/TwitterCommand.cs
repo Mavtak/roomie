@@ -5,7 +5,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.TwitterCommands
 {
-    [Parameter("Username", StringParameterType.Key)]
+    [StringParameter("Username")]
     public abstract class TwitterCommand : RoomieCommand
     {
 

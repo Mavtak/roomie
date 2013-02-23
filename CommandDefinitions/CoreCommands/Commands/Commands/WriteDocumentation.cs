@@ -5,7 +5,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
 {
-    [Parameter("Path", StringParameterType.Key)]
+    [StringParameter("Path")]
     [Description("Writes command documentation to an XML file.")]
     public class WriteDocumentation : RoomieCommand
     {

@@ -6,7 +6,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.NumberOpersations
 {
     [Parameter("Value1", IntegerParameterType.Key)]
     [Parameter("Value2", IntegerParameterType.Key)]
-    [Parameter("ResultName", StringParameterType.Key)]
+    [StringParameter("ResultName")]
     [Description("Sets the variable in ResultName to the result of ${Value1}+${Value2}.")]
     public class Add : RoomieCommand
     {

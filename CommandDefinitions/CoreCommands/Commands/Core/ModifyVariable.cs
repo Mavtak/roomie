@@ -4,8 +4,8 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("Name", StringParameterType.Key)]
-    [Parameter("Value", StringParameterType.Key)]
+    [StringParameter("Name")]
+    [StringParameter("Value")]
     [Parameter("Global", BooleanParameterType.Key, "False")]
     [Parameter("Literal", BooleanParameterType.Key, "False")]
     public class ModifyVariable : RoomieCommand

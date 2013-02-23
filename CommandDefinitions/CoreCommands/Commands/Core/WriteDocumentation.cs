@@ -8,7 +8,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("Filename", StringParameterType.Key, "./Documentation.xml")]
+    [StringParameter("Filename", "./Documentation.xml")]
     public class WriteDocumentation : RoomieCommand
     {
         //TODO: eliminate use of System.Xml

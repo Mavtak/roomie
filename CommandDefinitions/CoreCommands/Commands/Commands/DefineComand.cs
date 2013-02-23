@@ -8,9 +8,9 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
 {
     //TODO:
-    [Parameter("Group", StringParameterType.Key, Default = "CustomCommands")]
-    [Parameter("Name", StringParameterType.Key)]
-    [Parameter("Description", StringParameterType.Key, Default = "")]
+    [StringParameter("Group", Default = "CustomCommands")]
+    [StringParameter("Name")]
+    [StringParameter("Description", Default = "")]
     [Description("This command defines a new command.  The format for this needs to be documented! =P)")]
     public class Define : RoomieCommand
     {

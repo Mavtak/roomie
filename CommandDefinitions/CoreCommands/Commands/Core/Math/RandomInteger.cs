@@ -7,7 +7,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.Math
 {
     [Parameter("Min", IntegerParameterType.Key)]
     [Parameter("Max", IntegerParameterType.Key)]
-    [Parameter("ResultName", StringParameterType.Key)]
+    [StringParameter("ResultName")]
     [Description("Returns an Integer (in the variable specified by ResultName) between Min and Max (inclusive)")]
     public class RandomInteger : RoomieCommand
     {

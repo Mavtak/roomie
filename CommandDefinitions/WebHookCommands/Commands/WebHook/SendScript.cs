@@ -4,7 +4,7 @@ using WebCommunicator;
 
 namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
 {
-    [Parameter("ComputerName", StringParameterType.Key)]
+    [StringParameter("ComputerName")]
     [Description("This command sends a script through the WebHook server to the specified computer.")]
     public class SendScript : WebHookCommand
     {

@@ -3,11 +3,11 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Attributes
 {
-    public class DeviceParameterAttribute : ParameterAttribute
+    public class DeviceParameterAttribute : StringParameterAttribute
     {
         //TODO: validation on an address?
         public DeviceParameterAttribute()
-            : base("Device", StringParameterType.Key)
+            : base("Device")
         { }
     }
 }

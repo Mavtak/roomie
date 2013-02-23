@@ -6,8 +6,8 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {
-    [Parameter("Path", StringParameterType.Key)]
-    [Parameter("Arguments", StringParameterType.Key, null)]
+    [StringParameter("Path")]
+    [StringParameter("Arguments", null)]
     [Parameter("AbortOnError", BooleanParameterType.Key, "True")]
     [Description("This command opens a file on the computer.  The file can be an executable (.exe file) or a data file.")]
     public class OpenFile : RoomieCommand

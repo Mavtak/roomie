@@ -3,8 +3,8 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
 {
-    [Parameter("Password", StringParameterType.Key)]
-    [Parameter("DisplayName", StringParameterType.Key)]
+    [StringParameter("Password")]
+    [StringParameter("DisplayName")]
     [Description("This is a shortcut command for Email.RegisterSender where the user is a Gmail account.")]
     public class RegisterGmailSender : EmailCommand
     {

@@ -7,7 +7,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.DateTimeOperation
 {
     [Parameter("DateTime", DateTimeParameterType.Key)]
     [Parameter("TimeSpan", TimeSpanParameterType.Key)]
-    [Parameter("ResultName", StringParameterType.Key)]
+    [StringParameter("ResultName")]
     [Description("Sets the variable in ResultName to the result of ${Value1}-${Value2}.")]
     public class SubtractTimeSpan : RoomieCommand
     {

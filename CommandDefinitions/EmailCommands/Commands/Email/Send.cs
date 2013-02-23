@@ -5,9 +5,9 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
 {
-    [Parameter("To", StringParameterType.Key)]
-    [Parameter("Subject", StringParameterType.Key)]
-    [Parameter("Body", StringParameterType.Key)]
+    [StringParameter("To")]
+    [StringParameter("Subject")]
+    [StringParameter("Body")]
     [Description("This command sense an email")]
     public class Send : EmailCommand
     {

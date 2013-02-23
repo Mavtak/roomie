@@ -5,7 +5,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.EmailCommands
 {
-    [Parameter("Address", StringParameterType.Key)]
+    [StringParameter("Address")]
     public abstract class EmailCommand : RoomieCommand
     {
         public EmailCommand()

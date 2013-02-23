@@ -3,10 +3,10 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
-    public class NetworkParameterAttribute : ParameterAttribute
+    public class NetworkParameterAttribute : StringParameterAttribute
     {
         public NetworkParameterAttribute()
-            : base("Network", StringParameterType.Key, "<default>")
+            : base("Network", "<default>")
         { }
     }
 }

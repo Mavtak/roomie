@@ -6,7 +6,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {
-    [Parameter("MAC", StringParameterType.Key)]
+    [StringParameter("MAC")]
     [Description("This command sends a Wake On Lan (WOL) packet to to the specified MAC address")]
     public class WakeComputer : RoomieCommand
     {

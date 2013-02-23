@@ -7,7 +7,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperation
 {
     [Parameter("Value1", TimeSpanParameterType.Key)]
     [Parameter("Value2", TimeSpanParameterType.Key)]
-    [Parameter("ResultName", StringParameterType.Key)]
+    [StringParameter("ResultName")]
     [Description("Sets the variable in ResultName to the result of ${Value1}+${Value2}.")]
     public class Add : RoomieCommand
     {

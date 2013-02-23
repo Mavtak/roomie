@@ -6,7 +6,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.BooleanOperations
 {
     [Parameter("Value1", BooleanParameterType.Key)]
     [Parameter("Value2", BooleanParameterType.Key)]
-    [Parameter("ResultName", StringParameterType.Key)]
+    [StringParameter("ResultName")]
     [Description("Sets the variable in ResultName to the result of ${Value1}&&${Value2}.")]
     public class And : RoomieCommand
     {

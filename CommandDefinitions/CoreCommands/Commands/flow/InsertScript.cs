@@ -8,9 +8,9 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
 {
-    [Parameter("Where", StringParameterType.Key)]
-    [Parameter("NewThreadName", StringParameterType.Key, null)]
-    [Parameter("Path", StringParameterType.Key, null)]
+    [StringParameter("Where")]
+    [StringParameter("NewThreadName", null)]
+    [StringParameter("Path", null)]
     public class InsertScript : RoomieCommand
     {
         protected override void Execute_Definition(RoomieCommandContext context)

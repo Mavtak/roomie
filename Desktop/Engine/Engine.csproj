@@ -58,6 +58,7 @@
     <Compile Include="Commands\NotFinishedAttribute.cs" />
     <Compile Include="Commands\ParameterAttribute.cs" />
     <Compile Include="Commands\RoomieCommandAttribute.cs" />
+    <Compile Include="Commands\StringParameterAttribute.cs" />
     <Compile Include="DataStore.cs" />
     <Compile Include="Delegates\RoomieCommandLibraryEventArgs.cs" />
     <Compile Include="DocumentationWriter.cs" />

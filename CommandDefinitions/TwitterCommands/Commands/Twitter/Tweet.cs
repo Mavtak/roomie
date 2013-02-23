@@ -4,7 +4,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.TwitterCommands.Commands.Twitter
 {
-    [Parameter("Text", StringParameterType.Key)]
+    [StringParameter("Text")]
     [Description("This command sends a tweet.")]
     public class Tweet : TwitterCommand
     {
