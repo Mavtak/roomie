@@ -7,7 +7,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     [Parameter("StartPower", "Byte")]
     [Parameter("EndPower", "Byte")]
     [Parameter("Duration", "TimeSpan")]
-    public class SlowDim : SingleDeviceControlCommand
+    public class SlowDim : HomeAutomationSingleDeviceCommand
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {

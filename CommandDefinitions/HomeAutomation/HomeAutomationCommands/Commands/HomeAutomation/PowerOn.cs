@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
-    public class PowerOn : SingleDeviceControlCommand
+    public class PowerOn : HomeAutomationSingleDeviceCommand
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {

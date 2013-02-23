@@ -3,7 +3,7 @@ using Roomie.CommandDefinitions.HomeAutomationCommands;
 
 namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands.Commands.ControlThink
 {
-    public class RemoveBrokenDevice : SingleDeviceControlCommand
+    public class RemoveBrokenDevice : HomeAutomationSingleDeviceCommand
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {

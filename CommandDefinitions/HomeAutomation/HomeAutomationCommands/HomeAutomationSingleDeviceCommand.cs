@@ -4,7 +4,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
     [AutoConnectParameter]
     [DeviceParameter]
-    public abstract class SingleDeviceControlCommand : HomeAutomationNetworkCommand
+    public abstract class HomeAutomationSingleDeviceCommand : HomeAutomationNetworkCommand
     {
         protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
         {

@@ -7,7 +7,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 {
     [Parameter("PollInterval", "TimeSpan", "1 Second")]
     [Parameter("MaxErrors", "Integer", "5")]
-    public class WaitForChange : SingleDeviceControlCommand
+    public class WaitForChange : HomeAutomationSingleDeviceCommand
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {

@@ -85,7 +85,7 @@
     <Compile Include="InternalLibraryVersion.cs" />
     <Compile Include="NetworkParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingleZWaveDeviceControlCommand.cs" />
+    <Compile Include="HomeAutomationSingleDeviceCommand.cs" />
     <Compile Include="WebHookConnector.cs" />
     <Compile Include="WebhookZWaveCommands.cs" />
     <Compile Include="HomeAutomationNetworkCommand.cs" />
