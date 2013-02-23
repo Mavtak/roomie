@@ -6,7 +6,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
     [StringParameter("Name")]
     [StringParameter("Value", null)]//TODO: should default value be an empty string instead?
-    [BooleanParameter("Global", "False")]
+    [BooleanParameter("Global", false)]
     [Description("This command declares a variable with a given value.  \"Global\" creates the element in global scope.")]
     public class DeclareVariable : RoomieCommand
     {

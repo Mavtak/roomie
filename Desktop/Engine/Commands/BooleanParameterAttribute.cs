@@ -9,8 +9,8 @@ namespace Roomie.Desktop.Engine.Commands
         {
         }
 
-        public BooleanParameterAttribute(string name, string @default)
-            : base(name, BooleanParameterType.Key, @default)
+        public BooleanParameterAttribute(string name, bool @default)
+            : base(name, BooleanParameterType.Key, @default.ToString())
         {
         }
     }

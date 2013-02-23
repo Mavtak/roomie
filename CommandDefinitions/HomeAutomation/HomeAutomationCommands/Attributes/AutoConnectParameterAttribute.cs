@@ -6,7 +6,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Attributes
     public class AutoConnectParameterAttribute : BooleanParameterAttribute
     {
         public AutoConnectParameterAttribute()
-            : base("AutoConnect", "True")
+            : base("AutoConnect", true)
         { }
     }
 }
