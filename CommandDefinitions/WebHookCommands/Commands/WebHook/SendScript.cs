@@ -1,9 +1,10 @@
 ﻿using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 using WebCommunicator;
 
 namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
 {
-    [Parameter("ComputerName", "String")]
+    [Parameter("ComputerName", StringParameterType.Key)]
     [Description("This command sends a script through the WebHook server to the specified computer.")]
     public class SendScript : WebHookCommand
     {

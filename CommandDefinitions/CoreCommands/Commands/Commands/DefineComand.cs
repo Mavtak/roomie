@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
 {
     //TODO:
-    [Parameter("Group", "String", Default = "CustomCommands")]
-    [Parameter("Name", "String")]
-    [Parameter("Description", "String", Default = "")]
+    [Parameter("Group", StringParameterType.Key, Default = "CustomCommands")]
+    [Parameter("Name", StringParameterType.Key)]
+    [Parameter("Description", StringParameterType.Key, Default = "")]
     [Description("This command defines a new command.  The format for this needs to be documented! =P)")]
     public class Define : RoomieCommand
     {

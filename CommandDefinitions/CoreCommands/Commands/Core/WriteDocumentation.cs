@@ -4,10 +4,11 @@ using System.Xml;
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("Filename", "String", "./Documentation.xml")]
+    [Parameter("Filename", StringParameterType.Key, "./Documentation.xml")]
     public class WriteDocumentation : RoomieCommand
     {
         //TODO: eliminate use of System.Xml

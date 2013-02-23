@@ -1,14 +1,13 @@
 ﻿using System;
-
-
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
 {
-    [Parameter("To", "String")]
-    [Parameter("Subject", "String")]
-    [Parameter("Body", "String")]
+    [Parameter("To", StringParameterType.Key)]
+    [Parameter("Subject", StringParameterType.Key)]
+    [Parameter("Body", StringParameterType.Key)]
     [Description("This command sense an email")]
     public class Send : EmailCommand
     {

@@ -1,10 +1,11 @@
 ﻿using System.Xml;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
 {
-    [Parameter("Path", "String")]
+    [Parameter("Path", StringParameterType.Key)]
     [Description("Writes command documentation to an XML file.")]
     public class WriteDocumentation : RoomieCommand
     {

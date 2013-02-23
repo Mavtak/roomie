@@ -1,9 +1,10 @@
 ﻿using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.TwitterCommands.Commands.Twitter
 {
-    [Parameter("Password", "String")]
+    [Parameter("Password", StringParameterType.Key)]
     [Description("This command saves the given Twitter users's password for use in other Twitter command calls.")]
     public class SignIn : TwitterCommand
     {

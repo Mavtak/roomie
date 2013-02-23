@@ -2,10 +2,11 @@
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {
-    [Parameter("MAC", "String")]
+    [Parameter("MAC", StringParameterType.Key)]
     [Description("This command sends a Wake On Lan (WOL) packet to to the specified MAC address")]
     public class WakeComputer : RoomieCommand
     {
