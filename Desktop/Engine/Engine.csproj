@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgumentTypeCollection.cs" />
     <Compile Include="Commands\DescriptionAttribute.cs" />
     <Compile Include="Commands\NotFinishedAttribute.cs" />
     <Compile Include="Commands\ParameterAttribute.cs" />

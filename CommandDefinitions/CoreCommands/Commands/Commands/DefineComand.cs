@@ -17,6 +17,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
         {
             var commandLibrary = context.CommandLibrary;
             var interpreter = context.Interpreter;
+            var argumentTypes = context.ArgumentTypes;
             var scope = context.Scope;
             var originalCommand = context.OriginalCommand;
             var innerCommands = originalCommand.InnerCommands;
@@ -57,7 +58,15 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
                     {
                         throw new RoomieRuntimeException("Type not specified for the \"" + argumentName + "\" argumet in an argument listing for the " + group + "." + name + " custom command.");
                     }
-                    string type = argumentDefinition.Parameters["Type"].Value;
+                    string typeString = argumentDefinition.Parameters["Type"].Value;
+
+                    if (!argumentTypes.Contains(typeString))
+                    {
+                        //TODO: make a "Type" type
+                        throw new RoomieRuntimeException("Unexpected type encountered when parsing parameter " + argumentName + " for " + group + "." + name);
+                    }
+
+                    var type = argumentTypes[typeString];
 
                     if (!argumentDefinition.Parameters.ContainsParameterName("Default"))
                     {

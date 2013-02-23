@@ -12,40 +12,12 @@ namespace Roomie.Desktop.Engine
         public readonly string DefaultValue;
         public readonly bool HasDefault;
 
-        public RoomieCommandArgument(string name, string type, string defaultValue = null, bool hasDefault = false)
+        public RoomieCommandArgument(string name, IRoomieCommandArgumentType type, string defaultValue = null, bool hasDefault = false)
         {
             Name = name;
-            Type = StringTypeToClassType(type);
+            Type = type;
             DefaultValue = defaultValue;
             HasDefault = hasDefault;
-        }
-
-        private IRoomieCommandArgumentType StringTypeToClassType(string type)
-        {
-            
-            switch (type)
-                {
-                    case "String":
-                        return new StringParameterType();
-
-                    case "Boolean":
-                        return new BooleanParameterType();
-
-                    case "Integer":
-                        return new IntegerParameterType();
-
-                    case "Byte":
-                        return new ByteParameterType();
-
-                    case "TimeSpan":
-                        return new TimeSpanParameterType();
-
-                    case "DateTime":
-                        return new DateTimeParameterType();
-
-                    default:
-                        return null;
-                }
         }
 
         public override string ToString()

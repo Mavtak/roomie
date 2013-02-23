@@ -18,6 +18,13 @@ namespace Roomie.Desktop.Engine
                 return Interpreter.Engine;
             }
         }
+        public ArgumentTypeCollection ArgumentTypes
+        {
+            get
+            {
+                return Engine.ArgumentTypes;
+            }
+        }
         public DataStore DataStore
         {
             get
