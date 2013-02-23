@@ -5,12 +5,12 @@ namespace Roomie.Desktop.Engine.Commands
     public class DateTimeParameterAttribute : ParameterAttribute
     {
         public DateTimeParameterAttribute(string name)
-            : base(name, DateTimeParameterType.Key)
+            : base(name, new DateTimeParameterType())
         {
         }
 
         public DateTimeParameterAttribute(string name, string @default)
-            : base(name, DateTimeParameterType.Key, @default)
+            : base(name, new DateTimeParameterType(), @default)
         {
         }
     }

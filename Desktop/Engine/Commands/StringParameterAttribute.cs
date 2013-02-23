@@ -5,12 +5,12 @@ namespace Roomie.Desktop.Engine.Commands
     public class StringParameterAttribute : ParameterAttribute
     {
         public StringParameterAttribute(string name)
-            : base(name, StringParameterType.Key)
+            : base(name, new StringParameterType())
         {
         }
 
         public StringParameterAttribute(string name, string @default)
-            : base(name, StringParameterType.Key, @default)
+            : base(name, new StringParameterType(), @default)
         {
         }
     }

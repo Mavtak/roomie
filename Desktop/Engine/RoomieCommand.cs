@@ -150,11 +150,7 @@ namespace Roomie.Desktop.Engine
             foreach (var argument in _arguments)
             {
                 var value = scope.GetValue(argument.Name);
-                if (context.ArgumentTypes.Contains(argument.Type))
-                {
-                    throw new RoomieRuntimeException("Command " + this.FullName + " specifies an unknown type for parameter " + argument.Name);
-                }
-                var type = context.ArgumentTypes[argument.Type];
+                var type = argument.Type;
                 var isValid = type.Validate(value);
 
                 if (!isValid)

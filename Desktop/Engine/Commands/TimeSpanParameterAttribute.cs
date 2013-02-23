@@ -5,12 +5,12 @@ namespace Roomie.Desktop.Engine.Commands
     public class TimeSpanParameterAttribute : ParameterAttribute
     {
         public TimeSpanParameterAttribute(string name)
-            : base(name, TimeSpanParameterType.Key)
+            : base(name, new TimeSpanParameterType())
         {
         }
 
         public TimeSpanParameterAttribute(string name, string @default)
-            : base(name, TimeSpanParameterType.Key, @default)
+            : base(name, new TimeSpanParameterType(), @default)
         {
         }
     }

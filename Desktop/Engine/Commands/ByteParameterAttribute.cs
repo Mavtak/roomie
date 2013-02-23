@@ -5,12 +5,12 @@ namespace Roomie.Desktop.Engine.Commands
     public class ByteParameterAttribute : ParameterAttribute
     {
         public ByteParameterAttribute(string name)
-            : base(name, ByteParameterType.Key)
+            : base(name, new ByteParameterType())
         {
         }
 
         public ByteParameterAttribute(string name, string @default)
-            : base(name, ByteParameterType.Key, @default)
+            : base(name, new ByteParameterType(), @default)
         {
         }
     }

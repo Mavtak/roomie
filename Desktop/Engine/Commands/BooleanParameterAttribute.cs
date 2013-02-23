@@ -5,12 +5,12 @@ namespace Roomie.Desktop.Engine.Commands
     public class BooleanParameterAttribute : ParameterAttribute
     {
         public BooleanParameterAttribute(string name)
-            : base(name, BooleanParameterType.Key)
+            : base(name, new BooleanParameterType())
         {
         }
 
         public BooleanParameterAttribute(string name, bool @default)
-            : base(name, BooleanParameterType.Key, @default.ToString())
+            : base(name, new BooleanParameterType(), @default.ToString())
         {
         }
     }
