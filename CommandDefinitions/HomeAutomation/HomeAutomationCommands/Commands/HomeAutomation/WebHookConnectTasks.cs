@@ -3,7 +3,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 {
     public class WebHookConnectTasks : HomeAutomationNetworkCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
         {
             context.AddSyncWithCloud();
         }

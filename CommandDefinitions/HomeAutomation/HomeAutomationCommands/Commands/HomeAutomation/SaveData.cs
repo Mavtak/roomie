@@ -3,7 +3,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 {
     public class SaveData : HomeAutomationCommand
     {
-        protected override void Execute_HomeAutomation(HomeAutomationCommandContext context)
+        protected override void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context)
         {
             var interpreter = context.Interpreter;
             var networks = context.Networks;

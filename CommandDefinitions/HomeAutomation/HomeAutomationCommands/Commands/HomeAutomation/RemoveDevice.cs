@@ -3,7 +3,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 {
     public class RemoveDevice : HomeAutomationNetworkCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
         {
             var interpreter = context.Interpreter;
             var network = context.Network;

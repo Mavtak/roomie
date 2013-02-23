@@ -3,7 +3,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 {
     public class Toggle : SingleDeviceControlCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var device = context.Device;
 

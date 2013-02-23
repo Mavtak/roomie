@@ -7,7 +7,7 @@ namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands.Commands.ControlT
     [Description("This command attempts to connect to a ControlThink USB Z-Wave adapater.")]
     public class RegisterNetwork : HomeAutomationCommand
     {
-        protected override void Execute_HomeAutomation(HomeAutomationCommandContext context)
+        protected override void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context)
         {
             var interpreter = context.Interpreter;
             var networks = context.Networks;

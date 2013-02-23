@@ -9,7 +9,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     [Parameter("MaxErrors", "Integer", "5")]
     public class WaitForChange : SingleDeviceControlCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var interpreter = context.Interpreter;
             var scope = context.Scope;

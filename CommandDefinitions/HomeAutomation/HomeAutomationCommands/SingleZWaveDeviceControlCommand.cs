@@ -6,8 +6,28 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
     [DeviceParameter]
     public abstract class SingleDeviceControlCommand : HomeAutomationNetworkCommand
     {
-        public SingleDeviceControlCommand()
-            : base()
-        { }
+        protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
+        {
+            var scope = context.Scope;
+            var network = context.Network;
+            var networks = context.Networks;
+
+            Device device = null;
+            if (scope.VariableDefinedInThisScope("Device"))
+            {
+                var address = scope.GetValue("Device");
+
+                device = networks.GetDevice(address, network);
+            }
+
+            var greaterContext = new HomeAutomationSingleDeviceContext(context)
+            {
+                Device = device
+            };
+
+            Execture_HomeAutomationSingleDeviceDefinition(greaterContext);
+        }
+
+        protected abstract void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context);
     }
 }

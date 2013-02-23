@@ -9,7 +9,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     [Parameter("Poll", "Boolean", "False")]
     public class ListDevices : HomeAutomationNetworkCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
         {
             var interpreter = context.Interpreter;
             var network = context.Network;

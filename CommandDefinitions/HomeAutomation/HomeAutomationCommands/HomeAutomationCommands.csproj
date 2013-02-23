@@ -73,6 +73,7 @@
     <Compile Include="Commands\HomeAutomation\WaitForChange.cs" />
     <Compile Include="Commands\HomeAutomation\WebHookConnectTasks.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="HomeAutomationSingleDeviceCommandContext.cs" />
     <Compile Include="Exceptions\CommandNotImplementedException.cs" />
     <Compile Include="Exceptions\HomeAutomationTimeoutException.cs" />
     <Compile Include="Exceptions\FailedToConnectException.cs" />
