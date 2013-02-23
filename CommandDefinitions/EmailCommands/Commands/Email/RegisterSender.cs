@@ -1,13 +1,14 @@
 ﻿
 
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 
 namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
 {
     [Parameter("Host", "String")]
     [Parameter("Port", "Integer")]
-    [Parameter("UseSSL", "Boolean")]
+    [Parameter("UseSSL", BooleanParameterType.Key)]
     [Parameter("Username", "String")]
     [Parameter("Password", "String")]
     [Parameter("DisplayName", "String")]

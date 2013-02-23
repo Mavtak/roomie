@@ -2,12 +2,13 @@
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {
     [Parameter("Path", "String")]
     [Parameter("Arguments", "String", null)]
-    [Parameter("AbortOnError", "Boolean", "True")]
+    [Parameter("AbortOnError", BooleanParameterType.Key, "True")]
     [Description("This command opens a file on the computer.  The file can be an executable (.exe file) or a data file.")]
     public class OpenFile : RoomieCommand
     {
