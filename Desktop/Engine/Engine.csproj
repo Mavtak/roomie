@@ -57,6 +57,7 @@
     <Compile Include="Commands\BooleanParameterAttribute.cs" />
     <Compile Include="Commands\ByteParameterAttribute.cs" />
     <Compile Include="Commands\IntegerParameterAttribute.cs" />
+    <Compile Include="Commands\IntegerRangeParameterAttribute.cs" />
     <Compile Include="Commands\TimeSpanParameterAttribute.cs" />
     <Compile Include="Commands\DateTimeParameterAttribute.cs" />
     <Compile Include="Commands\DescriptionAttribute.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Exceptions\VariableException.cs" />
     <Compile Include="RoomieCommand.cs" />
     <Compile Include="RoomieCommandArgument.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\IntegerRangeParameterType.cs" />
     <Compile Include="RoomieCommandContext.cs" />
     <Compile Include="RoomieCommandInterpreter.cs" />
     <Compile Include="RoomieCommandLibrary.cs" />

@@ -42,6 +42,7 @@ namespace Roomie.Desktop.Engine
             ArgumentTypes.Add(new ByteParameterType());
             ArgumentTypes.Add(new DateTimeParameterType());
             ArgumentTypes.Add(new IntegerParameterType());
+            //TODO: what about IntergerRangeParameterType?
             ArgumentTypes.Add(new StringParameterType());
             ArgumentTypes.Add(new TimeSpanParameterType());
         }
