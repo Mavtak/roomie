@@ -9,8 +9,8 @@ namespace Roomie.Desktop.Engine.Commands
         {
         }
 
-        public IntegerParameterAttribute(string name, string @default)
-            : base(name, IntegerParameterType.Key, @default)
+        public IntegerParameterAttribute(string name, int @default)
+            : base(name, IntegerParameterType.Key, @default.ToString())
         {
         }
     }

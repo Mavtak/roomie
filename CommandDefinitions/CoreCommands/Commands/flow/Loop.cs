@@ -5,7 +5,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
 {
-    [IntegerParameter("Times", "-1")]
+    [IntegerParameter("Times", -1)]
     public class Loop : RoomieCommand
     {
         protected override void Execute_Definition(RoomieCommandContext context)

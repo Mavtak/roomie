@@ -7,7 +7,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     [TimeSpanParameter("PollInterval", "1 Second")]
-    [IntegerParameter("MaxErrors", "5")]
+    [IntegerParameter("MaxErrors", 5)]
     public class WaitForChange : HomeAutomationSingleDeviceCommand
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
