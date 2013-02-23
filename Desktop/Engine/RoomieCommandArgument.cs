@@ -8,11 +8,11 @@ namespace Roomie.Desktop.Engine
     public class RoomieCommandArgument
     {
         public readonly string Name;
-        public readonly IRoomieCommandArgumentType Type;
+        public readonly string Type;
         public readonly string DefaultValue;
         public readonly bool HasDefault;
 
-        public RoomieCommandArgument(string name, IRoomieCommandArgumentType type, string defaultValue = null, bool hasDefault = false)
+        public RoomieCommandArgument(string name, string type, string defaultValue = null, bool hasDefault = false)
         {
             Name = name;
             Type = type;
@@ -51,7 +51,7 @@ namespace Roomie.Desktop.Engine
             writer.WriteStartElement("Argument");
             {
                 writer.WriteAttributeString("Name", Name);
-                writer.WriteAttributeString("Type", Type.Name);
+                writer.WriteAttributeString("Type", Type);
                 writer.WriteAttributeString("HasDefault", HasDefault.ToString());
                 if (HasDefault && DefaultValue != null)
                     writer.WriteAttributeString("DefaultValue", DefaultValue);

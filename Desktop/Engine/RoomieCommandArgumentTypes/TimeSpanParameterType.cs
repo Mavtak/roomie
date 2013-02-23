@@ -2,11 +2,14 @@
 {
     public class TimeSpanParameterType : IRoomieCommandArgumentType
     {
-        public string Name { get; private set; }
+        public const string Key = "TimeSpan";
 
-        public TimeSpanParameterType()
+        public string Name
         {
-            Name = "TimeSpan";
+            get
+            {
+                return Key;
+            }
         }
 
         public bool Validate(string value)

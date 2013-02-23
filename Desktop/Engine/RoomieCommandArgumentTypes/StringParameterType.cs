@@ -3,11 +3,14 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 {
     public class StringParameterType : IRoomieCommandArgumentType
     {
-        public string Name { get; private set; }
+        public const string Key = "String";
 
-        public StringParameterType()
+        public string Name
         {
-            Name = "String";
+            get
+            {
+                return Key;
+            }
         }
 
         public bool Validate(string value)

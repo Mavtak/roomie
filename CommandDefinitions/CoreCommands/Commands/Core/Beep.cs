@@ -2,11 +2,12 @@
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("Frequency", "Integer", "1000")]
-    [Parameter("Duration", "TimeSpan", "500 milliseconds")]
+    [Parameter("Frequency", IntegerParameterType.Key, "1000")]
+    [Parameter("Duration", TimeSpanParameterType.Key, "500 milliseconds")]
     [Description("This command produces a console beep at the given Frequency and Duration.  (Default values for both are provided.)")]
     public class Beep : RoomieCommand
     {

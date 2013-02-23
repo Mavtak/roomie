@@ -4,11 +4,14 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 {
     public class IntegerParameterType : IRoomieCommandArgumentType
     {
-        public string Name { get; private set; }
+        public const string Key = "Integer";
 
-        public IntegerParameterType()
+        public string Name
         {
-            Name = "Integer";
+            get
+            {
+                return Key;
+            }
         }
 
         public bool Validate(string value)

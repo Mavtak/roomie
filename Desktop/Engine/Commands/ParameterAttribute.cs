@@ -7,7 +7,7 @@ namespace Roomie.Desktop.Engine.Commands
     public class ParameterAttribute : Attribute
     {
         public string Name { get; private set; }
-        public IRoomieCommandArgumentType Type { get; private set; }
+        public string Type { get; private set; }
         public string Default { get; set; }
 
         private bool _hasDefault;
@@ -26,7 +26,7 @@ namespace Roomie.Desktop.Engine.Commands
         public ParameterAttribute(string name, string type)
         {
             Name = name;
-            Type = StringTypeToClassType(type);
+            Type = type;
             Default = null;
             HasDefault = false;
         }
@@ -36,34 +36,6 @@ namespace Roomie.Desktop.Engine.Commands
         {
             Default = @default;
             HasDefault = true;
-        }
-
-        private IRoomieCommandArgumentType StringTypeToClassType(string type)
-        {
-
-            switch (type)
-            {
-                case "String":
-                    return new StringParameterType();
-
-                case "Boolean":
-                    return new BooleanParameterType();
-
-                case "Integer":
-                    return new IntegerParameterType();
-
-                case "Byte":
-                    return new ByteParameterType();
-
-                case "TimeSpan":
-                    return new TimeSpanParameterType();
-
-                case "DateTime":
-                    return new DateTimeParameterType();
-
-                default:
-                    return null;
-            }
         }
     }
 }

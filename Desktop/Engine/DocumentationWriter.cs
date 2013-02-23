@@ -96,7 +96,7 @@ namespace Roomie.Desktop.Engine
                             writer.WriteStartElement("tr");
                             {
                                 writer.WriteElementString("td", argument.Name);
-                                writer.WriteElementString("td", argument.Type.Name);
+                                writer.WriteElementString("td", argument.Type);
                                 if (argument.HasDefault)
                                 {
                                     if (argument.DefaultValue == null)

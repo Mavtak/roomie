@@ -4,11 +4,14 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 {
     public class ByteParameterType : IRoomieCommandArgumentType
     {
-        public string Name { get; private set; }
+        public const string Key = "Byte";
 
-        public ByteParameterType()
+        public string Name
         {
-            Name = "Byte";
+            get
+            {
+                return Key;
+            }
         }
 
         public bool Validate(string value)

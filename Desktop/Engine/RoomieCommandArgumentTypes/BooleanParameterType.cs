@@ -4,11 +4,14 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 {
     public class BooleanParameterType : IRoomieCommandArgumentType
     {
-        public string Name { get; private set; }
+        public const string Key = "Boolean";
 
-        public BooleanParameterType()
+        public string Name
         {
-            Name = "Boolean";
+            get
+            {
+                return Key;
+            }
         }
 
         public bool Validate(string value)
