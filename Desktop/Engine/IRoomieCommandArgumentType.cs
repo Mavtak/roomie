@@ -4,5 +4,6 @@
     {
         string Name { get; }
         bool Validate(string value);
+        string ValidationMessage(string parameterName);
     }
 }

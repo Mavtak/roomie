@@ -156,6 +156,7 @@ namespace Roomie.Desktop.Engine
                 if (!isValid)
                 {
                     mistypedArguments.Add(argument.Name);
+                    interpreter.WriteEvent(type.ValidationMessage(argument.Name));
                 }
             }
             if (mistypedArguments.Count != 0)
