@@ -6,7 +6,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [IntegerRangeParameterAttribute("Frequency", 37, 32767, 1000)]
+    [IntegerRangeParameter("Frequency", 37, 32767, 1000)]
     [TimeSpanParameter("Duration", "500 milliseconds")]
     [Description("This command produces a console beep at the given Frequency and Duration.  (Default values for both are provided.)")]
     public class Beep : RoomieCommand
