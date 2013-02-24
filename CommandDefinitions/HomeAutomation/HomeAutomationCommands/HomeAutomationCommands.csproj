@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\AutoConnectParameterAttribute.cs" />
+    <Compile Include="Attributes\RetriesParameterAttribute.cs" />
     <Compile Include="Attributes\DeviceParameterAttribute.cs" />
     <Compile Include="Attributes\NetworkAttribute.cs" />
     <Compile Include="Attributes\PowerParameterAttribute.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="Commands\HomeAutomation\WaitForChange.cs" />
     <Compile Include="Commands\HomeAutomation\WebHookConnectTasks.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="DeviceAddressParameterType.cs" />
+    <Compile Include="HomeAutomationSingleDeviceCommandContext.cs" />
     <Compile Include="Exceptions\CommandNotImplementedException.cs" />
     <Compile Include="Exceptions\HomeAutomationTimeoutException.cs" />
     <Compile Include="Exceptions\FailedToConnectException.cs" />
@@ -84,7 +87,7 @@
     <Compile Include="InternalLibraryVersion.cs" />
     <Compile Include="NetworkParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingleZWaveDeviceControlCommand.cs" />
+    <Compile Include="HomeAutomationSingleDeviceCommand.cs" />
     <Compile Include="WebHookConnector.cs" />
     <Compile Include="WebhookZWaveCommands.cs" />
     <Compile Include="HomeAutomationNetworkCommand.cs" />

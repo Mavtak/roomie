@@ -1,6 +1,7 @@
 ﻿using System;
 using Roomie.Common.Exceptions;
 using Roomie.Common.ScriptingLanguage;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.Desktop.Engine
 {
@@ -14,6 +15,7 @@ namespace Roomie.Desktop.Engine
         public readonly RoomieCommandLibrary CommandLibrary;
         public readonly bool DevelopmentEnvironment;
         public readonly DataStore DataStore;
+        public readonly ArgumentTypeCollection ArgumentTypes;
 
         private RoomieThread _rootThread;
 
@@ -32,6 +34,17 @@ namespace Roomie.Desktop.Engine
             PrintCommandCalls = false;
 
             DevelopmentEnvironment = Environment.CurrentDirectory.EndsWith(@"\bin\Debug");
+
+            ArgumentTypes = new ArgumentTypeCollection();
+            
+            //TODO: reflect for types
+            ArgumentTypes.Add(new BooleanParameterType());
+            ArgumentTypes.Add(new ByteParameterType());
+            ArgumentTypes.Add(new DateTimeParameterType());
+            ArgumentTypes.Add(new IntegerParameterType());
+            //TODO: what about IntergerRangeParameterType?
+            ArgumentTypes.Add(new StringParameterType());
+            ArgumentTypes.Add(new TimeSpanParameterType());
         }
 
         /// <summary>

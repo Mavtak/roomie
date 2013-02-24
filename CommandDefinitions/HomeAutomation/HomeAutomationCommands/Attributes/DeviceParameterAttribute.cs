@@ -6,7 +6,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Attributes
     {
         //TODO: validation on an address?
         public DeviceParameterAttribute()
-            : base("Device", "String")
-        { }
+            : base("Device", new DeviceAddressParameterType())
+        {
+        }
     }
 }

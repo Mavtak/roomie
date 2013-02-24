@@ -4,7 +4,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     [NetworkParameter]
     public class AddDevice : HomeAutomationNetworkCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
         {
             var engine = context.Engine;
             var interpreter = context.Interpreter;

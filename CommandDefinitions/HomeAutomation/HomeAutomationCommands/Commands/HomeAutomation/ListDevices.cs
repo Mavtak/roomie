@@ -2,14 +2,15 @@
 using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
 using Roomie.Common.TextUtilities;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     [AutoConnectParameterAttribute]
-    [Parameter("Poll", "Boolean", "False")]
+    [BooleanParameter("Poll", false)]
     public class ListDevices : HomeAutomationNetworkCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
         {
             var interpreter = context.Interpreter;
             var network = context.Network;

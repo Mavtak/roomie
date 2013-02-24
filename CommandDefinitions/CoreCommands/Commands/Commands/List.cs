@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using Roomie.Desktop.Engine;
+using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Roomie.Desktop.Engine;
-using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
 {
     [Description("This command lists available Roomie commands.")]
-    [Parameter("Group", "String", "")]
+    [StringParameter("Group", "")]
     public class List : RoomieCommand
     {
         protected override void Execute_Definition(RoomieCommandContext context)

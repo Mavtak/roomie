@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Commands\ListDynamic.cs" />
+    <Compile Include="Commands\Commands\ValidateParameters.cs" />
     <Compile Include="Commands\Commands\WriteDocumentation.cs" />
     <Compile Include="Commands\Core\Beep.cs" />
     <Compile Include="Commands\Core\BooleanOperations\And.cs" />

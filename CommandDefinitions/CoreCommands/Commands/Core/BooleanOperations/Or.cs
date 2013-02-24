@@ -1,11 +1,12 @@
 ﻿using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.BooleanOperations
 {
-    [Parameter("Value1", "Boolean")]
-    [Parameter("Value2", "Boolean")]
-    [Parameter("ResultName", "String")]
+    [BooleanParameter("Value1")]
+    [BooleanParameter("Value2")]
+    [StringParameter("ResultName")]
     [Description("Sets the variable in ResultName to the result of ${Value1}||${Value2}.")]
     public class Or : RoomieCommand
     {

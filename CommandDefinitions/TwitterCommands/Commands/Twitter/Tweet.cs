@@ -1,9 +1,10 @@
 ﻿using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.TwitterCommands.Commands.Twitter
 {
-    [Parameter("Text", "String")]
+    [StringParameter("Text")]
     [Description("This command sends a tweet.")]
     public class Tweet : TwitterCommand
     {

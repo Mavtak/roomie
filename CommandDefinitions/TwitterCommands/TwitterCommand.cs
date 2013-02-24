@@ -1,12 +1,11 @@
-﻿
-
-using Roomie.Common.Exceptions;
+﻿using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.TwitterCommands
 {
-    [Parameter("Username", "String")]
+    [StringParameter("Username")]
     public abstract class TwitterCommand : RoomieCommand
     {
 

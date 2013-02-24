@@ -50,18 +50,36 @@ namespace Roomie.Common.ScriptingLanguage
             FullName = matches.Groups["FullName"].Value;
 
             //TODO: make this less awful
-            var nextPart = matches.Groups["Parameters"];
-            if (nextPart.Success && nextPart.Length > 0)
+            var parametersPart = matches.Groups["Parameters"];
+            if (parametersPart.Success && parametersPart.Length > 0)
             {
-                foreach (var capture in _parametersRegex.Match(nextPart.Value).Captures)
+                foreach (var parameter in ParseParameters(parametersPart.Value))
+                {
+                    Parameters.Add(parameter);
+                }
+            }
+        }
+
+        private static IEnumerable<ScriptCommandParameter> ParseParameters(string parameters)
+        {
+            //TODO: Fix this ugly code
+
+            parameters = parameters.Trim();
+
+            while (parameters.Length > 0)
+            {
+                foreach (var capture in _parametersRegex.Match(parameters).Captures)
                 {
                     var parameterMatch = _parameterRegex.Match(capture.ToString());
 
-                    string name = parameterMatch.Groups["Name"].Value;
-                    string value = parameterMatch.Groups["Value"].Value;
+                    var name = parameterMatch.Groups["Name"].Value;
+                    var value = parameterMatch.Groups["Value"].Value;
 
                     var parameter = new ScriptCommandParameter(name, value);
-                    Parameters.Add(parameter);
+
+                    yield return parameter;
+
+                    parameters = parameters.Substring(parameterMatch.Value.Length).TrimStart();
                 }
             }
         }

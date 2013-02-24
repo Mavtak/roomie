@@ -1,16 +1,17 @@
 ﻿
 
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 
 namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
 {
-    [Parameter("Host", "String")]
-    [Parameter("Port", "Integer")]
-    [Parameter("UseSSL", "Boolean")]
-    [Parameter("Username", "String")]
-    [Parameter("Password", "String")]
-    [Parameter("DisplayName", "String")]
+    [StringParameter("Host")]
+    [IntegerParameter("Port")]
+    [BooleanParameter("UseSSL")]
+    [StringParameter("Username")]
+    [StringParameter("Password")]
+    [StringParameter("DisplayName")]
     [Description("Saves email information for later calls to Email.Send")]
     public class RegisterSender : EmailCommand
     {

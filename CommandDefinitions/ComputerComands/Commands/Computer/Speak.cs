@@ -2,11 +2,12 @@
 using System.Speech.Synthesis;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {
-    [Parameter("Text", "String")]
-    [Parameter("Async", "Boolean", "False")]
+    [StringParameter("Text")]
+    [BooleanParameter("Async", false)]
     [Description("This command uses speach synthesis to translate the given text to audio.")]
     public sealed class Speak : RoomieCommand, IDisposable
     {

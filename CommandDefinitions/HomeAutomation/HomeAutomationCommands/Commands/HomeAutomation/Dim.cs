@@ -3,9 +3,9 @@
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     [PowerParameter]
-    public class Dim : SingleDeviceControlCommand
+    public class Dim : HomeAutomationSingleDeviceCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var scope = context.Scope;
             var device = context.Device;

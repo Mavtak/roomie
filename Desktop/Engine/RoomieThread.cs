@@ -91,6 +91,5 @@ namespace Roomie.Desktop.Engine
         {
             Engine.SimpleOutputText(this, message);
         }
-
     }
 }

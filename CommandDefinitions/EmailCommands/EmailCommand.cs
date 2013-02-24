@@ -1,12 +1,11 @@
-﻿
-
-using Roomie.Common.Exceptions;
+﻿using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.EmailCommands
 {
-    [Parameter("Address", "String")]
+    [StringParameter("Address")]
     public abstract class EmailCommand : RoomieCommand
     {
         public EmailCommand()

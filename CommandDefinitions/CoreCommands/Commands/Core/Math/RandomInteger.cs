@@ -1,12 +1,13 @@
 ﻿using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.Math
 {
-    [Parameter("Min", "Integer")]
-    [Parameter("Max", "Integer")]
-    [Parameter("ResultName", "String")]
+    [IntegerParameter("Min")]
+    [IntegerParameter("Max")]
+    [StringParameter("ResultName")]
     [Description("Returns an Integer (in the variable specified by ResultName) between Min and Max (inclusive)")]
     public class RandomInteger : RoomieCommand
     {

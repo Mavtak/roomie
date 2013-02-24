@@ -2,14 +2,15 @@
 using Roomie.Common.Exceptions;
 using Roomie.Common.HomeAutomation.Exceptions;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
-    [Parameter("PollInterval", "TimeSpan", "1 Second")]
-    [Parameter("MaxErrors", "Integer", "5")]
-    public class WaitForChange : SingleDeviceControlCommand
+    [TimeSpanParameter("PollInterval", "1 Second")]
+    [IntegerParameter("MaxErrors", 5)]
+    public class WaitForChange : HomeAutomationSingleDeviceCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var interpreter = context.Interpreter;
             var scope = context.Scope;

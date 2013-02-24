@@ -1,9 +1,10 @@
 ﻿using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("Value", "Boolean", "True")]
+    [BooleanParameter("Value", true)]
     public class SetCommandPrinting : RoomieCommand
     {
         protected override void Execute_Definition(RoomieCommandContext context)

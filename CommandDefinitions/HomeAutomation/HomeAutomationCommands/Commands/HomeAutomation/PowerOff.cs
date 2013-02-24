@@ -1,9 +1,9 @@
 ﻿
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
-    public class PowerOff : SingleDeviceControlCommand
+    public class PowerOff : HomeAutomationSingleDeviceCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var device = context.Device;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.Desktop.Engine.Commands
 {
@@ -6,7 +7,7 @@ namespace Roomie.Desktop.Engine.Commands
     public class ParameterAttribute : Attribute
     {
         public string Name { get; private set; }
-        public string Type { get; private set; }
+        public IRoomieCommandArgumentType Type { get; private set; }
         public string Default { get; set; }
 
         private bool _hasDefault;
@@ -22,7 +23,7 @@ namespace Roomie.Desktop.Engine.Commands
             }
         }
 
-        public ParameterAttribute(string name, string type)
+        public ParameterAttribute(string name, IRoomieCommandArgumentType type)
         {
             Name = name;
             Type = type;
@@ -30,7 +31,7 @@ namespace Roomie.Desktop.Engine.Commands
             HasDefault = false;
         }
 
-        public ParameterAttribute(string name, string type, string @default)
+        public ParameterAttribute(string name, IRoomieCommandArgumentType type, string @default)
             : this(name, type)
         {
             Default = @default;

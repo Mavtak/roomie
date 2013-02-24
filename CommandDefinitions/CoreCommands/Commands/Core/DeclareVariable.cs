@@ -1,11 +1,12 @@
 ﻿using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("Name", "String")]
-    [Parameter("Value", "String", null)]//TODO: should default value be an empty string instead?
-    [Parameter("Global", "Boolean", "False")]
+    [StringParameter("Name")]
+    [StringParameter("Value", null)]//TODO: should default value be an empty string instead?
+    [BooleanParameter("Global", false)]
     [Description("This command declares a variable with a given value.  \"Global\" creates the element in global scope.")]
     public class DeclareVariable : RoomieCommand
     {

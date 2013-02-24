@@ -13,9 +13,9 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             var greaterContext = new HomeAutomationCommandContext(context);
 
-            Execute_HomeAutomation(greaterContext);
+            Execute_HomeAutomationDefinition(greaterContext);
         }
 
-        protected abstract void Execute_HomeAutomation(HomeAutomationCommandContext context);
+        protected abstract void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context);
     }
 }

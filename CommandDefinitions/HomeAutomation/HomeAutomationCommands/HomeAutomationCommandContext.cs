@@ -7,11 +7,16 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
     public class HomeAutomationCommandContext : RoomieCommandContext
     {
         public Network Network { get; set; }
-        public Device Device { get; set; }
 
         public HomeAutomationCommandContext(RoomieCommandContext context)
             : base(context)
         { }
+
+        public HomeAutomationCommandContext(HomeAutomationCommandContext context)
+            : this((RoomieCommandContext) context)
+        {
+            Network = context.Network;
+        }
 
         public NetworkCollection Networks
         {

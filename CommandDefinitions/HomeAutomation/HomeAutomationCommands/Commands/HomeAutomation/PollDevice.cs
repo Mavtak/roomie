@@ -3,9 +3,9 @@
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     [NotFinished]
-    public class PollDevice : SingleDeviceControlCommand
+    public class PollDevice : HomeAutomationSingleDeviceCommand
     {
-        protected override void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context)
+        protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var device = context.Device;
 

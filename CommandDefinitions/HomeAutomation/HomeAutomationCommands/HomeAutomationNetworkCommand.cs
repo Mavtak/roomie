@@ -10,7 +10,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             : base()
         { }
 
-        protected override void Execute_HomeAutomation(HomeAutomationCommandContext context)
+        protected override void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context)
         {
             var interpreter = context.Interpreter;
             var scope = context.Scope;
@@ -45,15 +45,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 network = networks[networkName];
             }
 
-            Device device = null;
-            if (scope.VariableDefinedInThisScope("Device"))
-            {
-                string address = scope.GetValue("Device");
-                
-                device = networks.GetDevice(address, network);
-            }
-
-
             if (scope.VariableDefinedInThisScope("AutoConnect")
                 && scope.GetBoolean("AutoConnect"))
             {
@@ -64,10 +55,9 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             {
                 var greaterContext = new HomeAutomationCommandContext(context)
                 {
-                    Network = network,
-                    Device = device
+                    Network = network
                 };
-                Execute_HomeAutomationNetwork(greaterContext);
+                Execute_HomeAutomationNetworkDefinition(greaterContext);
             }
             catch (HomeAutomationException e)
             {
@@ -75,7 +65,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        protected abstract void Execute_HomeAutomationNetwork(HomeAutomationCommandContext context);
+        protected abstract void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context);
 
     }
 }

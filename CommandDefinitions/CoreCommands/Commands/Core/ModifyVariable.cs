@@ -1,12 +1,13 @@
 ﻿using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
-    [Parameter("Name", "String")]
-    [Parameter("Value", "String")]
-    [Parameter("Global", "Boolean", "False")]
-    [Parameter("Literal", "Boolean", "False")]
+    [StringParameter("Name")]
+    [StringParameter("Value")]
+    [BooleanParameter("Global", false)]
+    [BooleanParameter("Literal", false)]
     public class ModifyVariable : RoomieCommand
     {
         protected override void Execute_Definition(RoomieCommandContext context)

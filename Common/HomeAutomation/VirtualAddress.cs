@@ -79,6 +79,13 @@ namespace Roomie.Common.HomeAutomation
             return result;
         }
 
+        public static bool IsValid(string format)
+        {
+            var result = addressRegex.IsMatch(format);
+
+            return result;
+        }
+
         private static string getValue(Match match, string key)
         {
             if (match.Groups[key].Success)

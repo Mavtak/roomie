@@ -4,12 +4,13 @@ using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
 using Roomie.Desktop.Engine.Exceptions;
+using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
 {
-    [Parameter("Where", "String")]
-    [Parameter("NewThreadName", "String", null)]
-    [Parameter("Path", "String", null)]
+    [StringParameter("Where")]
+    [StringParameter("NewThreadName", null)]
+    [StringParameter("Path", null)]
     public class InsertScript : RoomieCommand
     {
         protected override void Execute_Definition(RoomieCommandContext context)
