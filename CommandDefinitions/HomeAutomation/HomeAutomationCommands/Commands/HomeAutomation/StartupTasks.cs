@@ -5,6 +5,10 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     public class StartupTasks : StartupCommand
     {
         protected override void Execute_StartupDefinition(RoomieCommandContext context)
-        { }
+        {
+            var argumentTypes = context.ArgumentTypes;
+
+            argumentTypes.Add(new DeviceAddressParameterType());
+        }
     }
 }
