@@ -3,7 +3,7 @@ using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands.SpeechRecognition
 {
-    [Parameter("Phrase", "String")]
+    [StringParameter("Phrase")]
     public class UnregisterPhrase : SpeechRecognitionCommand
     {
         protected override void Execute_SpeechRecognitionDefinition(SpeechRecognitionCommandContext context)
