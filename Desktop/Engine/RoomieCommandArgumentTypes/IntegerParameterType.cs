@@ -34,7 +34,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 
             using (new ParameterValidationMessageHelper(builder, parameterName))
             {
-                builder.Append("a value that represents an integer, a whole number.");
+                builder.Append("a value that represents an integer, a whole number");
             }
 
             return builder.ToString();

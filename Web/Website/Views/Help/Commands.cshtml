@@ -27,7 +27,7 @@
         *@<div class="item wide parameter">@*
           *@<div class="key name">@parameter.Name</div>@*
           *@<div class="value">@*
-            *@<div class="type" title="Data Type">@parameter.Type</div>@*
+            *@<div class="type" title="@parameter.Type.ValidationMessage(null)">@parameter.Type.Name</div>@*
             *@<div class="@(parameter.HasDefault ? "optional" : "required")">@(parameter.HasDefault ? "Optional" : "Required")</div>@*
             *@@if (parameter.HasDefault)
               {<div class="default" title="Default value">@parameter.DefaultValue</div>}@*
