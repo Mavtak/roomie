@@ -150,7 +150,7 @@
       <Project>{bd67d062-fbd1-4a00-8a44-639cb8537ac8}</Project>
       <Name>TextUtilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Roomie.CommandDefinitions.VoiceRecognition\SpeechRecognition.csproj">
+    <ProjectReference Include="..\..\CommandDefinitions\SpeechRecognition\SpeechRecognition.csproj">
       <Project>{52838530-5174-47d2-a029-2ddb7918c776}</Project>
       <Name>SpeechRecognition</Name>
     </ProjectReference>
