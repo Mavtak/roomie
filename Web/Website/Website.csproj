@@ -275,6 +275,14 @@
       <Project>{C570365F-C569-46B3-B35F-12952F0ACDEE}</Project>
       <Name>ComputerComands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\CoreCommands\CoreCommands.csproj">
+      <Project>{fa68504d-927f-4a50-ad3a-a009a98af836}</Project>
+      <Name>CoreCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\EmailCommands\EmailCommands.csproj">
+      <Project>{79c6296e-fe65-4441-8841-541c80f68623}</Project>
+      <Name>EmailCommands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CommandDefinitions\HomeAutomation\ControlThinkCommands\ControlThinkCommands.csproj">
       <Project>{F2A79F92-10A8-4327-8F67-B18E59A3988F}</Project>
       <Name>ControlThinkCommands</Name>
@@ -282,6 +290,10 @@
     <ProjectReference Include="..\..\CommandDefinitions\HomeAutomation\HomeAutomationCommands\HomeAutomationCommands.csproj">
       <Project>{48E1A8A5-7204-4C21-A914-510933DB87EA}</Project>
       <Name>HomeAutomationCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\TwitterCommands\TwitterCommands.csproj">
+      <Project>{f22862b7-cdb9-4d4e-83f3-9aa535db5841}</Project>
+      <Name>TwitterCommands</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\CommandDefinitions\WebHookCommands\WebHookCommands.csproj">
       <Project>{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}</Project>
