@@ -85,7 +85,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphical", "Desktop\Graphi
 		{52838530-5174-47D2-A029-2DDB7918C776} = {52838530-5174-47D2-A029-2DDB7918C776}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechRecognition", "CommandDefinitions\SpeechRecognition\SpeechRecognition.csproj", "{52838530-5174-47D2-A029-2DDB7918C776}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechRecognitionCommands", "CommandDefinitions\SpeechRecognitionCommands\SpeechRecognitionCommands.csproj", "{52838530-5174-47D2-A029-2DDB7918C776}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptingLanguage.Tests", "Common\ScriptingLanguage.Tests\ScriptingLanguage.Tests.csproj", "{752F5DB0-48FA-4EF7-91D3-5776E35952A2}"
 EndProject

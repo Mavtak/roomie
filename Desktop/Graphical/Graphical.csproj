@@ -150,9 +150,9 @@
       <Project>{bd67d062-fbd1-4a00-8a44-639cb8537ac8}</Project>
       <Name>TextUtilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\CommandDefinitions\SpeechRecognition\SpeechRecognition.csproj">
+    <ProjectReference Include="..\..\CommandDefinitions\SpeechRecognitionCommands\SpeechRecognitionCommands.csproj">
       <Project>{52838530-5174-47d2-a029-2ddb7918c776}</Project>
-      <Name>SpeechRecognition</Name>
+      <Name>SpeechRecognitionCommands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Engine\Engine.csproj">
       <Project>{91e5d2c3-d269-4ff9-8ab6-36926441f6b2}</Project>
