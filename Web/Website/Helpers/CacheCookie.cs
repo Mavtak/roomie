@@ -39,6 +39,20 @@ namespace Roomie.Web.Website.Helpers
             }
         }
 
+        private void GetNameAndVersion(string path, out string name, out string version)
+        {
+            var start = path.LastIndexOf("/");
+            var middle = path.IndexOf("?");
+
+            name = path.Substring(start + 1, middle - start - 1);
+            version = path.Substring(middle + 3);
+
+            name = name.ToLowerInvariant();
+            version = version.ToLowerInvariant();
+
+            version = version.GetHashCode().ToString();
+        }
+
         private bool IsFileCached(string name, string version)
         {
             name = name.ToLowerInvariant();
@@ -55,20 +69,6 @@ namespace Roomie.Web.Website.Helpers
             }
 
             return true;
-        }
-
-        private void GetNameAndVersion(string path, out string name, out string version)
-        {
-            var start = path.LastIndexOf("/");
-            var middle = path.IndexOf("?");
-
-            name = path.Substring(start + 1, middle - start - 1);
-            version = path.Substring(middle + 3);
-
-            name = name.ToLowerInvariant();
-            version = version.ToLowerInvariant();
-
-            version = version.GetHashCode().ToString();
         }
 
         public bool IsFileCached(string path)
