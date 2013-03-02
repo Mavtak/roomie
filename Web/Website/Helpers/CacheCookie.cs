@@ -41,8 +41,8 @@ namespace Roomie.Web.Website.Helpers
 
         private void GetNameAndVersion(string path, out string name, out string version)
         {
-            var start = path.LastIndexOf("/");
-            var middle = path.IndexOf("?");
+            var start = path.LastIndexOf("/", StringComparison.InvariantCulture);
+            var middle = path.IndexOf("?", StringComparison.InvariantCulture);
 
             name = path.Substring(start + 1, middle - start - 1);
             version = path.Substring(middle + 3);
