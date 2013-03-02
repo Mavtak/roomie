@@ -35,7 +35,7 @@
           *@<h1 id="title">@{if (@ViewBag.Title != null)
                              {<text>@ViewBag.Title</text>}
                              else
-                             {<text>Roomie</text>}}</h1>@*
+                           {<text>Roomie</text>}}</h1>@*
         *@</div>@*
       *@</div>@* <-- close horizontalCrossSection for #header
 
@@ -64,7 +64,21 @@
 
     //TODO: javascript to resize buttons
     *@@Html.RenderScripts()@*
+
     *@@RenderSection("PageSpecificScripts", false)@*
+      
+    *@@{ var cacheCookie = Html.ViewContext.HttpContext.GetCacheCookie(); }@*
+    *@@if (cacheCookie.FilesNotInCache.Any())
+    {
+        <script type="text/javascript">
+            jQuery(function ($) {
+            @foreach (var file in cacheCookie.FilesNotInCache)
+            {
+                <text>$.get('@file');</text>
+            }
+            });
+        </script>
+    }@*
 
   *@</body>@*
 

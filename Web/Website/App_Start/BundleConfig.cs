@@ -1,6 +1,11 @@
-﻿using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
+using System.Linq;
+using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website
 {
@@ -12,9 +17,11 @@ namespace Roomie.Web.Website
 
         public static void RegisterBundes(BundleCollection bundles)
         {
+            bundles.IgnoreList.Clear();
+
             bundleStyles(bundles);
             bundleScripts(bundles);
-            bundles.IgnoreList.Clear();
+            
             BundleTable.EnableOptimizations = true;
         }
 
@@ -55,18 +62,70 @@ namespace Roomie.Web.Website
 
         public static IHtmlString RenderStyles(this HtmlHelper htmlHelper)
         {
-            var html = Styles.Render(StyleBundlePath).ToString().Replace("\n", "");
+            return RenderBundle(htmlHelper, StyleBundlePath, false);
+        }
+
+        public static IHtmlString RenderScripts(this HtmlHelper htmlHelper)
+        {
+            return RenderBundle(htmlHelper, ScriptBundlePath, true);
+        }
+
+        private static IHtmlString RenderBundle(this HtmlHelper htmlHelper, string bundlePath, bool javaScript)
+        {
+            var httpContext = htmlHelper.ViewContext.HttpContext;
+            var request = httpContext.Request;
+            var response = httpContext.Response;
+
+            var cacheCookie = httpContext.GetCacheCookie();
+
+            var path = Styles.Url(bundlePath).ToString();
+            var isCached = cacheCookie.IsFileCached(path);
+
+            string html;
+
+            if (isCached)
+            {
+                html = javaScript ? Scripts.Render(bundlePath).ToString() : Styles.Render(bundlePath).ToString();
+
+                html = html.Replace("\n", "");
+            }
+            else
+            {
+                cacheCookie.SetFile(path);
+                cacheCookie.AddAFileForDownload(path);
+
+                html = GetInlinedBundle(htmlHelper, bundlePath, javaScript);
+
+                cacheCookie.Save(response);
+            }
+
             var result = new HtmlString(html);
 
             return result;
         }
 
-        public static IHtmlString RenderScripts(this HtmlHelper htmlHelper)
+        private static string GetInlinedBundle(this HtmlHelper htmlHelper, string bundleName, bool javaScript)
         {
-            var html = Scripts.Render(ScriptBundlePath).ToString().Replace("\n", "");
-            var result = new HtmlString(html);
+            var request = htmlHelper.ViewContext.HttpContext.Request;
 
-            return result;
+            var result = new StringBuilder();
+
+            var scriptVirtualPaths = BundleResolver.Current.GetBundleContents(bundleName);
+            var minifier = new Microsoft.Ajax.Utilities.Minifier();
+
+            result.Append(javaScript ? "<script type=\"text/javascript\">" : "<style type=\"text/css\">");
+
+            foreach (var scriptVirtualPath in scriptVirtualPaths)
+            {
+                var absolutePath = request.MapPath(scriptVirtualPath);
+                var content = System.IO.File.ReadAllText(absolutePath);
+                var minifiedContent = content; // minifier.MinifyStyleSheet(content);
+                result.Append(minifiedContent);
+            }
+
+            result.Append(javaScript ? "</script>" : "</style>");
+
+            return result.ToString();
         }
     }
 }
