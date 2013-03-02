@@ -2,13 +2,21 @@
 
 *@@{ var cacheCookie = Html.ViewContext.HttpContext.GetCacheCookie(); }@*
     *@@if (cacheCookie.FilesNotInCache.Any())
-    {@*
+      {@*
         *@<script type="text/javascript">@*
             *@jQuery(function ($) {@*
-            *@@foreach (var file in cacheCookie.FilesNotInCache)
-              {@*
-              *@<text>$.get('@file');</text>@*
-              *@}@*
+            
+            *@function precacheFiles()@*
+              *@ {@*
+                *@@foreach (var file in cacheCookie.FilesNotInCache)
+                  {@*
+                  *@<text>$.get('@file');</text>@*
+                *@}@*
+
+              *@ }@*
+              
+              *@setTimeout(precacheFiles, 500);@*
+
             *@});@*
         *@</script>@*
     *@}@*
