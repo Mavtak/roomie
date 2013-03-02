@@ -162,7 +162,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AutoSaveAttribute.cs" />
-    <Compile Include="Helpers\CookieCache.cs" />
+    <Compile Include="Helpers\CacheCookie.cs" />
     <Compile Include="Helpers\HttpContextExtensions.cs" />
     <Compile Include="Helpers\RoomieControllerExtensions.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
@@ -327,6 +327,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Partials\Network\AddRemoveDeviceButtons.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partials\Layout\PrecacheScript.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

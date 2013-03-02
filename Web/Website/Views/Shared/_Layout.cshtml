@@ -67,18 +67,7 @@
 
     *@@RenderSection("PageSpecificScripts", false)@*
       
-    *@@{ var cacheCookie = Html.ViewContext.HttpContext.GetCacheCookie(); }@*
-    *@@if (cacheCookie.FilesNotInCache.Any())
-    {
-        <script type="text/javascript">
-            jQuery(function ($) {
-            @foreach (var file in cacheCookie.FilesNotInCache)
-            {
-                <text>$.get('@file');</text>
-            }
-            });
-        </script>
-    }@*
+    *@@Html.Partial("Partials/Layout/PrecacheScript")@*
 
   *@</body>@*
 
