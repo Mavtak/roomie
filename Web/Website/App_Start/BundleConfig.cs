@@ -97,67 +97,19 @@ namespace Roomie.Web.Website
                 cacheCookie.SetFile(path);
                 cacheCookie.AddAFileForDownload(path);
 
-                result = GetInlinedBundle(htmlHelper, bundlePath, javaScript);
+                var html = new StringBuilder();
+
+                html.Append(javaScript ? "<script type=\"text/javascript\">" : "<style type=\"text/css\">");
+                var bundleResponse = httpContext.Cache["System.Web.Optimization.Bundle:" + bundlePath] as BundleResponse;
+                html.Append(bundleResponse.Content);
+                html.Append(javaScript ? "</script>" : "</style>");
 
                 cacheCookie.Save(response);
+
+                result = new HtmlString(html.ToString());
             }
 
             return result;
-        }
-
-        private static Dictionary<object, HtmlString> _inlinedBundles = new Dictionary<object, HtmlString>();
- 
-        private static HtmlString GetInlinedBundle(this HtmlHelper htmlHelper, string bundleName, bool javaScript)
-        {
-            var key = Styles.Url(bundleName);
-
-            if (!_inlinedBundles.ContainsKey(key))
-            {
-                var addition = BuildInlinedBundle(htmlHelper, bundleName, javaScript);
-                _inlinedBundles.Add(key, addition);
-            }
-
-            var result = _inlinedBundles[key];
-
-            return result;
-        }
-
-        private static HtmlString BuildInlinedBundle(this HtmlHelper htmlHelper, string bundleName, bool javaScript)
-        {
-            var request = htmlHelper.ViewContext.HttpContext.Request;
-
-            var result = new StringBuilder();
-
-            var scriptVirtualPaths = BundleResolver.Current.GetBundleContents(bundleName);
-            var minifier = new Microsoft.Ajax.Utilities.Minifier();
-
-            var plainContent = new StringBuilder();
-
-            foreach (var scriptVirtualPath in scriptVirtualPaths)
-            {
-                var absolutePath = request.MapPath(scriptVirtualPath);
-                var content = System.IO.File.ReadAllText(absolutePath);
-                
-                plainContent.Append(content);
-                plainContent.Append("\n");
-            }
-
-            result.Append(javaScript ? "<script type=\"text/javascript\">" : "<style type=\"text/css\">");
-
-            var minifiedContent = javaScript ?
-                    minifier.MinifyJavaScript(plainContent.ToString(), new CodeSettings
-                    {
-                        PreserveImportantComments = false
-                    })
-                    :
-                    minifier.MinifyStyleSheet(plainContent.ToString(), new CssSettings
-                    {
-                        CommentMode = CssComment.None
-                    });
-            result.Append(minifiedContent);
-            result.Append(javaScript ? "</script>" : "</style>");
-
-            return new HtmlString(result.ToString());
         }
     }
 }
