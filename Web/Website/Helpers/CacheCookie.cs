@@ -39,16 +39,10 @@ namespace Roomie.Web.Website.Helpers
             }
         }
 
-        private static string ShortenVersion(string version)
-        {
-            return version.GetHashCode().ToString();
-        }
-
-        public bool IsFileCached(string name, string version)
+        private bool IsFileCached(string name, string version)
         {
             name = name.ToLowerInvariant();
             version = version.ToLowerInvariant();
-            version = ShortenVersion(version);
 
             if (!_files.ContainsKey(name))
             {
@@ -66,10 +60,15 @@ namespace Roomie.Web.Website.Helpers
         private void GetNameAndVersion(string path, out string name, out string version)
         {
             var start = path.LastIndexOf("/");
-            var middle = path.IndexOf("?v=");
+            var middle = path.IndexOf("?");
 
             name = path.Substring(start + 1, middle - start - 1);
             version = path.Substring(middle + 3);
+
+            name = name.ToLowerInvariant();
+            version = version.ToLowerInvariant();
+
+            version = version.GetHashCode().ToString();
         }
 
         public bool IsFileCached(string path)
@@ -81,7 +80,7 @@ namespace Roomie.Web.Website.Helpers
             return IsFileCached(name, version);
         }
 
-        public void SetFile(string name, string version)
+        private void SetFile(string name, string version)
         {
             name = name.ToLowerInvariant();
             version = version.ToLowerInvariant();
@@ -90,8 +89,6 @@ namespace Roomie.Web.Website.Helpers
             {
                 _files.Remove(name);
             }
-
-            version = ShortenVersion(version);
 
             _files.Add(name, version);
         }
