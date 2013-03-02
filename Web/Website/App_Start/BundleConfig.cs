@@ -82,31 +82,37 @@ namespace Roomie.Web.Website
             var path = Styles.Url(bundlePath).ToString();
             var isCached = cacheCookie.IsFileCached(path);
 
-            HtmlString result;
+            HtmlString result = null;
 
-            if (isCached)
+            if (!isCached)
+            {
+                cacheCookie.SetFile(path);
+
+                var html = new StringBuilder();
+
+                html.Append(javaScript ? "<script type=\"text/javascript\">" : "<style type=\"text/css\">");
+                var bundleResponse = httpContext.Cache["System.Web.Optimization.Bundle:" + bundlePath] as BundleResponse;
+                //TODO: log if bundleResponse is null
+                if (bundleResponse != null)
+                {
+                    html.Append(bundleResponse.Content);
+                    html.Append(javaScript ? "</script>" : "</style>");
+
+                    cacheCookie.AddAFileForDownload(path);
+
+                    result = new HtmlString(html.ToString());
+                }
+
+                cacheCookie.Save(response);
+            }
+
+            if(result == null)
             {
                 var html = javaScript ? Scripts.Render(bundlePath).ToString() : Styles.Render(bundlePath).ToString();
 
                 html = html.Replace("\n", "");
 
                 result = new HtmlString(html);
-            }
-            else
-            {
-                cacheCookie.SetFile(path);
-                cacheCookie.AddAFileForDownload(path);
-
-                var html = new StringBuilder();
-
-                html.Append(javaScript ? "<script type=\"text/javascript\">" : "<style type=\"text/css\">");
-                var bundleResponse = httpContext.Cache["System.Web.Optimization.Bundle:" + bundlePath] as BundleResponse;
-                html.Append(bundleResponse.Content);
-                html.Append(javaScript ? "</script>" : "</style>");
-
-                cacheCookie.Save(response);
-
-                result = new HtmlString(html.ToString());
             }
 
             return result;
