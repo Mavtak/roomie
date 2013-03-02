@@ -82,30 +82,47 @@ namespace Roomie.Web.Website
             var path = Styles.Url(bundlePath).ToString();
             var isCached = cacheCookie.IsFileCached(path);
 
-            string html;
+            HtmlString result;
 
             if (isCached)
             {
-                html = javaScript ? Scripts.Render(bundlePath).ToString() : Styles.Render(bundlePath).ToString();
+                var html = javaScript ? Scripts.Render(bundlePath).ToString() : Styles.Render(bundlePath).ToString();
 
                 html = html.Replace("\n", "");
+
+                result = new HtmlString(html);
             }
             else
             {
                 cacheCookie.SetFile(path);
                 cacheCookie.AddAFileForDownload(path);
 
-                html = GetInlinedBundle(htmlHelper, bundlePath, javaScript);
+                result = GetInlinedBundle(htmlHelper, bundlePath, javaScript);
 
                 cacheCookie.Save(response);
             }
 
-            var result = new HtmlString(html);
+            return result;
+        }
+
+        private static Dictionary<object, HtmlString> _inlinedBundles = new Dictionary<object, HtmlString>();
+ 
+        private static HtmlString GetInlinedBundle(this HtmlHelper htmlHelper, string bundleName, bool javaScript)
+        {
+            var key = Styles.Url(bundleName);
+
+            if (!_inlinedBundles.ContainsKey(key))
+            {
+                var addition = BuildInlinedBundle(htmlHelper, bundleName, javaScript);
+                _inlinedBundles.Add(key, addition);
+            }
+
+            var result = _inlinedBundles[key];
 
             return result;
         }
 
-        private static string GetInlinedBundle(this HtmlHelper htmlHelper, string bundleName, bool javaScript)
+        private static HtmlString BuildInlinedBundle(this HtmlHelper htmlHelper, string bundleName, bool javaScript)
         {
             var request = htmlHelper.ViewContext.HttpContext.Request;
 
@@ -140,7 +157,7 @@ namespace Roomie.Web.Website
             result.Append(minifiedContent);
             result.Append(javaScript ? "</script>" : "</style>");
 
-            return result.ToString();
+            return new HtmlString(result.ToString());
         }
     }
 }
