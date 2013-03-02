@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Linq;
+using Microsoft.Ajax.Utilities;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website
@@ -113,16 +114,30 @@ namespace Roomie.Web.Website
             var scriptVirtualPaths = BundleResolver.Current.GetBundleContents(bundleName);
             var minifier = new Microsoft.Ajax.Utilities.Minifier();
 
-            result.Append(javaScript ? "<script type=\"text/javascript\">" : "<style type=\"text/css\">");
+            var plainContent = new StringBuilder();
 
             foreach (var scriptVirtualPath in scriptVirtualPaths)
             {
                 var absolutePath = request.MapPath(scriptVirtualPath);
                 var content = System.IO.File.ReadAllText(absolutePath);
-                var minifiedContent = content; // minifier.MinifyStyleSheet(content);
-                result.Append(minifiedContent);
+                
+                plainContent.Append(content);
+                plainContent.Append("\n");
             }
 
+            result.Append(javaScript ? "<script type=\"text/javascript\">" : "<style type=\"text/css\">");
+
+            var minifiedContent = javaScript ?
+                    minifier.MinifyJavaScript(plainContent.ToString(), new CodeSettings
+                    {
+                        PreserveImportantComments = false
+                    })
+                    :
+                    minifier.MinifyStyleSheet(plainContent.ToString(), new CssSettings
+                    {
+                        CommentMode = CssComment.None
+                    });
+            result.Append(minifiedContent);
             result.Append(javaScript ? "</script>" : "</style>");
 
             return result.ToString();
