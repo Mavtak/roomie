@@ -293,6 +293,10 @@
       <Project>{48E1A8A5-7204-4C21-A914-510933DB87EA}</Project>
       <Name>HomeAutomationCommands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\SpeechRecognitionCommands\SpeechRecognitionCommands.csproj">
+      <Project>{52838530-5174-47d2-a029-2ddb7918c776}</Project>
+      <Name>SpeechRecognitionCommands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CommandDefinitions\TwitterCommands\TwitterCommands.csproj">
       <Project>{f22862b7-cdb9-4d4e-83f3-9aa535db5841}</Project>
       <Name>TwitterCommands</Name>
