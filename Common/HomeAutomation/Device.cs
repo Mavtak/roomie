@@ -48,7 +48,7 @@ namespace Roomie.Common.HomeAutomation
         {
             get
             {
-                return !IsOff;
+                return Power != null && !IsOff;
             }
         }
 
