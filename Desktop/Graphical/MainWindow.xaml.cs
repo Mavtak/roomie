@@ -25,14 +25,29 @@ namespace Roomie.Desktop.Graphical
             _engine = new RoomieEngine();
             Events = new ObservableCollection<RoomieEvent>();
             _engine.ScriptMessageSent += engine_ScriptMessageSent;
+            _engine.EngineStateChanged += _engine_EngineStateChanged;
             EventListing.ItemsSource = Events;
 
             _engine.Start();
         }
 
+        void _engine_EngineStateChanged(object sender, Engine.Delegates.EngineStateChangedEventArgs e)
+        {
+            if (e.NewState == EngineState.ShutDown && _shuttingDown)
+            {
+                Dispatcher.InvokeAsync(Close);
+            }
+        }
+
+        private bool _shuttingDown = false;
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            _engine.Shutdown();
+            if (_engine.EngineState != EngineState.ShutDown)
+            {
+                _shuttingDown = true;
+                _engine.Shutdown();
+                e.Cancel = true;
+            }
         }
 
         void engine_ScriptMessageSent(object sender, RoomieThreadEventArgs e)
