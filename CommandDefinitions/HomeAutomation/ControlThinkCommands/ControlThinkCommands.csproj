@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\SetConfigurationParameter.cs" />
+    <Compile Include="Commands\ListConfigurationParameters.cs" />
+    <Compile Include="Commands\GetConfigurationParameter.cs" />
     <Compile Include="Commands\PrintStats.cs" />
     <Compile Include="Commands\RegisterNetwork.cs" />
     <Compile Include="Commands\RemoveBrokenDevice.cs" />
