@@ -142,7 +142,7 @@ namespace Roomie.Desktop.Engine
         //TODO: add timeout
         public void Shutdown()
         {
-            var thread = new System.Threading.Thread(new System.Threading.ThreadStart(shutdown_helper));
+            var thread = new System.Threading.Thread(shutdown_helper);
             thread.Start();
         }
         private void shutdown_helper()
@@ -158,14 +158,12 @@ namespace Roomie.Desktop.Engine
             }
 
             //TODO: fix this
-            var killTime = DateTime.Now.AddSeconds(30);
-            //while(shutdownThreads.IsBusy && DateTime.Now<=killTime)
-            //{
-            //    System.Threading.Thread.Sleep(100);
-            //}
-            System.Threading.Thread.Sleep(10000);
+            var killTime = DateTime.Now.AddSeconds(10);
+            while(shutdownThreads.IsBusy && DateTime.Now<=killTime)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
 
-            //if (shutdownThreads.IsBusy)
             shutdownThreads.ShutDown();
 
             RootThread.WriteEvent("Done.");
