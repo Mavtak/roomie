@@ -13,6 +13,7 @@ namespace Roomie.CommandDefinitions.SpeechRecognition
         private SpeechRecognitionEngine SpeechRecognizer { get; set; }
         private ThreadPool ThreadPool { get; set; }
         private Thread _recognitionThread;
+        private ScriptCommandList _speechRecognizedAction;
 
         public SpeechResponder(RoomieEngine engine)
         {
@@ -88,6 +89,10 @@ namespace Roomie.CommandDefinitions.SpeechRecognition
 
         public void ProcessPhrase(string phrase)
         {
+            if (_speechRecognizedAction != null)
+            {
+                ThreadPool.AddCommands(_speechRecognizedAction);
+            }
             var command = GetCommand(phrase);
 
             ThreadPool.AddCommands(command);
@@ -114,6 +119,15 @@ namespace Roomie.CommandDefinitions.SpeechRecognition
         public void RemovePhrase(string phrase)
         {
             RegisteredCommands.Remove(phrase);
+        }
+
+        public void RegisterSpeechRecognizedAction(ScriptCommandList commands)
+        {
+            lock (this)
+            {
+                _speechRecognizedAction = new ScriptCommandList();
+                _speechRecognizedAction.Add(commands);
+            }
         }
     }
 }
