@@ -10,6 +10,7 @@ namespace Roomie.Common.HomeAutomation
         public static readonly DeviceType Switch = new DeviceType("Switch", false, true);
         public static readonly DeviceType Controller = new DeviceType("Controller", false, false);
         public static readonly DeviceType Relay = new DeviceType("Relay", false, false);
+        public static readonly DeviceType MotionDetector = new DeviceType("Motion Detector", false, false);
         public static readonly DeviceType Unknown = new DeviceType("Unknown", true, true);
 
         public string Name { get; private set;}
