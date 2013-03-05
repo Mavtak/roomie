@@ -6,6 +6,7 @@ using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {
+    //TODO: make MAC address type
     [StringParameter("MAC")]
     [Description("This command sends a Wake On Lan (WOL) packet to to the specified MAC address")]
     public class WakeComputer : RoomieCommand
@@ -14,7 +15,8 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
         {
             var scope = context.Scope;
 
-            string macAddress = scope.GetValue("MAC");
+            var macAddress = scope.GetValue("MAC");
+            macAddress = macAddress.Replace("-", "");
 
             try
             {
