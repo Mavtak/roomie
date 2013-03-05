@@ -1,6 +1,7 @@
 ﻿using System;
 using Roomie.Common.Exceptions;
 using Roomie.Common.ScriptingLanguage;
+using Roomie.Desktop.Engine.Delegates;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.Desktop.Engine
@@ -16,6 +17,7 @@ namespace Roomie.Desktop.Engine
         public readonly bool DevelopmentEnvironment;
         public readonly DataStore DataStore;
         public readonly ArgumentTypeCollection ArgumentTypes;
+        private EngineState _engineState;
 
         private RoomieThread _rootThread;
 
@@ -23,9 +25,11 @@ namespace Roomie.Desktop.Engine
         public ThreadPool Threads { get; private set; }
         
         public event RoomieThreadEventHandler ScriptMessageSent;
+        public event EngineStateChangedEventHandler EngineStateChanged;
 
         public RoomieEngine()
         {
+            _engineState = EngineState.New;
             GlobalScope = new RoomieCommandScope();
             DataStore = new DataStore();
             Threads = new ThreadPool(this, "Root Threads");
@@ -59,6 +63,7 @@ namespace Roomie.Desktop.Engine
 
         public void Start()
         {
+            EngineState = EngineState.Starting;
             //TODO: catch more exceptions
             RootThread.WriteEvent("Roomie Engine started.  VROOOOOM! :D");
 
@@ -107,9 +112,33 @@ namespace Roomie.Desktop.Engine
                 //TODO: add a utility function for building single commands
                 RootThread.WriteEvent("No Startup Script Found.  Create 'Startup.RoomieScript' in the working directory to use this feature.");
             }
+
+            EngineState = EngineState.Running;
         }
 
         #region accessors
+
+        public EngineState EngineState
+        {
+            get
+            {
+                return _engineState;
+            }
+
+            set
+            {
+                var oldState = _engineState;
+                var newState = value;
+
+                _engineState = newState;
+
+                if (EngineStateChanged != null)
+                {
+                    var eventArgs = new EngineStateChangedEventArgs(oldState, newState);
+                    EngineStateChanged(this, eventArgs);
+                }
+            }
+        }
 
         public RoomieThread RootThread
         {
@@ -147,6 +176,10 @@ namespace Roomie.Desktop.Engine
         }
         private void shutdown_helper()
         {
+            EngineState = EngineState.ShuttingDown;
+
+            RootThread.WriteEvent("Shutting Down...");
+
             Threads.ShutDown(); //TODO: what about other thread pools?
             var shutdownThreads = new ThreadPool(this, "Shutdown Tasks");
 
@@ -167,6 +200,8 @@ namespace Roomie.Desktop.Engine
             shutdownThreads.ShutDown();
 
             RootThread.WriteEvent("Done.");
+
+            EngineState = EngineState.ShutDown;
 
             //this thread will die when the function returns, and all threads will be killed.
         }
