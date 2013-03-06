@@ -88,7 +88,7 @@ namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
                 BackingObject.Level = (byte)power;
                 this.IsConnected = true;
 
-                //TODO: return actual value set
+                //TODO: should this method still return the power?
                 return power;
             }
             catch (ControlThink.ZWave.DeviceNotRespondingException exception)

@@ -76,9 +76,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 if (value.Value > MaxPower)
                     value = MaxPower;
 
-                base.power = SetPower(value.Value);
-
-                PowerChanged();
+                SetPower(value.Value);
             }
         }
 
