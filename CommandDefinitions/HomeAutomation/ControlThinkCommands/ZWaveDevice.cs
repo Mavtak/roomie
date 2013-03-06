@@ -40,8 +40,6 @@ namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
             {
                 BackingObject.PowerOn();
                 IsConnected = true;
-                base.power = MaxPower;
-                //TODO: update power
             }
             catch (ControlThink.ZWave.DeviceNotRespondingException exception)
             {
@@ -65,8 +63,6 @@ namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
             {
                 BackingObject.PowerOff();
                 IsConnected = true;
-                base.power = 0;
-                //TODO: update power
             }
             catch (ControlThink.ZWave.DeviceNotRespondingException exception)
             {
