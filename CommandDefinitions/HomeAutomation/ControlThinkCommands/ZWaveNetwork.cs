@@ -1,8 +1,12 @@
 ﻿using System;
-using Roomie.CommandDefinitions.HomeAutomationCommands;
+using System.Linq;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.CommandDefinitions.ZWave.ControlThinkCommands;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
+using Roomie.Desktop.Engine;
+using Device = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
+using Network = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
@@ -10,8 +14,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     {
         public global::ControlThink.ZWave.ZWaveController ZWaveController { get; private set; }
         public new ZWaveDeviceCollection Devices { get; private set; }
-        public ZWaveNetwork()
-            : base()
+        public ZWaveNetwork(ThreadPool threadPool)
+            : base(threadPool)
         {
             this.ZWaveController = new global::ControlThink.ZWave.ZWaveController();
             this.Devices = new ZWaveDeviceCollection(this);

@@ -1,6 +1,8 @@
-﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Events;
+using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
+using System;
 using BaseDevice = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
 using BaseNetwork = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
 
@@ -23,6 +25,15 @@ namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
             {
                 MaxPower = 255;
             }
+
+            BackingObject.LevelChanged += (sender, args) =>
+                {
+                    if (args.Level != power)
+                    {
+                        power = args.Level;
+                        PowerChanged();
+                    }
+                };
         }
 
         public override void PowerOn()

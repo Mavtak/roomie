@@ -3,14 +3,18 @@ using System.Xml;
 using System.Xml.Linq;
 using Roomie.Common;
 using BaseNetwork = Roomie.Common.HomeAutomation.Network;
+using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
     public abstract class Network : BaseNetwork
-    {        
-        public Network()
+    {
+        internal ThreadPool ThreadPool;
+
+        public Network(ThreadPool threadPool)
             : base(null)
         {
+            ThreadPool = threadPool;
             base.devices = new Roomie.Common.HomeAutomation.DeviceCollection(this);
         }
 

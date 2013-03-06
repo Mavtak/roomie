@@ -1,14 +1,23 @@
-﻿using Roomie.Common.HomeAutomation;
+﻿using System;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
+using Roomie.Desktop.Engine;
 using BaseDevice = Roomie.Common.HomeAutomation.Device;
+using Roomie.CommandDefinitions.HomeAutomationCommands.Events;
+using System.Collections.Generic;
+using Roomie.Common.ScriptingLanguage;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
     public abstract class Device : BaseDevice
     {
-        //TODO: Create PowerChanged event?
         //TODO: Create LastPolled dealy?
         //TODO: add public access for Network
+
+        //TODO: improve this
+        public List<ScriptCommandList> PowerOnCommands { get; private set; }
+        public List<ScriptCommandList> PowerOffCommands { get; private set; }
+        public List<ScriptCommandList> PowerChangedCommands { get; private set; }
 
         public DeviceLocation Location
         {
@@ -22,6 +31,15 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
+        private Network Network
+        {
+            get
+            {
+                //TODO: this isn't so great
+                return network as Network;
+            }
+        }
+
         protected Device(Network network, int maxPower, DeviceType type = null, string name = null, DeviceLocation location = null)
             :base(location??new DeviceLocation(), network)
         {
@@ -31,6 +49,10 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             this.Name = name;
             this.power = null;
             this.IsConnected = null;
+
+            PowerChangedCommands = new List<ScriptCommandList>();
+            PowerOnCommands = new List<ScriptCommandList>();
+            PowerOffCommands = new List<ScriptCommandList>();
         }
 
         public abstract void PowerOn();
@@ -53,10 +75,31 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                     value = MaxPower;
 
                 base.power = SetPower(value.Value);
+
+                PowerChanged();
             }
         }
 
         //TODO: min and max power values
+
+        protected void PowerChanged()
+        {
+            var threadPool = Network.ThreadPool;
+
+            threadPool.Print(BuildVirtualAddress(false, false) + " power level changed to " + Power);
+
+            PowerChangedCommands.ForEach(threadPool.AddCommands);
+
+            if (IsOn)
+            {
+                PowerOnCommands.ForEach(threadPool.AddCommands);
+            }
+
+            if (IsOff)
+            {
+                PowerOffCommands.ForEach(threadPool.AddCommands);
+            }
+        }
 
         public override string ToString()
         {

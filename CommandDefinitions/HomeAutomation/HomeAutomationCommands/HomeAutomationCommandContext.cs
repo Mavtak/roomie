@@ -29,6 +29,23 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
+        public ThreadPool ThreadPool
+        {
+            get
+            {
+                var key = "HomeAutomation Commands Thread Pool";
+
+                if (!DataStore.Contains(key))
+                {
+                    DataStore.Add(key, new ThreadPool(Engine, "Home Authomation"));
+                }
+
+                var value = DataStore[key] as ThreadPool;
+
+                return value;
+            }
+        }
+
         public void AddSyncWithCloud()
         {
             var scriptCommand = GetBlankCommand(typeof(SyncWithCloud));
