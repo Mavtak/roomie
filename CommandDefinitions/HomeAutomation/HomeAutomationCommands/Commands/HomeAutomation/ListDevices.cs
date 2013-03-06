@@ -1,5 +1,6 @@
 ﻿using System;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.TextUtilities;
 using Roomie.Desktop.Engine.Commands;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
@@ -51,7 +52,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                 }
 
 
-                if (!device.Type.CanControl)
+                if (!device.Type.CanControl && device.Type != DeviceType.MotionDetector)
                 {
                     power = "n/a";
                 }

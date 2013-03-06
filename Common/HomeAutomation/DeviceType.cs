@@ -57,7 +57,7 @@ namespace Roomie.Common.HomeAutomation
         {
             get
             {
-                return !Name.Equals("Controller") && !Name.Equals("Relay");
+                return !Name.Equals("Controller") && !Name.Equals("Relay") && !Name.Equals("Motion Detector");
             }
         }
         public bool IsController
