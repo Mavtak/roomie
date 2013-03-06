@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Roomie.CommandDefinitions.ControlThinkCommands;
-using Roomie.CommandDefinitions.HomeAutomationCommands;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
+using System.Collections.Generic;
 
 
-namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
+namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     public class ZWaveDeviceCollection : DeviceCollection
     {

@@ -4,7 +4,7 @@ using Roomie.Common.HomeAutomation.Exceptions;
 using BaseDevice = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
 using BaseNetwork = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
 
-namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
+namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     public class ZWaveDevice : BaseDevice
     {

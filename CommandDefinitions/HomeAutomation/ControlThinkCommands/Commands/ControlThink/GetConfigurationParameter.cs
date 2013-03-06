@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Roomie.CommandDefinitions.HomeAutomationCommands;
-using Roomie.CommandDefinitions.ZWave.ControlThinkCommands;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink

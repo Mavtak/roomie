@@ -1,13 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
-using Roomie.CommandDefinitions.ZWave.ControlThinkCommands;
-using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
-using Roomie.Desktop.Engine;
+using System;
 using Device = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
 using Network = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
-using Roomie.CommandDefinitions.HomeAutomationCommands;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {

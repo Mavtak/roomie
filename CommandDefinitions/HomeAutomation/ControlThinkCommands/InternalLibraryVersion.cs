@@ -1,6 +1,6 @@
 using System;
 
-namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands
+namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     internal static class InternalLibraryVersion
     {

@@ -1,8 +1,7 @@
-﻿using Roomie.CommandDefinitions.ControlThinkCommands;
-using Roomie.CommandDefinitions.HomeAutomationCommands;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands.Commands.ControlThink
+namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink
 {
     [Description("This command attempts to connect to a ControlThink USB Z-Wave adapater.")]
     public class RegisterNetwork : HomeAutomationCommand

@@ -1,6 +1,6 @@
 ﻿using Roomie.Desktop.Engine;
 
-namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands.Commands.ControlThink
+namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink
 {
     public class PrintStats : RoomieCommand //TODO: crease ZWaveNetworkCommand?
     {

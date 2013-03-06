@@ -1,7 +1,6 @@
-﻿using Roomie.CommandDefinitions.ControlThinkCommands;
-using Roomie.CommandDefinitions.HomeAutomationCommands;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
 
-namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands.Commands.ControlThink
+namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink
 {
     public class RemoveBrokenDevice : HomeAutomationSingleDeviceCommand
     {
