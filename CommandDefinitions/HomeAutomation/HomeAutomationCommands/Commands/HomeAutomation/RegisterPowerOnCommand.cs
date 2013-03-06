@@ -9,7 +9,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var commands = originalCommand.InnerCommands;
             var device = context.Device;
 
-            device.PowerOnCommands.Add(commands);
+            var eventAction = new DeviceEventAction(DeviceEventType.PowerOn, commands);
+            device.DeviceEventActions.Add(eventAction);
         }
     }
 }

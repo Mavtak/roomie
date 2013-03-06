@@ -1,11 +1,8 @@
-﻿using System;
-using Roomie.Common.HomeAutomation;
+﻿using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
-using Roomie.Desktop.Engine;
-using BaseDevice = Roomie.Common.HomeAutomation.Device;
-using Roomie.CommandDefinitions.HomeAutomationCommands.Events;
 using System.Collections.Generic;
-using Roomie.Common.ScriptingLanguage;
+using System.Linq;
+using BaseDevice = Roomie.Common.HomeAutomation.Device;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
@@ -14,10 +11,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         //TODO: Create LastPolled dealy?
         //TODO: add public access for Network
 
-        //TODO: improve this
-        public List<ScriptCommandList> PowerOnCommands { get; private set; }
-        public List<ScriptCommandList> PowerOffCommands { get; private set; }
-        public List<ScriptCommandList> PowerChangedCommands { get; private set; }
+        public List<DeviceEventAction> DeviceEventActions { get; private set; }
 
         public DeviceLocation Location
         {
@@ -50,9 +44,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             this.power = null;
             this.IsConnected = null;
 
-            PowerChangedCommands = new List<ScriptCommandList>();
-            PowerOnCommands = new List<ScriptCommandList>();
-            PowerOffCommands = new List<ScriptCommandList>();
+            DeviceEventActions = new List<DeviceEventAction>();
         }
 
         public abstract void PowerOn();
@@ -88,16 +80,23 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
             threadPool.Print(BuildVirtualAddress(false, false) + " power level changed to " + Power);
 
-            PowerChangedCommands.ForEach(threadPool.AddCommands);
+            var eventActions = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerChange));
 
             if (IsOn)
             {
-                PowerOnCommands.ForEach(threadPool.AddCommands);
+                var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOn));
+                eventActions = eventActions.Union(onScripts);
             }
 
             if (IsOff)
             {
-                PowerOffCommands.ForEach(threadPool.AddCommands);
+                var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOff));
+                eventActions = eventActions.Union(onScripts);
+            }
+
+            foreach (var script in eventActions.Select(a => a.Commands))
+            {
+                threadPool.AddCommands(script);
             }
         }
 
