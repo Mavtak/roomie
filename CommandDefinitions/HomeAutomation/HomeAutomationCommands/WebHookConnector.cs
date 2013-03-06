@@ -10,7 +10,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
     {
         internal static bool WebHookPresent(RoomieCommandContext context)
         {
-            return context.CommandLibrary.ContainsCommandGroup("WebHook");
+            return WebHookPresentByCommandLibrary(context.CommandLibrary);
+        }
+
+        internal static bool WebHookPresentByCommandLibrary(RoomieCommandLibrary commandLibrary)
+        {
+            var result = commandLibrary.ContainsCommandGroup("WebHook");
+
+            return result;
         }
 
         internal static Message SendMessage(RoomieCommandContext context, Message outMessage)

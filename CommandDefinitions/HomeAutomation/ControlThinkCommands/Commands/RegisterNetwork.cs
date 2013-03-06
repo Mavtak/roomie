@@ -14,7 +14,7 @@ namespace Roomie.CommandDefinitions.ZWave.ControlThinkCommands.Commands.ControlT
 
             interpreter.WriteEvent("Searching for Z-Wave network adapater...");
 
-            var network = new ZWaveNetwork(context.ThreadPool);
+            var network = new ZWaveNetwork(new HomeAutomationNetworkContext(context.Engine, context.ThreadPool));
             networks.Add(network);
 
             interpreter.WriteEvent("Done.");

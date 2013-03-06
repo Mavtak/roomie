@@ -1,5 +1,7 @@
-﻿using Roomie.Common.HomeAutomation;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
+using Roomie.Common.ScriptingLanguage;
 using System.Collections.Generic;
 using System.Linq;
 using BaseDevice = Roomie.Common.HomeAutomation.Device;
@@ -31,6 +33,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             {
                 //TODO: this isn't so great
                 return network as Network;
+            }
+        }
+
+        private HomeAutomationNetworkContext Context
+        {
+            get
+            {
+                return Network.Context;
             }
         }
 
@@ -76,7 +86,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         protected void PowerChanged()
         {
-            var threadPool = Network.ThreadPool;
+            var threadPool = Context.ThreadPool;
 
             threadPool.Print(BuildVirtualAddress(false, false) + " power level changed to " + Power);
 
@@ -94,7 +104,16 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 eventActions = eventActions.Union(onScripts);
             }
 
-            foreach (var script in eventActions.Select(a => a.Commands))
+            var scripts = eventActions.Select(a => a.Commands);
+
+            if (Context.WebHookPresent)
+            {
+                var syncScript = new ScriptCommandList();
+                syncScript.Add(Context.SyncWithCloudCommand);
+                scripts = new[] {syncScript}.Union(scripts);
+            }
+
+            foreach (var script in scripts)
             {
                 threadPool.AddCommands(script);
             }

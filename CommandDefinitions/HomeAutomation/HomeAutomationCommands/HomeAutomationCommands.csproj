@@ -78,8 +78,9 @@
     <Compile Include="Commands\HomeAutomation\WebHookConnectTasks.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DeviceAddressParameterType.cs" />
-    <Compile Include="DeviceEventScripts.cs" />
+    <Compile Include="DeviceEventAction.cs" />
     <Compile Include="DeviceEventType.cs" />
+    <Compile Include="HomeAutomationNetworkContext.cs" />
     <Compile Include="HomeAutomationSingleDeviceCommandContext.cs" />
     <Compile Include="Exceptions\CommandNotImplementedException.cs" />
     <Compile Include="Exceptions\HomeAutomationTimeoutException.cs" />

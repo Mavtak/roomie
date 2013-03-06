@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
 using Roomie.Common;
@@ -9,12 +10,12 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
     public abstract class Network : BaseNetwork
     {
-        internal ThreadPool ThreadPool;
+        internal HomeAutomationNetworkContext Context;
 
-        public Network(ThreadPool threadPool)
+        public Network(HomeAutomationNetworkContext context)
             : base(null)
         {
-            ThreadPool = threadPool;
+            Context = context;
             base.devices = new Roomie.Common.HomeAutomation.DeviceCollection(this);
         }
 
