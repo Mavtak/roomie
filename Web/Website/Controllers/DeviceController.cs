@@ -7,15 +7,30 @@ using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.ViewModels;
 using Roomie.Web.Website.Helpers;
+using System.Linq;
+
 
 namespace Roomie.Web.Website.Controllers
 {
     [WebsiteRestrictedAccess]
     public class DeviceController : RoomieBaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(string location)
         {
             var devices = User.GetAllDevices();
+
+            if (location != null)
+            {
+                devices = devices.Where(device =>
+                    {
+                        if (location.Equals(string.Empty))
+                        {
+                            return device.Location == null || device.Location.Name == null || device.Location.Name == string.Empty;
+                        }
+
+                        return device.Location != null && string.Equals(device.Location.Name, location, StringComparison.InvariantCultureIgnoreCase);
+                    });
+            }
 
             return View(devices);
         }
