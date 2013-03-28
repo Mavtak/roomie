@@ -13,11 +13,11 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         public ZWaveDevice(BaseNetwork network, global::ControlThink.ZWave.Devices.ZWaveDevice backingDevice, DeviceType type = null, string name = null)
             : base(network, 99, type, name)
         {
-            this.BackingObject = backingDevice;
+            BackingObject = backingDevice;
 
-            this.BackingObject.PollEnabled = false;
+            BackingObject.PollEnabled = false;
 
-            this.address = backingDevice.NodeID.ToString();
+            address = backingDevice.NodeID.ToString();
 
             if (type != null && type.CanControl && !type.CanDim)
             {
@@ -26,11 +26,9 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             BackingObject.LevelChanged += (sender, args) =>
                 {
-                    if (args.Level != power)
-                    {
-                        power = args.Level;
-                        PowerChanged();
-                    }
+                    power = args.Level;
+                    IsConnected = true;
+                    PowerChanged();
                 };
         }
 
@@ -86,24 +84,24 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             try
             {
                 BackingObject.Level = (byte)power;
-                this.IsConnected = true;
+                IsConnected = true;
 
                 //TODO: should this method still return the power?
                 return power;
             }
             catch (ControlThink.ZWave.DeviceNotRespondingException exception)
             {
-                this.IsConnected = false;
+                IsConnected = false;
                 throw new HomeAutomationTimeoutException(this, exception);
             }
             catch (ControlThink.ZWave.CommandTimeoutException exception)
             {
-                this.IsConnected = false;
+                IsConnected = false;
                 throw new HomeAutomationTimeoutException(this, exception);
             }
             catch (ControlThink.ZWave.ZWaveException exception)
             {
-                this.IsConnected = false;
+                IsConnected = false;
                 throw new HomeAutomationException("Unexpected Z-Wave error: " + exception.Message, exception);
             }
         }
