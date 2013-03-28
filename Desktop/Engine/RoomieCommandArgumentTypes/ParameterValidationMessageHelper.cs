@@ -13,11 +13,11 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
         public ParameterValidationMessageHelper(StringBuilder builder, string parameter)
         {
             _builder = builder;
-            parameter = _parameter;
+            _parameter = parameter;
 
             if (_parameter != null)
             {
-                builder.Append(parameter);
+                builder.Append(_parameter);
                 builder.Append(" must be ");
             }
         }
