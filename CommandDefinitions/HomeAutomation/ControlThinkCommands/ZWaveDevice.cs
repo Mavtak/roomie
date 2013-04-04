@@ -9,7 +9,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     public class ZWaveDevice : BaseDevice
     {
-        public global::ControlThink.ZWave.Devices.ZWaveDevice BackingObject { get; private set; }
+        internal global::ControlThink.ZWave.Devices.ZWaveDevice BackingObject { get; private set; }
 
         public ZWaveDevice(BaseNetwork network, global::ControlThink.ZWave.Devices.ZWaveDevice backingDevice, DeviceType type = null, string name = null)
             : base(network, 99, type, name)
