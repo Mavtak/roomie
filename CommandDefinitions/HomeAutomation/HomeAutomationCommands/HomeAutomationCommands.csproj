@@ -80,6 +80,7 @@
     <Compile Include="DeviceAddressParameterType.cs" />
     <Compile Include="DeviceEventAction.cs" />
     <Compile Include="DeviceEventType.cs" />
+    <Compile Include="Exceptions\DeviceNotRespondingException.cs" />
     <Compile Include="HomeAutomationNetworkContext.cs" />
     <Compile Include="HomeAutomationSingleDeviceCommandContext.cs" />
     <Compile Include="Exceptions\CommandNotImplementedException.cs" />

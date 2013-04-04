@@ -92,7 +92,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             catch (ControlThink.ZWave.DeviceNotRespondingException exception)
             {
                 IsConnected = false;
-                throw new HomeAutomationTimeoutException(this, exception);
+                throw new DeviceNotRespondingException(this, exception);
             }
             catch (ControlThink.ZWave.CommandTimeoutException exception)
             {

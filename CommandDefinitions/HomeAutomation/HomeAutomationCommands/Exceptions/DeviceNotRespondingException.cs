@@ -4,11 +4,11 @@ using Roomie.Common.HomeAutomation.Exceptions;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions
 {
-    public class HomeAutomationTimeoutException : HomeAutomationException
+    public class DeviceNotRespondingException : HomeAutomationException
     {
         public Device Device { get; private set; }
 
-        public HomeAutomationTimeoutException(Device device, Exception innerException = null)
+        public DeviceNotRespondingException(Device device, Exception innerException = null)
             : base(GenerateMessage(device), innerException)
         {
             Device = device;
@@ -19,7 +19,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions
             var result = new StringBuilder();
             result.Append("Device \"");
             result.Append(device);
-            result.Append("\" timed out.");
+            result.Append("\" is not responding.");
 
             return result.ToString();
         }
