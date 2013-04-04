@@ -1,4 +1,5 @@
-﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
+﻿using System;
+using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
 using BaseDevice = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
@@ -34,60 +35,59 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public override void PowerOn()
         {
-            try
+            Action operation = () =>
             {
                 BackingObject.PowerOn();
                 IsConnected = true;
-            }
-            catch (ControlThink.ZWave.DeviceNotRespondingException exception)
-            {
-                IsConnected = false;
-                throw new HomeAutomationTimeoutException(this, exception);
-            }
-            catch (ControlThink.ZWave.CommandTimeoutException exception)
-            {
-                IsConnected = false;
-                throw new HomeAutomationTimeoutException(this, exception);
-            }
-            catch (ControlThink.ZWave.ZWaveException exception)
-            {
-                IsConnected = false;
-                throw new HomeAutomationException("Unexpected Z-Wave error: " + exception.Message, exception);
-            }
+            };
+
+            DoDeviceOperation(operation);
         }
         public override void PowerOff()
         {
-            try
+            Action operation = () =>
             {
                 BackingObject.PowerOff();
                 IsConnected = true;
-            }
-            catch (ControlThink.ZWave.DeviceNotRespondingException exception)
-            {
-                IsConnected = false;
-                throw new HomeAutomationTimeoutException(this, exception);
-            }
-            catch (ControlThink.ZWave.CommandTimeoutException exception)
-            {
-                IsConnected = false;
-                throw new HomeAutomationTimeoutException(this, exception);
-            }
-            catch (ControlThink.ZWave.ZWaveException exception)
-            {
-                IsConnected = false;
-                throw new HomeAutomationException("Unexpected Z-Wave error: " + exception.Message, exception);
-            }
+            };
+
+            DoDeviceOperation(operation);
         }
 
         protected override int? SetPower(int power)
         {
-            try
+            Func<int?> operation = () =>
             {
                 BackingObject.Level = (byte)power;
-                IsConnected = true;
 
                 //TODO: should this method still return the power?
                 return power;
+            };
+
+            var result = DoDeviceOperation(operation);
+
+            return result;
+        }
+
+        public override void Poll()
+        {
+            Action operation = () =>
+            {
+                //BackingObject.Ping();
+                power = BackingObject.Level;
+            };
+
+            DoDeviceOperation(operation);
+        }
+
+        private TResult DoDeviceOperation<TResult>(Func<TResult> operation)
+        {
+            try
+            {
+                var result = operation();
+                IsConnected = true;
+
+                return result;
             }
             catch (ControlThink.ZWave.DeviceNotRespondingException exception)
             {
@@ -106,30 +106,15 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        public override void Poll()
+        private void DoDeviceOperation(Action operation)
         {
-            try
-            {
-                //BackingObject.Ping();
-                power = BackingObject.Level;
-                IsConnected = true;
+            Func<int> wrappedOperation = () =>
+                {
+                    operation();
+                    return 0;
+                };
 
-            }
-            catch (ControlThink.ZWave.DeviceNotRespondingException exception)
-            {
-                IsConnected = false;
-                throw new HomeAutomationTimeoutException(this, exception);
-            }
-            catch (ControlThink.ZWave.CommandTimeoutException exception)
-            {
-                IsConnected = false;
-                throw new HomeAutomationTimeoutException(this, exception);
-            }
-            catch (ControlThink.ZWave.ZWaveException exception)
-            {
-                IsConnected = false;
-                throw new HomeAutomationException("Unexpected Z-Wave error: " + exception.Message, exception);
-            }
+            DoDeviceOperation(wrappedOperation);
         }
     }
 }
