@@ -97,7 +97,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             catch (ControlThink.ZWave.CommandTimeoutException exception)
             {
                 IsConnected = false;
-                throw new HomeAutomationTimeoutException(this, exception);
+                throw new CommandTimedOutException(this, exception);
             }
             catch (ControlThink.ZWave.ZWaveException exception)
             {
