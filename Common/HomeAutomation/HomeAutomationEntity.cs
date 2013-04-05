@@ -24,18 +24,7 @@ namespace Roomie.Common.HomeAutomation
             }
         }
 
-        protected string address;
-        public virtual string Address
-        {
-            get
-            {
-                return address;
-            }
-            protected set
-            {
-                address = value;
-            }
-        }
+        public string Address { get; protected set; }
 
         private string notes;
         public string Notes
@@ -59,8 +48,8 @@ namespace Roomie.Common.HomeAutomation
         {
             var result = new XElement(nodeName);
 
-            if (!String.IsNullOrWhiteSpace(address))
-                result.Add(new XAttribute("Address", address));
+            if (!String.IsNullOrWhiteSpace(Address))
+                result.Add(new XAttribute("Address", Address));
 
             if (!String.IsNullOrWhiteSpace(Name))
                 result.Add(new XAttribute("Name", Name));
@@ -72,7 +61,7 @@ namespace Roomie.Common.HomeAutomation
         {
             Name = node.GetAttributeStringValue("Name");
             Notes = node.GetAttributeStringValue("Notes");
-            address = node.GetAttributeStringValue("Address");
+            Address = node.GetAttributeStringValue("Address");
         }
 
 
@@ -93,7 +82,7 @@ namespace Roomie.Common.HomeAutomation
                 return false;
             }
 
-            if (!String.Equals(this.address, that.address))
+            if (!String.Equals(this.Address, that.Address))
             {
                 return false;
             }
@@ -110,7 +99,7 @@ namespace Roomie.Common.HomeAutomation
 
         public override int GetHashCode()
         {
-            return address.GetHashCode();
+            return Address.GetHashCode();
         }
 
         #endregion

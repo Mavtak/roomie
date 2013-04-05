@@ -19,7 +19,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             BackingObject.PollEnabled = false;
 
-            address = backingDevice.NodeID.ToString();
+            Address = backingDevice.NodeID.ToString();
 
             if (type != null && type.CanControl && !type.CanDim)
             {
