@@ -4,14 +4,15 @@ using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
 using BaseDevice = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
 using BaseNetwork = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
+using BackingDevice = ControlThink.ZWave.Devices.ZWaveDevice;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     public class ZWaveDevice : BaseDevice
     {
-        internal global::ControlThink.ZWave.Devices.ZWaveDevice BackingObject { get; private set; }
+        internal BackingDevice BackingObject { get; private set; }
 
-        public ZWaveDevice(BaseNetwork network, global::ControlThink.ZWave.Devices.ZWaveDevice backingDevice, DeviceType type = null, string name = null)
+        public ZWaveDevice(BaseNetwork network, BackingDevice backingDevice, DeviceType type = null, string name = null)
             : base(network, 99, type, name)
         {
             BackingObject = backingDevice;
