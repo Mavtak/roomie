@@ -74,7 +74,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             Action operation = () =>
             {
-                //BackingObject.Ping();
                 power = BackingObject.Level;
             };
 
@@ -90,19 +89,20 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
                 return result;
             }
-            catch (ControlThink.ZWave.DeviceNotRespondingException exception)
-            {
-                IsConnected = false;
-                throw new DeviceNotRespondingException(this, exception);
-            }
-            catch (ControlThink.ZWave.CommandTimeoutException exception)
-            {
-                IsConnected = false;
-                throw new CommandTimedOutException(this, exception);
-            }
             catch (ControlThink.ZWave.ZWaveException exception)
             {
                 IsConnected = false;
+
+                if (exception is ControlThink.ZWave.DeviceNotRespondingException)
+                {
+                    throw new DeviceNotRespondingException(this, exception);
+                }
+
+                if (exception is ControlThink.ZWave.CommandTimeoutException)
+                {
+                    throw new CommandTimedOutException(this, exception);
+                }
+
                 throw new HomeAutomationException("Unexpected Z-Wave error: " + exception.Message, exception);
             }
         }
