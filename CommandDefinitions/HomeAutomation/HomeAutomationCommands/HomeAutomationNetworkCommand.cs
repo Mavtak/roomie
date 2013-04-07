@@ -1,4 +1,5 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
+using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Exceptions;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
@@ -49,6 +50,9 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 && scope.GetBoolean("AutoConnect"))
             {
                 network.Connect();
+
+                //TODO: does this belong here?  Where does "Disconnected" go?
+                network.Context.History.Add(NetworkEvent.Connected(network, null));
             }
 
             try

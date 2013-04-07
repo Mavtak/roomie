@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Roomie.Desktop.Engine;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
+using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.ScriptingLanguage;
-using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
+using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
     public class HomeAutomationNetworkContext
     {
-        public ThreadPool ThreadPool { get; set; }
+        public ThreadPool ThreadPool { get; private set; }
+        public IMasterHistory History { get; private set; }
         private RoomieEngine _engine;
 
         public bool WebHookPresent
@@ -25,6 +23,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             _engine = engine;
             ThreadPool = threadPool;
+            //TODO: ninject?
+            History = new MasterHistory(new DeviceHistory(), new NetworkHistory());
         }
 
         public IScriptCommand SyncWithCloudCommand

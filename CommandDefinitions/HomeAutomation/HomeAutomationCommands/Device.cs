@@ -1,5 +1,6 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Exceptions;
 using Roomie.Common.ScriptingLanguage;
 using System.Collections.Generic;
@@ -87,6 +88,17 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             var threadPool = Context.ThreadPool;
 
             threadPool.Print(BuildVirtualAddress(false, false) + " power level changed to " + Power);
+
+            //TODO: improve this logic
+            //TODO: include previous power for more smarts
+            if (IsConnected == true)
+            {
+                Context.History.Add(DeviceEvent.PowerChanged(this, null));
+            }
+            else
+            {
+                Context.History.Add(DeviceEvent.Lost(this, null));
+            }
 
             var eventActions = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerChange));
 

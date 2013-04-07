@@ -56,6 +56,8 @@
     <Compile Include="Attributes\NetworkAttribute.cs" />
     <Compile Include="Attributes\PowerParameterAttribute.cs" />
     <Compile Include="Commands\HomeAutomation\AddDevice.cs" />
+    <Compile Include="Commands\HomeAutomation\ListDeviceEvents.cs" />
+    <Compile Include="Commands\HomeAutomation\ListEvents.cs" />
     <Compile Include="Commands\HomeAutomation\RegisterPowerChangedCommand.cs" />
     <Compile Include="Commands\HomeAutomation\RegisterPowerOffCommand.cs" />
     <Compile Include="Commands\HomeAutomation\PollDevice.cs" />
