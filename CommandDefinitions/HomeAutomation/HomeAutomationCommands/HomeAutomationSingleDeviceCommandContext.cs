@@ -8,7 +8,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
     {
         public Device Device { get; set; }
 
-        public HomeAutomationSingleDeviceContext(RoomieCommandContext context)
+        public HomeAutomationSingleDeviceContext(HomeAutomationCommandContext context)
             : base(context)
         { }
     }
