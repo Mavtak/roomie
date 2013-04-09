@@ -9,7 +9,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
     {
         public ThreadPool ThreadPool { get; private set; }
         public IMasterHistory History { get; private set; }
-        private RoomieEngine _engine;
+        private readonly RoomieEngine _engine;
 
         public bool WebHookPresent
         {
@@ -19,12 +19,17 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        public HomeAutomationNetworkContext(RoomieEngine engine, ThreadPool threadPool)
+        public HomeAutomationNetworkContext(RoomieEngine engine, ThreadPool threadPool, IDeviceHistory deviceHistory, INetworkHistory networkHistory)
         {
             _engine = engine;
             ThreadPool = threadPool;
             //TODO: ninject?
-            History = new MasterHistory(new DeviceHistory(), new NetworkHistory());
+            History = new MasterHistory(deviceHistory, networkHistory);
+        }
+
+        public HomeAutomationNetworkContext(RoomieEngine engine, ThreadPool threadPool)
+            : this(engine, threadPool, new DeviceHistory(), new NetworkHistory())
+        {
         }
 
         public IScriptCommand SyncWithCloudCommand
