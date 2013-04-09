@@ -5,7 +5,7 @@ namespace Roomie.Common.HomeAutomation.Events
     {
         public const string Key = "Device Power Changed";
 
-        public string Name
+        public virtual string Name
         {
             get
             {
