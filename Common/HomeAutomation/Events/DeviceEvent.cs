@@ -46,5 +46,19 @@ namespace Roomie.Common.HomeAutomation.Events
 
             return result;
         }
+
+        public static DeviceEvent MotionDetected(Device device, IEventSource source)
+        {
+            var result = new DeviceEvent(device, new MotionDetected(), source);
+
+            return result;
+        }
+
+        public static DeviceEvent StillnessDetected(Device device, IEventSource source)
+        {
+            var result = new DeviceEvent(device, new StillnessDetected(), source);
+
+            return result;
+        }
     }
 }
