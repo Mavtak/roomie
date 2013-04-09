@@ -41,20 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\StillnessDetected.cs" />
     <Compile Include="Events\DeviceHistory.cs" />
     <Compile Include="Events\DevicePowerChanged.cs" />
     <Compile Include="Events\DeviceLost.cs" />
     <Compile Include="Events\DeviceEvent.cs" />
     <Compile Include="Events\DeviceFound.cs" />
     <Compile Include="Events\History.cs" />
-    <Compile Include="Events\Extensions.cs" />
+    <Compile Include="Events\ExtensionsToIHistory.cs" />
     <Compile Include="Events\IDeviceEvent.cs" />
-    <Compile Include="Events\IDeviceEventHistory.cs" />
+    <Compile Include="Events\IDeviceHistory.cs" />
     <Compile Include="Events\IHistory.cs" />
     <Compile Include="Events\IMasterHistory.cs" />
     <Compile Include="Events\INetworkHistory.cs" />
-    <Compile Include="Events\Interface1.cs" />
+    <Compile Include="Events\INetworkEvent.cs" />
     <Compile Include="Events\MasterHistory.cs" />
+    <Compile Include="Events\MotionDetected.cs" />
     <Compile Include="Events\NetworkDisconnected.cs" />
     <Compile Include="Events\IEventSource.cs" />
     <Compile Include="Events\IEventType.cs" />
