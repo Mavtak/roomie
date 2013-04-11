@@ -87,18 +87,41 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             var threadPool = Context.ThreadPool;
 
+            //TODO: print based on selected IEvent
             threadPool.Print(BuildVirtualAddress(false, false) + " power level changed to " + Power);
 
             //TODO: improve this logic
             //TODO: include previous power for more smarts
+            IEvent @event;
+            IEventSource source = null; //TODO: fill this in
             if (IsConnected == true)
             {
-                Context.History.Add(DeviceEvent.PowerChanged(this, null));
+                if (Type.Equals(DeviceType.MotionDetector))
+                {
+                    if (IsOn)
+                    {
+                        @event = DeviceEvent.MotionDetected(this, source);
+                    }
+                    else if(IsOff)
+                    {
+                        @event = DeviceEvent.StillnessDetected(this, source);
+                    }
+                    else
+                    {
+                        @event = DeviceEvent.PowerChanged(this, source);
+                    }
+                }
+                else
+                {
+                    @event = DeviceEvent.PowerChanged(this, source);
+                }
             }
             else
             {
-                Context.History.Add(DeviceEvent.Lost(this, null));
+                @event = DeviceEvent.Lost(this, source);
             }
+
+            Context.History.Add(@event);
 
             var eventActions = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerChange));
 

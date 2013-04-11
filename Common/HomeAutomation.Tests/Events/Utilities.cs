@@ -16,7 +16,9 @@ namespace Roomie.Common.HomeAutomation.Tests.Events
         {
             var lastTime = new DateTime(1, 1, 1);
 
-            for (var i = 0; i < 100; i++)
+            var count = Random.Next(50, 200);
+
+            for (var i = 0; i < count; i++)
             {
                 var thisTime = lastTime.AddSeconds(Random.Next(0, 3));
                 yield return thisTime;

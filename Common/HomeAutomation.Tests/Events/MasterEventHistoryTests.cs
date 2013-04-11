@@ -31,7 +31,7 @@ namespace Roomie.Common.HomeAutomation.Tests.Events
         }
 
         [Test]
-        public void ProperlyMergesEventLists()
+        public void MergedListIsInTheRightOrder()
         {
             var events = _history.ToList();
 
@@ -42,6 +42,17 @@ namespace Roomie.Common.HomeAutomation.Tests.Events
 
                 Assert.That(thisEvent.TimeStamp, Is.GreaterThanOrEqualTo(previousEvent.TimeStamp), "The events were not sorted by timestamp.");
             }
+        }
+
+        [Test]
+        public void MergedListIsTheRightLength()
+        {
+            //TODO: MergedListHasAllTheRightObjects
+            var deviceEventCount = _deviceEvents.Count();
+            var networkEventCount = _networkEvents.Count();
+            var totalCount = _history.Count();
+
+            Assert.That(totalCount, Is.EqualTo(deviceEventCount + networkEventCount));
         }
 
         [Test]

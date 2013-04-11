@@ -37,10 +37,40 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public IEnumerator<IEvent> GetEnumerator()
         {
-            //TODO: make this more efficient
-            var result = ((IEnumerable<IEvent>) DeviceEvents).Concat(NetworkEvents).OrderBy(e => e.TimeStamp);
+            var sources = new []
+            {
+                DeviceEvents.Select(x => x as IEvent).GetEnumerator(),
+                NetworkEvents.Select(x => x as IEvent).GetEnumerator()
+            };
 
-            return result.GetEnumerator();
+            var more = new bool[sources.Length];
+
+            for (var i = 0; i < sources.Length; i++)
+            {
+                more[i] = sources[i].MoveNext();
+            }
+
+            while (more.Contains(true))
+            {
+                var smallestIndex = -1;
+
+                for (var i = 0; i < sources.Length; i++)
+                {
+                    if (!more[i])
+                    {
+                        continue;
+                    }
+
+                    if (smallestIndex == -1 || sources[i].Current.TimeStamp < sources[smallestIndex].Current.TimeStamp)
+                    {
+                        smallestIndex = i;
+                    }
+                };
+
+                yield return sources[smallestIndex].Current;
+
+                more[smallestIndex] = sources[smallestIndex].MoveNext();
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
