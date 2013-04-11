@@ -16,6 +16,11 @@ namespace Roomie.Web.Website
         public const string StyleBundlePath = bundlesPath + "styles.css";
         public const string ScriptBundlePath = bundlesPath + "scripts.js";
 
+        private const string ResourceStrategyKey = "ResourceStrategy";
+        private const string AlwaysInline = "inline";
+        private const string AlwaysExternal = "external";
+        private const string BeSmart = "smart";
+
         public static void RegisterBundes(BundleCollection bundles)
         {
             bundles.IgnoreList.Clear();
@@ -84,26 +89,27 @@ namespace Roomie.Web.Website
 
             HtmlString result = null;
 
-            if (!isCached)
+            var resourceStrategy = (request[ResourceStrategyKey] ?? BeSmart).ToLower();
+
+            if (resourceStrategy.Equals(AlwaysInline)
+                || (resourceStrategy.Equals(BeSmart) && !isCached))
             {
-                cacheCookie.SetFile(path);
-
-                var html = new StringBuilder();
-
-                html.Append(javaScript ? "<script type=\"text/javascript\">" : "<style type=\"text/css\">");
-                var bundleResponse = httpContext.Cache["System.Web.Optimization.Bundle:" + bundlePath] as BundleResponse;
-                //TODO: log if bundleResponse is null
-                if (bundleResponse != null)
+                if (resourceStrategy.Equals(BeSmart))
                 {
-                    html.Append(bundleResponse.Content);
-                    html.Append(javaScript ? "</script>" : "</style>");
-
-                    cacheCookie.AddAFileForDownload(path);
-
-                    result = new HtmlString(html.ToString());
+                    cacheCookie.SetFile(path);
                 }
 
-                cacheCookie.Save(response);
+                result = GetInlineMarkup(htmlHelper, bundlePath, javaScript);
+
+                if (resourceStrategy.Equals(BeSmart))
+                {
+                    if (result != null)
+                    {
+                        cacheCookie.AddAFileForDownload(path);
+                    }
+
+                    cacheCookie.Save(response);
+                }
             }
 
             if(result == null)
@@ -113,6 +119,30 @@ namespace Roomie.Web.Website
                 html = html.Replace("\n", "");
 
                 result = new HtmlString(html);
+            }
+
+            return result;
+        }
+
+        private static HtmlString GetInlineMarkup(this HtmlHelper htmlHelper, string bundlePath, bool javaScript)
+        {
+            var httpContext = htmlHelper.ViewContext.HttpContext;
+            var html = new StringBuilder();
+            HtmlString result;
+
+            html.Append(javaScript ? "<script type=\"text/javascript\">" : "<style type=\"text/css\">");
+            var bundleResponse = httpContext.Cache["System.Web.Optimization.Bundle:" + bundlePath] as BundleResponse;
+            //TODO: log if bundleResponse is null
+            if (bundleResponse != null)
+            {
+                html.Append(bundleResponse.Content);
+                html.Append(javaScript ? "</script>" : "</style>");
+
+                result = new HtmlString(html.ToString());
+            }
+            else
+            {
+                result = null;
             }
 
             return result;
