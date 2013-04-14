@@ -92,6 +92,11 @@ namespace Roomie.Web.Website
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
+            // taken from http://stackoverflow.com/a/19959/1105058
+            routes.MapRoute("Error", "{*url}",
+                new { controller = "Error", action = "Http404" }
+            );
+
         }
     }
 }
