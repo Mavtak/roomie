@@ -1,5 +1,9 @@
 ﻿@Html.Partial("Partials/BotMessage/BaseBotMessage", new
     {
         Message = "Nothing Here",
-        Image = "~/Content/images/nothing.png"
+        Image = "~/Content/images/nothing.png",
+        RoomieBot = new RoomieBot
+            {
+                Mood = RoomieBot.HappyMood
+            }
     })

@@ -1,0 +1,119 @@
+﻿.roomieBot
+{
+    border: 5px solid black;
+    min-width: 200px;
+    max-width: 400px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.roomieBot .head
+{
+    margin-top: 15px;
+}
+      
+.roomieBot .eye,
+.roomieBot .mouth,
+.roomieBot .mouthContainer .corner
+{
+    background-color: black;
+    border: 5px solid white;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 0px;
+    padding: 0px;
+}
+      
+.roomieBot .eye
+{
+    width: 30px;
+}
+      
+.roomieBot .eyesContainer,
+.roomieBot .eye
+{
+    height: 60px;
+}
+      
+.roomieBot .eyesContainer
+{
+    display: block;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+      
+.roomieBot .left.eye
+{
+    float: left;
+}
+      
+.roomieBot .right.eye
+{
+    float: right;
+}
+      
+.roomieBot .mouthContainer
+{
+    display: block;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+      
+.roomieBot .mouth
+{
+    display: block;
+    height: 30px;
+    margin-right: 10px;
+}
+      
+.roomieBot .mouth
+.roomieBot .corner
+{
+    margin-left: 15px;
+}
+
+.roomieBot .mouthContainer .corner
+{
+    display: none;
+}
+
+.roomieBot .corner .edgeCorrection
+{
+    height: 40px;
+    border-left: 5px solid white;
+    position: relative;
+    left: -5px;
+}
+      
+.roomieBot.uneasy .mouth
+{
+    transform:rotate(3deg);
+    -ms-transform:rotate(3deg); /* IE 9 */
+    -webkit-transform:rotate(3deg); /* Safari and Chrome */
+}
+      
+.roomieBot.uneasy .mouthContainer
+{
+    margin-top: 30px;
+}
+      
+.roomieBot.uneasy .eyes
+{
+    margin-left: 25px;
+    margin-right: 75px;
+}
+      
+.roomieBot.happy .mouthContainer .corner
+{
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    border-bottom: none;
+    position: relative;
+    bottom: -9px;
+}

@@ -6,9 +6,11 @@
     *@Hey!  Thanks for visiting!  Roomie is in super alpha testing right now, so please be patient.@*
 *@</p>@*
 
-*@<h2>What is roomie?</h2>@*
+*@<div>@*
+  *@@Html.Partial("Partials/RoomieBot", new RoomieBot{Mood = RoomieBot.HappyMood})@*
+*@</div>@*
 
-*@<img src="@Url.Content("~/Content/images/hello.png")"  style="float: right;"/>@*
+*@<h2>What is roomie?</h2>@*
 
 *@<p>@*
     *@Roomie is an home automation framework that integrates with Z-Wave (and other) technology.  Roomie includes a scripting language, a desktop client, and this website.@*

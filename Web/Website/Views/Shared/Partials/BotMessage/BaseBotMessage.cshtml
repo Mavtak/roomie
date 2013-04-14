@@ -1,9 +1,9 @@
-﻿@model dynamic
+﻿@using Roomie.Web.Website.ViewModels
+@model dynamic
 @*
 *@<div class="botMessage">@*
     *@<h1>@(Model.Message??"Nothing here")</h1>@*
-    *@<img src="@(Url.Content(Model.Image ?? "~/Content/images/nothing.png"))" alt="Roomie Bot" />@*
+    *@@Html.Partial("Partials/RoomieBot", (RoomieBot)(Model.RoomieBot))@*
 *@</div>@*
-
 
 *@
