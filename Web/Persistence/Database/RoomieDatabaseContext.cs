@@ -33,6 +33,7 @@ namespace Roomie.Web.Persistence.Database
             Users = new DbContextAdapter<UserModel>(database.Users);
             UserSessions = new DbContextAdapter<UserSessionModel>(database.UserSessions);
             Computers = new DbContextAdapter<ComputerModel>(database.Computers);
+            Networks = new DbContextAdapter<NetworkModel>(database.Networks);
             Devices = new DbContextAdapter<DeviceModel>(database.Devices);
             Tasks = new DbContextAdapter<TaskModel>(database.Tasks);
             Scripts = new DbContextAdapter<ScriptModel>(database.Scripts);
