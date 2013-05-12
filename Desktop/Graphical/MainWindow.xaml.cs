@@ -27,7 +27,10 @@ namespace Roomie.Desktop.Graphical
             _engine.ScriptMessageSent += engine_ScriptMessageSent;
             _engine.EngineStateChanged += _engine_EngineStateChanged;
             EventListing.ItemsSource = Events;
+        }
 
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
             _engine.Start();
         }
 
