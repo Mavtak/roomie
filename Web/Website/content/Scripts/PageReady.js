@@ -15,4 +15,17 @@ $(document).ready(function () {
     setTimeout('updateDevices(null, null);', 500);
     });*/
 
+
 });
+
+
+var botZoom = function () {
+    $(this).unbind();
+    var zoom = $(this).css('zoom');
+    zoom = (zoom == 1) ? 4 : 1;
+    $(this).animate({ zoom: zoom }, 1000, function() {
+        $(this).bind(botZoom);
+    });
+};
+
+$('.roomieBot').click(botZoom);
