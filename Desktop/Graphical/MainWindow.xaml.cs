@@ -56,24 +56,25 @@ namespace Roomie.Desktop.Graphical
         void engine_ScriptMessageSent(object sender, RoomieThreadEventArgs e)
         {
             var roomieEvent = new RoomieEvent
-                {
-                    TimeStamp = DateTime.Now,
-                    Thread = e.Thread.Name,
-                    Message = e.Message
-                };
+            {
+                TimeStamp = DateTime.Now,
+                Thread = e.Thread.Name,
+                Message = e.Message
+            };
 
             Action call = () =>
+            {
+                var nothingSelected = EventListing.SelectedIndex == -1;
+                var lastItemSelected = EventListing.SelectedIndex == EventListing.Items.Count - 1;
+
+                Events.Add(roomieEvent);
+
+                if (nothingSelected || lastItemSelected)
                 {
-                    bool nothingSelected = EventListing.SelectedIndex == -1;
-                    bool lastItemSelected = EventListing.SelectedIndex == EventListing.Items.Count - 1;
+                    ScrollToEnd();
+                }
+            };
 
-                    Events.Add(roomieEvent);
-
-                    if (nothingSelected || lastItemSelected)
-                    {
-                        ScrollToEnd();
-                    }
-                };
             Dispatcher.BeginInvoke(call);
         }
 
@@ -83,11 +84,6 @@ namespace Roomie.Desktop.Graphical
             EventListing.SelectedIndex = EventListing.Items.Count - 1;
             EventListing.ScrollIntoView(EventListing.SelectedItem);
             EventListing.SelectedIndex = -1;
-        }
-
-        private void UIElement_OnKeyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
         #region run script from input
@@ -126,7 +122,6 @@ namespace Roomie.Desktop.Graphical
                 ScrollToEnd();
             }
         }
-
         
     }
 
