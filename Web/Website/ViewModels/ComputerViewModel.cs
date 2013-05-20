@@ -13,7 +13,7 @@ namespace Roomie.Web.ViewModels
         {
             Computer = computer;
 
-            var status = (Computer.IsConnected ? "connected" : "disconnected");
+            var status = WidgetData.ConnectedOrDisconnected(Computer.IsConnected);
             var target = urlHelper.Action(
                 actionName: "Details",
                 controllerName: "Computer",

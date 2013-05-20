@@ -1,7 +1,7 @@
 ﻿@using Roomie.Web.Persistence.Models
 @model Roomie.Web.Persistence.Models.NetworkModel
 @{
-    var status = ((Model.IsAvailable == true) ? "connected" : "disconnected");
+    var status = WidgetData.ConnectedOrDisconnected(Model.IsAvailable);
     var target = Url.Action(
         actionName: "Details",
         controllerName: "Network",

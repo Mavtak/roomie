@@ -15,7 +15,7 @@ namespace Roomie.Web.ViewModels
             Device = device;
 
             var location = (Device.Location == null) ? (null) : (Device.Location.Name);
-            var status = (Device.IsAvailable ? "connected" : "disconnected");
+            var status = WidgetData.ConnectedOrDisconnected(Device.IsAvailable);
             var target = urlHelper.Action(
                 actionName: "Details",
                 controllerName: "Device",

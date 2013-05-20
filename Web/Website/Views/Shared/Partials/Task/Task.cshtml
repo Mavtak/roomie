@@ -1,18 +1,18 @@
 ﻿@using Roomie.Web.Persistence.Models
 @model Roomie.Web.Persistence.Models.TaskModel
 @{
-    string status = "";
+    WidgetStatus status = WidgetStatus.None;
     if(Model.Received == true)
     {
-        status = "received";
+        status = WidgetStatus.Received;
     }
     else if (Model.Waiting)
     {
-        status = "waiting";
+        status = WidgetStatus.Waiting;
     }
     else if (Model.Expired)
     {
-        status = "expired";
+        status = WidgetStatus.Expired;
     }
     
     var widgetData = new WidgetData

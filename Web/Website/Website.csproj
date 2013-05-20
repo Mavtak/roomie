@@ -179,6 +179,7 @@
     <Compile Include="ViewModels\DeviceViewModel.cs" />
     <Compile Include="ViewModels\RoomieBot.cs" />
     <Compile Include="ViewModels\WidgetData.cs" />
+    <Compile Include="ViewModels\WidgetStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\images\hello.png" />
