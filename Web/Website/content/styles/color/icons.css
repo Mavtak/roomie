@@ -1,0 +1,11 @@
+﻿.icon.disconnected,
+.icon.stale,
+.icon.disconnected .slashContainer
+{
+  background-color: rgb(175, 175, 175);
+} 
+
+.icon.stale .dash
+{
+  background-color: rgb(200, 200, 200);
+}

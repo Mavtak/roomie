@@ -1,0 +1,67 @@
+﻿.icon
+{
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  background-color: white;
+  border: .075em solid black;
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon span
+{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon .layer
+{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+}
+
+.icon .pillar
+{
+  height: 100%;
+  width: 0;
+    display: none;
+}
+
+.icon.disconnected .dash,
+.icon.stale .dash
+{
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 35%;
+  bottom: 35%;
+  border: .1em solid black;
+}
+
+.icon.disconnected .slashContainer
+{
+  position: absolute;
+  left: 35%;
+  right: 35%;
+  top: -10%;
+  bottom: -10%;
+  -webkit-transform: rotate(45deg);
+}
+
+.icon.disconnected .slash
+{
+  position: absolute;
+  left: 33%;
+  right: 33%;
+  top: 0;
+  bottom: 0;
+  background-color: black;
+}

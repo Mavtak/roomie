@@ -4,6 +4,7 @@
   *@<div class="content">@*
     *@<a class="header" href="@Model.Target" title="@Model.DebugText">@*
       *@<div class="location@((Model.Location==null)?" unknown":"")">@((Model.Location!=null)?(Model.Location):("(undefined)"))</div>@*
+      *@@Html.Partial("Partials/WidgetIcon", Model.Status)@*
       *@<div class="name">@Model.Name</div>@*
     *@</a>@*
     

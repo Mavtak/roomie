@@ -143,6 +143,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="content\styles\color\icons.css" />
+    <Content Include="content\styles\structure\icons.css" />
     <Compile Include="Controllers\Api\DeviceController.cs" />
     <Compile Include="Controllers\Api\TaskController.cs" />
     <Compile Include="Controllers\CommunicatorController.cs" />
@@ -341,6 +343,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Partials\RoomieBot.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Partials\WidgetIcon.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
