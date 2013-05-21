@@ -1,5 +1,4 @@
-﻿
-namespace Roomie.Web.ViewModels
+﻿namespace Roomie.Web.Website.ViewModels
 {
     public class WidgetData
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace Roomie.Web.ViewModels
+namespace Roomie.Web.Website.ViewModels
 {
     public enum WidgetStatus
     {
