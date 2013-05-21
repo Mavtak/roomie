@@ -35,12 +35,12 @@
 
 .widget .code
 {
-    background-color: rgba(255, 255, 255, .8);
+    background-color: rgba(255, 255, 255, .95);
 }
 .widget .code:focus,
-widget .code:hover
+.widget .code:hover
 {
-    background-color: rgba(255, 255, 255, .95);
+    background-color: rgba(255, 255, 255, 1);
 }   
 
 .widget .data,
