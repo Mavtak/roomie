@@ -22,14 +22,16 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             //TODO: list all devices on all networks.
             //TODO: add type
 
-            int addressLength = 10;
+            var addressLength = 10;
+            var typeLength = 10;
 
             foreach (var device in network.Devices)
             {
                 addressLength = Math.Max(addressLength, device.BuildVirtualAddress(false, false).Length);
+                typeLength = Math.Max(typeLength, device.Type.Name.Length);
             }
 
-            var tableBuilder = new TextTable(new int[] { addressLength, 10, 9, 5 });
+            var tableBuilder = new TextTable(new [] { addressLength, typeLength, 9, 5 });
 
             addressLength += 2;
 
