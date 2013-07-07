@@ -22,8 +22,15 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             //TODO: list all devices on all networks.
             //TODO: add type
 
-            var addressLength = 10;
-            var typeLength = 10;
+            const string addressLabel = "Address";
+            const string typeLabel = "Type";
+            const string connectedLabel = "Connected";
+            const string powerLabel = "Power";
+
+            var addressLength = addressLabel.Length;
+            var typeLength = typeLabel.Length;
+            var connectedLength = connectedLabel.Length;
+            var powerLength = powerLabel.Length;
 
             foreach (var device in network.Devices)
             {
@@ -31,11 +38,9 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                 typeLength = Math.Max(typeLength, device.Type.Name.Length);
             }
 
-            var tableBuilder = new TextTable(new [] { addressLength, typeLength, 9, 5 });
+            var tableBuilder = new TextTable(new[] { addressLength, typeLength, connectedLength, powerLength });
 
-            addressLength += 2;
-
-            interpreter.WriteEvent(tableBuilder.StartOfTable("Address", "Type", "Connected", "Power"));
+            interpreter.WriteEvent(tableBuilder.StartOfTable(addressLabel, typeLabel, connectedLabel, powerLabel));
 
             foreach (Device device in network.Devices)
             {
