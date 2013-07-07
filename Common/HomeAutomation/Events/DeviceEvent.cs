@@ -60,5 +60,12 @@ namespace Roomie.Common.HomeAutomation.Events
 
             return result;
         }
+
+        public static DeviceEvent TemperatureChanged(Device device, IEventSource source)
+        {
+            var result = new DeviceEvent(device, new TemperatureChanged(), source);
+
+            return result;
+        }
     }
 }

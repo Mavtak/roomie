@@ -111,6 +111,10 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                         @event = DeviceEvent.PowerChanged(this, source);
                     }
                 }
+                else if (Type.Equals(DeviceType.Thermostat))
+                {
+                    @event = DeviceEvent.TemperatureChanged(this, source);
+                }
                 else
                 {
                     @event = DeviceEvent.PowerChanged(this, source);

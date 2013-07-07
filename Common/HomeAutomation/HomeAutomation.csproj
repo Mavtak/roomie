@@ -64,6 +64,7 @@
     <Compile Include="Events\NetworkConnected.cs" />
     <Compile Include="Events\NetworkEvent.cs" />
     <Compile Include="Events\NetworkHistory.cs" />
+    <Compile Include="Events\TemperatureChanged.cs" />
     <Compile Include="VirtualAddress.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Device.cs" />
