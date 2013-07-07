@@ -74,56 +74,13 @@ namespace Roomie.Common.HomeAutomation
 
         public string BuildVirtualAddress(bool justAddress, bool includeDescription)
         {
-            string remarks = null;
+            string description = null;
             if (includeDescription)
             {
-                var remarksBuilder = new StringBuilder();
-
-                if (this.Name != null)
-                {
-                    remarksBuilder.Append("The ");
-                    remarksBuilder.Append(this.Name);
-                }
-                else
-                {
-                    remarksBuilder.Append("an unnamed device");
-                }
-
-                remarksBuilder.Append(" in ");
-
-                if (this.location.IsSet)
-                {
-                    remarksBuilder.Append("The ");
-                    remarksBuilder.Append(this.location.Name);
-                }
-                else
-                {
-                    remarksBuilder.Append(" an unknown location");
-                }
-
-                remarksBuilder.Append(", connected to ");
-
-                if (this.Network != null)
-                {
-                    if (this.Network.Name != null)
-                    {
-                        remarksBuilder.Append("the ");
-                        remarksBuilder.Append(this.Network.Name);
-                    }
-                    else
-                    {
-                        remarksBuilder.Append("an unnamed network");
-                    }
-                }
-                else
-                {
-                    remarksBuilder.Append("no network");
-                }
-
-                remarks = remarksBuilder.ToString();
+                description = VirtualAddress.FormatNaturalLanguageDescription(this);
             }
 
-            return VirtualAddress.Format(this, justAddress, remarks);
+            return VirtualAddress.Format(this, justAddress, description);
         }
 
         public XElement ToXElement()

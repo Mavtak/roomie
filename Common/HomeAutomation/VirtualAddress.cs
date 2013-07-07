@@ -168,5 +168,53 @@ namespace Roomie.Common.HomeAutomation
 
             return virtualAddress.Format();
         }
+
+        public static string FormatNaturalLanguageDescription(Device device)
+        {
+            var result = new StringBuilder();
+
+            if (device.Name != null)
+            {
+                result.Append("The ");
+                result.Append(device.Name);
+            }
+            else
+            {
+                result.Append("an unnamed device");
+            }
+
+            result.Append(" in ");
+
+            if (device.Location.IsSet)
+            {
+                result.Append("The ");
+                result.Append(device.Location.Name);
+            }
+            else
+            {
+                result.Append(" an unknown location");
+            }
+
+            result.Append(", connected to ");
+
+            if (device.Network != null)
+            {
+                if (device.Network.Name != null)
+                {
+                    result.Append("the ");
+                    result.Append(device.Network.Name);
+                }
+                else
+                {
+                    result.Append("an unnamed network");
+                }
+            }
+            else
+            {
+                result.Append("no network");
+            }
+
+            return result.ToString();
+        }
     }
 }
