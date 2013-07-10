@@ -48,6 +48,7 @@
     <Compile Include="Temperature\CelsiusTemperatureTests.cs" />
     <Compile Include="Temperature\KelvinTemperatureTests.cs" />
     <Compile Include="Temperature\FahrenheitTemperatureTests.cs" />
+    <Compile Include="Temperature\TemperatureParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
