@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Roomie.Common.Temperature;
+using Roomie.Desktop.Engine.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Text.RegularExpressions;
-
-using Roomie.Desktop.Engine.Exceptions;
 
 namespace Roomie.Desktop.Engine
 {
+    //TODO: clean this class up
     public class RoomieCommandScope
     {
         public const string VariableNamePattern = "[A-Za-z0-9-_ ]+?";
@@ -149,6 +149,10 @@ namespace Roomie.Desktop.Engine
         public DateTime GetDateTime(string name)
         {
             return TimeUtils.StringToDateTime(GetValue(name));
+        }
+        public ITemperature GetTemperature(string name)
+        {
+            return TemperatureParser.Parse(GetValue(name));
         }
         #endregion
 

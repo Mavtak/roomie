@@ -58,6 +58,7 @@
     <Compile Include="Commands\ByteParameterAttribute.cs" />
     <Compile Include="Commands\IntegerParameterAttribute.cs" />
     <Compile Include="Commands\IntegerRangeParameterAttribute.cs" />
+    <Compile Include="Commands\TemperatureParameterAttribute.cs" />
     <Compile Include="Commands\TimeSpanParameterAttribute.cs" />
     <Compile Include="Commands\DateTimeParameterAttribute.cs" />
     <Compile Include="Commands\DescriptionAttribute.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Exceptions\VariableException.cs" />
     <Compile Include="RoomieCommand.cs" />
     <Compile Include="RoomieCommandArgument.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\TemperatureParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\IntegerRangeParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\ParameterValidationMessageHelper.cs" />
     <Compile Include="RoomieCommandContext.cs" />
@@ -107,6 +109,10 @@
     <Compile Include="TimeUtils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common\Common.csproj">
+      <Project>{96934cbd-3597-4432-ae32-ed730377d3aa}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\Exceptions\Exceptions.csproj">
       <Project>{157A5468-8614-4577-91B3-738D58BF8350}</Project>
       <Name>Exceptions</Name>
