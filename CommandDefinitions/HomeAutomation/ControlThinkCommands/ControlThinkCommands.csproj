@@ -49,6 +49,7 @@
     <Compile Include="Commands\ControlThink\PrintStats.cs" />
     <Compile Include="Commands\ControlThink\RegisterNetwork.cs" />
     <Compile Include="Commands\ControlThink\RemoveBrokenDevice.cs" />
+    <Compile Include="Commands\ControlThink\SetSetpoint.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="InternalLibraryVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +59,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common\Common.csproj">
+      <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\Exceptions\Exceptions.csproj">
       <Project>{157A5468-8614-4577-91B3-738D58BF8350}</Project>
       <Name>Exceptions</Name>
