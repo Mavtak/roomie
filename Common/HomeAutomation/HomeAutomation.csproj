@@ -65,6 +65,8 @@
     <Compile Include="Events\NetworkEvent.cs" />
     <Compile Include="Events\NetworkHistory.cs" />
     <Compile Include="Events\TemperatureChanged.cs" />
+    <Compile Include="Thermostats\SetpointTypeParser.cs" />
+    <Compile Include="Thermostats\SetpointType.cs" />
     <Compile Include="VirtualAddress.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Device.cs" />
