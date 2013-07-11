@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Helpers;
 using BaseDevice = Roomie.Common.HomeAutomation.Device;
 using BaseLocation = Roomie.Common.HomeAutomation.DeviceLocation;
@@ -36,6 +37,15 @@ namespace Roomie.Web.Persistence.Models
                 base.location = (BaseLocation)value;
             }
         }
+
+        public override IToggleSwitch ToggleSwitch
+        {
+            get
+            {
+                return new ToggleSwitchModel(this);
+            }
+        }
+
         public override int? Power
         {
             get

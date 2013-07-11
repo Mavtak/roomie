@@ -17,7 +17,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button leftmost" + (Model.IsOff ? " activated" : "")
+                    @class = "button leftmost" + (Model.ToggleSwitch.IsOff ? " activated" : "")
                 }
             )){<button class="button" >Off</button>}@*
 
@@ -35,7 +35,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button rightmost" + (Model.IsOn ? " activated" : "")
+                    @class = "button rightmost" + (Model.ToggleSwitch.IsOn ? " activated" : "")
                 }
             )){<button class="button">On</button>}@*
 

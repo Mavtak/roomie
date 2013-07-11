@@ -7,13 +7,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var device = context.Device;
 
-            if (device.IsOff)
+            if (device.ToggleSwitch.IsOff)
             {
-                device.PowerOn();
+                device.ToggleSwitch.PowerOn();
             }
             else
             {
-                device.PowerOff();
+                device.ToggleSwitch.PowerOff();
             }
 
             //TODO: make this more efficient

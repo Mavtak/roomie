@@ -58,8 +58,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             DeviceEventActions = new List<DeviceEventAction>();
         }
 
-        public abstract void PowerOn();
-        public abstract void PowerOff();
         protected abstract int? SetPower(int power);
         public abstract void Poll();
 
@@ -98,11 +96,11 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             {
                 if (Type.Equals(DeviceType.MotionDetector))
                 {
-                    if (IsOn)
+                    if (ToggleSwitch.IsOn)
                     {
                         @event = DeviceEvent.MotionDetected(this, source);
                     }
-                    else if(IsOff)
+                    else if (ToggleSwitch.IsOff)
                     {
                         @event = DeviceEvent.StillnessDetected(this, source);
                     }
@@ -129,13 +127,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
             var eventActions = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerChange));
 
-            if (IsOn)
+            if (ToggleSwitch.IsOn)
             {
                 var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOn));
                 eventActions = eventActions.Union(onScripts);
             }
 
-            if (IsOff)
+            if (ToggleSwitch.IsOff)
             {
                 var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOff));
                 eventActions = eventActions.Union(onScripts);

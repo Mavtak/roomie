@@ -56,6 +56,7 @@
     <Compile Include="ZWaveDevice.cs" />
     <Compile Include="ZWaveDeviceCollection.cs" />
     <Compile Include="ZWaveNetwork.cs" />
+    <Compile Include="ZWaveToggleSwitch.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

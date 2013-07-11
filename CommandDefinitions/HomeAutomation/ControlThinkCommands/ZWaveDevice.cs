@@ -34,25 +34,12 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 };
         }
 
-        public override void PowerOn()
+        public override IToggleSwitch ToggleSwitch
         {
-            Action operation = () =>
+            get
             {
-                BackingObject.PowerOn();
-                IsConnected = true;
-            };
-
-            DoDeviceOperation(operation);
-        }
-        public override void PowerOff()
-        {
-            Action operation = () =>
-            {
-                BackingObject.PowerOff();
-                IsConnected = true;
-            };
-
-            DoDeviceOperation(operation);
+                return new ZWaveToggleSwitch(this);
+            }
         }
 
         protected override int? SetPower(int power)
@@ -80,7 +67,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             DoDeviceOperation(operation);
         }
 
-        private TResult DoDeviceOperation<TResult>(Func<TResult> operation)
+        internal TResult DoDeviceOperation<TResult>(Func<TResult> operation)
         {
             try
             {
@@ -107,7 +94,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        private void DoDeviceOperation(Action operation)
+        internal void DoDeviceOperation(Action operation)
         {
             Func<int> wrappedOperation = () =>
                 {

@@ -70,5 +70,16 @@ namespace Roomie.Common.HomeAutomation
             return virtualAddress.Format();
         }
         #endregion
+
+        public static bool IsOn(int? power)
+        {
+            return power != null && !IsOff(power);
+        }
+
+        public static bool IsOff(int? power)
+        {
+
+            return power == 0; ;
+        }
     }
 }

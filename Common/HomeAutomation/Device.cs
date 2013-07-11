@@ -30,27 +30,12 @@ namespace Roomie.Common.HomeAutomation
         }
 
         public DeviceType Type { get; set; }
+        public abstract IToggleSwitch ToggleSwitch { get; }
         public int MaxPower { get; set; }
         public bool? IsConnected { get; set; }
         
         protected int? power { get; set; }
         public abstract int? Power { get; set; }
-
-        public bool IsOff
-        {
-            get
-            {
-                return power == 0;
-            }
-        }
-
-        public bool IsOn
-        {
-            get
-            {
-                return Power != null && !IsOff;
-            }
-        }
 
         public int? Percentage
         {

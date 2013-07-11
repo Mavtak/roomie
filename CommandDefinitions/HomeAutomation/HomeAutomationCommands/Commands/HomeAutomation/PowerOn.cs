@@ -7,7 +7,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var device = context.Device;
 
-            device.PowerOn();
+            device.ToggleSwitch.PowerOn();
         }
     }
 }

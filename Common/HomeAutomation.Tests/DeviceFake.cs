@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Roomie.Common.HomeAutomation.Tests
 {
@@ -17,6 +14,11 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             Name = name;
             Address = name;
+        }
+
+        public override IToggleSwitch ToggleSwitch
+        {
+            get { throw new NotImplementedException(); }
         }
 
         public override int? Power { get; set; }
