@@ -1,14 +1,12 @@
-﻿using Roomie.Common.Temperature;
-using Roomie.Desktop.Engine.Exceptions;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Roomie.Desktop.Engine.Exceptions;
 
 namespace Roomie.Desktop.Engine
 {
-    //TODO: clean this class up
+    //TODO: reconsider the structure of this class
     public class RoomieCommandScope
     {
         public const string VariableNamePattern = "[A-Za-z0-9-_ ]+?";
@@ -48,7 +46,9 @@ namespace Roomie.Desktop.Engine
         public void DeclareVariable(string name, string value)
         {
             if (!IsValidVariableName(name))
+            {
                 throw new VariableException("\"" + name + "\" is not a valid variable name");
+            }
 
             lock (_variables)
             {
@@ -57,16 +57,22 @@ namespace Roomie.Desktop.Engine
                 _variables.Add(name, value);
             }
         }
+
         public void DeclareVariable(string name)
         {
             DeclareVariable(name, null);
         }
+
         public void ReplaceVariable(string name, string value)
         {
             if (ContainsVariableInScope(name))
+            {
                 ModifyVariableValue(name, value);
+            }
             else
+            {
                 DeclareVariable(name, value);
+            }
         }
 
 
@@ -80,30 +86,38 @@ namespace Roomie.Desktop.Engine
                     _variables.Add(name, value);
                     return;
                 }
-                if (HigherScope == null)
-                    throw new VariableException("Variable " + name + " doesn't exist");
-                HigherScope.ModifyVariableValue(name, value);
 
+                if (HigherScope == null)
+                {
+                    throw new VariableException("Variable " + name + " doesn't exist");
+                }
+
+                HigherScope.ModifyVariableValue(name, value);
             }
         }
 
-        #region Get Values
         public string GetLiteralValue(string name)
         {
             lock (_variables)
             {
                 if (_variables.ContainsKey(name))
+                {
                     return _variables[name];
+                }
+
                 if (HigherScope == null)
+                {
                     throw new VariableException("Variable " + name + " not set");
+                }
+
                 return HigherScope.GetLiteralValue(name);
             }
         }
+
         public string GetValue(string name)
         {
             return ReplaceVariables(name, GetLiteralValue(name));
         }
-        #endregion
 
         public List<string> Variables
         {
@@ -117,6 +131,7 @@ namespace Roomie.Desktop.Engine
         public bool IsValidVariableName(string name)
         {
             var pattern = new Regex(@"\A" + VariableNamePattern + @"\Z");
+
             return pattern.IsMatch(name);
         }
 
@@ -170,12 +185,19 @@ namespace Roomie.Desktop.Engine
         {
             return _variables.ContainsKey(name);
         }
+
         public bool VariableIsDefined(string name)
         {
             if (VariableDefinedInThisScope(name))
+            {
                 return true;
+            }
+
             if (HigherScope == null)
+            {
                 return false;
+            }
+
             return HigherScope.VariableIsDefined(name);
         }
 
