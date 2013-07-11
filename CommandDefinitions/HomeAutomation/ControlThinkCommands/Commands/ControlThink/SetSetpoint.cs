@@ -19,7 +19,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink
             var scope = context.Scope;
             var interpreter = context.Interpreter;
             var temperature = scope.GetValue("Temperature").ToTemperature();
-            var type = SetpointTypeParser.Parse(scope.GetValue("Setpoint"));
+            var type = scope.GetValue("Setpoint").ToSetpointType();
 
             interpreter.WriteEvent("Setting " + device + " to " + temperature);
 

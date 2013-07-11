@@ -19,6 +19,11 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             return result;
         }
 
+        public static SetpointType ToSetpointType(this string input)
+        {
+            return Parse(input);
+        }
+
         private static SetpointType? TryParse(string input)
         {
             var setPoints = Enum.GetValues(typeof(SetpointType)).Cast<SetpointType>();
