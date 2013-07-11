@@ -1,6 +1,6 @@
 ﻿using System;
+using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
@@ -18,7 +18,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var startPower = scope.GetInteger("StartPower");
             var endPower = scope.GetInteger("EndPower");
 
-            TimeSpan duration = scope.GetTimeSpan("Duration");
+            TimeSpan duration = scope.GetValue("Duration").ToTimeSpan();
 
             if (startPower == endPower)
             {

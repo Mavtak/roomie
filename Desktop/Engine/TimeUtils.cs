@@ -75,6 +75,11 @@ namespace Roomie.Desktop.Engine
             return new TimeSpan(days, hours, minutes, seconds, milliseconds);
         }
 
+        public static TimeSpan ToTimeSpan(this string input)
+        {
+            return StringToTimeSpan(input);
+        }
+
         /// <summary>
         /// Converts a TimeSpan to string representation that can be interpreted by this class.
         /// </summary>

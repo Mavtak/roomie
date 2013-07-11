@@ -142,10 +142,6 @@ namespace Roomie.Desktop.Engine
                 throw new VariableException("Variable \"" + name + "\" is not a Byte.");
             }
         }
-        public TimeSpan GetTimeSpan(string name)
-        {
-            return TimeUtils.StringToTimeSpan(GetValue(name));
-        }
         public DateTime GetDateTime(string name)
         {
             return TimeUtils.StringToDateTime(GetValue(name));

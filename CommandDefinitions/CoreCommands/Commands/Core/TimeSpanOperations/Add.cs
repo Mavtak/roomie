@@ -15,8 +15,8 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperation
         {
             var scope = context.Scope;
 
-            TimeSpan value1 = scope.GetTimeSpan("Value1");
-            TimeSpan value2 = scope.GetTimeSpan("Value2");
+            TimeSpan value1 = scope.GetValue("Value1").ToTimeSpan();
+            TimeSpan value2 = scope.GetValue("Value2").ToTimeSpan();
             string resultName = scope.GetValue("ResultName");
 
             TimeSpan result = value1.Add(value2);

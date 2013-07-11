@@ -1,8 +1,8 @@
 ﻿using System;
 using Roomie.Common.Exceptions;
 using Roomie.Common.HomeAutomation.Exceptions;
+using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var scope = context.Scope;
             var device = context.Device;
 
-            TimeSpan pollInterval = scope.GetTimeSpan("PollInterval");
+            TimeSpan pollInterval = scope.GetValue("PollInterval").ToTimeSpan();
             int maxErrors = scope.GetInteger("MaxErrors");
 
             if (pollInterval.Seconds < 0)

@@ -14,7 +14,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            var duration = scope.GetTimeSpan("Duration");
+            var duration = scope.GetValue("Duration").ToTimeSpan();
             var target = DateTime.Now.Add(duration);
 
             interpreter.WriteEvent("waiting for " + target);

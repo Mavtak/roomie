@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             var scope = context.Scope;
 
             int frequency = scope.GetInteger("Frequency");
-            TimeSpan duration = scope.GetTimeSpan("Duration");
+            TimeSpan duration = scope.GetValue("Duration").ToTimeSpan();
 
             double ms = duration.TotalMilliseconds;
 
