@@ -35,5 +35,13 @@ namespace Roomie.Common.Tests.Temperature
             Assert.That(kelvin, Is.SameAs(newKelvin));
         }
 
+        [TestCase(100, "100 Kelvin")]
+        public void ToStringShouldWork(double value, string expected)
+        {
+            var kelvin = new KelvinTemperature(value);
+            var actual = kelvin.ToString();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }
