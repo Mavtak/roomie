@@ -105,6 +105,7 @@
     <Compile Include="ShutdownCommand.cs" />
     <Compile Include="StartupCommand.cs" />
     <Compile Include="Delegates\TerminalOutputEventArgs.cs" />
+    <Compile Include="StringConversionExtensions.cs" />
     <Compile Include="ThreadPool.cs" />
     <Compile Include="TimeUtils.cs" />
   </ItemGroup>

@@ -22,7 +22,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
             }
 
             String text = scope.GetValue("Text");
-            bool async = scope.GetBoolean("Async");
+            bool async = scope.GetValue("Async").ToBoolean();
 
 
             if (async)

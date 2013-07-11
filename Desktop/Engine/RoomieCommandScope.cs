@@ -103,19 +103,6 @@ namespace Roomie.Desktop.Engine
         {
             return ReplaceVariables(name, GetLiteralValue(name));
         }
-        public bool GetBoolean(string name)
-        {
-            string value = GetValue(name);
-
-            try
-            {
-                return Convert.ToBoolean(value);
-            }
-            catch
-            {
-                throw new VariableException("Variable \"" + name + "\" is not a Boolean.");
-            }
-        }
         public int GetInteger(string name)
         {
             string value = GetValue(name);

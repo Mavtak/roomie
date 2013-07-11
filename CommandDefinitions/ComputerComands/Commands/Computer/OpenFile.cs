@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
             var scope = context.Scope;
 
             string path = scope.GetValue("Path");
-            bool abortOnError = scope.GetBoolean("AbortOnError");
+            bool abortOnError = scope.GetValue("AbortOnError").ToBoolean();
 
             try
             {

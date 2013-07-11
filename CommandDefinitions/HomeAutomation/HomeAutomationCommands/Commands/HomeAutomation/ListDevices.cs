@@ -2,8 +2,8 @@
 using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.TextUtilities;
+using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var network = context.Network;
             var scope = context.Scope;
 
-            var poll = scope.GetBoolean("Poll");
+            var poll = scope.GetValue("Poll").ToBoolean();
 
             //TODO: list all devices on all networks.
             //TODO: add type

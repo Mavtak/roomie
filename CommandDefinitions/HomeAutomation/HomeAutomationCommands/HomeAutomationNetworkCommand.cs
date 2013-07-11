@@ -1,6 +1,7 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Exceptions;
+using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
@@ -47,7 +48,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
 
             if (scope.VariableDefinedInThisScope("AutoConnect")
-                && scope.GetBoolean("AutoConnect"))
+                && scope.GetValue("AutoConnect").ToBoolean())
             {
                 network.Connect();
 

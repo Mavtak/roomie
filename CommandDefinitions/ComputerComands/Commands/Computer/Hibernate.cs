@@ -1,7 +1,6 @@
 ﻿using System.Windows.Forms;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {
@@ -13,7 +12,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
         {
             var scope = context.Scope;
 
-            bool force = scope.GetBoolean("Force");
+            bool force = scope.GetValue("Force").ToBoolean();
 
             Common.SuspendComputer(PowerState.Hibernate, force);
         }

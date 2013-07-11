@@ -13,7 +13,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            bool literalValues = scope.GetBoolean("LiteralValues");
+            bool literalValues = scope.GetValue("LiteralValues").ToBoolean();
 
 
             RoomieCommandScope currentScope = scope;

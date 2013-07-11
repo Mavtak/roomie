@@ -14,7 +14,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
         {
             var scope = context.Scope;
 
-            bool force = scope.GetBoolean("Force");
+            bool force = scope.GetValue("Force").ToBoolean();
 
             Common.SuspendComputer(PowerState.Suspend, force);
         }

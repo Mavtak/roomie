@@ -18,13 +18,13 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 
             string name = scope.GetValue("Name");
 
-            bool literal = scope.GetBoolean("Literal");
+            bool literal = scope.GetValue("Literal").ToBoolean();
             string value;
             if(literal)
                 value = scope.GetLiteralValue("Value");
             else
                 value = scope.GetValue("Value");
-            bool global = scope.GetBoolean("Global");
+            bool global = scope.GetValue("Global").ToBoolean();
 
             if (global)
                 globalScope.ModifyVariableValue(name, value);

@@ -1,8 +1,5 @@
-﻿
-
+﻿using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
-
 
 namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
 {
@@ -22,7 +19,7 @@ namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
             context.RegisterSender(
                 host: scope.GetValue("Host"),
                 port: scope.GetInteger("Port"),
-                enableSsl: scope.GetBoolean("UseSSL"),
+                enableSsl: scope.GetValue("UseSSL").ToBoolean(),
                 username: scope.GetValue("Username"),
                 password: scope.GetValue("Password"),
                 senderAddress: scope.GetValue("Address"),
