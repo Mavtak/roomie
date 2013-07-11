@@ -13,5 +13,10 @@ namespace Roomie.Desktop.Engine
         {
             return Convert.ToInt32(input);
         }
+
+        public static byte ToByte(this string input)
+        {
+            return Convert.ToByte(input);
+        }
     }
 }

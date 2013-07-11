@@ -103,19 +103,6 @@ namespace Roomie.Desktop.Engine
         {
             return ReplaceVariables(name, GetLiteralValue(name));
         }
-        public byte GetByte(string name)
-        {
-            string value = GetValue(name);
-
-            try
-            {
-                return Convert.ToByte(value);
-            }
-            catch
-            {
-                throw new VariableException("Variable \"" + name + "\" is not a Byte.");
-            }
-        }
         #endregion
 
         public List<string> Variables

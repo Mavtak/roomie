@@ -1,4 +1,5 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
+using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink
@@ -11,7 +12,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink
             var device = context.Device as ZWaveDevice;
             var interpreter = context.Interpreter;
             var scope = context.Scope;
-            var parameterNumber = scope.GetByte("ParameterNumber");
+            var parameterNumber = scope.GetValue("ParameterNumber").ToByte();
 
             var parameter = device.BackingObject.ConfigurationParameters[parameterNumber];
 
