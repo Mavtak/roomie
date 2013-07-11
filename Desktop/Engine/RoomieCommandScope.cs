@@ -142,10 +142,6 @@ namespace Roomie.Desktop.Engine
                 throw new VariableException("Variable \"" + name + "\" is not a Byte.");
             }
         }
-        public ITemperature GetTemperature(string name)
-        {
-            return TemperatureParser.Parse(GetValue(name));
-        }
         #endregion
 
         public List<string> Variables

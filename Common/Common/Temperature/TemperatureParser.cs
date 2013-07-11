@@ -56,5 +56,10 @@ namespace Roomie.Common.Temperature
 
             return result;
         }
+
+        public static ITemperature ToTemperature(this string input)
+        {
+            return Parse(input);
+        }
     }
 }

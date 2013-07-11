@@ -18,7 +18,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink
             var device = context.Device as ZWaveDevice;
             var scope = context.Scope;
             var interpreter = context.Interpreter;
-            var temperature = scope.GetTemperature("Temperature");
+            var temperature = scope.GetValue("Temperature").ToTemperature();
             var type = SetpointTypeParser.Parse(scope.GetValue("Setpoint"));
 
             interpreter.WriteEvent("Setting " + device + " to " + temperature);
