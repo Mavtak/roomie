@@ -1,7 +1,6 @@
 ﻿using System;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
 {
@@ -14,7 +13,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            DateTime target = scope.GetDateTime("Time");
+            DateTime target = scope.GetValue("Time").ToDateTime();
 
             interpreter.WriteEvent("waiting for " + target);
             Common.WaitUntil(target);            

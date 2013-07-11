@@ -1,7 +1,6 @@
 ﻿using System;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.DateTimeOperations
 {
@@ -15,7 +14,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.DateTimeOperation
         {
             var scope = context.Scope;
 
-            DateTime dateTime = scope.GetDateTime("DateTime");
+            DateTime dateTime = scope.GetValue("DateTime").ToDateTime();
             TimeSpan timeSpan = scope.GetValue("TimeSpan").ToTimeSpan();
             string resultName = scope.GetValue("ResultName");
 

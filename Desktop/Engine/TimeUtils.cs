@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using Roomie.Desktop.Engine.Exceptions;
 
 namespace Roomie.Desktop.Engine
 {
@@ -264,6 +263,11 @@ namespace Roomie.Desktop.Engine
 
             return result;
 
+        }
+
+        public static DateTime ToDateTime(this string input)
+        {
+            return StringToDateTime(input);
         }
 
         private static bool DayOfWeekMatches(DayOfWeek dayOfWeek, string weekRelativeDay)
