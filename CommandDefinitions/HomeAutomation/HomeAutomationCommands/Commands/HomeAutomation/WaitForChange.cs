@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var device = context.Device;
 
             TimeSpan pollInterval = scope.GetValue("PollInterval").ToTimeSpan();
-            int maxErrors = scope.GetInteger("MaxErrors");
+            int maxErrors = scope.GetValue("MaxErrors").ToInteger();
 
             if (pollInterval.Seconds < 0)
                 throw new RoomieRuntimeException("PollInterval must be a positive (or 0) time interval.");

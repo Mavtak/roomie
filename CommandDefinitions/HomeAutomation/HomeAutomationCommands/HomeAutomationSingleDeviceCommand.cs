@@ -1,6 +1,6 @@
-﻿using System;
-using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
 using Roomie.Common.HomeAutomation.Exceptions;
+using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
@@ -15,7 +15,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             var scope = context.Scope;
             var network = context.Network;
             var networks = context.Networks;
-            var retries = scope.GetInteger(RetriesParameterAttribute.Key);
+            var retries = scope.GetValue(RetriesParameterAttribute.Key).ToInteger();
 
             Device device = null;
             if (scope.VariableDefinedInThisScope("Device"))

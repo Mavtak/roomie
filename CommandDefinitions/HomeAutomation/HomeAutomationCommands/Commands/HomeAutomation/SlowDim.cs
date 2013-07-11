@@ -15,8 +15,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var scope = context.Scope;
             var device = context.Device;
 
-            var startPower = scope.GetInteger("StartPower");
-            var endPower = scope.GetInteger("EndPower");
+            var startPower = scope.GetValue("StartPower").ToInteger();
+            var endPower = scope.GetValue("EndPower").ToInteger();
 
             TimeSpan duration = scope.GetValue("Duration").ToTimeSpan();
 

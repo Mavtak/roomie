@@ -1,7 +1,6 @@
 ﻿using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
 {
@@ -15,7 +14,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
             var originalCommand = context.OriginalCommand;
             var innerCommands = originalCommand.InnerCommands;
 
-            int times = scope.GetInteger("Times");
+            int times = scope.GetValue("Times").ToInteger();
 
             while (times != 0)
             {

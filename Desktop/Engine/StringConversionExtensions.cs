@@ -8,5 +8,10 @@ namespace Roomie.Desktop.Engine
         {
             return Convert.ToBoolean(input);
         }
+
+        public static int ToInteger(this string input)
+        {
+            return Convert.ToInt32(input);
+        }
     }
 }

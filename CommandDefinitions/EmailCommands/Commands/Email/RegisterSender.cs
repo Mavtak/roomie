@@ -18,7 +18,7 @@ namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
 
             context.RegisterSender(
                 host: scope.GetValue("Host"),
-                port: scope.GetInteger("Port"),
+                port: scope.GetValue("Port").ToInteger(),
                 enableSsl: scope.GetValue("UseSSL").ToBoolean(),
                 username: scope.GetValue("Username"),
                 password: scope.GetValue("Password"),

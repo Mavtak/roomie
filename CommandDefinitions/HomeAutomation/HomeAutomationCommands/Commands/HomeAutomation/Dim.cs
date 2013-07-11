@@ -1,4 +1,5 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
+using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
@@ -10,7 +11,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var scope = context.Scope;
             var device = context.Device;
 
-            var power = scope.GetInteger("Power");
+            var power = scope.GetValue("Power").ToInteger();
 
             device.Power = power;
         }

@@ -1,7 +1,6 @@
 ﻿using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.Math
 {
@@ -16,8 +15,8 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.Math
         {
             var scope = context.Scope;
 
-            int min = scope.GetInteger("Min");
-            int max = scope.GetInteger("Max");
+            int min = scope.GetValue("Min").ToInteger();
+            int max = scope.GetValue("Max").ToInteger();
             string resultName = scope.GetValue("ResultName");
 
             if (min > max)

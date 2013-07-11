@@ -2,7 +2,6 @@
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 {
@@ -15,7 +14,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
         {
             var scope = context.Scope;
 
-            int frequency = scope.GetInteger("Frequency");
+            int frequency = scope.GetValue("Frequency").ToInteger();
             TimeSpan duration = scope.GetValue("Duration").ToTimeSpan();
 
             double ms = duration.TotalMilliseconds;

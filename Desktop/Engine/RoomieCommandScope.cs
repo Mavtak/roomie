@@ -103,19 +103,6 @@ namespace Roomie.Desktop.Engine
         {
             return ReplaceVariables(name, GetLiteralValue(name));
         }
-        public int GetInteger(string name)
-        {
-            string value = GetValue(name);
-
-            try
-            {
-                return Convert.ToInt32(value);
-            }
-            catch
-            {
-                throw new VariableException("Variable \"" + name + "\" is not an Integer.");
-            }
-        }
         public byte GetByte(string name)
         {
             string value = GetValue(name);
