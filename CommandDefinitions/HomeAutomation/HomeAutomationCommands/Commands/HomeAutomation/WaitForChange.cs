@@ -11,6 +11,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     [IntegerParameter("MaxErrors", 5)]
     public class WaitForChange : HomeAutomationSingleDeviceCommand
     {
+        //TODO: rethink this command
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var interpreter = context.Interpreter;

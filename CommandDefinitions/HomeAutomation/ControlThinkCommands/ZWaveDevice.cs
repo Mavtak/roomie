@@ -78,10 +78,5 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 return _thermostat;
             }
         }
-
-        public override void Poll()
-        {
-            DimmerSwitch.Poll();
-        }
     }
 }

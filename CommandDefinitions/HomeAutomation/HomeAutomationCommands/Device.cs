@@ -58,7 +58,25 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             DeviceEventActions = new List<DeviceEventAction>();
         }
 
-        public abstract void Poll();
+        public void Poll()
+        {
+            if (Type == DeviceType.Switch)
+            {
+                ToggleSwitch.Poll();
+                return;
+            }
+
+            if (Type == DeviceType.Dimmable)
+            {
+                DimmerSwitch.Poll();
+                return;
+            }
+
+            if (Type == DeviceType.Thermostat)
+            {
+                Thermostat.PollTemperature();
+            }
+        }
 
         //TODO: min and max power values
 
