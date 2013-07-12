@@ -107,7 +107,6 @@
     <Compile Include="Delegates\TerminalOutputEventArgs.cs" />
     <Compile Include="StringConversionExtensions.cs" />
     <Compile Include="ThreadPool.cs" />
-    <Compile Include="TimeUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common\Common.csproj">
