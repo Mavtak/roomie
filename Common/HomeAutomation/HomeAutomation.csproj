@@ -65,6 +65,7 @@
     <Compile Include="Events\NetworkEvent.cs" />
     <Compile Include="Events\NetworkHistory.cs" />
     <Compile Include="Events\TemperatureChanged.cs" />
+    <Compile Include="IDimmerSwitch.cs" />
     <Compile Include="IToggleSwitch.cs" />
     <Compile Include="Thermostats\SetpointTypeParser.cs" />
     <Compile Include="Thermostats\SetpointType.cs" />

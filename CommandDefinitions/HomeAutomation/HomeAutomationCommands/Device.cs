@@ -58,26 +58,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             DeviceEventActions = new List<DeviceEventAction>();
         }
 
-        protected abstract int? SetPower(int power);
         public abstract void Poll();
-
-        public override int? Power
-        {
-            get
-            {
-                return base.power;
-            }
-            set
-            {
-                if (value.Value < 0)
-                    throw new HomeAutomationException("Power must be greater than or equal to 0 (attempted value is " + value.Value + ")");
-
-                if (value.Value > MaxPower)
-                    value = MaxPower;
-
-                SetPower(value.Value);
-            }
-        }
 
         //TODO: min and max power values
 
@@ -86,7 +67,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             var threadPool = Context.ThreadPool;
 
             //TODO: print based on selected IEvent
-            threadPool.Print(BuildVirtualAddress(false, false) + " power level changed to " + Power);
+            threadPool.Print(BuildVirtualAddress(false, false) + " power level changed to " + DimmerSwitch.Power);
 
             //TODO: improve this logic
             //TODO: include previous power for more smarts

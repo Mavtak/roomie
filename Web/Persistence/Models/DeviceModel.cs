@@ -46,7 +46,15 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public override int? Power
+        public override IDimmerSwitch DimmerSwitch
+        {
+            get
+            {
+                return new DimmerSwitchModel(this);
+            }
+        }
+
+        public int? Power
         {
             get
             {

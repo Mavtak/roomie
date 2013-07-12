@@ -26,7 +26,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             device.Poll();
 
-            var startPower = device.Power;
+            var startPower = device.DimmerSwitch.Power;
             var currentPower = startPower;
 
             int numFails = 0;
@@ -37,7 +37,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                 {
                     device.Poll();
 
-                    currentPower = device.Power;
+                    currentPower = device.DimmerSwitch.Power;
                     if (currentPower != startPower)
                         return;
                 }

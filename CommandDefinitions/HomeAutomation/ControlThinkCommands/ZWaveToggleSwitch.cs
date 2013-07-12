@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Roomie.Common.HomeAutomation;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
@@ -40,7 +37,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             get
             {
-                return Utilities.IsOff(_device.Power);
+                return Utilities.IsOff(_device.DimmerSwitch.Power);
             }
         }
 
@@ -48,7 +45,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             get
             {
-                return Utilities.IsOn(_device.Power);
+                return Utilities.IsOn(_device.DimmerSwitch.Power);
             }
         }
     }

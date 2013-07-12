@@ -21,6 +21,9 @@ namespace Roomie.Common.HomeAutomation.Tests
             get { throw new NotImplementedException(); }
         }
 
-        public override int? Power { get; set; }
+        public override IDimmerSwitch DimmerSwitch
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

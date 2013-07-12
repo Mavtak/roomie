@@ -20,7 +20,7 @@ namespace Roomie.Common.HomeAutomation.Events
         private DeviceEvent(Device device, IEventType type, IEventSource source)
         {
             Device = device;
-            Power = device.Power;
+            Power = device.DimmerSwitch.Power;
             Type = type;
             TimeStamp = DateTime.UtcNow;
             Source = source;

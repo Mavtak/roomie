@@ -31,8 +31,8 @@
                 else
                 {<text>middle</text>}
 
-                if ((Model.Device.Percentage > (power - 10))
-                    && (Model.Device.Percentage <= (power)))
+                if ((Model.Device.DimmerSwitch.Percentage > (power - 10))
+                    && (Model.Device.DimmerSwitch.Percentage <= (power)))
                 {<text> activated</text>}
         } button" type="submit" name="power" value="@power">@{
             if (power == 0)

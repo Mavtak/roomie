@@ -2,6 +2,7 @@
 using System.Text;
 
 using System.Text.RegularExpressions;
+using Roomie.Common.HomeAutomation.Exceptions;
 
 namespace Roomie.Common.HomeAutomation
 {
@@ -80,6 +81,34 @@ namespace Roomie.Common.HomeAutomation
         {
 
             return power == 0; ;
+        }
+
+        public static int? ValidatePower(int? power, int? maxPower)
+        {
+            if (power < 0)
+            {
+                throw new HomeAutomationException("Power must be greater than or equal to 0 (attempted value is " + power + ")");
+            }
+
+            if (power > maxPower)
+            {
+                power = maxPower;
+            }
+
+            return power;
+        }
+
+        public static int? CalculatePowerPercentage(int? power, int? maxPower)
+        {
+            if (power == null)
+            {
+                return null;
+            }
+            if (maxPower == null || maxPower == 0)
+            {
+                maxPower = 100;
+            }
+            return power * 100 / maxPower;
         }
     }
 }

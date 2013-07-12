@@ -63,6 +63,7 @@
     <Compile Include="Models\DeviceLocationModel.cs" />
     <Compile Include="Models\ComputerModel.cs" />
     <Compile Include="Helpers\IHasDivId.cs" />
+    <Compile Include="Models\DimmerSwitchModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\StringStringPair.cs" />
     <Compile Include="Models\ToggleSwitchModel.cs" />

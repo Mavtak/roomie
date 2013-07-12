@@ -11,6 +11,19 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     public class ZWaveDevice : BaseDevice
     {
         internal BackingDevice BackingObject { get; private set; }
+        
+        //TODO: move this into ZWaveDimmerSwitch
+        internal byte? CachedPower
+        {
+            get
+            {
+                return (byte?)power;
+            }
+            set
+            {
+                power = value;
+            }
+        }
 
         public ZWaveDevice(BaseNetwork network, BackingDevice backingDevice, DeviceType type = null, string name = null)
             : base(network, 99, type, name)
@@ -28,7 +41,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             BackingObject.LevelChanged += (sender, args) =>
                 {
-                    power = args.Level;
+                    CachedPower = args.Level;
                     IsConnected = true;
                     PowerChanged();
                 };
@@ -42,26 +55,19 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        protected override int? SetPower(int power)
+        public override IDimmerSwitch DimmerSwitch
         {
-            Func<int?> operation = () =>
+            get
             {
-                BackingObject.Level = (byte)power;
-
-                //TODO: should this method still return the power?
-                return power;
-            };
-
-            var result = DoDeviceOperation(operation);
-
-            return result;
+                return new ZWaveDimmerSwitch(this);
+            }
         }
 
         public override void Poll()
         {
             Action operation = () =>
             {
-                power = BackingObject.Level;
+                CachedPower = BackingObject.Level;
             };
 
             DoDeviceOperation(operation);

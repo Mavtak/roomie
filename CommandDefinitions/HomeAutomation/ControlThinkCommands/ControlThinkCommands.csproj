@@ -51,6 +51,7 @@
     <Compile Include="Commands\ControlThink\RemoveBrokenDevice.cs" />
     <Compile Include="Commands\ControlThink\SetSetpoint.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="ZWaveDimmerSwitch.cs" />
     <Compile Include="InternalLibraryVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZWaveDevice.cs" />

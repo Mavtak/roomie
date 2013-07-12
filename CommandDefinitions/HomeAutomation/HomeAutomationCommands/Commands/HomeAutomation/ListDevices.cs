@@ -63,17 +63,17 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                 {
                     power = "n/a";
                 }
-                else if (device.Power == null)
+                else if (device.DimmerSwitch.Power == null)
                 {
                     power = "?";
                 }
-                else if (device.Power == 0)
+                else if (device.DimmerSwitch.Power == 0)
                 {
                     power = "off";
                 }
                 else
                 {
-                    power = device.Power.ToString();
+                    power = device.DimmerSwitch.Power.ToString();
                     if (device.IsConnected != true)
                     {
                         power = power + "?";

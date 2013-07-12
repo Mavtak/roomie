@@ -31,31 +31,12 @@ namespace Roomie.Common.HomeAutomation
 
         public DeviceType Type { get; set; }
         public abstract IToggleSwitch ToggleSwitch { get; }
+        public abstract IDimmerSwitch DimmerSwitch { get; }
         public int MaxPower { get; set; }
         public bool? IsConnected { get; set; }
         
+        //TODO: remove this
         protected int? power { get; set; }
-        public abstract int? Power { get; set; }
-
-        public int? Percentage
-        {
-            get
-            {
-                if (Power == null)
-                {
-                    return null;
-                }
-                else if (MaxPower == 0)
-                {
-                    //assume that the power is a percentage.
-                    return (Power <= 100) ? Power : 100;
-                }
-                else
-                {
-                    return Power / MaxPower;
-                }
-            }
-        }
 
         public string BuildVirtualAddress(bool justAddress, bool includeDescription)
         {
