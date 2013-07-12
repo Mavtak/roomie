@@ -46,6 +46,30 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             return result;
         }
 
+        
+        public static ITemperature ToRoomieType(this Temperature input)
+        {
+            ITemperature result;
+
+            var value = Convert.ToDouble(input.Value);
+
+            switch (input.Scale)
+            {
+                case TemperatureScale.Celsius:
+                    result = new CelsiusTemperature(value);
+                    break;
+
+                case TemperatureScale.Fahrenheit:
+                    result = new FahrenheitTemperature(value);
+                    break;
+                    
+                default:
+                    throw new ArgumentException("Could not parse type");
+            }
+
+            return result;
+        }
+
         public static ThermostatFanMode ToControlThinkType(this FanMode fanMode)
         {
             switch (fanMode)

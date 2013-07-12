@@ -11,11 +11,19 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     {
         private ZWaveDevice _device;
         private GeneralThermostatV2 _thermostat;
+        public ITemperature Temperature { get; private set; }
 
         public ZWaveThermostat(ZWaveDevice device)
         {
             _device = device;
             _thermostat = device.BackingObject as GeneralThermostatV2;
+        }
+
+        public void PollTemperature()
+        {
+            var controlThinkTemperature = _thermostat.ThermostatTemperature;
+
+            Temperature = controlThinkTemperature.ToRoomieType();
         }
 
         public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
