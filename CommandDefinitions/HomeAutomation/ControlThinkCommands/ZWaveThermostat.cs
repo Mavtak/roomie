@@ -19,8 +19,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
         {
             var thermostat = _device.BackingObject as GeneralThermostatV2;
-            var controlThinkSetpointType = ConvertSetpointType(setpointType);
-            var controlThinkTemperature = ConvertTemperature(temperature);
+            var controlThinkSetpointType = setpointType.ToControlThinkType();
+            var controlThinkTemperature = temperature.ToControlThinkType();
 
             Action operation = () =>
             {
@@ -33,7 +33,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         public void SetFanMode(FanMode fanMode)
         {
             var thermostat = _device.BackingObject as GeneralThermostatV2;
-            var controlThinkFanMode = ConvertFanMode(fanMode);
+            var controlThinkFanMode = fanMode.ToControlThinkType();
 
             Action operation = () =>
             {
@@ -42,58 +42,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             _device.DoDeviceOperation(operation);
 
-        }
-
-        private static ThermostatSetpointType ConvertSetpointType(SetpointType input)
-        {
-            switch (input)
-            {
-                case SetpointType.Heat:
-                    return ThermostatSetpointType.Heating1;
-
-                case SetpointType.Cool:
-                    return ThermostatSetpointType.Cooling1;
-
-                default:
-                    throw new ArgumentException("Could not parse type");
-            }
-        }
-
-        private static Temperature ConvertTemperature(ITemperature input)
-        {
-            decimal value;
-            TemperatureScale scale;
-
-            if (input is FahrenheitTemperature)
-            {
-                value = (int)Math.Round(input.Value);
-                scale = TemperatureScale.Fahrenheit;
-            }
-            else
-            {
-                value = (int)(Math.Round(input.Celsius.Value));
-                scale = TemperatureScale.Celsius;
-            }
-
-            var result = new Temperature(value, scale);
-
-            return result;
-        }
-
-        private static ThermostatFanMode ConvertFanMode(FanMode fanMode)
-        {
-            switch (fanMode)
-            {
-                case FanMode.Auto:
-                    return ThermostatFanMode.AutoLow;
-
-                case FanMode.On:
-                    return ThermostatFanMode.OnLow;
-
-                default:
-                    throw new ArgumentException("Could not parse type");
-
-            }
         }
     }
 }
