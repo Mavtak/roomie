@@ -49,7 +49,6 @@
     <Compile Include="Commands\ControlThink\PrintStats.cs" />
     <Compile Include="Commands\ControlThink\RegisterNetwork.cs" />
     <Compile Include="Commands\ControlThink\RemoveBrokenDevice.cs" />
-    <Compile Include="Commands\ControlThink\SetSetpoint.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ZWaveDimmerSwitch.cs" />
     <Compile Include="InternalLibraryVersion.cs" />

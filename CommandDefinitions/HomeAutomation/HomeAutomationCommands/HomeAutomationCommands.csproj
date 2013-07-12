@@ -71,6 +71,7 @@
     <Compile Include="Commands\HomeAutomation\RegisterPowerOnCommand.cs" />
     <Compile Include="Commands\HomeAutomation\RemoveDevice.cs" />
     <Compile Include="Commands\HomeAutomation\SaveData.cs" />
+    <Compile Include="Commands\HomeAutomation\SetSetpoint.cs" />
     <Compile Include="Commands\HomeAutomation\ShutDownTasks.cs" />
     <Compile Include="Commands\HomeAutomation\SingleDeviceCommand.cs" />
     <Compile Include="Commands\HomeAutomation\SlowDim.cs" />

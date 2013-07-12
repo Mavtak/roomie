@@ -1,13 +1,9 @@
-﻿using System;
-using ControlThink.ZWave.Devices;
-using ControlThink.ZWave.Devices.Specific;
-using Roomie.CommandDefinitions.HomeAutomationCommands;
-using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Temperature;
 using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink
+namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     [TemperatureParameter("Temperature")]
     [SetpointTypeParameter]
