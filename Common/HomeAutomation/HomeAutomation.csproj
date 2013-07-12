@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeviceExtensions.cs" />
     <Compile Include="Events\StillnessDetected.cs" />
     <Compile Include="Events\DeviceHistory.cs" />
     <Compile Include="Events\DevicePowerChanged.cs" />

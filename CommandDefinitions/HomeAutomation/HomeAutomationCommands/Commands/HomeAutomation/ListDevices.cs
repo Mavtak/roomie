@@ -30,12 +30,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var addressLength = addressLabel.Length;
             var typeLength = typeLabel.Length;
             var connectedLength = connectedLabel.Length;
-            var statusLength = statusLabel.Length + 10;
+            var statusLength = statusLabel.Length;
 
             foreach (var device in network.Devices)
             {
                 addressLength = Math.Max(addressLength, device.BuildVirtualAddress(false, false).Length);
                 typeLength = Math.Max(typeLength, device.Type.Name.Length);
+                statusLength = Math.Max(statusLength, device.BuildStatus().Length);
             }
 
             var tableBuilder = new TextTable(new[] { addressLength, typeLength, connectedLength, statusLength });
@@ -45,8 +46,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             foreach (Device device in network.Devices)
             {
                 var address = device.BuildVirtualAddress(false, false);
-
-                string status = null;
 
                 if (poll && device.Type.CanPoll)
                 {
@@ -58,50 +57,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                     { }
                 }
 
-
-                if (device.Type == DeviceType.Switch || device.Type == DeviceType.MotionDetector)
-                {
-                    //TODO: account for motion detectors specifically
-                    if (device.ToggleSwitch.IsOn)
-                    {
-                        status = "on";
-                    }
-
-                    if (device.ToggleSwitch.IsOff)
-                    {
-                        status = "off";
-                    }
-                }
-                else if (device.Type == DeviceType.Dimmable)
-                {
-                    var percentage = device.DimmerSwitch.Percentage;
-                    if (percentage != null)
-                    {
-                        status = percentage + "%";
-                    }
-                }
-                else if (device.Type == DeviceType.Thermostat)
-                {
-                    var temperature = device.Thermostat.Temperature;
-                    if (temperature != null)
-                    {
-                        status = temperature.ToString();
-                    }
-                }
-                else if (!device.Type.CanControl || !device.Type.CanPoll)
-                {
-                    status = "n/a";
-                }
-
-                if (status == null)
-                {
-                    status = "?";
-                }
-
-                if (device.IsConnected != true)
-                {
-                    status += "?";
-                }
+                var status = device.BuildStatus();
 
                 var connected = (device.IsConnected == true)?"Yes":" - ";
 
