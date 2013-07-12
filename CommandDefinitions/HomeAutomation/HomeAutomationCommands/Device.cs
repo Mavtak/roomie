@@ -122,6 +122,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 @event = DeviceEvent.Lost(this, source);
             }
 
+            AddEvent(@event);
+        }
+
+        public void AddEvent(IEvent @event)
+        {
+            var threadPool = Context.ThreadPool;
+
             Context.History.Add(@event);
 
             var eventActions = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerChange));
@@ -144,7 +151,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             {
                 var syncScript = new ScriptCommandList();
                 syncScript.Add(Context.SyncWithCloudCommand);
-                scripts = new[] {syncScript}.Union(scripts);
+                scripts = new[] { syncScript }.Union(scripts);
             }
 
             foreach (var script in scripts)
