@@ -50,6 +50,7 @@
     <Compile Include="Commands\ControlThink\RegisterNetwork.cs" />
     <Compile Include="Commands\ControlThink\RemoveBrokenDevice.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="ZWaveDeviceExtensions.cs" />
     <Compile Include="ZWaveDimmerSwitch.cs" />
     <Compile Include="InternalLibraryVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

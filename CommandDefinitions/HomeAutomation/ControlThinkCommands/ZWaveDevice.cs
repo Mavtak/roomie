@@ -78,45 +78,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 CachedPower = BackingObject.Level;
             };
 
-            DoDeviceOperation(operation);
-        }
-
-        internal TResult DoDeviceOperation<TResult>(Func<TResult> operation)
-        {
-            try
-            {
-                var result = operation();
-                IsConnected = true;
-
-                return result;
-            }
-            catch (ControlThink.ZWave.ZWaveException exception)
-            {
-                IsConnected = false;
-
-                if (exception is ControlThink.ZWave.DeviceNotRespondingException)
-                {
-                    throw new DeviceNotRespondingException(this, exception);
-                }
-
-                if (exception is ControlThink.ZWave.CommandTimeoutException)
-                {
-                    throw new CommandTimedOutException(this, exception);
-                }
-
-                throw new HomeAutomationException("Unexpected Z-Wave error: " + exception.Message, exception);
-            }
-        }
-
-        internal void DoDeviceOperation(Action operation)
-        {
-            Func<int> wrappedOperation = () =>
-                {
-                    operation();
-                    return 0;
-                };
-
-            DoDeviceOperation(wrappedOperation);
+            this.DoDeviceOperation(operation);
         }
     }
 }
