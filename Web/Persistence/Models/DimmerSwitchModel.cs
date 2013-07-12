@@ -38,5 +38,11 @@ namespace Roomie.Web.Persistence.Models
                 return Utilities.CalculatePowerPercentage(Power, MaxPower);
             }
         }
+
+        public void Poll()
+        {
+            //TODO: dependency inject the TaskQueue and make this method actually work!
+            throw new System.NotImplementedException();
+        }
     }
 }

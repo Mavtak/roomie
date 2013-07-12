@@ -47,5 +47,15 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 return Utilities.CalculatePowerPercentage(Power, MaxPower);
             }
         }
+
+        public void Poll()
+        {
+            Action operation = () =>
+            {
+                _device.CachedPower = _device.BackingObject.Level;
+            };
+
+            _device.DoDeviceOperation(operation);
+        }
     }
 }

@@ -6,5 +6,7 @@ namespace Roomie.Common.HomeAutomation
         int? Power { get; set; }
         int MaxPower { get; }
         int? Percentage { get; }
+
+        void Poll();
     }
 }

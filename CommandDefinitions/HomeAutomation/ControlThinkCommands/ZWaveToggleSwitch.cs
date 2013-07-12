@@ -33,6 +33,11 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device.DoDeviceOperation(operation);
         }
 
+        public void Poll()
+        {
+            _device.DimmerSwitch.Poll();
+        }
+
         public bool IsOff
         {
             get

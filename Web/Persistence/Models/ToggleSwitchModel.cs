@@ -23,6 +23,12 @@ namespace Roomie.Web.Persistence.Models
             throw new System.NotImplementedException();
         }
 
+        public void Poll()
+        {
+            //TODO: dependency inject the TaskQueue and make this method actually work!
+            throw new System.NotImplementedException();
+        }
+
         public bool IsOff
         {
             get

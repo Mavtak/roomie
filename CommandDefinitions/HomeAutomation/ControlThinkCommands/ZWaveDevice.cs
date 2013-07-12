@@ -81,12 +81,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public override void Poll()
         {
-            Action operation = () =>
-            {
-                CachedPower = BackingObject.Level;
-            };
-
-            this.DoDeviceOperation(operation);
+            DimmerSwitch.Poll();
         }
     }
 }
