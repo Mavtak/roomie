@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Roomie.Desktop.Engine
+namespace Roomie.Common
 {
     /// <summary>
     /// This class provides utility methods for converting TimeSpans and DateTimes to and from strings.

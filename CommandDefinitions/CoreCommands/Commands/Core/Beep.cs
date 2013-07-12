@@ -1,4 +1,5 @@
 ﻿using System;
+using Roomie.Common;
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
