@@ -22,7 +22,12 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             var controlThinkSetpointType = ConvertSetpointType(setpointType);
             var controlThinkTemperature = ConvertTemperature(temperature);
 
-            thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature = controlThinkTemperature;
+            Action operation = () =>
+            {
+                thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature = controlThinkTemperature;
+            };
+
+            _device.DoDeviceOperation(operation);
         }
 
         private static ThermostatSetpointType ConvertSetpointType(SetpointType input)
