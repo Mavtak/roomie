@@ -2,6 +2,7 @@
 
 namespace Roomie.Common.HomeAutomation
 {
+    //TODO: reconsider this class
     public class DeviceType
     {
         private static Dictionary<string, DeviceType> types = new Dictionary<string, DeviceType>();
@@ -59,6 +60,13 @@ namespace Roomie.Common.HomeAutomation
             get
             {
                 return !Name.Equals("Controller") && !Name.Equals("Relay") && !Name.Equals("Motion Detector");
+            }
+        }
+        public bool CanPoll
+        {
+            get
+            {
+                return CanControl || Equals(Thermostat);
             }
         }
         public bool IsController

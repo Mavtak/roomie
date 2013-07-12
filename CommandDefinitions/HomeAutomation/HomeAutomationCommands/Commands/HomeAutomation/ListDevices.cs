@@ -25,12 +25,12 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             const string addressLabel = "Address";
             const string typeLabel = "Type";
             const string connectedLabel = "Connected";
-            const string powerLabel = "Power";
+            const string statusLabel = "Status";
 
             var addressLength = addressLabel.Length;
             var typeLength = typeLabel.Length;
             var connectedLength = connectedLabel.Length;
-            var powerLength = powerLabel.Length;
+            var statusLength = statusLabel.Length + 10;
 
             foreach (var device in network.Devices)
             {
@@ -38,17 +38,17 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                 typeLength = Math.Max(typeLength, device.Type.Name.Length);
             }
 
-            var tableBuilder = new TextTable(new[] { addressLength, typeLength, connectedLength, powerLength });
+            var tableBuilder = new TextTable(new[] { addressLength, typeLength, connectedLength, statusLength });
 
-            interpreter.WriteEvent(tableBuilder.StartOfTable(addressLabel, typeLabel, connectedLabel, powerLabel));
+            interpreter.WriteEvent(tableBuilder.StartOfTable(addressLabel, typeLabel, connectedLabel, statusLabel));
 
             foreach (Device device in network.Devices)
             {
                 var address = device.BuildVirtualAddress(false, false);
 
-                string power = "";
+                string status = null;
 
-                if (poll && device.Type.CanControl)
+                if (poll && device.Type.CanPoll)
                 {
                     try
                     {
@@ -59,30 +59,53 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                 }
 
 
-                if (!device.Type.CanControl && device.Type != DeviceType.MotionDetector)
+                if (device.Type == DeviceType.Switch || device.Type == DeviceType.MotionDetector)
                 {
-                    power = "n/a";
-                }
-                else if (device.DimmerSwitch.Power == null)
-                {
-                    power = "?";
-                }
-                else if (device.DimmerSwitch.Power == 0)
-                {
-                    power = "off";
-                }
-                else
-                {
-                    power = device.DimmerSwitch.Power.ToString();
-                    if (device.IsConnected != true)
+                    //TODO: account for motion detectors specifically
+                    if (device.ToggleSwitch.IsOn)
                     {
-                        power = power + "?";
+                        status = "on";
                     }
+
+                    if (device.ToggleSwitch.IsOff)
+                    {
+                        status = "off";
+                    }
+                }
+                else if (device.Type == DeviceType.Dimmable)
+                {
+                    var percentage = device.DimmerSwitch.Percentage;
+                    if (percentage != null)
+                    {
+                        status = percentage + "%";
+                    }
+                }
+                else if (device.Type == DeviceType.Thermostat)
+                {
+                    var temperature = device.Thermostat.Temperature;
+                    if (temperature != null)
+                    {
+                        status = temperature.ToString();
+                    }
+                }
+                else if (!device.Type.CanControl || !device.Type.CanPoll)
+                {
+                    status = "n/a";
+                }
+
+                if (status == null)
+                {
+                    status = "?";
+                }
+
+                if (device.IsConnected != true)
+                {
+                    status += "?";
                 }
 
                 var connected = (device.IsConnected == true)?"Yes":" - ";
 
-                interpreter.WriteEvent(tableBuilder.ContentLine(address, device.Type, connected, power));
+                interpreter.WriteEvent(tableBuilder.ContentLine(address, device.Type, connected, status));
             }
 
             interpreter.WriteEvent(tableBuilder.EndOfTable());
