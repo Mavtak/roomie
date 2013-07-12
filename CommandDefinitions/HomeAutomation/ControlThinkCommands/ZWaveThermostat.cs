@@ -30,6 +30,20 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device.DoDeviceOperation(operation);
         }
 
+        public void SetFanMode(FanMode fanMode)
+        {
+            var thermostat = _device.BackingObject as GeneralThermostatV2;
+            var controlThinkFanMode = ConvertFanMode(fanMode);
+
+            Action operation = () =>
+            {
+                thermostat.ThermostatFanMode = controlThinkFanMode;
+            };
+
+            _device.DoDeviceOperation(operation);
+
+        }
+
         private static ThermostatSetpointType ConvertSetpointType(SetpointType input)
         {
             switch (input)
@@ -64,6 +78,22 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             var result = new Temperature(value, scale);
 
             return result;
+        }
+
+        private static ThermostatFanMode ConvertFanMode(FanMode fanMode)
+        {
+            switch (fanMode)
+            {
+                case FanMode.Auto:
+                    return ThermostatFanMode.AutoLow;
+
+                case FanMode.On:
+                    return ThermostatFanMode.OnLow;
+
+                default:
+                    throw new ArgumentException("Could not parse type");
+
+            }
         }
     }
 }

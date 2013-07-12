@@ -51,12 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\AutoConnectParameterAttribute.cs" />
+    <Compile Include="Attributes\FanModeParameterAttribute.cs" />
     <Compile Include="Attributes\SetpointTypeParameterAttribute.cs" />
     <Compile Include="Attributes\RetriesParameterAttribute.cs" />
     <Compile Include="Attributes\DeviceParameterAttribute.cs" />
     <Compile Include="Attributes\NetworkAttribute.cs" />
     <Compile Include="Attributes\PowerParameterAttribute.cs" />
     <Compile Include="Commands\HomeAutomation\AddDevice.cs" />
+    <Compile Include="Commands\HomeAutomation\SetFanMode.cs" />
     <Compile Include="Commands\HomeAutomation\ListDeviceEvents.cs" />
     <Compile Include="Commands\HomeAutomation\ListEvents.cs" />
     <Compile Include="Commands\HomeAutomation\RegisterPowerChangedCommand.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Commands\HomeAutomation\WaitForChange.cs" />
     <Compile Include="Commands\HomeAutomation\WebHookConnectTasks.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="FanModeParameterType.cs" />
     <Compile Include="DeviceAddressParameterType.cs" />
     <Compile Include="DeviceEventAction.cs" />
     <Compile Include="DeviceEventType.cs" />

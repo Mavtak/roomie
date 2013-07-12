@@ -68,6 +68,8 @@
     <Compile Include="IDimmerSwitch.cs" />
     <Compile Include="IThermostat.cs" />
     <Compile Include="IToggleSwitch.cs" />
+    <Compile Include="Thermostats\FanModeParser.cs" />
+    <Compile Include="Thermostats\FanMode.cs" />
     <Compile Include="Thermostats\SetpointTypeParser.cs" />
     <Compile Include="Thermostats\SetpointType.cs" />
     <Compile Include="VirtualAddress.cs" />
