@@ -10,21 +10,22 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     public class ZWaveThermostat : IThermostat
     {
         private ZWaveDevice _device;
+        private GeneralThermostatV2 _thermostat;
 
         public ZWaveThermostat(ZWaveDevice device)
         {
             _device = device;
+            _thermostat = device.BackingObject as GeneralThermostatV2;
         }
 
         public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
         {
-            var thermostat = _device.BackingObject as GeneralThermostatV2;
             var controlThinkSetpointType = setpointType.ToControlThinkType();
             var controlThinkTemperature = temperature.ToControlThinkType();
 
             Action operation = () =>
             {
-                thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature = controlThinkTemperature;
+                _thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature = controlThinkTemperature;
             };
 
             _device.DoDeviceOperation(operation);
@@ -32,12 +33,11 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void SetFanMode(FanMode fanMode)
         {
-            var thermostat = _device.BackingObject as GeneralThermostatV2;
             var controlThinkFanMode = fanMode.ToControlThinkType();
 
             Action operation = () =>
             {
-                thermostat.ThermostatFanMode = controlThinkFanMode;
+                _thermostat.ThermostatFanMode = controlThinkFanMode;
             };
 
             _device.DoDeviceOperation(operation);
