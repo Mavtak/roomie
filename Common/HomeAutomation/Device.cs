@@ -32,6 +32,7 @@ namespace Roomie.Common.HomeAutomation
         public DeviceType Type { get; set; }
         public abstract IToggleSwitch ToggleSwitch { get; }
         public abstract IDimmerSwitch DimmerSwitch { get; }
+        public abstract IThermostat Thermostat { get; }
         public int MaxPower { get; set; }
         public bool? IsConnected { get; set; }
         

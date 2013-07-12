@@ -54,6 +54,11 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        public override IThermostat Thermostat
+        {
+            get { throw new NotImplementedException(); }
+        }
+
         public int? Power
         {
             get

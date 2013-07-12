@@ -63,6 +63,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
+        public override IThermostat Thermostat
+        {
+            get
+            {
+                return new ZWaveThermostat(this);
+            }
+        }
+
         public override void Poll()
         {
             Action operation = () =>

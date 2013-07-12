@@ -25,5 +25,10 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get { throw new NotImplementedException(); }
         }
+
+        public override IThermostat Thermostat
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }
