@@ -2,6 +2,7 @@
 using ControlThink.ZWave.Devices;
 using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Temperature;
 
@@ -23,9 +24,17 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             Action operation = () =>
             {
+                var originalTemperature = Temperature;
                 var controlThinkTemperature = _thermostat.ThermostatTemperature;
 
                 Temperature = controlThinkTemperature.ToRoomieType();
+
+                if (!Temperature.Equals(originalTemperature))
+                {
+                    IEventSource source = null;
+                    var @event = DeviceEvent.TemperatureChanged(_device, source);
+                    _device.AddEvent(@event);
+                }
             };
 
             _device.DoDeviceOperation(operation);
