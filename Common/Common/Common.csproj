@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumParser.cs" />
     <Compile Include="Temperature\CelsiusTemperature.cs" />
     <Compile Include="Temperature\FarenheitTemperature.cs" />
     <Compile Include="Temperature\ITemperature.cs" />
