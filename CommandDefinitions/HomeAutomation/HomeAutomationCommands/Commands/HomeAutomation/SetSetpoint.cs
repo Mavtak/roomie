@@ -13,13 +13,10 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var device = context.Device;
             var scope = context.Scope;
-            var interpreter = context.Interpreter;
             var temperature = scope.GetValue("Temperature").ToTemperature();
-            var type = scope.GetValue("Setpoint").ToSetpointType();
+            var setpointType = scope.GetValue("Setpoint").ToSetpointType();
 
-            interpreter.WriteEvent("Setting " + device + " to " + temperature);
-
-            device.Thermostat.SetSetpoint(type, temperature);
+            device.Thermostat.SetSetpoint(setpointType, temperature);
         }
     }
 }
