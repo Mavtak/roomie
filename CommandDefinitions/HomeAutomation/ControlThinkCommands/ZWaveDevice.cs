@@ -11,7 +11,10 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     public class ZWaveDevice : BaseDevice
     {
         internal BackingDevice BackingObject { get; private set; }
-        
+        private readonly ZWaveToggleSwitch _toggleSwitch;
+        private readonly ZWaveDimmerSwitch _dimmerSwitch;
+        private readonly ZWaveThermostat _thermostat;
+
         //TODO: move this into ZWaveDimmerSwitch
         internal byte? CachedPower
         {
@@ -45,13 +48,18 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     IsConnected = true;
                     PowerChanged();
                 };
+
+            _toggleSwitch = new ZWaveToggleSwitch(this);
+            _dimmerSwitch = new ZWaveDimmerSwitch(this);
+            _thermostat = new ZWaveThermostat(this);
+
         }
 
         public override IToggleSwitch ToggleSwitch
         {
             get
             {
-                return new ZWaveToggleSwitch(this);
+                return _toggleSwitch;
             }
         }
 
@@ -59,7 +67,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             get
             {
-                return new ZWaveDimmerSwitch(this);
+                return _dimmerSwitch;
             }
         }
 
@@ -67,7 +75,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             get
             {
-                return new ZWaveThermostat(this);
+                return _thermostat;
             }
         }
 
