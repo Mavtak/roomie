@@ -21,9 +21,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void PollTemperature()
         {
-            var controlThinkTemperature = _thermostat.ThermostatTemperature;
+            Action operation = () =>
+            {
+                var controlThinkTemperature = _thermostat.ThermostatTemperature;
 
-            Temperature = controlThinkTemperature.ToRoomieType();
+                Temperature = controlThinkTemperature.ToRoomieType();
+            };
+
+            _device.DoDeviceOperation(operation);
         }
 
         public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
