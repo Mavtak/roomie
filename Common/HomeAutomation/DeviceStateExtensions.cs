@@ -43,6 +43,11 @@ namespace Roomie.Common.HomeAutomation
             return result;
         }
 
+        public static ReadOnlyDeviceState Copy(this IDeviceState state)
+        {
+            return ReadOnlyDeviceState.CopyFrom(state);
+        }
+
         public static XElement ToXElement(this IDeviceState state, string nodeName = "HomeAutomationDevice")
         {
             var result = new XElement(nodeName);

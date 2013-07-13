@@ -8,9 +8,7 @@ namespace Roomie.Common.HomeAutomation.Events
     public class DeviceEvent : IDeviceEvent
     {
         public Device Device { get; private set; }
-        public IDimmerSwitchState DimmerSwitchState { get; private set; }
-        public IToggleSwitchState ToggleSwitchState { get; private set; }
-        public IThermostatState ThermostatState { get; private set; }
+        public IDeviceState State { get; private set; }
 
         public HomeAutomationEntity Entity
         {
@@ -23,13 +21,10 @@ namespace Roomie.Common.HomeAutomation.Events
         public DateTime TimeStamp { get; private set; }
         public IEventSource Source { get; private set; }
 
-        private DeviceEvent(Device device, IEventType type, IEventSource source, IToggleSwitchState toggleSwitchState = null, IDimmerSwitchState dimmerSwitchState = null, IThermostatState thermostatState = null)
+        private DeviceEvent(Device device, IEventType type, IEventSource source)
         {
             Device = device;
-            ToggleSwitchState = toggleSwitchState;
-            DimmerSwitchState = dimmerSwitchState;
-            ThermostatState = thermostatState;
-            Type = type;
+            State = device.Copy();
             TimeStamp = DateTime.UtcNow;
             Source = source;
         }
@@ -50,21 +45,21 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent PoweredOn(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new PoweredOn(), source, toggleSwitchState: device.ToggleSwitch.Copy());
+            var result = new DeviceEvent(device, new PoweredOn(), source);
 
             return result;
         }
 
         public static DeviceEvent PoweredOff(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new PoweredOff(), source, toggleSwitchState: device.ToggleSwitch.Copy());
+            var result = new DeviceEvent(device, new PoweredOff(), source);
 
             return result;
         }
 
         public static DeviceEvent PowerChanged(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new DevicePowerChanged(), source, dimmerSwitchState: device.DimmerSwitch.Copy());
+            var result = new DeviceEvent(device, new DevicePowerChanged(), source);
 
             return result;
         }
@@ -73,21 +68,21 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent MotionDetected(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new MotionDetected(), source, toggleSwitchState: device.ToggleSwitch.Copy());
+            var result = new DeviceEvent(device, new MotionDetected(), source);
 
             return result;
         }
 
         public static DeviceEvent StillnessDetected(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new StillnessDetected(), source, toggleSwitchState: device.ToggleSwitch.Copy());
+            var result = new DeviceEvent(device, new StillnessDetected(), source);
 
             return result;
         }
 
         public static DeviceEvent TemperatureChanged(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new TemperatureChanged(), source, thermostatState: device.Thermostat.Copy());
+            var result = new DeviceEvent(device, new TemperatureChanged(), source);
 
             return result;
         }
