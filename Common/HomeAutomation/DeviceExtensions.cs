@@ -1,5 +1,6 @@
-﻿
-using Roomie.Common.HomeAutomation.DimmerSwitches;
+﻿using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Common.HomeAutomation
 {
@@ -12,31 +13,15 @@ namespace Roomie.Common.HomeAutomation
             if (device.Type == DeviceType.Switch || device.Type == DeviceType.MotionDetector)
             {
                 //TODO: account for motion detectors specifically
-                if (device.ToggleSwitch.IsOn)
-                {
-                    result = "on";
-                }
-
-                if (device.ToggleSwitch.IsOff)
-                {
-                    result = "off";
-                }
+                result = device.ToggleSwitch.Describe();
             }
             else if (device.Type == DeviceType.Dimmable)
             {
-                var percentage = device.DimmerSwitch.CalculatePowerPercentage();
-                if (percentage != null)
-                {
-                    result = percentage + "%";
-                }
+                result = device.DimmerSwitch.Describe();
             }
             else if (device.Type == DeviceType.Thermostat)
             {
-                var temperature = device.Thermostat.Temperature;
-                if (temperature != null)
-                {
-                    result = temperature.ToString();
-                }
+                result = device.Thermostat.Describe();
             }
             else if (!device.Type.CanControl || !device.Type.CanPoll)
             {
