@@ -118,7 +118,7 @@ namespace Roomie.Common
             + @"(?: / (?<day>   \d{1,2} )  )"
             + @")?"//close date group
 
-            +@"(?<WeekRelativeDay>(monday|tuesday|wednesday|thursday|friday|saturday|sunday|weekday|weekend))"
+            +@"(?<WeekRelativeDay>(monday|tuesday|wednesday|thursday|friday|saturday|sunday|weekday|weekend))?"
 
             + @"\s*(at)?\s*"
 

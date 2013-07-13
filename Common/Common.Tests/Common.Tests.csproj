@@ -50,6 +50,7 @@
     <Compile Include="Temperature\FahrenheitTemperatureTests.cs" />
     <Compile Include="Temperature\TemperatureParserTests.cs" />
     <Compile Include="Temperature\UtilitiesTests.cs" />
+    <Compile Include="DateTimeUtilsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
