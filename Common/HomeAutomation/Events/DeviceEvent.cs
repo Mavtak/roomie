@@ -50,7 +50,7 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent PoweredOn(Device device, IEventSource source)
         {
-            var state = ReadOnlyToggleSwitchState.CopyTo(device.ToggleSwitch);
+            var state = ReadOnlyToggleSwitchState.CopyFrom(device.ToggleSwitch);
             var result = new DeviceEvent(device, new PoweredOn(), source, toggleSwitchState: state);
 
             return result;
@@ -58,7 +58,7 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent PoweredOff(Device device, IEventSource source)
         {
-            var state = ReadOnlyToggleSwitchState.CopyTo(device.ToggleSwitch);
+            var state = ReadOnlyToggleSwitchState.CopyFrom(device.ToggleSwitch);
             var result = new DeviceEvent(device, new PoweredOff(), source, toggleSwitchState: state);
 
             return result;
@@ -76,7 +76,7 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent MotionDetected(Device device, IEventSource source)
         {
-            var state = ReadOnlyToggleSwitchState.CopyTo(device.ToggleSwitch);
+            var state = ReadOnlyToggleSwitchState.CopyFrom(device.ToggleSwitch);
             var result = new DeviceEvent(device, new MotionDetected(), source, toggleSwitchState: state);
 
             return result;
@@ -84,7 +84,7 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent StillnessDetected(Device device, IEventSource source)
         {
-            var state = ReadOnlyToggleSwitchState.CopyTo(device.ToggleSwitch);
+            var state = ReadOnlyToggleSwitchState.CopyFrom(device.ToggleSwitch);
             var result = new DeviceEvent(device, new StillnessDetected(), source, toggleSwitchState: state);
 
             return result;
