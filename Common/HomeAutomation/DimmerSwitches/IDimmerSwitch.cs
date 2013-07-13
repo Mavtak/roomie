@@ -1,6 +1,5 @@
-﻿using Roomie.Common.HomeAutomation.DimmerSwitches;
-
-namespace Roomie.Common.HomeAutomation
+﻿
+namespace Roomie.Common.HomeAutomation.DimmerSwitches
 {
     public interface IDimmerSwitch : IDimmerSwitchState
     {

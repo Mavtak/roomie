@@ -1,7 +1,10 @@
 ﻿using System;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Exceptions;
+using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.ToggleSwitches;
 using BaseDevice = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
 using BaseNetwork = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
 using BackingDevice = ControlThink.ZWave.Devices.ZWaveDevice;

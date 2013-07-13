@@ -2,6 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Web.Persistence.Helpers;
 using BaseDevice = Roomie.Common.HomeAutomation.Device;
 using BaseLocation = Roomie.Common.HomeAutomation.DeviceLocation;

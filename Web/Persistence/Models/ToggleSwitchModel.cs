@@ -1,4 +1,5 @@
 ﻿using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Web.Persistence.Models
 {

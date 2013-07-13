@@ -1,7 +1,6 @@
-﻿using Roomie.Common.HomeAutomation.Thermostats;
-using Roomie.Common.Temperature;
+﻿using Roomie.Common.Temperature;
 
-namespace Roomie.Common.HomeAutomation
+namespace Roomie.Common.HomeAutomation.Thermostats
 {
     public interface IThermostat : IThermostatState
     {
