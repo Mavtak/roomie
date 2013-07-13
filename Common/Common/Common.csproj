@@ -45,6 +45,7 @@
     <Compile Include="Temperature\FarenheitTemperature.cs" />
     <Compile Include="Temperature\ITemperature.cs" />
     <Compile Include="Temperature\KelvinTemperature.cs" />
+    <Compile Include="Temperature\Utilities.cs" />
     <Compile Include="Temperature\TemperatureParser.cs" />
     <Compile Include="TimeUtils.cs" />
     <Compile Include="XElementExtensions.cs" />

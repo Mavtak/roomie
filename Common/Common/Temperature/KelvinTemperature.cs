@@ -47,5 +47,15 @@
         {
             return _value + " Kelvin";
         }
+
+        public override bool Equals(object obj)
+        {
+            return Utilities.EqualsHelper(this, obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return ToString().GetHashCode();
+        }
     }
 }
