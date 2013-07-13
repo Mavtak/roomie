@@ -36,7 +36,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             {
                 addressLength = Math.Max(addressLength, device.BuildVirtualAddress(false, false).Length);
                 typeLength = Math.Max(typeLength, device.Type.Name.Length);
-                statusLength = Math.Max(statusLength, device.BuildStatus().Length);
+                statusLength = Math.Max(statusLength, device.Describe().Length);
             }
 
             var tableBuilder = new TextTable(new[] { addressLength, typeLength, connectedLength, statusLength });
@@ -57,7 +57,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                     { }
                 }
 
-                var status = device.BuildStatus();
+                var status = device.Describe();
 
                 var connected = (device.IsConnected == true)?"Yes":" - ";
 

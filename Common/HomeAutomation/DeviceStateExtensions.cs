@@ -1,10 +1,48 @@
 ﻿using System;
 using System.Xml.Linq;
+using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Common.HomeAutomation
 {
     public static class DeviceStateExtensions
     {
+        public static string Describe(this IDeviceState device)
+        {
+            string result = null;
+
+            if (device.Type == DeviceType.Switch || device.Type == DeviceType.MotionDetector)
+            {
+                //TODO: account for motion detectors specifically
+                result = device.ToggleSwitchState.Describe();
+            }
+            else if (device.Type == DeviceType.Dimmable)
+            {
+                result = device.DimmerSwitchState.Describe();
+            }
+            else if (device.Type == DeviceType.Thermostat)
+            {
+                result = device.ThermostatState.Describe();
+            }
+            else if (!device.Type.CanControl || !device.Type.CanPoll)
+            {
+                result = "n/a";
+            }
+
+            if (result == null)
+            {
+                result = "?";
+            }
+
+            if (device.IsConnected != true)
+            {
+                result += "?";
+            }
+
+            return result;
+        }
+
         public static XElement ToXElement(this IDeviceState state, string nodeName = "HomeAutomationDevice")
         {
             var result = new XElement(nodeName);

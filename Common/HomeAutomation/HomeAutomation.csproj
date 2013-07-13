@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeviceExtensions.cs" />
     <Compile Include="DeviceStateExtensions.cs" />
     <Compile Include="DimmerSwitches\IDimmerSwitchState.cs" />
     <Compile Include="DimmerSwitches\ReadOnlyDimmerSwitchState.cs" />
