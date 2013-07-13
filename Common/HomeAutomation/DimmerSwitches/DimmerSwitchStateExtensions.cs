@@ -8,19 +8,36 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
         {
             var result = new StringBuilder();
 
-
             if (state == null)
             {
                 return result.ToString();
             }
 
-            if (state.Power != null)
+            var percentage = state.CalculatePowerPercentage();
+            if (percentage != null)
             {
-                result.Append(Utilities.CalculatePowerPercentage(state.Power, state.MaxPower));
+                result.Append(percentage);
                 result.Append("%");
             }
 
             return result.ToString();
+        }
+
+        public static int? CalculatePowerPercentage(this IDimmerSwitchState state)
+        {
+            if (state == null)
+            {
+                return null;
+            }
+
+            if (state.Power == null)
+            {
+                return null;
+            }
+
+            var result = state.Power*100/(state.MaxPower > 0 ? state.MaxPower : 100);
+
+            return result;
         }
     }
 }

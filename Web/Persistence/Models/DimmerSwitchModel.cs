@@ -30,13 +30,6 @@ namespace Roomie.Web.Persistence.Models
                 return _device.MaxPower;
             }
         }
-        public int? Percentage
-        {
-            get
-            {
-                return Utilities.CalculatePowerPercentage(Power, MaxPower);
-            }
-        }
 
         public void Poll()
         {

@@ -97,18 +97,5 @@ namespace Roomie.Common.HomeAutomation
 
             return power;
         }
-
-        public static int? CalculatePowerPercentage(int? power, int? maxPower)
-        {
-            if (power == null)
-            {
-                return null;
-            }
-            if (maxPower == null || maxPower == 0)
-            {
-                maxPower = 100;
-            }
-            return power * 100 / maxPower;
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model DeviceViewModel
+﻿@using Roomie.Common.HomeAutomation.DimmerSwitches
+@model DeviceViewModel
 @*
 
 
@@ -31,8 +32,9 @@
                 else
                 {<text>middle</text>}
 
-                if ((Model.Device.DimmerSwitch.Percentage > (power - 10))
-                    && (Model.Device.DimmerSwitch.Percentage <= (power)))
+                var percentage = Model.Device.DimmerSwitch.CalculatePowerPercentage();
+                if ((percentage > (power - 10))
+                    && (percentage <= (power)))
                 {<text> activated</text>}
         } button" type="submit" name="power" value="@power">@{
             if (power == 0)

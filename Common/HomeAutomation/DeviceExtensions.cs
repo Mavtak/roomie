@@ -1,4 +1,6 @@
 ﻿
+using Roomie.Common.HomeAutomation.DimmerSwitches;
+
 namespace Roomie.Common.HomeAutomation
 {
     public static class DeviceExtensions
@@ -22,7 +24,7 @@ namespace Roomie.Common.HomeAutomation
             }
             else if (device.Type == DeviceType.Dimmable)
             {
-                var percentage = device.DimmerSwitch.Percentage;
+                var percentage = device.DimmerSwitch.CalculatePowerPercentage();
                 if (percentage != null)
                 {
                     result = percentage + "%";

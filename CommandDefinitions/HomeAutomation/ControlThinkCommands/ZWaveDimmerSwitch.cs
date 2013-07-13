@@ -29,14 +29,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        public int? Percentage
-        {
-            get
-            {
-                return Utilities.CalculatePowerPercentage(Power, MaxPower);
-            }
-        }
-
         public void Poll()
         {
             Action operation = () =>
