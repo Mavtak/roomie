@@ -6,7 +6,7 @@ using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Common.HomeAutomation
 {
-    public abstract class Device : HomeAutomationEntity
+    public abstract class Device : HomeAutomationEntity, IDeviceState
     {
         protected Network network { get; set; }
         internal Network Network
@@ -81,6 +81,28 @@ namespace Roomie.Common.HomeAutomation
             IsConnected = element.GetAttributeBoolValue("IsConnected");
             Type = element.GetAttributeStringValue("Type");
             location.Name = element.GetAttributeStringValue("Location");
+        }
+
+        IToggleSwitchState IDeviceState.ToggleSwitchState
+        {
+            get
+            {
+                return ToggleSwitch;
+            }
+        }
+        IDimmerSwitchState IDeviceState.DimmerSwitchState
+        {
+            get
+            {
+                return DimmerSwitch;
+            }
+        }
+        IThermostatState IDeviceState.ThermostatState
+        {
+            get
+            {
+                return Thermostat;
+            }
         }
     }
 }
