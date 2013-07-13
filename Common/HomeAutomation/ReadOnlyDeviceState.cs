@@ -6,6 +6,8 @@ namespace Roomie.Common.HomeAutomation
 {
     public class ReadOnlyDeviceState : IDeviceState
     {
+        public bool? IsConnected { get; private set; }
+        public DeviceType Type { get; private set; }
         public IToggleSwitchState ToggleSwitchState { get; private set; }
         public IDimmerSwitchState DimmerSwitchState { get; private set; }
         public IThermostatState ThermostatState { get; private set; }
@@ -14,6 +16,8 @@ namespace Roomie.Common.HomeAutomation
         {
             var result = new ReadOnlyDeviceState
             {
+                IsConnected =  source.IsConnected,
+                Type = source.Type,
                 ToggleSwitchState = source.ToggleSwitchState.Copy(),
                 DimmerSwitchState = source.DimmerSwitchState.Copy(),
                 ThermostatState = source.ThermostatState.Copy()

@@ -6,6 +6,8 @@ namespace Roomie.Common.HomeAutomation
 {
     public interface IDeviceState
     {
+        bool? IsConnected { get; }
+        DeviceType Type { get; }
         IToggleSwitchState ToggleSwitchState { get; }
         IDimmerSwitchState DimmerSwitchState { get; }
         IThermostatState ThermostatState { get; }   
