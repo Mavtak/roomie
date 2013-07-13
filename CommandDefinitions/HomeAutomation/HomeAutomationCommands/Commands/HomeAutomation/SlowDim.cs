@@ -38,10 +38,10 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             for (var currentPower = startPower; currentPower != endPower; currentPower = (currentPower + powerStep))
             {
                 Console.Write(currentPower);
-                device.DimmerSwitch.Power = currentPower;
+                device.DimmerSwitch.SetPower(currentPower);
                 System.Threading.Thread.Sleep(timeStep);
             }
-            device.DimmerSwitch.Power = endPower;
+            device.DimmerSwitch.SetPower(endPower);
         }
     }
 }

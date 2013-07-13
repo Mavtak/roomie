@@ -19,12 +19,11 @@ namespace Roomie.Web.Persistence.Models
             }
             set
             {
-                //TODO: should this actually send a command?
                 _device.Power = value;
             }
         }
 
-        public int MaxPower
+        public int? MaxPower
         {
             get
             {
@@ -43,6 +42,11 @@ namespace Roomie.Web.Persistence.Models
         {
             //TODO: dependency inject the TaskQueue and make this method actually work!
             throw new System.NotImplementedException();
+        }
+
+        public void SetPower(int power)
+        {
+            //TODO: dependency inject the TaskQueue and make this method actually work!
         }
     }
 }

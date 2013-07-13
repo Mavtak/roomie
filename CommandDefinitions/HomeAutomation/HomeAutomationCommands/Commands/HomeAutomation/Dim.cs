@@ -13,7 +13,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             var power = scope.GetValue("Power").ToInteger();
 
-            device.DimmerSwitch.Power = power;
+            device.DimmerSwitch.SetPower(power);
         }
     }
 }

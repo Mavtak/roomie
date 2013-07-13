@@ -18,20 +18,9 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             {
                 return _device.CachedPower;
             }
-            set
-            {
-                value = Utilities.ValidatePower(value, MaxPower);
-
-                Action operation = () =>
-                {
-                    _device.BackingObject.Level = (byte)value;
-                };
-
-                _device.DoDeviceOperation(operation);
-            }
         }
 
-        public int MaxPower
+        public int? MaxPower
         {
             get
             {
@@ -53,6 +42,18 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             Action operation = () =>
             {
                 _device.CachedPower = _device.BackingObject.Level;
+            };
+
+            _device.DoDeviceOperation(operation);
+        }
+
+        public void SetPower(int power)
+        {
+            power = Utilities.ValidatePower(power, MaxPower);
+
+            Action operation = () =>
+            {
+                _device.BackingObject.Level = (byte)power;
             };
 
             _device.DoDeviceOperation(operation);

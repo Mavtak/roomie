@@ -83,7 +83,7 @@ namespace Roomie.Common.HomeAutomation
             return power == 0; ;
         }
 
-        public static int? ValidatePower(int? power, int? maxPower)
+        public static int ValidatePower(int power, int? maxPower)
         {
             if (power < 0)
             {
@@ -92,7 +92,7 @@ namespace Roomie.Common.HomeAutomation
 
             if (power > maxPower)
             {
-                power = maxPower;
+                power = maxPower.Value;
             }
 
             return power;

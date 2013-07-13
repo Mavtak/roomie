@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.TextUtilities;
@@ -47,7 +48,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                     }
                     else if (deviceEvent.Type is DevicePowerChanged)
                     {
-                        extra = "Power=" + deviceEvent.Power;
+                        extra = deviceEvent.DimmerSwitchState.Describe();
                     }
                 }
 

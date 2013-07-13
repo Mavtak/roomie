@@ -1,4 +1,5 @@
 ﻿using System;
+using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 
 namespace Roomie.Common.HomeAutomation.Events
@@ -6,8 +7,8 @@ namespace Roomie.Common.HomeAutomation.Events
     public class DeviceEvent : IDeviceEvent
     {
         public Device Device { get; private set; }
-        public int? Power { get; private set; }
         public IThermostatState ThermostatState { get; private set; }
+        public IDimmerSwitchState DimmerSwitchState { get; private set; }
 
         public HomeAutomationEntity Entity
         {
@@ -20,11 +21,11 @@ namespace Roomie.Common.HomeAutomation.Events
         public DateTime TimeStamp { get; private set; }
         public IEventSource Source { get; private set; }
 
-        private DeviceEvent(Device device, IEventType type, IEventSource source, IThermostatState thermostatState = null)
+        private DeviceEvent(Device device, IEventType type, IEventSource source, IDimmerSwitchState dimmerSwitchState = null, IThermostatState thermostatState = null)
         {
             Device = device;
+            DimmerSwitchState = dimmerSwitchState;
             ThermostatState = thermostatState;
-            Power = device.DimmerSwitch.Power;
             Type = type;
             TimeStamp = DateTime.UtcNow;
             Source = source;
@@ -46,7 +47,8 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent PowerChanged(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new DevicePowerChanged(), source);
+            var state = ReadOnlyDimmerSwitchState.CopyFrom(device.DimmerSwitch);
+            var result = new DeviceEvent(device, new DevicePowerChanged(), source, dimmerSwitchState: state);
 
             return result;
         }
@@ -68,7 +70,7 @@ namespace Roomie.Common.HomeAutomation.Events
         public static DeviceEvent TemperatureChanged(Device device, IEventSource source)
         {
             var state = ReadOnlyThermostatState.CopyFrom(device.Thermostat);
-            var result = new DeviceEvent(device, new TemperatureChanged(), source, state);
+            var result = new DeviceEvent(device, new TemperatureChanged(), source, thermostatState: state);
 
             return result;
         }

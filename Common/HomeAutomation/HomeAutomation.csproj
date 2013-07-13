@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeviceExtensions.cs" />
+    <Compile Include="DimmerSwitches\IDimmerSwitchState.cs" />
+    <Compile Include="DimmerSwitches\ReadOnlyDimmerSwitchState.cs" />
+    <Compile Include="DimmerSwitches\DimmerSwitchStateExtensions.cs" />
     <Compile Include="Events\StillnessDetected.cs" />
     <Compile Include="Events\DeviceHistory.cs" />
     <Compile Include="Events\DevicePowerChanged.cs" />

@@ -1,12 +1,10 @@
-﻿
+﻿using Roomie.Common.HomeAutomation.DimmerSwitches;
+
 namespace Roomie.Common.HomeAutomation
 {
-    public interface IDimmerSwitch
+    public interface IDimmerSwitch : IDimmerSwitchState
     {
-        int? Power { get; set; }
-        int MaxPower { get; }
-        int? Percentage { get; }
-
         void Poll();
+        void SetPower(int power);
     }
 }
