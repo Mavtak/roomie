@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Roomie.Common.Tests")]
 
 namespace Roomie.Common.Temperature
 {
@@ -17,7 +20,7 @@ namespace Roomie.Common.Temperature
                 return false;
             }
 
-            var result = Math.Abs(one.Celsius.Value - one.Fahrenheit.Celsius.Value) < .001;
+            var result = Math.Abs(one.Celsius.Value - two.Celsius.Value) < .001;
 
             return result;
         }
