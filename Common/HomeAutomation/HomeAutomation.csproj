@@ -71,9 +71,9 @@
     <Compile Include="Events\NetworkEvent.cs" />
     <Compile Include="Events\NetworkHistory.cs" />
     <Compile Include="Events\TemperatureChanged.cs" />
-    <Compile Include="IDimmerSwitch.cs" />
-    <Compile Include="IThermostat.cs" />
-    <Compile Include="IToggleSwitch.cs" />
+    <Compile Include="DimmerSwitches\IDimmerSwitch.cs" />
+    <Compile Include="Thermostats\IThermostat.cs" />
+    <Compile Include="ToggleSwitches\IToggleSwitch.cs" />
     <Compile Include="Thermostats\FanModeParser.cs" />
     <Compile Include="Thermostats\FanMode.cs" />
     <Compile Include="Thermostats\IThermostatState.cs" />
