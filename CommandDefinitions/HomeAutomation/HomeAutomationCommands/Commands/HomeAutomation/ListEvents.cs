@@ -31,31 +31,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                     Math.Max(history.Max(x => ((x.Entity == null) ? string.Empty : x.Entity.Name).Length), headers[1].Length),
                     Math.Max(history.Max(x => ((x.Type == null) ? string.Empty : x.Type.Name).Length), headers[2].Length),
                     Math.Max(history.Max(x => ((x.Source == null) ? string.Empty : x.Source.Name).Length), headers[3].Length),
-                    10
+                    ExtraLength(history)
                 });
 
             interpreter.WriteEvent(tableBuilder.StartOfTable(headers));
 
             foreach (var @event in history)
             {
-                var extra = string.Empty;
-
-                var deviceEvent = @event as IDeviceEvent;
-                if (deviceEvent != null)
-                {
-                    if (deviceEvent.ToggleSwitchState != null)
-                    {
-                        extra = deviceEvent.ToggleSwitchState.Describe();
-                    }
-                    else if (deviceEvent.DimmerSwitchState != null)
-                    {
-                        extra = deviceEvent.DimmerSwitchState.Describe();
-                    }
-                    else if(deviceEvent.ThermostatState != null)
-                    {
-                        extra = deviceEvent.ThermostatState.Describe();
-                    }
-                }
+                var extra = GetExtra(@event);
 
                 var line = tableBuilder.ContentLine(
                     @event.TimeStamp.ToLocalTime().ToString(),
@@ -69,6 +52,43 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             }
 
             interpreter.WriteEvent(tableBuilder.EndOfTable());
+        }
+
+        private static string GetExtra(IEvent @event)
+        {
+            var result = string.Empty;
+
+            var deviceEvent = @event as IDeviceEvent;
+            if (deviceEvent != null)
+            {
+                if (deviceEvent.ToggleSwitchState != null)
+                {
+                    result = deviceEvent.ToggleSwitchState.Describe();
+                }
+                else if (deviceEvent.DimmerSwitchState != null)
+                {
+                    result = deviceEvent.DimmerSwitchState.Describe();
+                }
+                else if (deviceEvent.ThermostatState != null)
+                {
+                    result = deviceEvent.ThermostatState.Describe();
+                }
+            }
+
+            return result;
+        }
+
+        private static int ExtraLength(IEnumerable<IEvent> history)
+        {
+            var longest = 0;
+
+            foreach (var @event in history)
+            {
+                var extra = GetExtra(@event);
+                longest = Math.Max(longest, extra.Length);
+            }
+
+            return longest;
         }
     }
 }
