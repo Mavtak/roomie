@@ -1,10 +1,8 @@
-﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
-using Roomie.Common.HomeAutomation.Exceptions;
 using Roomie.Common.ScriptingLanguage;
-using System.Collections.Generic;
-using System.Linq;
 using BaseDevice = Roomie.Common.HomeAutomation.Device;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
@@ -85,7 +83,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             var threadPool = Context.ThreadPool;
 
             //TODO: print based on selected IEvent
-            threadPool.Print(BuildVirtualAddress(false, false) + " power level changed to " + DimmerSwitch.Power);
+            threadPool.Print(this.BuildVirtualAddress(false, false) + " power level changed to " + DimmerSwitch.Power);
 
             //TODO: improve this logic
             //TODO: read from event history in making powered on/off decision
@@ -169,7 +167,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public override string ToString()
         {
-            return BuildVirtualAddress(true, false);
+            return this.BuildVirtualAddress(true, false);
         }
 
     }

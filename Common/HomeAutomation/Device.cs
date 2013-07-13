@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
@@ -9,7 +10,7 @@ namespace Roomie.Common.HomeAutomation
     public abstract class Device : HomeAutomationEntity, IDeviceState
     {
         protected Network network { get; set; }
-        internal Network Network
+        public Network Network
         {
             get
             {
@@ -18,7 +19,8 @@ namespace Roomie.Common.HomeAutomation
         }
 
         protected DeviceLocation location { get; set; }
-        internal DeviceLocation Location
+
+        public DeviceLocation Location
         {
             get
             {
@@ -36,51 +38,28 @@ namespace Roomie.Common.HomeAutomation
         public abstract IToggleSwitch ToggleSwitch { get; }
         public abstract IDimmerSwitch DimmerSwitch { get; }
         public abstract IThermostat Thermostat { get; }
-        public int MaxPower { get; set; }
+        public int? MaxPower { get; set; }
         public bool? IsConnected { get; set; }
         
         //TODO: remove this
         protected int? power { get; set; }
 
-        public string BuildVirtualAddress(bool justAddress, bool includeDescription)
-        {
-            string description = null;
-            if (includeDescription)
-            {
-                description = VirtualAddress.FormatNaturalLanguageDescription(this);
-            }
-
-            return VirtualAddress.Format(this, justAddress, description);
-        }
-
-        public XElement ToXElement()
-        {
-            //TODO: Lock?
-            var result = base.ToXElement("HomeAutomationDevice");
-
-            if (Location.IsSet)
-                result.Add(new XAttribute("Location", Location.Name));
-
-            result.Add(new XAttribute("Type", Type));
-            //TODO: LastPoll
-
-            if (power != null)
-                result.Add(new XAttribute("Power", power.Value));
-
-            if (IsConnected != null)
-                result.Add(new XAttribute("IsConnected", IsConnected));
-
-            return result;
-        }
-
+        [Obsolete("Use the IDeviceState extension method instead.")]
         public override void FromXElement(XElement element)
         {
-            base.FromXElement(element);
+            CopyFrom(element.ToDeviceState());
+        }
 
-            power = element.GetAttributeIntValue("Power");
-            IsConnected = element.GetAttributeBoolValue("IsConnected");
-            Type = element.GetAttributeStringValue("Type");
-            location.Name = element.GetAttributeStringValue("Location");
+        public void CopyFrom(IDeviceState state)
+        {
+            Name = state.Name;
+            Address = state.Address;
+            location.Name = state.Location.Name;
+            IsConnected = state.IsConnected;
+            Type = state.Type;
+            power = state.DimmerSwitchState.Power;
+            MaxPower = state.DimmerSwitchState.MaxPower;
+            //TODO: handle thermostat state and such
         }
 
         IToggleSwitchState IDeviceState.ToggleSwitchState

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Database;
 
 namespace Roomie.Web.WebHook.ActionHandlers
 {
+    //TODO: fix this awful class.  Better yet, replace it with a REST server.
     internal class SyncHomeAutomationNetwork : ActionHandler
     {
         public SyncHomeAutomationNetwork()
@@ -50,7 +52,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
             //responseText.Append("network: " + network);
 
-            var sentDevices = new List<DeviceModel>();
+            var sentDevices = new List<IDeviceState>();
             foreach (var sentDeviceNode in request.Payload)
             {
                 if (sentDeviceNode == null)
@@ -58,40 +60,55 @@ namespace Roomie.Web.WebHook.ActionHandlers
                     response.ErrorMessage = "WTF? sentDeviceNode is null.";
                     return;
                 }
-                var sentDevice = new DeviceModel(sentDeviceNode);
-                sentDevice.Network = network;
+                var sentDevice = sentDeviceNode.ToDeviceState();
+                
+                //TODO: improve this
+                sentDevice = sentDevice.NewWithNetwork(network);
+
                 if (sentDevice.Location != null)
                 {
                     var existingLocationModel = database.GetDeviceLocation(user, sentDevice.Location.Name);
 
-                    sentDevice.Location = existingLocationModel;
+                    sentDevice = sentDevice.NewWithLocation(existingLocationModel);
                 }
                 sentDevices.Add(sentDevice);
                 //responseText.Append("\nreceived device: " + sentDevice);
             }
 
-            var registeredDevices = new List<DeviceModel>(network.Devices);
+            var registeredDevices = new List<IDeviceState>(network.Devices);
 
             // go through the devices from the client and update the entries in the database
             foreach (var sentDevice in sentDevices)
             {
-                if (!registeredDevices.Contains(sentDevice))
+                if (!registeredDevices.Any(x => x.Address == sentDevice.Address && x.Network.Equals(sentDevice.Network)))
                 {
-                    network.Devices.Add(sentDevice);
+
+                    var newDevice = new DeviceModel
+                        {
+                            Address = sentDevice.Address,
+                            IsConnected = sentDevice.IsConnected,
+                            MaxPower = sentDevice.DimmerSwitchState.MaxPower,
+                            Name = sentDevice.Name,
+                            Network = sentDevice.Network as NetworkModel,
+                            Location = sentDevice.Location as DeviceLocationModel,
+                            Power = sentDevice.DimmerSwitchState.Power,
+                            Type = sentDevice.Type
+                        };
+                    network.Devices.Add(newDevice);
                     //responseText.Append("\nadded device to the cloud: " + sentDevice);
                 }
                 else
                 {
-                    var registeredDevice = network.Devices.First(d => d.Equals(sentDevice));
-                    if (registeredDevice.Power != sentDevice.Power)
-                        registeredDevice.Power = sentDevice.Power;
+                    var registeredDevice = network.Devices.First(x => x.Address == sentDevice.Address && x.Network.Equals(sentDevice.Network));
+                    if (registeredDevice.Power != sentDevice.DimmerSwitchState.Power)
+                        registeredDevice.Power = sentDevice.DimmerSwitchState.Power;
                     if (registeredDevice.IsConnected != sentDevice.IsConnected)
                         registeredDevice.IsConnected = sentDevice.IsConnected;
                 }
             }
 
             // return the updated list of devices to the client
-            var devicesToRemove = new List<DeviceModel>();
+            var devicesToRemove = new List<IDeviceState>();
             foreach(var registeredDevice in registeredDevices)
             {
                 if (sentDevices.Find(d => 
@@ -105,7 +122,8 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
             foreach (var device in devicesToRemove)
             {
-                database.Devices.Remove(device);
+                var deviceToRemove = database.Devices.First(x => x.Address == device.Address && x.Network.Equals(device.Network));
+                database.Devices.Remove(deviceToRemove);
                 //responseText.Append("\nRemoved device from the cloud: " + device);
             }
 

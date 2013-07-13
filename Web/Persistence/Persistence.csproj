@@ -66,6 +66,7 @@
     <Compile Include="Models\DimmerSwitchModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\StringStringPair.cs" />
+    <Compile Include="Models\ThermostatViewModel.cs" />
     <Compile Include="Models\ToggleSwitchModel.cs" />
     <Compile Include="Models\UserSessionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +84,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common\Common.csproj">
+      <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\HomeAutomation\HomeAutomation.csproj">
       <Project>{F0B023B4-CCA4-419F-8963-862D3377A2F8}</Project>
       <Name>HomeAutomation %28Common\HomeAutomation%29</Name>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
@@ -12,77 +13,55 @@ using BaseNetwork = Roomie.Common.HomeAutomation.Network;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class DeviceModel : BaseDevice, IHasDivId
+    public class DeviceModel : IDeviceState, IHasDivId
     {
         [Key]
         public int Id { get; set; }
 
-        public virtual NetworkModel Network
+        public bool? IsConnected { get; set; }
+        public DeviceType Type { get; set; }
+        public virtual NetworkModel Network { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public virtual DeviceLocationModel Location { get; set; }
+
+        private readonly ToggleSwitchModel _toggleSwitch;
+        private readonly DimmerSwitchModel _dimmerSwitch;
+        private readonly ThermostatViewModel _thermostat;
+
+        public IToggleSwitch ToggleSwitch
         {
             get
             {
-                return (NetworkModel)base.network;
-            }
-            set
-            {
-                base.network = (BaseNetwork)value;
+                return _toggleSwitch;
             }
         }
 
-        public virtual DeviceLocationModel Location
+        public IDimmerSwitch DimmerSwitch
         {
             get
             {
-                return (DeviceLocationModel)base.location;
-            }
-            set
-            {
-                base.location = (BaseLocation)value;
+                return _dimmerSwitch;
             }
         }
 
-        public override IToggleSwitch ToggleSwitch
+        public IThermostat Thermostat
         {
             get
             {
-                return new ToggleSwitchModel(this);
+                return _thermostat;
             }
         }
 
-        public override IDimmerSwitch DimmerSwitch
-        {
-            get
-            {
-                return new DimmerSwitchModel(this);
-            }
-        }
-
-        public override IThermostat Thermostat
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public int? Power
-        {
-            get
-            {
-                return base.power;
-            }
-            set
-            {
-                base.power = value;
-            }
-        }
+        public int? Power { get; set; }
+        public int? MaxPower { get; set; }
 
         public DeviceModel()
-            : base(new DeviceLocationModel(), null)
-        { }
-
-        //TODO: improve this.
-        public DeviceModel(XElement element)
-            : this()
         {
-            base.FromXElement(element);
+            _toggleSwitch = new ToggleSwitchModel(this);
+            _dimmerSwitch = new DimmerSwitchModel(this);
+            _thermostat = new ThermostatViewModel(this);
+            Location = new DeviceLocationModel();
         }
 
         #region LastPing
@@ -113,6 +92,52 @@ namespace Roomie.Web.Persistence.Models
                 return (IsConnected == true)
                     && (Network != null)
                     && (Network.IsAvailable == true);
+            }
+        }
+
+
+        [NotMapped]
+        DeviceLocation IDeviceState.Location
+        {
+            get
+            {
+                return Location;
+            }
+        }
+
+        [NotMapped]
+        Network IDeviceState.Network
+        {
+            get
+            {
+                return Network;
+            }
+        }
+
+        [NotMapped]
+        IToggleSwitchState IDeviceState.ToggleSwitchState
+        {
+            get
+            {
+                return ToggleSwitch;
+            }
+        }
+
+        [NotMapped]
+        IDimmerSwitchState IDeviceState.DimmerSwitchState
+        {
+            get
+            {
+                return DimmerSwitch;
+            }
+        }
+
+        [NotMapped]
+        IThermostatState IDeviceState.ThermostatState
+        {
+            get
+            {
+                return Thermostat;
             }
         }
 

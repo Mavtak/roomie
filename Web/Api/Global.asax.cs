@@ -31,6 +31,7 @@ namespace Roomie.Web.Api
 
         protected void Application_Start()
         {
+            DatabaseConfig.RegisterConnectionStrings();
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

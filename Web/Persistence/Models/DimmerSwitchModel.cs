@@ -24,13 +24,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public int? MaxPower
-        {
-            get
-            {
-                return _device.MaxPower;
-            }
-        }
+        public int? MaxPower { get; set; }
 
         public void Poll()
         {

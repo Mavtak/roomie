@@ -92,6 +92,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="Controllers\CommunicatorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -113,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="App_Start\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -131,6 +131,9 @@
       <Project>{F1C594D7-933B-4E72-AE4A-CC47B82F0F3C}</Project>
       <Name>WebHook</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Rackspace CloudSites Hosting.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

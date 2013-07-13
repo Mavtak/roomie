@@ -148,7 +148,7 @@ namespace Roomie.Common.HomeAutomation
             return result.ToString();
         }
 
-        public static string Format(Device device, bool justAddresses = false, string remarks = null)
+        public static string Format(IDeviceState device, bool justAddresses = false, string remarks = null)
         {
             var network = device.Network;
 
@@ -169,7 +169,7 @@ namespace Roomie.Common.HomeAutomation
             return virtualAddress.Format();
         }
 
-        public static string FormatNaturalLanguageDescription(Device device)
+        public static string FormatNaturalLanguageDescription(IDeviceState device)
         {
             var result = new StringBuilder();
 
