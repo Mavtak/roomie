@@ -13,28 +13,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device = device;
         }
 
-        public int? Power
-        {
-            get
-            {
-                return _device.CachedPower;
-            }
-        }
-
-        public int? MaxPower
-        {
-            get
-            {
-                //TODO: store this here
-                return _device.MaxPower;
-            }
-        }
+        public int? Power { get; set; }
+        public int? MaxPower { get; set; }
 
         public void Poll()
         {
             Action operation = () =>
             {
-                _device.CachedPower = _device.BackingObject.Level;
+                Power = _device.BackingObject.Level;
             };
 
             _device.DoDeviceOperation(operation);
@@ -50,6 +36,12 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             };
 
             _device.DoDeviceOperation(operation);
+        }
+
+        public void Update(IDimmerSwitchState state)
+        {
+            Power = state.Power;
+            MaxPower = state.MaxPower;
         }
     }
 }

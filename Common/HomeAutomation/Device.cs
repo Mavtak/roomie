@@ -9,40 +9,20 @@ namespace Roomie.Common.HomeAutomation
 {
     public abstract class Device : HomeAutomationEntity, IDeviceState
     {
-        protected Network network { get; set; }
-        public Network Network
-        {
-            get
-            {
-                return network;
-            }
-        }
-
-        protected DeviceLocation location { get; set; }
-
-        public DeviceLocation Location
-        {
-            get
-            {
-                return location;
-            }
-        }
+        public Network Network { get; protected set; }
+        public DeviceLocation Location { get; protected set; }
 
         public Device(DeviceLocation location, Network network)
         {
-            this.location = location;
-            this.network = network;
+            Location = location;
+            Network = network;
         }
 
         public DeviceType Type { get; set; }
         public abstract IToggleSwitch ToggleSwitch { get; }
         public abstract IDimmerSwitch DimmerSwitch { get; }
         public abstract IThermostat Thermostat { get; }
-        public int? MaxPower { get; set; }
         public bool? IsConnected { get; set; }
-        
-        //TODO: remove this
-        protected int? power { get; set; }
 
         [Obsolete("Use the IDeviceState extension method instead.")]
         public override void FromXElement(XElement element)
@@ -54,11 +34,10 @@ namespace Roomie.Common.HomeAutomation
         {
             Name = state.Name;
             Address = state.Address;
-            location.Name = state.Location.Name;
+            Location.Name = state.Location.Name;
             IsConnected = state.IsConnected;
             Type = state.Type;
-            power = state.DimmerSwitchState.Power;
-            MaxPower = state.DimmerSwitchState.MaxPower;
+            DimmerSwitch.Update(state.DimmerSwitchState);
             //TODO: handle thermostat state and such
         }
 

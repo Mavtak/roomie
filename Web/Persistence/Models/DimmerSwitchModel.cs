@@ -36,5 +36,10 @@ namespace Roomie.Web.Persistence.Models
         {
             //TODO: dependency inject the TaskQueue and make this method actually work!
         }
+
+        public void Update(IDimmerSwitchState state)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

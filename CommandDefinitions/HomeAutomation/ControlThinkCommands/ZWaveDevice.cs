@@ -18,21 +18,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         private readonly ZWaveDimmerSwitch _dimmerSwitch;
         private readonly ZWaveThermostat _thermostat;
 
-        //TODO: move this into ZWaveDimmerSwitch
-        internal byte? CachedPower
-        {
-            get
-            {
-                return (byte?)power;
-            }
-            set
-            {
-                power = value;
-            }
-        }
-
         public ZWaveDevice(BaseNetwork network, BackingDevice backingDevice, DeviceType type = null, string name = null)
-            : base(network, 99, type, name)
+            : base(network, type, name)
         {
             BackingObject = backingDevice;
 
@@ -40,22 +27,26 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             Address = backingDevice.NodeID.ToString();
 
-            if (type != null && type.CanControl && !type.CanDim)
-            {
-                MaxPower = 255;
-            }
-
-            BackingObject.LevelChanged += (sender, args) =>
-                {
-                    CachedPower = args.Level;
-                    IsConnected = true;
-                    PowerChanged();
-                };
-
             _toggleSwitch = new ZWaveToggleSwitch(this);
             _dimmerSwitch = new ZWaveDimmerSwitch(this);
             _thermostat = new ZWaveThermostat(this);
 
+            if (Type.CanDim)
+            {
+                _dimmerSwitch.MaxPower = 99;
+            }
+            else
+            {
+                _dimmerSwitch.MaxPower = 255;
+            }
+
+            BackingObject.LevelChanged += (sender, args) =>
+                {
+                    _dimmerSwitch.Power = args.Level;
+                    IsConnected = true;
+                    //TODO: device found event?
+                    PowerChanged();
+                };
         }
 
         public override IToggleSwitch ToggleSwitch

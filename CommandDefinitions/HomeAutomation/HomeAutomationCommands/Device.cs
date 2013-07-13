@@ -14,24 +14,12 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public List<DeviceEventAction> DeviceEventActions { get; private set; }
 
-        public DeviceLocation Location
-        {
-            get
-            {
-                return base.location;
-            }
-            set
-            {
-                base.location = value;
-            }
-        }
-
-        private Network Network
+        private new Network Network
         {
             get
             {
                 //TODO: this isn't so great
-                return network as Network;
+                return base.Network as Network;
             }
         }
 
@@ -43,14 +31,12 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        protected Device(Network network, int maxPower, DeviceType type = null, string name = null, DeviceLocation location = null)
+        protected Device(Network network, DeviceType type = null, string name = null, DeviceLocation location = null)
             :base(location??new DeviceLocation(), network)
         {
-            this.network = network;
-            this.MaxPower = maxPower;
+            base.Network = network;
             this.Type = type??DeviceType.Unknown;
             this.Name = name;
-            this.power = null;
             this.IsConnected = null;
 
             DeviceEventActions = new List<DeviceEventAction>();

@@ -26,5 +26,11 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
 
             return result;
         }
+
+
+        public void Update(IDimmerSwitchState state)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

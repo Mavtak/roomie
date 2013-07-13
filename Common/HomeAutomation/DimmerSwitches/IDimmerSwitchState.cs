@@ -5,5 +5,7 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
     {
         int? Power { get;}
         int? MaxPower { get; }
+
+        void Update(IDimmerSwitchState state);
     }
 }
