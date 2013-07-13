@@ -4,6 +4,11 @@ namespace Roomie.Common.HomeAutomation.Thermostats
 {
     public static class ThermostatStateExtensions
     {
+        public static ReadOnlyThermostatState Copy(this IThermostatState state)
+        {
+            return ReadOnlyThermostatState.CopyFrom(state);
+        }
+
         public static string Describe(this IThermostatState state)
         {
             var result = new StringBuilder();

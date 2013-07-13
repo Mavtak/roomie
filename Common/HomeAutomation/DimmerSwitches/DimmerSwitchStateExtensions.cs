@@ -4,6 +4,11 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
 {
     public static class DimmerSwitchStateExtensions
     {
+        public static ReadOnlyDimmerSwitchState Copy(this IDimmerSwitchState state)
+        {
+            return ReadOnlyDimmerSwitchState.CopyFrom(state);
+        }
+
         public static string Describe(this IDimmerSwitchState state)
         {
             var result = new StringBuilder();

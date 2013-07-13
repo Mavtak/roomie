@@ -50,24 +50,21 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent PoweredOn(Device device, IEventSource source)
         {
-            var state = ReadOnlyToggleSwitchState.CopyFrom(device.ToggleSwitch);
-            var result = new DeviceEvent(device, new PoweredOn(), source, toggleSwitchState: state);
+            var result = new DeviceEvent(device, new PoweredOn(), source, toggleSwitchState: device.ToggleSwitch.Copy());
 
             return result;
         }
 
         public static DeviceEvent PoweredOff(Device device, IEventSource source)
         {
-            var state = ReadOnlyToggleSwitchState.CopyFrom(device.ToggleSwitch);
-            var result = new DeviceEvent(device, new PoweredOff(), source, toggleSwitchState: state);
+            var result = new DeviceEvent(device, new PoweredOff(), source, toggleSwitchState: device.ToggleSwitch.Copy());
 
             return result;
         }
 
         public static DeviceEvent PowerChanged(Device device, IEventSource source)
         {
-            var state = ReadOnlyDimmerSwitchState.CopyFrom(device.DimmerSwitch);
-            var result = new DeviceEvent(device, new DevicePowerChanged(), source, dimmerSwitchState: state);
+            var result = new DeviceEvent(device, new DevicePowerChanged(), source, dimmerSwitchState: device.DimmerSwitch.Copy());
 
             return result;
         }
@@ -76,24 +73,21 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent MotionDetected(Device device, IEventSource source)
         {
-            var state = ReadOnlyToggleSwitchState.CopyFrom(device.ToggleSwitch);
-            var result = new DeviceEvent(device, new MotionDetected(), source, toggleSwitchState: state);
+            var result = new DeviceEvent(device, new MotionDetected(), source, toggleSwitchState: device.ToggleSwitch.Copy());
 
             return result;
         }
 
         public static DeviceEvent StillnessDetected(Device device, IEventSource source)
         {
-            var state = ReadOnlyToggleSwitchState.CopyFrom(device.ToggleSwitch);
-            var result = new DeviceEvent(device, new StillnessDetected(), source, toggleSwitchState: state);
+            var result = new DeviceEvent(device, new StillnessDetected(), source, toggleSwitchState: device.ToggleSwitch.Copy());
 
             return result;
         }
 
         public static DeviceEvent TemperatureChanged(Device device, IEventSource source)
         {
-            var state = ReadOnlyThermostatState.CopyFrom(device.Thermostat);
-            var result = new DeviceEvent(device, new TemperatureChanged(), source, thermostatState: state);
+            var result = new DeviceEvent(device, new TemperatureChanged(), source, thermostatState: device.Thermostat.Copy());
 
             return result;
         }

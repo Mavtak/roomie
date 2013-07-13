@@ -14,9 +14,9 @@ namespace Roomie.Common.HomeAutomation
         {
             var result = new ReadOnlyDeviceState
             {
-                ToggleSwitchState = ReadOnlyToggleSwitchState.CopyFrom(source.ToggleSwitchState),
-                DimmerSwitchState = ReadOnlyDimmerSwitchState.CopyFrom(source.DimmerSwitchState),
-                ThermostatState = ReadOnlyThermostatState.CopyFrom(source.ThermostatState)
+                ToggleSwitchState = source.ToggleSwitchState.Copy(),
+                DimmerSwitchState = source.DimmerSwitchState.Copy(),
+                ThermostatState = source.ThermostatState.Copy()
             };
 
             return result;

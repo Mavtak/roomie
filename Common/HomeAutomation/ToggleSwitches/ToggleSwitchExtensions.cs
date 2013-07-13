@@ -1,10 +1,14 @@
-﻿
-using System.Text;
+﻿using System.Text;
 
 namespace Roomie.Common.HomeAutomation.ToggleSwitches
 {
     public static class ToggleSwitchExtensions
     {
+        public static IToggleSwitchState Copy(this IToggleSwitchState state)
+        {
+            return ReadOnlyToggleSwitchState.CopyFrom(state);
+        }
+
         public static string Describe(this IToggleSwitchState state)
         {
             var result = new StringBuilder();
