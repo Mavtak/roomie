@@ -1,14 +1,16 @@
 ﻿using System;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Common.HomeAutomation.Events
 {
     public class DeviceEvent : IDeviceEvent
     {
         public Device Device { get; private set; }
-        public IThermostatState ThermostatState { get; private set; }
         public IDimmerSwitchState DimmerSwitchState { get; private set; }
+        public IToggleSwitchState ToggleSwitchState { get; private set; }
+        public IThermostatState ThermostatState { get; private set; }
 
         public HomeAutomationEntity Entity
         {
@@ -21,9 +23,10 @@ namespace Roomie.Common.HomeAutomation.Events
         public DateTime TimeStamp { get; private set; }
         public IEventSource Source { get; private set; }
 
-        private DeviceEvent(Device device, IEventType type, IEventSource source, IDimmerSwitchState dimmerSwitchState = null, IThermostatState thermostatState = null)
+        private DeviceEvent(Device device, IEventType type, IEventSource source, IToggleSwitchState toggleSwitchState = null, IDimmerSwitchState dimmerSwitchState = null, IThermostatState thermostatState = null)
         {
             Device = device;
+            ToggleSwitchState = toggleSwitchState;
             DimmerSwitchState = dimmerSwitchState;
             ThermostatState = thermostatState;
             Type = type;
@@ -44,6 +47,8 @@ namespace Roomie.Common.HomeAutomation.Events
 
             return result;
         }
+        
+        //TODO: add events for toggle switches
 
         public static DeviceEvent PowerChanged(Device device, IEventSource source)
         {
@@ -53,16 +58,20 @@ namespace Roomie.Common.HomeAutomation.Events
             return result;
         }
 
+        //TODO: make motion-detector-specific events
+
         public static DeviceEvent MotionDetected(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new MotionDetected(), source);
+            var state = ReadOnlyToggleSwitchState.CopyTo(device.ToggleSwitch);
+            var result = new DeviceEvent(device, new MotionDetected(), source, toggleSwitchState: state);
 
             return result;
         }
 
         public static DeviceEvent StillnessDetected(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new StillnessDetected(), source);
+            var state = ReadOnlyToggleSwitchState.CopyTo(device.ToggleSwitch);
+            var result = new DeviceEvent(device, new StillnessDetected(), source, toggleSwitchState: state);
 
             return result;
         }

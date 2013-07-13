@@ -1,12 +1,11 @@
-﻿
+﻿using Roomie.Common.HomeAutomation.ToggleSwitches;
+
 namespace Roomie.Common.HomeAutomation
 {
-    public interface IToggleSwitch
+    public interface IToggleSwitch : IToggleSwitchState
     {
         void PowerOn();
         void PowerOff();
         void Poll();
-        bool IsOn { get; }
-        bool IsOff { get; }
     }
 }

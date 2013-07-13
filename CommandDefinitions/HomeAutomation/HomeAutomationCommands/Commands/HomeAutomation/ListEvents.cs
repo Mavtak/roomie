@@ -3,6 +3,7 @@ using System.Linq;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Common.TextUtilities;
 using System;
 using System.Text;
@@ -42,13 +43,17 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                 var deviceEvent = @event as IDeviceEvent;
                 if (deviceEvent != null)
                 {
-                    if (deviceEvent.Type is TemperatureChanged)
+                    if (deviceEvent.ToggleSwitchState != null)
                     {
-                        extra = deviceEvent.ThermostatState.Describe();
+                        extra = deviceEvent.ToggleSwitchState.Describe();
                     }
-                    else if (deviceEvent.Type is DevicePowerChanged)
+                    else if (deviceEvent.DimmerSwitchState != null)
                     {
                         extra = deviceEvent.DimmerSwitchState.Describe();
+                    }
+                    else if(deviceEvent.ThermostatState != null)
+                    {
+                        extra = deviceEvent.ThermostatState.Describe();
                     }
                 }
 
