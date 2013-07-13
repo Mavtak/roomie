@@ -88,8 +88,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             threadPool.Print(BuildVirtualAddress(false, false) + " power level changed to " + DimmerSwitch.Power);
 
             //TODO: improve this logic
-            //TODO: include previous power for more smarts
-            IEvent @event;
+            //TODO: read from event history in making powered on/off decision
+            IEvent @event = null;
             IEventSource source = null; //TODO: fill this in
             if (IsConnected == true)
             {
@@ -102,10 +102,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                     else if (ToggleSwitch.IsOff)
                     {
                         @event = DeviceEvent.StillnessDetected(this, source);
-                    }
-                    else
-                    {
-                        @event = DeviceEvent.PowerChanged(this, source);
                     }
                 }
                 else
@@ -120,20 +116,17 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                         {
                             @event = DeviceEvent.PoweredOff(this, source);
                         }
-                        else
-                        {
-                            @event = DeviceEvent.PowerChanged(this, source);
-                        }
-                    }
-                    else
-                    {
-                        @event = DeviceEvent.PowerChanged(this, source);
                     }
                 }
             }
             else
             {
                 @event = DeviceEvent.Lost(this, source);
+            }
+
+            if (@event == null)
+            {
+                @event = DeviceEvent.PowerChanged(this, source);
             }
 
             AddEvent(@event);
