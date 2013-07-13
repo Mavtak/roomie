@@ -20,6 +20,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
             catch (ControlThink.ZWave.ZWaveException exception)
             {
+                //TODO: device disconnected event
                 device.IsConnected = false;
 
                 if (exception is ControlThink.ZWave.DeviceNotRespondingException)

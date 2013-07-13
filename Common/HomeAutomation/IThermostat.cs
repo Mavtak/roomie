@@ -3,10 +3,8 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.Common.HomeAutomation
 {
-    public interface IThermostat
+    public interface IThermostat : IThermostatState
     {
-        ITemperature Temperature { get; }
-
         void PollTemperature();
         void SetSetpoint(SetpointType setpointType, ITemperature temperature);
         void SetFanMode(FanMode fanMode);

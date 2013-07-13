@@ -1,4 +1,5 @@
 ﻿using System;
+using Roomie.Common.HomeAutomation.Thermostats;
 
 namespace Roomie.Common.HomeAutomation.Events
 {
@@ -6,6 +7,8 @@ namespace Roomie.Common.HomeAutomation.Events
     {
         public Device Device { get; private set; }
         public int? Power { get; private set; }
+        public IThermostatState ThermostatState { get; private set; }
+
         public HomeAutomationEntity Entity
         {
             get
@@ -17,9 +20,10 @@ namespace Roomie.Common.HomeAutomation.Events
         public DateTime TimeStamp { get; private set; }
         public IEventSource Source { get; private set; }
 
-        private DeviceEvent(Device device, IEventType type, IEventSource source)
+        private DeviceEvent(Device device, IEventType type, IEventSource source, IThermostatState thermostatState = null)
         {
             Device = device;
+            ThermostatState = thermostatState;
             Power = device.DimmerSwitch.Power;
             Type = type;
             TimeStamp = DateTime.UtcNow;
@@ -63,7 +67,8 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent TemperatureChanged(Device device, IEventSource source)
         {
-            var result = new DeviceEvent(device, new TemperatureChanged(), source);
+            var state = ReadOnlyThermostatState.CopyFrom(device.Thermostat);
+            var result = new DeviceEvent(device, new TemperatureChanged(), source, state);
 
             return result;
         }

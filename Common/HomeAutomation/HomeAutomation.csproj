@@ -71,8 +71,11 @@
     <Compile Include="IToggleSwitch.cs" />
     <Compile Include="Thermostats\FanModeParser.cs" />
     <Compile Include="Thermostats\FanMode.cs" />
+    <Compile Include="Thermostats\IThermostatState.cs" />
+    <Compile Include="Thermostats\ReadOnlyThermostatState.cs" />
     <Compile Include="Thermostats\SetpointTypeParser.cs" />
     <Compile Include="Thermostats\SetpointType.cs" />
+    <Compile Include="Thermostats\ThermostatStateExtensions.cs" />
     <Compile Include="VirtualAddress.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Device.cs" />

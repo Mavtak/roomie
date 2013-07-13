@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.HomeAutomation.Events;
+using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.TextUtilities;
 using System;
 using System.Text;
@@ -40,7 +41,11 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                 var deviceEvent = @event as IDeviceEvent;
                 if (deviceEvent != null)
                 {
-                    if (deviceEvent.Type is DevicePowerChanged)
+                    if (deviceEvent.Type is TemperatureChanged)
+                    {
+                        extra = deviceEvent.ThermostatState.Describe();
+                    }
+                    else if (deviceEvent.Type is DevicePowerChanged)
                     {
                         extra = "Power=" + deviceEvent.Power;
                     }
