@@ -39,19 +39,23 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device.DimmerSwitch.Poll();
         }
 
-        public bool IsOff
+        public ToggleSwitchPower? Power
         {
             get
             {
-                return Utilities.IsOff(_device.DimmerSwitch.Power);
-            }
-        }
+                var power =_device.DimmerSwitch.Power;
 
-        public bool IsOn
-        {
-            get
-            {
-                return Utilities.IsOn(_device.DimmerSwitch.Power);
+                if (Utilities.IsOn(power))
+                {
+                    return ToggleSwitchPower.On;
+                }
+
+                if (Utilities.IsOff(power))
+                {
+                    return ToggleSwitchPower.Off;
+                }
+
+                return null;
             }
         }
     }

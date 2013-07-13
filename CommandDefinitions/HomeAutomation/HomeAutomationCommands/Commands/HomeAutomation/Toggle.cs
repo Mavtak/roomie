@@ -1,4 +1,6 @@
 ﻿
+using Roomie.Common.HomeAutomation.ToggleSwitches;
+
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     public class Toggle : HomeAutomationSingleDeviceCommand
@@ -7,17 +9,21 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var device = context.Device;
 
-            if (device.ToggleSwitch.IsOff)
+            if (device.ToggleSwitch.Power == null)
             {
-                device.ToggleSwitch.PowerOn();
-            }
-            else
-            {
-                device.ToggleSwitch.PowerOff();
+                device.Poll();
             }
 
-            //TODO: make this more efficient
-            device.Poll();
+            switch (device.ToggleSwitch.Power)
+            {
+                case ToggleSwitchPower.On:
+                    device.ToggleSwitch.PowerOn();
+                    break;
+
+                    case ToggleSwitchPower.Off:
+                    device.ToggleSwitch.PowerOff();
+                    break;
+            }
         }
     }
 }

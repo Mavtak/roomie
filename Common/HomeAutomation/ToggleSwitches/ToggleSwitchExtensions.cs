@@ -18,19 +18,15 @@ namespace Roomie.Common.HomeAutomation.ToggleSwitches
                 return result.ToString();
             }
 
-            if (state.IsOn)
+            switch (state.Power)
             {
-                result.Append("on");
+                case ToggleSwitchPower.On:
+                    result.Append("on");
+                    break;
 
-                if (state.IsOff)
-                {
-                    result.Append(" and also somehow ");
-                }
-            }
-
-            if (state.IsOff)
-            {
-                result.Append("off");
+                case ToggleSwitchPower.Off:
+                    result.Append("off");
+                    break;
             }
 
             return result.ToString();

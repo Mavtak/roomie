@@ -2,6 +2,7 @@
 using System.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
+using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Common.ScriptingLanguage;
 using BaseDevice = Roomie.Common.HomeAutomation.Device;
 
@@ -62,8 +63,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        //TODO: min and max power values
-
         protected void PowerChanged()
         {
             var threadPool = Context.ThreadPool;
@@ -79,26 +78,30 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             {
                 if (Type.Equals(DeviceType.MotionDetector))
                 {
-                    if (ToggleSwitch.IsOn)
+                    switch (ToggleSwitch.Power)
                     {
-                        @event = DeviceEvent.MotionDetected(this, source);
-                    }
-                    else if (ToggleSwitch.IsOff)
-                    {
-                        @event = DeviceEvent.StillnessDetected(this, source);
+                        case ToggleSwitchPower.On:
+                            @event = DeviceEvent.MotionDetected(this, source);
+                            break;
+
+                        case ToggleSwitchPower.Off:
+                            @event = DeviceEvent.StillnessDetected(this, source);
+                            break;
                     }
                 }
                 else
                 {
                     if (Type.Equals(DeviceType.Switch))
                     {
-                        if (ToggleSwitch.IsOn)
+                        switch (ToggleSwitch.Power)
                         {
-                            @event = DeviceEvent.PoweredOn(this, source);
-                        }
-                        else if(ToggleSwitch.IsOff)
-                        {
-                            @event = DeviceEvent.PoweredOff(this, source);
+                            case ToggleSwitchPower.On:
+                                @event = DeviceEvent.PoweredOn(this, source);
+                                break;
+
+                            case ToggleSwitchPower.Off:
+                                @event = DeviceEvent.PoweredOff(this, source);
+                                break;
                         }
                     }
                 }
@@ -124,16 +127,18 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
             var eventActions = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerChange));
 
-            if (ToggleSwitch.IsOn)
-            {
-                var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOn));
-                eventActions = eventActions.Union(onScripts);
-            }
 
-            if (ToggleSwitch.IsOff)
+            switch (ToggleSwitch.Power)
             {
-                var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOff));
-                eventActions = eventActions.Union(onScripts);
+                case ToggleSwitchPower.On:
+                    var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOn));
+                    eventActions = eventActions.Union(onScripts);
+                    break;
+
+                case ToggleSwitchPower.Off:
+                    var offScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOff));
+                    eventActions = eventActions.Union(offScripts);
+                    break;
             }
 
             var scripts = eventActions.Select(a => a.Commands);

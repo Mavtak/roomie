@@ -86,6 +86,7 @@
     <Compile Include="Thermostats\ThermostatStateExtensions.cs" />
     <Compile Include="ToggleSwitches\IToggleSwitchState.cs" />
     <Compile Include="ToggleSwitches\ReadOnlyToggleSwitchState.cs" />
+    <Compile Include="ToggleSwitches\ToggleSwitchPower.cs" />
     <Compile Include="ToggleSwitches\ToggleSwitchExtensions.cs" />
     <Compile Include="VirtualAddress.cs" />
     <Compile Include="Common.cs" />
