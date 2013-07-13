@@ -110,7 +110,25 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 }
                 else
                 {
-                    @event = DeviceEvent.PowerChanged(this, source);
+                    if (Type.Equals(DeviceType.Switch))
+                    {
+                        if (ToggleSwitch.IsOn)
+                        {
+                            @event = DeviceEvent.PoweredOn(this, source);
+                        }
+                        else if(ToggleSwitch.IsOff)
+                        {
+                            @event = DeviceEvent.PoweredOff(this, source);
+                        }
+                        else
+                        {
+                            @event = DeviceEvent.PowerChanged(this, source);
+                        }
+                    }
+                    else
+                    {
+                        @event = DeviceEvent.PowerChanged(this, source);
+                    }
                 }
             }
             else

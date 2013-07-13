@@ -47,8 +47,22 @@ namespace Roomie.Common.HomeAutomation.Events
 
             return result;
         }
-        
-        //TODO: add events for toggle switches
+
+        public static DeviceEvent PoweredOn(Device device, IEventSource source)
+        {
+            var state = ReadOnlyToggleSwitchState.CopyTo(device.ToggleSwitch);
+            var result = new DeviceEvent(device, new PoweredOn(), source, toggleSwitchState: state);
+
+            return result;
+        }
+
+        public static DeviceEvent PoweredOff(Device device, IEventSource source)
+        {
+            var state = ReadOnlyToggleSwitchState.CopyTo(device.ToggleSwitch);
+            var result = new DeviceEvent(device, new PoweredOff(), source, toggleSwitchState: state);
+
+            return result;
+        }
 
         public static DeviceEvent PowerChanged(Device device, IEventSource source)
         {
