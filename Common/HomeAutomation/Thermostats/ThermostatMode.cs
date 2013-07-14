@@ -6,6 +6,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         Off,
         Heat,
         Cool,
+        Auto,
         FanOnly
     }
 }
