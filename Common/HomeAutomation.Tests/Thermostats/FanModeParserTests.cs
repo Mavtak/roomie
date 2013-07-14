@@ -12,7 +12,7 @@ namespace Roomie.Common.HomeAutomation.Tests.Thermostats
         [TestCaseSource("ValidInputs")]
         public void ItAcceptsWellFormedInput(string input)
         {
-            var result = FanModeParser.IsValid(input);
+            var result = ThermostatFanModeParser.IsValid(input);
 
             Assert.That(result, Is.True);
         }
@@ -20,7 +20,7 @@ namespace Roomie.Common.HomeAutomation.Tests.Thermostats
         [TestCaseSource("InvalidInputs")]
         public void ItRejectsMalformedInput(string input)
         {
-            var result = FanModeParser.IsValid(input);
+            var result = ThermostatFanModeParser.IsValid(input);
 
             Assert.That(result, Is.False);
         }
@@ -28,23 +28,23 @@ namespace Roomie.Common.HomeAutomation.Tests.Thermostats
         [TestCaseSource("ValidInputs")]
         public void ItDoesNotThrowExceptionsWhenParsingValidInput(string input)
         {
-            FanModeParser.Parse(input);
+            ThermostatFanModeParser.Parse(input);
         }
 
         [TestCaseSource("InvalidInputs")]
         [ExpectedException]
         public void ItThrowsExceptionsWhenParsingValidInput(string input)
         {
-            FanModeParser.Parse(input);
+            ThermostatFanModeParser.Parse(input);
         }
 
-        [TestCase("Auto", FanMode.Auto)]
-        [TestCase("auto", FanMode.Auto)]
-        [TestCase("On", FanMode.On)]
-        [TestCase("on", FanMode.On)]
-        public void ItParsesValuesProperly(string input, FanMode expected)
+        [TestCase("Auto", ThermostatFanMode.Auto)]
+        [TestCase("auto", ThermostatFanMode.Auto)]
+        [TestCase("On", ThermostatFanMode.On)]
+        [TestCase("on", ThermostatFanMode.On)]
+        public void ItParsesValuesProperly(string input, ThermostatFanMode expected)
         {
-            var actual = FanModeParser.Parse(input);
+            var actual = ThermostatFanModeParser.Parse(input);
 
             Assert.That(actual, Is.EqualTo(expected));
         }

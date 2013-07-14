@@ -1,11 +1,11 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Thermostats.Fans
 {
-    public static class FanStateExtensions
+    public static class ThermostatFanStateExtensions
     {
-        public static ReadOnlyFanState Copy(this IFanState state)
+        public static ReadOnlyThermostatFanState Copy(this IThermostatFanState state)
         {
-            return ReadOnlyFanState.CopyFrom(state);
+            return ReadOnlyThermostatFanState.CopyFrom(state);
         }
     }
 }

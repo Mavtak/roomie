@@ -104,14 +104,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             return result;
         }
 
-        public static ControlThinkFanMode ToControlThinkType(this FanMode fanMode)
+        public static ControlThinkFanMode ToControlThinkType(this ThermostatFanMode fanMode)
         {
             switch (fanMode)
             {
-                case FanMode.Auto:
+                case ThermostatFanMode.Auto:
                     return ControlThinkFanMode.AutoLow;
 
-                case FanMode.On:
+                case ThermostatFanMode.On:
                     return ControlThinkFanMode.OnLow;
 
                 default:

@@ -5,11 +5,11 @@ using Roomie.Common.HomeAutomation.Thermostats.Fans;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    public class ZWaveThermostatFan : IFan
+    public class ZWaveThermostatFan : IThermostatFan
     {
-        public IEnumerable<FanMode> SupportedModes { get; internal set; }
-        public FanMode? Mode { get; internal set; }
-        public FanCurrentAction? CurrentAction { get; internal set; }
+        public IEnumerable<ThermostatFanMode> SupportedModes { get; internal set; }
+        public ThermostatFanMode? Mode { get; internal set; }
+        public ThermostatFanCurrentAction? CurrentAction { get; internal set; }
 
         private ZWaveDevice _device;
         private GeneralThermostatV2 _thermostat;
@@ -19,10 +19,10 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device = device;
             _thermostat = device.BackingObject as GeneralThermostatV2;
 
-            SupportedModes = new List<FanMode>();
+            SupportedModes = new List<ThermostatFanMode>();
         }
 
-        public void SetMode(FanMode fanMode)
+        public void SetMode(ThermostatFanMode fanMode)
         {
             var controlThinkFanMode = fanMode.ToControlThinkType();
 

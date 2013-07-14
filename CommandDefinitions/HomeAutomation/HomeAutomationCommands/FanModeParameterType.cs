@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public bool Validate(string value)
         {
-            var result = FanModeParser.IsValid(value);
+            var result = ThermostatFanModeParser.IsValid(value);
 
             return result;
         }

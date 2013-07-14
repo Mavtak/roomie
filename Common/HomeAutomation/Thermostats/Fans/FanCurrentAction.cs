@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Thermostats.Fans
 {
-    public enum FanCurrentAction
+    public enum ThermostatFanCurrentAction
     {
         Idle,
         On

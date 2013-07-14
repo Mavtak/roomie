@@ -1,8 +1,8 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Thermostats.Fans
 {
-    public interface IFanActions
+    public interface IThermostatFanActions
     {
-        void SetMode(FanMode fanMode);
+        void SetMode(ThermostatFanMode fanMode);
     }
 }

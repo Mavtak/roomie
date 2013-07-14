@@ -3,15 +3,15 @@ using System.Linq;
 
 namespace Roomie.Common.HomeAutomation.Thermostats.Fans
 {
-    public class ReadOnlyFanState : IFanState
+    public class ReadOnlyThermostatFanState : IThermostatFanState
     {
-        public IEnumerable<FanMode> SupportedModes { get; private set; }
-        public FanMode? Mode { get; private set; }
-        public FanCurrentAction? CurrentAction { get; private set; }
+        public IEnumerable<ThermostatFanMode> SupportedModes { get; private set; }
+        public ThermostatFanMode? Mode { get; private set; }
+        public ThermostatFanCurrentAction? CurrentAction { get; private set; }
 
-        public static ReadOnlyFanState CopyFrom(IFanState state)
+        public static ReadOnlyThermostatFanState CopyFrom(IThermostatFanState state)
         {
-            var result = new ReadOnlyFanState
+            var result = new ReadOnlyThermostatFanState
             {
                 SupportedModes = state.SupportedModes.ToList(),
                 Mode = state.Mode,

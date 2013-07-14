@@ -9,14 +9,14 @@ namespace Roomie.Web.Persistence.Models
     public class ThermostatViewModel : IThermostat
     {
         public ITemperature Temperature { get; private set; }
-        IFanState IThermostatState.FanState
+        IThermostatFanState IThermostatState.FanState
         {
             get
             {
                 return Fan;
             }
         }
-        public IFan Fan { get; private set; }
+        public IThermostatFan Fan { get; private set; }
         public IEnumerable<ThermostatMode> SupportedModes { get; private set; }
         public ThermostatCurrentAction? CurrentAction { get; private set; }
         public ISetpointCollection SetPoints { get; private set; }
@@ -39,7 +39,7 @@ namespace Roomie.Web.Persistence.Models
             throw new NotImplementedException();
         }
 
-        public void SetFanMode(FanMode fanMode)
+        public void SetFanMode(ThermostatFanMode fanMode)
         {
             throw new NotImplementedException();
         }

@@ -2,10 +2,10 @@
 
 namespace Roomie.Common.HomeAutomation.Thermostats.Fans
 {
-    public interface IFanState
+    public interface IThermostatFanState
     {
-        IEnumerable<FanMode> SupportedModes { get; }
-        FanMode? Mode { get; }
-        FanCurrentAction? CurrentAction { get; }
+        IEnumerable<ThermostatFanMode> SupportedModes { get; }
+        ThermostatFanMode? Mode { get; }
+        ThermostatFanCurrentAction? CurrentAction { get; }
     }
 }

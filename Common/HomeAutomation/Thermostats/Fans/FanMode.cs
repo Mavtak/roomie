@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Thermostats.Fans
 {
-    public enum FanMode
+    public enum ThermostatFanMode
     {
         Auto,
         On

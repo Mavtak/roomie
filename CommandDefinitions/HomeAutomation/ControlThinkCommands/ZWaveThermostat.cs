@@ -11,14 +11,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     public class ZWaveThermostat : IThermostat
     {
         public ITemperature Temperature { get; private set; }
-        IFanState IThermostatState.FanState
+        IThermostatFanState IThermostatState.FanState
         {
             get
             {
                 return Fan;
             }
         }
-        public IFan Fan { get; private set; }
+        public IThermostatFan Fan { get; private set; }
         public IEnumerable<ThermostatMode> SupportedModes { get; private set; }
         public ThermostatMode? Mode { get; private set; }
         public ThermostatCurrentAction? CurrentAction { get; private set; }

@@ -1,19 +1,19 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Thermostats.Fans
 {
-    public static class FanModeParser
+    public static class ThermostatFanModeParser
     {
         public static bool IsValid(string input)
         {
-            return EnumParser.IsValid<FanMode>(input);
+            return EnumParser.IsValid<ThermostatFanMode>(input);
         }
 
-        public static FanMode Parse(string input)
+        public static ThermostatFanMode Parse(string input)
         {
-            return EnumParser.Parse<FanMode>(input);
+            return EnumParser.Parse<ThermostatFanMode>(input);
         }
 
-        public static FanMode ToFanMode(this string input)
+        public static ThermostatFanMode ToFanMode(this string input)
         {
             return Parse(input);
         }
