@@ -23,6 +23,39 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 result.Append(state.Temperature);
             }
 
+            if (state.CurrentAction != null)
+            {
+                if (result.Length > 0)
+                {
+                    result.Append(", ");
+                }
+
+                result.Append("action: ");
+                result.Append(state.CurrentAction);
+            }
+
+            if (state.FanState.Mode != null)
+            {
+                if (result.Length > 0)
+                {
+                    result.Append(", ");
+                }
+
+                result.Append("Fan mode: ");
+                result.Append(state.FanState.Mode);
+            }
+
+            if (state.FanState.CurrentAction != null)
+            {
+                if (result.Length > 0)
+                {
+                    result.Append(", ");
+                }
+
+                result.Append("Fan action: ");
+                result.Append(state.FanState.CurrentAction);
+            }
+
             return result.ToString();
         }
     }
