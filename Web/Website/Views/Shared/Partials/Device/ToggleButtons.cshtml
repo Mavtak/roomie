@@ -1,4 +1,5 @@
-﻿@model Roomie.Web.Persistence.Models.DeviceModel
+﻿@using Roomie.Common.HomeAutomation.ToggleSwitches
+@model Roomie.Web.Persistence.Models.DeviceModel
 @*
 
 *@<div class="buttonGroup two">@*
@@ -17,7 +18,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button leftmost" + (Model.ToggleSwitch.IsOff ? " activated" : "")
+                    @class = "button leftmost" + (Model.ToggleSwitch.Power == ToggleSwitchPower.Off ? " activated" : "")
                 }
             )){<button class="button" >Off</button>}@*
 
@@ -35,7 +36,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button rightmost" + (Model.ToggleSwitch.IsOn ? " activated" : "")
+                    @class = "button rightmost" + (Model.ToggleSwitch.Power == ToggleSwitchPower.On ? " activated" : "")
                 }
             )){<button class="button">On</button>}@*
 
