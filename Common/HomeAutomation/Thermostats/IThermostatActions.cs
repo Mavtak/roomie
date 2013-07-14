@@ -7,5 +7,6 @@ namespace Roomie.Common.HomeAutomation.Thermostats
     {
         void PollTemperature();
         void SetSetpoint(SetpointType setpointType, ITemperature temperature);
+        void SetMode(ThermostatMode mode);
     }
 }

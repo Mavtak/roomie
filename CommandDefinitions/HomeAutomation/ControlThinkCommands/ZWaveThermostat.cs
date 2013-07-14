@@ -70,5 +70,10 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             _device.DoDeviceOperation(operation);
         }
+
+        public void SetMode(ThermostatMode mode)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
