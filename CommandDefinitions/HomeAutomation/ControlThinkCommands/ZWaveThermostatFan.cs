@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ControlThink.ZWave.Devices.Specific;
+using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
@@ -33,12 +34,22 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             _thermostat.ThermostatFanModeChanged += (sender, args) =>
                 {
+                    var controlThinkMode = args.ThermostatFanMode;
+                    var roomieMode = controlThinkMode.ToRoomieType();
 
+                    Mode = roomieMode;
+
+                    //TODO: raise event
                 };
 
             _thermostat.ThermostatFanStateChanged += (sender, args) =>
                 {
+                    var controlThinkAction = args.ThermostatFanState;
+                    var roomieAction = controlThinkAction.ToRoomieType();
 
+                    CurrentAction = roomieAction;
+
+                    //TODO: raise event
                 };
         }
 
