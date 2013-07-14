@@ -88,6 +88,7 @@
     <Compile Include="Thermostats\SetpointCollectionExtensions.cs" />
     <Compile Include="Thermostats\ThermostatMode.cs" />
     <Compile Include="Thermostats\ThermostatCurrentAction.cs" />
+    <Compile Include="Thermostats\ThermostatModeParser.cs" />
     <Compile Include="ToggleSwitches\IToggleSwitch.cs" />
     <Compile Include="Thermostats\Fans\ThermostatFanModeParser.cs" />
     <Compile Include="Thermostats\Fans\ThermostatFanMode.cs" />

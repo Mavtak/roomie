@@ -1,10 +1,9 @@
 ﻿using NUnit.Framework;
-using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 
 namespace Roomie.Common.HomeAutomation.Tests.Thermostats
 {
-    public class FanModeParserTests
+    public class ThermostatFanModeParserTests
     {
         public string[] ValidInputs = new[] {"Auto", "auto", "On", "on"};
         public string[] InvalidInputs = new[] {"off", "fast", "", " ", "auto ", " auto"};
