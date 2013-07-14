@@ -1,54 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ControlThink.ZWave.Devices;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.Temperature;
+using ControlThinkTemperature = ControlThink.ZWave.Devices.Temperature;
+using ControlThinkTemperatureScale = ControlThink.ZWave.Devices.TemperatureScale;
+using ControlThinkSetpointType = ControlThink.ZWave.Devices.ThermostatSetpointType;
+using ControlThinkThermostatMode = ControlThink.ZWave.Devices.ThermostatMode;
+using ControlThinkFanMode = ControlThink.ZWave.Devices.ThermostatFanMode;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     public static class ConverstionExtensions
     {
-        public static ThermostatSetpointType ToControlThinkType(this SetpointType input)
+        public static ControlThinkSetpointType ToControlThinkType(this SetpointType input)
         {
             switch (input)
             {
                 case SetpointType.Heat:
-                    return ThermostatSetpointType.Heating1;
+                    return ControlThinkSetpointType.Heating1;
 
                 case SetpointType.Cool:
-                    return ThermostatSetpointType.Cooling1;
+                    return ControlThinkSetpointType.Cooling1;
 
                 default:
                     throw new ArgumentException("Could not parse type");
             }
         }
 
-        public static Temperature ToControlThinkType(this ITemperature input)
+        public static ControlThinkTemperature ToControlThinkType(this ITemperature input)
         {
             decimal value;
-            TemperatureScale scale;
+            ControlThinkTemperatureScale scale;
 
             if (input is FahrenheitTemperature)
             {
                 value = (int)Math.Round(input.Value);
-                scale = TemperatureScale.Fahrenheit;
+                scale = ControlThinkTemperatureScale.Fahrenheit;
             }
             else
             {
                 value = (int)(Math.Round(input.Celsius.Value));
-                scale = TemperatureScale.Celsius;
+                scale = ControlThinkTemperatureScale.Celsius;
             }
 
-            var result = new Temperature(value, scale);
+            var result = new ControlThinkTemperature(value, scale);
 
             return result;
         }
-
         
-        public static ITemperature ToRoomieType(this Temperature input)
+        public static ITemperature ToRoomieType(this ControlThinkTemperature input)
         {
             ITemperature result;
 
@@ -56,11 +56,11 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             switch (input.Scale)
             {
-                case TemperatureScale.Celsius:
+                case ControlThinkTemperatureScale.Celsius:
                     result = new CelsiusTemperature(value);
                     break;
 
-                case TemperatureScale.Fahrenheit:
+                case ControlThinkTemperatureScale.Fahrenheit:
                     result = new FahrenheitTemperature(value);
                     break;
                     
@@ -71,15 +71,48 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             return result;
         }
 
-        public static ThermostatFanMode ToControlThinkType(this FanMode fanMode)
+        public static ControlThinkThermostatMode ToControlThinkType(this ThermostatMode input)
+        {
+            ControlThinkThermostatMode result;
+
+            switch (input)
+            {
+                case ThermostatMode.Off:
+                    result = ControlThinkThermostatMode.Off;
+                    break;
+
+                case ThermostatMode.Heat:
+                    result = ControlThinkThermostatMode.Heat;
+                    break;
+
+                case ThermostatMode.Cool:
+                    result = ControlThinkThermostatMode.Cool;
+                    break;
+
+                case ThermostatMode.FanOnly:
+                    result = ControlThinkThermostatMode.FanOnly;
+                    break;
+
+                case ThermostatMode.Auto:
+                    result = ControlThinkThermostatMode.Auto;
+                    break;
+
+                default:
+                    throw new ArgumentException("Could not parse type");
+            }
+
+            return result;
+        }
+
+        public static ControlThinkFanMode ToControlThinkType(this FanMode fanMode)
         {
             switch (fanMode)
             {
                 case FanMode.Auto:
-                    return ThermostatFanMode.AutoLow;
+                    return ControlThinkFanMode.AutoLow;
 
                 case FanMode.On:
-                    return ThermostatFanMode.OnLow;
+                    return ControlThinkFanMode.OnLow;
 
                 default:
                     throw new ArgumentException("Could not parse type");
