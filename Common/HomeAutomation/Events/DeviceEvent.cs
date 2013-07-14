@@ -1,7 +1,4 @@
 ﻿using System;
-using Roomie.Common.HomeAutomation.DimmerSwitches;
-using Roomie.Common.HomeAutomation.Thermostats;
-using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Common.HomeAutomation.Events
 {
@@ -24,9 +21,11 @@ namespace Roomie.Common.HomeAutomation.Events
         private DeviceEvent(Device device, IEventType type, IEventSource source)
         {
             Device = device;
+            Type = type;
+            Source = source;
+
             State = device.Copy();
             TimeStamp = DateTime.UtcNow;
-            Source = source;
         }
 
         public static DeviceEvent Found(Device device, IEventSource source)
