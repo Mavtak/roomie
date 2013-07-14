@@ -8,7 +8,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
     {
         ITemperature Temperature { get; }
 
-        IFanState Fan { get; }
+        IFanState FanState { get; }
 
         IEnumerable<ThermostatMode> SupportedModes { get; }
         ThermostatMode? Mode { get; }

@@ -1,5 +1,4 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
-using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
@@ -13,7 +12,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var scope = context.Scope;
             var fanMode = scope.GetValue("FanMode").ToFanMode();
 
-            device.Thermostat.SetFanMode(fanMode);
+            device.Thermostat.Fan.SetMode(fanMode);
         }
     }
 }

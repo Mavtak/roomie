@@ -9,7 +9,14 @@ namespace Roomie.Web.Persistence.Models
     public class ThermostatViewModel : IThermostat
     {
         public ITemperature Temperature { get; private set; }
-        public IFanState Fan { get; private set; }
+        IFanState IThermostatState.FanState
+        {
+            get
+            {
+                return Fan;
+            }
+        }
+        public IFan Fan { get; private set; }
         public IEnumerable<ThermostatMode> SupportedModes { get; private set; }
         public ThermostatCurrentAction? CurrentAction { get; private set; }
         public ISetpointCollection SetPoints { get; private set; }
@@ -22,7 +29,7 @@ namespace Roomie.Web.Persistence.Models
             _device = device;
 
             //TODO: implement these
-            Fan = new ReadOnlyFanState();
+            Fan = new FanModel();
             SupportedModes = new List<ThermostatMode>();
             SetPoints = new ReadOnlySetPointCollection();
         }

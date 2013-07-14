@@ -77,6 +77,8 @@
     <Compile Include="ReadOnlyDeviceState.cs" />
     <Compile Include="Thermostats\Fans\FanCurrentAction.cs" />
     <Compile Include="Thermostats\Fans\FanStateExtensions.cs" />
+    <Compile Include="Thermostats\Fans\IFan.cs" />
+    <Compile Include="Thermostats\Fans\IFanActions.cs" />
     <Compile Include="Thermostats\Fans\IFanState.cs" />
     <Compile Include="Thermostats\ISetpointCollection.cs" />
     <Compile Include="Thermostats\IThermostat.cs" />

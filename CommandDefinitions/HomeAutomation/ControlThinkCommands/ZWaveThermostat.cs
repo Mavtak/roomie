@@ -11,7 +11,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     public class ZWaveThermostat : IThermostat
     {
         public ITemperature Temperature { get; private set; }
-        public IFanState Fan { get; private set; }
+        IFanState IThermostatState.FanState
+        {
+            get
+            {
+                return Fan;
+            }
+        }
+        public IFan Fan { get; private set; }
         public IEnumerable<ThermostatMode> SupportedModes { get; private set; }
         public ThermostatMode? Mode { get; private set; }
         public ThermostatCurrentAction? CurrentAction { get; private set; }
@@ -26,7 +33,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _thermostat = device.BackingObject as GeneralThermostatV2;
 
             //TODO: implement these
-            Fan = new ReadOnlyFanState();
+            Fan = new ZWaveThermostatFan(device);
             SupportedModes = new List<ThermostatMode>();
             SetPoints = new ReadOnlySetPointCollection();
         }
@@ -62,19 +69,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             };
 
             _device.DoDeviceOperation(operation);
-        }
-
-        public void SetFanMode(FanMode fanMode)
-        {
-            var controlThinkFanMode = fanMode.ToControlThinkType();
-
-            Action operation = () =>
-            {
-                _thermostat.ThermostatFanMode = controlThinkFanMode;
-            };
-
-            _device.DoDeviceOperation(operation);
-
         }
     }
 }
