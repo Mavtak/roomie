@@ -1,5 +1,5 @@
 ﻿
-namespace Roomie.Common.HomeAutomation.Thermostats
+namespace Roomie.Common.HomeAutomation.Thermostats.Fans
 {
     public static class FanModeParser
     {

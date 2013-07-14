@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.Fans;
 
 namespace Roomie.Common.HomeAutomation.Tests.Thermostats
 {

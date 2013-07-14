@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ControlThink.ZWave.Devices;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.Temperature;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands

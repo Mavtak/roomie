@@ -1,4 +1,5 @@
 ﻿using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 using System.Text;

@@ -1,4 +1,5 @@
-﻿using Roomie.Common.Temperature;
+﻿using Roomie.Common.HomeAutomation.Thermostats.Fans;
+using Roomie.Common.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Thermostats
 {
