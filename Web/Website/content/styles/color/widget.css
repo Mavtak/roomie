@@ -23,12 +23,12 @@
     background-color: rgba(0, 0, 0, .2);
 }
 
-.widget .button.activated:hover
+.widget .button.activated:active
 {
     background-color: rgba(0, 0, 0, .35);
 }
 
-.widget .button:hover
+.widget .button:active
 {
     background-color: rgba(0, 0, 0, .3);
 }
