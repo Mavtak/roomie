@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeviceStateExtensions.cs" />
+    <Compile Include="DimmerSwitches\IDimmerSwitchActions.cs" />
     <Compile Include="DimmerSwitches\IDimmerSwitchState.cs" />
     <Compile Include="DimmerSwitches\ReadOnlyDimmerSwitchState.cs" />
     <Compile Include="DimmerSwitches\DimmerSwitchStateExtensions.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="IDeviceState.cs" />
     <Compile Include="ReadOnlyDeviceState.cs" />
     <Compile Include="Thermostats\IThermostat.cs" />
+    <Compile Include="Thermostats\IThermostatActions.cs" />
     <Compile Include="ToggleSwitches\IToggleSwitch.cs" />
     <Compile Include="Thermostats\FanModeParser.cs" />
     <Compile Include="Thermostats\FanMode.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Thermostats\SetpointTypeParser.cs" />
     <Compile Include="Thermostats\SetpointType.cs" />
     <Compile Include="Thermostats\ThermostatStateExtensions.cs" />
+    <Compile Include="ToggleSwitches\IToggleSwitchActions.cs" />
     <Compile Include="ToggleSwitches\IToggleSwitchState.cs" />
     <Compile Include="ToggleSwitches\ReadOnlyToggleSwitchState.cs" />
     <Compile Include="ToggleSwitches\ToggleSwitchPower.cs" />
