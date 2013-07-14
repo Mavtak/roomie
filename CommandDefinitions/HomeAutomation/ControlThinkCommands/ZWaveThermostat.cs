@@ -36,6 +36,36 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             Fan = new ZWaveThermostatFan(device);
             SupportedModes = new List<ThermostatMode>();
             SetPoints = new ReadOnlySetPointCollection();
+
+            if (_thermostat == null)
+            {
+                return;
+            }
+
+            SetCallbacks();
+        }
+
+        private void SetCallbacks()
+        {
+            _thermostat.ThermostatModeChanged += (sender, args) =>
+                {
+                     
+                };
+
+            _thermostat.ThermostatOperatingStateChanged += (sender, args) =>
+                {
+
+                };
+
+            _thermostat.ThermostatSetpointChanged += (sender, args) =>
+                {
+
+                };
+
+            _thermostat.ThermostatTemperatureChanged += (sender, args) =>
+                {
+
+                };
         }
 
         public void PollTemperature()

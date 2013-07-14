@@ -20,6 +20,26 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _thermostat = device.BackingObject as GeneralThermostatV2;
 
             SupportedModes = new List<ThermostatFanMode>();
+
+            if (_thermostat == null)
+            {
+                return;
+            }
+
+            SetCallbacks();
+        }
+
+        private void SetCallbacks()
+        {
+            _thermostat.ThermostatFanModeChanged += (sender, args) =>
+                {
+
+                };
+
+            _thermostat.ThermostatFanStateChanged += (sender, args) =>
+                {
+
+                };
         }
 
         public void SetMode(ThermostatFanMode fanMode)
