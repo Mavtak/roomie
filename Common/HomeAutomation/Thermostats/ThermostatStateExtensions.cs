@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 
 namespace Roomie.Common.HomeAutomation.Thermostats
 {
@@ -54,6 +55,18 @@ namespace Roomie.Common.HomeAutomation.Thermostats
 
                 result.Append("Fan action: ");
                 result.Append(state.FanState.CurrentAction);
+            }
+
+            var setpointsDescription = state.SetPointStates.Describe();
+            if (!string.IsNullOrEmpty(setpointsDescription))
+            {
+                if (result.Length > 0)
+                {
+                    result.Append(", ");
+                }
+
+                result.Append("Setpoints: ");
+                result.Append(setpointsDescription);
             }
 
             return result.ToString();
