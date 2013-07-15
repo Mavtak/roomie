@@ -15,7 +15,11 @@
         }
         else if (device.Type.CanControl)
         {
-            if (device.Type.CanDim)
+            if (device.Type.Equals(Roomie.Common.HomeAutomation.DeviceType.Thermostat))
+            {
+                @Html.Partial("Partials/Device/ThermostatControls", Model);
+            }
+            else if (device.Type.CanDim)
             {
                 @Html.Partial("Partials/Device/DimmerButtons", Model)
             }
