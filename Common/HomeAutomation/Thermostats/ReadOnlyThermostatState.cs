@@ -12,7 +12,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         public IEnumerable<ThermostatMode> SupportedModes { get; private set; }
         public ThermostatMode? Mode { get; private set; }
         public ThermostatCurrentAction? CurrentAction { get; private set; }
-        public ISetpointCollection SetPoints { get; private set; }
+        public ISetpointCollectionState SetPointStates { get; private set; }
 
         public static ReadOnlyThermostatState CopyFrom(IThermostatState source)
         {
@@ -23,7 +23,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 SupportedModes = source.SupportedModes.ToList(),
                 Mode = source.Mode,
                 CurrentAction = source.CurrentAction,
-                SetPoints = source.SetPoints.Copy()
+                SetPointStates = source.SetPointStates.Copy()
             };
 
             return result;

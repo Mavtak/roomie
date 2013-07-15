@@ -23,7 +23,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         public ThermostatMode? Mode { get; private set; }
         public ThermostatCurrentAction? CurrentAction { get; private set; }
         private readonly ZWaveSetpointCollection _setpoints;
-        public ISetpointCollection SetPoints
+        public ISetpointCollection Setpoints
+        {
+            get
+            {
+                return _setpoints;
+            }
+        }
+        ISetpointCollectionState IThermostatState.SetPointStates
         {
             get
             {
@@ -39,10 +46,9 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device = device;
             _thermostat = device.BackingObject as GeneralThermostatV2;
 
-            //TODO: implement these
             Fan = new ZWaveThermostatFan(device);
             SupportedModes = new List<ThermostatMode>();
-            _setpoints = new ZWaveSetpointCollection();
+            _setpoints = new ZWaveSetpointCollection(device);
 
             if (_thermostat == null)
             {
@@ -72,17 +78,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     //TODO: raise event
                 };
 
-            _thermostat.ThermostatSetpointChanged += (sender, args) =>
-                {
-                    var controlThinkSetpointType = args.ThermostatSetpointType;
-                    var controlThinkTemperature = args.Temperature;
-                    var roomieSetpointType = controlThinkSetpointType.ToRoomieType();
-                    var roomieTemperature = controlThinkTemperature.ToRoomieType();
-
-                    _setpoints.Update(roomieSetpointType, roomieTemperature);
-                    //TODO: raise event
-                };
-
             _thermostat.ThermostatTemperatureChanged += (sender, args) =>
                 {
                     var controlThinkTemperature = args.ThermostatTemperature;
@@ -103,19 +98,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 var controlThinkTemperature = _thermostat.ThermostatTemperature;
 
                 Temperature = controlThinkTemperature.ToRoomieType();
-            };
-
-            _device.DoDeviceOperation(operation);
-        }
-
-        public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
-        {
-            var controlThinkSetpointType = setpointType.ToControlThinkType();
-            var controlThinkTemperature = temperature.ToControlThinkType();
-
-            Action operation = () =>
-            {
-                _thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature = controlThinkTemperature;
             };
 
             _device.DoDeviceOperation(operation);

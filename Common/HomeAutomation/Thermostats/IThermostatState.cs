@@ -14,7 +14,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         ThermostatMode? Mode { get; }
         ThermostatCurrentAction? CurrentAction { get; }
 
-        ISetpointCollection SetPoints { get; }
+        ISetpointCollectionState SetPointStates { get; }
         
     }
 }

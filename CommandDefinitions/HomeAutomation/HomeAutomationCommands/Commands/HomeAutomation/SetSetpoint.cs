@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var temperature = scope.GetValue("Temperature").ToTemperature();
             var setpointType = scope.GetValue("Setpoint").ToSetpointType();
 
-            device.Thermostat.SetSetpoint(setpointType, temperature);
+            device.Thermostat.Setpoints.SetSetpoint(setpointType, temperature);
         }
     }
 }

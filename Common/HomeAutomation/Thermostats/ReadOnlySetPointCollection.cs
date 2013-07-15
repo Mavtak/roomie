@@ -4,7 +4,7 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Thermostats
 {
-    public class ReadOnlySetPointCollection : ISetpointCollection
+    public class ReadOnlySetPointCollection : ISetpointCollectionState
     {
         private Dictionary<SetpointType, ITemperature> _setpoints;
  
@@ -29,7 +29,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             _setpoints = new Dictionary<SetpointType, ITemperature>();
         }
 
-        public static ReadOnlySetPointCollection CopyFrom(ISetpointCollection source)
+        public static ReadOnlySetPointCollection CopyFrom(ISetpointCollectionState source)
         {
             var result = new ReadOnlySetPointCollection
             {

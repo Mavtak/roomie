@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Temperature;
 
@@ -23,9 +25,36 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        public ZWaveSetpointCollection()
+        private ZWaveDevice _device;
+        private GeneralThermostatV2 _thermostat;
+
+        public ZWaveSetpointCollection(ZWaveDevice device)
         {
+            _device = device;
+            _thermostat = device.BackingObject as GeneralThermostatV2;
+
             _setpoints = new Dictionary<SetpointType, ITemperature>();
+
+            if (_thermostat == null)
+            {
+                return;
+            }
+
+            SetCallbacks();
+        }
+
+        private void SetCallbacks()
+        {
+            _thermostat.ThermostatSetpointChanged += (sender, args) =>
+            {
+                var controlThinkSetpointType = args.ThermostatSetpointType;
+                var controlThinkTemperature = args.Temperature;
+                var roomieSetpointType = controlThinkSetpointType.ToRoomieType();
+                var roomieTemperature = controlThinkTemperature.ToRoomieType();
+
+                Update(roomieSetpointType, roomieTemperature);
+                //TODO: raise event
+            };
         }
 
         internal void Update(SetpointType setpointType, ITemperature temperature)
@@ -38,6 +67,19 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             {
                 _setpoints.Add(setpointType, temperature);
             }
+        }
+
+        public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
+        {
+            var controlThinkSetpointType = setpointType.ToControlThinkType();
+            var controlThinkTemperature = temperature.ToControlThinkType();
+
+            Action operation = () =>
+            {
+                _thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature = controlThinkTemperature;
+            };
+
+            _device.DoDeviceOperation(operation);
         }
     }
 }
