@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
 
 namespace Roomie.Web.Persistence.Models

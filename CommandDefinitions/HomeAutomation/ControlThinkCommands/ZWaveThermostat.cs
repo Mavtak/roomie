@@ -4,6 +4,7 @@ using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
+using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands

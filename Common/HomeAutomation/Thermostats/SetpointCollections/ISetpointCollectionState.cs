@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Roomie.Common.Temperature;
 
-namespace Roomie.Common.HomeAutomation.Thermostats
+namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {
     public interface ISetpointCollectionState
     {

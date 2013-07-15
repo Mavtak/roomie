@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ControlThink.ZWave.Devices.Specific;
-using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands

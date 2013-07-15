@@ -1,6 +1,7 @@
 ﻿using System;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
+using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
 using ControlThinkTemperature = ControlThink.ZWave.Devices.Temperature;
 using ControlThinkTemperatureScale = ControlThink.ZWave.Devices.TemperatureScale;
