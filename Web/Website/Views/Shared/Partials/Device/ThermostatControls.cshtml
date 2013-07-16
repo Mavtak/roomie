@@ -8,13 +8,11 @@
       if (temperature != null)
       {
           var parts = temperature.ToString().Split(' ');
-          var result = parts[0] + "°" + parts[1].Substring(0, 1);
-          <text>@result</text>
-      }
+          var result = parts[0] + "°" + parts[1].Substring(0, 1);@*
+          *@<text>@result</text>@*
+      *@}
       else
-      {
-          <text>--</text>
-      }
+      {<text>--</text>}
   }
 @{
     var thermostat = Model.Device.Thermostat;
