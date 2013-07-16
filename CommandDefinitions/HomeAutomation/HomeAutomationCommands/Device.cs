@@ -67,12 +67,9 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             var threadPool = Context.ThreadPool;
 
-            //TODO: print based on selected IEvent
-            threadPool.Print(this.BuildVirtualAddress(false, false) + " power level changed to " + DimmerSwitch.Power);
-
             //TODO: improve this logic
             //TODO: read from event history in making powered on/off decision
-            IEvent @event = null;
+            IDeviceEvent @event = null;
             IEventSource source = null; //TODO: fill this in
             if (IsConnected == true)
             {
@@ -119,9 +116,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             AddEvent(@event);
         }
 
-        public void AddEvent(IEvent @event)
+        public void AddEvent(IDeviceEvent @event)
         {
             var threadPool = Context.ThreadPool;
+
+            var message = this.BuildVirtualAddress(false, false) + " " + @event.Type.Name + ". Current State: " + @event.State.Describe();
+
+            threadPool.Print(message);
 
             Context.History.Add(@event);
 
