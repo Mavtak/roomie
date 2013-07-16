@@ -33,12 +33,11 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
                     result.Append(", ");
                 }
 
-                result.Append("[");
                 result.Append(setpointType);
 
                 var temperature = state[setpointType];
 
-                result.Append(":");
+                result.Append(" at ");
                 
                 if (temperature == null)
                 {
@@ -48,8 +47,6 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
                 {
                     result.Append(temperature);
                 }
-
-                result.Append("]");
             }
 
             return result.ToString();

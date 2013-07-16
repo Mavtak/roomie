@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
+using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 
 namespace Roomie.Common.HomeAutomation.Thermostats
@@ -24,37 +26,27 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 result.Append(state.Temperature);
             }
 
-            if (state.CurrentAction != null)
+            var description = state.DescribeJustThermostat();
+            if (!string.IsNullOrEmpty(description))
             {
                 if (result.Length > 0)
                 {
                     result.Append(", ");
                 }
 
-                result.Append("action: ");
-                result.Append(state.CurrentAction);
+                result.Append(description);
             }
 
-            if (state.FanState.Mode != null)
+            var fanDescription = state.FanState.Describe();
+            if (!string.IsNullOrEmpty(fanDescription))
             {
                 if (result.Length > 0)
                 {
-                    result.Append(", ");
+                    result.Append(" | ");
                 }
 
-                result.Append("Fan mode: ");
-                result.Append(state.FanState.Mode);
-            }
-
-            if (state.FanState.CurrentAction != null)
-            {
-                if (result.Length > 0)
-                {
-                    result.Append(", ");
-                }
-
-                result.Append("Fan action: ");
-                result.Append(state.FanState.CurrentAction);
+                result.Append("Fan: ");
+                result.Append(fanDescription);
             }
 
             var setpointsDescription = state.SetPointStates.Describe();
@@ -62,11 +54,62 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             {
                 if (result.Length > 0)
                 {
-                    result.Append(", ");
+                    result.Append(" | ");
                 }
 
                 result.Append("Setpoints: ");
                 result.Append(setpointsDescription);
+            }
+
+            return result.ToString();
+        }
+
+        public static string DescribeJustThermostat(this IThermostatState state)
+        {
+            var result = new StringBuilder();
+
+            if (state == null)
+            {
+                return result.ToString();
+            }
+
+            if (state.Mode != null)
+            {
+                if (result.Length > 0)
+                {
+                    result.Append(" ");
+                }
+
+                result.Append("Current Action: ");
+                result.Append(state.CurrentAction);
+            }
+
+            if (state.CurrentAction != null)
+            {
+                if (result.Length > 0)
+                {
+                    result.Append(", ");
+                }
+
+                result.Append("Mode: ");
+                result.Append(state.Mode);
+            }
+
+            if (state.SupportedModes != null)
+            {
+                var modes = state.SupportedModes.ToArray();
+
+                if (modes.Length > 0)
+                {
+                    if (result.Length > 0)
+                    {
+                        result.Append(", ");
+                    }
+
+                    result.Append("Supported Modes: ");
+
+                    result.Append(string.Join(", ", modes));
+                }
             }
 
             return result.ToString();
