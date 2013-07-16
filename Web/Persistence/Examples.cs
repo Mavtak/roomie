@@ -17,7 +17,7 @@ namespace Roomie.Web.Persistence
             {
                 var thermostat = new DeviceModel
                     {
-                        Name = "A thermostat",
+                        Name = "A Thermostat with all data",
                         Type = DeviceType.Thermostat,
                     };
 
@@ -58,7 +58,12 @@ namespace Roomie.Web.Persistence
                                 Type = DeviceType.Dimmable,
                                 Power = 0
                             },
-                        thermostat
+                        thermostat,
+                        new DeviceModel
+                            {
+                                Name = "A Thermostat with no data",
+                                Type = DeviceType.Thermostat
+                            }
                     };
 
                 var computer = new ComputerModel
