@@ -29,7 +29,7 @@ namespace Roomie.Web.Persistence.Models
         private readonly DimmerSwitchModel _dimmerSwitch;
         private readonly ThermostatViewModel _thermostat;
 
-        public IToggleSwitch ToggleSwitch
+        public ToggleSwitchModel ToggleSwitch
         {
             get
             {
@@ -37,7 +37,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public IDimmerSwitch DimmerSwitch
+        public DimmerSwitchModel DimmerSwitch
         {
             get
             {
@@ -45,7 +45,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public IThermostat Thermostat
+        public ThermostatViewModel Thermostat
         {
             get
             {

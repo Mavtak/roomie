@@ -56,6 +56,7 @@
     <Compile Include="Database\ExtensionsToIRoomieDatabaseContext.cs" />
     <Compile Include="Database\IRoomieDatabaseContext.cs" />
     <Compile Include="Database\IRoomieEntitySet.cs" />
+    <Compile Include="Examples.cs" />
     <Compile Include="Models\SetpointCollectionModel.cs" />
     <Compile Include="Helpers\RoomieDatabaseHelpers.cs" />
     <Compile Include="Helpers\DeviceSort.cs" />
@@ -68,6 +69,8 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\FanModel.cs" />
     <Compile Include="Models\StringStringPair.cs" />
+    <Compile Include="Models\ThermostatFanModel.cs" />
+    <Compile Include="Models\ThermostatSetpointModel.cs" />
     <Compile Include="Models\ThermostatViewModel.cs" />
     <Compile Include="Models\ToggleSwitchModel.cs" />
     <Compile Include="Models\UserSessionModel.cs" />

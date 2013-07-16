@@ -220,5 +220,13 @@ namespace Roomie.Web.Website.Controllers
                     devices = devices
                 });
         }
+
+        [HttpGet]
+        public ActionResult Examples()
+        {
+            var devices = Persistence.Examples.Devices;
+
+            return View("Index", devices);
+        }
     }
 }
