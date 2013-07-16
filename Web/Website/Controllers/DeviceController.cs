@@ -13,9 +13,10 @@ using Roomie.Web.Website.ViewModels;
 
 namespace Roomie.Web.Website.Controllers
 {
-    [WebsiteRestrictedAccess]
+    
     public class DeviceController : RoomieBaseController
     {
+        [WebsiteRestrictedAccess]
         public ActionResult Index(string location)
         {
             var devices = User.GetAllDevices();
@@ -36,6 +37,7 @@ namespace Roomie.Web.Website.Controllers
             return View(devices);
         }
 
+        [WebsiteRestrictedAccess]
         public ActionResult Details(int id)
         {
             var device = this.SelectDevice(id);
@@ -44,6 +46,7 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
+        [WebsiteRestrictedAccess]
         public ActionResult Dim(int id, int power, string returnUrl)
         {
             var device = this.SelectDevice(id);
@@ -67,6 +70,7 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
+        [WebsiteRestrictedAccess]
         public ActionResult PowerOn(int id, string returnUrl)
         {
             var device = this.SelectDevice(id);
@@ -90,6 +94,7 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
+        [WebsiteRestrictedAccess]
         public ActionResult PowerOff(int id, string returnUrl)
         {
             var device = this.SelectDevice(id);
@@ -113,6 +118,7 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
+        [WebsiteRestrictedAccess]
         public ActionResult Edit(int id, string name, string location, string type, string returnUrl)
         {
             var device = this.SelectDevice(id);
@@ -158,6 +164,7 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpGet]
+        [WebsiteRestrictedAccess]
         public ActionResult IndexAjax()
         {
             var replacements = new List<object>();
@@ -195,6 +202,7 @@ namespace Roomie.Web.Website.Controllers
         }
 
         [HttpPost]
+        [WebsiteRestrictedAccess]
         public ActionResult IndexAjaxJson()
         {
             var devices = new List<object>();
