@@ -44,7 +44,8 @@
 }   
 
 .widget .data,
-.widget .group
+.widget .group,
+.widget .thermostat-controls 
 {
     background-color: rgba(255, 255, 255, .95);
 }

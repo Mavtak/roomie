@@ -1,14 +1,56 @@
-﻿@model DeviceViewModel
+﻿@using Roomie.Common.HomeAutomation.Thermostats
+@using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
+@using Roomie.Common.HomeAutomation.Thermostats.Fans;
+@model DeviceViewModel
 @*
 
+*@@helper FormatTemeprature(Roomie.Common.Temperature.ITemperature temperature){
+      if (temperature != null)
+      {
+          var parts = temperature.ToString().Split(' ');
+          var result = parts[0] + "°" + parts[1].Substring(0, 1);
+          <text>@result</text>
+      }
+      else
+      {
+          <text>--</text>
+      }
+  }
+@{
+    var thermostat = Model.Device.Thermostat;
+    
+    var setpointsDescription = thermostat.Setpoints.Describe();
+    if (string.IsNullOrEmpty(setpointsDescription))
+    {
+        setpointsDescription = "--";
+    }
+
+    var fanDescription = thermostat.Fan.Describe();
+    if (string.IsNullOrEmpty(fanDescription))
+    {
+        fanDescription = "--";
+    }
+    
+    var thermostatDescription = thermostat.DescribeJustThermostat();
+    if (string.IsNullOrEmpty(thermostatDescription))
+    {
+        thermostatDescription = "--";
+    }
+
+}@*
 //TODO: make this work
 
-*@<div class="data">@*
-  *@<div style="display: inline-block; width: 20%; min-width: 200px; zoom: .5; vertical-align: middle;">@*
-    *@@Html.Partial("Partials/RoomieBot", new RoomieBot{Mood = RoomieBot.UneasyMood})@*
+*@<div class="thermostat-controls">@*
+  *@<div class="temperature">@*
+    *@@FormatTemeprature(thermostat.Temperature)@*
   *@</div>@*
-  *@Eep!  I don't know how to display thermostats yet!  But I will soon!@*
+  *@<div class="stack">@*
+    *@<div class="row"><b>Setpoints:</b> @setpointsDescription</div>@*
+      *@<div class="row"><b>Fan:</b> @fanDescription</div>@*
+      *@<div class="row"><b>Thermostat:</b> @thermostatDescription</div>@*
+  *@</div>@*
 *@</div>@*
 
+*@@thermostat.Describe()@*
 
 *@
