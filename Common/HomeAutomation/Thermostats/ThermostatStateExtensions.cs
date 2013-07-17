@@ -73,7 +73,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 return result.ToString();
             }
 
-            if (state.Mode != null)
+            if (state.CurrentAction != null)
             {
                 if (result.Length > 0)
                 {
@@ -84,7 +84,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 result.Append(state.CurrentAction);
             }
 
-            if (state.CurrentAction != null)
+            if (state.Mode != null)
             {
                 if (result.Length > 0)
                 {

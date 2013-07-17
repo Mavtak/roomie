@@ -20,19 +20,19 @@ namespace Roomie.Common.HomeAutomation.Thermostats.Fans
                 return result.ToString();
             }
 
-            if (state.Mode != null)
+            if (state.CurrentAction != null)
             {
                 result.Append("Current Action: ");
                 result.Append(state.CurrentAction);
             }
 
-            if (state.CurrentAction != null)
+            if (state.Mode != null)
             {
                 if (result.Length > 0)
                 {
                     result.Append(", ");
                 }
-                
+
                 result.Append("Mode: ");
                 result.Append(state.Mode);
             }
