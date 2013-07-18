@@ -87,7 +87,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                         {
                             Address = sentDevice.Address,
                             IsConnected = sentDevice.IsConnected,
-                            MaxPower = sentDevice.DimmerSwitchState.MaxPower,
+                            MaxPower = sentDevice.DimmerSwitchState.MaxPower??0,
                             Name = sentDevice.Name,
                             Network = sentDevice.Network as NetworkModel,
                             Location = sentDevice.Location as DeviceLocationModel,
