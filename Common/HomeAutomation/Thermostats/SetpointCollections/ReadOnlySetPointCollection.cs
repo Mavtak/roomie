@@ -29,12 +29,27 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             _setpoints = new Dictionary<SetpointType, ITemperature>();
         }
 
+        public ReadOnlySetPointCollection(Dictionary<SetpointType, ITemperature> setpoints)
+        {
+            _setpoints = setpoints;
+        }
+
         public static ReadOnlySetPointCollection CopyFrom(ISetpointCollectionState source)
         {
             var result = new ReadOnlySetPointCollection
             {
                 _setpoints = source.AvailableSetpoints.ToDictionary(setpoint => setpoint, setpoint => source[setpoint])
             };
+
+            return result;
+        }
+
+        public static ReadOnlySetPointCollection Empty()
+        {
+            var result = new ReadOnlySetPointCollection
+                {
+                    _setpoints = new Dictionary<SetpointType, ITemperature>()
+                };
 
             return result;
         }

@@ -17,6 +17,23 @@ namespace Roomie.Common.HomeAutomation
         public IDimmerSwitchState DimmerSwitchState { get; private set; }
         public IThermostatState ThermostatState { get; private set; }
 
+        public ReadOnlyDeviceState()
+        {
+        }
+
+        public ReadOnlyDeviceState(string name, string address, DeviceLocation location, Network network, bool? isConnected, DeviceType type, IToggleSwitchState toggleSwitchState, IDimmerSwitchState dimmerSwitchState, IThermostatState thermostatState)
+        {
+            Name = name;
+            Address = address;
+            Location = location;
+            Network = network;
+            IsConnected = isConnected;
+            Type = type;
+            ToggleSwitchState = toggleSwitchState;
+            DimmerSwitchState = dimmerSwitchState;
+            ThermostatState = thermostatState;
+        }
+
         //TODO: unit test this
         public static ReadOnlyDeviceState CopyFrom(IDeviceState source)
         {
@@ -87,7 +104,7 @@ namespace Roomie.Common.HomeAutomation
                 Type = DeviceType.GetTypeFromString(type),
                 ToggleSwitchState = new ReadOnlyToggleSwitchState(togglePower),
                 DimmerSwitchState = new ReadOnlyDimmerSwitchState(power, maxPower),
-                ThermostatState = new ReadOnlyThermostatState()
+                ThermostatState = ReadOnlyThermostatState.Empty()
             };
 
             return result;

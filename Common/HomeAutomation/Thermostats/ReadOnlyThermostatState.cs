@@ -15,6 +15,19 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         public ThermostatCurrentAction? CurrentAction { get; private set; }
         public ISetpointCollectionState SetPointStates { get; private set; }
 
+        public ReadOnlyThermostatState()
+        {
+        }
+
+        public ReadOnlyThermostatState(ITemperature temperature, IThermostatFanState fanState, ISetpointCollectionState setpointStates, IEnumerable<ThermostatMode> supportedModes, ThermostatMode mode, ThermostatCurrentAction currentAction)
+        {
+            Temperature = temperature;
+            FanState = fanState;
+            SetPointStates = setpointStates;
+            SupportedModes = supportedModes;
+            Mode = mode;
+            CurrentAction = currentAction;
+        }
         public static ReadOnlyThermostatState CopyFrom(IThermostatState source)
         {
             var result = new ReadOnlyThermostatState
@@ -25,6 +38,18 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 Mode = source.Mode,
                 CurrentAction = source.CurrentAction,
                 SetPointStates = source.SetPointStates.Copy()
+            };
+
+            return result;
+        }
+
+        public static ReadOnlyThermostatState Empty()
+        {
+            var result = new ReadOnlyThermostatState
+            {
+                FanState = ReadOnlyThermostatFanState.Empty(),
+                SetPointStates = ReadOnlySetPointCollection.Empty(),
+                SupportedModes = new ThermostatMode[] {}
             };
 
             return result;
