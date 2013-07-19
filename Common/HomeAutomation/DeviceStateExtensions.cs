@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
@@ -64,8 +65,8 @@ namespace Roomie.Common.HomeAutomation
             result.Add(new XAttribute("Type", state.Type));
             //TODO: LastPoll
 
-            //TODO: handle this better
-            if (state.DimmerSwitchState.Power != null)
+            //TODO: this is included for compatibility.  remove it soon
+            if (state.DimmerSwitchState != null && state.DimmerSwitchState.Power != null)
             {
                 result.Add(new XAttribute("Power", state.DimmerSwitchState.Power.Value));
             }
@@ -75,6 +76,35 @@ namespace Roomie.Common.HomeAutomation
                 result.Add(new XAttribute("IsConnected", state.IsConnected));
             }
 
+            if (state.ToggleSwitchState != null)
+            {
+                var toggleSwitchNode = state.ToggleSwitchState.ToXElement();
+
+                if (toggleSwitchNode.Attributes().Any() || toggleSwitchNode.Ancestors().Any())
+                {
+                    result.Add(toggleSwitchNode);
+                }
+            }
+
+            if (state.DimmerSwitchState != null)
+            {
+                var dimmerSwitchNode = state.DimmerSwitchState.ToXElement();
+
+                if (dimmerSwitchNode.Attributes().Any() || dimmerSwitchNode.Ancestors().Any())
+                {
+                    result.Add(dimmerSwitchNode);
+                }
+            }
+
+            if (state.ThermostatState != null)
+            {
+                var thermostatNode = state.ThermostatState.ToXElement();
+
+                if (thermostatNode.Attributes().Any() || thermostatNode.Ancestors().Any())
+                {
+                    result.Add(thermostatNode);
+                }
+            }
 
             return result;
         }

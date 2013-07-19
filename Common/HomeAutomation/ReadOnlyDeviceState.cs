@@ -42,12 +42,12 @@ namespace Roomie.Common.HomeAutomation
                 Name = source.Name,
                 Address = source.Address,
                 Location = source.Location,
-                Network =  source.Network,
-                IsConnected =  source.IsConnected,
+                Network = source.Network,
+                IsConnected = source.IsConnected,
                 Type = source.Type,
-                ToggleSwitchState = source.ToggleSwitchState.Copy(),
-                DimmerSwitchState = source.DimmerSwitchState.Copy(),
-                ThermostatState = source.ThermostatState.Copy()
+                ToggleSwitchState = (source.ToggleSwitchState == null) ? null : source.ToggleSwitchState.Copy(),
+                DimmerSwitchState = (source.DimmerSwitchState == null) ? null : source.DimmerSwitchState.Copy(),
+                ThermostatState = (source.ThermostatState == null) ? null : source.ThermostatState.Copy()
             };
 
             return result;
@@ -75,21 +75,29 @@ namespace Roomie.Common.HomeAutomation
             var name = element.GetAttributeStringValue("Name");
             var notes = element.GetAttributeStringValue("Notes");
             var address = element.GetAttributeStringValue("Address");
-            var power = element.GetAttributeIntValue("Power");
-            var maxPower = element.GetAttributeIntValue("MaxPower");
             var isConnected = element.GetAttributeBoolValue("IsConnected");
             var type = element.GetAttributeStringValue("Type");
             var locationName = element.GetAttributeStringValue("Location");
 
-            ToggleSwitchPower? togglePower = null;
-
-            if (Utilities.IsOn(power))
+            IToggleSwitchState toggleSwitch = null;
+            var toggleSwitchElement = element.Element("ToggleSwitch");
+            if (toggleSwitchElement != null)
             {
-                togglePower = ToggleSwitchPower.On;
+                toggleSwitch = toggleSwitchElement.ToToggleSwitch();
             }
-            else if(Utilities.IsOff(power))
+
+            IDimmerSwitchState dimmerSwitch = null;
+            var dimmerSwitchElement = element.Element("DimmerSwitch");
+            if (dimmerSwitchElement != null)
             {
-                togglePower = ToggleSwitchPower.Off;
+                dimmerSwitch = dimmerSwitchElement.ToDimmerSwitch();
+            }
+
+            IThermostatState thermostat = null;
+            var thermostatElement = element.Element("Thermostat");
+            if (thermostatElement != null)
+            {
+                thermostat = thermostatElement.ToThermostat();
             }
 
             var result = new ReadOnlyDeviceState
@@ -102,9 +110,9 @@ namespace Roomie.Common.HomeAutomation
                 },
                 IsConnected = isConnected,
                 Type = DeviceType.GetTypeFromString(type),
-                ToggleSwitchState = new ReadOnlyToggleSwitchState(togglePower),
-                DimmerSwitchState = new ReadOnlyDimmerSwitchState(power, maxPower),
-                ThermostatState = ReadOnlyThermostatState.Empty()
+                ToggleSwitchState = toggleSwitch,
+                DimmerSwitchState = dimmerSwitch,
+                ThermostatState = thermostat
             };
 
             return result;
