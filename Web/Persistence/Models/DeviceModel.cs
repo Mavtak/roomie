@@ -25,6 +25,18 @@ namespace Roomie.Web.Persistence.Models
         public string Address { get; set; }
         public virtual DeviceLocationModel Location { get; set; }
 
+        public string Notes
+        {
+            get
+            {
+                return _thermostat.Serialized;
+            }
+            set
+            {
+                _thermostat.Serialized = value;
+            }
+        }
+
         private readonly ToggleSwitchModel _toggleSwitch;
         private readonly DimmerSwitchModel _dimmerSwitch;
         private readonly ThermostatViewModel _thermostat;

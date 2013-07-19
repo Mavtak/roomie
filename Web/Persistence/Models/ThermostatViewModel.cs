@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
@@ -65,6 +66,35 @@ namespace Roomie.Web.Persistence.Models
         public void SetMode(ThermostatMode mode)
         {
             throw new NotImplementedException();
+        }
+
+        public string Serialized
+        {
+            get
+            {
+                return this.ToXElement().ToString();
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    return;
+                }
+
+                var element = XElement.Parse(value);
+                var data = element.ToThermostat();
+                Temperature = data.Temperature;
+                CurrentAction = data.CurrentAction;
+                Mode = data.Mode;
+
+                if (data.SetPointStates != null)
+                {
+                    foreach (var pair in data.SetPointStates.ToDictionary())
+                    {
+                        Setpoints.Add(pair.Key, pair.Value);
+                    }
+                }
+            }
         }
     }
 }

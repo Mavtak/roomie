@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Database;
 
@@ -104,6 +105,12 @@ namespace Roomie.Web.WebHook.ActionHandlers
                         registeredDevice.Power = sentDevice.DimmerSwitchState.Power;
                     if (registeredDevice.IsConnected != sentDevice.IsConnected)
                         registeredDevice.IsConnected = sentDevice.IsConnected;
+
+                    if (sentDevice.ThermostatState != null)
+                    {
+                        //hacks! :D  (but seriously, this is just lazy.)
+                        registeredDevice.Notes = sentDevice.ThermostatState.ToXElement().ToString();
+                    }
                 }
             }
 
