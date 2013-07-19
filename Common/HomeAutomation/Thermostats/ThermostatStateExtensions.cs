@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 
@@ -113,6 +114,65 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             }
 
             return result.ToString();
+        }
+
+        public static XElement ToXElement(this IThermostatState state, string nodeName = "Thermostat")
+        {
+            var result = new XElement(nodeName);
+
+            if (state.Temperature != null)
+            {
+                result.Add(new XAttribute("Temperature", state.Temperature));
+            }
+
+            if (state.CurrentAction != null)
+            {
+                result.Add(new XAttribute("CurrentAction", state.CurrentAction));
+            }
+
+            if (state.Mode != null)
+            {
+                result.Add(new XAttribute("Mode", state.Mode));
+            }
+
+            if (state.SupportedModes != null)
+            {
+                var supportedModes = state.SupportedModes.ToList();
+
+                if (supportedModes.Count > 0)
+                {
+                    var supportedModesNode = new XElement("SupportedModes");
+                    supportedModes.ForEach(x => supportedModesNode.Add(new XElement("SupportedMode", x)));
+                    result.Add(supportedModesNode);
+                }
+            }
+
+            if (state.FanState != null)
+            {
+                var fanNode = state.FanState.ToXElement();
+
+                if (fanNode.Attributes().Any() || fanNode.Ancestors().Any())
+                {
+                    result.Add(fanNode);
+                }
+            }
+
+            if (state.SetPointStates != null)
+            {
+                var setpointsNode = state.SetPointStates.ToXElement();
+
+                if (setpointsNode.Attributes().Any() || setpointsNode.Elements().Any())
+                {
+                    result.Add(setpointsNode);
+                }
+            }
+
+            return result;
+        }
+
+        public static ReadOnlyThermostatState ToThermostat(this XElement element)
+        {
+            return ReadOnlyThermostatState.FromXElement(element);
         }
     }
 }

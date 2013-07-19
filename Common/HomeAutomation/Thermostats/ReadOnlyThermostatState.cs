@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
@@ -28,16 +29,34 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             Mode = mode;
             CurrentAction = currentAction;
         }
-        public static ReadOnlyThermostatState CopyFrom(IThermostatState source)
+        public static ReadOnlyThermostatState CopyFrom(IThermostatState state)
         {
+            var supportedModes = new List<ThermostatMode>();
+            if (state.SupportedModes != null)
+            {
+                supportedModes.AddRange(state.SupportedModes);
+            }
+
+            IThermostatFanState fanState = null;
+            if (state.FanState != null)
+            {
+                fanState = state.FanState.Copy();
+            }
+
+            ISetpointCollectionState setpoints = null;
+            if (state.SetPointStates != null)
+            {
+                setpoints = state.SetPointStates.Copy();
+            }
+
             var result = new ReadOnlyThermostatState
             {
-                Temperature = source.Temperature,
-                FanState = source.FanState.Copy(),
-                SupportedModes = source.SupportedModes.ToList(),
-                Mode = source.Mode,
-                CurrentAction = source.CurrentAction,
-                SetPointStates = source.SetPointStates.Copy()
+                Temperature = state.Temperature,
+                FanState = fanState,
+                SupportedModes = supportedModes,
+                Mode = state.Mode,
+                CurrentAction = state.CurrentAction,
+                SetPointStates = setpoints
             };
 
             return result;
@@ -50,6 +69,67 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 FanState = ReadOnlyThermostatFanState.Empty(),
                 SetPointStates = ReadOnlySetPointCollection.Empty(),
                 SupportedModes = new ThermostatMode[] {}
+            };
+
+            return result;
+        }
+
+        public static ReadOnlyThermostatState FromXElement(XElement element)
+        {
+            ThermostatCurrentAction? currentAction = null;
+            var currentActionString = element.GetAttributeStringValue("CurrentAction");
+            if (currentActionString != null)
+            {
+                currentAction = currentActionString.ToThermostatCurrentAction();
+            }
+
+            ThermostatMode? mode = null;
+            var modeString = element.GetAttributeStringValue("Mode");
+            if (modeString != null)
+            {
+                mode = modeString.ToThermostatMode();
+            }
+
+            var supportedModes = new List<ThermostatMode>();
+            var supportedModesNode = element.Element("SupportedModes");
+            if (supportedModesNode != null)
+            {
+                foreach (var modeElement in supportedModesNode.Elements())
+                {
+                    var supportedMode = modeElement.Value.ToThermostatMode();
+                    supportedModes.Add(supportedMode);
+                }
+            }
+
+            ITemperature temperature = null;
+            var temperatureString = element.GetAttributeStringValue("Temperature");
+            if (temperatureString != null)
+            {
+                temperature = temperatureString.ToTemperature();
+            }
+
+            IThermostatFanState fanState = null;
+            var fanStateNode = element.Element("ThermostatFanState");
+            if (fanStateNode != null)
+            {
+                fanState = fanStateNode.ToThermostatFanState();
+            }
+
+            ISetpointCollectionState setpoints = null;
+            var setpointsNode = element.Element("Setpoints");
+            if (setpointsNode != null)
+            {
+                setpoints = setpointsNode.ToSetpoints();
+            }
+
+            var result = new ReadOnlyThermostatState
+            {
+                CurrentAction = currentAction,
+                Mode = mode,
+                SupportedModes = supportedModes,
+                Temperature = temperature,
+                FanState = fanState,
+                SetPointStates = setpoints
             };
 
             return result;
