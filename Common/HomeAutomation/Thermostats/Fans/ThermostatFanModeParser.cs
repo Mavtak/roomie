@@ -13,7 +13,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats.Fans
             return EnumParser.Parse<ThermostatFanMode>(input);
         }
 
-        public static ThermostatFanMode ToFanMode(this string input)
+        public static ThermostatFanMode ToThermostatFanMode(this string input)
         {
             return Parse(input);
         }

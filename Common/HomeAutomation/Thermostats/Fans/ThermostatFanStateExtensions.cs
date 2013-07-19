@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 
 namespace Roomie.Common.HomeAutomation.Thermostats.Fans
@@ -56,5 +57,40 @@ namespace Roomie.Common.HomeAutomation.Thermostats.Fans
 
             return result.ToString();
         }
+
+        public static XElement ToXElement(this IThermostatFanState state, string nodeName="ThermostatFanState")
+        {
+            var result = new XElement(nodeName);
+
+            if (state.CurrentAction != null)
+            {
+                result.Add(new XAttribute("CurrentAction", state.CurrentAction));
+            }
+
+            if (state.Mode != null)
+            {
+                result.Add(new XAttribute("Mode", state.Mode));
+            }
+
+            if (state.SupportedModes != null)
+            {
+                var supportedModes = state.SupportedModes.ToList();
+
+                if (supportedModes.Count > 0)
+                {
+                    var supportedModesNode = new XElement("SupportedModes");
+                    supportedModes.ForEach(x => supportedModesNode.Add(new XElement("SupportedMode", x)));
+                    result.Add(supportedModesNode);
+                }
+            }
+
+            return result;
+        }
+
+        public static ReadOnlyThermostatFanState ToThermostatFanState(this XElement element)
+        {
+            return ReadOnlyThermostatFanState.FromXElement(element);
+        }
+
     }
 }
