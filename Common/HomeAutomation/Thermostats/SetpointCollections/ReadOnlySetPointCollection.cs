@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using Roomie.Common.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
@@ -49,6 +50,26 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             var result = new ReadOnlySetPointCollection
                 {
                     _setpoints = new Dictionary<SetpointType, ITemperature>()
+                };
+
+            return result;
+        }
+
+        public static ReadOnlySetPointCollection FromXElement(XElement element)
+        {
+            var setpoints = new Dictionary<SetpointType, ITemperature>();
+
+            foreach (var setpointElement in element.Elements())
+            {
+                var setpointType = setpointElement.Name.LocalName.ToSetpointType();
+                var temperature = setpointElement.Value.ToTemperature();
+
+                setpoints.Add(setpointType, temperature);
+            }
+
+            var result = new ReadOnlySetPointCollection
+                {
+                    _setpoints = setpoints
                 };
 
             return result;
