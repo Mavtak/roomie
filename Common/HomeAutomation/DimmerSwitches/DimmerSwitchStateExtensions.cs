@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Linq;
 
 namespace Roomie.Common.HomeAutomation.DimmerSwitches
 {
@@ -43,6 +44,28 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
             var result = state.Power*100/(state.MaxPower > 0 ? state.MaxPower : 100);
 
             return result;
+        }
+
+        public static XElement ToXElement(this IDimmerSwitchState state, string nodeName = "DimmerSwitch")
+        {
+            var result = new XElement("DimmerSwitch");
+
+            if (state.Power != null)
+            {
+                result.Add(new XAttribute("Power", state.Power));
+            }
+
+            if (state.MaxPower != null)
+            {
+                result.Add(new XAttribute("MaxPower", state.MaxPower));
+            }
+
+            return result;
+        }
+
+        public static ReadOnlyDimmerSwitchState ToDimmerSwitch(this XElement element)
+        {
+            return ReadOnlyDimmerSwitchState.FromXElement(element);
         }
     }
 }

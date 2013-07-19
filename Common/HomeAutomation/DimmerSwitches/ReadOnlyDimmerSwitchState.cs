@@ -1,4 +1,5 @@
 ﻿
+using System.Xml.Linq;
 namespace Roomie.Common.HomeAutomation.DimmerSwitches
 {
     public class ReadOnlyDimmerSwitchState : IDimmerSwitchState
@@ -27,10 +28,23 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
             return result;
         }
 
-
         public void Update(IDimmerSwitchState state)
         {
             throw new System.NotImplementedException();
+        }
+
+        public static ReadOnlyDimmerSwitchState FromXElement(XElement element)
+        {
+            var power = element.GetAttributeIntValue("Power");
+            var maxPower = element.GetAttributeIntValue("MaxPower");
+
+            var result = new ReadOnlyDimmerSwitchState
+                {
+                    Power = power,
+                    MaxPower = maxPower
+                };
+
+            return result;
         }
     }
 }
