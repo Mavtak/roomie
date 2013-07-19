@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Linq;
 
 namespace Roomie.Common.HomeAutomation.ToggleSwitches
 {
@@ -30,6 +31,23 @@ namespace Roomie.Common.HomeAutomation.ToggleSwitches
             }
 
             return result.ToString();
+        }
+
+        public static XElement ToXElement(this IToggleSwitchState state, string nodeName = "ToggleSwitch")
+        {
+            var result = new XElement(nodeName);
+
+            if (state.Power != null)
+            {
+                result.Add(new XAttribute("Power", state.Power));
+            }
+
+            return result;
+        }
+
+        public static IToggleSwitchState ToToggleSwitch(this XElement element)
+        {
+            return ReadOnlyToggleSwitchState.FromXElement(element);
         }
     }
 }

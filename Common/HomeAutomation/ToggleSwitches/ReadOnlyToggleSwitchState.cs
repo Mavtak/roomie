@@ -1,4 +1,6 @@
 ﻿
+using System.Xml.Linq;
+
 namespace Roomie.Common.HomeAutomation.ToggleSwitches
 {
     public class ReadOnlyToggleSwitchState : IToggleSwitchState
@@ -19,6 +21,18 @@ namespace Roomie.Common.HomeAutomation.ToggleSwitches
             var result = new ReadOnlyToggleSwitchState
             {
                 Power = source.Power
+            };
+
+            return result;
+        }
+
+        public static ReadOnlyToggleSwitchState FromXElement(XElement element)
+        {
+            var power = element.GetAttributeStringValue("Power").ToToggleSwitchPower();
+
+            var result = new ReadOnlyToggleSwitchState
+            {
+                Power = power
             };
 
             return result;
