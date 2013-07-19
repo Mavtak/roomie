@@ -48,6 +48,11 @@ namespace Roomie.Common.HomeAutomation.Tests
 
         public static void AssertToggleSwitchEqual(IToggleSwitchState one, IToggleSwitchState two)
         {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
             AssertHelperHelper(one, two);
 
             Assert.That(one.Power, Is.EqualTo(two.Power));
@@ -55,6 +60,11 @@ namespace Roomie.Common.HomeAutomation.Tests
 
         public static void AssertDimmerSwitchEqual(IDimmerSwitchState one, IDimmerSwitchState two)
         {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
             AssertHelperHelper(one, two);
 
             Assert.That(one.Power, Is.EqualTo(two.Power));
@@ -62,6 +72,11 @@ namespace Roomie.Common.HomeAutomation.Tests
 
         public static void AssertThermostatEqual(IThermostatState one, IThermostatState two)
         {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
             AssertHelperHelper(one, two);
 
             Assert.That(one.Mode, Is.EqualTo(two.Mode));
@@ -75,6 +90,11 @@ namespace Roomie.Common.HomeAutomation.Tests
 
         public static void AssertTemperatureEqual(ITemperature one, ITemperature two)
         {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
             AssertHelperHelper(one, two);
 
             Assert.That(one.GetType(), Is.EqualTo(two.GetType()));
@@ -83,6 +103,11 @@ namespace Roomie.Common.HomeAutomation.Tests
 
         public static void AssertThermostatFanEqual(IThermostatFanState one, IThermostatFanState two)
         {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
             AssertHelperHelper(one, two);
 
             Assert.That(one.Mode, Is.EqualTo(two.Mode));
@@ -92,6 +117,11 @@ namespace Roomie.Common.HomeAutomation.Tests
 
         public static void AssertThermostatSetpointsAreEqual(ISetpointCollectionState one, ISetpointCollectionState two)
         {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
             AssertHelperHelper(one, two);
 
             CollectionAssert.AreEquivalent(one.AvailableSetpoints, two.AvailableSetpoints);

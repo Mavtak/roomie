@@ -11,7 +11,7 @@ namespace Roomie.Common.HomeAutomation.Tests
     public static class DataHelpers
     {
         private static int _id;
-        public static IDeviceState GenerateExampleDevice(DeviceType type)
+        public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeToggle = true, bool includeDimmer = true, bool includeThermostat = true)
         {
             var toggle = new ReadOnlyToggleSwitchState(ToggleSwitchPower.On);
             var dimmer = new ReadOnlyDimmerSwitchState(25, 100);
@@ -37,12 +37,27 @@ namespace Roomie.Common.HomeAutomation.Tests
             var address = _id.ToString();
             _id++;
 
+            if (!includeToggle)
+            {
+                toggle = null;
+            }
+
+            if (!includeDimmer)
+            {
+                dimmer = null;
+            }
+
+            if (!includeThermostat)
+            {
+                thermostat = null;
+            }
+
             var device = new ReadOnlyDeviceState("Sample Device", address, location, null, true, type, toggle, dimmer, thermostat);
 
             return device;
         }
 
-        public static IEnumerable<IDeviceState> GenerateExampleDevices(int count)
+        public static IEnumerable<IDeviceState> GenerateExampleDevices(int count, bool includeToggle = true, bool includeDimmer = true, bool includeThermostat = true)
         {
             for (var i = 0; i < count; i++)
             {
@@ -80,7 +95,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                         break;
                 }
 
-                var device = GenerateExampleDevice(type);
+                var device = GenerateExampleDevice(type, includeToggle, includeDimmer, includeThermostat);
 
                 yield return device;
             }
