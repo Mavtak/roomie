@@ -81,7 +81,9 @@ namespace Roomie.Web.WebHook.ActionHandlers
             // go through the devices from the client and update the entries in the database
             foreach (var sentDevice in sentDevices)
             {
-                if (!registeredDevices.Any(x => x.Address == sentDevice.Address && x.Network.Equals(sentDevice.Network)))
+                var registeredDevice = network.Devices.First(x => x.Address == sentDevice.Address && x.Network.Equals(sentDevice.Network));
+
+                if (registeredDevice == null)
                 {
 
                     var newDevice = new DeviceModel
@@ -100,17 +102,14 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 }
                 else
                 {
-                    var registeredDevice = network.Devices.First(x => x.Address == sentDevice.Address && x.Network.Equals(sentDevice.Network));
+                    //TODO: move this logic into DeviceModel and its dependencies.
                     if (registeredDevice.Power != sentDevice.DimmerSwitchState.Power)
                         registeredDevice.Power = sentDevice.DimmerSwitchState.Power;
                     if (registeredDevice.IsConnected != sentDevice.IsConnected)
                         registeredDevice.IsConnected = sentDevice.IsConnected;
 
-                    if (sentDevice.ThermostatState != null)
-                    {
-                        //hacks! :D  (but seriously, this is just lazy.)
-                        registeredDevice.Notes = sentDevice.ThermostatState.ToXElement().ToString();
-                    }
+                    registeredDevice.Update(sentDevice);
+                    registeredDevice.UpdateSerializedValue();
                 }
             }
 

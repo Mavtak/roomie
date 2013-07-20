@@ -68,31 +68,19 @@ namespace Roomie.Web.Persistence.Models
             throw new NotImplementedException();
         }
 
-        public string Serialized
+        internal void Update(IThermostatState data)
         {
-            get
-            {
-                return this.ToXElement().ToString();
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    return;
-                }
+            Temperature = data.Temperature;
+            CurrentAction = data.CurrentAction;
+            Mode = data.Mode;
 
-                var element = XElement.Parse(value);
-                var data = element.ToThermostat();
-                Temperature = data.Temperature;
-                CurrentAction = data.CurrentAction;
-                Mode = data.Mode;
+            Setpoints = new ThermostatSetpointModel();
 
-                if (data.SetPointStates != null)
+            if (data.SetPointStates != null)
+            {
+                foreach (var pair in data.SetPointStates.ToDictionary())
                 {
-                    foreach (var pair in data.SetPointStates.ToDictionary())
-                    {
-                        Setpoints.Add(pair.Key, pair.Value);
-                    }
+                    Setpoints.Add(pair.Key, pair.Value);
                 }
             }
         }

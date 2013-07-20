@@ -25,15 +25,41 @@ namespace Roomie.Web.Persistence.Models
         public string Address { get; set; }
         public virtual DeviceLocationModel Location { get; set; }
 
+        private string _notes;
+        private bool _deserializedFromDatabase;
         public string Notes
         {
             get
             {
-                return _thermostat.Serialized;
+                return _notes;
             }
             set
             {
-                _thermostat.Serialized = value;
+                if (!_deserializedFromDatabase && !string.Equals(_notes, value))
+                {
+                    var element = XElement.Parse(value);
+                    var state = element.ToDeviceState();
+
+                    Update(state);
+
+                    _deserializedFromDatabase = true;
+                }
+
+                _notes = value;
+            }
+        }
+
+        public void UpdateSerializedValue()
+        {
+            Notes = this.ToXElement().ToString();
+        }
+
+        public void Update(IDeviceState state)
+        {
+            //TODO: update other types too
+            if (state.ThermostatState != null)
+            {
+                Thermostat.Update(state.ThermostatState);
             }
         }
 
