@@ -40,13 +40,18 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             SetpointType result;
 
+            //TODO: improve this (with more Roomie types?)
+
             switch (input)
             {
                 case ControlThinkSetpointType.Heating1:
+                case ControlThinkSetpointType.HeatingEcon:
+                case ControlThinkSetpointType.AwayHeating:
                     result = SetpointType.Heat;
                     break;
 
                 case ControlThinkSetpointType.Cooling1:
+                case ControlThinkSetpointType.CoolingEcon:
                     result = SetpointType.Cool;
                     break;
 
@@ -56,6 +61,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             return result;
         }
+
+        public static IEnumerable<SetpointType> ToRoomieType(this IEnumerable<ControlThinkSetpointType> input)
+        {
+            var result = input.Select(x => x.ToRoomieType()).Distinct();
+
+            return result;
+        }
+
 
         public static ControlThinkTemperature ToControlThinkType(this ITemperature input)
         {
