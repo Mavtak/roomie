@@ -47,7 +47,7 @@ namespace Roomie.Web.Website.Controllers
 
         [HttpPost]
         [WebsiteRestrictedAccess]
-        public ActionResult Dim(int id, int power, string returnUrl)
+        public ActionResult Dim(int id, int power)
         {
             var device = this.SelectDevice(id);
 
@@ -71,7 +71,7 @@ namespace Roomie.Web.Website.Controllers
 
         [HttpPost]
         [WebsiteRestrictedAccess]
-        public ActionResult PowerOn(int id, string returnUrl)
+        public ActionResult PowerOn(int id)
         {
             var device = this.SelectDevice(id);
 
@@ -95,7 +95,7 @@ namespace Roomie.Web.Website.Controllers
 
         [HttpPost]
         [WebsiteRestrictedAccess]
-        public ActionResult PowerOff(int id, string returnUrl)
+        public ActionResult PowerOff(int id)
         {
             var device = this.SelectDevice(id);
 
@@ -119,7 +119,7 @@ namespace Roomie.Web.Website.Controllers
 
         [HttpPost]
         [WebsiteRestrictedAccess]
-        public ActionResult Edit(int id, string name, string location, string type, string returnUrl)
+        public ActionResult Edit(int id, string name, string location, string type)
         {
             var device = this.SelectDevice(id);
 
@@ -145,14 +145,6 @@ namespace Roomie.Web.Website.Controllers
             );
 
             Database.SaveChanges();
-
-            if (String.IsNullOrEmpty(returnUrl) && HttpContext.Request.UrlReferrer != null)
-            {
-                returnUrl = HttpContext.Request.UrlReferrer.ToString();
-            }
-
-            if (!String.IsNullOrEmpty(returnUrl))
-                return Redirect(returnUrl);
 
             return Json(new
             {
