@@ -18,7 +18,7 @@ namespace Roomie.Web.Persistence.Models
                 return Fan;
             }
         }
-        public FanModel Fan { get; private set; }
+        public ThermostatFanModel Fan { get; private set; }
         IThermostatFan IThermostat.Fan
         {
             get
@@ -53,7 +53,7 @@ namespace Roomie.Web.Persistence.Models
             _device = device;
 
             //TODO: implement these
-            Fan = new FanModel();
+            Fan = new ThermostatFanModel();
             SupportedModes = new List<ThermostatMode>();
             Setpoints = new ThermostatSetpointModel();
         }

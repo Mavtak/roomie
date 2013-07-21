@@ -3,7 +3,7 @@ using Roomie.Common.HomeAutomation.Thermostats.Fans;
 
 namespace Roomie.Web.Persistence.Models
 {
-    class ThermostatFanModel : IThermostatFan
+    public class ThermostatFanModel : IThermostatFan
     {
         public IEnumerable<ThermostatFanMode> SupportedModes { get; set; }
         public ThermostatFanMode? Mode { get; set; }

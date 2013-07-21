@@ -68,7 +68,6 @@
     <Compile Include="Helpers\IHasDivId.cs" />
     <Compile Include="Models\DimmerSwitchModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
-    <Compile Include="Models\FanModel.cs" />
     <Compile Include="Models\StringStringPair.cs" />
     <Compile Include="Models\ThermostatFanModel.cs" />
     <Compile Include="Models\ThermostatSetpointModel.cs" />
