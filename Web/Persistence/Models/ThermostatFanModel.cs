@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 
 namespace Roomie.Web.Persistence.Models
@@ -21,6 +22,17 @@ namespace Roomie.Web.Persistence.Models
         public void SetMode(ThermostatFanMode fanMode)
         {
             throw new System.NotImplementedException();
+        }
+
+        public void Update(IThermostatFanState state)
+        {
+            Mode = state.Mode;
+            CurrentAction = state.CurrentAction;
+            if (state.SupportedModes != null)
+            {
+                SupportedModes = state.SupportedModes.ToList();
+            }
+
         }
     }
 }

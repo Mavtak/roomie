@@ -83,6 +83,11 @@ namespace Roomie.Web.Persistence.Models
             CurrentAction = data.CurrentAction;
             Mode = data.Mode;
 
+            if (data.FanState != null)
+            {
+                Fan.Update(data.FanState);
+            }
+
             Setpoints = new ThermostatSetpointModel();
 
             if (data.SetpointStates != null)
