@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
@@ -67,6 +68,42 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             {
                 _setpoints.Add(setpointType, temperature);
             }
+        }
+
+        public void PollSupportedSetpoints()
+        {
+            Action operation = () =>
+            {
+                var controlThinkSetpointTypes = _thermostat.SupportedThermostatSetpoints;
+
+                var roomieSetpointTypes = controlThinkSetpointTypes.ToRoomieType();
+
+                var setpointsToAdd = roomieSetpointTypes.Where(x => !_setpoints.ContainsKey(x));
+
+                foreach (var setpoint in setpointsToAdd)
+                {
+                    _setpoints.Add(setpoint, null);
+                }
+            };
+
+            _device.DoDeviceOperation(operation);
+        }
+
+        public void PollSetpointTemperatures()
+        {
+            Action operation = () =>
+            {
+                foreach (var setpointType in _setpoints.Keys)
+                {
+                    var controlThinkSetpointType = setpointType.ToControlThinkType();
+                    var controlThinkTemperature = _thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature;
+                    var temperature = controlThinkTemperature.ToRoomieType();
+
+                    _setpoints[setpointType] = temperature;
+                }
+            };
+
+            _device.DoDeviceOperation(operation);
         }
 
         public void SetSetpoint(SetpointType setpointType, ITemperature temperature)

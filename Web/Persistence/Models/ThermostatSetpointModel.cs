@@ -30,6 +30,16 @@ namespace Roomie.Web.Persistence.Models
             _setpoints = new Dictionary<SetpointType, ITemperature>();
         }
 
+        public void PollSupportedSetpoints()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PollSetpointTemperatures()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
         {
             throw new NotImplementedException();
