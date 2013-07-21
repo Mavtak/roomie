@@ -185,7 +185,7 @@ namespace Roomie.Web.Website.Controllers
                     devices.Add(new
                     {
                         id = device.DivId,
-                        power = device.Power,
+                        power = device.DimmerSwitch.Power,
                         isAvailable = device.IsAvailable
                     });
                     
@@ -216,8 +216,8 @@ namespace Roomie.Web.Website.Controllers
                             name = device.Name,
                             location = device.Location,
                             isAvailable = device.IsAvailable,
-                            power = device.Power,
-                            maxPower = device.MaxPower
+                            power = device.DimmerSwitch.Power,
+                            maxPower = device.DimmerSwitch.MaxPower
                         });
                 }
             }

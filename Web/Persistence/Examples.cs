@@ -4,6 +4,7 @@ using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
+using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Common.Temperature;
 using Roomie.Web.Persistence.Models;
 
@@ -15,56 +16,56 @@ namespace Roomie.Web.Persistence
         {
             get
             {
+                var onToggleSwitch = new DeviceModel
+                    {
+                        Name = "A Toggle Switch that is on",
+                        Type = DeviceType.Switch
+                    };
+                onToggleSwitch.ToggleSwitch.Power = ToggleSwitchPower.On;
+
+                var offToggleSwitch = new DeviceModel
+                    {
+                        Name = "A Toggle Switch that is off",
+                        Type = DeviceType.Switch
+                    };
+                offToggleSwitch.ToggleSwitch.Power = ToggleSwitchPower.Off;
+
+                var onDimmerSwitch = new DeviceModel
+                    {
+                        Name = "A Dimmer Switch that is on",
+                        Type = DeviceType.Dimmable
+                    };
+                onDimmerSwitch.DimmerSwitch.Power = 75;
+
+                var offDimmerSwitch = new DeviceModel
+                    {
+                        Name = "A Dimmer Switch that is off",
+                        Type = DeviceType.Dimmable
+                    };
+                offDimmerSwitch.DimmerSwitch.Power = 0;
+
                 var thermostat = new DeviceModel
                     {
                         Name = "A Thermostat with all data",
                         Type = DeviceType.Thermostat,
                     };
-
-                
                 thermostat.Thermostat.Temperature = new FahrenheitTemperature(75);
                 thermostat.Thermostat.Mode = ThermostatMode.Auto;
-                thermostat.Thermostat.SupportedModes = new[] { ThermostatMode.Heat, ThermostatMode.Cool, ThermostatMode.Auto, ThermostatMode.FanOnly, ThermostatMode.Off};
+                thermostat.Thermostat.SupportedModes = new[] { ThermostatMode.Heat, ThermostatMode.Cool, ThermostatMode.Auto, ThermostatMode.FanOnly, ThermostatMode.Off };
                 thermostat.Thermostat.CurrentAction = ThermostatCurrentAction.Cooling;
                 thermostat.Thermostat.Fan.Mode = ThermostatFanMode.Auto;
-                thermostat.Thermostat.Fan.SupportedModes = new[] {ThermostatFanMode.Auto, ThermostatFanMode.On,};
+                thermostat.Thermostat.Fan.SupportedModes = new[] { ThermostatFanMode.Auto, ThermostatFanMode.On, };
                 thermostat.Thermostat.Fan.CurrentAction = ThermostatFanCurrentAction.On;
                 thermostat.Thermostat.Setpoints.Add(SetpointType.Cool, new FahrenheitTemperature(74));
                 thermostat.Thermostat.Setpoints.Add(SetpointType.Heat, new FahrenheitTemperature(70));
 
-                var devices = new[]
+                var noDataThermostat = new DeviceModel
                     {
-                        new DeviceModel
-                            {
-                                Name = "A Toggle Switch that is on",
-                                Type = DeviceType.Switch,
-                                Power = 50
-                            },
-                        new DeviceModel
-                            {
-                                Name = "A Toggle Switch that is off",
-                                Type = DeviceType.Switch,
-                                Power = 0
-                            },
-                        new DeviceModel
-                            {
-                                Name = "A Dimmer Switch that is on",
-                                Type = DeviceType.Dimmable,
-                                Power = 75
-                            },
-                        new DeviceModel
-                            {
-                                Name = "A Dimmer Switch that is off",
-                                Type = DeviceType.Dimmable,
-                                Power = 0
-                            },
-                        thermostat,
-                        new DeviceModel
-                            {
-                                Name = "A Thermostat with no data",
-                                Type = DeviceType.Thermostat
-                            }
+                        Name = "A Thermostat with no data",
+                        Type = DeviceType.Thermostat
                     };
+
+                var devices = new[] { onToggleSwitch, offToggleSwitch, onDimmerSwitch, offDimmerSwitch, thermostat, noDataThermostat };
 
                 var computer = new ComputerModel
                     {

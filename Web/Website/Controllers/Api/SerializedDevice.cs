@@ -23,9 +23,9 @@ namespace Roomie.Web.Website.Controllers.Api
                     Name = device.Name,
                     Location = device.Location.Name,
                     Network = device.Network.Name,
-                    Power = device.Power,
+                    Power = device.DimmerSwitch.Power,
                     IsAvailable = device.IsAvailable,
-                    MaxPower = device.MaxPower,
+                    MaxPower = device.DimmerSwitch.MaxPower,
                     DivId = device.DivId
                 };
         }

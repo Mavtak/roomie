@@ -12,17 +12,7 @@ namespace Roomie.Web.Persistence.Models
             _device = device;
         }
 
-        public int? Power
-        {
-            get
-            {
-                return _device.Power;
-            }
-            set
-            {
-                _device.Power = value;
-            }
-        }
+        public int? Power { get; set; }
 
         public int? MaxPower { get; set; }
 
@@ -39,7 +29,8 @@ namespace Roomie.Web.Persistence.Models
 
         public void Update(IDimmerSwitchState state)
         {
-            throw new System.NotImplementedException();
+            Power = state.Power;
+            MaxPower = state.MaxPower;
         }
     }
 }

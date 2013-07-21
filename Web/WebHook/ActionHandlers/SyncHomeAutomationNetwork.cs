@@ -90,24 +90,19 @@ namespace Roomie.Web.WebHook.ActionHandlers
                         {
                             Address = sentDevice.Address,
                             IsConnected = sentDevice.IsConnected,
-                            MaxPower = sentDevice.DimmerSwitchState.MaxPower??0,
                             Name = sentDevice.Name,
                             Network = sentDevice.Network as NetworkModel,
                             Location = sentDevice.Location as DeviceLocationModel,
-                            Power = sentDevice.DimmerSwitchState.Power,
                             Type = sentDevice.Type
                         };
+
+                    newDevice.Update(sentDevice);
+
                     network.Devices.Add(newDevice);
                     //responseText.Append("\nadded device to the cloud: " + sentDevice);
                 }
                 else
                 {
-                    //TODO: move this logic into DeviceModel and its dependencies.
-                    if (registeredDevice.Power != sentDevice.DimmerSwitchState.Power)
-                        registeredDevice.Power = sentDevice.DimmerSwitchState.Power;
-                    if (registeredDevice.IsConnected != sentDevice.IsConnected)
-                        registeredDevice.IsConnected = sentDevice.IsConnected;
-
                     registeredDevice.Update(sentDevice);
                     registeredDevice.UpdateSerializedValue();
                 }

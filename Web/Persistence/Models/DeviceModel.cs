@@ -56,7 +56,19 @@ namespace Roomie.Web.Persistence.Models
 
         public void Update(IDeviceState state)
         {
-            //TODO: update other types too
+            //TODO: update more properties?
+            IsConnected = state.IsConnected;
+            
+            if (state.ToggleSwitchState != null)
+            {
+                ToggleSwitch.Update(state.ToggleSwitchState);
+            }
+
+            if (state.DimmerSwitchState != null)
+            {
+                DimmerSwitch.Update(state.DimmerSwitchState);
+            }
+
             if (state.ThermostatState != null)
             {
                 Thermostat.Update(state.ThermostatState);
@@ -90,9 +102,6 @@ namespace Roomie.Web.Persistence.Models
                 return _thermostat;
             }
         }
-
-        public int? Power { get; set; }
-        public int? MaxPower { get; set; }
 
         public DeviceModel()
         {
@@ -242,9 +251,7 @@ namespace Roomie.Web.Persistence.Models
             }
             builder.Append("', Type='");
             builder.Append(Type);
-            builder.Append(Type.CanControl ? "(Controllable)" : "(Noncontrollable)");
-            builder.Append("', Power='");
-            builder.Append(Power);
+            builder.Append(this.Describe());
             builder.Append("', Network='");
             builder.Append((Network != null) ? Network.Name : "(none}");
             builder.Append("'}");

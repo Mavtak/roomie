@@ -30,25 +30,11 @@ namespace Roomie.Web.Persistence.Models
             throw new System.NotImplementedException();
         }
 
-        //TODO: don't rely on the DimmerSwitch status
-        public ToggleSwitchPower? Power
+        public ToggleSwitchPower? Power { get; set; }
+
+        public void Update(IToggleSwitchState state)
         {
-            get
-            {
-                var power = _device.DimmerSwitch.Power;
-
-                if (Utilities.IsOn(power))
-                {
-                    return ToggleSwitchPower.On;
-                }
-
-                if (Utilities.IsOff(power))
-                {
-                    return ToggleSwitchPower.Off;
-                }
-
-                return null;
-            }
+            Power = state.Power;
         }
     }
 }

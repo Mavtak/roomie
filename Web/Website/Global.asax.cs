@@ -40,8 +40,6 @@ namespace Roomie.Web.Website
         {
             Exception exception = Server.GetLastError();
 
-            
-            
             try
             {
                 IController errorController = new Roomie.Web.Website.Controllers.ErrorController();
