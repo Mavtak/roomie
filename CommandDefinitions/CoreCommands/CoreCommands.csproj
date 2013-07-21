@@ -49,7 +49,7 @@
     <Compile Include="Commands\Core\DateTimeOptions\AddTimeSpan.cs" />
     <Compile Include="Commands\Core\DateTimeOptions\SubtractTimeSpan.cs" />
     <Compile Include="Commands\Core\DeclareVariable.cs" />
-    <Compile Include="Commands\Commands\DefineComand.cs" />
+    <Compile Include="Commands\Commands\Define.cs" />
     <Compile Include="Commands\Core\Exit.cs" />
     <Compile Include="Commands\Flow\SucceedOnce.cs" />
     <Compile Include="Commands\Flow\If.cs" />

@@ -54,7 +54,7 @@
     <Compile Include="Commands\Email\PrintStats.cs" />
     <Compile Include="Commands\Email\RegisterGmailSender.cs" />
     <Compile Include="Commands\Email\RegisterSender.cs" />
-    <Compile Include="Commands\Email\RemoveSettings.cs" />
+    <Compile Include="Commands\Email\RemoveSender.cs" />
     <Compile Include="Commands\Email\Send.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="EmailCommandContext.cs" />

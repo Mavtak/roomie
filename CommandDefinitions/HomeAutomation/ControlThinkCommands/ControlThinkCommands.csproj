@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ControlThink\SetConfigurationParameter.cs" />
-    <Compile Include="Commands\ControlThink\ListConfigurationParameters.cs" />
+    <Compile Include="Commands\ControlThink\GetConfigurationParameters.cs" />
     <Compile Include="Commands\ControlThink\GetConfigurationParameter.cs" />
     <Compile Include="Commands\ControlThink\PrintStats.cs" />
     <Compile Include="Commands\ControlThink\RegisterNetwork.cs" />

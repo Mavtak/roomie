@@ -146,6 +146,7 @@
     <Content Include="content\styles\color\icons.css" />
     <Content Include="content\styles\structure\icons.css" />
     <Compile Include="Controllers\Api\DeviceController.cs" />
+    <Compile Include="Controllers\Api\SerializedDevice.cs" />
     <Compile Include="Controllers\Api\TaskController.cs" />
     <Compile Include="Controllers\CommunicatorController.cs" />
     <Compile Include="Controllers\ComputerController.cs" />

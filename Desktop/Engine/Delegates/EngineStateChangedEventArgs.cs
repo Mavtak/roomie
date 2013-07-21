@@ -5,8 +5,6 @@ using System.Text;
 
 namespace Roomie.Desktop.Engine.Delegates
 {
-    public delegate void EngineStateChangedEventHandler(object sender, EngineStateChangedEventArgs e);
-
     public class EngineStateChangedEventArgs : EventArgs
     {
         public EngineState NewState { get; private set; }

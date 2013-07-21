@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 
@@ -36,14 +35,6 @@ namespace Roomie.Web.Persistence.Database
         public void Reset()
         {
             DatabaseUtilities.Reset(this);
-        }
-    }
-
-    public class DeviceTypeMapping : ComplexTypeConfiguration<Roomie.Common.HomeAutomation.DeviceType>
-    {
-        public DeviceTypeMapping()
-        {
-            this.Property(p => p.Name);
         }
     }
 }

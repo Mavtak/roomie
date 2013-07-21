@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="EnumParser.cs" />
     <Compile Include="Temperature\CelsiusTemperature.cs" />
-    <Compile Include="Temperature\FarenheitTemperature.cs" />
+    <Compile Include="Temperature\FahrenheitTemperature.cs" />
     <Compile Include="Temperature\ITemperature.cs" />
     <Compile Include="Temperature\KelvinTemperature.cs" />
     <Compile Include="Temperature\Utilities.cs" />
