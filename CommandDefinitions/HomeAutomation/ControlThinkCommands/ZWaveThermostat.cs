@@ -31,7 +31,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 return _setpoints;
             }
         }
-        ISetpointCollectionState IThermostatState.SetPointStates
+        ISetpointCollectionState IThermostatState.SetpointStates
         {
             get
             {

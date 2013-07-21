@@ -14,7 +14,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         public IEnumerable<ThermostatMode> SupportedModes { get; private set; }
         public ThermostatMode? Mode { get; private set; }
         public ThermostatCurrentAction? CurrentAction { get; private set; }
-        public ISetpointCollectionState SetPointStates { get; private set; }
+        public ISetpointCollectionState SetpointStates { get; private set; }
 
         public ReadOnlyThermostatState()
         {
@@ -24,7 +24,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         {
             Temperature = temperature;
             FanState = fanState;
-            SetPointStates = setpointStates;
+            SetpointStates = setpointStates;
             SupportedModes = supportedModes;
             Mode = mode;
             CurrentAction = currentAction;
@@ -44,9 +44,9 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             }
 
             ISetpointCollectionState setpoints = null;
-            if (state.SetPointStates != null)
+            if (state.SetpointStates != null)
             {
-                setpoints = state.SetPointStates.Copy();
+                setpoints = state.SetpointStates.Copy();
             }
 
             var result = new ReadOnlyThermostatState
@@ -56,7 +56,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 SupportedModes = supportedModes,
                 Mode = state.Mode,
                 CurrentAction = state.CurrentAction,
-                SetPointStates = setpoints
+                SetpointStates = setpoints
             };
 
             return result;
@@ -67,7 +67,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             var result = new ReadOnlyThermostatState
             {
                 FanState = ReadOnlyThermostatFanState.Empty(),
-                SetPointStates = ReadOnlySetPointCollection.Empty(),
+                SetpointStates = ReadOnlySetpointCollection.Empty(),
                 SupportedModes = new ThermostatMode[] {}
             };
 
@@ -129,7 +129,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 SupportedModes = supportedModes,
                 Temperature = temperature,
                 FanState = fanState,
-                SetPointStates = setpoints
+                SetpointStates = setpoints
             };
 
             return result;

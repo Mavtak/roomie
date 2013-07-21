@@ -5,7 +5,7 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {
-    public class ReadOnlySetPointCollection : ISetpointCollectionState
+    public class ReadOnlySetpointCollection : ISetpointCollectionState
     {
         private Dictionary<SetpointType, ITemperature> _setpoints;
  
@@ -25,19 +25,19 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             }
         }
 
-        public ReadOnlySetPointCollection()
+        public ReadOnlySetpointCollection()
         {
             _setpoints = new Dictionary<SetpointType, ITemperature>();
         }
 
-        public ReadOnlySetPointCollection(Dictionary<SetpointType, ITemperature> setpoints)
+        public ReadOnlySetpointCollection(Dictionary<SetpointType, ITemperature> setpoints)
         {
             _setpoints = setpoints;
         }
 
-        public static ReadOnlySetPointCollection CopyFrom(ISetpointCollectionState source)
+        public static ReadOnlySetpointCollection CopyFrom(ISetpointCollectionState source)
         {
-            var result = new ReadOnlySetPointCollection
+            var result = new ReadOnlySetpointCollection
             {
                 _setpoints = source.AvailableSetpoints.ToDictionary(setpoint => setpoint, setpoint => source[setpoint])
             };
@@ -45,9 +45,9 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             return result;
         }
 
-        public static ReadOnlySetPointCollection Empty()
+        public static ReadOnlySetpointCollection Empty()
         {
-            var result = new ReadOnlySetPointCollection
+            var result = new ReadOnlySetpointCollection
                 {
                     _setpoints = new Dictionary<SetpointType, ITemperature>()
                 };
@@ -55,7 +55,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             return result;
         }
 
-        public static ReadOnlySetPointCollection FromXElement(XElement element)
+        public static ReadOnlySetpointCollection FromXElement(XElement element)
         {
             var setpoints = new Dictionary<SetpointType, ITemperature>();
 
@@ -67,7 +67,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
                 setpoints.Add(setpointType, temperature);
             }
 
-            var result = new ReadOnlySetPointCollection
+            var result = new ReadOnlySetpointCollection
                 {
                     _setpoints = setpoints
                 };

@@ -50,7 +50,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 result.Append(fanDescription);
             }
 
-            var setpointsDescription = state.SetPointStates.Describe();
+            var setpointsDescription = state.SetpointStates.Describe();
             if (!string.IsNullOrEmpty(setpointsDescription))
             {
                 if (result.Length > 0)
@@ -157,9 +157,9 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 }
             }
 
-            if (state.SetPointStates != null)
+            if (state.SetpointStates != null)
             {
-                var setpointsNode = state.SetPointStates.ToXElement();
+                var setpointsNode = state.SetpointStates.ToXElement();
 
                 if (setpointsNode.Attributes().Any() || setpointsNode.Elements().Any())
                 {

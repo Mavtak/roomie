@@ -9,9 +9,9 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {
     public static class SetpointCollectionExtensions
     {
-        public static ReadOnlySetPointCollection Copy(this ISetpointCollectionState source)
+        public static ReadOnlySetpointCollection Copy(this ISetpointCollectionState source)
         {
-            return ReadOnlySetPointCollection.CopyFrom(source);
+            return ReadOnlySetpointCollection.CopyFrom(source);
         }
 
         public static string Describe(this ISetpointCollectionState state)
@@ -96,9 +96,9 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             return result;
         }
 
-        public static ReadOnlySetPointCollection ToSetpoints(this XElement element)
+        public static ReadOnlySetpointCollection ToSetpoints(this XElement element)
         {
-            return ReadOnlySetPointCollection.FromXElement(element);
+            return ReadOnlySetpointCollection.FromXElement(element);
         }
     }
 }

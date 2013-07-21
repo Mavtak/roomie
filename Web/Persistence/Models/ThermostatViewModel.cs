@@ -36,7 +36,7 @@ namespace Roomie.Web.Persistence.Models
                 return Setpoints;
             }
         }
-        ISetpointCollectionState IThermostatState.SetPointStates
+        ISetpointCollectionState IThermostatState.SetpointStates
         {
             get
             {
@@ -76,9 +76,9 @@ namespace Roomie.Web.Persistence.Models
 
             Setpoints = new ThermostatSetpointModel();
 
-            if (data.SetPointStates != null)
+            if (data.SetpointStates != null)
             {
-                foreach (var pair in data.SetPointStates.ToDictionary())
+                foreach (var pair in data.SetpointStates.ToDictionary())
                 {
                     Setpoints.Add(pair.Key, pair.Value);
                 }
