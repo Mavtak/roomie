@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
@@ -166,6 +168,13 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 default:
                     throw new ArgumentException("Could not parse type " + input);
             }
+
+            return result;
+        }
+
+        public static IEnumerable<ThermostatMode> ToRoomieType(this IEnumerable<ControlThinkThermostatMode> input)
+        {
+            var result = input.Select(x => x.ToRoomieType()).Distinct();
 
             return result;
         }
