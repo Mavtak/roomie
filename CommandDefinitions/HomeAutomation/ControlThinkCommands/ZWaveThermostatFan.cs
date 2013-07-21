@@ -53,6 +53,28 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 };
         }
 
+        public void PollCurrentAction()
+        {
+            Action operation = () =>
+            {
+                var controlThinkCurrentAction = _thermostat.ThermostatFanState;
+                CurrentAction = controlThinkCurrentAction.ToRoomieType();
+            };
+
+            _device.DoDeviceOperation(operation);
+        }
+
+        public void PollMode()
+        {
+            Action operation = () =>
+            {
+                var controlThinkMode = _thermostat.ThermostatFanMode;
+                Mode = controlThinkMode.ToRoomieType();
+            };
+
+            _device.DoDeviceOperation(operation);
+        }
+
         public void SetMode(ThermostatFanMode fanMode)
         {
             var controlThinkFanMode = fanMode.ToControlThinkType();

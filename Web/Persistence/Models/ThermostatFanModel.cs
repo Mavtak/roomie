@@ -8,6 +8,16 @@ namespace Roomie.Web.Persistence.Models
         public IEnumerable<ThermostatFanMode> SupportedModes { get; set; }
         public ThermostatFanMode? Mode { get; set; }
         public ThermostatFanCurrentAction? CurrentAction { get; set; }
+        public void PollCurrentAction()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void PollMode()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void SetMode(ThermostatFanMode fanMode)
         {
             throw new System.NotImplementedException();
