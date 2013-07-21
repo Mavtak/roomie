@@ -99,7 +99,6 @@ namespace Roomie.Web.Persistence.Models
             _toggleSwitch = new ToggleSwitchModel(this);
             _dimmerSwitch = new DimmerSwitchModel(this);
             _thermostat = new ThermostatViewModel(this);
-            Location = new DeviceLocationModel();
         }
 
         #region LastPing
