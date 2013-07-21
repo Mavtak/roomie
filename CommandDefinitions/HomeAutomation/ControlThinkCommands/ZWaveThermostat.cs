@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
@@ -123,6 +124,18 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 var controlThinkMode = _thermostat.ThermostatMode;
 
                 Mode = controlThinkMode.ToRoomieType();
+            };
+
+            _device.DoDeviceOperation(operation);
+        }
+
+        public void PollSupportedModes()
+        {
+            Action operation = () =>
+            {
+                var controlThinkModes = _thermostat.SupportedThermostatModes;
+
+                SupportedModes = controlThinkModes.ToRoomieType();
             };
 
             _device.DoDeviceOperation(operation);
