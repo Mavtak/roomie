@@ -14,10 +14,10 @@ namespace Roomie.Web.Persistence.Models
         [Key]
         public int Id { get; set; }
 
-        public UserModel Owner { get; set; }
-        public ComputerModel Target { get; set; }
+        public virtual UserModel Owner { get; set; }
+        public virtual ComputerModel Target { get; set; }
         public string Origin { get; set; }
-        public ScriptModel Script { get; set; }
+        public virtual ScriptModel Script { get; set; }
 
         public DateTime? Expiration { get; set; }
         public DateTime? ReceivedTimestamp { get; set; }

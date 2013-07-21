@@ -11,7 +11,7 @@ namespace Roomie.Web.Persistence.Models
         [Key]
         public int Id { get; set; }
         
-        public UserModel Owner { get; set; }
+        public virtual UserModel Owner { get; set; }
         //public string Address { get; set; }
         //public string Name { get; set; }
 

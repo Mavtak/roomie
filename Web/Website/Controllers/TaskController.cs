@@ -11,14 +11,11 @@ namespace Roomie.Web.Website.Controllers
     {
         public ActionResult Index(int page = 1, int count = 50)
         {
-            //TODO: remove this hack
-            var scripts = new List<ScriptModel>(Database.Scripts);
-            var computers = new List<ComputerModel>(Database.Computers);
-            
             var tasks = (from t in Database.Tasks
-                        where t.Owner.Id == User.Id
-                        orderby t.Script.CreationTimestamp descending
-                        select t).Skip((page-1)*count).Take(count);
+                         where t.Owner.Id == User.Id
+                         orderby t.Script.CreationTimestamp descending
+                         select t).Skip((page - 1)*count).Take(count)
+                         .ToList();
 
             return View(tasks);
         }

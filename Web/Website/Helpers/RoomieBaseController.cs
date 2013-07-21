@@ -60,8 +60,6 @@ namespace Roomie.Web.Website.Helpers
                 ViewBag.NavigationItem = HttpContext.Items[requestedControllerKey];
             }
 
-            this.RefreshDatabaseHack();
-
             base.OnActionExecuting(filterContext);
         }
 

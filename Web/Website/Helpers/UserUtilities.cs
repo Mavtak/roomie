@@ -39,12 +39,6 @@ namespace Roomie.Web.Website.Helpers
                 return null;
             }
 
-            //TODO: remove this hack
-            if (session.User == null)
-            {
-                var hack = database.Users.ToList();
-            }
-
             session.LastContactTimeStamp = DateTime.UtcNow;
 
             return session;

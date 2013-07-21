@@ -84,24 +84,5 @@ namespace Roomie.Web.Website.Helpers
 
             return task;
         }
-
-        public static void RefreshDatabaseHack(this IRoomieController controller)
-        {
-            var user = controller.User;
-            var database = controller.Database;
-
-            try
-            {
-                //TODO: remove this hack;
-                var networks = user.HomeAutomationNetworks.ToList();
-                var devices = database.Devices.ToList();
-                var locations = database.DeviceLocations.ToList();
-                var computers = user.Computers.ToList();
-                var users = database.Users.ToList();
-                var scripts = database.Scripts.ToList();
-            }
-            catch
-            { }
-        }
     }
 }

@@ -11,7 +11,7 @@ namespace Roomie.Web.Persistence.Models
         
         public bool? Mutable { get; set; }
         public DateTime? CreationTimestamp { get; set; }
-        public String Text { get; set; }
+        public string Text { get; set; }
         public int? RunCount { get; set; }
         public DateTime? LastRunTimestamp { get; set; }
 

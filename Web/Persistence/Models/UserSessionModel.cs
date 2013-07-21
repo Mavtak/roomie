@@ -9,7 +9,7 @@ namespace Roomie.Web.Persistence.Models
         [Key]
         public int Id { get; set; }
         
-        public UserModel User { get; set; }
+        public virtual UserModel User { get; set; }
         public DateTime CreationTimeStamp { get; set; }
         public DateTime LastContactTimeStamp { get; set; }
         public string Token { get; set; }

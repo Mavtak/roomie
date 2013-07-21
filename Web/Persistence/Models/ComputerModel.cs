@@ -9,9 +9,9 @@ namespace Roomie.Web.Persistence.Models
         [Key]
         public int Id { get; set; }
         
-        public UserModel Owner { get; set; }
+        public virtual UserModel Owner { get; set; }
         public string Name { get; set; }
-        public ScriptModel LastScript { get; set; }
+        public virtual ScriptModel LastScript { get; set; }
 
         public string AccessKey { get; set; }
         public string EncryptionKey { get; set; }

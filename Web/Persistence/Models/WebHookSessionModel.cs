@@ -9,8 +9,8 @@ namespace Roomie.Web.Persistence.Models
     {
         [Key]
         public int Id { get; set; }
-        
-        public ComputerModel Computer { get; set; }
+
+        public virtual ComputerModel Computer { get; set; }
         public string Token { get; set; }
         
         #region LastPing

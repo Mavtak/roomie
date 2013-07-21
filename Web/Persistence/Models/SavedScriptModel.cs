@@ -9,12 +9,10 @@ namespace Roomie.Web.Persistence.Models
         [Key]
         public int Id { get; set; }
 
-        public UserModel Owner { get; set; }
-        public String Name { get; set; }
-        public DateTime? ModificationTimestamp { get; set; }
-        public ScriptModel Script { get; set; }
-
-
+        public virtual UserModel Owner { get; set; }
+        public virtual String Name { get; set; }
+        public virtual DateTime? ModificationTimestamp { get; set; }
+        public virtual ScriptModel Script { get; set; }
 
         #region HasId implementation
 

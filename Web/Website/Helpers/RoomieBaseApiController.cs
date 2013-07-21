@@ -20,8 +20,6 @@ namespace Roomie.Web.Website.Helpers
 
             User = UserUtilities.GetCurrentUser(Database);
 
-            this.RefreshDatabaseHack();
-
             base.Initialize(controllerContext);
         }
     }
