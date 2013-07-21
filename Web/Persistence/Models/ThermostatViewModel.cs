@@ -68,6 +68,11 @@ namespace Roomie.Web.Persistence.Models
             throw new NotImplementedException();
         }
 
+        public void PollMode()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetMode(ThermostatMode mode)
         {
             throw new NotImplementedException();

@@ -116,6 +116,18 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device.DoDeviceOperation(operation);
         }
 
+        public void PollMode()
+        {
+            Action operation = () =>
+            {
+                var controlThinkMode = _thermostat.ThermostatMode;
+
+                Mode = controlThinkMode.ToRoomieType();
+            };
+
+            _device.DoDeviceOperation(operation);
+        }
+
         public void SetMode(ThermostatMode mode)
         {
             var controlThinkMode = mode.ToControlThinkType();
