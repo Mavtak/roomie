@@ -44,28 +44,6 @@ namespace Roomie.Common.ScriptingLanguage
             return result;
         }
 
-        //TODO: load into XElement instead
-        internal static XmlNode LoadXml(string path)
-        {
-            var xmlDocument = new System.Xml.XmlDocument();
-            try
-            {
-                xmlDocument.Load(path);
-            }
-            catch (XmlException xmlException)
-            {
-                throw new RoomieScriptSyntaxErrorException(xmlException);
-            }
-                //TODO: catch IO exceptions
-            catch (Exception unexpectedException)
-            {
-                throw new UnexpectedException(unexpectedException);
-            }
-            var rootNode = xmlDocument.ChildNodes[xmlDocument.ChildNodes.Count - 1];
-
-            return rootNode;
-        }
-
         public static Version LibraryVersion
         {
             get

@@ -26,24 +26,6 @@ namespace Roomie.Common.HomeAutomation
 
         public string Address { get; protected set; }
 
-        private string notes;
-        public string Notes
-        {
-            get
-            {
-                return notes;
-            }
-            set
-            {
-                if (String.IsNullOrWhiteSpace(value))
-                {
-                    value = null;
-                }
-
-                notes = value;
-            }
-        }
-
         internal XElement ToXElement(string nodeName)
         {
             var result = new XElement(nodeName);
@@ -60,7 +42,6 @@ namespace Roomie.Common.HomeAutomation
         public virtual void FromXElement(XElement node)
         {
             Name = node.GetAttributeStringValue("Name");
-            Notes = node.GetAttributeStringValue("Notes");
             Address = node.GetAttributeStringValue("Address");
         }
 
@@ -91,8 +72,6 @@ namespace Roomie.Common.HomeAutomation
             {
                 return false;
             }
-
-            // don't compare on Notes
 
             return true;
         }
