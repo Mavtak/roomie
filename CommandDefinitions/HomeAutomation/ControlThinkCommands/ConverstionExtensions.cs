@@ -136,6 +136,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             ThermostatMode result;
 
+            //TODO: improve this (with more Roomie types?)
+
             switch (input)
             {
                 case ControlThinkThermostatMode.Off:
@@ -143,10 +145,13 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 case ControlThinkThermostatMode.Heat:
+                case ControlThinkThermostatMode.AuxiliaryOrEmergencyHeat:
+                case ControlThinkThermostatMode.HeatEcon:
                     result = ThermostatMode.Heat;
                     break;
 
                 case ControlThinkThermostatMode.Cool:
+                case ControlThinkThermostatMode.CoolEcon:
                     result = ThermostatMode.Cool;
                     break;
 
