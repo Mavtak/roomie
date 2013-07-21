@@ -1,10 +1,10 @@
-﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Roomie.CommandDefinitions.HomeAutomationCommands;
 
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    public class ZWaveDeviceCollection : DeviceCollection
+    internal class ZWaveDeviceCollection : DeviceCollection
     {
         private Dictionary<ControlThink.ZWave.Devices.ZWaveDevice, ZWaveDevice> backingDeviceIndex;
 

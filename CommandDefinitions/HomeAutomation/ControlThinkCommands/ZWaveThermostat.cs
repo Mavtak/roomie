@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
@@ -10,7 +8,7 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    public class ZWaveThermostat : IThermostat
+    internal class ZWaveThermostat : IThermostat
     {
         public ITemperature Temperature { get; private set; }
         IThermostatFanState IThermostatState.FanState

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ControlThink.ZWave.Devices.Specific;
-using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    public class ZWaveThermostatFan : IThermostatFan
+    internal class ZWaveThermostatFan : IThermostatFan
     {
         public IEnumerable<ThermostatFanMode> SupportedModes { get; internal set; }
         public ThermostatFanMode? Mode { get; internal set; }

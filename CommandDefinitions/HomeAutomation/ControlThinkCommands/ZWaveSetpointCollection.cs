@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
@@ -7,7 +6,7 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    public class ZWaveSetpointCollection : ISetpointCollection
+    internal class ZWaveSetpointCollection : ISetpointCollection
     {
         private Dictionary<SetpointType, ITemperature> _setpoints; 
         public ITemperature this[SetpointType setpointType]

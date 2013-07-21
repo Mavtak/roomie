@@ -5,21 +5,21 @@ using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
+using ControlThinkFanMode = ControlThink.ZWave.Devices.ThermostatFanMode;
+using ControlThinkFanState = ControlThink.ZWave.Devices.ThermostatFanState;
+using ControlThinkSetpointType = ControlThink.ZWave.Devices.ThermostatSetpointType;
 using ControlThinkTemperature = ControlThink.ZWave.Devices.Temperature;
 using ControlThinkTemperatureScale = ControlThink.ZWave.Devices.TemperatureScale;
-using ControlThinkSetpointType = ControlThink.ZWave.Devices.ThermostatSetpointType;
+using ControlThinkThermostatCurrentAction = ControlThink.ZWave.Devices.ThermostatOperatingState;
 using ControlThinkThermostatMode = ControlThink.ZWave.Devices.ThermostatMode;
-using ControlThinkFanMode = ControlThink.ZWave.Devices.ThermostatFanMode;
 using ThermostatFanMode = Roomie.Common.HomeAutomation.Thermostats.Fans.ThermostatFanMode;
 using ThermostatMode = Roomie.Common.HomeAutomation.Thermostats.ThermostatMode;
-using ControlThinkThermostatCurrentAction = ControlThink.ZWave.Devices.ThermostatOperatingState;
-using ControlThinkFanState = ControlThink.ZWave.Devices.ThermostatFanState;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     //TODO: unit test all of this
     //TODO: handle econ types
-    public static class ConverstionExtensions
+    internal static class ConverstionExtensions
     {
         public static ControlThinkSetpointType ToControlThinkType(this SetpointType input)
         {

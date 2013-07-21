@@ -1,13 +1,13 @@
-﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
+﻿using System;
+using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.Common.HomeAutomation.Exceptions;
-using System;
 using Device = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
 using Network = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    public class ZWaveNetwork : Network
+    internal class ZWaveNetwork : Network
     {
         public global::ControlThink.ZWave.ZWaveController ZWaveController { get; private set; }
         public new ZWaveDeviceCollection Devices { get; private set; }

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Exceptions;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    public static class ZWaveDeviceExtensions
+    internal static class ZWaveDeviceExtensions
     {
         internal static TResult DoDeviceOperation<TResult>(this ZWaveDevice device, Func<TResult> operation)
         {

@@ -1,10 +1,9 @@
-﻿using System;
-using Roomie.Common.HomeAutomation;
+﻿using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    public class ZWaveDimmerSwitch : IDimmerSwitch
+    internal class ZWaveDimmerSwitch : IDimmerSwitch
     {
         private ZWaveDevice _device;
 

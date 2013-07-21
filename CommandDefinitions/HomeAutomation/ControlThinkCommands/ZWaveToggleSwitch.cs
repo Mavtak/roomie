@@ -1,10 +1,9 @@
-﻿using System;
-using Roomie.Common.HomeAutomation;
+﻿using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    public class ZWaveToggleSwitch : IToggleSwitch
+    internal class ZWaveToggleSwitch : IToggleSwitch
     {
         private ZWaveDevice _device;
 
