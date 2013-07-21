@@ -93,13 +93,13 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             Action operation = () =>
             {
-                foreach (var setpointType in _setpoints.Keys)
+                foreach (var setpointType in _setpoints.Keys.ToList())
                 {
                     var controlThinkSetpointType = setpointType.ToControlThinkType();
                     var controlThinkTemperature = _thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature;
                     var temperature = controlThinkTemperature.ToRoomieType();
 
-                    _setpoints[setpointType] = temperature;
+                    Update(setpointType, temperature);
                 }
             };
 
