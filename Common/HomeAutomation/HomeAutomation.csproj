@@ -88,7 +88,7 @@
     <Compile Include="Thermostats\IThermostat.cs" />
     <Compile Include="Thermostats\IThermostatActions.cs" />
     <Compile Include="Thermostats\Fans\ReadOnlyThermostatFanState.cs" />
-    <Compile Include="Thermostats\SetpointCollections\ReadOnlySetPointCollection.cs" />
+    <Compile Include="Thermostats\SetpointCollections\ReadOnlySetpointCollection.cs" />
     <Compile Include="Thermostats\SetpointCollections\SetpointCollectionExtensions.cs" />
     <Compile Include="Thermostats\ThermostatMode.cs" />
     <Compile Include="Thermostats\ThermostatCurrentAction.cs" />
