@@ -231,6 +231,13 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             return result;
         }
 
+        public static IEnumerable<ThermostatFanMode> ToRoomieType(this IEnumerable<ControlThinkFanMode> input)
+        {
+            var result = input.Select(x => x.ToRoomieType()).Distinct();
+
+            return result;
+        }
+
         public static ThermostatCurrentAction ToRoomieType(this ControlThinkThermostatCurrentAction input)
         {
             ThermostatCurrentAction result;
