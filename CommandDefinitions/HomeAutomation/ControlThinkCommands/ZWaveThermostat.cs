@@ -104,6 +104,18 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device.DoDeviceOperation(operation);
         }
 
+        public void PollCurrentAction()
+        {
+            Action operation = () =>
+            {
+                var controlThinkCurrentAction = _thermostat.ThermostatOperatingState;
+
+                CurrentAction = controlThinkCurrentAction.ToRoomieType();
+            };
+
+            _device.DoDeviceOperation(operation);
+        }
+
         public void SetMode(ThermostatMode mode)
         {
             var controlThinkMode = mode.ToControlThinkType();

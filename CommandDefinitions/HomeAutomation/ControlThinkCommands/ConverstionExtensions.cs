@@ -219,8 +219,12 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     result = ThermostatCurrentAction.Heating;
                     break;
 
-                case ControlThinkThermostatCurrentAction.FanOnly:
+                case ControlThinkThermostatCurrentAction.Cooling:
                 case ControlThinkThermostatCurrentAction.PendingCool:
+                    result = ThermostatCurrentAction.Cooling;
+                    break;
+
+                case ControlThinkThermostatCurrentAction.FanOnly:
                     result = ThermostatCurrentAction.FanOnly;
                     break;
 

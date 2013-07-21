@@ -60,6 +60,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             if (Type == DeviceType.Thermostat)
             {
                 Thermostat.PollTemperature();
+                Thermostat.PollCurrentAction();
             }
         }
 
