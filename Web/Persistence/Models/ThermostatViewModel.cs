@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
@@ -87,6 +88,11 @@ namespace Roomie.Web.Persistence.Models
             Temperature = data.Temperature;
             CurrentAction = data.CurrentAction;
             Mode = data.Mode;
+            
+            if (data.SupportedModes != null)
+            {
+                SupportedModes = data.SupportedModes.ToList();
+            }
 
             if (data.FanState != null)
             {
