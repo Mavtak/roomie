@@ -30,7 +30,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     return ControlThinkSetpointType.Cooling1;
 
                 default:
-                    throw new ArgumentException("Could not parse type");
+                    throw new ArgumentException("Could not parse type " + input);
             }
         }
 
@@ -49,7 +49,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type");
+                    throw new ArgumentException("Could not parse type " + input);
             }
 
             return result;
@@ -93,7 +93,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
                     
                 default:
-                    throw new ArgumentException("Could not parse type");
+                    throw new ArgumentException("Could not parse type " + input);
             }
 
             return result;
@@ -126,7 +126,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type");
+                    throw new ArgumentException("Could not parse type " + input);
             }
 
             return result;
@@ -159,7 +159,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type");
+                    throw new ArgumentException("Could not parse type " + input);
             }
 
             return result;
@@ -176,7 +176,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     return ControlThinkFanMode.OnLow;
 
                 default:
-                    throw new ArgumentException("Could not parse type");
+                    throw new ArgumentException("Could not parse type " + fanMode);
 
             }
         }
@@ -198,7 +198,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type");
+                    throw new ArgumentException("Could not parse type " + input);
             }
 
             return result;
@@ -229,7 +229,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type");
+                    throw new ArgumentException("Could not parse type " + input);
             }
 
             return result;
@@ -251,7 +251,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type");
+                    throw new ArgumentException("Could not parse type " + input);
             }
 
             return result;
