@@ -72,7 +72,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void PollSupportedSetpoints()
         {
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 var controlThinkSetpointTypes = _thermostat.SupportedThermostatSetpoints;
 
@@ -84,14 +84,12 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 {
                     _setpoints.Add(setpoint, null);
                 }
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
 
         public void PollSetpointTemperatures()
         {
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 foreach (var setpointType in _setpoints.Keys.ToList())
                 {
@@ -101,9 +99,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
                     Update(setpointType, temperature);
                 }
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
 
         public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
@@ -111,12 +107,10 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             var controlThinkSetpointType = setpointType.ToControlThinkType();
             var controlThinkTemperature = temperature.ToControlThinkType();
 
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 _thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature = controlThinkTemperature;
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
     }
 }

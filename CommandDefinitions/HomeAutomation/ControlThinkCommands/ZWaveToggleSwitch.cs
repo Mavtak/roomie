@@ -15,23 +15,19 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void PowerOn()
         {
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 _device.BackingObject.PowerOn();
                 _device.IsConnected = true;
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
         public void PowerOff()
         {
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 _device.BackingObject.PowerOff();
                 _device.IsConnected = true;
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
 
         public void Poll()

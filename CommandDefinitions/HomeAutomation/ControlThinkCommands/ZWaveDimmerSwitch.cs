@@ -18,24 +18,20 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void Poll()
         {
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 Power = _device.BackingObject.Level;
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
 
         public void SetPower(int power)
         {
             power = Utilities.ValidatePower(power, MaxPower);
 
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 _device.BackingObject.Level = (byte)power;
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
 
         public void Update(IDimmerSwitchState state)

@@ -95,62 +95,52 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void PollTemperature()
         {
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 var controlThinkTemperature = _thermostat.ThermostatTemperature;
 
                 Temperature = controlThinkTemperature.ToRoomieType();
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
 
         public void PollCurrentAction()
         {
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 var controlThinkCurrentAction = _thermostat.ThermostatOperatingState;
 
                 CurrentAction = controlThinkCurrentAction.ToRoomieType();
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
 
         public void PollMode()
         {
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 var controlThinkMode = _thermostat.ThermostatMode;
 
                 Mode = controlThinkMode.ToRoomieType();
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
 
         public void PollSupportedModes()
         {
-            Action operation = () =>
+            _device.DoDeviceOperation(() =>
             {
                 var controlThinkModes = _thermostat.SupportedThermostatModes;
 
                 SupportedModes = controlThinkModes.ToRoomieType();
-            };
-
-            _device.DoDeviceOperation(operation);
+            });
         }
 
         public void SetMode(ThermostatMode mode)
         {
             var controlThinkMode = mode.ToControlThinkType();
 
-            Action operation = () =>
-            {
-                _thermostat.ThermostatMode = controlThinkMode;
-            };
-
-            _device.DoDeviceOperation(operation);
+            _device.DoDeviceOperation(() =>
+             {
+                 _thermostat.ThermostatMode = controlThinkMode;
+             });
         }
     }
 }
