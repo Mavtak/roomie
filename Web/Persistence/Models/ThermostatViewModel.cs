@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
@@ -8,7 +7,7 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class ThermostatViewModel : IThermostat
+    public class ThermostatModel : IThermostat
     {
         public ITemperature Temperature { get; set; }
         IThermostatFanState IThermostatState.FanState
@@ -48,7 +47,7 @@ namespace Roomie.Web.Persistence.Models
 
         private DeviceModel _device;
 
-        public ThermostatViewModel(DeviceModel device)
+        public ThermostatModel(DeviceModel device)
         {
             _device = device;
 

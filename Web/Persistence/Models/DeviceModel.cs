@@ -77,7 +77,7 @@ namespace Roomie.Web.Persistence.Models
 
         private readonly ToggleSwitchModel _toggleSwitch;
         private readonly DimmerSwitchModel _dimmerSwitch;
-        private readonly ThermostatViewModel _thermostat;
+        private readonly ThermostatModel _thermostat;
 
         public ToggleSwitchModel ToggleSwitch
         {
@@ -95,7 +95,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public ThermostatViewModel Thermostat
+        public ThermostatModel Thermostat
         {
             get
             {
@@ -107,7 +107,7 @@ namespace Roomie.Web.Persistence.Models
         {
             _toggleSwitch = new ToggleSwitchModel(this);
             _dimmerSwitch = new DimmerSwitchModel(this);
-            _thermostat = new ThermostatViewModel(this);
+            _thermostat = new ThermostatModel(this);
         }
 
         #region LastPing
