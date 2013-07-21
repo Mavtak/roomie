@@ -5,6 +5,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats.Fans
     {
         void PollCurrentAction();
         void PollMode();
+        void PollSupportedModes();
         void SetMode(ThermostatFanMode fanMode);
     }
 }

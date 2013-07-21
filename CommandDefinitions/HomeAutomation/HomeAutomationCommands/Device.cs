@@ -68,6 +68,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 {
                     Thermostat.Fan.PollCurrentAction();
                     Thermostat.Fan.PollMode();
+                    Thermostat.Fan.PollSupportedModes();
                 }
 
                 if (Thermostat.Setpoints != null)

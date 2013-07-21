@@ -69,6 +69,16 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             });
         }
 
+        public void PollSupportedModes()
+        {
+            _device.DoDeviceOperation(() =>
+            {
+                var controlThinkModes = _thermostat.SupportedThermostatFanModes;
+
+                SupportedModes = controlThinkModes.ToRoomieType();
+            });
+        }
+
         public void SetMode(ThermostatFanMode fanMode)
         {
             var controlThinkFanMode = fanMode.ToControlThinkType();

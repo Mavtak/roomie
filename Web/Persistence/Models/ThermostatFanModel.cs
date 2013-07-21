@@ -19,6 +19,11 @@ namespace Roomie.Web.Persistence.Models
             throw new System.NotImplementedException();
         }
 
+        public void PollSupportedModes()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void SetMode(ThermostatFanMode fanMode)
         {
             throw new System.NotImplementedException();
