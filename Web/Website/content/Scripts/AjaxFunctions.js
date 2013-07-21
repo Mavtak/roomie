@@ -1,7 +1,15 @@
 ﻿function replaceDivs(data) {
     for (x in data['replacements']) {
-        id = '#' + data['replacements'][x]['id'];
-        $(id).replaceWith(data['replacements'][x]['html']);
+        var id = '#' + data['replacements'][x]['id'];
+        var $original = $(id);
+        var originalOuterHtml = $(id).clone().wrap('<p>').parent().html();
+        var replacementOuterHtml = data['replacements'][x]['html'];
+        var $replacement = $(replacementOuterHtml);
+        replacementOuterHtml = $replacement.clone().wrap('<p>').parent().html();
+
+        if (originalOuterHtml != replacementOuterHtml) {
+            $original.replaceWith(replacementOuterHtml);
+        }
     }
 }
 
