@@ -39,14 +39,16 @@
 .widget .status,
 .widget .code,
 .widget .buttonGroup,
-.widget .content
+.widget .content,
+.widget .thermostat-controls
 {
     border: 1px solid black;
 }
 
 .widget .data,
 .widget .code,
-.widget .buttonGroup
+.widget .buttonGroup,
+.widget .thermostat-controls
 {
     border-bottom: none;
     border-left:none;
