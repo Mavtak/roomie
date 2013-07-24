@@ -4,7 +4,7 @@ using Roomie.Common.HomeAutomation.Thermostats.Fans;
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     [FanModeParameter]
-    public class SetFanMode : HomeAutomationSingleDeviceCommand
+    public class SetThermostatFanMode : HomeAutomationSingleDeviceCommand
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
