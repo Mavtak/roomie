@@ -1,5 +1,6 @@
 ﻿using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -24,7 +25,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void SetPower(int power)
         {
-            //TODO: dependency inject the TaskQueue and make this method actually work!
+            _device.DoCommand("HomeAutomation.Poll Device=\"{0}\" Power=\"{1}\"", power.ToString());
         }
 
         public void Update(IDimmerSwitchState state)

@@ -51,13 +51,7 @@ namespace Roomie.Web.Website.Controllers
         {
             var device = this.SelectDevice(id);
 
-            addTask(
-                computer: device.Network.AttatchedComputer,
-                origin: "Web Interface",
-                scriptText: String.Format(//TODO: improve this script
-                    "HomeAutomation.Dim Device=\"{0}\" Power=\"{1}\"",
-                    device.BuildVirtualAddress(true, true), power)
-            );
+            device.DimmerSwitch.SetPower(power);
 
             Database.SaveChanges();
 
@@ -75,13 +69,7 @@ namespace Roomie.Web.Website.Controllers
         {
             var device = this.SelectDevice(id);
 
-            addTask(
-                computer: device.Network.AttatchedComputer,
-                origin: "Web Interface",
-                scriptText: String.Format(//TODO: improve this script
-                    "HomeAutomation.PowerOn Device=\"{0}\"",
-                    device.BuildVirtualAddress(true, true))
-            );
+            device.ToggleSwitch.PowerOn();;
 
             Database.SaveChanges();
 
@@ -99,13 +87,7 @@ namespace Roomie.Web.Website.Controllers
         {
             var device = this.SelectDevice(id);
 
-            addTask(
-                computer: device.Network.AttatchedComputer,
-                origin: "Web Interface",
-                scriptText: String.Format(//TODO: improve this script
-                    "HomeAutomation.PowerOff Device=\"{0}\"",
-                    device.BuildVirtualAddress(true, true))
-            );
+            device.ToggleSwitch.PowerOff();
 
             Database.SaveChanges();
 

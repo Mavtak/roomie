@@ -1,5 +1,8 @@
-﻿using Roomie.Common.HomeAutomation;
+﻿using System;
+using System.Linq;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
+using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -14,14 +17,12 @@ namespace Roomie.Web.Persistence.Models
 
         public void PowerOn()
         {
-            //TODO: dependency inject the TaskQueue and make this method actually work!
-            throw new System.NotImplementedException();
+            _device.DoCommand("HomeAutomation.PowerOn Device=\"{0}\"");
         }
 
         public void PowerOff()
         {
-            //TODO: dependency inject the TaskQueue and make this method actually work!
-            throw new System.NotImplementedException();
+            _device.DoCommand("HomeAutomation.PowerOff Device=\"{0}\"");
         }
 
         public void Poll()
