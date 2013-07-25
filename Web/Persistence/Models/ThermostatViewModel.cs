@@ -5,6 +5,7 @@ using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
+using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -53,7 +54,7 @@ namespace Roomie.Web.Persistence.Models
             _device = device;
 
             //TODO: implement these
-            Fan = new ThermostatFanModel();
+            Fan = new ThermostatFanModel(_device);
             SupportedModes = new List<ThermostatMode>();
             Setpoints = new ThermostatSetpointModel();
         }
@@ -80,7 +81,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void SetMode(ThermostatMode mode)
         {
-            throw new NotImplementedException();
+            _device.DoCommand("HomeAutomation.SetThermostatMode Device=\"{0}\" ThermostatMode=\"{1}\"", mode.ToString());
         }
 
         internal void Update(IThermostatState data)
