@@ -66,7 +66,10 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     var roomieMode = controlThinkMode.ToRoomieType();
 
                     Mode = roomieMode;
-                    //TODO raise event
+
+                    IEventSource source = null;
+                    var @event = DeviceEvent.ThermostatModeChanged(_device, source);
+                    _device.AddEvent(@event);
                 };
 
             _thermostat.ThermostatOperatingStateChanged += (sender, args) =>
@@ -75,7 +78,10 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     var roomieAction = controlThinkAction.ToRoomieType();
 
                     CurrentAction = roomieAction;
-                    //TODO: raise event
+
+                    IEventSource source = null;
+                    var @event = DeviceEvent.ThermostatCurrentActionChanged(_device, source);
+                    _device.AddEvent(@event);
                 };
 
             _thermostat.ThermostatTemperatureChanged += (sender, args) =>
