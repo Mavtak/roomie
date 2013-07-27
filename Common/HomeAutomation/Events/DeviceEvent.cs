@@ -85,5 +85,35 @@ namespace Roomie.Common.HomeAutomation.Events
 
             return result;
         }
+
+        //TODO: make more specific event types
+
+        public static DeviceEvent ThermostatModeChanged(Device device, IEventSource source)
+        {
+            var result = new DeviceEvent(device, new DeviceStateChanged(), source);
+
+            return result;
+        }
+
+        public static DeviceEvent ThermostatCurrentActionChanged(Device device, IEventSource source)
+        {
+            var result = new DeviceEvent(device, new DeviceStateChanged(), source);
+
+            return result;
+        }
+
+        public static DeviceEvent ThermostatFanModeChanged(Device device, IEventSource source)
+        {
+            var result = new DeviceEvent(device, new DeviceStateChanged(), source);
+
+            return result;
+        }
+
+        public static DeviceEvent ThermostatFanCurrentActionChanged(Device device, IEventSource source)
+        {
+            var result = new DeviceEvent(device, new DeviceStateChanged(), source);
+
+            return result;
+        }
     }
 }
