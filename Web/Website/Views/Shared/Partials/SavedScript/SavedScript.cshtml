@@ -1,7 +1,7 @@
 ﻿@model Roomie.Web.Persistence.Models.SavedScriptModel
 @*
 
-*@@helper BuildLinkButton(string text, string action, string position)
+*@@helper BuildLinkButton(string text, string action)
 {
     @Html.ActionLink(
         linkText: text,
@@ -12,12 +12,12 @@
         },
         htmlAttributes: new
         {
-            @class = "button " + position
+            @class = "button"
         }
     )
 }@*
 
-*@@helper BuildFormButton(string text, string action, string position)
+*@@helper BuildFormButton(string text, string action)
 {
     using (Html.BeginForm(
         actionName: action,
@@ -29,7 +29,7 @@
         method: FormMethod.Post,
         htmlAttributes: new
         {
-            @class = "button " + position
+            @class = "button"
         }
         
     ))
@@ -78,10 +78,10 @@ var widgetData = new WidgetData
 
   *@<textarea class="code">@Model.Script.Text</textarea>@*
 
-  *@<div class="buttonGroup three">@*
-    *@@BuildLinkButton("Edit", "edit", "leftmost")@*
-    *@@BuildFormButton("Delete", "delete", "middle")@*
-    *@@BuildFormButton("Run", "run", "rightmost")@*
+  *@<div class="buttonGroup">@*
+    *@@BuildLinkButton("Edit", "edit")@*
+    *@@BuildFormButton("Delete", "delete")@*
+    *@@BuildFormButton("Run", "run")@*
   *@</div>@*
 
   *@@Html.Partial("Partials/WidgetEnd", widgetData)@*

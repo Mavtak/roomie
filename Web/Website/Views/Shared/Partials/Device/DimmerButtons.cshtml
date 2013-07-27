@@ -16,7 +16,7 @@
                     },
                     htmlAttributes: new
                     {
-                        @class = "buttonGroup dimmer",
+                        @class = "buttonGroup",
                         id = string.Empty
                     }
                     ))
@@ -24,26 +24,22 @@
 
         *@for (int power = 0; power <= 100; power += 10)
           {@*
-          *@<button class="@{
-            if (power == 0)
-                {<text>leftmost</text>}
-                else if (power == 100)
-                {<text>rightmost</text>}
-                else
-                {<text>middle</text>}
+          *@<div class="@{
+            if (power == 0 || power == 100)
+                {<text>bigger</text>}
 
                 var percentage = Model.Device.DimmerSwitch.CalculatePowerPercentage();
                 if ((percentage > (power - 10))
                     && (percentage <= (power)))
                 {<text> activated</text>}
-        } button" type="submit" name="power" value="@power">@{
+        } button"><button class="button" type="submit" name="power" value="@power">@{
             if (power == 0)
             {<text>Off</text>}
             else if (power == 100)
             {<text>On</text>}
             else
             {<text></text>}
-        }</button>}@*
+        }</button></div>}@*
 
     *@}@*
 *@

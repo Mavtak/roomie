@@ -17,7 +17,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button leftmost" + (Model.ToggleSwitch.Power == ToggleSwitchPower.Off ? " activated" : ""),
+                    @class = "button" + (Model.ToggleSwitch.Power == ToggleSwitchPower.Off ? " activated" : ""),
                     id = string.Empty
                 }
             )){<button class="button" >Off</button>}@*
@@ -35,7 +35,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button rightmost" + (Model.ToggleSwitch.Power == ToggleSwitchPower.On ? " activated" : ""),
+                    @class = "button" + (Model.ToggleSwitch.Power == ToggleSwitchPower.On ? " activated" : ""),
                     id = string.Empty
                 }
             )){<button class="button">On</button>}@*

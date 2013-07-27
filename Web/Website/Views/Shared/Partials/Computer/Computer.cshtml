@@ -30,11 +30,13 @@
     *@@if (Model.Computer.LastScript != null)
     {@(Model.Computer.LastScript.Text)}
     else
-    {<Computer.Speak Text="Hi there!" />}@*
+      {<Computer.Speak Text="Hi there!" />}@*
     
   *@</textarea>@*
   *@<div class="buttonGroup">@*
-    *@<button class="button only" name="runButton" type="submit" value="submit">Run Script</button>@*
+    *@<div class="button">@*
+      *@<button class="button only" name="runButton" type="submit" value="submit">Run Script</button>@*
+    *@</div>@*
   *@</div>@*
 *@}@*
 

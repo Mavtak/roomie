@@ -22,7 +22,7 @@
         *@<div class="value"><textarea class="code"><WebHook.Connect ComputerName="@Model.Name" CommunicationURL="http://@(Request.Url.Host)@(@Request.Url.IsDefaultPort?"":":"+Request.Url.Port)/communicator/" AccessKey="@Model.AccessKey" EncryptionKey="@Model.EncryptionKey" /></textarea></div>@*
     *@</div>@*
   *@</div>@*
-  *@<div class="buttonGroup two">@*
+  *@<div class="buttonGroup">@*
     *@@using (Ajax.BeginForm(
     actionName: "RenewWebHookKeys",
     controllerName: "Computer",
@@ -36,7 +36,7 @@
     },
     htmlAttributes: new
     {
-        
+        @class = "button"
     }
     )){<button class="button" type="submit" name="submit">Generate New Keys</button>}@*
     *@@using (Ajax.BeginForm(
@@ -52,7 +52,7 @@
     },
     htmlAttributes: new
     {
-        
+        @class = "button"
     }
     )){<button class="button" type="submit" name="submit">Disable</button>}@*
   *@</div>@*

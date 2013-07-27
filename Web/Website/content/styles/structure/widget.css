@@ -40,7 +40,9 @@
 .widget .code,
 .widget .buttonGroup,
 .widget .content,
-.widget .thermostat-controls
+.widget .thermostat-controls,
+.widget .buttonGroup > *
+
 {
     border: 1px solid black;
 }
@@ -106,18 +108,29 @@
  *******************************/
 .widget .buttonGroup
 {
-    display: block;
+    display: table;
     overflow: hidden;
-    white-space: nowrap;
+}
+
+.widget .buttonGroup > *
+{
+    display: table-cell;
+    width: 1%;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+}
+
+.widget .buttonGroup > *:first-child
+{
+    border: none;
 }
 
 .widget .buttonGroup .button
 {
-    display: inline-block;
     height: 1.5em;
     vertical-align: middle;
     text-align: center;
-    border: black solid 0px;
     text-transform: lowercase;
     font-size: 150%;
     cursor: pointer;
@@ -125,69 +138,17 @@
     overflow: hidden;
 }
 
-.widget .buttonGroup .one .button
-{
-    width: 100%;
-}
-
-.widget .buttonGroup.two .leftmost.button,
-.widget .buttonGroup.two .rightmost.button
-{
-    width: 50%;
-}
-
 .widget .buttonGroup .button .button
 {
     width: 100%;
     font-size: inherit;
-}
-
-.widget .buttonGroup.three .button
-{
-    width: 33.33333%;
-}
-.widget .buttonGroup.three middle.button
-{
-    width: 34%;
-}
-
-.widget .only.button
-{
-    width: 100%;
-}
-.widget .middle.button
-{
-    border-left-width: 1px;
-    
-}
-.widget .leftmost.button, .widget .rightmost.button
-{
-    
-}
-
-.widget .rightmost.button
-{
-    border-left-width: 1px;
+    border: none;
 }
 
 /* toggle */
-.widget .buttonGroup.toggle .leftmost.button, .widget .buttonGroup.toggle .rightmost.button
+.widget .bigger.button
 {
-    width: 50%;
-   
-}
-
-/* dim */
-.widget .buttonGroup.dimmer .leftmost.button, .widget .buttonGroup.dimmer .rightmost.button
-{
-    /* there are two of these */
-    width: 20%;
-
-}
-.widget .buttonGroup.dimmer .middle.button
-{
-    /* there are 9 of these */
-    width: 6.667%;
+    width: 2.5%;
 }
 
 
