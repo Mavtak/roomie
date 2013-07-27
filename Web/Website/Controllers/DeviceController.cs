@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Models;
@@ -88,6 +90,42 @@ namespace Roomie.Web.Website.Controllers
             var device = this.SelectDevice(id);
 
             device.ToggleSwitch.PowerOff();
+
+            Database.SaveChanges();
+
+            return Json(new
+            {
+                success = true,
+                id = id
+            }
+            );
+        }
+
+        [HttpPost]
+        [WebsiteRestrictedAccess]
+        public ActionResult SetThermostatMode(int id, ThermostatMode mode)
+        {
+            var device = this.SelectDevice(id);
+
+            device.Thermostat.SetMode(mode);
+
+            Database.SaveChanges();
+
+            return Json(new
+            {
+                success = true,
+                id = id
+            }
+            );
+        }
+
+        [HttpPost]
+        [WebsiteRestrictedAccess]
+        public ActionResult SetThermostatFanMode(int id, ThermostatFanMode mode)
+        {
+            var device = this.SelectDevice(id);
+
+            device.Thermostat.Fan.SetMode(mode);
 
             Database.SaveChanges();
 

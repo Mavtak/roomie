@@ -49,4 +49,58 @@
   *@</div>@*
 *@</div>@*
 
+*@@using (Ajax.BeginForm(
+                    actionName: "SetThermostatMode",
+                    controllerName: "Device",
+                    routeValues: new
+                    {
+                        id = Model.Device.Id
+                    },
+                    ajaxOptions: new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                    },
+                    htmlAttributes: new
+                    {
+                        @class = "buttonGroup",
+                        id = string.Empty
+                    }
+                    ))
+    {@*
+    *@foreach (var mode in thermostat.SupportedModes??new ThermostatMode[]{})
+      {@*
+          *@<div class="@("button" + ((thermostat.Mode == mode)?" activated":string.Empty))">@*
+              *@<button class="button" type="submit" name="mode" value="@mode">@mode</button>@*
+          *@</div>@*
+      *@}@*    
+*@}@*
+
+*@@using (Ajax.BeginForm(
+                    actionName: "SetThermostatFanMode",
+                    controllerName: "Device",
+                    routeValues: new
+                    {
+                        id = Model.Device.Id
+                    },
+                    ajaxOptions: new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                    },
+                    htmlAttributes: new
+                    {
+                        @class = "buttonGroup",
+                        id = string.Empty
+                    }
+                    ))
+    {@*
+    *@foreach (var mode in thermostat.Fan.SupportedModes??new ThermostatFanMode[]{})
+      {@*
+          *@<div class="@("button" + ((thermostat.Fan.Mode == mode)?" activated":string.Empty))">@*
+              *@<button class="button" type="submit" name="mode" value="@mode">@mode</button>@*
+          *@</div>@*
+      *@}@*    
+*@}@*
+
+
+
 *@
