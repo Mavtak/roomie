@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Events
 {
-    public class TemperatureChanged : DevicePowerChanged
+    public class TemperatureChanged : DeviceStateChanged
     {
         public new const string Key = "Temperature Changed";
 

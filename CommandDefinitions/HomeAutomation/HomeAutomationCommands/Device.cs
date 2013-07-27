@@ -142,6 +142,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
             Context.History.Add(@event);
 
+            //TODO: add an event trigger for DeviceStateChanged
+
             var eventActions = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerChange));
 
 

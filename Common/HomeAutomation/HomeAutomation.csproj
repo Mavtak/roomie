@@ -46,6 +46,7 @@
     <Compile Include="DimmerSwitches\IDimmerSwitchState.cs" />
     <Compile Include="DimmerSwitches\ReadOnlyDimmerSwitchState.cs" />
     <Compile Include="DimmerSwitches\DimmerSwitchStateExtensions.cs" />
+    <Compile Include="Events\DeviceStateChanged.cs" />
     <Compile Include="Events\PoweredOff.cs" />
     <Compile Include="Events\PoweredOn.cs" />
     <Compile Include="Events\StillnessDetected.cs" />
