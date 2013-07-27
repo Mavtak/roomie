@@ -25,7 +25,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void SetPower(int power)
         {
-            _device.DoCommand("HomeAutomation.Poll Device=\"{0}\" Power=\"{1}\"", power.ToString());
+            _device.DoCommand("HomeAutomation.Dim Device=\"{0}\" Power=\"{1}\"", power.ToString());
         }
 
         public void Update(IDimmerSwitchState state)
