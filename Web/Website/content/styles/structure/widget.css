@@ -35,39 +35,41 @@
 }
 
 .widget,
-.widget .data,
-.widget .status,
-.widget .code,
+.widget .content > *,
 .widget .buttonGroup,
-.widget .content,
-.widget .thermostat-controls,
+.widget .code,
 .widget .buttonGroup > *
 
 {
     border: 1px solid black;
 }
 
-.widget .data,
-.widget .code,
+.widget .content > *,
 .widget .buttonGroup,
-.widget .thermostat-controls
+.widget .code
 {
-    border-bottom: none;
-    border-left:none;
+    border-left: none;
     border-right: none;
+    border-bottom: none;
 }
 
-.widget .content
+.widget .content :first-child
 {
     border: none;
+}
+
+.widget .header:first-child
+{
+    text-align: left;
+    background-color: transparent;
 }
 
 .widget .header
 {
     display: block;
-    text-align: left;
     text-decoration: inherit;
     padding: 3px;
+    background-color: rgba(255, 255, 255, .25);
 }
 
 .widget .status
