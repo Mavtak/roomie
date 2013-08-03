@@ -99,52 +99,32 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void PollTemperature()
         {
-            _device.DoDeviceOperation(() =>
-            {
-                var controlThinkTemperature = _thermostat.ThermostatTemperature;
-
-                Temperature = controlThinkTemperature.ToRoomieType();
-            });
+            var controlThinkTemperature = _device.DoDeviceOperation(() => _thermostat.ThermostatTemperature);
+            Temperature = controlThinkTemperature.ToRoomieType();
         }
 
         public void PollCurrentAction()
         {
-            _device.DoDeviceOperation(() =>
-            {
-                var controlThinkCurrentAction = _thermostat.ThermostatOperatingState;
-
-                CurrentAction = controlThinkCurrentAction.ToRoomieType();
-            });
+            var controlThinkCurrentAction = _device.DoDeviceOperation(() => _thermostat.ThermostatOperatingState);
+            CurrentAction = controlThinkCurrentAction.ToRoomieType();
         }
 
         public void PollMode()
         {
-            _device.DoDeviceOperation(() =>
-            {
-                var controlThinkMode = _thermostat.ThermostatMode;
-
-                Mode = controlThinkMode.ToRoomieType();
-            });
+            var controlThinkMode = _device.DoDeviceOperation(() => _thermostat.ThermostatMode);
+            Mode = controlThinkMode.ToRoomieType();
         }
 
         public void PollSupportedModes()
         {
-            _device.DoDeviceOperation(() =>
-            {
-                var controlThinkModes = _thermostat.SupportedThermostatModes;
-
-                SupportedModes = controlThinkModes.ToRoomieType();
-            });
+            var controlThinkModes = _device.DoDeviceOperation(() => _thermostat.SupportedThermostatModes);
+            SupportedModes = controlThinkModes.ToRoomieType();
         }
 
         public void SetMode(ThermostatMode mode)
         {
             var controlThinkMode = mode.ToControlThinkType();
-
-            _device.DoDeviceOperation(() =>
-             {
-                 _thermostat.ThermostatMode = controlThinkMode;
-             });
+            _device.DoDeviceOperation(() => _thermostat.ThermostatMode = controlThinkMode);
         }
     }
 }

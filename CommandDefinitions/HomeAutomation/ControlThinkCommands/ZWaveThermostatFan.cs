@@ -58,40 +58,26 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void PollCurrentAction()
         {
-            _device.DoDeviceOperation(() =>
-            {
-                var controlThinkCurrentAction = _thermostat.ThermostatFanState;
-                CurrentAction = controlThinkCurrentAction.ToRoomieType();
-            });
+            var controlThinkCurrentAction = _device.DoDeviceOperation(() => _thermostat.ThermostatFanState);
+            CurrentAction = controlThinkCurrentAction.ToRoomieType();
         }
 
         public void PollMode()
         {
-            _device.DoDeviceOperation(() =>
-            {
-                var controlThinkMode = _thermostat.ThermostatFanMode;
-                Mode = controlThinkMode.ToRoomieType();
-            });
+            var controlThinkMode = _device.DoDeviceOperation(() => _thermostat.ThermostatFanMode);
+            Mode = controlThinkMode.ToRoomieType();
         }
 
         public void PollSupportedModes()
         {
-            _device.DoDeviceOperation(() =>
-            {
-                var controlThinkModes = _thermostat.SupportedThermostatFanModes;
-
-                SupportedModes = controlThinkModes.ToRoomieType();
-            });
+            var controlThinkModes = _device.DoDeviceOperation(() => _thermostat.SupportedThermostatFanModes);
+            SupportedModes = controlThinkModes.ToRoomieType();
         }
 
         public void SetMode(ThermostatFanMode fanMode)
         {
             var controlThinkFanMode = fanMode.ToControlThinkType();
-
-            _device.DoDeviceOperation(() =>
-            {
-                _thermostat.ThermostatFanMode = controlThinkFanMode;
-            });
+            _device.DoDeviceOperation(() => _thermostat.ThermostatFanMode = controlThinkFanMode);
         }
     }
 }
