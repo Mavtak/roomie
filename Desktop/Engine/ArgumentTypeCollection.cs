@@ -38,7 +38,9 @@ namespace Roomie.Desktop.Engine
 
         public bool Contains(IRoomieCommandArgumentType type)
         {
-            return types.ContainsValue(type);
+            var result = types.Values.Any(x => x.GetType().Equals(type.GetType()));
+
+            return result;
         }
 
         #region IEnumerator
