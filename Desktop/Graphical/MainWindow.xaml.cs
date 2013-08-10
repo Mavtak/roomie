@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using Roomie.Common.ScriptingLanguage;
@@ -59,7 +60,16 @@ namespace Roomie.Desktop.Graphical
                 _shuttingDown = true;
                 _engine.Shutdown();
                 e.Cancel = true;
+
+                return;
             }
+
+            //TODO: remove need for this (hint: better thread management.)
+            var task = new Thread(() =>
+                {
+                    Environment.Exit(0);
+                });
+            task.Start();
         }
 
         void engine_ScriptMessageSent(object sender, RoomieThreadEventArgs e)
