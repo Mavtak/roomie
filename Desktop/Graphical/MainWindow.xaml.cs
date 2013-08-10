@@ -104,6 +104,7 @@ namespace Roomie.Desktop.Graphical
             var shift = e.KeyboardDevice.Modifiers == ModifierKeys.Shift;
             if (enter && !shift)
             {
+                e.Handled = true;
                 RunInput();
             }
         }
