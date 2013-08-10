@@ -1,19 +1,13 @@
-﻿using System.Windows.Controls;
-using System.Windows.Media;
-using Roomie.Common.ScriptingLanguage;
-using Roomie.Desktop.Engine;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
-using System.Threading;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using Roomie.Common.ScriptingLanguage;
+using Roomie.Desktop.Engine;
 
 namespace Roomie.Desktop.Graphical
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
         private readonly RoomieEngine _engine;
@@ -27,6 +21,21 @@ namespace Roomie.Desktop.Graphical
             _engine.ScriptMessageSent += engine_ScriptMessageSent;
             _engine.EngineStateChanged += _engine_EngineStateChanged;
             EventListing.ItemsSource = Events;
+
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+        }
+
+        private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+        {
+            var exception = unhandledExceptionEventArgs.ExceptionObject;
+
+            using (var log = File.AppendText("exceptions.log"))
+            {
+                log.WriteLine();
+                log.WriteLine(DateTime.Now);
+                log.WriteLine(exception);
+                log.Flush();
+            }
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
