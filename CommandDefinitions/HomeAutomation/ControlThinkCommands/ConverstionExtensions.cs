@@ -23,17 +23,23 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     {
         public static ControlThinkSetpointType ToControlThinkType(this SetpointType input)
         {
+            ControlThinkSetpointType result;
+
             switch (input)
             {
                 case SetpointType.Heat:
-                    return ControlThinkSetpointType.Heating1;
+                    result = ControlThinkSetpointType.Heating1;
+                    break;
 
                 case SetpointType.Cool:
-                    return ControlThinkSetpointType.Cooling1;
+                    result = ControlThinkSetpointType.Cooling1;
+                    break;
 
                 default:
                     throw new ArgumentException("Could not parse type " + input);
             }
+
+            return result;
         }
 
         public static SetpointType ToRoomieType(this ControlThinkSetpointType input)
@@ -192,20 +198,25 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             return result;
         }
 
-        public static ControlThinkFanMode ToControlThinkType(this ThermostatFanMode fanMode)
+        public static ControlThinkFanMode ToControlThinkType(this ThermostatFanMode input)
         {
-            switch (fanMode)
+            ControlThinkFanMode result;
+
+            switch (input)
             {
                 case ThermostatFanMode.Auto:
-                    return ControlThinkFanMode.AutoLow;
+                    result = ControlThinkFanMode.AutoLow;
+                    break;
 
                 case ThermostatFanMode.On:
-                    return ControlThinkFanMode.OnLow;
+                    result = ControlThinkFanMode.OnLow;
+                    break;
 
                 default:
-                    throw new ArgumentException("Could not parse type " + fanMode);
-
+                    throw new ArgumentException("Could not parse type " + input);
             }
+
+            return result;
         }
 
         public static ThermostatFanMode ToRoomieType(this ControlThinkFanMode input)
