@@ -52,7 +52,10 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 var roomieSetpointType = controlThinkSetpointType.ToRoomieType();
                 var roomieTemperature = controlThinkTemperature.ToRoomieType();
 
-                Update(roomieSetpointType, roomieTemperature);
+                if (roomieSetpointType.HasValue)
+                {
+                    Update(roomieSetpointType.Value, roomieTemperature);
+                }
                 //TODO: raise event
             };
         }
@@ -85,7 +88,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             foreach (var setpointType in _setpoints.Keys.ToList())
             {
-                var controlThinkSetpointType = setpointType.ToControlThinkType();
+                var controlThinkSetpointType = setpointType.ToControlThinkType().Value;
                 var controlThinkTemperature = _device.DoDeviceOperation(() => _thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature);
                 var temperature = controlThinkTemperature.ToRoomieType();
                 Update(setpointType, temperature);
@@ -94,8 +97,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
         {
-            var controlThinkSetpointType = setpointType.ToControlThinkType();
-            var controlThinkTemperature = temperature.ToControlThinkType();
+            var controlThinkSetpointType = setpointType.ToControlThinkType().Value;
+            var controlThinkTemperature = temperature.ToControlThinkType().Value;
             _device.DoDeviceOperation(() => _thermostat.ThermostatSetpoints[controlThinkSetpointType].Temperature = controlThinkTemperature);
         }
     }

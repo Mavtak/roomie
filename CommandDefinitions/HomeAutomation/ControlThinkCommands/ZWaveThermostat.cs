@@ -123,7 +123,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void SetMode(ThermostatMode mode)
         {
-            var controlThinkMode = mode.ToControlThinkType();
+            var controlThinkMode = mode.ToControlThinkType().Value;
             _device.DoDeviceOperation(() => _thermostat.ThermostatMode = controlThinkMode);
         }
     }

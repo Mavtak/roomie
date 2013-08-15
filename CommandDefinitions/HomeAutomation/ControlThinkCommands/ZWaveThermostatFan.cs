@@ -76,7 +76,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void SetMode(ThermostatFanMode fanMode)
         {
-            var controlThinkFanMode = fanMode.ToControlThinkType();
+            var controlThinkFanMode = fanMode.ToControlThinkType().Value;
             _device.DoDeviceOperation(() => _thermostat.ThermostatFanMode = controlThinkFanMode);
         }
     }

@@ -21,9 +21,9 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     //TODO: handle econ types
     internal static class ConverstionExtensions
     {
-        public static ControlThinkSetpointType ToControlThinkType(this SetpointType input)
+        public static ControlThinkSetpointType? ToControlThinkType(this SetpointType input)
         {
-            ControlThinkSetpointType result;
+            ControlThinkSetpointType? result;
 
             switch (input)
             {
@@ -36,15 +36,16 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type " + input);
+                    result = null;
+                    break;
             }
 
             return result;
         }
 
-        public static SetpointType ToRoomieType(this ControlThinkSetpointType input)
+        public static SetpointType? ToRoomieType(this ControlThinkSetpointType input)
         {
-            SetpointType result;
+            SetpointType? result;
 
             //TODO: improve this (with more Roomie types?)
 
@@ -62,7 +63,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type " + input);
+                    result = null;
+                    break;
             }
 
             return result;
@@ -70,14 +72,19 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public static IEnumerable<SetpointType> ToRoomieType(this IEnumerable<ControlThinkSetpointType> input)
         {
-            var result = input.Select(x => x.ToRoomieType()).Distinct();
+            var result = input.Select(x => x.ToRoomieType()).NotNull().Distinct();
 
             return result;
         }
 
 
-        public static ControlThinkTemperature ToControlThinkType(this ITemperature input)
+        public static ControlThinkTemperature? ToControlThinkType(this ITemperature input)
         {
+            if (input == null)
+            {
+                return null;
+            }
+
             decimal value;
             ControlThinkTemperatureScale scale;
 
@@ -114,15 +121,16 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
                     
                 default:
-                    throw new ArgumentException("Could not parse type " + input);
+                    result = null;
+                    break;
             }
 
             return result;
         }
 
-        public static ControlThinkThermostatMode ToControlThinkType(this ThermostatMode input)
+        public static ControlThinkThermostatMode? ToControlThinkType(this ThermostatMode input)
         {
-            ControlThinkThermostatMode result;
+            ControlThinkThermostatMode? result;
 
             switch (input)
             {
@@ -147,15 +155,16 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type " + input);
+                    result = null;
+                    break;
             }
 
             return result;
         }
 
-        public static ThermostatMode ToRoomieType(this ControlThinkThermostatMode input)
+        public static ThermostatMode? ToRoomieType(this ControlThinkThermostatMode input)
         {
-            ThermostatMode result;
+            ThermostatMode? result;
 
             //TODO: improve this (with more Roomie types?)
 
@@ -185,7 +194,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type " + input);
+                    result = null;
+                    break;
             }
 
             return result;
@@ -193,14 +203,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public static IEnumerable<ThermostatMode> ToRoomieType(this IEnumerable<ControlThinkThermostatMode> input)
         {
-            var result = input.Select(x => x.ToRoomieType()).Distinct();
+            var result = input.Select(x => x.ToRoomieType()).NotNull().Distinct();
 
             return result;
         }
 
-        public static ControlThinkFanMode ToControlThinkType(this ThermostatFanMode input)
+        public static ControlThinkFanMode? ToControlThinkType(this ThermostatFanMode input)
         {
-            ControlThinkFanMode result;
+            ControlThinkFanMode? result;
 
             switch (input)
             {
@@ -213,15 +223,16 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type " + input);
+                    result = null;
+                    break;
             }
 
             return result;
         }
 
-        public static ThermostatFanMode ToRoomieType(this ControlThinkFanMode input)
+        public static ThermostatFanMode? ToRoomieType(this ControlThinkFanMode input)
         {
-            ThermostatFanMode result;
+            ThermostatFanMode? result;
 
             switch (input)
             {
@@ -236,7 +247,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type " + input);
+                    result = null;
+                    break;
             }
 
             return result;
@@ -244,14 +256,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public static IEnumerable<ThermostatFanMode> ToRoomieType(this IEnumerable<ControlThinkFanMode> input)
         {
-            var result = input.Select(x => x.ToRoomieType()).Distinct();
+            var result = input.Select(x => x.ToRoomieType()).NotNull().Distinct();
 
             return result;
         }
 
-        public static ThermostatCurrentAction ToRoomieType(this ControlThinkThermostatCurrentAction input)
+        public static ThermostatCurrentAction? ToRoomieType(this ControlThinkThermostatCurrentAction input)
         {
-            ThermostatCurrentAction result;
+            ThermostatCurrentAction? result;
 
             switch (input)
             {
@@ -274,15 +286,16 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type " + input);
+                    result = null;
+                    break;
             }
 
             return result;
         }
 
-        public static ThermostatFanCurrentAction ToRoomieType(this ControlThinkFanState input)
+        public static ThermostatFanCurrentAction? ToRoomieType(this ControlThinkFanState input)
         {
-            ThermostatFanCurrentAction result;
+            ThermostatFanCurrentAction? result;
 
             switch (input)
             {
@@ -296,8 +309,17 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     break;
 
                 default:
-                    throw new ArgumentException("Could not parse type " + input);
+                    result = null;
+                    break;
             }
+
+            return result;
+        }
+
+        private static IEnumerable<T> NotNull<T>(this IEnumerable<T?> values)
+            where T : struct
+        {
+            var result = values.Where(x => x.HasValue).Select(x => x.Value);
 
             return result;
         }
