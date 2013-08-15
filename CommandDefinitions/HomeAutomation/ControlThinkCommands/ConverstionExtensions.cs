@@ -12,8 +12,6 @@ using ControlThinkTemperature = ControlThink.ZWave.Devices.Temperature;
 using ControlThinkTemperatureScale = ControlThink.ZWave.Devices.TemperatureScale;
 using ControlThinkThermostatCurrentAction = ControlThink.ZWave.Devices.ThermostatOperatingState;
 using ControlThinkThermostatMode = ControlThink.ZWave.Devices.ThermostatMode;
-using ThermostatFanMode = Roomie.Common.HomeAutomation.Thermostats.Fans.ThermostatFanMode;
-using ThermostatMode = Roomie.Common.HomeAutomation.Thermostats.ThermostatMode;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
