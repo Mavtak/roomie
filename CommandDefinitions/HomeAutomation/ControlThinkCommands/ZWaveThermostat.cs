@@ -13,60 +13,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     {
         public ITemperature Temperature { get; private set; }
 
-        IThermostatCoreState IThermostatState.CoreState
-        {
-            get
-            {
-                return Core;
-            }
-        }
-        IThermostatCoreActions IThermostatActions.CoreActions
-        {
-            get
-            {
-                return Core;
-            }
-        }
         public IThermostatCore Core { get; private set; }
-
-        IThermostatFanState IThermostatState.FanState
-        {
-            get
-            {
-                return Fan;
-            }
-        }
-        IThermostatFanActions IThermostatActions.FanActions
-        {
-            get
-            {
-                return Fan;
-            }
-        }
         public IThermostatFan Fan { get; private set; }
-        public IEnumerable<ThermostatMode> SupportedModes { get; private set; }
-        public ThermostatMode? Mode { get; private set; }
-        public ThermostatCurrentAction? CurrentAction { get; private set; }
         private readonly ZWaveSetpointCollection _setpoints;
         public ISetpointCollection Setpoints
         {
             get
             {
                 return _setpoints;
-            }
-        }
-        ISetpointCollectionState IThermostatState.SetpointStates
-        {
-            get
-            {
-                return _setpoints;
-            }
-        }
-        ISetpointCollectionActions IThermostatActions.SetpointActions
-        {
-            get
-            {
-                return Setpoints;
             }
         }
 
@@ -80,7 +34,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             Core = new ZWaveThermostatCore(device);
             Fan = new ZWaveThermostatFan(device);
-            SupportedModes = new List<ThermostatMode>();
             _setpoints = new ZWaveSetpointCollection(device);
 
             if (_thermostat == null)
@@ -111,5 +64,60 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             var controlThinkTemperature = _device.DoDeviceOperation(() => _thermostat.ThermostatTemperature);
             Temperature = controlThinkTemperature.ToRoomieType();
         }
+
+        #region IThermostatState definitions
+
+        IThermostatCoreState IThermostatState.CoreState
+        {
+            get
+            {
+                return Core;
+            }
+        }
+
+        IThermostatFanState IThermostatState.FanState
+        {
+            get
+            {
+                return Fan;
+            }
+        }
+
+        ISetpointCollectionState IThermostatState.SetpointStates
+        {
+            get
+            {
+                return _setpoints;
+            }
+        }
+
+        #endregion
+
+        #region IThermostatActions definitions
+
+        IThermostatCoreActions IThermostatActions.CoreActions
+        {
+            get
+            {
+                return Core;
+            }
+        }
+        IThermostatFanActions IThermostatActions.FanActions
+        {
+            get
+            {
+                return Fan;
+            }
+        }
+
+        ISetpointCollectionActions IThermostatActions.SetpointActions
+        {
+            get
+            {
+                return Setpoints;
+            }
+        }
+
+        #endregion
     }
 }
