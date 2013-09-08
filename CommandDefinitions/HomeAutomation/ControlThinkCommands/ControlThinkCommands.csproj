@@ -51,6 +51,7 @@
     <Compile Include="Commands\ControlThink\RemoveBrokenDevice.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ConverstionExtensions.cs" />
+    <Compile Include="ZWaveThermostatCore.cs" />
     <Compile Include="ZWaveDeviceExtensions.cs" />
     <Compile Include="ZWaveDimmerSwitch.cs" />
     <Compile Include="InternalLibraryVersion.cs" />

@@ -12,7 +12,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var scope = context.Scope;
             var mode = scope.GetValue("ThermostatMode").ToThermostatMode();
 
-            device.Thermostat.SetMode(mode);
+            device.Thermostat.Core.SetMode(mode);
         }
     }
 }

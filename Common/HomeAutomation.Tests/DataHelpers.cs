@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
@@ -16,6 +17,9 @@ namespace Roomie.Common.HomeAutomation.Tests
             var toggle = new ReadOnlyToggleSwitchState(ToggleSwitchPower.On);
             var dimmer = new ReadOnlyDimmerSwitchState(25, 100);
 
+            var thermostatCoreModes = new[] { ThermostatMode.Auto, ThermostatMode.Cool, ThermostatMode.Heat, ThermostatMode.FanOnly, ThermostatMode.Off };
+            var thermostatCore = new ReadOnlyThermostatCoreState(thermostatCoreModes, ThermostatMode.Cool, ThermostatCurrentAction.Cooling);
+
             var thermostatFanModes = new[] { ThermostatFanMode.Auto, ThermostatFanMode.On };
             var thermostatFan = new ReadOnlyThermostatFanState(thermostatFanModes, ThermostatFanMode.Auto, ThermostatFanCurrentAction.On);
 
@@ -25,8 +29,8 @@ namespace Roomie.Common.HomeAutomation.Tests
                     {SetpointType.Heat, new FahrenheitTemperature(70)}
                 });
 
-            var thermostatModes = new[] { ThermostatMode.Auto, ThermostatMode.Cool, ThermostatMode.Heat, ThermostatMode.FanOnly, ThermostatMode.Off };
-            var thermostat = new ReadOnlyThermostatState(new FahrenheitTemperature(75), thermostatFan, thermostatSetpoints, thermostatModes, ThermostatMode.Cool, ThermostatCurrentAction.Cooling);
+            
+            var thermostat = new ReadOnlyThermostatState(new FahrenheitTemperature(75), thermostatCore, thermostatFan, thermostatSetpoints);
 
 
             var location = new DeviceLocation

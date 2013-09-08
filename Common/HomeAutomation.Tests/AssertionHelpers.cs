@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
@@ -79,11 +80,8 @@ namespace Roomie.Common.HomeAutomation.Tests
 
             AssertHelperHelper(one, two);
 
-            Assert.That(one.Mode, Is.EqualTo(two.Mode));
-            CollectionAssert.AreEquivalent(one.SupportedModes, two.SupportedModes);
-            Assert.That(one.CurrentAction, Is.EqualTo(two.CurrentAction));
-
             AssertTemperatureEqual(one.Temperature, two.Temperature);
+            AssertThermostatCoreEqual(one.CoreState, two.CoreState);
             AssertThermostatFanEqual(one.FanState, two.FanState);
             AssertThermostatSetpointsAreEqual(one.SetpointStates, two.SetpointStates);
         }
@@ -99,6 +97,20 @@ namespace Roomie.Common.HomeAutomation.Tests
 
             Assert.That(one.GetType(), Is.EqualTo(two.GetType()));
             Assert.That(one.Value, Is.EqualTo(two.Value));
+        }
+
+        public static void AssertThermostatCoreEqual(IThermostatCoreState one, IThermostatCoreState two)
+        {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
+            AssertHelperHelper(one, two);
+
+            Assert.That(one.Mode, Is.EqualTo(two.Mode));
+            CollectionAssert.AreEquivalent(one.SupportedModes, two.SupportedModes);
+            Assert.That(one.CurrentAction, Is.EqualTo(two.CurrentAction));
         }
 
         public static void AssertThermostatFanEqual(IThermostatFanState one, IThermostatFanState two)

@@ -50,9 +50,9 @@ namespace Roomie.Web.Persistence
                         Type = DeviceType.Thermostat,
                     };
                 thermostat.Thermostat.Temperature = new FahrenheitTemperature(75);
-                thermostat.Thermostat.Mode = ThermostatMode.Auto;
-                thermostat.Thermostat.SupportedModes = new[] { ThermostatMode.Heat, ThermostatMode.Cool, ThermostatMode.Auto, ThermostatMode.FanOnly, ThermostatMode.Off };
-                thermostat.Thermostat.CurrentAction = ThermostatCurrentAction.Cooling;
+                thermostat.Thermostat.Core.Mode = ThermostatMode.Auto;
+                thermostat.Thermostat.Core.SupportedModes = new[] { ThermostatMode.Heat, ThermostatMode.Cool, ThermostatMode.Auto, ThermostatMode.FanOnly, ThermostatMode.Off };
+                thermostat.Thermostat.Core.CurrentAction = ThermostatCurrentAction.Cooling;
                 thermostat.Thermostat.Fan.Mode = ThermostatFanMode.Auto;
                 thermostat.Thermostat.Fan.SupportedModes = new[] { ThermostatFanMode.Auto, ThermostatFanMode.On, };
                 thermostat.Thermostat.Fan.CurrentAction = ThermostatFanCurrentAction.On;

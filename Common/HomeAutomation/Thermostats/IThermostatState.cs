@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
@@ -9,12 +10,8 @@ namespace Roomie.Common.HomeAutomation.Thermostats
     {
         ITemperature Temperature { get; }
 
+        IThermostatCoreState CoreState { get; }
         IThermostatFanState FanState { get; }
-
-        IEnumerable<ThermostatMode> SupportedModes { get; }
-        ThermostatMode? Mode { get; }
-        ThermostatCurrentAction? CurrentAction { get; }
-
         ISetpointCollectionState SetpointStates { get; }
         
     }

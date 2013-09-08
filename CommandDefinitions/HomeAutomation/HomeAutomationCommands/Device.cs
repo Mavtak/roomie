@@ -60,9 +60,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             if (Type == DeviceType.Thermostat)
             {
                 Thermostat.PollTemperature();
-                Thermostat.PollCurrentAction();
-                Thermostat.PollMode();
-                Thermostat.PollSupportedModes();
+
+                if (Thermostat.Core != null)
+                {
+                    Thermostat.Core.PollCurrentAction();
+                    Thermostat.Core.PollMode();
+                    Thermostat.Core.PollSupportedModes();
+                }
 
                 if (Thermostat.Fan != null)
                 {

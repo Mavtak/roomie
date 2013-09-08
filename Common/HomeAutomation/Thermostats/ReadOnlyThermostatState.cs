@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
+using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
@@ -10,31 +9,27 @@ namespace Roomie.Common.HomeAutomation.Thermostats
     public class ReadOnlyThermostatState : IThermostatState
     {
         public ITemperature Temperature { get; private set; }
+        public IThermostatCoreState CoreState { get; private set; }
         public IThermostatFanState FanState { get; private set; }
-        public IEnumerable<ThermostatMode> SupportedModes { get; private set; }
-        public ThermostatMode? Mode { get; private set; }
-        public ThermostatCurrentAction? CurrentAction { get; private set; }
         public ISetpointCollectionState SetpointStates { get; private set; }
 
         public ReadOnlyThermostatState()
         {
         }
 
-        public ReadOnlyThermostatState(ITemperature temperature, IThermostatFanState fanState, ISetpointCollectionState setpointStates, IEnumerable<ThermostatMode> supportedModes, ThermostatMode mode, ThermostatCurrentAction currentAction)
+        public ReadOnlyThermostatState(ITemperature temperature, IThermostatCoreState coreState, IThermostatFanState fanState, ISetpointCollectionState setpointStates)
         {
             Temperature = temperature;
+            CoreState = CoreState;
             FanState = fanState;
             SetpointStates = setpointStates;
-            SupportedModes = supportedModes;
-            Mode = mode;
-            CurrentAction = currentAction;
         }
         public static ReadOnlyThermostatState CopyFrom(IThermostatState state)
         {
-            var supportedModes = new List<ThermostatMode>();
-            if (state.SupportedModes != null)
+            IThermostatCoreState coreState = null;
+            if (state.CoreState != null)
             {
-                supportedModes.AddRange(state.SupportedModes);
+                coreState = state.CoreState.Copy();
             }
 
             IThermostatFanState fanState = null;
@@ -52,10 +47,8 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             var result = new ReadOnlyThermostatState
             {
                 Temperature = state.Temperature,
+                CoreState = coreState,
                 FanState = fanState,
-                SupportedModes = supportedModes,
-                Mode = state.Mode,
-                CurrentAction = state.CurrentAction,
                 SetpointStates = setpoints
             };
 
@@ -66,9 +59,9 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         {
             var result = new ReadOnlyThermostatState
             {
+                CoreState = ReadOnlyThermostatCoreState.Empty(),
                 FanState = ReadOnlyThermostatFanState.Empty(),
                 SetpointStates = ReadOnlySetpointCollection.Empty(),
-                SupportedModes = new ThermostatMode[] {}
             };
 
             return result;
@@ -76,36 +69,18 @@ namespace Roomie.Common.HomeAutomation.Thermostats
 
         public static ReadOnlyThermostatState FromXElement(XElement element)
         {
-            ThermostatCurrentAction? currentAction = null;
-            var currentActionString = element.GetAttributeStringValue("CurrentAction");
-            if (currentActionString != null)
-            {
-                currentAction = currentActionString.ToThermostatCurrentAction();
-            }
-
-            ThermostatMode? mode = null;
-            var modeString = element.GetAttributeStringValue("Mode");
-            if (modeString != null)
-            {
-                mode = modeString.ToThermostatMode();
-            }
-
-            var supportedModes = new List<ThermostatMode>();
-            var supportedModesNode = element.Element("SupportedModes");
-            if (supportedModesNode != null)
-            {
-                foreach (var modeElement in supportedModesNode.Elements())
-                {
-                    var supportedMode = modeElement.Value.ToThermostatMode();
-                    supportedModes.Add(supportedMode);
-                }
-            }
-
             ITemperature temperature = null;
             var temperatureString = element.GetAttributeStringValue("Temperature");
             if (temperatureString != null)
             {
                 temperature = temperatureString.ToTemperature();
+            }
+
+            IThermostatCoreState coreState = null;
+            var coreStateNode = element.Element("ThermostatCoreState");
+            if (coreStateNode != null)
+            {
+                coreState = coreStateNode.ToThermostatCoreState();
             }
 
             IThermostatFanState fanState = null;
@@ -124,10 +99,8 @@ namespace Roomie.Common.HomeAutomation.Thermostats
 
             var result = new ReadOnlyThermostatState
             {
-                CurrentAction = currentAction,
-                Mode = mode,
-                SupportedModes = supportedModes,
                 Temperature = temperature,
+                CoreState = coreState,
                 FanState = fanState,
                 SetpointStates = setpoints
             };

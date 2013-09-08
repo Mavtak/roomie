@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
@@ -12,6 +13,24 @@ namespace Roomie.Web.Persistence.Models
     public class ThermostatModel : IThermostat
     {
         public ITemperature Temperature { get; set; }
+
+        public ThermostatCoreModel Core { get; private set; }
+        IThermostatCoreState IThermostatState.CoreState
+        {
+            get
+            {
+                return Core;
+            }
+        }
+
+        IThermostatCore IThermostat.Core
+        {
+            get
+            {
+                return Core;
+            }
+        }
+
         IThermostatFanState IThermostatState.FanState
         {
             get
@@ -27,8 +46,6 @@ namespace Roomie.Web.Persistence.Models
                 return Fan;
             }
         }
-        public IEnumerable<ThermostatMode> SupportedModes { get; set; }
-        public ThermostatCurrentAction? CurrentAction { get; set; }
         public ThermostatSetpointModel Setpoints { get; private set; }
         ISetpointCollection IThermostat.Setpoints
         {
@@ -45,17 +62,14 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public ThermostatMode? Mode { get; set; }
-
         private DeviceModel _device;
 
         public ThermostatModel(DeviceModel device)
         {
             _device = device;
 
-            //TODO: implement these
+            Core = new ThermostatCoreModel(_device);
             Fan = new ThermostatFanModel(_device);
-            SupportedModes = new List<ThermostatMode>();
             Setpoints = new ThermostatSetpointModel();
         }
 
@@ -87,12 +101,10 @@ namespace Roomie.Web.Persistence.Models
         internal void Update(IThermostatState data)
         {
             Temperature = data.Temperature;
-            CurrentAction = data.CurrentAction;
-            Mode = data.Mode;
-            
-            if (data.SupportedModes != null)
+
+            if (data.CoreState != null)
             {
-                SupportedModes = data.SupportedModes.ToList();
+                Core.Update(data.CoreState);
             }
 
             if (data.FanState != null)

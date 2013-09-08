@@ -1,4 +1,5 @@
 ﻿@using Roomie.Common.HomeAutomation.Thermostats
+@using Roomie.Common.HomeAutomation.Thermostats.Cores
 @using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 @using Roomie.Common.HomeAutomation.Thermostats.Fans;
 @model DeviceViewModel
@@ -29,7 +30,7 @@
         fanDescription = "--";
     }
     
-    var thermostatDescription = thermostat.DescribeJustThermostat();
+    var thermostatDescription = thermostat.Core.Describe();
     if (string.IsNullOrEmpty(thermostatDescription))
     {
         thermostatDescription = "--";
@@ -68,9 +69,9 @@
                     }
                     ))
     {@*
-    *@foreach (var mode in thermostat.SupportedModes??new ThermostatMode[]{})
+    *@foreach (var mode in thermostat.Core.SupportedModes??new ThermostatMode[]{})
       {@*
-          *@<div class="@("button" + ((thermostat.Mode == mode)?" activated":string.Empty))">@*
+          *@<div class="@("button" + ((thermostat.Core.Mode == mode)?" activated":string.Empty))">@*
               *@<button class="button" type="submit" name="mode" value="@mode">@mode</button>@*
           *@</div>@*
       *@}@*    

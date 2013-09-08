@@ -2,6 +2,7 @@
 using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
@@ -11,6 +12,16 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     internal class ZWaveThermostat : IThermostat
     {
         public ITemperature Temperature { get; private set; }
+
+        IThermostatCoreState IThermostatState.CoreState
+        {
+            get
+            {
+                return Core;
+            }
+        }
+        public IThermostatCore Core { get; private set; }
+
         IThermostatFanState IThermostatState.FanState
         {
             get
@@ -46,6 +57,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device = device;
             _thermostat = device.BackingObject as GeneralThermostatV2;
 
+            Core = new ZWaveThermostatCore(device);
             Fan = new ZWaveThermostatFan(device);
             SupportedModes = new List<ThermostatMode>();
             _setpoints = new ZWaveSetpointCollection(device);
@@ -60,30 +72,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         private void SetCallbacks()
         {
-            _thermostat.ThermostatModeChanged += (sender, args) =>
-                {
-                    var controlThinkMode = args.ThermostatMode;
-                    var roomieMode = controlThinkMode.ToRoomieType();
-
-                    Mode = roomieMode;
-
-                    IEventSource source = null;
-                    var @event = DeviceEvent.ThermostatModeChanged(_device, source);
-                    _device.AddEvent(@event);
-                };
-
-            _thermostat.ThermostatOperatingStateChanged += (sender, args) =>
-                {
-                    var controlThinkAction = args.ThermostatOperatingState;
-                    var roomieAction = controlThinkAction.ToRoomieType();
-
-                    CurrentAction = roomieAction;
-
-                    IEventSource source = null;
-                    var @event = DeviceEvent.ThermostatCurrentActionChanged(_device, source);
-                    _device.AddEvent(@event);
-                };
-
             _thermostat.ThermostatTemperatureChanged += (sender, args) =>
                 {
                     var controlThinkTemperature = args.ThermostatTemperature;
@@ -101,30 +89,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             var controlThinkTemperature = _device.DoDeviceOperation(() => _thermostat.ThermostatTemperature);
             Temperature = controlThinkTemperature.ToRoomieType();
-        }
-
-        public void PollCurrentAction()
-        {
-            var controlThinkCurrentAction = _device.DoDeviceOperation(() => _thermostat.ThermostatOperatingState);
-            CurrentAction = controlThinkCurrentAction.ToRoomieType();
-        }
-
-        public void PollMode()
-        {
-            var controlThinkMode = _device.DoDeviceOperation(() => _thermostat.ThermostatMode);
-            Mode = controlThinkMode.ToRoomieType();
-        }
-
-        public void PollSupportedModes()
-        {
-            var controlThinkModes = _device.DoDeviceOperation(() => _thermostat.SupportedThermostatModes);
-            SupportedModes = controlThinkModes.ToRoomieType();
-        }
-
-        public void SetMode(ThermostatMode mode)
-        {
-            var controlThinkMode = mode.ToControlThinkType().Value;
-            _device.DoDeviceOperation(() => _thermostat.ThermostatMode = controlThinkMode);
         }
     }
 }
