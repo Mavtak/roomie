@@ -15,73 +15,8 @@ namespace Roomie.Web.Persistence.Models
         public ITemperature Temperature { get; set; }
 
         public ThermostatCoreModel Core { get; private set; }
-        IThermostatCoreState IThermostatState.CoreState
-        {
-            get
-            {
-                return Core;
-            }
-        }
-        IThermostatCoreActions IThermostatActions.CoreActions
-        {
-            get
-            {
-                return Core;
-            }
-        }
-
-        IThermostatCore IThermostat.Core
-        {
-            get
-            {
-                return Core;
-            }
-        }
-
-        IThermostatFanState IThermostatState.FanState
-        {
-            get
-            {
-                return Fan;
-            }
-        }
         public ThermostatFanModel Fan { get; private set; }
-        IThermostatFan IThermostat.Fan
-        {
-            get
-            {
-                return Fan;
-            }
-        }
-        IThermostatFanActions IThermostatActions.FanActions
-        {
-            get
-            {
-                return Fan;
-            }
-        }
         public ThermostatSetpointModel Setpoints { get; private set; }
-        ISetpointCollection IThermostat.Setpoints
-        {
-            get
-            {
-                return Setpoints;
-            }
-        }
-        ISetpointCollectionState IThermostatState.SetpointStates
-        {
-            get
-            {
-                return Setpoints;
-            }
-        }
-        ISetpointCollectionActions IThermostatActions.SetpointActions
-        {
-            get
-            {
-                return Setpoints;
-            }
-        }
 
         private DeviceModel _device;
 
@@ -143,5 +78,86 @@ namespace Roomie.Web.Persistence.Models
                 }
             }
         }
+
+        #region IThermostatState definitions
+
+        IThermostatCoreState IThermostatState.CoreState
+        {
+            get
+            {
+                return Core;
+            }
+        }
+
+        IThermostatFanState IThermostatState.FanState
+        {
+            get
+            {
+                return Fan;
+            }
+        }
+
+        ISetpointCollectionState IThermostatState.SetpointStates
+        {
+            get
+            {
+                return Setpoints;
+            }
+        }
+
+        #endregion
+
+        #region IThermostatActions definitions
+
+        IThermostatCoreActions IThermostatActions.CoreActions
+        {
+            get
+            {
+                return Core;
+            }
+        }
+        IThermostatFanActions IThermostatActions.FanActions
+        {
+            get
+            {
+                return Fan;
+            }
+        }
+
+        ISetpointCollectionActions IThermostatActions.SetpointActions
+        {
+            get
+            {
+                return Setpoints;
+            }
+        }
+
+        #endregion
+
+        #region IThermostat definitions
+
+        IThermostatCore IThermostat.Core
+        {
+            get
+            {
+                return Core;
+            }
+        }
+        IThermostatFan IThermostat.Fan
+        {
+            get
+            {
+                return Fan;
+            }
+        }
+        ISetpointCollection IThermostat.Setpoints
+        {
+            get
+            {
+                return Setpoints;
+            }
+        }
+
+        #endregion
     }
 }
