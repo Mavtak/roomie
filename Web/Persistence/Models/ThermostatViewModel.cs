@@ -22,6 +22,13 @@ namespace Roomie.Web.Persistence.Models
                 return Core;
             }
         }
+        IThermostatCoreActions IThermostatActions.CoreActions
+        {
+            get
+            {
+                return Core;
+            }
+        }
 
         IThermostatCore IThermostat.Core
         {
@@ -46,6 +53,13 @@ namespace Roomie.Web.Persistence.Models
                 return Fan;
             }
         }
+        IThermostatFanActions IThermostatActions.FanActions
+        {
+            get
+            {
+                return Fan;
+            }
+        }
         public ThermostatSetpointModel Setpoints { get; private set; }
         ISetpointCollection IThermostat.Setpoints
         {
@@ -55,6 +69,13 @@ namespace Roomie.Web.Persistence.Models
             }
         }
         ISetpointCollectionState IThermostatState.SetpointStates
+        {
+            get
+            {
+                return Setpoints;
+            }
+        }
+        ISetpointCollectionActions IThermostatActions.SetpointActions
         {
             get
             {

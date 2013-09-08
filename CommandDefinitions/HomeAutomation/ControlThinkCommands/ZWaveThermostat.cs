@@ -20,9 +20,23 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 return Core;
             }
         }
+        IThermostatCoreActions IThermostatActions.CoreActions
+        {
+            get
+            {
+                return Core;
+            }
+        }
         public IThermostatCore Core { get; private set; }
 
         IThermostatFanState IThermostatState.FanState
+        {
+            get
+            {
+                return Fan;
+            }
+        }
+        IThermostatFanActions IThermostatActions.FanActions
         {
             get
             {
@@ -46,6 +60,13 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             get
             {
                 return _setpoints;
+            }
+        }
+        ISetpointCollectionActions IThermostatActions.SetpointActions
+        {
+            get
+            {
+                return Setpoints;
             }
         }
 
