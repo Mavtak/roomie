@@ -13,7 +13,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         public IThermostatFanState FanState { get; private set; }
         public ISetpointCollectionState SetpointStates { get; private set; }
 
-        public ReadOnlyThermostatState()
+        private ReadOnlyThermostatState()
         {
         }
 
@@ -26,30 +26,12 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         }
         public static ReadOnlyThermostatState CopyFrom(IThermostatState state)
         {
-            IThermostatCoreState coreState = null;
-            if (state.CoreState != null)
-            {
-                coreState = state.CoreState.Copy();
-            }
-
-            IThermostatFanState fanState = null;
-            if (state.FanState != null)
-            {
-                fanState = state.FanState.Copy();
-            }
-
-            ISetpointCollectionState setpoints = null;
-            if (state.SetpointStates != null)
-            {
-                setpoints = state.SetpointStates.Copy();
-            }
-
             var result = new ReadOnlyThermostatState
             {
                 Temperature = state.Temperature,
-                CoreState = coreState,
-                FanState = fanState,
-                SetpointStates = setpoints
+                CoreState = (state.CoreState == null) ? null : state.CoreState.Copy(),
+                FanState = (state.FanState == null) ? null : state.FanState.Copy(),
+                SetpointStates = (state.SetpointStates == null) ? null : state.SetpointStates.Copy(),
             };
 
             return result;
