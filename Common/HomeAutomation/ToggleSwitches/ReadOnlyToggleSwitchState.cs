@@ -7,7 +7,7 @@ namespace Roomie.Common.HomeAutomation.ToggleSwitches
     {
         public ToggleSwitchPower? Power { get; private set; }
 
-        public ReadOnlyToggleSwitchState()
+        private ReadOnlyToggleSwitchState()
         {
         }
 

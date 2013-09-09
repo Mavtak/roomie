@@ -17,7 +17,7 @@ namespace Roomie.Common.HomeAutomation
         public IDimmerSwitchState DimmerSwitchState { get; private set; }
         public IThermostatState ThermostatState { get; private set; }
 
-        public ReadOnlyDeviceState()
+        private ReadOnlyDeviceState()
         {
         }
 

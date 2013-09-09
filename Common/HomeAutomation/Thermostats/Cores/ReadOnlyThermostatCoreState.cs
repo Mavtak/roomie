@@ -10,7 +10,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats.Cores
         public ThermostatMode? Mode { get; private set; }
         public ThermostatCurrentAction? CurrentAction { get; private set; }
 
-        public ReadOnlyThermostatCoreState()
+        private ReadOnlyThermostatCoreState()
         {
         }
 

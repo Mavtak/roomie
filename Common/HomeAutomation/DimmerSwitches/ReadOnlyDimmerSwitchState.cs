@@ -7,7 +7,7 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
         public int? Power { get; private set; }
         public int? MaxPower { get; private set; }
 
-        public ReadOnlyDimmerSwitchState()
+        private ReadOnlyDimmerSwitchState()
         {
         }
 

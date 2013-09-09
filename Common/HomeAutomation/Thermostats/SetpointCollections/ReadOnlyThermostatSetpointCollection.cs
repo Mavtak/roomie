@@ -26,7 +26,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             }
         }
 
-        public ReadOnlyThermostatSetpointCollection()
+        private ReadOnlyThermostatSetpointCollection()
         {
             _setpoints = new Dictionary<ThermostatSetpointType, ITemperature>();
         }
