@@ -2,10 +2,10 @@
 
 namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {
-    public interface ISetpointCollectionActions
+    public interface IThermostatSetpointCollectionActions
     {
         void PollSupportedSetpoints();
         void PollSetpointTemperatures();
-        void SetSetpoint(SetpointType setpointType, ITemperature temperature);
+        void SetSetpoint(ThermostatSetpointType setpointType, ITemperature temperature);
     }
 }

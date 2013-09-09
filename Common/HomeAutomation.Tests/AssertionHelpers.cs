@@ -127,7 +127,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             Assert.That(one.CurrentAction, Is.EqualTo(two.CurrentAction));
         }
 
-        public static void AssertThermostatSetpointsAreEqual(ISetpointCollectionState one, ISetpointCollectionState two)
+        public static void AssertThermostatSetpointsAreEqual(IThermostatSetpointCollectionState one, IThermostatSetpointCollectionState two)
         {
             if (one == null && two == null)
             {

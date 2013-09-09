@@ -12,7 +12,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
 
         IThermostatCoreState CoreState { get; }
         IThermostatFanState FanState { get; }
-        ISetpointCollectionState SetpointStates { get; }
+        IThermostatSetpointCollectionState SetpointStates { get; }
         
     }
 }

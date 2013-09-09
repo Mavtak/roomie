@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         public IThermostatCore Core { get; private set; }
         public IThermostatFan Fan { get; private set; }
         private readonly ZWaveSetpointCollection _setpoints;
-        public ISetpointCollection Setpoints
+        public IThermostatSetpointCollection Setpoints
         {
             get
             {
@@ -83,7 +83,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        ISetpointCollectionState IThermostatState.SetpointStates
+        IThermostatSetpointCollectionState IThermostatState.SetpointStates
         {
             get
             {
@@ -110,7 +110,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        ISetpointCollectionActions IThermostatActions.SetpointActions
+        IThermostatSetpointCollectionActions IThermostatActions.SetpointActions
         {
             get
             {

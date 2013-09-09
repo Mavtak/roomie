@@ -11,7 +11,7 @@ namespace Roomie.Common.HomeAutomation.Tests.Thermostats
         [TestCaseSource("ValidInputs")]
         public void ItAcceptsWellFormedInput(string input)
         {
-            var result = SetpointTypeParser.IsValid(input);
+            var result = ThermostatSetpointTypeParser.IsValid(input);
 
             Assert.That(result, Is.True);
         }
@@ -19,7 +19,7 @@ namespace Roomie.Common.HomeAutomation.Tests.Thermostats
         [TestCaseSource("InvalidInputs")]
         public void ItRejectsMalformedInput(string input)
         {
-            var result = SetpointTypeParser.IsValid(input);
+            var result = ThermostatSetpointTypeParser.IsValid(input);
 
             Assert.That(result, Is.False);
         }
@@ -27,23 +27,23 @@ namespace Roomie.Common.HomeAutomation.Tests.Thermostats
         [TestCaseSource("ValidInputs")]
         public void ItDoesNotThrowExceptionsWhenParsingValidInput(string input)
         {
-            SetpointTypeParser.Parse(input);
+            ThermostatSetpointTypeParser.Parse(input);
         }
 
         [TestCaseSource("InvalidInputs")]
         [ExpectedException]
         public void ItThrowsExceptionsWhenParsingValidInput(string input)
         {
-            SetpointTypeParser.Parse(input);
+            ThermostatSetpointTypeParser.Parse(input);
         }
 
-        [TestCase("Heat", SetpointType.Heat)]
-        [TestCase("heat", SetpointType.Heat)]
-        [TestCase("Cool", SetpointType.Cool)]
-        [TestCase("cool", SetpointType.Cool)]
-        public void ItParsesValuesProperly(string input, SetpointType expected)
+        [TestCase("Heat", ThermostatSetpointType.Heat)]
+        [TestCase("heat", ThermostatSetpointType.Heat)]
+        [TestCase("Cool", ThermostatSetpointType.Cool)]
+        [TestCase("cool", ThermostatSetpointType.Cool)]
+        public void ItParsesValuesProperly(string input, ThermostatSetpointType expected)
         {
-            var actual = SetpointTypeParser.Parse(input);
+            var actual = ThermostatSetpointTypeParser.Parse(input);
 
             Assert.That(actual, Is.EqualTo(expected));
         }

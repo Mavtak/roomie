@@ -3,9 +3,9 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {
-    public interface ISetpointCollectionState
+    public interface IThermostatSetpointCollectionState
     {
-        ITemperature this[SetpointType setpoint] { get; }
-        IEnumerable<SetpointType> AvailableSetpoints { get; }
+        ITemperature this[ThermostatSetpointType setpoint] { get; }
+        IEnumerable<ThermostatSetpointType> AvailableSetpoints { get; }
     }
 }

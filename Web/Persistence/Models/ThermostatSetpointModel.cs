@@ -5,11 +5,11 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class ThermostatSetpointModel : ISetpointCollection
+    public class ThermostatSetpointModel : IThermostatSetpointCollection
     {
-        private Dictionary<SetpointType, ITemperature> _setpoints;
+        private Dictionary<ThermostatSetpointType, ITemperature> _setpoints;
  
-        public ITemperature this[SetpointType setpoint]
+        public ITemperature this[ThermostatSetpointType setpoint]
         {
             get
             {
@@ -17,7 +17,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public IEnumerable<SetpointType> AvailableSetpoints
+        public IEnumerable<ThermostatSetpointType> AvailableSetpoints
         {
             get
             {
@@ -27,7 +27,7 @@ namespace Roomie.Web.Persistence.Models
 
         public ThermostatSetpointModel()
         {
-            _setpoints = new Dictionary<SetpointType, ITemperature>();
+            _setpoints = new Dictionary<ThermostatSetpointType, ITemperature>();
         }
 
         public void PollSupportedSetpoints()
@@ -40,12 +40,12 @@ namespace Roomie.Web.Persistence.Models
             throw new NotImplementedException();
         }
 
-        public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
+        public void SetSetpoint(ThermostatSetpointType setpointType, ITemperature temperature)
         {
             throw new NotImplementedException();
         }
 
-        public void Add(SetpointType setpoint, ITemperature temperature)
+        public void Add(ThermostatSetpointType setpoint, ITemperature temperature)
         {
             _setpoints.Add(setpoint, temperature);
         }

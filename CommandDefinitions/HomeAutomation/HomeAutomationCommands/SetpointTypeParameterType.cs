@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public bool Validate(string value)
         {
-            var result = SetpointTypeParser.IsValid(value);
+            var result = ThermostatSetpointTypeParser.IsValid(value);
 
             return result;
         }

@@ -97,7 +97,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        ISetpointCollectionState IThermostatState.SetpointStates
+        IThermostatSetpointCollectionState IThermostatState.SetpointStates
         {
             get
             {
@@ -124,7 +124,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        ISetpointCollectionActions IThermostatActions.SetpointActions
+        IThermostatSetpointCollectionActions IThermostatActions.SetpointActions
         {
             get
             {
@@ -150,7 +150,7 @@ namespace Roomie.Web.Persistence.Models
                 return Fan;
             }
         }
-        ISetpointCollection IThermostat.Setpoints
+        IThermostatSetpointCollection IThermostat.Setpoints
         {
             get
             {

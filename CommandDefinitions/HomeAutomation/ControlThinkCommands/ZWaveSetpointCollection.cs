@@ -6,10 +6,10 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    internal class ZWaveSetpointCollection : ISetpointCollection
+    internal class ZWaveSetpointCollection : IThermostatSetpointCollection
     {
-        private Dictionary<SetpointType, ITemperature> _setpoints; 
-        public ITemperature this[SetpointType setpointType]
+        private Dictionary<ThermostatSetpointType, ITemperature> _setpoints; 
+        public ITemperature this[ThermostatSetpointType setpointType]
         {
             get
             {
@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        public IEnumerable<SetpointType> AvailableSetpoints
+        public IEnumerable<ThermostatSetpointType> AvailableSetpoints
         {
             get
             {
@@ -33,7 +33,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device = device;
             _thermostat = device.BackingObject as GeneralThermostatV2;
 
-            _setpoints = new Dictionary<SetpointType, ITemperature>();
+            _setpoints = new Dictionary<ThermostatSetpointType, ITemperature>();
 
             if (_thermostat == null)
             {
@@ -60,7 +60,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             };
         }
 
-        internal void Update(SetpointType setpointType, ITemperature temperature)
+        internal void Update(ThermostatSetpointType setpointType, ITemperature temperature)
         {
             if (_setpoints.ContainsKey(setpointType))
             {
@@ -95,7 +95,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        public void SetSetpoint(SetpointType setpointType, ITemperature temperature)
+        public void SetSetpoint(ThermostatSetpointType setpointType, ITemperature temperature)
         {
             var controlThinkSetpointType = setpointType.ToControlThinkType().Value;
             var controlThinkTemperature = temperature.ToControlThinkType().Value;

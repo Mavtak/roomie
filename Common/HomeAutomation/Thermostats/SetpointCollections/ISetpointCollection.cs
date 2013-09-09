@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {
-    public interface ISetpointCollection : ISetpointCollectionState, ISetpointCollectionActions
+    public interface IThermostatSetpointCollection : IThermostatSetpointCollectionState, IThermostatSetpointCollectionActions
     {
     }
 }

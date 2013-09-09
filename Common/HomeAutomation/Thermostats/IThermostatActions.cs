@@ -11,6 +11,6 @@ namespace Roomie.Common.HomeAutomation.Thermostats
 
         IThermostatCoreActions CoreActions { get; }
         IThermostatFanActions FanActions { get; }
-        ISetpointCollectionActions SetpointActions { get; }
+        IThermostatSetpointCollectionActions SetpointActions { get; }
     }
 }

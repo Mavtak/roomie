@@ -23,10 +23,10 @@ namespace Roomie.Common.HomeAutomation.Tests
             var thermostatFanModes = new[] { ThermostatFanMode.Auto, ThermostatFanMode.On };
             var thermostatFan = new ReadOnlyThermostatFanState(thermostatFanModes, ThermostatFanMode.Auto, ThermostatFanCurrentAction.On);
 
-            var thermostatSetpoints = new ReadOnlySetpointCollection(new Dictionary<SetpointType, ITemperature>
+            var thermostatSetpoints = new ReadOnlyThermostatSetpointCollection(new Dictionary<ThermostatSetpointType, ITemperature>
                 {
-                    {SetpointType.Cool, new FahrenheitTemperature(74)},
-                    {SetpointType.Heat, new FahrenheitTemperature(70)}
+                    {ThermostatSetpointType.Cool, new FahrenheitTemperature(74)},
+                    {ThermostatSetpointType.Heat, new FahrenheitTemperature(70)}
                 });
 
             

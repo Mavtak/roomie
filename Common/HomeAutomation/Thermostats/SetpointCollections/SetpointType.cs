@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {
-    public enum SetpointType
+    public enum ThermostatSetpointType
     {
         Heat,
         Cool

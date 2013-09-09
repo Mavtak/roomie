@@ -7,14 +7,14 @@ using Roomie.Common.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {
-    public static class SetpointCollectionExtensions
+    public static class ThermostatSetpointCollectionExtensions
     {
-        public static ReadOnlySetpointCollection Copy(this ISetpointCollectionState source)
+        public static ReadOnlyThermostatSetpointCollection Copy(this IThermostatSetpointCollectionState source)
         {
-            return ReadOnlySetpointCollection.CopyFrom(source);
+            return ReadOnlyThermostatSetpointCollection.CopyFrom(source);
         }
 
-        public static string Describe(this ISetpointCollectionState state)
+        public static string Describe(this IThermostatSetpointCollectionState state)
         {
             var result = new StringBuilder();
             
@@ -56,7 +56,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             return result.ToString();
         }
 
-        public static Dictionary<SetpointType, ITemperature> ToDictionary(this ISetpointCollectionState state)
+        public static Dictionary<ThermostatSetpointType, ITemperature> ToDictionary(this IThermostatSetpointCollectionState state)
         {
             if (state == null)
             {
@@ -75,7 +75,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             return result;
         }
 
-        public static XElement ToXElement(this ISetpointCollectionState state, string nodeName = "Setpoints")
+        public static XElement ToXElement(this IThermostatSetpointCollectionState state, string nodeName = "Setpoints")
         {
             var result = new XElement(nodeName);
 
@@ -96,9 +96,9 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             return result;
         }
 
-        public static ReadOnlySetpointCollection ToSetpoints(this XElement element)
+        public static ReadOnlyThermostatSetpointCollection ToSetpoints(this XElement element)
         {
-            return ReadOnlySetpointCollection.FromXElement(element);
+            return ReadOnlyThermostatSetpointCollection.FromXElement(element);
         }
     }
 }

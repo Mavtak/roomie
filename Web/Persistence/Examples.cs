@@ -56,8 +56,8 @@ namespace Roomie.Web.Persistence
                 thermostat.Thermostat.Fan.Mode = ThermostatFanMode.Auto;
                 thermostat.Thermostat.Fan.SupportedModes = new[] { ThermostatFanMode.Auto, ThermostatFanMode.On, };
                 thermostat.Thermostat.Fan.CurrentAction = ThermostatFanCurrentAction.On;
-                thermostat.Thermostat.Setpoints.Add(SetpointType.Cool, new FahrenheitTemperature(74));
-                thermostat.Thermostat.Setpoints.Add(SetpointType.Heat, new FahrenheitTemperature(70));
+                thermostat.Thermostat.Setpoints.Add(ThermostatSetpointType.Cool, new FahrenheitTemperature(74));
+                thermostat.Thermostat.Setpoints.Add(ThermostatSetpointType.Heat, new FahrenheitTemperature(70));
 
                 var noDataThermostat = new DeviceModel
                     {

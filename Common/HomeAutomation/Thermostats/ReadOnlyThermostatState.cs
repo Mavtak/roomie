@@ -11,13 +11,13 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         public ITemperature Temperature { get; private set; }
         public IThermostatCoreState CoreState { get; private set; }
         public IThermostatFanState FanState { get; private set; }
-        public ISetpointCollectionState SetpointStates { get; private set; }
+        public IThermostatSetpointCollectionState SetpointStates { get; private set; }
 
         private ReadOnlyThermostatState()
         {
         }
 
-        public ReadOnlyThermostatState(ITemperature temperature, IThermostatCoreState coreState, IThermostatFanState fanState, ISetpointCollectionState setpointStates)
+        public ReadOnlyThermostatState(ITemperature temperature, IThermostatCoreState coreState, IThermostatFanState fanState, IThermostatSetpointCollectionState setpointStates)
         {
             Temperature = temperature;
             CoreState = CoreState;
@@ -43,7 +43,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             {
                 CoreState = ReadOnlyThermostatCoreState.Empty(),
                 FanState = ReadOnlyThermostatFanState.Empty(),
-                SetpointStates = ReadOnlySetpointCollection.Empty(),
+                SetpointStates = ReadOnlyThermostatSetpointCollection.Empty(),
             };
 
             return result;
@@ -72,7 +72,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 fanState = fanStateNode.ToThermostatFanState();
             }
 
-            ISetpointCollectionState setpoints = null;
+            IThermostatSetpointCollectionState setpoints = null;
             var setpointsNode = element.Element("Setpoints");
             if (setpointsNode != null)
             {

@@ -8,6 +8,6 @@ namespace Roomie.Common.HomeAutomation.Thermostats
     {
         IThermostatCore Core { get; }
         IThermostatFan Fan { get; }
-        ISetpointCollection Setpoints { get; }
+        IThermostatSetpointCollection Setpoints { get; }
     }
 }

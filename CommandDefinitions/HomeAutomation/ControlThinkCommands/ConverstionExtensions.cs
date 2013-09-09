@@ -19,17 +19,17 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     //TODO: handle econ types
     internal static class ConverstionExtensions
     {
-        public static ControlThinkSetpointType? ToControlThinkType(this SetpointType input)
+        public static ControlThinkSetpointType? ToControlThinkType(this ThermostatSetpointType input)
         {
             ControlThinkSetpointType? result;
 
             switch (input)
             {
-                case SetpointType.Heat:
+                case ThermostatSetpointType.Heat:
                     result = ControlThinkSetpointType.Heating1;
                     break;
 
-                case SetpointType.Cool:
+                case ThermostatSetpointType.Cool:
                     result = ControlThinkSetpointType.Cooling1;
                     break;
 
@@ -41,9 +41,9 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             return result;
         }
 
-        public static SetpointType? ToRoomieType(this ControlThinkSetpointType input)
+        public static ThermostatSetpointType? ToRoomieType(this ControlThinkSetpointType input)
         {
-            SetpointType? result;
+            ThermostatSetpointType? result;
 
             //TODO: improve this (with more Roomie types?)
 
@@ -52,12 +52,12 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 case ControlThinkSetpointType.Heating1:
                 case ControlThinkSetpointType.HeatingEcon:
                 case ControlThinkSetpointType.AwayHeating:
-                    result = SetpointType.Heat;
+                    result = ThermostatSetpointType.Heat;
                     break;
 
                 case ControlThinkSetpointType.Cooling1:
                 case ControlThinkSetpointType.CoolingEcon:
-                    result = SetpointType.Cool;
+                    result = ThermostatSetpointType.Cool;
                     break;
 
                 default:
@@ -68,7 +68,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             return result;
         }
 
-        public static IEnumerable<SetpointType> ToRoomieType(this IEnumerable<ControlThinkSetpointType> input)
+        public static IEnumerable<ThermostatSetpointType> ToRoomieType(this IEnumerable<ControlThinkSetpointType> input)
         {
             var result = input.Select(x => x.ToRoomieType()).NotNull().Distinct();
 
