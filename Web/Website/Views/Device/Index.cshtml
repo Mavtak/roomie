@@ -12,9 +12,19 @@
     @Html.Partial("Partials/BotMessage/Empty")
 }
 else
-{
+  {
+    string lastLocation = null;
     foreach (var device in Model)
     {
+        var thisLocation = ((device.Location == null) ? null : device.Location.Name) ?? string.Empty;
+
+        if (lastLocation == null || !lastLocation.Equals(thisLocation, StringComparison.InvariantCultureIgnoreCase))
+        {@*
+            *@<h2>@thisLocation</h2>@*
+        *@}
+
+        lastLocation = thisLocation;
+        
         var deviceViewModel = new DeviceViewModel(device, Url);
         
         @Html.Partial(
