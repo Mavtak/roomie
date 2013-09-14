@@ -8,24 +8,15 @@ namespace Roomie.Web.Persistence.Helpers
     {
         int IComparer<DeviceModel>.Compare(DeviceModel x, DeviceModel y)
         {
-            if (x.Location != null && !String.IsNullOrWhiteSpace(x.Location.Name)
-                && y.Location != null && !String.IsNullOrWhiteSpace(y.Location.Name))
+            int result = x.Location.CompareByParts(y.Location);
+            if (result != 0)
             {
-                if (x.Location.Name != y.Location.Name)
-                {
-                    return x.Location.Name.CompareTo(y.Location.Name);
-                }
-            }
-            else if (x.Location != null && !String.IsNullOrWhiteSpace(x.Location.Name))
-            {
-                return -1;
-            }
-            else if (y.Location != null && !String.IsNullOrWhiteSpace(y.Location.Name))
-            {
-                return 1;
+                return result;
             }
 
-            return (x.Name ?? String.Empty).CompareTo(y.Name ?? String.Empty);
+            result = string.Compare(x.Name ?? String.Empty, y.Name ?? String.Empty, StringComparison.InvariantCultureIgnoreCase);
+
+            return result;
         }
     }
 }

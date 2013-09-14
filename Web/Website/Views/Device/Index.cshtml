@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Roomie.Web.Persistence.Models.DeviceModel>
+﻿@using Roomie.Web.Persistence.Helpers
+@model IEnumerable<Roomie.Web.Persistence.Models.DeviceModel>
 @{
     ViewBag.Title = "Devices";
 }@*
@@ -13,17 +14,20 @@
 }
 else
   {
-    string lastLocation = null;
+    DeviceLocationModel lastLocation = null;
     foreach (var device in Model)
     {
-        var thisLocation = ((device.Location == null) ? null : device.Location.Name) ?? string.Empty;
+        if (lastLocation.CompareByParts(device.Location) != 0)
+        {
+            var locationParts = device.Location.GetParts();
+            if (locationParts.Length > 0)
+            {
+                var headerNumber = locationParts.Length + 1;
+                @Html.Raw("<h" + headerNumber + ">" + locationParts[locationParts.Length - 1] + "</h" + headerNumber + ">");
+            }
+        }
 
-        if (lastLocation == null || !lastLocation.Equals(thisLocation, StringComparison.InvariantCultureIgnoreCase))
-        {@*
-            *@<h2>@thisLocation</h2>@*
-        *@}
-
-        lastLocation = thisLocation;
+        lastLocation = device.Location;
         
         var deviceViewModel = new DeviceViewModel(device, Url);
         

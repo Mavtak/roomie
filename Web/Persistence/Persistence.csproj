@@ -59,6 +59,7 @@
     <Compile Include="Database\IRoomieEntitySet.cs" />
     <Compile Include="Examples.cs" />
     <Compile Include="Helpers\DeviceModelExtensions.cs" />
+    <Compile Include="Helpers\LocationModelExtensions.cs" />
     <Compile Include="Helpers\RoomieDatabaseHelpers.cs" />
     <Compile Include="Helpers\DeviceSort.cs" />
     <Compile Include="Helpers\NetworkModelExtensions.cs" />
