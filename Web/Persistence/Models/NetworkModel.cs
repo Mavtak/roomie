@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using BaseNetwork = Roomie.Common.HomeAutomation.Network;
+using System.Linq;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class NetworkModel : BaseNetwork, IHasDivId
+    public class NetworkModel : INetwork, IHasDivId
     {
         [Key]
         public int Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
         
         public virtual UserModel Owner { get; set; }
         //public string Address { get; set; }
@@ -18,9 +21,8 @@ namespace Roomie.Web.Persistence.Models
         public virtual ComputerModel AttatchedComputer { get; set; }
 
         public NetworkModel()
-            : base(null)
         {
-            base.devices = new Roomie.Common.HomeAutomation.DeviceCollection(this);
+            Devices = new List<DeviceModel>();
 
         }
 
@@ -71,7 +73,8 @@ namespace Roomie.Web.Persistence.Models
                     && (AttatchedComputer.IsConnected == true);
             }
         }
-
+        
+        
         public virtual ICollection<DeviceModel> Devices { get; set; }
 
         #region Object overrides
@@ -157,5 +160,42 @@ namespace Roomie.Web.Persistence.Models
         }
 
         #endregion
+
+        #region INetworkDevice
+
+        IEnumerable<IDevice> INetwork.Devices
+        {
+            get
+            {
+                return Devices;
+            }
+        }
+
+        #endregion
+
+        #region INetworkState
+
+        IEnumerable<IDeviceState> INetworkState.DeviceStates
+        {
+            get
+            {
+                return Devices;
+            }
+        }
+
+        #endregion
+
+        #region INetworkDeviceActions
+
+        public IEnumerable<IDeviceActions> DeviceActions
+        {
+            get
+            {
+                return Devices;
+            }
+        }
+
+        #endregion
+
     }
 }

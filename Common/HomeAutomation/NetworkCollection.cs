@@ -6,21 +6,21 @@ using Roomie.Common.HomeAutomation.Exceptions;
 namespace Roomie.Common.HomeAutomation
 {
     //TODO: make it an ICollection or something?
-    public abstract class NetworkCollection : IEnumerable<Network>
+    public abstract class NetworkCollection : IEnumerable<INetwork>
     {
-        private List<Network> networks;
+        private List<INetwork> networks;
 
         protected NetworkCollection()
         {
-            this.networks = new List<Network>();
+            this.networks = new List<INetwork>();
         }
 
         #region ICollection kind of things
-        public void Add(Network network)
+        public void Add(INetwork network)
         {
             networks.Add(network);
         }
-        public Network this[string name]
+        public INetwork this[string name]
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Roomie.Common.HomeAutomation
                 }                
             }
         }
-        public Network this[int index]
+        public INetwork this[int index]
         {
             get
             {
@@ -72,7 +72,7 @@ namespace Roomie.Common.HomeAutomation
         }
 
         //TODO: fix everythign about this method
-        public IDevice GetDevice(string address, Network defaultNetwork = null)
+        public IDevice GetDevice(string address, INetwork defaultNetwork = null)
         {
             //string use network location
             string networkLocation;
@@ -171,7 +171,7 @@ namespace Roomie.Common.HomeAutomation
 
 
         #region IEnumerable<Network> implementation
-        IEnumerator<Network> IEnumerable<Network>.GetEnumerator()
+        IEnumerator<INetwork> IEnumerable<INetwork>.GetEnumerator()
         {
             return networks.GetEnumerator();
         }

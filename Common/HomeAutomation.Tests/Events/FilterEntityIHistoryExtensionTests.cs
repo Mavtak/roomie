@@ -4,7 +4,6 @@ using Roomie.Common.HomeAutomation.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Roomie.Common.HomeAutomation.Tests.Events
 {
@@ -12,20 +11,20 @@ namespace Roomie.Common.HomeAutomation.Tests.Events
     {
         private Mock<IHistory<IEvent>> _historyMock;
         private IHistory<IEvent> _history;
-        private Dictionary<Device, int> _devices;
+        private Dictionary<IDevice, int> _devices;
         private List<IEvent> _events;
 
         [SetUp]
         public void SetUp()
         {
-            _devices = new Dictionary<Device, int>
+            _devices = new Dictionary<IDevice, int>();
+
+            for (var i = 0; i < 5; i++)
             {
-                {new DeviceFake("Device 1"), 0},
-                {new DeviceFake("Device 2"), 0},
-                {new DeviceFake("Device 3"), 0},
-                {new DeviceFake("Device 4"), 0},
-                {new DeviceFake("Device 5"), 0}
-            };
+                var device = NewDevice("Device " + i);
+
+                _devices.Add(device, 0);
+            }
 
             _events = Utilities.GenerateEvents<IEvent>(e =>
             {
@@ -56,7 +55,7 @@ namespace Roomie.Common.HomeAutomation.Tests.Events
         [Test]
         public void ForDeviceWorksWhenThereShouldBeNoResults()
         {
-            var device = new DeviceFake("Not in history");
+            var device = NewDevice("Not in history");
             var results = _history.FilterEntity(device);
 
             CollectionAssert.IsEmpty(results);
@@ -74,12 +73,20 @@ namespace Roomie.Common.HomeAutomation.Tests.Events
         public void NullDevicesAreSearchableToo()
         {
             var eventWithNullDeviceMock = new Mock<IEvent>();
-            eventWithNullDeviceMock.SetupGet(x => x.Entity).Returns((DeviceFake)null);
+            eventWithNullDeviceMock.SetupGet(x => x.Entity).Returns((IDevice)null);
            _events.Add(eventWithNullDeviceMock.Object);
 
             var results = _history.FilterEntity(null);
 
             Assert.That(results.Count(), Is.EqualTo(1));
+        }
+
+        private IDevice NewDevice(string name)
+        {
+            var device = new Mock<IDevice>();
+            device.SetupGet(x => x.Name).Returns(name);
+
+            return device.Object;
         }
     }
 }

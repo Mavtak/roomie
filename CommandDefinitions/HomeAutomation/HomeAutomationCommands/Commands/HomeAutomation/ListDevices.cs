@@ -43,7 +43,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             interpreter.WriteEvent(tableBuilder.StartOfTable(addressLabel, typeLabel, connectedLabel, statusLabel));
 
-            foreach (Device device in network.Devices)
+            foreach (var device in network.Devices)
             {
                 var address = device.BuildVirtualAddress(false, false);
 

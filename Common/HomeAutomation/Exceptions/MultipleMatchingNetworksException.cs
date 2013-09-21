@@ -8,7 +8,7 @@ namespace Roomie.Common.HomeAutomation.Exceptions
     [Serializable]
     public class MultipleMatchingNetworksException : HomeAutomationException
     {
-        public MultipleMatchingNetworksException(string address, IEnumerable<Network> networks, Exception innerException = null)
+        public MultipleMatchingNetworksException(string address, IEnumerable<INetwork> networks, Exception innerException = null)
             : base(buildMessage(address, networks), innerException)
         {
             //TODO: is this bad to do?  Security?
@@ -16,7 +16,7 @@ namespace Roomie.Common.HomeAutomation.Exceptions
             this.Data.Add("Networks", networks);
         }
 
-        private static string buildMessage(string address, IEnumerable<Network> networks)
+        private static string buildMessage(string address, IEnumerable<INetwork> networks)
         {
             StringBuilder result = new StringBuilder();
 

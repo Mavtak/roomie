@@ -1,28 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Events;
+using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Common.ScriptingLanguage;
-using BaseDevice = Roomie.Common.HomeAutomation.Device;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
-    public abstract class Device : BaseDevice
+    public abstract class Device : IDevice
     {
         //TODO: Create LastPolled dealy?
         //TODO: add public access for Network
 
         public List<DeviceEventAction> DeviceEventActions { get; private set; }
 
-        private new Network Network
-        {
-            get
-            {
-                //TODO: this isn't so great
-                return base.Network as Network;
-            }
-        }
+        public Network Network { get; private set; }
 
         private HomeAutomationNetworkContext Context
         {
@@ -33,12 +27,12 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         }
 
         protected Device(Network network, DeviceType type = null, string name = null, ILocation location = null)
-            :base(location??new Location(), network)
         {
-            base.Network = network;
-            this.Type = type??DeviceType.Unknown;
-            this.Name = name;
-            this.IsConnected = null;
+            Network = network;
+            Location = location ?? new Location();
+            Type = type ?? DeviceType.Unknown;
+            Name = name;
+            IsConnected = null;
 
             DeviceEventActions = new List<DeviceEventAction>();
         }
@@ -183,6 +177,103 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             return this.BuildVirtualAddress(true, false);
         }
+
+
+        #region IDevice
+
+        INetwork IDevice.Network
+        {
+            get
+            {
+                return Network;
+            }
+        }
+
+        public abstract IToggleSwitch ToggleSwitch { get; }
+        public abstract IDimmerSwitch DimmerSwitch { get; }
+        public abstract IThermostat Thermostat { get; }
+
+        public void Update(IDeviceState state)
+        {
+            Name = state.Name;
+            Address = state.Address;
+            Location.Update(state.Location);
+            IsConnected = state.IsConnected;
+            Type = state.Type;
+            DimmerSwitch.Update(state.DimmerSwitchState);
+            //TODO: handle thermostat state and such
+        }
+
+        #endregion
+
+        #region IDeviceState
+
+        
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public ILocation Location { get; private set; }
+        public DeviceType Type { get; set; }
+        public bool? IsConnected { get; set; }
+
+        INetworkState IDeviceState.NetworkState
+        {
+            get
+            {
+                return Network;
+            }
+        }
+
+        IToggleSwitchState IDeviceState.ToggleSwitchState
+        {
+            get
+            {
+                return ToggleSwitch;
+            }
+        }
+        IDimmerSwitchState IDeviceState.DimmerSwitchState
+        {
+            get
+            {
+                return DimmerSwitch;
+            }
+        }
+        IThermostatState IDeviceState.ThermostatState
+        {
+            get
+            {
+                return Thermostat;
+            }
+        }
+
+        #endregion
+
+        #region IDeviceActions
+
+        IToggleSwitchActions IDeviceActions.ToggleSwitchActions
+        {
+            get
+            {
+                return ToggleSwitch;
+            }
+        }
+
+        IDimmerSwitchActions IDeviceActions.DimmerSwitchActions
+        {
+            get
+            {
+                return DimmerSwitch;
+            }
+        }
+
+        IThermostatActions IDeviceActions.ThermostatActions
+        {
+            get
+            {
+                return Thermostat;
+            }
+        }
+
+        #endregion
 
     }
 }

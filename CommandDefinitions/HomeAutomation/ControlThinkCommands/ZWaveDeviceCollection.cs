@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    internal class ZWaveDeviceCollection : DeviceCollection
+    internal class ZWaveDeviceCollection : IEnumerable<ZWaveDevice>
     {
         private Dictionary<ControlThink.ZWave.Devices.ZWaveDevice, ZWaveDevice> backingDeviceIndex;
 
         public ZWaveDeviceCollection(ZWaveNetwork network)
-            : base(network)
         {
             backingDeviceIndex = new Dictionary<global::ControlThink.ZWave.Devices.ZWaveDevice, ZWaveDevice>();
         }
@@ -26,17 +26,26 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        protected override void DeviceAdded(Device device)
+        public void Add(Device device)
         {
             var zWaveDevice = (ZWaveDevice)device;
             backingDeviceIndex.Add(zWaveDevice.BackingObject, zWaveDevice);
         }
 
-        protected override void DeviceRemoved(Device device)
+        public void Remove(Device device)
         {
             var zWaveDevice = (ZWaveDevice)device;
             backingDeviceIndex.Remove(zWaveDevice.BackingObject);
         }
 
+        public IEnumerator<ZWaveDevice> GetEnumerator()
+        {
+            return backingDeviceIndex.Values.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }   

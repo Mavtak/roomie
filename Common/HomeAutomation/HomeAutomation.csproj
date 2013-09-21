@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeviceStateCollectionExtensions.cs" />
     <Compile Include="DeviceStateExtensions.cs" />
     <Compile Include="DimmerSwitches\IDimmerSwitchActions.cs" />
     <Compile Include="DimmerSwitches\IDimmerSwitchState.cs" />
@@ -79,9 +80,15 @@
     <Compile Include="IDeviceState.cs" />
     <Compile Include="IHasName.cs" />
     <Compile Include="ILocation.cs" />
+    <Compile Include="INetwork.cs" />
+    <Compile Include="INetworkActions.cs" />
+    <Compile Include="INetworkState.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationExtensions.cs" />
+    <Compile Include="NetworkExtensions.cs" />
+    <Compile Include="NetworkStateExtensions.cs" />
     <Compile Include="ReadOnlyDeviceState.cs" />
+    <Compile Include="ReadOnlyNetworkState.cs" />
     <Compile Include="Thermostats\Cores\IThermostatCoreActions.cs" />
     <Compile Include="Thermostats\Cores\IThermostatCoreState.cs" />
     <Compile Include="Thermostats\Cores\IThermostatCore.cs" />
@@ -121,8 +128,6 @@
     <Compile Include="ToggleSwitches\ToggleSwitchPowerParser.cs" />
     <Compile Include="VirtualAddress.cs" />
     <Compile Include="Common.cs" />
-    <Compile Include="Device.cs" />
-    <Compile Include="DeviceCollection.cs" />
     <Compile Include="DeviceType.cs" />
     <Compile Include="Exceptions\DeviceNotFoundException.cs" />
     <Compile Include="Exceptions\HomeAutomationException.cs" />
@@ -132,7 +137,6 @@
     <Compile Include="Exceptions\NoMatchingDeviceException.cs" />
     <Compile Include="Exceptions\NoMatchingNetworkException.cs" />
     <Compile Include="HomeAutomationEntity.cs" />
-    <Compile Include="Network.cs" />
     <Compile Include="NetworkCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />

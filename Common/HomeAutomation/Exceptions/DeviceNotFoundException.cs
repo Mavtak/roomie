@@ -9,7 +9,7 @@ namespace Roomie.Common.HomeAutomation.Exceptions
             : base("Home Automation Device \"" + deviceName + "\" not found.")
         { }
 
-        public DeviceNotFoundException(Device device)
+        public DeviceNotFoundException(IDevice device)
             : this(device.Name)
         { }
     }

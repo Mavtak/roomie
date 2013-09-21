@@ -7,7 +7,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 {
     public class SyncWithCloud : HomeAutomationNetworkCommand
     {
-        private Message buildRequest(Network network)
+        private Message buildRequest(INetwork network)
         {
             var message = new Message();
             message.Values.Add("Action", "SyncHomeAutomationNetwork");
@@ -42,9 +42,9 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
                 string networkAddress = deviceElement.Attribute("Address").Value;
                 
-                if (network.Devices.Contains(networkAddress))
+                if (network.Devices.ContainsAddress(networkAddress))
                 {
-                    var device = (Device)network.Devices[networkAddress];
+                    var device = network.Devices.GetDevice(networkAddress);
 
                     if (deviceElement.Attribute("Name") != null)
                     {

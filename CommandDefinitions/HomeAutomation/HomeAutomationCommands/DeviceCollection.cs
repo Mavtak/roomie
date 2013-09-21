@@ -1,43 +1,42 @@
-﻿using Roomie.Common.HomeAutomation;
-using BaseDeviceCollection = Roomie.Common.HomeAutomation.DeviceCollection;
+﻿//using Roomie.Common.HomeAutomation;
 
-namespace Roomie.CommandDefinitions.HomeAutomationCommands
-{
-    //TODO: replace this godawful class
-    public class DeviceCollection : BaseDeviceCollection
-    {
+//namespace Roomie.CommandDefinitions.HomeAutomationCommands
+//{
+//    //TODO: replace this godawful class
+//    public class DeviceCollection : BaseDeviceCollection
+//    {
 
-        public DeviceCollection(Network network)
-            : base(network)
-        { }
+//        public DeviceCollection(Network network)
+//            : base(network)
+//        { }
 
-        public override void Add(IDevice device)
-        {
-            lock (this)
-            {
-                base.Add(device);
+//        public override void Add(IDevice device)
+//        {
+//            lock (this)
+//            {
+//                base.Add(device);
 
-                DeviceAdded((Device)device);
-            }
-        }
+//                DeviceAdded((Device)device);
+//            }
+//        }
 
-        //optionally override to include more computations on add
-        protected virtual void DeviceAdded(Device device)
-        { }
+//        //optionally override to include more computations on add
+//        protected virtual void DeviceAdded(Device device)
+//        { }
 
-        public void Remove(Device device)
-        {
-            lock (this)
-            {
-                devices.Remove(device);
+//        public void Remove(Device device)
+//        {
+//            lock (this)
+//            {
+//                devices.Remove(device);
 
-                DeviceRemoved(device);
-            }
-        }
+//                DeviceRemoved(device);
+//            }
+//        }
 
-        //optionally override to include more computations on remove
-        protected virtual void DeviceRemoved(Device device)
-        { }
+//        //optionally override to include more computations on remove
+//        protected virtual void DeviceRemoved(Device device)
+//        { }
 
-    }
-}
+//    }
+//}

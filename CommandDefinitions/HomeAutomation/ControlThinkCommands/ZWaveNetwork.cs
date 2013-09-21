@@ -14,7 +14,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         public ZWaveNetwork(HomeAutomationNetworkContext context)
             : base(context)
         {
-            this.ZWaveController = new global::ControlThink.ZWave.ZWaveController();
+            ZWaveController = new global::ControlThink.ZWave.ZWaveController();
             this.Devices = new ZWaveDeviceCollection(this);
             base.Devices = this.Devices;
 

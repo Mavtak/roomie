@@ -10,7 +10,7 @@ namespace Roomie.Common.HomeAutomation
         string Address { get; }
         ILocation Location { get; }
         //TODO: convert to interface
-        Network Network { get; }
+        INetworkState NetworkState { get; }
         bool? IsConnected { get; }
         DeviceType Type { get; }
         IToggleSwitchState ToggleSwitchState { get; }

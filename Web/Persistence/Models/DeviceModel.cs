@@ -10,7 +10,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class DeviceModel : IDeviceState, IHasDivId
+    public class DeviceModel : IDevice, IHasDivId
     {
         [Key]
         public int Id { get; set; }
@@ -138,6 +138,55 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        #region IDevice
+
+        [NotMapped]
+        INetwork IDevice.Network
+        {
+            get
+            {
+                return Network;
+            }
+        }
+
+        [NotMapped]
+        IToggleSwitch IDevice.ToggleSwitch
+        {
+            get
+            {
+                return ToggleSwitch;
+            }
+        }
+
+        [NotMapped]
+        IDimmerSwitch IDevice.DimmerSwitch
+        {
+            get
+            {
+                return DimmerSwitch;
+            }
+        }
+
+        [NotMapped]
+        IThermostat IDevice.Thermostat
+        {
+            get
+            {
+                return Thermostat;
+            }
+        }
+
+        #endregion
+
+        #region IDeviceState
+
+        INetworkState IDeviceState.NetworkState
+        {
+            get
+            {
+                return Network;
+            }
+        }
 
         [NotMapped]
         ILocation IDeviceState.Location
@@ -148,14 +197,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        [NotMapped]
-        Network IDeviceState.Network
-        {
-            get
-            {
-                return Network;
-            }
-        }
 
         [NotMapped]
         IToggleSwitchState IDeviceState.ToggleSwitchState
@@ -183,6 +224,8 @@ namespace Roomie.Web.Persistence.Models
                 return Thermostat;
             }
         }
+
+        #endregion
 
         #region Object overrides
 
@@ -265,6 +308,34 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return "device" + Id;
+            }
+        }
+
+        #endregion
+
+        #region IDeviceActions
+
+        IToggleSwitchActions IDeviceActions.ToggleSwitchActions
+        {
+            get
+            {
+                return ToggleSwitch;
+            }
+        }
+
+        IDimmerSwitchActions IDeviceActions.DimmerSwitchActions
+        {
+            get
+            {
+                return DimmerSwitch;
+            }
+        }
+
+        IThermostatActions IDeviceActions.ThermostatActions
+        {
+            get
+            {
+                return Thermostat;
             }
         }
 

@@ -4,40 +4,26 @@ using System.Xml;
 using System.Xml.Linq;
 using Roomie.Common;
 using Roomie.Common.HomeAutomation;
-using BaseNetwork = Roomie.Common.HomeAutomation.Network;
 using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
-    public abstract class Network : BaseNetwork
+    public abstract class Network : INetwork
     {
         internal HomeAutomationNetworkContext Context;
 
+        public IEnumerable<Device> Devices { get; protected set; }
+
         public Network(HomeAutomationNetworkContext context)
-            : base(null)
         {
             Context = context;
-            base.devices = new Roomie.Common.HomeAutomation.DeviceCollection(this);
+            Devices = new List<Device>();
         }
 
         public abstract void Connect();
         public abstract void ScanForDevices();
         public abstract Device RemoveDevice();
         public abstract Device AddDevice();
-
-        //TODO: check to make sure that Name and Address are being used properly
-
-        public DeviceCollection Devices
-        {
-            get
-            {
-                return (DeviceCollection)this.devices;
-            }
-            protected set
-            {
-                this.devices = value;
-            }
-        }
 
         public void Save()
         {
@@ -73,13 +59,51 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             foreach (var element in rootElement.Elements())
             {
                 var deviceAddress = element.GetAttributeStringValue("Address");
-                if (devices.Contains(deviceAddress))
+                if (Devices.ContainsAddress(deviceAddress))
                 {
-                    var device = Devices[deviceAddress];
+                    var device = Devices.GetDevice(deviceAddress);
                     device.Update(element.ToDeviceState());
                 }
             }
         }
 
+        #region INetworkDevice
+
+        IEnumerable<IDevice> INetwork.Devices
+        {
+            get
+            {
+                return Devices;
+            }
+        }
+
+        #endregion
+
+        #region INetworkState
+
+        public string Name { get; set; }
+        public string Address { get; set; }
+
+        IEnumerable<IDeviceState> INetworkState.DeviceStates
+        {
+            get
+            {
+                return Devices;
+            }
+        }
+
+        #endregion
+
+        #region INetworkDeviceActions
+
+        IEnumerable<IDeviceActions> INetworkActions.DeviceActions
+        {
+            get
+            {
+                return Devices;
+            }
+        }
+
+        #endregion
     }
 }

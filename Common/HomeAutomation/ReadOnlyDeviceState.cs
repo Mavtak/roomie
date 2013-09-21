@@ -10,7 +10,7 @@ namespace Roomie.Common.HomeAutomation
         public string Name { get; private set; }
         public string Address { get; private set; }
         public ILocation Location { get; private set; }
-        public Network Network { get; private set; }
+        public INetworkState NetworkState { get; private set; }
         public bool? IsConnected { get; private set; }
         public DeviceType Type { get; private set; }
         public IToggleSwitchState ToggleSwitchState { get; private set; }
@@ -21,12 +21,12 @@ namespace Roomie.Common.HomeAutomation
         {
         }
 
-        public ReadOnlyDeviceState(string name, string address, ILocation location, Network network, bool? isConnected, DeviceType type, IToggleSwitchState toggleSwitchState, IDimmerSwitchState dimmerSwitchState, IThermostatState thermostatState)
+        public ReadOnlyDeviceState(string name, string address, ILocation location, INetwork network, bool? isConnected, DeviceType type, IToggleSwitchState toggleSwitchState, IDimmerSwitchState dimmerSwitchState, IThermostatState thermostatState)
         {
             Name = name;
             Address = address;
             Location = location;
-            Network = network;
+            NetworkState = network;
             IsConnected = isConnected;
             Type = type;
             ToggleSwitchState = toggleSwitchState;
@@ -42,7 +42,7 @@ namespace Roomie.Common.HomeAutomation
                 Name = source.Name,
                 Address = source.Address,
                 Location = source.Location.Copy(),
-                Network = source.Network,
+                NetworkState = source.NetworkState,
                 IsConnected = source.IsConnected,
                 Type = source.Type,
                 ToggleSwitchState = (source.ToggleSwitchState == null) ? null : source.ToggleSwitchState.Copy(),
@@ -53,10 +53,10 @@ namespace Roomie.Common.HomeAutomation
             return result;
         }
 
-        public ReadOnlyDeviceState NewWithNetwork(Network network)
+        public ReadOnlyDeviceState NewWithNetwork(INetwork network)
         {
             var result = CopyFrom(this);
-            result.Network = network;
+            result.NetworkState = network;
 
             return result;
         }

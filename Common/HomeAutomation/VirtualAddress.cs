@@ -150,7 +150,7 @@ namespace Roomie.Common.HomeAutomation
 
         public static string Format(IDeviceState device, bool justAddresses = false, string remarks = null)
         {
-            var network = device.Network;
+            var network = device.NetworkState;
 
             var virtualAddress = new VirtualAddress
             {
@@ -198,12 +198,12 @@ namespace Roomie.Common.HomeAutomation
 
             result.Append(", connected to ");
 
-            if (device.Network != null)
+            if (device.NetworkState != null)
             {
-                if (device.Network.Name != null)
+                if (device.NetworkState.Name != null)
                 {
                     result.Append("the ");
-                    result.Append(device.Network.Name);
+                    result.Append(device.NetworkState.Name);
                 }
                 else
                 {

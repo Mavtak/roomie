@@ -8,7 +8,7 @@ namespace Roomie.Common.HomeAutomation.Exceptions
     [Serializable]
     public class MultipleMatchingDevicesException : HomeAutomationException
     {
-        public MultipleMatchingDevicesException(string address, IEnumerable<IDevice> devices, Exception innerException = null)
+        public MultipleMatchingDevicesException(string address, IEnumerable<IDeviceState> devices, Exception innerException = null)
             : base(buildMessage(address, devices), innerException)
         {
             //TODO: is this bad to do?  Security?
@@ -16,7 +16,7 @@ namespace Roomie.Common.HomeAutomation.Exceptions
             this.Data.Add("Devices", devices);
         }
 
-        private static string buildMessage(string address, IEnumerable<IDevice> devices)
+        private static string buildMessage(string address, IEnumerable<IDeviceState> devices)
         {
             var result = new StringBuilder();
 

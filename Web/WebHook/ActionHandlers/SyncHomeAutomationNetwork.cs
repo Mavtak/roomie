@@ -82,7 +82,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             // go through the devices from the client and update the entries in the database
             foreach (var sentDevice in sentDevices)
             {
-                var registeredDevice = network.Devices.First(x => x.Address == sentDevice.Address && x.Network.Equals(sentDevice.Network));
+                var registeredDevice = network.Devices.First(x => x.Address == sentDevice.Address && x.Network.Equals(sentDevice.NetworkState));
 
                 if (registeredDevice == null)
                 {
@@ -92,7 +92,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                             Address = sentDevice.Address,
                             IsConnected = sentDevice.IsConnected,
                             Name = sentDevice.Name,
-                            Network = sentDevice.Network as NetworkModel,
+                            Network = sentDevice.NetworkState as NetworkModel,
                             Location = sentDevice.Location as DeviceLocationModel,
                             Type = sentDevice.Type
                         };
@@ -124,7 +124,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
             foreach (var device in devicesToRemove)
             {
-                var deviceToRemove = database.Devices.First(x => x.Address == device.Address && x.Network.Equals(device.Network));
+                var deviceToRemove = database.Devices.First(x => x.Address == device.Address && x.Network.Equals(device.NetworkState));
                 database.Devices.Remove(deviceToRemove);
                 //responseText.Append("\nRemoved device from the cloud: " + device);
             }

@@ -9,7 +9,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var network = context.Network;
 
-            foreach (Device device in network.Devices)
+            foreach (var device in network.Devices)
             {
                 device.Poll();
             }
