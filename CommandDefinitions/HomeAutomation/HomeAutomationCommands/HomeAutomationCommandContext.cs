@@ -1,4 +1,5 @@
-﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
+﻿using System.Collections.Generic;
+using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
 using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
@@ -17,13 +18,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Network = context.Network;
         }
 
-        public NetworkCollection Networks
+        public List<Network> Networks
         {
             get
             {
                 // Access the collection of home automation networks from the central data store
                 var key = typeof(InternalLibraryVersion);
-                var value = DataStore.GetAdd<NetworkCollection>(key);
+                var value = DataStore.GetAdd<List<Network>>(key);
                 return value;
             }
         }

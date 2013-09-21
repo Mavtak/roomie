@@ -100,7 +100,6 @@
     <Compile Include="Exceptions\SdkNotLicencedException.cs" />
     <Compile Include="HomeAutomationCommand.cs" />
     <Compile Include="HomeAutomationCommandContext.cs" />
-    <Compile Include="NetworkCollection.cs" />
     <Compile Include="InternalLibraryVersion.cs" />
     <Compile Include="NetworkParameterAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

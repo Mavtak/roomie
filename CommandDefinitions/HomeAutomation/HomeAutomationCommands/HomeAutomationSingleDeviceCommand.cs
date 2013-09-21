@@ -1,4 +1,5 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
 using Roomie.Desktop.Engine;
 
@@ -22,7 +23,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             {
                 var address = scope.GetValue("Device");
 
-                device = networks.GetDevice(address, network);
+                //TODO remove the need for this cast by expanding IDevice and IDeviceActions
+                device = networks.GetDevice(address, network) as Device;
             }
 
             var greaterContext = new HomeAutomationSingleDeviceContext(context)

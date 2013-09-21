@@ -1,4 +1,6 @@
-﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
+﻿using System.Linq;
+using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Exceptions;
 using Roomie.Desktop.Engine;
@@ -29,7 +31,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Network network;
             if (networkName == "<default>")
             {
-                if(networks.Count == 1)
+                if(networks.Count() == 1)
                 {
                     network = networks.First();
                 }
@@ -44,7 +46,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
             else
             {
-                network = networks[networkName];
+                network = networks.GetNetwork(networkName);
             }
 
             if (scope.VariableDefinedInThisScope("AutoConnect")
