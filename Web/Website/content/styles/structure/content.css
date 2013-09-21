@@ -11,15 +11,31 @@
 
 #content h2
 {
-    padding-top: 15px;
-    font-size: 130%;
+    padding-top: 20px;
+    font-size: 180%;
     font-weight: normal;
 }
 
 #content h3
 {
-    padding-top: 10px;
-    font-size: 110%;
+    padding-top: 15px;
+    font-size: 160%;
+    font-weight: normal;
+
+}
+
+#content h4
+{
+    padding-top: 5px;
+    font-size: 140%;
+    font-weight: normal;
+
+}
+
+#content h5
+{
+    padding-top: 5px;
+    font-size: 120%;
     font-weight: normal;
 
 }
