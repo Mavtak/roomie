@@ -76,7 +76,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 if (devices.Contains(deviceAddress))
                 {
                     var device = Devices[deviceAddress];
-                    device.CopyFrom(element.ToDeviceState());
+                    device.Update(element.ToDeviceState());
                 }
             }
         }

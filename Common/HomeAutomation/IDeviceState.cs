@@ -15,6 +15,8 @@ namespace Roomie.Common.HomeAutomation
         DeviceType Type { get; }
         IToggleSwitchState ToggleSwitchState { get; }
         IDimmerSwitchState DimmerSwitchState { get; }
-        IThermostatState ThermostatState { get; }   
+        IThermostatState ThermostatState { get; }
+
+        void Update(IDeviceState state);
     }
 }

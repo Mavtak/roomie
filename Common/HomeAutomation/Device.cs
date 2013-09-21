@@ -23,7 +23,7 @@ namespace Roomie.Common.HomeAutomation
         public abstract IThermostat Thermostat { get; }
         public bool? IsConnected { get; set; }
 
-        public void CopyFrom(IDeviceState state)
+        public void Update(IDeviceState state)
         {
             Name = state.Name;
             Address = state.Address;
