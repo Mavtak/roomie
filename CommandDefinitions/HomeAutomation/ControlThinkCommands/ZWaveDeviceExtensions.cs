@@ -7,9 +7,13 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     internal static class ZWaveDeviceExtensions
     {
+        private const int InitiallyDisconnectedRetries = 1;
+        private const int InitiallyConnectedRetries = 5;
+
         internal static TResult DoDeviceOperation<TResult>(this ZWaveDevice device, Func<TResult> operation)
         {
             var wasConnected = device.IsConnected;
+            var retries = wasConnected == true ? InitiallyConnectedRetries : InitiallyDisconnectedRetries;
 
             Func<TResult> attempt = () =>
                 {
@@ -49,25 +53,21 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                     return new HomeAutomationException("Unexpected Z-Wave error: " + exception.Message, exception);
                 };
 
-            try
+            while (true)
             {
-                return attempt();
-            }
-            catch (ControlThink.ZWave.ZWaveException exception1)
-            {
-                if (wasConnected == true)
+                try
                 {
-                    try
-                    {
-                        return attempt();
-                    }
-                    catch(ControlThink.ZWave.ZWaveException exception2)
-                    {
-                        throw fail(exception2);
-                    }
+                    return attempt();
                 }
+                catch (ControlThink.ZWave.ZWaveException exception1)
+                {
+                    if (retries <= 0)
+                    {
+                        throw fail(exception1);
+                    }
 
-                throw fail(exception1);
+                    retries--;
+                }
             }
         }
 
