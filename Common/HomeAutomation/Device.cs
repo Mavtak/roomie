@@ -7,7 +7,7 @@ using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Common.HomeAutomation
 {
-    public abstract class Device : HomeAutomationEntity, IDeviceState
+    public abstract class Device : HomeAutomationEntity, IDevice
     {
         public Network Network { get; protected set; }
         public ILocation Location { get; protected set; }
@@ -41,6 +41,8 @@ namespace Roomie.Common.HomeAutomation
             //TODO: handle thermostat state and such
         }
 
+        #region IDeviceState
+
         IToggleSwitchState IDeviceState.ToggleSwitchState
         {
             get
@@ -62,5 +64,35 @@ namespace Roomie.Common.HomeAutomation
                 return Thermostat;
             }
         }
+
+        #endregion
+
+        #region IDeviceActions
+
+        IToggleSwitchActions IDeviceActions.ToggleSwitchActions
+        {
+            get
+            {
+                return ToggleSwitch;
+            }
+        }
+
+        IDimmerSwitchActions IDeviceActions.DimmerSwitchActions
+        {
+            get
+            {
+                return DimmerSwitch;
+            }
+        }
+
+        IThermostatActions IDeviceActions.ThermostatActions
+        {
+            get
+            {
+                return Thermostat;
+            }
+        }
+
+        #endregion
     }
 }

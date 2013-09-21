@@ -74,6 +74,8 @@
     <Compile Include="Events\NetworkHistory.cs" />
     <Compile Include="Events\TemperatureChanged.cs" />
     <Compile Include="DimmerSwitches\IDimmerSwitch.cs" />
+    <Compile Include="IDevice.cs" />
+    <Compile Include="IDeviceActions.cs" />
     <Compile Include="IDeviceState.cs" />
     <Compile Include="ILocation.cs" />
     <Compile Include="Location.cs" />
