@@ -51,6 +51,11 @@ namespace Roomie.Web.Persistence.Models
             Notes = this.ToXElement().ToString();
         }
 
+        public void Poll()
+        {
+            this.DoCommand("HomeAutomation.PollDevice Device=\"{0}\"");
+        }
+
         public void Update(IDeviceState state)
         {
             //TODO: update more properties?

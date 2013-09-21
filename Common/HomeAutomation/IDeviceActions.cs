@@ -9,5 +9,7 @@ namespace Roomie.Common.HomeAutomation
         IToggleSwitchActions ToggleSwitchActions { get; }
         IDimmerSwitchActions DimmerSwitchActions { get; }
         IThermostatActions ThermostatActions { get; }
+
+        void Poll();
     }
 }
