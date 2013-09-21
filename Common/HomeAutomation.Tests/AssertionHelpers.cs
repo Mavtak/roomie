@@ -15,7 +15,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             Assert.That(one.Name, Is.EqualTo(two.Name));
             Assert.That(one.Address, Is.EqualTo(two.Address));
-            Assert.That(one.Location.Name, Is.EqualTo(two.Location.Name));
+            Assert.That(one.Location, Is.EqualTo(two.Location));
             Assert.That(one.Type, Is.EqualTo(two.Type));
 
             if (checkToggleSwitch)

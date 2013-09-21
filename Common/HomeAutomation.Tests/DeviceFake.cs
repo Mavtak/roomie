@@ -7,7 +7,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 {
     public class DeviceFake : Device
     {
-        public DeviceFake(DeviceLocation location, Network network)
+        public DeviceFake(ILocation location, Network network)
             : base(location, network)
         {
         }

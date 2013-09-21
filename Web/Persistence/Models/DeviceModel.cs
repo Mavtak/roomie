@@ -7,9 +7,6 @@ using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Web.Persistence.Helpers;
-using BaseDevice = Roomie.Common.HomeAutomation.Device;
-using BaseLocation = Roomie.Common.HomeAutomation.DeviceLocation;
-using BaseNetwork = Roomie.Common.HomeAutomation.Network;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -143,7 +140,7 @@ namespace Roomie.Web.Persistence.Models
 
 
         [NotMapped]
-        DeviceLocation IDeviceState.Location
+        ILocation IDeviceState.Location
         {
             get
             {

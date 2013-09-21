@@ -1,23 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Helpers;
-using BaseDeviceLocation = Roomie.Common.HomeAutomation.DeviceLocation;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class DeviceLocationModel : BaseDeviceLocation, IHasDivId
+    public class DeviceLocationModel : Location, IHasDivId
     {
         [Key]
         public int Id { get; set; }
         
         public UserModel Owner { get; set; }
-        //public string Name { get; set; }
-        public virtual ICollection<DeviceModel> Devices { get; set; }
 
-        //public override string ToString()
-        //{
-        //    return Name;
-        //}
+        public string Name
+        {
+            get
+            {
+                return this.Format();
+            }
+            set
+            {
+                Update((value ?? string.Empty).Split('/'));
+            }
+        }
+
+        public virtual ICollection<DeviceModel> Devices { get; set; }
 
         #region HasId implementation
 

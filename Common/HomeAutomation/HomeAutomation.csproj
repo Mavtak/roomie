@@ -120,7 +120,6 @@
     <Compile Include="Common.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="DeviceCollection.cs" />
-    <Compile Include="DeviceLocation.cs" />
     <Compile Include="DeviceType.cs" />
     <Compile Include="Exceptions\DeviceNotFoundException.cs" />
     <Compile Include="Exceptions\HomeAutomationException.cs" />

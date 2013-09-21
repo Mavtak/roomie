@@ -79,6 +79,14 @@ namespace Roomie.Common.HomeAutomation
             return sequenceA.CalculateCloseness(sequenceB, comparisonType);
         }
 
+        public static ILocation Copy(this ILocation location)
+        {
+            var result = new Location();
+            result.Update(location);
+
+            return result;
+        }
+
         public static bool Equals(this ILocation a, ILocation b)
         {
             var result = a.GetParts().SequenceEqual(b.GetParts());
@@ -91,6 +99,23 @@ namespace Roomie.Common.HomeAutomation
             var result = string.Join("/", location.GetParts());
 
             return result;
+        }
+
+        public static string LastPart(this ILocation location)
+        {
+            var result = location.GetParts().LastOrDefault() ?? string.Empty;
+
+            return result;
+        }
+
+        public static void Update(this ILocation destination, ILocation source)
+        {
+            destination.Update(source.GetParts());
+        }
+
+        public static void Update(this ILocation destination, string format)
+        {
+            destination.Update((format??string.Empty).Split('/'));
         }
     }
 }

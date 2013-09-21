@@ -33,7 +33,17 @@ namespace Roomie.Common.HomeAutomation
 
         public void Update(IEnumerable<string> parts)
         {
-            _parts = parts.ToArray();
+            _parts = parts.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+        }
+
+        public bool IsSet
+        {
+            get
+            {
+                var result = _parts != null && _parts.Any();
+
+                return result;
+            }
         }
 
         public override int GetHashCode()
@@ -58,6 +68,11 @@ namespace Roomie.Common.HomeAutomation
         public bool Equals(ILocation that)
         {
             return LocationExtensions.Equals(this, that);
+        }
+
+        public override string ToString()
+        {
+            return this.Format();
         }
     }
 }

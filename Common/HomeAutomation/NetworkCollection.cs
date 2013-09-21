@@ -66,9 +66,9 @@ namespace Roomie.Common.HomeAutomation
         #endregion
 
         
-        private static int LocationCloseness(string location1, string location2)
+        private static int LocationCloseness(ILocation location1, string location2)
         {
-            return new Location(location1).CalculateCloseness(new Location(location2));
+            return location1.CalculateCloseness(new Location(location2));
         }
 
         //TODO: fix everythign about this method
@@ -134,7 +134,7 @@ namespace Roomie.Common.HomeAutomation
                             && ((networkId == null) || d.Network.Address == networkId)
                             && ((deviceName == null) || (d.Name == deviceName || d.Address == deviceName))
                             && ((deviceId == null) || d.Address == deviceId)
-                      orderby LocationCloseness(d.Location.Name, locationName) ascending
+                      orderby LocationCloseness(d.Location, locationName) ascending
                       select d)
                       .ToList();
 
@@ -145,7 +145,7 @@ namespace Roomie.Common.HomeAutomation
             }
              
             var firstResult = results.First();
-            results = results.Where(d => LocationCloseness(d.Location.Name, locationName) == LocationCloseness(firstResult.Location.Name, locationName)).ToList();
+            results = results.Where(d => LocationCloseness(d.Location, locationName) == LocationCloseness(firstResult.Location, locationName)).ToList();
 
             if (results.Count() > 1)
             {

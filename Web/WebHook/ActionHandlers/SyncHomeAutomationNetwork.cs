@@ -68,7 +68,8 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
                 if (sentDevice.Location != null)
                 {
-                    var existingLocationModel = database.GetDeviceLocation(user, sentDevice.Location.Name);
+                    //TODO: reevaluate this logic
+                    var existingLocationModel = database.GetDeviceLocation(user, sentDevice.Location.Format());
 
                     sentDevice = sentDevice.NewWithLocation(existingLocationModel);
                 }

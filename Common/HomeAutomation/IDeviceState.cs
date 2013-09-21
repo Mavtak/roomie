@@ -9,7 +9,7 @@ namespace Roomie.Common.HomeAutomation
         string Name { get; }
         //TODO: change to NetworkAddress
         string Address { get; }
-        DeviceLocation Location { get; }
+        ILocation Location { get; }
         //TODO: convert to interface
         Network Network { get; }
         bool? IsConnected { get; }

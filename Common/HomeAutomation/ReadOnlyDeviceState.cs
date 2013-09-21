@@ -9,7 +9,7 @@ namespace Roomie.Common.HomeAutomation
     {
         public string Name { get; private set; }
         public string Address { get; private set; }
-        public DeviceLocation Location { get; private set; }
+        public ILocation Location { get; private set; }
         public Network Network { get; private set; }
         public bool? IsConnected { get; private set; }
         public DeviceType Type { get; private set; }
@@ -21,7 +21,7 @@ namespace Roomie.Common.HomeAutomation
         {
         }
 
-        public ReadOnlyDeviceState(string name, string address, DeviceLocation location, Network network, bool? isConnected, DeviceType type, IToggleSwitchState toggleSwitchState, IDimmerSwitchState dimmerSwitchState, IThermostatState thermostatState)
+        public ReadOnlyDeviceState(string name, string address, ILocation location, Network network, bool? isConnected, DeviceType type, IToggleSwitchState toggleSwitchState, IDimmerSwitchState dimmerSwitchState, IThermostatState thermostatState)
         {
             Name = name;
             Address = address;
@@ -41,7 +41,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 Name = source.Name,
                 Address = source.Address,
-                Location = source.Location,
+                Location = source.Location.Copy(),
                 Network = source.Network,
                 IsConnected = source.IsConnected,
                 Type = source.Type,
@@ -61,10 +61,10 @@ namespace Roomie.Common.HomeAutomation
             return result;
         }
 
-        public ReadOnlyDeviceState NewWithLocation(DeviceLocation location)
+        public ReadOnlyDeviceState NewWithLocation(ILocation location)
         {
             var result = CopyFrom(this);
-            result.Location = location;
+            result.Location = location.Copy();
 
             return result;
         }
@@ -104,10 +104,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 Name = name,
                 Address = address,
-                Location = new DeviceLocation
-                {
-                    Name = locationName
-                },
+                Location = new Location(locationName),
                 IsConnected = isConnected,
                 Type = DeviceType.GetTypeFromString(type),
                 ToggleSwitchState = toggleSwitch,

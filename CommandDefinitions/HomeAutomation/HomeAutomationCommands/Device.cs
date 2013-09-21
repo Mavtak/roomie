@@ -32,8 +32,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        protected Device(Network network, DeviceType type = null, string name = null, DeviceLocation location = null)
-            :base(location??new DeviceLocation(), network)
+        protected Device(Network network, DeviceType type = null, string name = null, ILocation location = null)
+            :base(location??new Location(), network)
         {
             base.Network = network;
             this.Type = type??DeviceType.Unknown;

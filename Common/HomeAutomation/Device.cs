@@ -10,9 +10,9 @@ namespace Roomie.Common.HomeAutomation
     public abstract class Device : HomeAutomationEntity, IDeviceState
     {
         public Network Network { get; protected set; }
-        public DeviceLocation Location { get; protected set; }
+        public ILocation Location { get; protected set; }
 
-        public Device(DeviceLocation location, Network network)
+        public Device(ILocation location, Network network)
         {
             Location = location;
             Network = network;
@@ -34,7 +34,7 @@ namespace Roomie.Common.HomeAutomation
         {
             Name = state.Name;
             Address = state.Address;
-            Location.Name = state.Location.Name;
+            Location.Update(state.Location);
             IsConnected = state.IsConnected;
             Type = state.Type;
             DimmerSwitch.Update(state.DimmerSwitchState);

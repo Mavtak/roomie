@@ -33,10 +33,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var thermostat = new ReadOnlyThermostatState(new FahrenheitTemperature(75), thermostatCore, thermostatFan, thermostatSetpoints);
 
 
-            var location = new DeviceLocation
-            {
-                Name = "Here"
-            };
+            var location = new Location("Here");
 
             var address = _id.ToString();
             _id++;

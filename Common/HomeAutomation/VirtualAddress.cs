@@ -161,7 +161,7 @@ namespace Roomie.Common.HomeAutomation
 
                 DeviceNodeId =  device.Address,
                 DeviceName = (justAddresses) ? (null) : (device.Name),
-                DeviceLocation = (justAddresses) ? (null) : (device.Location.Name),
+                DeviceLocation = (justAddresses) ? (null) : (device.Location.Format()),
 
                 Remark = remarks
             };
@@ -187,8 +187,9 @@ namespace Roomie.Common.HomeAutomation
 
             if (device.Location.IsSet)
             {
+                // TODO: update this logic to better account for location higherarchy
                 result.Append("The ");
-                result.Append(device.Location.Name);
+                result.Append(device.Location.LastPart());
             }
             else
             {

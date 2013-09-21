@@ -52,7 +52,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                     }
                     //TODO: improve this
                     if (deviceElement.Attribute("Location") != null)
-                        device.Location.Name = deviceElement.Attribute("Location").Value;
+                        device.Location.Update(deviceElement.Attribute("Location").Value);
 
                     //TODO: type checking
                     if(deviceElement.Attribute("Type") != null)

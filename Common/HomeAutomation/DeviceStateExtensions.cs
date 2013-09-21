@@ -60,7 +60,7 @@ namespace Roomie.Common.HomeAutomation
                 result.Add(new XAttribute("Name", state.Name));
 
             if (state.Location.IsSet)
-                result.Add(new XAttribute("Location", state.Location.Name));
+                result.Add(new XAttribute("Location", state.Location.Format()));
 
             result.Add(new XAttribute("Type", state.Type));
             //TODO: LastPoll

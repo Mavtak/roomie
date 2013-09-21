@@ -19,7 +19,7 @@ else
     {
         if (lastLocation.CompareByParts(device.Location) != 0)
         {
-            var locationParts = device.Location.GetParts();
+            var locationParts = device.Location.GetParts().ToArray();
             if (locationParts.Length > 0)
             {
                 var headerNumber = locationParts.Length + 1;

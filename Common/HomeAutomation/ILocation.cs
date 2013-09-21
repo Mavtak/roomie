@@ -7,5 +7,6 @@ namespace Roomie.Common.HomeAutomation
     {
         IEnumerable<string> GetParts();
         void Update(IEnumerable<string> parts);
+        bool IsSet { get; }
     }
 }

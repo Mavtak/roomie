@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Helpers
@@ -24,8 +25,8 @@ namespace Roomie.Web.Persistence.Helpers
 
         public static int CompareByParts(this DeviceLocationModel location1, DeviceLocationModel location2)
         {
-            var location1Parts = location1.GetParts();
-            var location2Parts = location2.GetParts();
+            var location1Parts = (location1 == null) ? (new string[0]) : (location1.GetParts().ToArray());
+            var location2Parts = (location2 == null) ? (new string[0]) : (location2.GetParts().ToArray());
 
             for (var i = 0; i < location1Parts.Length && i < location2Parts.Length; i++)
             {
