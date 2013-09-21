@@ -7,7 +7,7 @@ namespace Roomie.Common.HomeAutomation.Events
         public Device Device { get; private set; }
         public IDeviceState State { get; private set; }
 
-        public HomeAutomationEntity Entity
+        public IHasName Entity
         {
             get
             {

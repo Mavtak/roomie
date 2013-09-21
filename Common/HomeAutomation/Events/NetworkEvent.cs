@@ -5,7 +5,7 @@ namespace Roomie.Common.HomeAutomation.Events
     public class NetworkEvent : INetworkEvent
     {
         public Network Network { get; private set; }
-        public HomeAutomationEntity Entity
+        public IHasName Entity
         {
             get
             {

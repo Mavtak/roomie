@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
 using Roomie.Common;
+using Roomie.Common.HomeAutomation;
 using BaseNetwork = Roomie.Common.HomeAutomation.Network;
 using Roomie.Desktop.Engine;
 
@@ -75,7 +76,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 if (devices.Contains(deviceAddress))
                 {
                     var device = Devices[deviceAddress];
-                    device.FromXElement(element);
+                    device.CopyFrom(element.ToDeviceState());
                 }
             }
         }

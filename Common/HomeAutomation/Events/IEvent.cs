@@ -4,7 +4,7 @@ namespace Roomie.Common.HomeAutomation.Events
 {
     public interface IEvent
     {
-        HomeAutomationEntity Entity { get; }
+        IHasName Entity { get; }
         IEventType Type { get; }
         DateTime TimeStamp { get; }
         IEventSource Source { get; }

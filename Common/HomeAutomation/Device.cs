@@ -1,15 +1,14 @@
-﻿using System;
-using System.Text;
-using System.Xml.Linq;
-using Roomie.Common.HomeAutomation.DimmerSwitches;
+﻿using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Common.HomeAutomation
 {
-    public abstract class Device : HomeAutomationEntity, IDevice
+    public abstract class Device : IDevice
     {
         public Network Network { get; protected set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
         public ILocation Location { get; protected set; }
 
         public Device(ILocation location, Network network)
@@ -23,12 +22,6 @@ namespace Roomie.Common.HomeAutomation
         public abstract IDimmerSwitch DimmerSwitch { get; }
         public abstract IThermostat Thermostat { get; }
         public bool? IsConnected { get; set; }
-
-        [Obsolete("Use the IDeviceState extension method instead.")]
-        public override void FromXElement(XElement element)
-        {
-            CopyFrom(element.ToDeviceState());
-        }
 
         public void CopyFrom(IDeviceState state)
         {

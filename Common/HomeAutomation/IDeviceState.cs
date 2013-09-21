@@ -4,9 +4,8 @@ using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Common.HomeAutomation
 {
-    public interface IDeviceState
+    public interface IDeviceState : IHasName
     {
-        string Name { get; }
         //TODO: change to NetworkAddress
         string Address { get; }
         ILocation Location { get; }

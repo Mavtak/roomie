@@ -2,7 +2,7 @@
 
 namespace Roomie.Common.HomeAutomation
 {
-    public abstract class Network : HomeAutomationEntity
+    public abstract class Network : HomeAutomationEntity, IHasName
     {
         protected DeviceCollection devices { get; set; }
         internal DeviceCollection Devices
