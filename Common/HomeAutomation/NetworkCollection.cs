@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.HomeAutomation.Exceptions;
 
@@ -65,7 +66,12 @@ namespace Roomie.Common.HomeAutomation
         #endregion
 
         
+        private static int LocationCloseness(string location1, string location2)
+        {
+            return new Location(location1).CalculateCloseness(new Location(location2));
+        }
 
+        //TODO: fix everythign about this method
         public Device GetDevice(string address, Network defaultNetwork = null)
         {
             //string use network location
@@ -119,32 +125,34 @@ namespace Roomie.Common.HomeAutomation
                 }
             }
 
-            IEnumerable<Device> results;
+            
             //TODO: select device by ID
-            results = from d in searchSet
-                        where true
-                        //TODO: add networkLocation
-                        && ((networkName == null) || d.Network.Name == networkName)
-                        && ((networkId == null) || d.Network.Address == networkId)
-                        && ((deviceName == null) || (d.Name == deviceName || d.Address == deviceName))
-                        && ((locationName == null) || d.Location.Name == locationName)
-                        && ((deviceId == null) || d.Address == deviceId)
-                        select d;
+            var results = (from d in searchSet
+                      where true
+                          //TODO: add networkLocation
+                            && ((networkName == null) || d.Network.Name == networkName)
+                            && ((networkId == null) || d.Network.Address == networkId)
+                            && ((deviceName == null) || (d.Name == deviceName || d.Address == deviceName))
+                            && ((deviceId == null) || d.Address == deviceId)
+                      orderby LocationCloseness(d.Location.Name, locationName) ascending
+                      select d)
+                      .ToList();
 
-            var count = results.Count();
 
-            if (count == 0)
+            if (!results.Any())
             {
                 throw new NoMatchingDeviceException(address);
             }
-            else if (count > 1)
+             
+            var firstResult = results.First();
+            results = results.Where(d => LocationCloseness(d.Location.Name, locationName) == LocationCloseness(firstResult.Location.Name, locationName)).ToList();
+
+            if (results.Count() > 1)
             {
                 throw new MultipleMatchingDevicesException(address, results);
             }
-            else
-            {
-                return results.First();
-            }
+
+            return results.First();
         }
 
         public IEnumerable<Device> AllDevices
