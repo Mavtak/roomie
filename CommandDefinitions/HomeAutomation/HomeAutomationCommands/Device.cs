@@ -15,7 +15,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         //TODO: add public access for Network
 
         public List<DeviceEventAction> DeviceEventActions { get; private set; }
-
         public Network Network { get; private set; }
 
         private HomeAutomationNetworkContext Context
@@ -35,46 +34,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             IsConnected = null;
 
             DeviceEventActions = new List<DeviceEventAction>();
-        }
-
-        public void Poll()
-        {
-            if (Type == DeviceType.Switch)
-            {
-                ToggleSwitch.Poll();
-                return;
-            }
-
-            if (Type == DeviceType.Dimmable)
-            {
-                DimmerSwitch.Poll();
-                return;
-            }
-
-            if (Type == DeviceType.Thermostat)
-            {
-                Thermostat.PollTemperature();
-
-                if (Thermostat.Core != null)
-                {
-                    Thermostat.Core.PollCurrentAction();
-                    Thermostat.Core.PollMode();
-                    Thermostat.Core.PollSupportedModes();
-                }
-
-                if (Thermostat.Fan != null)
-                {
-                    Thermostat.Fan.PollCurrentAction();
-                    Thermostat.Fan.PollMode();
-                    Thermostat.Fan.PollSupportedModes();
-                }
-
-                if (Thermostat.Setpoints != null)
-                {
-                    Thermostat.Setpoints.PollSupportedSetpoints();
-                    Thermostat.Setpoints.PollSetpointTemperatures();
-                }
-            }
         }
 
         protected void PowerChanged()
@@ -248,6 +207,46 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         #endregion
 
         #region IDeviceActions
+
+        public void Poll()
+        {
+            if (Type == DeviceType.Switch)
+            {
+                ToggleSwitch.Poll();
+                return;
+            }
+
+            if (Type == DeviceType.Dimmable)
+            {
+                DimmerSwitch.Poll();
+                return;
+            }
+
+            if (Type == DeviceType.Thermostat)
+            {
+                Thermostat.PollTemperature();
+
+                if (Thermostat.Core != null)
+                {
+                    Thermostat.Core.PollCurrentAction();
+                    Thermostat.Core.PollMode();
+                    Thermostat.Core.PollSupportedModes();
+                }
+
+                if (Thermostat.Fan != null)
+                {
+                    Thermostat.Fan.PollCurrentAction();
+                    Thermostat.Fan.PollMode();
+                    Thermostat.Fan.PollSupportedModes();
+                }
+
+                if (Thermostat.Setpoints != null)
+                {
+                    Thermostat.Setpoints.PollSupportedSetpoints();
+                    Thermostat.Setpoints.PollSetpointTemperatures();
+                }
+            }
+        }
 
         IToggleSwitchActions IDeviceActions.ToggleSwitchActions
         {
