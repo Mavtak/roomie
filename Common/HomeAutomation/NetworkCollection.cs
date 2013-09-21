@@ -72,7 +72,7 @@ namespace Roomie.Common.HomeAutomation
         }
 
         //TODO: fix everythign about this method
-        public Device GetDevice(string address, Network defaultNetwork = null)
+        public IDevice GetDevice(string address, Network defaultNetwork = null)
         {
             //string use network location
             string networkLocation;
@@ -99,7 +99,7 @@ namespace Roomie.Common.HomeAutomation
 
 
             //TODO: select network by name or ID
-            IEnumerable<Device> searchSet;
+            IEnumerable<IDevice> searchSet;
 
             if (networkName == null)
             {
@@ -155,7 +155,7 @@ namespace Roomie.Common.HomeAutomation
             return results.First();
         }
 
-        public IEnumerable<Device> AllDevices
+        public IEnumerable<IDevice> AllDevices
         {
             get
             {

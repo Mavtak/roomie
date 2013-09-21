@@ -1,4 +1,4 @@
-﻿using BaseDevice = Roomie.Common.HomeAutomation.Device;
+﻿using Roomie.Common.HomeAutomation;
 using BaseDeviceCollection = Roomie.Common.HomeAutomation.DeviceCollection;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
@@ -11,7 +11,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             : base(network)
         { }
 
-        public override void Add(BaseDevice device)
+        public override void Add(IDevice device)
         {
             lock (this)
             {

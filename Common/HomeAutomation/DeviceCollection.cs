@@ -4,23 +4,23 @@ using Roomie.Common.HomeAutomation.Exceptions;
 
 namespace Roomie.Common.HomeAutomation
 {
-    public class DeviceCollection : System.Collections.Generic.IEnumerable<Device>, System.Collections.IEnumerable, ICollection<Device>
+    public class DeviceCollection : ICollection<IDevice>
     {
-        protected List<Device> devices { get; private set; }
+        protected List<IDevice> devices { get; private set; }
         protected Network network { get; private set; }
 
         public DeviceCollection(Network network)
         {
             this.network = network;
-            this.devices = new List<Device>();
+            this.devices = new List<IDevice>();
         }
 
-        public virtual void Add(Device device)
+        public virtual void Add(IDevice device)
         {
             if (this.ContainsAddress(device.Address))
             {
                 //TODO: better exception?
-                throw new MultipleMatchingDevicesException(device.Address, new Device[] { this[device.Address] });
+                throw new MultipleMatchingDevicesException(device.Address, new IDevice[] { this[device.Address] });
             }
 
             devices.Add(device);
@@ -47,7 +47,7 @@ namespace Roomie.Common.HomeAutomation
             }
         }
 
-        public Device this[string key]
+        public IDevice this[string key]
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Roomie.Common.HomeAutomation
         {
             return devices.GetEnumerator();
         }
-        System.Collections.Generic.IEnumerator<Device> IEnumerable<Device>.GetEnumerator()
+        System.Collections.Generic.IEnumerator<IDevice> IEnumerable<IDevice>.GetEnumerator()
         {
             return devices.GetEnumerator();
         }
@@ -88,22 +88,22 @@ namespace Roomie.Common.HomeAutomation
             
         //}
 
-        void ICollection<Device>.Clear()
+        void ICollection<IDevice>.Clear()
         {
             devices.Clear();
         }
 
-        bool ICollection<Device>.Contains(Device item)
+        bool ICollection<IDevice>.Contains(IDevice item)
         {
             return devices.Contains(item);
         }
 
-        void ICollection<Device>.CopyTo(Device[] array, int arrayIndex)
+        void ICollection<IDevice>.CopyTo(IDevice[] array, int arrayIndex)
         {
             throw new System.NotImplementedException();
         }
 
-        int ICollection<Device>.Count
+        int ICollection<IDevice>.Count
         {
             get
             {
@@ -111,12 +111,12 @@ namespace Roomie.Common.HomeAutomation
             }
         }
 
-        bool ICollection<Device>.IsReadOnly
+        bool ICollection<IDevice>.IsReadOnly
         {
             get { return false; }
         }
 
-        bool ICollection<Device>.Remove(Device item)
+        bool ICollection<IDevice>.Remove(IDevice item)
         {
             return devices.Remove(item);
         }
