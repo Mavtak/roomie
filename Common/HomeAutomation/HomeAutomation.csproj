@@ -75,6 +75,9 @@
     <Compile Include="Events\TemperatureChanged.cs" />
     <Compile Include="DimmerSwitches\IDimmerSwitch.cs" />
     <Compile Include="IDeviceState.cs" />
+    <Compile Include="ILocation.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="LocationExtensions.cs" />
     <Compile Include="ReadOnlyDeviceState.cs" />
     <Compile Include="Thermostats\Cores\IThermostatCoreActions.cs" />
     <Compile Include="Thermostats\Cores\IThermostatCoreState.cs" />
