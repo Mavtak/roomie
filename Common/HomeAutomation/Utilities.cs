@@ -97,5 +97,17 @@ namespace Roomie.Common.HomeAutomation
 
             return power;
         }
+
+        public static VirtualAddress ToVirtualAddress(this string value)
+        {
+            var result = VirtualAddress.Parse(value);
+
+            if (result == null)
+            {
+                throw new ArgumentException("The input does not represent a valid VirtualAddress", "value");
+            }
+
+            return result;
+        }
     }
 }
