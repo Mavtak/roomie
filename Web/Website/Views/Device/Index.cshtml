@@ -19,11 +19,20 @@ else
     {
         if (lastLocation.CompareByParts(device.Location) != 0)
         {
+            var lastLocationParts = (lastLocation == null) ? new string[0] : lastLocation.GetParts().ToArray();
             var locationParts = device.Location.GetParts().ToArray();
+            
             if (locationParts.Length > 0)
             {
-                var headerNumber = locationParts.Length + 1;
-                @Html.Raw("<h" + headerNumber + ">" + locationParts[locationParts.Length - 1] + "</h" + headerNumber + ">");
+                for (var i = 0; i < locationParts.Length; i++)
+                {
+                    if (i >= lastLocationParts.Length || lastLocationParts[i] != locationParts[i])
+                    {
+                        var headerNumber = i + 2;
+                        @Html.Raw("<h" + headerNumber + ">" + locationParts[i] + "</h" + headerNumber + ">")
+                    }
+                    
+                }
             }
         }
 
