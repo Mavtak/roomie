@@ -90,12 +90,6 @@ namespace Roomie.Desktop.Engine
             {
                 WriteMessage("Command \"" + newCommand.Name + "\" is labeled as a Startup command, but is not implemented correctly.");
             }
-
-            if (newCommand.Name.Equals("ShutdownTasks") && !newCommand.GetType().IsSubclassOf(typeof(ShutdownCommand)))
-            {
-                WriteMessage("Command \"" + newCommand.Name + "\" is labeled as a Shutdown command, but is not implemented correctly.");
-            }
-                
         }
 
         public void AddCommands(IEnumerable<RoomieCommand> newCommands)
@@ -187,17 +181,10 @@ namespace Roomie.Desktop.Engine
         {
             get
             {
-                var result = new LinkedList<RoomieCommand>();
-                foreach (RoomieCommand command in this)
-                {
-                    if (command.GetType().IsSubclassOf(typeof(ShutdownCommand)))
-                    {
-                        result.AddLast(command);
-                    }
-                }
+                var result = this.Where(command => command.Name.Equals("ShutDownTasks"));
+
                 return result;
             }
-
         }
 
         public bool ContainsCommandGroup(string groupName)

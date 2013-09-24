@@ -44,6 +44,7 @@
     <Compile Include="Commands\SpeechRecognition\PrintCommand.cs" />
     <Compile Include="Commands\SpeechRecognition\ListRegisteredPhrases.cs" />
     <Compile Include="Commands\SpeechRecognition\RegisterSpeechRecognizedAction.cs" />
+    <Compile Include="Commands\SpeechRecognition\ShutDownTasks.cs" />
     <Compile Include="Commands\SpeechRecognition\StopListening.cs" />
     <Compile Include="Commands\SpeechRecognition\RegisterPhrase.cs" />
     <Compile Include="Commands\SpeechRecognition\StartListening.cs" />

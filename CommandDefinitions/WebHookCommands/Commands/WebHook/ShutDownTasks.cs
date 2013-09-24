@@ -8,10 +8,14 @@ namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
             var interpreter = context.Interpreter;
             var webhookEngines = context.WebhookEngines;
 
+            interpreter.WriteEvent("Shutting down WebHook...");
+
             foreach (var webhookEngine in webhookEngines.Values)
             {
                 webhookEngine.Stop();
             }
+
+            interpreter.WriteEvent("Done shutting down WebHook");
         }
     }
 }

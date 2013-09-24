@@ -96,7 +96,7 @@ namespace Roomie.Desktop.Engine
         {
             lock (_threads)
             {
-                foreach (RoomieThread thread in _threads)
+                foreach (var thread in _threads)
                 {
                     thread.ShutDown();
                 }

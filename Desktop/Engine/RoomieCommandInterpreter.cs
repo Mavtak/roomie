@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Roomie.Common.Exceptions;
 using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine.Exceptions;
@@ -98,6 +99,12 @@ namespace Roomie.Desktop.Engine
             catch (NotImplementedException)
             {
                 WriteEvent("Command \"" + command.FullName + "\" not implemented.");
+                CommandQueue.Clear();
+                return false;
+            }
+            catch(ThreadAbortException e4)
+            {
+                WriteEvent("Thread shut down.");
                 CommandQueue.Clear();
                 return false;
             }

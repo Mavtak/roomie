@@ -229,9 +229,9 @@ namespace Roomie.CommandDefinitions.WebHookCommands
 
         public void Stop()
         {
-            parallelThread.Abort();
-            threadPool.ShutDown();
             running = false;
+            threadPool.ShutDown();
+            parallelThread.Abort();
         }
 
         public bool Running
