@@ -8,7 +8,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var interpreter = context.Interpreter;
             var networks = context.Networks;
 
-            foreach (Network network in networks)
+            foreach (var network in networks)
             {
                 interpreter.WriteEvent("Saving " + network.Name);
                 network.Save();

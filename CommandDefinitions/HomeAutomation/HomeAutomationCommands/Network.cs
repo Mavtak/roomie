@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
-using Roomie.Common;
 using Roomie.Common.HomeAutomation;
-using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
@@ -51,23 +49,25 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             var filename = Name + ".xml";
 
             if (!System.IO.File.Exists(filename))
-                return;
-
-
-            var rootElement = XElement.Load(filename);
-
-            foreach (var element in rootElement.Elements())
             {
-                var deviceAddress = element.GetAttributeStringValue("Address");
-                if (Devices.ContainsAddress(deviceAddress))
+                return;
+            }
+
+            var element = XElement.Load(filename);
+            var networkState = element.ToNetworkState();
+
+            foreach (var deviceState in networkState.DeviceStates)
+            {
+                var address = deviceState.Address;
+                if (Devices.ContainsAddress(address))
                 {
-                    var device = Devices.GetDevice(deviceAddress);
-                    device.Update(element.ToDeviceState());
+                    var device = Devices.GetDevice(address);
+                    device.Update(deviceState);
                 }
             }
         }
 
-        #region INetworkDevice
+        #region INetwork
 
         IEnumerable<IDevice> INetwork.Devices
         {
@@ -94,7 +94,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         #endregion
 
-        #region INetworkDeviceActions
+        #region INetworkActions
 
         IEnumerable<IDeviceActions> INetworkActions.DeviceActions
         {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Roomie.Common.HomeAutomation
@@ -10,10 +12,14 @@ namespace Roomie.Common.HomeAutomation
             var result = new XElement(nodeName);
 
             if (!String.IsNullOrWhiteSpace(state.Address))
+            {
                 result.Add(new XAttribute("Address", state.Address));
+            }
 
             if (!String.IsNullOrWhiteSpace(state.Name))
+            {
                 result.Add(new XAttribute("Name", state.Name));
+            }
 
             foreach (var device in state.DeviceStates)
             {
@@ -21,6 +27,11 @@ namespace Roomie.Common.HomeAutomation
             }
 
             return result;
+        }
+
+        public static ReadOnlyNetworkState ToNetworkState(this XElement element)
+        {
+            return ReadOnlyNetworkState.FromXElement(element);
         }
     }
 }
