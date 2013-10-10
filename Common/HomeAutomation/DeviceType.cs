@@ -30,6 +30,11 @@ namespace Roomie.Common.HomeAutomation
 
         public static bool IsValidType(string type)
         {
+            if (string.IsNullOrEmpty(type))
+            {
+                return false;
+            }
+
             return types.ContainsKey(type);
         }
 
