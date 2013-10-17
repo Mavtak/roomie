@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Database;
+using WebCommunicator;
 
 namespace Roomie.Web.WebHook.ActionHandlers
 {
@@ -53,54 +55,67 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
             //responseText.Append("network: " + network);
 
-            var sentDevices = new List<IDeviceState>();
-            foreach (var sentDeviceNode in request.Payload)
-            {
-                if (sentDeviceNode == null)
+            var sentDevices = ProcessSentDevices(request, response, user, network, database).ToList();
+
+            var registeredDevices = new List<DeviceModel>(network.Devices);
+
+            var newDevices = UpdateDevices(sentDevices, network);
+
+            AddNewDevices(newDevices, network, database);
+
+            var devicesToRemove = GetRemovedDevices(sentDevices, registeredDevices);
+
+            RemoveDevices(devicesToRemove, registeredDevices, database);
+
+            AddDevicesToResponse(response, registeredDevices);
+            
+            response.Values.Add("Response", responseText.ToString());
+
+            database.SaveChanges();
+        }
+
+        private static IEnumerable<IDeviceState> ProcessSentDevices(Message request, Message response, UserModel user,  NetworkModel network, IRoomieDatabaseContext database)
+        {
+            var sentDevices = request.Payload.Select(x => x.ToDeviceState());
+            sentDevices = sentDevices.Select(x => x.NewWithNetwork(network));
+            sentDevices = sentDevices.Select(x =>
                 {
-                    response.ErrorMessage = "WTF? sentDeviceNode is null.";
-                    return;
-                }
-                var sentDevice = sentDeviceNode.ToDeviceState();
-                
-                //TODO: improve this
-                sentDevice = sentDevice.NewWithNetwork(network);
+                    if (x.Location == null)
+                    {
+                        return x;
+                    }
 
-                if (sentDevice.Location != null)
-                {
-                    //TODO: reevaluate this logic
-                    var existingLocationModel = database.GetDeviceLocation(user, sentDevice.Location.Format());
+                    var existingLocationModel = database.GetDeviceLocation(user, x.Location.Format());
 
-                    sentDevice = sentDevice.NewWithLocation(existingLocationModel);
-                }
-                sentDevices.Add(sentDevice);
-                //responseText.Append("\nreceived device: " + sentDevice);
-            }
+                    return x.NewWithLocation(existingLocationModel);
+                });
 
-            var registeredDevices = new List<IDeviceState>(network.Devices);
+            return sentDevices;
+        }
 
+        private static IEnumerable<DeviceModel> UpdateDevices(IEnumerable<IDeviceState> sentDevices, NetworkModel network)
+        {
             // go through the devices from the client and update the entries in the database
             foreach (var sentDevice in sentDevices)
             {
-                var registeredDevice = network.Devices.First(x => x.Address == sentDevice.Address && x.Network.Equals(sentDevice.NetworkState));
+                var registeredDevice = network.Devices.FirstOrDefault(x => x.Address == sentDevice.Address && x.Network.Equals(sentDevice.NetworkState));
 
                 if (registeredDevice == null)
                 {
 
                     var newDevice = new DeviceModel
-                        {
-                            Address = sentDevice.Address,
-                            IsConnected = sentDevice.IsConnected,
-                            Name = sentDevice.Name,
-                            Network = sentDevice.NetworkState as NetworkModel,
-                            Location = sentDevice.Location as DeviceLocationModel,
-                            Type = sentDevice.Type
-                        };
+                    {
+                        Address = sentDevice.Address,
+                        IsConnected = sentDevice.IsConnected,
+                        Name = sentDevice.Name,
+                        Network = sentDevice.NetworkState as NetworkModel,
+                        Location = sentDevice.Location as DeviceLocationModel,
+                        Type = sentDevice.Type
+                    };
 
                     newDevice.Update(sentDevice);
 
-                    network.Devices.Add(newDevice);
-                    //responseText.Append("\nadded device to the cloud: " + sentDevice);
+                    yield return newDevice;
                 }
                 else
                 {
@@ -108,30 +123,43 @@ namespace Roomie.Web.WebHook.ActionHandlers
                     registeredDevice.UpdateSerializedValue();
                 }
             }
+        }
 
-            // return the updated list of devices to the client
-            var devicesToRemove = new List<IDeviceState>();
-            foreach(var registeredDevice in registeredDevices)
+        private static void AddNewDevices(IEnumerable<DeviceModel> newDevices, NetworkModel network, IRoomieDatabaseContext database)
+        {
+            foreach (var device in newDevices)
             {
-                if (sentDevices.Find(d => 
-                    d.Address == 
-                    registeredDevice.Address
-                    ) == null)
-                    devicesToRemove.Add(registeredDevice);
-                else
-                    response.Payload.Add(registeredDevice.ToXElement());
+                network.Devices.Add(device);
+                database.Devices.Add(device);
             }
+        }
 
+        private static IEnumerable<DeviceModel> GetRemovedDevices(IEnumerable<IDeviceState> sentDevices, IEnumerable<DeviceModel> registeredDevices)
+        {
+            foreach (var registeredDevice in registeredDevices)
+            {
+                if (!sentDevices.Any(d => d.Address == registeredDevice.Address))
+                {
+                    yield return registeredDevice;
+                }
+            }
+        }
+
+        private static void RemoveDevices(IEnumerable<DeviceModel> devicesToRemove, List<DeviceModel> registeredDevices, IRoomieDatabaseContext database)
+        {
             foreach (var device in devicesToRemove)
             {
-                var deviceToRemove = database.Devices.First(x => x.Address == device.Address && x.Network.Equals(device.NetworkState));
-                database.Devices.Remove(deviceToRemove);
-                //responseText.Append("\nRemoved device from the cloud: " + device);
+                database.Devices.Remove(device);
+                registeredDevices.Remove(device);
             }
+        }
 
-            response.Values.Add("Response", responseText.ToString());
-
-            database.SaveChanges();
+        private static void AddDevicesToResponse(Message response, IEnumerable<IDeviceState> devices)
+        {
+            foreach (var device in devices)
+            {
+                response.Payload.Add(device.ToXElement());
+            }
         }
     }
 }
