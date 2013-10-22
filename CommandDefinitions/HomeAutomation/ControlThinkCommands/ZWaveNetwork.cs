@@ -2,6 +2,7 @@
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.Common.HomeAutomation.Exceptions;
+using Roomie.Desktop.Engine.WorkQueues;
 using Device = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
 using Network = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
 
@@ -11,12 +12,16 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
     {
         public global::ControlThink.ZWave.ZWaveController ZWaveController { get; private set; }
         public new ZWaveDeviceCollection Devices { get; private set; }
+        public ParallelWorkQueue WorkQueue { get; private set; }
+
         public ZWaveNetwork(HomeAutomationNetworkContext context)
             : base(context)
         {
             ZWaveController = new global::ControlThink.ZWave.ZWaveController();
             this.Devices = new ZWaveDeviceCollection(this);
             base.Devices = this.Devices;
+
+            WorkQueue = new ParallelWorkQueue();
 
             Connect();
         }
