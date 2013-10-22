@@ -49,6 +49,7 @@
     <Compile Include="Commands\ControlThink\PrintStats.cs" />
     <Compile Include="Commands\ControlThink\RegisterNetwork.cs" />
     <Compile Include="Commands\ControlThink\RemoveBrokenDevice.cs" />
+    <Compile Include="Commands\ControlThink\ShutDownTasks.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ConverstionExtensions.cs" />
     <Compile Include="ZWaveThermostatCore.cs" />
