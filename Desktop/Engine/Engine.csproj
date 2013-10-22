@@ -109,6 +109,10 @@
     <Compile Include="Delegates\TerminalOutputEventArgs.cs" />
     <Compile Include="StringConversionExtensions.cs" />
     <Compile Include="ThreadPool.cs" />
+    <Compile Include="WorkQueues\ParallelWorkQueue.cs" />
+    <Compile Include="WorkQueues\WorkQueue.cs" />
+    <Compile Include="WorkQueues\WorkQueueItem.cs" />
+    <Compile Include="WorkQueues\WorkQueueItemResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common\Common.csproj">
