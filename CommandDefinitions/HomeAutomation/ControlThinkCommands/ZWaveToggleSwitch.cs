@@ -5,7 +5,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     internal class ZWaveToggleSwitch : IToggleSwitch
     {
-        private ZWaveDevice _device;
+        private readonly ZWaveDevice _device;
 
         public ZWaveToggleSwitch(ZWaveDevice device)
         {

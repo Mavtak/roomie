@@ -12,8 +12,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         public ThermostatMode? Mode { get; internal set; }
         public ThermostatCurrentAction? CurrentAction { get; internal set; }
 
-        private ZWaveDevice _device;
-        private GeneralThermostatV2 _thermostat;
+        private readonly ZWaveDevice _device;
+        private readonly GeneralThermostatV2 _thermostat;
 
         public ZWaveThermostatCore(ZWaveDevice device)
         {

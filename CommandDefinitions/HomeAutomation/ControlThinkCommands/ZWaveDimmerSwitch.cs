@@ -6,7 +6,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     internal class ZWaveDimmerSwitch : IDimmerSwitch
     {
-        private ZWaveDevice _device;
+        private readonly ZWaveDevice _device;
 
         public ZWaveDimmerSwitch(ZWaveDevice device)
         {

@@ -24,8 +24,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        private ZWaveDevice _device;
-        private GeneralThermostatV2 _thermostat;
+        private readonly ZWaveDevice _device;
+        private readonly GeneralThermostatV2 _thermostat;
 
         public ZWaveThermostat(ZWaveDevice device)
         {
