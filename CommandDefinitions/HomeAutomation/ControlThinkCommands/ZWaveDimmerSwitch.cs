@@ -1,4 +1,5 @@
-﻿using Roomie.Common.HomeAutomation;
+﻿using System;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
@@ -25,12 +26,31 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             power = Utilities.ValidatePower(power, MaxPower);
 
             _device.DoDeviceOperation(() => _device.BackingObject.Level = (byte)power);
+
+            PullWhileChanging((byte)power);
         }
 
         public void Update(IDimmerSwitchState state)
         {
             Power = state.Power;
             MaxPower = state.MaxPower;
+        }
+
+        private void PullWhileChanging(byte expectedPower, int tries = 25)
+        {
+            var lastPower = Power;
+
+            for (var i = 0; i < tries; i++)
+            {
+                Poll();
+                
+                if (Power == null || _device.IsConnected == false || Power == expectedPower || lastPower == Power)
+                {
+                    return;
+                }
+
+                lastPower = Power;
+            }
         }
     }
 }
