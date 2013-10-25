@@ -65,10 +65,9 @@ namespace Roomie.Desktop.Engine.WorkQueues
             if (!result.ShouldRetry)
             {
                 _result = result;
+                _event.Set();
             }
-
-            _event.Set();
-
+            
             return result;
         }
 
