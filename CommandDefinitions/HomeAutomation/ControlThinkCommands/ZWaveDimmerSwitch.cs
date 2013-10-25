@@ -18,7 +18,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void Poll()
         {
-            _device.DoDeviceOperation(() => Power = _device.BackingObject.Level);
+            Power = _device.DoDeviceOperation(() => _device.BackingObject.Level);
         }
 
         public void SetPower(int power)
