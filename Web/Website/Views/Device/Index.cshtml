@@ -26,7 +26,7 @@ else
     var headerPrinter = new LocationHeaderPrinter();
     foreach (var device in Model)
     {
-        headerPrinter.SetCurrentDevice(device);
+        headerPrinter.SetCurrentLocation(device.Location);
         @headerPrinter.PrintHeader();
         
         var deviceViewModel = new DeviceViewModel(device, Url);

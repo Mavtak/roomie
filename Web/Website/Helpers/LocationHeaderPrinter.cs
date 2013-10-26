@@ -8,20 +8,20 @@ namespace Roomie.Web.Website.Helpers
     public class LocationHeaderPrinter
     {
         private ILocation _lastLocation;
-        private IDevice _device;
+        private ILocation _thisLocation;
 
-        public void SetCurrentDevice(IDevice device)
+        public void SetCurrentLocation(ILocation location)
         {
-            _lastLocation = (_device == null) ? null : _device.Location;
-            _device = device;
+            _lastLocation = _thisLocation;
+            _thisLocation = location;
         }
 
         public HtmlString PrintHeader()
         {
-            if (_lastLocation.CompareByParts(_device.Location) != 0)
+            if (_lastLocation.CompareByParts(_thisLocation) != 0)
             {
                 var lastLocationParts = (_lastLocation == null) ? new string[0] : _lastLocation.GetParts().ToArray();
-                var locationParts = _device.Location.GetParts().ToArray();
+                var locationParts = _thisLocation.GetParts().ToArray();
 
                 if (locationParts.Length > 0)
                 {
