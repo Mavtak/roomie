@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Web;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Helpers;
@@ -9,6 +12,8 @@ namespace Roomie.Web.Website.Helpers
     {
         private ILocation _lastLocation;
         private ILocation _thisLocation;
+        private int _openDivCount = 0;
+        private int _lastHeaderDepth = -1;
 
         public void SetCurrentLocation(ILocation location)
         {
@@ -17,6 +22,32 @@ namespace Roomie.Web.Website.Helpers
         }
 
         public HtmlString PrintHeader()
+        {
+            var result = new StringBuilder();
+
+            foreach(var tuple in GetHeaders())
+            {
+                var headerNumber = 2 + tuple.Item2;
+
+                for (var i = 0; i < _lastHeaderDepth - tuple.Item2 + 1; i++)
+                {
+                    result.Append("</div>");
+                    _openDivCount--;
+                }
+
+                _lastHeaderDepth = tuple.Item2;
+
+                
+                result.Append("<h" + headerNumber + @" class=""collapse-next"">" + tuple.Item1 + "</h" + headerNumber + ">");
+
+                result.Append(@"<div class=""group"">");
+                _openDivCount++;
+            }
+
+            return new HtmlString(result.ToString());
+        }
+
+        private IEnumerable<Tuple<string, int>> GetHeaders()
         {
             if (_lastLocation.CompareByParts(_thisLocation) != 0)
             {
@@ -29,15 +60,25 @@ namespace Roomie.Web.Website.Helpers
                     {
                         if (i >= lastLocationParts.Length || lastLocationParts[i] != locationParts[i])
                         {
-                            var headerNumber = i + 2;
-                            return new HtmlString("<h" + headerNumber + ">" + locationParts[i] + "</h" + headerNumber + ">");
+                            yield return new Tuple<string, int>(locationParts[i], i);
                         }
 
                     }
                 }
             }
+        }
 
-            return new HtmlString(string.Empty);
+        public HtmlString PrintDone()
+        {
+            var builder = new StringBuilder();
+            
+           while (_openDivCount > 0)
+           {
+               builder.Append("</div>");
+               _openDivCount--;
+           }
+
+            return new HtmlString(builder.ToString());
         }
     }
 }
