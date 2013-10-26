@@ -5,7 +5,16 @@
 }@*
 
 *@@section PageSpecificScripts{@*
-    *@<script type="text/javascript">updateDevicesContinuously();</script>@*
+    *@<script type="text/javascript">updateDevicesContinuously();
+
+
+          $('.collapse-next').click(function (e) {
+              e.preventDefault();
+              var $this = $(this);
+              $this.next().toggle();
+          });
+
+      </script>@*
 *@}@*
 
 *@@if (Model == null || !Model.Any())
@@ -14,29 +23,11 @@
 }
 else
   {
-    DeviceLocationModel lastLocation = null;
+    var headerPrinter = new LocationHeaderPrinter();
     foreach (var device in Model)
     {
-        if (lastLocation.CompareByParts(device.Location) != 0)
-        {
-            var lastLocationParts = (lastLocation == null) ? new string[0] : lastLocation.GetParts().ToArray();
-            var locationParts = device.Location.GetParts().ToArray();
-            
-            if (locationParts.Length > 0)
-            {
-                for (var i = 0; i < locationParts.Length; i++)
-                {
-                    if (i >= lastLocationParts.Length || lastLocationParts[i] != locationParts[i])
-                    {
-                        var headerNumber = i + 2;
-                        @Html.Raw("<h" + headerNumber + ">" + locationParts[i] + "</h" + headerNumber + ">")
-                    }
-                    
-                }
-            }
-        }
-
-        lastLocation = device.Location;
+        headerPrinter.SetCurrentDevice(device);
+        @headerPrinter.PrintHeader();
         
         var deviceViewModel = new DeviceViewModel(device, Url);
         
@@ -44,5 +35,6 @@ else
                 partialViewName: "Partials/Device/Device",
                  model: deviceViewModel
         )
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Helpers
@@ -23,7 +24,7 @@ namespace Roomie.Web.Persistence.Helpers
             return parts;
         }
 
-        public static int CompareByParts(this DeviceLocationModel location1, DeviceLocationModel location2)
+        public static int CompareByParts(this ILocation location1, ILocation location2)
         {
             var location1Parts = (location1 == null) ? (new string[0]) : (location1.GetParts().ToArray());
             var location2Parts = (location2 == null) ? (new string[0]) : (location2.GetParts().ToArray());

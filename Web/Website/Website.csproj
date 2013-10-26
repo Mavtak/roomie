@@ -167,6 +167,7 @@
     <Compile Include="Helpers\AutoSaveAttribute.cs" />
     <Compile Include="Helpers\CacheCookie.cs" />
     <Compile Include="Helpers\HttpContextExtensions.cs" />
+    <Compile Include="Helpers\LocationHeaderPrinter.cs" />
     <Compile Include="Helpers\RoomieControllerExtensions.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\IRoomieController.cs" />
