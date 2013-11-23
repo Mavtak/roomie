@@ -24,7 +24,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             var work = new WorkQueueItem(() =>
                 {
                     result = operation();
-                }, retries, new[] {typeof (ControlThink.ZWave.ZWaveException)});
+                }, retries, typeof (ControlThink.ZWave.ZWaveException));
             workQueue.Add(work);
 
             var workResult = work.Result;
