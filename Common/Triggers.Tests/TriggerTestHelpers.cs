@@ -21,5 +21,13 @@ namespace Roomie.Common.Triggers.Tests
 
             return result;
         }
+
+        public static ITriggerAction DoNothingAction()
+        {
+            var result = new Mock<ITriggerAction>();
+            result.Setup(x => x.Action());
+
+            return result.Object;
+        }
     }
 }

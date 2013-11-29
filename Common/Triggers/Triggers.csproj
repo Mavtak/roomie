@@ -41,9 +41,14 @@
   <ItemGroup>
     <Compile Include="AndTrigger.cs" />
     <Compile Include="ITrigger.cs" />
+    <Compile Include="ITriggerAction.cs" />
+    <Compile Include="ITriggerBundle.cs" />
+    <Compile Include="ITriggerCollection.cs" />
     <Compile Include="NotTrigger.cs" />
     <Compile Include="OrTrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TriggerBundle.cs" />
+    <Compile Include="TriggerCollection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
