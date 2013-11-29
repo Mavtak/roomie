@@ -51,6 +51,7 @@
     <Compile Include="NotTriggerTests.cs" />
     <Compile Include="OrTriggerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShyTriggerTests.cs" />
     <Compile Include="TriggerBundleTests.cs" />
     <Compile Include="TriggerCollectionTests.cs" />
     <Compile Include="TriggerTestHelpers.cs" />

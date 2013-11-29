@@ -22,6 +22,16 @@ namespace Roomie.Common.Triggers.Tests
             return result;
         }
 
+        public static ITrigger SequenceTrigger(params bool[] values)
+        {
+            var result = new Mock<ITrigger>();
+            var index = 0;
+
+            result.Setup(x => x.Check()).Returns(() => values[index++]);
+
+            return result.Object;
+        }
+
         public static ITriggerAction DoNothingAction()
         {
             var result = new Mock<ITriggerAction>();
