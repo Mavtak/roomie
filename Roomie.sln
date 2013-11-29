@@ -93,6 +93,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Tests", "Common\Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Tests", "Roomie.Desktop.Engine.Tests\Engine.Tests.csproj", "{CA3D65A9-07C0-4453-8D4E-CCC9B39B22D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triggers", "Common\Triggers\Triggers.csproj", "{5F72C80F-4C92-46EE-931B-7676DD2824E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triggers.Tests", "Common\Triggers.Tests\Triggers.Tests.csproj", "{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Roomie1.vsmdi
@@ -559,6 +563,36 @@ Global
 		{CA3D65A9-07C0-4453-8D4E-CCC9B39B22D9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CA3D65A9-07C0-4453-8D4E-CCC9B39B22D9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CA3D65A9-07C0-4453-8D4E-CCC9B39B22D9}.Release|x86.ActiveCfg = Release|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug Roomie.Mvc3|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug Roomie.Mvc3|Any CPU.Build.0 = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug Roomie.Mvc3|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug Roomie.Mvc3|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug Roomie.Mvc3|x86.ActiveCfg = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug Roomie.Mvc3|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug Roomie.Mvc3|Any CPU.Build.0 = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug Roomie.Mvc3|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug Roomie.Mvc3|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug Roomie.Mvc3|x86.ActiveCfg = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -595,5 +629,7 @@ Global
 		{96934CBD-3597-4432-AE32-ED730377D3AA} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
 		{752F5DB0-48FA-4EF7-91D3-5776E35952A2} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
 		{C37F4C26-67AD-401C-8EEB-FEB17918E9AF} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
+		{5F72C80F-4C92-46EE-931B-7676DD2824E9} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
+		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
 	EndGlobalSection
 EndGlobal
