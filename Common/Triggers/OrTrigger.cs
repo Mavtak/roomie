@@ -5,11 +5,11 @@ namespace Roomie.Common.Triggers
 {
     public class OrTrigger : ITrigger
     {
-        private readonly List<ITrigger> _triggers;
+        private readonly ITrigger[] _triggers;
 
         public OrTrigger(IEnumerable<ITrigger> triggers)
         {
-            _triggers = new List<ITrigger>(triggers);
+            _triggers = triggers.ToArray();
         }
 
         public OrTrigger(params ITrigger[] triggers)

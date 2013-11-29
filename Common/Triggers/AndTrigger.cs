@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Roomie.Common.Triggers
 {
     public class AndTrigger : ITrigger
     {
-        private readonly List<ITrigger> _triggers;
+        private readonly ITrigger[] _triggers;
 
         public AndTrigger(IEnumerable<ITrigger> triggers)
         {
-            _triggers = new List<ITrigger>(triggers);
+            _triggers = triggers.ToArray();
         }
 
         public AndTrigger(params ITrigger[] triggers)
@@ -18,7 +19,7 @@ namespace Roomie.Common.Triggers
 
         public bool Check()
         {
-            var result = _triggers.TrueForAll(x => x.Check());
+            var result = _triggers.All(x => x.Check());
 
             return result;
         }
