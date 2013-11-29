@@ -24,7 +24,7 @@ var botZoom = function () {
     var zoom = $(this).css('zoom');
     zoom = (zoom == 1) ? 4 : 1;
     $(this).animate({ zoom: zoom }, 1000, function() {
-        $(this).bind(botZoom);
+        $(this).click(botZoom);
     });
 };
 
