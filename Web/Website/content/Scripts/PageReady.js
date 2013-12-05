@@ -5,6 +5,7 @@
 
 $(window).resize(function () {
     sizeGhostHeader();
+    sizeGhostFooter();
 });
 
 $(document).ready(function () {
@@ -54,3 +55,27 @@ var sizeGhostHeader = function() {
 
 detatchHeader();
 sizeGhostHeader();
+
+var $footerRow = $('#footerRow');
+var $ghostFooterRow;
+
+var detatchFooter = function () {
+    $footerRow.css('position', 'fixed');
+    $footerRow.css('z-index', '49');
+    $footerRow.css('bottom', '0');
+    $footerRow.css('left', '0');
+    $footerRow.css('right', '0');
+    $footerRow.css('background-color', $page.css('background-color'));
+
+    if (!$ghostFooterRow) {
+        $ghostFooterRow = $('<div />');
+        $page.append($ghostFooterRow);
+    }
+};
+
+var sizeGhostFooter = function () {
+    $ghostFooterRow.css('height', $footerRow.height());
+};
+
+detatchFooter();
+sizeGhostFooter();
