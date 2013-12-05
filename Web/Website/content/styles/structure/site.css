@@ -97,6 +97,25 @@ form
     padding: 5px;
     
 }
+
+#menuButton
+{
+    display: inline-block;
+    height: 1.05em;
+    width: 1.05em;
+    overflow: hidden;
+    vertical-align: bottom;
+    margin-right: 5px;
+    padding: 3px;
+}
+
+#menuButton .bar
+{
+    display: block;
+    height: .15em;
+    margin-top: .15em;
+}
+
 #title /* #title is the first child of #header */
 ,#account
 {

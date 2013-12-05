@@ -6,7 +6,7 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     var $page = namespace.$page || $('#page');
     var $menu = namespace.$menu || $('#slideOutMenu');
     var $content = namespace.$content || $('#content');
-    var $button = namespace.$window || $('#title');
+    var $button = namespace.$window || $('#menuButton');
     var $window = namespace.$window || $(window);
     var $overlay = $('<div />');
 
