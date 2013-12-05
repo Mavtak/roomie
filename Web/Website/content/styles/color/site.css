@@ -15,6 +15,15 @@
     background-color: rgb(240, 240, 240);
 }
 
+#slideOutMenu
+{
+    background-color: #660198;
+}
+#slideOutMenu .item
+{
+    color: white;
+}
+
 .widget .header,
 #headerRow,
 #footerRow

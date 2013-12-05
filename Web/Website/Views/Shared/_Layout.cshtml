@@ -39,18 +39,16 @@
         *@</div>@*
       *@</div>@* <-- close horizontalCrossSection for #header
 
-
-      *@<div id="navigationRow" class="horizontalCrossSection">@*
-        *@<div class="mainColumn">@*
-          *@<div class="topNavigation">@Html.Partial("Partials/Layout/Navigation")</div>@*
-        *@</div>@*
-      *@</div>@*
-
-
       *@<div id="contentRow" class="horizontalCrossSection">@*
-        *@<div id="content" class="mainColumn">@*
-          *@@RenderBody()@*
-        *@</div>@*
+        
+        *@<div class="mainColumn">@*
+          *@@Html.Partial("Partials/Layout/Navigation")@*
+
+          *@<div id="content">@*
+            *@@RenderBody()@*
+          *@</div>@*
+            
+        *@</div>@*  
       *@</div>@* <-- close horizontalCrossSection for #content
 
 

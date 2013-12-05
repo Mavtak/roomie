@@ -67,6 +67,7 @@ form
     min-width: 300px;
     margin-left: auto;
     margin-right: auto;
+    overflow-x: hidden;
 }
 
 /* ==================================================
@@ -114,6 +115,23 @@ form
 #account /* #account is the second child of #header */
 {
     float: right;
+}
+
+#slideOutMenu
+{
+    position: absolute;
+    overflow-x: hidden;
+    display: none;
+}
+
+#slideOutMenu .item
+{
+    display: block;
+    font-size: 150%;
+    overflow-x: hidden;
+    white-space: nowrap;
+    margin-left: 5px;
+    margin-bottom: 5px;
 }
 
 #content /* #content is the second child of the middle page slice */
