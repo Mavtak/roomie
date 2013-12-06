@@ -24,8 +24,8 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     var visible = false;
     
     var getSlideOutMetrics = namespace.getSlideOutMetrics = function () {
-        
-        var width = Math.min($page.width(), 250)
+
+        var width = Math.min($page.width(), 250);
 
         var result = {
             menu: {
