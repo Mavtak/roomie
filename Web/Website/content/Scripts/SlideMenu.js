@@ -5,7 +5,9 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
 (function(namespace) {
     var $page = namespace.$page || $('#page');
     var $menu = namespace.$menu || $('#slideOutMenu');
+    var $header = namespace.$page || $('#headerRow');
     var $content = namespace.$content || $('#content');
+    var $footer = namespace.$page || $('#footerRow');
     var $button = namespace.$window || $('#menuButton');
     var $window = namespace.$window || $(window);
     var $overlay = $('<div />');
@@ -21,8 +23,9 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     
     var getSlideOutMetrics = namespace.getSlideOutMetrics = function () {
         var result = {
-            width: Math.max(Math.min($page.width(), 250), $content.width() * .75) + 'px',
-            height: $content.height()
+            width: Math.min($page.width(), 250) + 'px',
+            top: $header.height(),
+            height: $footer.offset().top - $header.height()
         };
 
         return result;
@@ -32,6 +35,7 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
         var metrics = getSlideOutMetrics();
         $content.css('left', metrics.width);
         $menu.css('width', metrics.width);
+        $menu.css('top', metrics.top);
         $menu.css('height', metrics.height);
     };
 
@@ -52,9 +56,9 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
         var metrics = getSlideOutMetrics();
         
         $content.css('position', 'relative');
-        $menu.css('width', 0);
-        $menu.css('height', metrics.height);
+        $menu.css('position', 'fixed');
         $menu.css('display', 'inline-block');
+        $menu.css('overflow-y', 'auto');
 
         setSlideOutStyles();
     };
