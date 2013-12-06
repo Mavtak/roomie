@@ -12,6 +12,8 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     var $window = namespace.$window || $(window);
     var $overlay = $('<div />');
 
+    var maxWidth = namespace.maxWidth = $('.mainColumn').css('max-width').replace('px', '') * 1;
+
     $overlay.css('position', 'absolute');
     $overlay.css('left', 0);
     $overlay.css('right', 0);
@@ -32,7 +34,8 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
                 height: $footer.offset().top - $header.height()
             },
             content: {
-                left: width
+                left: width,
+                width: ($('.mainColumn').width() == maxWidth) ? (maxWidth - width) : ''
             }
         };
 
@@ -47,6 +50,7 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
         $menu.css('width', metrics.menu.width);
         
         $content.css('left', metrics.content.left);
+        $content.css('width', metrics.content.width);
     };
 
     var bindResize = namespace.bindResize = function() {
@@ -77,6 +81,7 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
         $overlay.remove();
         
         $content.css('left', '');
+        $content.css('width', '');
         $menu.css('display', '');
     };
 
