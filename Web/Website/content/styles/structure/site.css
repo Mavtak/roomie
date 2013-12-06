@@ -75,6 +75,8 @@ form
    and #footer styles.
    ==================================================
 */
+
+#noJsMessage,
 #page #header
 {
     font-size: 150%;

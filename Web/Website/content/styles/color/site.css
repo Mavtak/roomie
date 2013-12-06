@@ -1,4 +1,5 @@
 ﻿
+html,
 #page
 {
     background-color: rgb(195, 20, 20);
@@ -20,6 +21,7 @@
     background-color: white;
 }
 
+#noJsMessage,
 .widget .header,
 #headerRow,
 #slideOutMenu .item,

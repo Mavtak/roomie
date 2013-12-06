@@ -19,6 +19,10 @@ $(document).ready(function () {
 
 });
 
+$('#noJsMessage').css('display', 'none');
+$('#page').css('display', '');
+
+
 
 var botZoom = function () {
     $(this).unbind();
