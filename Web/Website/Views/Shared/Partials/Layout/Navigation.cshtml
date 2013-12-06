@@ -41,4 +41,14 @@
     *@@NavigationItem("Task Queue", "Task", false)@*
     *@@NavigationItem("Help")@*
     *@@NavigationItem("Account", "User", false, "Edit")@*
+    
+    *@<div class="item">&nbsp;</div>@*
+    *@@if (ViewBag.User == null)
+      {
+          @NavigationItem("Sign In", "User", true, "SignIn")
+      }
+      else
+      {
+          @NavigationItem("Sign Out", "User", true, "SignOut")
+      }@*
 *@</nav>
