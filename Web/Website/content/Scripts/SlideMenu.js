@@ -22,10 +22,18 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     var visible = false;
     
     var getSlideOutMetrics = namespace.getSlideOutMetrics = function () {
+        
+        var width = Math.min($page.width(), 250)
+
         var result = {
-            width: Math.min($page.width(), 250) + 'px',
-            top: $header.height(),
-            height: $footer.offset().top - $header.height()
+            menu: {
+                width: width,
+                top: $header.height(),
+                height: $footer.offset().top - $header.height()
+            },
+            content: {
+                left: width
+            }
         };
 
         return result;
@@ -33,10 +41,12 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
 
     var setSlideOutStyles = namespace.setSlideOutStyles = function() {
         var metrics = getSlideOutMetrics();
-        $content.css('left', metrics.width);
-        $menu.css('width', metrics.width);
-        $menu.css('top', metrics.top);
-        $menu.css('height', metrics.height);
+        
+        $menu.css('top', metrics.menu.top);
+        $menu.css('height', metrics.menu.height);
+        $menu.css('width', metrics.menu.width);
+        
+        $content.css('left', metrics.content.left);
     };
 
     var bindResize = namespace.bindResize = function() {
@@ -52,8 +62,6 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
         bindResize();
         $content.append($overlay);
         $overlay.click(hide);
-
-        var metrics = getSlideOutMetrics();
         
         $content.css('position', 'relative');
         $menu.css('position', 'fixed');
