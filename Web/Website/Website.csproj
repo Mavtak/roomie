@@ -262,7 +262,6 @@
     <Content Include="Views\Shared\Partials\Device\Editor.cshtml" />
     <Content Include="Views\Shared\Partials\Device\ToggleButtons.cshtml" />
     <Content Include="Views\Shared\Partials\Layout\Navigation.cshtml" />
-    <Content Include="Views\Shared\Partials\Layout\UserBadge.cshtml" />
     <Content Include="Views\Shared\Partials\Network\Editor.cshtml" />
     <Content Include="Views\Shared\Partials\Network\Network.cshtml" />
     <Content Include="Views\Shared\Partials\SavedScript\SavedScript.cshtml" />
