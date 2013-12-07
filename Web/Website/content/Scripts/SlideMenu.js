@@ -12,8 +12,8 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     var $window = namespace.$window || $(window);
     var $overlay = $('<div />');
 
-    var maxWidth = namespace.maxWidth = $('.mainColumn').css('max-width').replace('px', '') * 1;
-
+    var animationSpeed = 250;
+    
     $overlay.css('position', 'absolute');
     $overlay.css('left', 0);
     $overlay.css('right', 0);
@@ -22,6 +22,8 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     $overlay.css('z-inde', '50');
 
     var visible = false;
+
+    var animating = false;
     
     var getSlideOutMetrics = namespace.getSlideOutMetrics = function () {
 
@@ -59,7 +61,13 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
         $window.unbind("resize", setSlideOutStyles);
     };
 
-    var show = namespace.show = function () {
+    var show = namespace.show = function (callback) {
+        if (animating) {
+            return;
+        }
+
+        animating = true;
+
         visible = true;
         bindResize();
         $content.append($overlay);
@@ -70,24 +78,74 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
         $menu.css('display', 'inline-block');
         $menu.css('overflow-y', 'auto');
 
-        setSlideOutStyles();
+        var metrics = getSlideOutMetrics();
+        
+        $menu.css('top', metrics.menu.top);
+        $menu.css('height', metrics.menu.height);
+
+        var animationCount = 2;
+
+        var done = function() {
+            animationCount--;
+            
+            if (animationCount == 0) {
+                animating = false;
+                
+                if (callback) {
+                    callback();
+                }
+            }
+        };
+        
+        $menu.animate({
+            'width': metrics.menu.width
+        }, animationSpeed, null, done);
+
+        $content.animate({
+            'left': metrics.content.left
+        }, animationSpeed, null, done);
     };
 
-    var hide = namespace.hide = function () {
+    var hide = namespace.hide = function (callback) {
+        if (animating) {
+            return;
+        }
+        
         visible = false;
         unbindResize();
         $overlay.remove();
         
-        $content.css('left', '');
-        $content.css('width', '');
-        $menu.css('display', '');
+        var animationCount = 2;
+
+        var done = function () {
+            animationCount--;
+            
+            $content.css('left', '');
+            $menu.css('display', '');
+
+            if (animationCount == 0) {
+                animating = false;
+                
+                if (callback) {
+                    callback();
+                }
+            }
+        };
+        
+        $menu.animate({
+            'width': 0
+        }, animationSpeed, null, done);
+
+        $content.animate({
+            'left': 0
+        }, animationSpeed, null, done);
     };
 
-    var toggle = namespace.toggle = function() {
+    var toggle = namespace.toggle = function(callback) {
         if (visible) {
-            hide();
+            hide(callback);
         } else {
-            show();
+            show(callback);
         }
     };
 
