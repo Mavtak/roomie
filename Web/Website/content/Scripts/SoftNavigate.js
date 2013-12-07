@@ -7,19 +7,37 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
         return;
     }
     namespace.loaded = true;
+
+    var animatinoSpeed = 250;
     
-    var navigate = namespace.navigate = function (path, pushState) {
+    var navigate = namespace.navigate = function (path, pushState, callback) {
         roomie.ui.notifications.add('loading...');
 
-        $('#title').css('visibility', 'hidden');
-        $('#content').css('visibility', 'hidden');
+        var actionCount = 3;
 
+        var page;
+
+        var done = function() {
+            actionCount--;
+            
+            if (actionCount == 0) {
+                replace(page, callback);
+            }
+        };
+
+        $('#title, #content').animate({
+            'opacity': 0
+        }, animatinoSpeed, null, done);
+        
         if (pushState) {
             history.pushState({ path: path }, path, path);
         }
         
         $.get(path)
-            .success(replace)
+            .success(function(data) {
+                page = data;
+                done();
+            })
             .fail(function() {
                 window.location.href = path;
             });
@@ -39,7 +57,7 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
         return result;
     };
 
-    var replace = namespace.replace = function (page) {
+    var replace = namespace.replace = function (page, callback) {
         page = '<div>' + page + '</div>';
         page = stashScriptTags(page);
 
@@ -59,10 +77,25 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
         replaceContent('#slideOutMenu');
         replaceContent('#pageSpecificScripts');
 
-        $('#title').css('visibility', '');
-        $('#content').css('visibility', '');
-        sizeGhostHeader();
-        sizeGhostFooter();
+        var actionCount = 2;
+        
+        var done = function () {
+            actionCount--;
+
+            if (actionCount == 0) {
+                $('#title, #content').css('opacity', '');
+                sizeGhostHeader();
+                sizeGhostFooter();
+                
+                if (callback) {
+                    callback();
+                }
+            }
+        };
+
+        $('#title, #content').animate({
+            'opacity': 1
+        }, animatinoSpeed, null, done);
     };
 
     var event = function (e) {
