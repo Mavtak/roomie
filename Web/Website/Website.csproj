@@ -145,6 +145,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="content\Scripts\Notifications.js" />
     <Content Include="content\Scripts\SlideMenu.js" />
+    <Content Include="content\Scripts\SoftNavigate.js" />
     <Content Include="content\styles\color\icons.css" />
     <Content Include="content\styles\structure\icons.css" />
     <Compile Include="Controllers\Api\DeviceController.cs" />
