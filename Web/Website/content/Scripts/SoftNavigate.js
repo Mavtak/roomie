@@ -4,11 +4,15 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
 
 (function(namespace) {
 
-    var navigate = namespace.navigate = function (path) {
+    var navigate = namespace.navigate = function (path, pushState) {
         roomie.ui.notifications.add('loading...');
 
         $('#title').css('visibility', 'hidden');
         $('#content').css('visibility', 'hidden');
+
+        if (pushState) {
+            history.pushState({ path: path }, path, path);
+        }
         
         $.get(path)
             .success(replace)
@@ -41,6 +45,19 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
 
     var failure = namespace.fail = function() {
         roomie.ui.notifications.add('could not load page.');
+    };
+
+    var first = true;
+    window.onpopstate = function () {
+        
+        if (first) {
+            first = false;
+            
+            return;
+        }
+
+        var path = history.state.path;
+        navigate(path, false);
     };
 
 })(window.roomie.ui.softNavigate);
