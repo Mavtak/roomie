@@ -65,6 +65,18 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
         sizeGhostFooter();
     };
 
+    var event = function (e) {
+        var path = $(this).attr('href');
+
+        if (path.indexOf('/') == 0) {
+            e.preventDefault();
+            roomie.ui.slideMenu.hide();
+            navigate(path, true);
+        }
+    };
+
+    $('#page').delegate('a', 'click', event);
+
     var first = true;
     window.onpopstate = function () {
         
