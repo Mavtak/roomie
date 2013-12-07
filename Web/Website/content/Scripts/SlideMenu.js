@@ -2,7 +2,12 @@
 roomie.ui = roomie.ui || {};
 roomie.ui.slideMenu = roomie.ui.slideMenu || {};
 
-(function(namespace) {
+(function (namespace) {
+    if (namespace.loaded) {
+        return;
+    }
+    namespace.loaded = true;
+    
     var $page = namespace.$page || $('#page');
     var $menu = namespace.$menu || $('#slideOutMenu');
     var $header = namespace.$page || $('#headerRow');
