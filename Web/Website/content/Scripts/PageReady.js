@@ -26,9 +26,16 @@ $('#page').css('display', '');
 
 var botZoom = function () {
     $(this).unbind();
-    roomie.ui.notifications.add('clicking my faaace!', 1000);
+   
     var zoom = $(this).css('zoom');
-    zoom = (zoom == 1) ? 4 : 1;
+    if (zoom == 1) {
+        zoom = 2;
+        roomie.ui.notifications.add('you\'re clicking my faaace!', 1000);
+    } else {
+        zoom = 1;
+        roomie.ui.notifications.add('it\s nice to feel normal again.', 1000);
+    }
+    
     $(this).animate({ zoom: zoom }, 1000, function() {
         $(this).click(botZoom);
     });
