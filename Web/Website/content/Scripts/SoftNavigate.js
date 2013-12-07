@@ -18,16 +18,20 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
     var replace = namespace.replace = function (page) {
         var $page = $(page);
 
-        var replaceId = function(id) {
-            var $new = $(id, $page);
-            var $existing = $(id);
+        var replaceContent = function (source, destination) {
+            destination = destination || source;
+            var $new = $(source, $page);
+            var $existing = $(destination);
 
             $existing.html($new.html());
         };
 
-        replaceId('#title');
-        replaceId('#content');
-        replaceId('#slideOutMenu');
+        console.log($('#title', $page).html());
+
+        replaceContent('#title', 'title');
+        replaceContent('#title');
+        replaceContent('#content');
+        replaceContent('#slideOutMenu');
         
         $('#title').css('visibility', '');
         $('#content').css('visibility', '');
