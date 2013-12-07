@@ -64,6 +64,7 @@ namespace Roomie.Web.Website
                 .Include(scriptDirectory + "Libraries/jquery.unobtrusive-ajax.min.js")
                 .Include(scriptDirectory + "Libraries/modernizr-1.7.min.js")
                 .Include(scriptDirectory + "SlideMenu.js")
+                .Include(scriptDirectory + "Notifications.js")
                 .Include(scriptDirectory + "PageReady.js")
                 .Include(scriptDirectory + "AjaxFunctions.js")
                 ;

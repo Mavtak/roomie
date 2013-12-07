@@ -26,6 +26,7 @@ $('#page').css('display', '');
 
 var botZoom = function () {
     $(this).unbind();
+    roomie.ui.notifications.add('clicking my faaace!');
     var zoom = $(this).css('zoom');
     zoom = (zoom == 1) ? 4 : 1;
     $(this).animate({ zoom: zoom }, 1000, function() {
