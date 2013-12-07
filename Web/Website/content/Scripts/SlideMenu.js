@@ -35,7 +35,6 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
             },
             content: {
                 left: width,
-                width: ($('.mainColumn').width() == maxWidth) ? (maxWidth - width) : ''
             }
         };
 
@@ -50,7 +49,6 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
         $menu.css('width', metrics.menu.width);
         
         $content.css('left', metrics.content.left);
-        $content.css('width', metrics.content.width);
     };
 
     var bindResize = namespace.bindResize = function() {
