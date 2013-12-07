@@ -5,12 +5,17 @@ window.roomie.ui.notifications = window.roomie.ui.notifications || {};
 (function(namespace) {
     var $container = $('#footer');
     var $idleContent = $container.html();
-    var timeout = 5000;
+    var defaultTimeout = 5000;
     var items = [];
     var cycling = false;
 
-    var add = namespace.add = function(content) {
-        items.push(content);
+    var add = namespace.add = function ($content, timeout) {
+        timeout = timeout || defaultTimeout;
+        
+        items.push({
+            $content: $content,
+            timeout: timeout
+        });
         
         if (!cycling) {
             displayNext();
@@ -18,23 +23,23 @@ window.roomie.ui.notifications = window.roomie.ui.notifications || {};
     };
 
     var getNext = namespace.getNext = function() {
-        var result = (items.length == 0) ? ($idleContent) : (items.shift());
+        var result = (items.length == 0) ? ({ $content: $idleContent }) : (items.shift());
 
         return result;
     };
 
     var displayNext = namespace.displayNext = function() {
-        var $content = getNext();
+        var next = getNext();
 
-        setContent($content);
+        setContent(next.$content);
 
-        if ($content == $idleContent) {
+        if (next.$content == $idleContent) {
             cycling = false;
             return;
         }
 
         cycling = true;
-        setTimeout(displayNext, timeout);
+        setTimeout(displayNext, next.timeout);
     };
 
     var setContent = namespace.setContent = function ($content) {
