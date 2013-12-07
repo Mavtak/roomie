@@ -3,7 +3,11 @@ window.roomie.ui = window.roomie.ui || {};
 window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
 
 (function(namespace) {
-
+    if (namespace.loaded) {
+        return;
+    }
+    namespace.loaded = true;
+    
     var navigate = namespace.navigate = function (path, pushState) {
         roomie.ui.notifications.add('loading...');
 
