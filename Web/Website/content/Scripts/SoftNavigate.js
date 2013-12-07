@@ -20,6 +20,8 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
     };
 
     var replace = namespace.replace = function (page) {
+        page = '<div>' + page + '</div>';
+
         var $page = $(page);
 
         var replaceContent = function (source, destination) {
@@ -29,10 +31,8 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
 
             $existing.html($new.html());
         };
-
-        console.log($('#title', $page).html());
-
-        replaceContent('#title', 'title');
+        
+        replaceContent('title');
         replaceContent('#title');
         replaceContent('#content');
         replaceContent('#slideOutMenu');
