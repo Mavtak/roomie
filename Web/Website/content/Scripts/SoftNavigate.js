@@ -20,7 +20,9 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
         
         $.get(path)
             .success(replace)
-            .fail(failure);
+            .fail(function() {
+                window.location.href = path;
+            });
     };
 
     var stashScriptTags = function (html) {
@@ -61,10 +63,6 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
         $('#content').css('visibility', '');
         sizeGhostHeader();
         sizeGhostFooter();
-    };
-
-    var failure = namespace.fail = function() {
-        roomie.ui.notifications.add('could not load page.');
     };
 
     var first = true;
