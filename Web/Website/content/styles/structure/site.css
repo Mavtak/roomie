@@ -46,6 +46,7 @@ form
 .horizontalCrossSection
 {
     display: block;
+    overflow-x: hidden;
 }
 
 /* ==================================================
@@ -62,8 +63,7 @@ form
     display: block;
     margin: 0px;
     padding: 0px;
-    overflow-y: auto;
-    overflow-x: visible;
+    overflow: visible;
     max-width: 1000px;
     min-width: 300px;
     margin-left: auto;
