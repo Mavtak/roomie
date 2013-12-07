@@ -19,8 +19,23 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
             .fail(failure);
     };
 
+    var stashScriptTags = function (html) {
+        html = html || '';
+        var result = html.replace(/<script([\s\S]*?)<\/script>/gi, '<hack$1</hack>');
+
+        return result;
+    };
+
+    var recoverScriptTags = function(html) {
+        html = html || '';
+        var result = html.replace(/<hack([\s\S]*?)<\/hack>/gi, '<script$1</script>');
+
+        return result;
+    };
+
     var replace = namespace.replace = function (page) {
         page = '<div>' + page + '</div>';
+        page = stashScriptTags(page);
 
         var $page = $(page);
 
@@ -29,14 +44,15 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
             var $new = $(source, $page);
             var $existing = $(destination);
 
-            $existing.html($new.html());
+            $existing.html(recoverScriptTags($new.html()));
         };
-        
+
         replaceContent('title');
         replaceContent('#title');
         replaceContent('#content');
         replaceContent('#slideOutMenu');
-        
+        replaceContent('#pageSpecificScripts');
+
         $('#title').css('visibility', '');
         $('#content').css('visibility', '');
         sizeGhostHeader();

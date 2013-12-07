@@ -70,7 +70,9 @@
     //TODO: javascript to resize buttons
     *@@Html.RenderScripts()@*
 
-    *@@RenderSection("PageSpecificScripts", false)@*
+    *@<div id="pageSpecificScripts">@*
+      *@@RenderSection("PageSpecificScripts", false)@*
+    *@</div>@*    
       
     *@@Html.Partial("Partials/Layout/PrecacheScript")@*
 
