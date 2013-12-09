@@ -1,4 +1,5 @@
-﻿(function(namespace) {
+﻿(function () {
+    var namespace = createNamespace('roomie.ui.softNavigate');
     if (namespace.loaded) {
         return;
     }
@@ -119,4 +120,4 @@
         navigate(path, false);
     };
 
-})(createNamespace('window.roomie.ui.softNavigate'));
+})();

@@ -1,4 +1,5 @@
-﻿(function (namespace) {
+﻿(function () {
+    var namespace = createNamespace('roomie.ui.slideMenu');
     if (namespace.loaded) {
         return;
     }
@@ -168,4 +169,4 @@
     $button.click(function() {
         toggle();
     });
-})(createNamespace('roomie.ui.slideMenu'));
+})();

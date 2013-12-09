@@ -1,4 +1,10 @@
-﻿(function(namespace) {
+﻿(function () {
+    var namespace = createNamespace('roomie.ui.notifications');
+    if (namespace.loaded) {
+        return;
+    }
+    namespace.loaded = true;
+
     var $container = $('#footer');
     var $idleContent = $container.html();
     var defaultTimeout = 5000;
@@ -42,4 +48,4 @@
         $container.html($content);
     };
 
-})(createNamespace('window.roomie.ui.notifications'));
+})();
