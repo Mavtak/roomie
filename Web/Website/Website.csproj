@@ -202,7 +202,6 @@
     <Content Include="content\styles\Coloring\Blue.css" />
     <Content Include="content\styles\Coloring\Purple.css" />
     <Content Include="content\styles\color\content.css" />
-    <Content Include="content\styles\color\navigation.css" />
     <Content Include="content\styles\color\roomieBot.css" />
     <Content Include="content\styles\color\site.css" />
     <Content Include="content\styles\color\widget.css" />
