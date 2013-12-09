@@ -13,19 +13,13 @@
             if (ViewBag.User == null)
                 return null;
         }
-        
-        var link = Html.ActionLink(
-                linkText: text,
-                actionName: action,
-                controllerName: controller,
-                routeValues: null,
-                htmlAttributes: new
-                {
-                    @class = "content"
-                }
-           );
 
-        return new MvcHtmlString("<div class=\"item" + (selected ? " selected" : "") + "\">" + link + "</div>");
+        var path = Url.Action(action, controller);
+
+        var @class = " class=\"item" + (selected ? " selected" : "") + "\"";
+        var href = " href=\"" + path + "\"";
+        
+        return new MvcHtmlString("<a "+ @class + href + "><span class=\"content\">" + text + "</span></a>");
     }
     MvcHtmlString NavigationItem(string text, bool anonymous = true)
     {
