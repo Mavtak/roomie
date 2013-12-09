@@ -153,6 +153,11 @@ form
     padding: 5px;
 }
 
+#slideOutMenu .divider
+{
+    height: 1em;
+}
+
 #slideOutMenu .item .content
 {
     display: inline;
