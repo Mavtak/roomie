@@ -10,7 +10,7 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     
     var $page = namespace.$page || $('#page');
     var $menu = namespace.$menu || $('#slideOutMenu');
-    var $menuItems = namespace.$menuItems || function () { return $menu.find('.item'); };
+    var $menuItems = namespace.$menuItems || function () { return $menu.find('.item .content'); };
     var $header = namespace.$page || $('#headerRow');
     var $content = namespace.$content || $('#content');
     var $footer = namespace.$page || $('#footerRow');

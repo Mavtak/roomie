@@ -37,7 +37,6 @@ namespace Roomie.Web.Website
 
             var bundle = new StyleBundle(StyleBundlePath)
                 .Include(stylesDirectory + "structure/site.css")
-                .Include(stylesDirectory + "structure/navigation.css")
                 .Include(stylesDirectory + "structure/content.css")
                 .Include(stylesDirectory + "structure/widget.css")
                 .Include(stylesDirectory + "structure/botMessage.css")
@@ -45,7 +44,6 @@ namespace Roomie.Web.Website
                 .Include(stylesDirectory + "structure/icons.css")
 
                 .Include(stylesDirectory + "color/site.css")
-                .Include(stylesDirectory + "color/navigation.css")
                 .Include(stylesDirectory + "color/widget.css")
                 .Include(stylesDirectory + "color/content.css")
                 .Include(stylesDirectory + "color/roomieBot.css")

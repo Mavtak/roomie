@@ -147,14 +147,17 @@ form
 
 #slideOutMenu .item
 {
-    display: inline;
+    display: block;
     font-size: 150%;
-    overflow-x: hidden;
     white-space: nowrap;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    float: left;
-    clear: both;
+    padding: 5px;
+}
+
+#slideOutMenu .item .content
+{
+    display: inline;
+    white-space: nowrap;
+    text-decoration: none;
 }
 
 #content /* #content is the second child of the middle page slice */

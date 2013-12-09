@@ -209,7 +209,6 @@
     <Content Include="content\styles\structure\botMessage.css" />
     <Content Include="content\styles\structure\content.css" />
     <Content Include="content\styles\structure\Misc.css" />
-    <Content Include="content\styles\structure\navigation.css" />
     <Content Include="content\styles\structure\roomieBot.css" />
     <Content Include="content\styles\structure\site.css" />
     <Content Include="content\styles\structure\widget.css" />

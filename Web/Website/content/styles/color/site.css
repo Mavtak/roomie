@@ -6,11 +6,6 @@ html,
     background-color: #660198;
 }
 
-#navigationRow
-{
-    background-color: rgb(240, 240, 240);
-}
-
 #menuButton:hover
 {
     background-color: rgba(0, 0, 0, .3);
@@ -29,4 +24,23 @@ html,
 {
     color: White;
     text-decoration: inherit;
+}
+
+#slideOutMenu .item
+{
+    background-color: transparent;
+}
+#slideOutMenu .item:hover
+{
+    background-color: rgba(0, 0, 0, .15);
+}
+
+#slideOutMenu .item.selected:hover
+{
+    background-color: rgba(0, 0, 0, .25);
+}
+
+#slideOutMenu .item.selected
+{
+    background-color: rgba(0, 0, 0, .1);
 }

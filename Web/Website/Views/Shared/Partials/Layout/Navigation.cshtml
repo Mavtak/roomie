@@ -14,16 +14,18 @@
                 return null;
         }
         
-        return Html.ActionLink(
+        var link = Html.ActionLink(
                 linkText: text,
                 actionName: action,
                 controllerName: controller,
                 routeValues: null,
                 htmlAttributes: new
                 {
-                    @class = "item navigationItem" + (selected?" selected":"")
+                    @class = "content"
                 }
            );
+
+        return new MvcHtmlString("<div class=\"item" + (selected ? " selected" : "") + "\">" + link + "</div>");
     }
     MvcHtmlString NavigationItem(string text, bool anonymous = true)
     {
