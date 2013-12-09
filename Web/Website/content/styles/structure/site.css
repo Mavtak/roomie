@@ -140,19 +140,21 @@ form
 
 #slideOutMenu
 {
-    position: absolute;
+    position: fixed;
     overflow-x: hidden;
-    display: none;
+    width: 0;
 }
 
 #slideOutMenu .item
 {
-    display: block;
+    display: inline;
     font-size: 150%;
     overflow-x: hidden;
     white-space: nowrap;
     margin-left: 5px;
     margin-bottom: 5px;
+    float: left;
+    clear: both;
 }
 
 #content /* #content is the second child of the middle page slice */

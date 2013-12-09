@@ -10,6 +10,7 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     
     var $page = namespace.$page || $('#page');
     var $menu = namespace.$menu || $('#slideOutMenu');
+    var $menuItems = namespace.$menuItems || function () { return $menu.find('.item'); };
     var $header = namespace.$page || $('#headerRow');
     var $content = namespace.$content || $('#content');
     var $footer = namespace.$page || $('#footerRow');
@@ -29,10 +30,24 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     var visible = false;
 
     var animating = false;
+
+    var maxWidth = namespace.maxWidth = function($elements) {
+        var result = 0;
+
+        $elements.each(function() {
+            var width = $(this).outerWidth(true);
+            
+            if (width > result) {
+                result = width;
+            }
+        });
+
+        return result;
+    };
     
     var getSlideOutMetrics = namespace.getSlideOutMetrics = function () {
 
-        var width = Math.min($page.width(), 250);
+        var width = Math.min($page.width(), maxWidth($menuItems()) + 25);
 
         var result = {
             menu: {
