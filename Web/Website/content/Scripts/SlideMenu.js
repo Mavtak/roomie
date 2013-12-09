@@ -1,8 +1,4 @@
-﻿var roomie = roomie || {};
-roomie.ui = roomie.ui || {};
-roomie.ui.slideMenu = roomie.ui.slideMenu || {};
-
-(function (namespace) {
+﻿(function (namespace) {
     if (namespace.loaded) {
         return;
     }
@@ -172,4 +168,4 @@ roomie.ui.slideMenu = roomie.ui.slideMenu || {};
     $button.click(function() {
         toggle();
     });
-})(roomie.ui.slideMenu);
+})(createNamespace('roomie.ui.slideMenu'));

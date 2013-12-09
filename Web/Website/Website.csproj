@@ -143,6 +143,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="content\Scripts\CreateNamespace.js" />
     <Content Include="content\Scripts\Notifications.js" />
     <Content Include="content\Scripts\SlideMenu.js" />
     <Content Include="content\Scripts\SoftNavigate.js" />

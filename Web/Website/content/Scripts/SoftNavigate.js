@@ -1,8 +1,4 @@
-﻿mie = window.roomie || {};
-window.roomie.ui = window.roomie.ui || {};
-window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
-
-(function(namespace) {
+﻿(function(namespace) {
     if (namespace.loaded) {
         return;
     }
@@ -123,4 +119,4 @@ window.roomie.ui.softNavigate = window.roomie.ui.softNavigate || {};
         navigate(path, false);
     };
 
-})(window.roomie.ui.softNavigate);
+})(createNamespace('window.roomie.ui.softNavigate'));
