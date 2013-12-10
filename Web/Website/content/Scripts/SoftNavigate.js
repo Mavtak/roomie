@@ -8,7 +8,7 @@
     var animatinoSpeed = 250;
     
     var navigate = namespace.navigate = function (path, pushState, callback) {
-        roomie.ui.notifications.add('loading...');
+        roomie.ui.notifications.setContent('loading...');
 
         var actionCount = 3;
 
@@ -23,7 +23,7 @@
                     namespace.exitPage();
                     delete namespace.exitPage;
                 }
-
+                roomie.ui.notifications.displayNext();
                 replace(page, callback);
             }
         };

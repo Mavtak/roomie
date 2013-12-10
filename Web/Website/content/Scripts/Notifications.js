@@ -10,6 +10,7 @@
     var defaultTimeout = 5000;
     var items = [];
     var cycling = false;
+    var timeout = 0;
 
     var add = namespace.add = function ($content, timeout) {
         timeout = timeout || defaultTimeout;
@@ -41,10 +42,12 @@
         }
 
         cycling = true;
-        setTimeout(displayNext, next.timeout);
+
+        timeout = setTimeout(displayNext, next.timeout);
     };
 
     var setContent = namespace.setContent = function ($content) {
+        clearTimeout(timeout);
         $container.html($content);
     };
 
