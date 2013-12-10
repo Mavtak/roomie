@@ -5,7 +5,7 @@
     }
     namespace.loaded = true;
 
-    var timeout;
+    var cancelData = {};
 
     namespace.init = function () {
         roomie.ui.softNavigate.exitPage = exit;
@@ -15,8 +15,14 @@
     };
 
     var exit = namespace.exit = function () {
-        if (timeout > 0) {
-            clearTimeout(timeout);
+        if (cancelData.timeout) {
+            clearTimeout(cancelData.timeout);
+            delete cancelData.timeout;
+        }
+        
+        if (cancelData.request) {
+            cancelData.request.abort();
+            delete cancelData.request;
         }
     };
 
@@ -46,11 +52,11 @@
 
     var updateDevicesContinuously = namespace.updateDevicesContinuously = function() {
         var success = function() {
-            timeout = setTimeout(updateDevicesContinuously, 1000);
+            cancelData.timeout = setTimeout(updateDevicesContinuously, 1000);
         };
 
         var failure = function() {
-            timeout = setTimeout(updateDevicesContinuously, 5000);
+            cancelData.timeout = setTimeout(updateDevicesContinuously, 5000);
         };
 
         updateDevices(success, failure);
@@ -58,7 +64,7 @@
 
     var updateDevices = namespace.updateDevicesContinuously = function(success, failure) {
         debug('updating...');
-        $.ajax({
+        cancelData.request = $.ajax({
             url: "/Device/IndexAjax",
             dataType: "json",
             type: 'get',
