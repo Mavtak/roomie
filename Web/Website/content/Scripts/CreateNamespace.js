@@ -5,8 +5,7 @@
     while (parts.length > 0) {
         var part = parts[0];
         parts.shift();
-        parent[part] = parent[part] || {};
-        parent = parent[part];
+        parent = parent[part] = parent[part] || {};
     }
 
     return parent;
