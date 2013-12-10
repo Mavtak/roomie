@@ -18,6 +18,12 @@
             actionCount--;
             
             if (actionCount == 0) {
+                
+                if (namespace.exitPage) {
+                    namespace.exitPage();
+                    delete namespace.exitPage;
+                }
+
                 replace(page, callback);
             }
         };

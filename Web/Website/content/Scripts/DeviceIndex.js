@@ -5,9 +5,19 @@
     }
     namespace.loaded = true;
 
+    var timeout;
+
     namespace.init = function () {
+        roomie.ui.softNavigate.exitPage = exit;
+
         setupCollapseHeaders();
         updateDevicesContinuously();
+    };
+
+    var exit = namespace.exit = function () {
+        if (timeout > 0) {
+            clearTimeout(timeout);
+        }
     };
 
     var setupCollapseHeaders = namespace.setupCollapseHeaders = function() {
@@ -36,11 +46,11 @@
 
     var updateDevicesContinuously = namespace.updateDevicesContinuously = function() {
         var success = function() {
-            setTimeout(updateDevicesContinuously, 1000);
+            timeout = setTimeout(updateDevicesContinuously, 1000);
         };
 
         var failure = function() {
-            setTimeout(updateDevicesContinuously, 5000);
+            timeout = setTimeout(updateDevicesContinuously, 5000);
         };
 
         updateDevices(success, failure);
