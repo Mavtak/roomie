@@ -65,8 +65,8 @@ namespace Roomie.Web.Website
                 .Include(scriptDirectory + "SlideMenu.js")
                 .Include(scriptDirectory + "Notifications.js")
                 .Include(scriptDirectory + "SoftNavigate.js")
+                .Include(scriptDirectory + "DeviceIndex.js")
                 .Include(scriptDirectory + "PageReady.js")
-                .Include(scriptDirectory + "AjaxFunctions.js")
                 ;
 
             bundles.Add(bundle);

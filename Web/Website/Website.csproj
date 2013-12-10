@@ -143,6 +143,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="content\Scripts\DeviceIndex.js" />
     <Content Include="content\Scripts\CreateNamespace.js" />
     <Content Include="content\Scripts\Notifications.js" />
     <Content Include="content\Scripts\SlideMenu.js" />
@@ -194,7 +195,6 @@
     <Content Include="content\images\icon.png" />
     <Content Include="content\images\nothing.png" />
     <Content Include="content\images\sick.png" />
-    <Content Include="content\Scripts\AjaxFunctions.js" />
     <Content Include="content\Scripts\Libraries\jquery-1.5.1.min.js" />
     <Content Include="content\Scripts\Libraries\jquery.unobtrusive-ajax.min.js" />
     <Content Include="content\Scripts\Libraries\jquery.validate.unobtrusive.js" />

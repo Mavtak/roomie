@@ -5,16 +5,7 @@
 }@*
 
 *@@section PageSpecificScripts{@*
-    *@<script type="text/javascript">updateDevicesContinuously();
-
-
-          $('.collapse-next').click(function (e) {
-              e.preventDefault();
-              var $this = $(this);
-              $this.next().toggle();
-          });
-
-      </script>@*
+    *@<script type="text/javascript">roomie.ui.pages.devices.index.init();</script>@*
 *@}@*
 
 *@@if (Model == null || !Model.Any())
