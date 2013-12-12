@@ -15,11 +15,6 @@ body
     height: 100%;
 }
 
-div
-{
-    padding: 0px;
-    margin: 0px;
-}
 a
 {
     color: inherit;
@@ -39,8 +34,6 @@ form
 #page
 {
     display: block;
-    padding: 0px;
-    margin: 0px;
     min-height: 100%;
 }
 .horizontalCrossSection
@@ -61,8 +54,6 @@ form
 .mainColumn /* includes #header, #content, and #footer */
 {
     display: block;
-    margin: 0px;
-    padding: 0px;
     overflow: visible;
     max-width: 1000px;
     min-width: 300px;
@@ -97,7 +88,6 @@ form
 #header
 {
     padding: 5px;
-    
 }
 
 #menuButton
@@ -127,15 +117,6 @@ form
     font-size: inherit;
     font-weight: inherit;
     
-}
-
-#title
-{
-}
-
-#account /* #account is the second child of #header */
-{
-    float: right;
 }
 
 #slideOutMenu
