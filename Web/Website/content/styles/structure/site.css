@@ -85,11 +85,6 @@ form
     text-decoration: inherit;
 }
 
-#header
-{
-    padding: 5px;
-}
-
 #menuButton
 {
     display: inline-block;
@@ -98,7 +93,8 @@ form
     overflow: hidden;
     vertical-align: bottom;
     margin-right: 5px;
-    padding: 3px;
+    padding: 10px;
+    vertical-align: middle;
 }
 
 #menuButton .bar
@@ -108,15 +104,14 @@ form
     margin-top: .15em;
 }
 
-#title /* #title is the first child of #header */
-,#account
+#title
 {
     margin: 0px;
     padding: 0px;
     display: inline-block;
     font-size: inherit;
     font-weight: inherit;
-    
+    vertical-align: middle;
 }
 
 #slideOutMenu
