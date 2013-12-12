@@ -88,11 +88,10 @@ form
 #menuButton
 {
     display: inline-block;
-    height: 1.05em;
-    width: 1.05em;
+    height: 1em;
+    width: 1em;
     overflow: hidden;
     vertical-align: bottom;
-    margin-right: 5px;
     padding: 10px;
     vertical-align: middle;
 }
@@ -100,15 +99,15 @@ form
 #menuButton .bar
 {
     display: block;
-    height: .15em;
-    margin-top: .15em;
+    height: 14.285714285%;
+    margin-top: 14.285714285%;
 }
 
 #title
 {
-    margin: 0px;
-    padding: 0px;
     display: inline-block;
+    margin-left: 5px;
+    margin-top: 5px;
     font-size: inherit;
     font-weight: inherit;
     vertical-align: middle;
