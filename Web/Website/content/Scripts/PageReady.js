@@ -22,7 +22,7 @@ $(document).ready(function () {
 $('#noJsMessage').css('display', 'none');
 $('#page').css('display', '');
 
-
+roomie.ui.navigationMenu = new roomie.ui.SlideMenu();
 
 var botZoom = function () {
     $(this).unbind();

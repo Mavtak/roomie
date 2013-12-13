@@ -1,34 +1,44 @@
 ﻿(function () {
-    var namespace = createNamespace('roomie.ui.slideMenu');
-    if (namespace.loaded) {
+    var namespace = createNamespace('roomie.ui');
+    if (namespace.SlideMenu) {
         return;
     }
-    namespace.loaded = true;
     
+    var SlideMenu = namespace.SlideMenu = function () {
+        var self = this;
+        
+        this.$page = $('#page');
+        this.$menu = $('#navigationMenu');
+        this.$menuItems = function () { return this.$menu.find('.item .content'); };
+        this.$header = $('#headerRow');
+        this.$content = $('#content');
+        this.$footer = $('#footerRow');
+        this.$button = $('#navigationMenuToggle');
+        this.$window = $(window);
+        this.$overlay = $('<div />');
 
-    var $page = $('#page');
-    var $menu = $('#navigationMenu');
-    var $menuItems = function () { return $menu.find('.item .content'); };
-    var $header = $('#headerRow');
-    var $content = $('#content');
-    var $footer = $('#footerRow');
-    var $button = $('#navigationMenuToggle');
-    var $window =  $(window);
-    var $overlay = $('<div />');
+        this.$overlay.css('position', 'absolute');
+        this.$overlay.css('left', 0);
+        this.$overlay.css('right', 0);
+        this.$overlay.css('top', 0);
+        this.$overlay.css('bottom', 0);
+        this.$overlay.css('z-inde', '50');
+        
+        this.animating = false;
+        this.visible = false;
+
+        this.resizeCallback = function() {
+            self.setSlideOutStyles();
+        };
+
+        this.$button.click(function () {
+            self.toggle();
+        });
+    };
+    
 
     var animationSpeed = 250;
     
-    $overlay.css('position', 'absolute');
-    $overlay.css('left', 0);
-    $overlay.css('right', 0);
-    $overlay.css('top', 0);
-    $overlay.css('bottom', 0);
-    $overlay.css('z-inde', '50');
-
-    var visible = false;
-
-    var animating = false;
-
     var maxWidth = namespace.maxWidth = function($elements) {
         var result = 0;
 
@@ -43,106 +53,107 @@
         return result;
     };
     
-    var getSlideOutMetrics = namespace.getSlideOutMetrics = function () {
+    SlideMenu.prototype.getSlideOutMetrics = function () {
 
-        var width = Math.min($page.width(), maxWidth($menuItems()) + 25);
+        var width = Math.min(this.$page.width(), maxWidth(this.$menuItems()) + 25);
 
         var result = {
             menu: {
                 width: width,
-                top: $header.height(),
-                height: $footer.offset().top - $header.height()
+                top: this.$header.height(),
+                height: this.$footer.offset().top - this.$header.height()
             }
         };
 
         return result;
     };
 
-    var setSlideOutStyles = namespace.setSlideOutStyles = function(metrics, justMenu) {
-        if (!metrics.menu) {
-            metrics = getSlideOutMetrics();
+    SlideMenu.prototype.setSlideOutStyles = function(metrics, justMenu) {
+        if (!metrics) {
+            metrics = this.getSlideOutMetrics();
         }
 
-        $menu.css('top', metrics.menu.top);
-        $menu.css('height', metrics.menu.height);
-        $menu.css('width', metrics.menu.width);
+        this.$menu.css('top', metrics.menu.top);
+        this.$menu.css('height', metrics.menu.height);
+        this.$menu.css('width', metrics.menu.width);
         
         if (justMenu) {
             return;
         }
         
-        $content.css('left', metrics.menu.width);
+        this.$content.css('left', metrics.menu.width);
     };
 
-    var bindResize = namespace.bindResize = function() {
-        $window.resize(setSlideOutStyles);
+    SlideMenu.prototype.bindResize = function() {
+        this.$window.resize(this.resizeCallback);
     };
 
-    var unbindResize = namespace.unbindResize = function() {
-        $window.unbind("resize", setSlideOutStyles);
+    SlideMenu.prototype.unbindResize = function () {
+        this.$window.unbind("resize", this.resizeCallback);
     };
 
-    var show = namespace.show = function (callback) {
-        if (animating) {
+    SlideMenu.prototype.show = function (callback) {
+        if (this.animating) {
             return;
         }
 
-        animating = true;
+        var self = this;
+        this.animating = true;
 
-        visible = true;
-        bindResize();
-        $content.append($overlay);
-        $overlay.click(hide);
+        this.visible = true;
+        this.bindResize();
+        this.$content.append(this.$overlay);
+        this.$overlay.click(function() {
+            self.hide();
+        });
 
-        var metrics = getSlideOutMetrics();
+        var metrics = this.getSlideOutMetrics();
 
-        setSlideOutStyles(metrics, true);
+        this.setSlideOutStyles(metrics, true);
 
         var done = function() {
-            animating = false;
+            self.animating = false;
                 
             if (typeof (callback) == 'function') {
                 callback();
             }
         };
         
-        $content.animate({
+        this.$content.animate({
             'left': metrics.menu.width
         }, animationSpeed, null, done);
     };
 
-    var hide = namespace.hide = function (callback) {
-        if (animating) {
+    SlideMenu.prototype.hide = function (callback) {
+        if (this.animating) {
             return;
         }
-        
-        visible = false;
-        unbindResize();
-        $overlay.remove();
+
+        var self = this;
+        this.visible = false;
+        this.animating = true;
+        this.unbindResize();
+        this.$overlay.remove();
         
         var done = function () {
-            $content.css('left', '');
-            $menu.css('width', '');
-            animating = false;
+            self.$content.css('left', '');
+            self.$menu.css('width', '');
+            self.animating = false;
             
             if (typeof (callback) == 'function') {
                 callback();
             }
         };
-        $content.animate({
+        this.$content.animate({
             'left': 0
         }, animationSpeed, null, done);
     };
 
-    var toggle = namespace.toggle = function(callback) {
-        if (visible) {
-            hide(callback);
+    SlideMenu.prototype.toggle = function(callback) {
+        if (this.visible) {
+            this.hide(callback);
         } else {
-            show(callback);
+            this.show(callback);
         }
     };
-
-    $button.click(function() {
-        toggle();
-    });
 })();

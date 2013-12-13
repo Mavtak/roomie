@@ -106,7 +106,7 @@
 
         if (path.indexOf('/') == 0) {
             e.preventDefault();
-            roomie.ui.slideMenu.hide();
+            roomie.ui.navigationMenu.hide();
             navigate(path, true);
         }
     };
