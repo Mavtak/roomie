@@ -63,7 +63,7 @@
             menu: {
                 width: width,
                 top: this.$header.height(),
-                height: this.$footer.offset().top - this.$header.height()
+                height: this.$footer.offset().top - this.$header.offset().top - this.$header.height()
             }
         };
         
