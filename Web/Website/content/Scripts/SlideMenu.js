@@ -94,8 +94,9 @@
         
         $menu.css('top', metrics.menu.top);
         $menu.css('height', metrics.menu.height);
+        $menu.css('width', metrics.menu.width);
 
-        var animationCount = 2;
+        var animationCount = 1;
 
         var done = function() {
             animationCount--;
@@ -109,10 +110,6 @@
             }
         };
         
-        $menu.animate({
-            'width': metrics.menu.width
-        }, animationSpeed, null, done);
-
         $content.animate({
             'left': metrics.content.left
         }, animationSpeed, null, done);
