@@ -11,7 +11,7 @@
     var $header = namespace.$page || $('#headerRow');
     var $content = namespace.$content || $('#content');
     var $footer = namespace.$page || $('#footerRow');
-    var $button = namespace.$window || $('#menuButton');
+    var $button = namespace.$window || $('#navigationMenuToggle');
     var $window = namespace.$window || $(window);
     var $overlay = $('<div />');
 

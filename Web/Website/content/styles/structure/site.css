@@ -85,7 +85,7 @@ form
     text-decoration: inherit;
 }
 
-#menuButton
+.menuButton
 {
     display: inline-block;
     height: 1em;
@@ -96,7 +96,7 @@ form
     vertical-align: middle;
 }
 
-#menuButton .bar
+.menuButton .bar
 {
     display: block;
     height: 14.285714285%;
