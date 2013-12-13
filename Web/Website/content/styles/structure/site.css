@@ -103,6 +103,16 @@ form
     margin-top: 14.285714285%;
 }
 
+#pageMenuToggle
+{
+    float: right
+}
+
+#pageMenu
+{
+    text-align: right;
+}
+
 #title
 {
     display: inline-block;

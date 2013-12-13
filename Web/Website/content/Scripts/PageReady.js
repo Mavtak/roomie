@@ -23,6 +23,7 @@ $('#noJsMessage').css('display', 'none');
 $('#page').css('display', '');
 
 roomie.ui.navigationMenu = new roomie.ui.SlideMenu($('#navigationMenu'), $('#navigationMenuToggle'), 'left');
+roomie.ui.pageMenu = new roomie.ui.SlideMenu($('#pageMenu'), $('#pageMenuToggle'), 'right');
 
 var botZoom = function () {
     $(this).unbind();
