@@ -129,20 +129,17 @@
     };
 
     var updateDevices = namespace.updateDevicesContinuously = function(success, failure) {
-        debug('updating...');
         cancelData.request = $.ajax({
             url: "/Device/IndexAjax",
             dataType: "json",
             type: 'get',
             success: function(data) {
                 replaceDivs(data);
-                debug('...success');
                 if (success != null) {
                     success();
                 }
             },
             error: function() {
-                debug('...failure');
                 if (failure != null) {
                     failure();
                 }

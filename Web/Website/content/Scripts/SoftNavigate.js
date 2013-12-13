@@ -88,8 +88,8 @@
 
             if (actionCount == 0) {
                 $('#title, #content').css('opacity', '');
-                sizeGhostHeader();
-                sizeGhostFooter();
+                roomie.ui.sizeGhostHeader();
+                roomie.ui.sizeGhostFooter();
                 
                 if (callback) {
                     callback();

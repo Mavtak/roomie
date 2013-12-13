@@ -1,94 +1,102 @@
-﻿function debug(message) {
-    return;
-    $('#navigation').append('<div class="debugMessage">' + message + '</div>');
-}
-
-$(window).resize(function () {
-    sizeGhostHeader();
-    sizeGhostFooter();
-});
-
-$(document).ready(function () {
-
-    /*
-    $('.button').mouseup(function () {
-    debug('click!');
-    setTimeout('updateDevices(null, null);', 500);
-    });*/
-
-
-});
-
-$('#noJsMessage').css('display', 'none');
-$('#page').css('display', '');
-
-roomie.ui.navigationMenu = new roomie.ui.SlideMenu($('#navigationMenu'), $('#navigationMenuToggle'), 'left');
-roomie.ui.pageMenu = new roomie.ui.SlideMenu($('#pageMenu'), $('#pageMenuToggle'), 'right');
-
-var botZoom = function () {
-    $(this).unbind();
-   
-    var zoom = $(this).css('zoom');
-    if (zoom == 1) {
-        zoom = 2;
-        roomie.ui.notifications.add('you\'re clicking my faaace!', 1000);
-    } else {
-        zoom = 1;
-        roomie.ui.notifications.add('it\s nice to feel normal again.', 1000);
+﻿(function () {
+    var namespace = createNamespace('roomie.ui');
+    if (namespace.startup) {
+        return;
     }
-    
-    $(this).animate({ zoom: zoom }, 1000, function() {
-        $(this).click(botZoom);
+    namespace.startup = true;
+
+    function debug(message) {
+        return;
+        $('#navigation').append('<div class="debugMessage">' + message + '</div>');
+    }
+
+    $(window).resize(function() {
+        sizeGhostHeader();
+        sizeGhostFooter();
     });
-};
 
-$('.roomieBot').click(botZoom);
+    $(document).ready(function() {
 
-var $page = $('#page');
-var $headerRow = $('#headerRow');
-var $ghostHeaderRow;
+        /*
+        $('.button').mouseup(function () {
+        debug('click!');
+        setTimeout('updateDevices(null, null);', 500);
+        });*/
 
-var detatchHeader = function() {
-    $headerRow.css('position', 'fixed');
-    $headerRow.css('z-index', '50');
-    $headerRow.css('top', '0');
-    $headerRow.css('left', '0');
-    $headerRow.css('right', '0');
-    $headerRow.css('background-color', $page.css('background-color'));
 
-    if (!$ghostHeaderRow) {
-        $ghostHeaderRow = $('<div />');
-        $page.prepend($ghostHeaderRow);
-    }
-};
+    });
 
-var sizeGhostHeader = function() {
-    $ghostHeaderRow.css('height', $headerRow.height());
-};
+    $('#noJsMessage').css('display', 'none');
+    $('#page').css('display', '');
 
-detatchHeader();
-sizeGhostHeader();
+    roomie.ui.navigationMenu = new namespace.SlideMenu($('#navigationMenu'), $('#navigationMenuToggle'), 'left');
+    roomie.ui.pageMenu = new namespace.SlideMenu($('#pageMenu'), $('#pageMenuToggle'), 'right');
 
-var $footerRow = $('#footerRow');
-var $ghostFooterRow;
+    var botZoom = function() {
+        $(this).unbind();
 
-var detatchFooter = function () {
-    $footerRow.css('position', 'fixed');
-    $footerRow.css('z-index', '49');
-    $footerRow.css('bottom', '0');
-    $footerRow.css('left', '0');
-    $footerRow.css('right', '0');
-    $footerRow.css('background-color', $page.css('background-color'));
+        var zoom = $(this).css('zoom');
+        if (zoom == 1) {
+            zoom = 2;
+            roomie.ui.notifications.add('you\'re clicking my faaace!', 1000);
+        } else {
+            zoom = 1;
+            roomie.ui.notifications.add('it\s nice to feel normal again.', 1000);
+        }
 
-    if (!$ghostFooterRow) {
-        $ghostFooterRow = $('<div />');
-        $page.append($ghostFooterRow);
-    }
-};
+        $(this).animate({ zoom: zoom }, 1000, function() {
+            $(this).click(botZoom);
+        });
+    };
 
-var sizeGhostFooter = function () {
-    $ghostFooterRow.css('height', $footerRow.height());
-};
+    $('.roomieBot').click(botZoom);
 
-detatchFooter();
-sizeGhostFooter();
+    var $page = $('#page');
+    var $headerRow = $('#headerRow');
+    var $ghostHeaderRow;
+
+    var detatchHeader = function() {
+        $headerRow.css('position', 'fixed');
+        $headerRow.css('z-index', '50');
+        $headerRow.css('top', '0');
+        $headerRow.css('left', '0');
+        $headerRow.css('right', '0');
+        $headerRow.css('background-color', $page.css('background-color'));
+
+        if (!$ghostHeaderRow) {
+            $ghostHeaderRow = $('<div />');
+            $page.prepend($ghostHeaderRow);
+        }
+    };
+
+    var sizeGhostHeader = namespace.sizeGhostHeader = function() {
+        $ghostHeaderRow.css('height', $headerRow.height());
+    };
+
+    detatchHeader();
+    sizeGhostHeader();
+
+    var $footerRow = $('#footerRow');
+    var $ghostFooterRow;
+
+    var detatchFooter = namespace.sizeGhostFooter = function() {
+        $footerRow.css('position', 'fixed');
+        $footerRow.css('z-index', '49');
+        $footerRow.css('bottom', '0');
+        $footerRow.css('left', '0');
+        $footerRow.css('right', '0');
+        $footerRow.css('background-color', $page.css('background-color'));
+
+        if (!$ghostFooterRow) {
+            $ghostFooterRow = $('<div />');
+            $page.append($ghostFooterRow);
+        }
+    };
+
+    var sizeGhostFooter = function() {
+        $ghostFooterRow.css('height', $footerRow.height());
+    };
+
+    detatchFooter();
+    sizeGhostFooter();
+})();
