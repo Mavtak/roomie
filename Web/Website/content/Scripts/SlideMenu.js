@@ -100,17 +100,11 @@
 
         setSlideOutStyles(metrics, true);
 
-        var animationCount = 1;
-
         var done = function() {
-            animationCount--;
-            
-            if (animationCount == 0) {
-                animating = false;
+            animating = false;
                 
-                if (callback) {
-                    callback();
-                }
+            if (callback) {
+                callback();
             }
         };
         
@@ -128,20 +122,13 @@
         unbindResize();
         $overlay.remove();
         
-        var animationCount = 1;
-
         var done = function () {
-            animationCount--;
-            
             $content.css('left', '');
-            $menu.css('width', 0);
-
-            if (animationCount == 0) {
-                animating = false;
-                
-                if (callback) {
-                    callback();
-                }
+            $menu.css('width', '');
+            animating = false;
+            
+            if (callback) {
+                callback();
             }
         };
         $content.animate({
