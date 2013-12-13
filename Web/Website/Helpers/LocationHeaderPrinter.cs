@@ -47,7 +47,7 @@ namespace Roomie.Web.Website.Helpers
             return new HtmlString(result.ToString());
         }
 
-        private IEnumerable<Tuple<string, int>> GetHeaders()
+        public IEnumerable<Tuple<string, int>> GetHeaders()
         {
             if (_lastLocation.CompareByParts(_thisLocation) != 0)
             {

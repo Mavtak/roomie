@@ -8,7 +8,12 @@
     *@<script type="text/javascript">roomie.ui.pages.devices.index.init();</script>@*
 *@}@*
 
-*@@if (Model == null || !Model.Any())
+
+*@@{
+
+var headers = new List<Tuple<string, int>>();
+
+if (Model == null || !Model.Any())
 {
     @Html.Partial("Partials/BotMessage/Empty")
 }
@@ -19,7 +24,7 @@ else
     {
         headerPrinter.SetCurrentLocation(device.Location);
         @headerPrinter.PrintHeader();
-        
+        headers.AddRange(headerPrinter.GetHeaders());
         var deviceViewModel = new DeviceViewModel(device, Url);
         
         @Html.Partial(
@@ -29,11 +34,15 @@ else
 
     }
     @headerPrinter.PrintDone();
-}@*
+}
+
+  }@*
 
 
 *@@section PageMenu{@*
-  *@<div class="item"><div class="content">A device-specific page?</div></div>@*
-  *@<div class="item"><div class="content">Who would want that?!</div></div>@*
-  *@<div class="item"><div class="content">Everyone!</div></div>@*
+
+  *@@foreach (var header in headers)
+    {
+        <div class="item"><div class="content" style="font-size: @(100-header.Item2*20)%;">@header.Item1</div></div>
+    }@*
 *@}
