@@ -5,14 +5,15 @@
     }
     namespace.loaded = true;
     
-    var $page = namespace.$page || $('#page');
-    var $menu = namespace.$menu || $('#navigationMenu');
-    var $menuItems = namespace.$menuItems || function () { return $menu.find('.item .content'); };
-    var $header = namespace.$page || $('#headerRow');
-    var $content = namespace.$content || $('#content');
-    var $footer = namespace.$page || $('#footerRow');
-    var $button = namespace.$window || $('#navigationMenuToggle');
-    var $window = namespace.$window || $(window);
+
+    var $page = $('#page');
+    var $menu = $('#navigationMenu');
+    var $menuItems = function () { return $menu.find('.item .content'); };
+    var $header = $('#headerRow');
+    var $content = $('#content');
+    var $footer = $('#footerRow');
+    var $button = $('#navigationMenuToggle');
+    var $window =  $(window);
     var $overlay = $('<div />');
 
     var animationSpeed = 250;
