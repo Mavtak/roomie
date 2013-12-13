@@ -128,13 +128,13 @@
         unbindResize();
         $overlay.remove();
         
-        var animationCount = 2;
+        var animationCount = 1;
 
         var done = function () {
             animationCount--;
             
             $content.css('left', '');
-            $menu.css('display', '');
+            $menu.css('width', 0);
 
             if (animationCount == 0) {
                 animating = false;
@@ -144,11 +144,6 @@
                 }
             }
         };
-        
-        $menu.animate({
-            'width': 0
-        }, animationSpeed, null, done);
-
         $content.animate({
             'left': 0
         }, animationSpeed, null, done);
