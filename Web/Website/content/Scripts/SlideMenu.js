@@ -4,17 +4,18 @@
         return;
     }
     
-    var SlideMenu = namespace.SlideMenu = function ($menu, $button) {
+    var SlideMenu = namespace.SlideMenu = function ($menu, $button, side) {
         var self = this;
 
         this.$menu = $menu;
         this.$button = $button;
+        this.side = side;
         
         this.$page = $('#page');
         this.$menuItems = function () { return this.$menu.find('.item .content'); };
-        this.$header = $('#headerRow');
+        this.$header = $('#header');
         this.$content = $('#content');
-        this.$footer = $('#footerRow');
+        this.$footer = $('#footer');
         this.$window = $(window);
         this.$overlay = $('<div />');
 
@@ -65,6 +66,10 @@
                 height: this.$footer.offset().top - this.$header.height()
             }
         };
+        
+        if (this.side == 'right') {
+            result.menu.left = this.$header.offset().left + this.$header.width() - result.menu.width;
+        }
 
         return result;
     };
@@ -77,12 +82,13 @@
         this.$menu.css('top', metrics.menu.top);
         this.$menu.css('height', metrics.menu.height);
         this.$menu.css('width', metrics.menu.width);
+        this.$menu.css('left', metrics.menu.left);
         
         if (justMenu) {
             return;
         }
         
-        this.$content.css('left', metrics.menu.width);
+        this.$content.css(this.side, metrics.menu.width);
     };
 
     SlideMenu.prototype.bindResize = function() {
@@ -119,10 +125,10 @@
                 callback();
             }
         };
-        
-        this.$content.animate({
-            'left': metrics.menu.width
-        }, animationSpeed, null, done);
+
+        var animation = {};
+        animation[this.side] = metrics.menu.width;
+        this.$content.animate(animation, animationSpeed, null, done);
     };
 
     SlideMenu.prototype.hide = function (callback) {
@@ -137,7 +143,7 @@
         this.$overlay.remove();
         
         var done = function () {
-            self.$content.css('left', '');
+            self.$content.css(self.side, '');
             self.$menu.css('width', '');
             self.animating = false;
             
@@ -145,9 +151,10 @@
                 callback();
             }
         };
-        this.$content.animate({
-            'left': 0
-        }, animationSpeed, null, done);
+        
+        var animation = {};
+        animation[this.side] = 0;
+        this.$content.animate(animation, animationSpeed, null, done);
     };
 
     SlideMenu.prototype.toggle = function(callback) {
