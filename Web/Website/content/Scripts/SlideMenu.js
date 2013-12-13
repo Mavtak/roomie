@@ -51,9 +51,6 @@
                 width: width,
                 top: $header.height(),
                 height: $footer.offset().top - $header.height()
-            },
-            content: {
-                left: width,
             }
         };
 
@@ -73,7 +70,7 @@
             return;
         }
         
-        $content.css('left', metrics.content.left);
+        $content.css('left', metrics.menu.width);
     };
 
     var bindResize = namespace.bindResize = function() {
@@ -109,7 +106,7 @@
         };
         
         $content.animate({
-            'left': metrics.content.left
+            'left': metrics.menu.width
         }, animationSpeed, null, done);
     };
 
