@@ -164,3 +164,14 @@ form
     padding: 3px;
 }
 
+.exception .message
+{
+    overflow-x: auto;
+}
+
+.exception .stackTrace
+{
+    overflow: auto;
+    display: block;
+    max-height: 300px;
+}

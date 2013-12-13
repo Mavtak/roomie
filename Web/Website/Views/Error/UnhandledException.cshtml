@@ -6,8 +6,8 @@
 
 @Html.Partial("Partials/BotMessage/Exception")
 
-<h2>@Model.Message</h2>
-
-Exception type: @Model.GetType().Name
-
-<pre>@Model.StackTrace</pre>
+<div class="exception">
+  <h2 class="message">@Model.Message</h2>
+  <p>Exception type: @Model.GetType().Name</p>
+  <pre class="stackTrace">@Model.StackTrace</pre>
+</div>
