@@ -4,16 +4,17 @@
         return;
     }
     
-    var SlideMenu = namespace.SlideMenu = function () {
+    var SlideMenu = namespace.SlideMenu = function ($menu, $button) {
         var self = this;
+
+        this.$menu = $menu;
+        this.$button = $button;
         
         this.$page = $('#page');
-        this.$menu = $('#navigationMenu');
         this.$menuItems = function () { return this.$menu.find('.item .content'); };
         this.$header = $('#headerRow');
         this.$content = $('#content');
         this.$footer = $('#footerRow');
-        this.$button = $('#navigationMenuToggle');
         this.$window = $(window);
         this.$overlay = $('<div />');
 
