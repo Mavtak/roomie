@@ -116,7 +116,9 @@ form
 .sideMenu
 {
     position: fixed;
+    display: inline-block;
     overflow-x: hidden;
+    overflow-y: auto;
     width: 0;
 }
 

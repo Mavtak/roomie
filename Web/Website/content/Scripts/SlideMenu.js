@@ -89,11 +89,6 @@
         bindResize();
         $content.append($overlay);
         $overlay.click(hide);
-        
-        $content.css('position', 'relative');
-        $menu.css('position', 'fixed');
-        $menu.css('display', 'inline-block');
-        $menu.css('overflow-y', 'auto');
 
         var metrics = getSlideOutMetrics();
         
