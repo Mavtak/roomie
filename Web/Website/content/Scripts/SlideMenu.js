@@ -60,12 +60,18 @@
         return result;
     };
 
-    var setSlideOutStyles = namespace.setSlideOutStyles = function() {
-        var metrics = getSlideOutMetrics();
-        
+    var setSlideOutStyles = namespace.setSlideOutStyles = function(metrics, justMenu) {
+        if (!metrics.menu) {
+            metrics = getSlideOutMetrics();
+        }
+
         $menu.css('top', metrics.menu.top);
         $menu.css('height', metrics.menu.height);
         $menu.css('width', metrics.menu.width);
+        
+        if (justMenu) {
+            return;
+        }
         
         $content.css('left', metrics.content.left);
     };
@@ -91,10 +97,8 @@
         $overlay.click(hide);
 
         var metrics = getSlideOutMetrics();
-        
-        $menu.css('top', metrics.menu.top);
-        $menu.css('height', metrics.menu.height);
-        $menu.css('width', metrics.menu.width);
+
+        setSlideOutStyles(metrics, true);
 
         var animationCount = 1;
 
