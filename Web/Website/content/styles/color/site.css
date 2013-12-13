@@ -19,28 +19,28 @@ html,
 #noJsMessage,
 .widget .header,
 #headerRow,
-#slideOutMenu .item,
+.sideMenu .item,
 #footerRow
 {
     color: White;
     text-decoration: inherit;
 }
 
-#slideOutMenu .item
+.sideMenu .item
 {
     background-color: transparent;
 }
-#slideOutMenu .item:hover
+.sideMenu .item:hover
 {
     background-color: rgba(0, 0, 0, .15);
 }
 
-#slideOutMenu .item.selected:hover
+.sideMenu .item.selected:hover
 {
     background-color: rgba(0, 0, 0, .25);
 }
 
-#slideOutMenu .item.selected
+.sideMenu .item.selected
 {
     background-color: rgba(0, 0, 0, .1);
 }

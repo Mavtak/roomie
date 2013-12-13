@@ -113,14 +113,14 @@ form
     vertical-align: middle;
 }
 
-#slideOutMenu
+.sideMenu
 {
     position: fixed;
     overflow-x: hidden;
     width: 0;
 }
 
-#slideOutMenu .item
+.sideMenu .item
 {
     display: block;
     font-size: 150%;
@@ -128,12 +128,12 @@ form
     padding: 5px;
 }
 
-#slideOutMenu .divider
+.sideMenu .divider
 {
     height: 1em;
 }
 
-#slideOutMenu .item .content
+.sideMenu .item .content
 {
     display: inline;
     white-space: nowrap;
