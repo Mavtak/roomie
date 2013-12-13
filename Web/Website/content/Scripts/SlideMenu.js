@@ -101,7 +101,7 @@
         var done = function() {
             animating = false;
                 
-            if (callback) {
+            if (typeof (callback) == 'function') {
                 callback();
             }
         };
@@ -125,7 +125,7 @@
             $menu.css('width', '');
             animating = false;
             
-            if (callback) {
+            if (typeof (callback) == 'function') {
                 callback();
             }
         };
