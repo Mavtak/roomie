@@ -11,7 +11,7 @@
 
 *@@{
 
-var headers = new List<Tuple<string, int>>();
+var headers = new List<Tuple<string, int, string>>();
 
 if (Model == null || !Model.Any())
 {
@@ -43,6 +43,6 @@ else
 
   *@@foreach (var header in headers)
     {
-        <div class="item"><div class="content" style="font-size: @(100-header.Item2*20)%;">@header.Item1</div></div>
+        <div class="item"data-location="@header.Item3"><div class="content" style="font-size: @(100-header.Item2*20)%;">@header.Item1</div></div>
     }@*
 *@}

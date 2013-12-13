@@ -38,7 +38,8 @@ namespace Roomie.Web.Website.Helpers
                 _lastHeaderDepth = tuple.Item2;
 
                 
-                result.Append("<h" + headerNumber + @" class=""collapse-next"">" + tuple.Item1 + "</h" + headerNumber + ">");
+                
+                result.Append("<h" + headerNumber + @" class=""collapse-next"" data-location=""" + tuple.Item3 + @""">" + tuple.Item1 + "</h" + headerNumber + ">");
 
                 result.Append(@"<div class=""group"">");
                 _openDivCount++;
@@ -47,7 +48,7 @@ namespace Roomie.Web.Website.Helpers
             return new HtmlString(result.ToString());
         }
 
-        public IEnumerable<Tuple<string, int>> GetHeaders()
+        public IEnumerable<Tuple<string, int, string>> GetHeaders()
         {
             if (_lastLocation.CompareByParts(_thisLocation) != 0)
             {
@@ -60,7 +61,9 @@ namespace Roomie.Web.Website.Helpers
                     {
                         if (i >= lastLocationParts.Length || lastLocationParts[i] != locationParts[i])
                         {
-                            yield return new Tuple<string, int>(locationParts[i], i);
+                            var subLocation = new Location(locationParts.Take(i + 1));
+
+                            yield return new Tuple<string, int, string>(locationParts[i], i, subLocation.Format());
                         }
 
                     }
