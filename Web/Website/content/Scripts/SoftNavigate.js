@@ -78,6 +78,7 @@
         replaceContent('#title');
         replaceContent('#content');
         replaceContent('#navigationMenu');
+        replaceContent('#pageMenu');
         replaceContent('#pageSpecificScripts');
 
         var actionCount = 2;
