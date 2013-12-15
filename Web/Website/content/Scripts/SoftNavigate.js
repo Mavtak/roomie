@@ -28,7 +28,7 @@
             }
         };
 
-        $('#title, #content').animate({
+        $('#header, #content').animate({
             'opacity': 0
         }, animatinoSpeed, null, done);
         
@@ -87,7 +87,7 @@
             actionCount--;
 
             if (actionCount == 0) {
-                $('#title, #content').css('opacity', '');
+                $('#header, #content').css('opacity', '');
                 roomie.ui.sizeGhostHeader();
                 roomie.ui.sizeGhostFooter();
                 
@@ -97,7 +97,7 @@
             }
         };
 
-        $('#title, #content').animate({
+        $('#header, #content').animate({
             'opacity': 1
         }, animatinoSpeed, null, done);
     };
