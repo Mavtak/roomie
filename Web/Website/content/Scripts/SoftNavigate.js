@@ -8,42 +8,66 @@
     var animatinoSpeed = 250;
     
     var navigate = namespace.navigate = function (path, pushState, callback) {
-        roomie.ui.notifications.setContent('loading...');
-
-        var actionCount = 3;
-
         var page;
-
+        var animationComplete;
+        
         var done = function() {
-            actionCount--;
-            
-            if (actionCount == 0) {
-                
-                if (namespace.exitPage) {
-                    namespace.exitPage();
-                    delete namespace.exitPage;
-                }
-                roomie.ui.notifications.displayNext();
-                replace(page, callback);
+            if (page && animationComplete) {
+                finishNavigate(page, callback);
             }
         };
+        
+        startNavigateDownload(path, pushState, function(response) {
+            page = response;
+            done();
+        });
+        
+        startNavigateAnimation(function() {
+            animationComplete = true;
+            done();
+        });
+    };
 
-        $('#header, #content').animate({
-            'opacity': 0
-        }, animatinoSpeed, null, done);
+    var startNavigateDownload = namespace.startNavigateDownload = function (path, pushState, callback) {
+        roomie.ui.notifications.setContent('loading...');
         
         if (pushState) {
             history.pushState({ path: path }, path, path);
         }
         
         $.get(path)
-            .success(function(data) {
-                page = data;
-                done();
-            })
+            .success(callback)
             .fail(function() {
                 window.location.href = path;
             });
+    };
+    
+    var startNavigateAnimation = namespace.startNavigateAnimation = function (callback) {
+
+        var animatinoCount = 2;
+
+        var done = function() {
+            animatinoCount--;
+
+            if (animatinoCount == 0) {
+                callback();
+                return;
+            }
+        };
+
+        $('#header, #content').animate({
+            'opacity': 0
+        }, animatinoSpeed, null, done);
+    };
+    
+    var finishNavigate = namespace.finishNavigate = function(page, callback) {
+        if (namespace.exitPage) {
+            namespace.exitPage();
+            delete namespace.exitPage;
+        }
+        
+        roomie.ui.notifications.displayNext();
+        replace(page, callback);
     };
 
     var stashScriptTags = function (html) {
