@@ -50,18 +50,6 @@
     background-color: rgba(255, 255, 255, .95);
 }
 
-
-
-.widget.disconnected .content,
-.widget.waiting .content,
-.widget.expired .content,
-.widget .widget.disconnected .content,
-.widget .widget.waiting .content,
-.widget .widget.expired .content
-{
-    background-color: rgb(122, 61, 152);
-}
-
 .widget.disconnected .buttonGroup,
 .widget.waiting .buttonGroup,
 .widget.expired .buttonGroup,
