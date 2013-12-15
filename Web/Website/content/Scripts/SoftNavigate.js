@@ -7,7 +7,7 @@
 
     var animatinoSpeed = 250;
     
-    var navigate = namespace.navigate = function (path, pushState, callback) {
+    var navigate = namespace.navigate = function (path, pushState, preAnimation, callback) {
         var page;
         var animationComplete;
         
@@ -21,11 +21,19 @@
             page = response;
             done();
         });
+
+        var animation = function() {
+            startNavigateAnimation(function () {
+                animationComplete = true;
+                done();
+            });
+        };
         
-        startNavigateAnimation(function() {
-            animationComplete = true;
-            done();
-        });
+        if (preAnimation) {
+            preAnimation(animation);
+        } else {
+            animation();
+        }
     };
 
     var startNavigateDownload = namespace.startNavigateDownload = function (path, pushState, callback) {
@@ -131,8 +139,9 @@
 
         if (path.indexOf('/') == 0) {
             e.preventDefault();
-            roomie.ui.navigationMenu.hide();
-            navigate(path, true);
+            navigate(path, true, function(callback) {
+                roomie.ui.navigationMenu.hide(callback);
+            });
         }
     };
 
