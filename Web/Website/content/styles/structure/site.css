@@ -133,6 +133,7 @@ form
     font-size: 150%;
     white-space: nowrap;
     padding: 5px;
+    cursor: pointer;
 }
 
 .sideMenu .divider
