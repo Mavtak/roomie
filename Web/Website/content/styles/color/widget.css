@@ -49,13 +49,3 @@
 {
     background-color: rgba(255, 255, 255, .95);
 }
-
-.widget.disconnected .buttonGroup,
-.widget.waiting .buttonGroup,
-.widget.expired .buttonGroup,
-.widget .widget.disconnected .buttonGroup,
-.widget .widget.waiting .buttonGroup,
-.widget .widget.expired .buttonGroup
-{
-    background-color: rgba(255 ,255, 255, .75);
-}
