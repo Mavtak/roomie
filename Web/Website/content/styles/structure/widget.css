@@ -91,7 +91,9 @@
     white-space: nowrap;
 }
 
-.widget .location.unknown
+
+.widget .location.unknown,
+.widget.device .location
 {
     display: none;
 }
