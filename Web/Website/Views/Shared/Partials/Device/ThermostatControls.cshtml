@@ -24,18 +24,6 @@
         setpointsDescription = "--";
     }
 
-    var fanDescription = thermostat.Fan.Describe();
-    if (string.IsNullOrEmpty(fanDescription))
-    {
-        fanDescription = "--";
-    }
-    
-    var thermostatDescription = thermostat.Core.Describe();
-    if (string.IsNullOrEmpty(thermostatDescription))
-    {
-        thermostatDescription = "--";
-    }
-
 }@*
 //TODO: make this work
 
@@ -43,14 +31,14 @@
   *@<div class="temperature">@*
     *@@FormatTemeprature(thermostat.Temperature)@*
   *@</div>@*
-  *@<div class="stack">@*
-    *@<div class="row"><b>Setpoints:</b> @setpointsDescription</div>@*
-      *@<div class="row"><b>Fan:</b> @fanDescription</div>@*
-      *@<div class="row"><b>Thermostat:</b> @thermostatDescription</div>@*
-  *@</div>@*
+  *@<b>Setpoints:</b> @setpointsDescription@*
 *@</div>@*
 
-*@<div class="header">System Mode</div>@*  
+*@<div class="header">@*
+  *@<div class="secondary">Currently @thermostat.Core.CurrentAction</div>@*  
+  *@System Mode@*
+*@</div>@*  
+
 *@@using (Ajax.BeginForm(
                     actionName: "SetThermostatMode",
                     controllerName: "Device",
@@ -76,7 +64,12 @@
           *@</div>@*
       *@}@*    
 *@}@*
-*@<div class="header">Fan Mode</div>@*  
+
+*@<div class="header">@*
+  *@<div class="secondary">Currently @thermostat.Fan.CurrentAction</div>@*  
+  *@Fan Mode@*
+*@</div>@*  
+
 *@@using (Ajax.BeginForm(
                     actionName: "SetThermostatFanMode",
                     controllerName: "Device",

@@ -3,7 +3,8 @@
     background-color: rgb(102, 1, 152);
 }
 
-.widget .header .location
+.widget .header .location,
+.widget .header .secondary
 {
     opacity: .75;
 }
