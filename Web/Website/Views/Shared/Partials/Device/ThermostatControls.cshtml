@@ -25,21 +25,30 @@
 *@<div class="thermostat-controls">@*
     
   *@<div class="temperature">@*
-    *@@if (thermostat.Setpoints.AvailableSetpoints.Contains(ThermostatSetpointType.Heat))
-      {
-          @FormatTemeprature(thermostat.Setpoints[ThermostatSetpointType.Heat]);
-      }@*
+    *@<div class="value">@*
+      *@@if (thermostat.Setpoints.AvailableSetpoints.Contains(ThermostatSetpointType.Heat))
+        {
+            @FormatTemeprature(thermostat.Setpoints[ThermostatSetpointType.Heat]);
+        }@*
+    *@</div>@*
+    *@<div class="description">Heat Setpoint</div>@*
   *@</div>@*
 
   *@<div class="temperature">@*
-    *@@FormatTemeprature(thermostat.Temperature)@*
+    *@<div class="value">@*
+      *@@FormatTemeprature(thermostat.Temperature)@*
+    *@</div>@*
+    *@<div class="description">Current Temperature</div>@*
   *@</div>@*
     
   *@<div class="temperature">@*
-    *@@if (thermostat.Setpoints.AvailableSetpoints.Contains(ThermostatSetpointType.Cool))
-      {
-          @FormatTemeprature(thermostat.Setpoints[ThermostatSetpointType.Cool]);
-      }@*
+    *@<div class="value">@*
+      *@@if (thermostat.Setpoints.AvailableSetpoints.Contains(ThermostatSetpointType.Cool))
+        {
+            @FormatTemeprature(thermostat.Setpoints[ThermostatSetpointType.Cool]);
+        }@*
+    *@</div>@*
+    *@<div class="description">Cool Setpoint</div>@*
   *@</div>@*
 *@</div>@*
 

@@ -265,10 +265,19 @@
 .widget .thermostat-controls .temperature
 {
     display: inline-block;
-    font-size: 3em;
     width: 33.333333%;
     box-sizing: border-box;
     min-width: 50px;
     vertical-align: middle;
     text-align: center;
+}
+
+.widget .thermostat-controls .temperature .value
+{
+    font-size: 3em;
+}
+
+.widget .thermostat-controls .temperature .description
+{
+    font-size: 
 }
