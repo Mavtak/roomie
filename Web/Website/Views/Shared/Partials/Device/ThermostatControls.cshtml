@@ -17,21 +17,30 @@
   }
 @{
     var thermostat = Model.Device.Thermostat;
-    
-    var setpointsDescription = thermostat.Setpoints.Describe();
-    if (string.IsNullOrEmpty(setpointsDescription))
-    {
-        setpointsDescription = "--";
-    }
+
 
 }@*
 //TODO: make this work
 
 *@<div class="thermostat-controls">@*
+    
+  *@<div class="temperature">@*
+    *@@if (thermostat.Setpoints.AvailableSetpoints.Contains(ThermostatSetpointType.Heat))
+      {
+          @FormatTemeprature(thermostat.Setpoints[ThermostatSetpointType.Heat]);
+      }@*
+  *@</div>@*
+
   *@<div class="temperature">@*
     *@@FormatTemeprature(thermostat.Temperature)@*
   *@</div>@*
-  *@<b>Setpoints:</b> @setpointsDescription@*
+    
+  *@<div class="temperature">@*
+    *@@if (thermostat.Setpoints.AvailableSetpoints.Contains(ThermostatSetpointType.Cool))
+      {
+          @FormatTemeprature(thermostat.Setpoints[ThermostatSetpointType.Cool]);
+      }@*
+  *@</div>@*
 *@</div>@*
 
 *@<div class="header">@*
