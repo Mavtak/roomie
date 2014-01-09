@@ -5,12 +5,14 @@ using System.Web.Mvc;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
+using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 using System.Linq;
 using Roomie.Web.Website.ViewModels;
+using Roomie.Common.Temperature;
 
 
 namespace Roomie.Web.Website.Controllers
@@ -126,6 +128,26 @@ namespace Roomie.Web.Website.Controllers
             var device = this.SelectDevice(id);
 
             device.Thermostat.Fan.SetMode(mode);
+
+            Database.SaveChanges();
+
+            return Json(new
+            {
+                success = true,
+                id = id
+            }
+            );
+        }
+
+        [HttpPost]
+        [WebsiteRestrictedAccess]
+        public ActionResult SetThermostatSetpoint(int id, ThermostatSetpointType type, string temperature)
+        {
+            var device = this.SelectDevice(id);
+
+            var temperatureValue = TemperatureParser.Parse(temperature);
+
+            device.Thermostat.Setpoints.SetSetpoint(type, temperatureValue);
 
             Database.SaveChanges();
 

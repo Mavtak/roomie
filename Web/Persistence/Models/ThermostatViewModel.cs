@@ -26,7 +26,7 @@ namespace Roomie.Web.Persistence.Models
 
             Core = new ThermostatCoreModel(_device);
             Fan = new ThermostatFanModel(_device);
-            Setpoints = new ThermostatSetpointModel();
+            Setpoints = new ThermostatSetpointModel(_device);
         }
 
         public void PollTemperature()
@@ -68,7 +68,7 @@ namespace Roomie.Web.Persistence.Models
                 Fan.Update(data.FanState);
             }
 
-            Setpoints = new ThermostatSetpointModel();
+            Setpoints = new ThermostatSetpointModel(_device);
 
             if (data.SetpointStates != null)
             {

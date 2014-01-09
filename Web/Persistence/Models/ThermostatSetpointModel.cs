@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
+using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -9,6 +10,8 @@ namespace Roomie.Web.Persistence.Models
     {
         private Dictionary<ThermostatSetpointType, ITemperature> _setpoints;
  
+        private DeviceModel _device;
+
         public ITemperature this[ThermostatSetpointType setpoint]
         {
             get
@@ -25,8 +28,9 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public ThermostatSetpointModel()
+        public ThermostatSetpointModel(DeviceModel device)
         {
+            _device = device;
             _setpoints = new Dictionary<ThermostatSetpointType, ITemperature>();
         }
 
@@ -42,7 +46,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void SetSetpoint(ThermostatSetpointType setpointType, ITemperature temperature)
         {
-            throw new NotImplementedException();
+            _device.DoCommand("HomeAutomation.SetSetpoint Device=\"{0}\" Setpoint=\"{1}\" Temperature=\"{2}\"", setpointType.ToString(), temperature.ToString());
         }
 
         public void Add(ThermostatSetpointType setpoint, ITemperature temperature)
