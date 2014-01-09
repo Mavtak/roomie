@@ -6,5 +6,6 @@
         FahrenheitTemperature Fahrenheit { get; }
         KelvinTemperature Kelvin { get; }
         double Value { get; }
+        ITemperature Add(double amount);
     }
 }

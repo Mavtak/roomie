@@ -35,6 +35,19 @@ namespace Roomie.Common.Tests.Temperature
             Assert.That(kelvin, Is.SameAs(newKelvin));
         }
 
+        [TestCase(50, 1, 51)]
+        [TestCase(50, -1, 49)]
+        [TestCase(50, 0, 50)]
+        public void ItAddsCorrectly(double before, double amount, double after)
+        {
+            var initial = new KelvinTemperature(before);
+            var result = initial.Add(amount);
+
+            Assert.That(initial, Is.Not.SameAs(result));
+            Assert.That(initial.Value, Is.EqualTo(before));
+            Assert.That(result.Value, Is.EqualTo(after));
+        }
+
         [TestCase(100, "100 Kelvin")]
         public void ToStringShouldWork(double value, string expected)
         {

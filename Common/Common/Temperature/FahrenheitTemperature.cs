@@ -44,6 +44,13 @@ namespace Roomie.Common.Temperature
             }
         }
 
+        public ITemperature Add(double amount)
+        {
+            var result = new FahrenheitTemperature(Value + amount);
+
+            return result;
+        }
+
         public override string ToString()
         {
             return _value + " Fahrenheit";
