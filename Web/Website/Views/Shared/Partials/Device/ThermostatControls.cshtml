@@ -15,6 +15,36 @@
       else
       {<text>--</text>}
   }
+@helper SetpointControl(IThermostat thermostat, ThermostatSetpointType type) {
+    var temperature = thermostat.Setpoints[type];
+    
+    using (Ajax.BeginForm(
+        actionName: "SetThermostatSetpoint",
+        controllerName: "Device",
+        routeValues: new
+        {
+            id = Model.Device.Id,
+            type = type.ToString()
+        },
+        ajaxOptions: new AjaxOptions
+        {
+            HttpMethod = "Post",
+        },
+        htmlAttributes: new
+        {
+            @class = "temperature",
+            id = string.Empty
+        }
+        ))
+     {@*
+    *@<button class="button setpoint-button hotter" type="submit" name="temperature" value="@temperature.Add(-1)">-</button>@*   
+    *@<div class="value">@*
+      *@@FormatTemeprature(temperature)@*
+    *@</div>@*
+    *@<button class="button setpoint-button colder" type="submit" name="temperature" value="@temperature.Add(1)">+</button>@*   
+    *@<div class="description">@type Setpoint</div>@*
+*@}
+}
 @{
     var thermostat = Model.Device.Thermostat;
 
@@ -24,15 +54,7 @@
 
 *@<div class="thermostat-controls">@*
     
-  *@<div class="temperature">@*
-    *@<div class="value">@*
-      *@@if (thermostat.Setpoints.AvailableSetpoints.Contains(ThermostatSetpointType.Heat))
-        {
-            @FormatTemeprature(thermostat.Setpoints[ThermostatSetpointType.Heat]);
-        }@*
-    *@</div>@*
-    *@<div class="description">Heat Setpoint</div>@*
-  *@</div>@*
+  *@@(SetpointControl(thermostat, ThermostatSetpointType.Heat))@*
 
   *@<div class="temperature">@*
     *@<div class="value">@*
@@ -40,16 +62,8 @@
     *@</div>@*
     *@<div class="description">Current Temperature</div>@*
   *@</div>@*
-    
-  *@<div class="temperature">@*
-    *@<div class="value">@*
-      *@@if (thermostat.Setpoints.AvailableSetpoints.Contains(ThermostatSetpointType.Cool))
-        {
-            @FormatTemeprature(thermostat.Setpoints[ThermostatSetpointType.Cool]);
-        }@*
-    *@</div>@*
-    *@<div class="description">Cool Setpoint</div>@*
-  *@</div>@*
+  
+  *@@(SetpointControl(thermostat, ThermostatSetpointType.Cool))@*  
 *@</div>@*
 
 *@<div class="header">@*

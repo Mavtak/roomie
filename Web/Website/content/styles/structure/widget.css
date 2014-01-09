@@ -272,12 +272,21 @@
     text-align: center;
 }
 
-.widget .thermostat-controls .temperature .value
+.widget .thermostat-controls .temperature .value,
+.widget .thermostat-controls .temperature .setpoint-button
 {
-    font-size: 3em;
+    display: inline-block;
+    font-size: 150%;
+    width: 40%;
 }
 
 .widget .thermostat-controls .temperature .description
 {
-    font-size: 
+    border: none;
+}
+
+.widget .thermostat-controls .temperature .setpoint-button
+{
+    border: none;
+    width: 30%;
 }
