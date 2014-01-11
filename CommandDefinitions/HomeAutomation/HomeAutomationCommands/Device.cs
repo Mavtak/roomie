@@ -3,6 +3,7 @@ using System.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Events;
+using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Common.ScriptingLanguage;
@@ -104,17 +105,20 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             var eventActions = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerChange));
 
 
-            switch (ToggleSwitch.Power)
+            if (ToggleSwitch != null)
             {
-                case ToggleSwitchPower.On:
-                    var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOn));
-                    eventActions = eventActions.Union(onScripts);
-                    break;
+                switch (ToggleSwitch.Power)
+                {
+                    case ToggleSwitchPower.On:
+                        var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOn));
+                        eventActions = eventActions.Union(onScripts);
+                        break;
 
-                case ToggleSwitchPower.Off:
-                    var offScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOff));
-                    eventActions = eventActions.Union(offScripts);
-                    break;
+                    case ToggleSwitchPower.Off:
+                        var offScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOff));
+                        eventActions = eventActions.Union(offScripts);
+                        break;
+                }
             }
 
             var scripts = eventActions.Select(a => a.Commands);
@@ -151,6 +155,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         public abstract IToggleSwitch ToggleSwitch { get; }
         public abstract IDimmerSwitch DimmerSwitch { get; }
         public abstract IThermostat Thermostat { get; }
+        public abstract IKeypad Keypad { get; }
 
         public void Update(IDeviceState state)
         {
@@ -201,6 +206,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             get
             {
                 return Thermostat;
+            }
+        }
+
+        IKeypadState IDeviceState.KeypadState
+        {
+            get
+            {
+                return Keypad;
             }
         }
 
@@ -269,6 +282,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             get
             {
                 return Thermostat;
+            }
+        }
+
+        IKeypadActions IDeviceActions.KeypadActions
+        {
+            get
+            {
+                return Keypad;
             }
         }
 

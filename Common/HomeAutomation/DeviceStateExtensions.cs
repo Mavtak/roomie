@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 
@@ -25,6 +26,10 @@ namespace Roomie.Common.HomeAutomation
             else if (device.Type == DeviceType.Thermostat)
             {
                 result = device.ThermostatState.Describe();
+            }
+            else if (device.Type == DeviceType.Keypad)
+            {
+                result = device.KeypadState.Describe();
             }
             else if (!device.Type.CanControl || !device.Type.CanPoll)
             {
@@ -103,6 +108,16 @@ namespace Roomie.Common.HomeAutomation
                 if (thermostatNode.Attributes().Any() || thermostatNode.Ancestors().Any())
                 {
                     result.Add(thermostatNode);
+                }
+            }
+
+            if (state.KeypadState != null)
+            {
+                var node = state.KeypadState.ToXElement();
+
+                if (node.Attributes().Any() || node.Descendants().Any())
+                {
+                    result.Add(node);
                 }
             }
 

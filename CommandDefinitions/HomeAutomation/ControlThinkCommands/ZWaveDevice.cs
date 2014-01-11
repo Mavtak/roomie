@@ -1,6 +1,7 @@
 ﻿using System;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 using BackingDevice = ControlThink.ZWave.Devices.ZWaveDevice;
@@ -68,6 +69,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             get
             {
                 return _thermostat;
+            }
+        }
+
+        public override IKeypad Keypad
+        {
+            get
+            {
+                return null;
             }
         }
     }

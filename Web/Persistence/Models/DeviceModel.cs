@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Web.Persistence.Helpers;
@@ -105,6 +106,15 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        //TODO: implement this
+        public IKeypad Keypad
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         public DeviceModel()
         {
             _toggleSwitch = new ToggleSwitchModel(this);
@@ -181,6 +191,15 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        [NotMapped]
+        IKeypad IDevice.Keypad
+        {
+            get
+            {
+                return Keypad;
+            }
+        }
+
         #endregion
 
         #region IDeviceState
@@ -227,6 +246,15 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return Thermostat;
+            }
+        }
+
+        [NotMapped]
+        IKeypadState IDeviceState.KeypadState
+        {
+            get
+            {
+                return Keypad;
             }
         }
 
@@ -341,6 +369,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return Thermostat;
+            }
+        }
+
+        IKeypadActions IDeviceActions.KeypadActions
+        {
+            get
+            {
+                return Keypad;
             }
         }
 

@@ -83,6 +83,16 @@
     <Compile Include="INetwork.cs" />
     <Compile Include="INetworkActions.cs" />
     <Compile Include="INetworkState.cs" />
+    <Compile Include="Keypads\Buttons\IButton.cs" />
+    <Compile Include="Keypads\Buttons\IButtonActions.cs" />
+    <Compile Include="Keypads\Buttons\ReadOnlyButtonState.cs" />
+    <Compile Include="Keypads\Buttons\ButtonStateExtensions.cs" />
+    <Compile Include="Keypads\Buttons\IKeypadButtonState.cs" />
+    <Compile Include="Keypads\IKeypad.cs" />
+    <Compile Include="Keypads\IKeypadActions.cs" />
+    <Compile Include="Keypads\IKeypadState.cs" />
+    <Compile Include="Keypads\ReadOnlyKeypadState.cs" />
+    <Compile Include="Keypads\KeypadStateExtensions.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationExtensions.cs" />
     <Compile Include="NetworkCollectionExtensions.cs" />

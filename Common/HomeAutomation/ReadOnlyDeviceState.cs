@@ -1,5 +1,6 @@
 ﻿using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 
@@ -16,12 +17,13 @@ namespace Roomie.Common.HomeAutomation
         public IToggleSwitchState ToggleSwitchState { get; private set; }
         public IDimmerSwitchState DimmerSwitchState { get; private set; }
         public IThermostatState ThermostatState { get; private set; }
+        public IKeypadState KeypadState { get; private set; }
 
         private ReadOnlyDeviceState()
         {
         }
 
-        public ReadOnlyDeviceState(string name, string address, ILocation location, INetwork network, bool? isConnected, DeviceType type, IToggleSwitchState toggleSwitchState, IDimmerSwitchState dimmerSwitchState, IThermostatState thermostatState)
+        public ReadOnlyDeviceState(string name, string address, ILocation location, INetwork network, bool? isConnected, DeviceType type, IToggleSwitchState toggleSwitchState, IDimmerSwitchState dimmerSwitchState, IThermostatState thermostatState, IKeypadState keypadState)
         {
             Name = name;
             Address = address;
@@ -32,6 +34,7 @@ namespace Roomie.Common.HomeAutomation
             ToggleSwitchState = toggleSwitchState;
             DimmerSwitchState = dimmerSwitchState;
             ThermostatState = thermostatState;
+            KeypadState = keypadState;
         }
 
         //TODO: unit test this
@@ -47,7 +50,8 @@ namespace Roomie.Common.HomeAutomation
                 Type = source.Type,
                 ToggleSwitchState = (source.ToggleSwitchState == null) ? null : source.ToggleSwitchState.Copy(),
                 DimmerSwitchState = (source.DimmerSwitchState == null) ? null : source.DimmerSwitchState.Copy(),
-                ThermostatState = (source.ThermostatState == null) ? null : source.ThermostatState.Copy()
+                ThermostatState = (source.ThermostatState == null) ? null : source.ThermostatState.Copy(),
+                KeypadState = (source.KeypadState == null) ? null : source.KeypadState.Copy()
             };
 
             return result;
@@ -100,6 +104,13 @@ namespace Roomie.Common.HomeAutomation
                 thermostat = thermostatElement.ToThermostat();
             }
 
+            IKeypadState keypad = null;
+            var keypadElement = element.Element("Keypad");
+            if (keypadElement != null)
+            {
+                keypad = keypadElement.ToKeypad();
+            }
+
             var result = new ReadOnlyDeviceState
             {
                 Name = name,
@@ -109,7 +120,8 @@ namespace Roomie.Common.HomeAutomation
                 Type = DeviceType.GetTypeFromString(type),
                 ToggleSwitchState = toggleSwitch,
                 DimmerSwitchState = dimmerSwitch,
-                ThermostatState = thermostat
+                ThermostatState = thermostat,
+                KeypadState = keypad
             };
 
             return result;

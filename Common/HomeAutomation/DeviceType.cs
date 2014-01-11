@@ -13,6 +13,7 @@ namespace Roomie.Common.HomeAutomation
         public static readonly DeviceType Relay = new DeviceType("Relay", false, false);
         public static readonly DeviceType MotionDetector = new DeviceType("Motion Detector", false, false);
         public static readonly DeviceType Thermostat = new DeviceType("Thermostat", false, false);
+        public static readonly DeviceType Keypad = new DeviceType("Keypad", false, false);
         public static readonly DeviceType Unknown = new DeviceType("Unknown", true, true);
 
         public string Name { get; private set;}
@@ -64,7 +65,7 @@ namespace Roomie.Common.HomeAutomation
         {
             get
             {
-                return !Name.Equals("Controller") && !Name.Equals("Relay") && !Name.Equals("Motion Detector");
+                return !Name.Equals("Controller") && !Name.Equals("Relay") && !Name.Equals("Motion Detector") && !Name.Equals("Keypad");
             }
         }
         public bool CanPoll
