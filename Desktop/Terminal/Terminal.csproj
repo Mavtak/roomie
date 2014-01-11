@@ -89,6 +89,10 @@
       <Project>{FA68504D-927F-4A50-AD3A-A009A98AF836}</Project>
       <Name>CoreCommands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\HomeAutomation\PiEngineeringCommands\PiEngineeringCommands.csproj">
+      <Project>{9f021646-9069-4b2c-a26a-d6386ee0ed90}</Project>
+      <Name>PiEngineeringCommands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Roomie.Desktop.Extensions.EmailCommands\EmailCommands.csproj">
       <Project>{6AC4327B-9B8A-4967-89C6-5A219AFFC4FA}</Project>
       <Name>EmailCommands</Name>

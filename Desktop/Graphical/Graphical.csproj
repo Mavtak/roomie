@@ -154,6 +154,10 @@
       <Project>{52838530-5174-47d2-a029-2ddb7918c776}</Project>
       <Name>SpeechRecognitionCommands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\HomeAutomation\PiEngineeringCommands\PiEngineeringCommands.csproj">
+      <Project>{9f021646-9069-4b2c-a26a-d6386ee0ed90}</Project>
+      <Name>PiEngineeringCommands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Engine\Engine.csproj">
       <Project>{91e5d2c3-d269-4ff9-8ab6-36926441f6b2}</Project>
       <Name>Engine</Name>
