@@ -45,9 +45,9 @@
     <Compile Include="ITriggerBundle.cs" />
     <Compile Include="ITriggerCollection.cs" />
     <Compile Include="NotTrigger.cs" />
+    <Compile Include="OncePerEventTrigger.cs" />
     <Compile Include="OrTrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShyTrigger.cs" />
     <Compile Include="TriggerBundle.cs" />
     <Compile Include="TriggerCollection.cs" />
   </ItemGroup>
