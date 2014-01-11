@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.Keypads;
+using Roomie.Common.HomeAutomation.Keypads.Buttons;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
@@ -12,7 +14,7 @@ namespace Roomie.Common.HomeAutomation.Tests
     public static class DataHelpers
     {
         private static int _id;
-        public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeToggle = true, bool includeDimmer = true, bool includeThermostat = true)
+        public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeToggle, bool includeDimmer, bool includeThermostat, bool includeKeypad)
         {
             var toggle = new ReadOnlyToggleSwitchState(ToggleSwitchPower.On);
             var dimmer = new ReadOnlyDimmerSwitchState(25, 100);
@@ -32,6 +34,14 @@ namespace Roomie.Common.HomeAutomation.Tests
             
             var thermostat = new ReadOnlyThermostatState(new FahrenheitTemperature(75), thermostatCore, thermostatFan, thermostatSetpoints);
 
+            var keypadButtons = new []
+                {
+                    new ReadOnlyKeypadButtonState("1", false),
+                    new ReadOnlyKeypadButtonState("2", true),
+                    new ReadOnlyKeypadButtonState("3", null)
+                };
+
+            var keypad = new ReadOnlyKeypadState(keypadButtons);
 
             var location = new Location("Here");
 
@@ -53,18 +63,23 @@ namespace Roomie.Common.HomeAutomation.Tests
                 thermostat = null;
             }
 
-            var device = new ReadOnlyDeviceState("Sample Device", address, location, null, true, type, toggle, dimmer, thermostat);
+            if (!includeKeypad)
+            {
+                keypad = null;
+            }
+
+            var device = new ReadOnlyDeviceState("Sample Device", address, location, null, true, type, toggle, dimmer, thermostat, keypad);
 
             return device;
         }
 
-        public static IEnumerable<IDeviceState> GenerateExampleDevices(int count, bool includeToggle = true, bool includeDimmer = true, bool includeThermostat = true)
+        public static IEnumerable<IDeviceState> GenerateExampleDevices(int count, bool includeToggle, bool includeDimmer, bool includeThermostat, bool includeKeypad)
         {
             for (var i = 0; i < count; i++)
             {
                 DeviceType type;
 
-                switch (i % 7)
+                switch (i % 8)
                 {
                     case 0:
                         type = DeviceType.Controller;
@@ -91,12 +106,15 @@ namespace Roomie.Common.HomeAutomation.Tests
                         break;
 
                     case 6:
+                        type = DeviceType.Keypad;
+                        break;
+
                     default:
                         type = DeviceType.Unknown;
                         break;
                 }
 
-                var device = GenerateExampleDevice(type, includeToggle, includeDimmer, includeThermostat);
+                var device = GenerateExampleDevice(type, includeToggle, includeDimmer, includeThermostat, includeKeypad);
 
                 yield return device;
             }

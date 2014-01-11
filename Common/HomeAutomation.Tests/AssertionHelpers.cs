@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
@@ -11,7 +13,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 {
     public class AssertionHelpers
     {
-        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkToggleSwitch = true, bool checkDimmerSwitch = true, bool checkThermostat = true)
+        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkToggleSwitch, bool checkDimmerSwitch, bool checkThermostat, bool checkKeypad)
         {
             Assert.That(one.Name, Is.EqualTo(two.Name));
             Assert.That(one.Address, Is.EqualTo(two.Address));
@@ -31,6 +33,11 @@ namespace Roomie.Common.HomeAutomation.Tests
             if (checkThermostat)
             {
                 AssertThermostatEqual(one.ThermostatState, two.ThermostatState);
+            }
+
+            if (checkKeypad)
+            {
+                AssertKeypadEqual(one.KeypadState, two.KeypadState);
             }
         }
 
@@ -142,6 +149,25 @@ namespace Roomie.Common.HomeAutomation.Tests
             {
                 CollectionAssert.Contains(two.AvailableSetpoints, setpoint);
                 Assert.That(one[setpoint], Is.EqualTo(two[setpoint]));
+            }
+        }
+
+        public static void AssertKeypadEqual(IKeypadState one, IKeypadState two)
+        {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
+            AssertHelperHelper(one, two);
+
+            Assert.That(one.Buttons.Count(), Is.EqualTo(two.Buttons.Count()));
+
+            foreach (var buttonOne in one.Buttons)
+            {
+                var buttonTwo = two.Buttons.FirstOrDefault(x => x.Id == buttonOne.Id);
+                Assert.That(buttonTwo, Is.Not.Null);
+                Assert.That(buttonOne.Pressed, Is.EqualTo(buttonTwo.Pressed));
             }
         }
     }
