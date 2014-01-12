@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Events
 {
-    class PoweredOn : DevicePowerChanged
+    public class PoweredOn : DevicePowerChanged
     {
         public new const string Key = "Powered On";
 
