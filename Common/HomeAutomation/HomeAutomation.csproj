@@ -51,6 +51,7 @@
     <Compile Include="DimmerSwitches\ReadOnlyDimmerSwitchState.cs" />
     <Compile Include="DimmerSwitches\DimmerSwitchStateExtensions.cs" />
     <Compile Include="Events\DeviceStateChanged.cs" />
+    <Compile Include="Events\EventTypeExtensions.cs" />
     <Compile Include="Events\PoweredOff.cs" />
     <Compile Include="Events\PoweredOn.cs" />
     <Compile Include="Events\StillnessDetected.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="Events\NetworkHistory.cs" />
     <Compile Include="Events\TemperatureChanged.cs" />
     <Compile Include="DimmerSwitches\IDimmerSwitch.cs" />
+    <Compile Include="Events\Triggers\WhenDeviceEventHappenedWithinTimespanTrigger.cs" />
+    <Compile Include="Events\Triggers\WhenDeviceEventHappensTrigger.cs" />
     <Compile Include="IDevice.cs" />
     <Compile Include="IDeviceActions.cs" />
     <Compile Include="IDeviceState.cs" />
@@ -162,6 +165,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
       <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Triggers\Triggers.csproj">
+      <Project>{5f72c80f-4c92-46ee-931b-7676dd2824e9}</Project>
+      <Name>Triggers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
