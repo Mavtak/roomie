@@ -155,7 +155,6 @@ namespace Roomie.Web.Persistence.Models
 
         #region IDevice
 
-        [NotMapped]
         INetwork IDevice.Network
         {
             get
@@ -164,7 +163,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        [NotMapped]
         IToggleSwitch IDevice.ToggleSwitch
         {
             get
@@ -173,7 +171,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        [NotMapped]
         IDimmerSwitch IDevice.DimmerSwitch
         {
             get
@@ -182,7 +179,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        [NotMapped]
         IThermostat IDevice.Thermostat
         {
             get
@@ -191,7 +187,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        [NotMapped]
         IKeypad IDevice.Keypad
         {
             get
@@ -212,7 +207,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        [NotMapped]
         ILocation IDeviceState.Location
         {
             get
@@ -221,8 +215,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-
-        [NotMapped]
         IToggleSwitchState IDeviceState.ToggleSwitchState
         {
             get
@@ -231,7 +223,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        [NotMapped]
         IDimmerSwitchState IDeviceState.DimmerSwitchState
         {
             get
@@ -240,7 +231,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        [NotMapped]
         IThermostatState IDeviceState.ThermostatState
         {
             get
@@ -249,7 +239,6 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        [NotMapped]
         IKeypadState IDeviceState.KeypadState
         {
             get
