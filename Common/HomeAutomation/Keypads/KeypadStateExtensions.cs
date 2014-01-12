@@ -21,10 +21,13 @@ namespace Roomie.Common.HomeAutomation.Keypads
                 return result.ToString();
             }
 
-            var buttons = state.Buttons.Describe();
-            if (buttons != null)
+            if (state.Buttons != null)
             {
-                result.Append(buttons);
+                var buttons = state.Buttons.Describe();
+                if (buttons != null)
+                {
+                    result.Append(buttons);
+                }
             }
 
             return result.ToString();
