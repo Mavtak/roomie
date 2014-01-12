@@ -1,4 +1,8 @@
 ﻿
+using Roomie.Common.HomeAutomation.Events;
+using Roomie.Common.HomeAutomation.Events.Triggers;
+using Roomie.Common.Triggers;
+
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     public class RegisterPowerOnCommand : HomeAutomationSingleDeviceCommand
@@ -7,10 +11,18 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var originalCommand = context.OriginalCommand;
             var commands = originalCommand.InnerCommands;
+            var network = context.Network;
+            var triggers = network.Context.Triggers;
+            var history = network.Context.History;
+            var threadPool = network.Context.ThreadPool;
             var device = context.Device;
 
-            var eventAction = new DeviceEventAction(DeviceEventType.PowerOn, commands);
-            device.DeviceEventActions.Add(eventAction);
+            var trigger = new WhenDeviceEventHappensTrigger(device, new PoweredOn(), history.DeviceEvents);
+            var action = new RunScriptTriggerAction(threadPool, commands);
+
+            var triggerBundle = new TriggerBundle(trigger, action);
+
+            triggers.Add(triggerBundle);
         }
     }
 }

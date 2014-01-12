@@ -1,6 +1,7 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.ScriptingLanguage;
+using Roomie.Common.Triggers;
 using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
@@ -9,6 +10,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
     {
         public ThreadPool ThreadPool { get; private set; }
         public IMasterHistory History { get; private set; }
+        public ITriggerCollection Triggers { get; private set; }
         private readonly RoomieEngine _engine;
 
         public bool WebHookPresent
@@ -25,6 +27,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             ThreadPool = threadPool;
             //TODO: ninject?
             History = new MasterHistory(deviceHistory, networkHistory);
+            Triggers = new TriggerCollection();
         }
 
         public HomeAutomationNetworkContext(RoomieEngine engine, ThreadPool threadPool)

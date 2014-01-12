@@ -3,6 +3,7 @@ using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Exceptions;
+using Roomie.Common.Triggers;
 using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
@@ -56,6 +57,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
                 //TODO: does this belong here?  Where does "Disconnected" go?
                 network.Context.History.Add(NetworkEvent.Connected(network, null));
+                network.Context.Triggers.CheckAndAct();
             }
 
             try

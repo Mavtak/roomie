@@ -7,6 +7,7 @@ using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Common.ScriptingLanguage;
+using Roomie.Common.Triggers;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
@@ -14,8 +15,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
     {
         //TODO: Create LastPolled dealy?
         //TODO: add public access for Network
-
-        public List<DeviceEventAction> DeviceEventActions { get; private set; }
         public Network Network { get; private set; }
 
         private HomeAutomationNetworkContext Context
@@ -33,8 +32,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Type = type ?? DeviceType.Unknown;
             Name = name;
             IsConnected = null;
-
-            DeviceEventActions = new List<DeviceEventAction>();
         }
 
         protected void PowerChanged()
@@ -99,40 +96,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             threadPool.Print(message);
 
             Context.History.Add(@event);
-
-            //TODO: add an event trigger for DeviceStateChanged
-
-            var eventActions = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerChange));
-
-
-            if (ToggleSwitch != null)
-            {
-                switch (ToggleSwitch.Power)
-                {
-                    case ToggleSwitchPower.On:
-                        var onScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOn));
-                        eventActions = eventActions.Union(onScripts);
-                        break;
-
-                    case ToggleSwitchPower.Off:
-                        var offScripts = DeviceEventActions.Where(a => a.Matches(DeviceEventType.PowerOff));
-                        eventActions = eventActions.Union(offScripts);
-                        break;
-                }
-            }
-
-            var scripts = eventActions.Select(a => a.Commands);
+            Context.Triggers.CheckAndAct();
 
             if (Context.WebHookPresent)
             {
                 var syncScript = new ScriptCommandList();
                 syncScript.Add(Context.SyncWithCloudCommand);
-                scripts = new[] { syncScript }.Union(scripts);
-            }
-
-            foreach (var script in scripts)
-            {
-                threadPool.AddCommands(script);
+                threadPool.AddCommands(syncScript);
             }
         }
 
