@@ -131,5 +131,12 @@ namespace Roomie.Common.HomeAutomation.Keypads.Buttons
 
             return result;
         }
+
+        public static IKeypadButtonState Get(this IEnumerable<IKeypadButtonState> buttonsStates, string id)
+        {
+            var result = buttonsStates.First(b => b.Id == id);
+
+            return result;
+        }
     }
 }
