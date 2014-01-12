@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using PIEHidDotNet;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 
@@ -28,17 +29,13 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
 
         public override void ScanForDevices()
         {
-            var count = 0;
-
             foreach (var piDevice in PIEDevice.EnumeratePIE())
             {
                 if (piDevice.HidUsagePage == 0xc)
                 {
-                    count++;
-
                     var device = new PiEngineeringDevice(this, piDevice)
                     {
-                        Address = count.ToString()
+                        Address = (_devices.Count + 1).ToString()
                     };
 
                     _devices.Add(device);
