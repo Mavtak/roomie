@@ -29,6 +29,11 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
 
         public override void ScanForDevices()
         {
+            if (_devices.Any())
+            {
+                return;
+            }
+
             foreach (var piDevice in PIEDevice.EnumeratePIE())
             {
                 if (piDevice.HidUsagePage == 0xc)
