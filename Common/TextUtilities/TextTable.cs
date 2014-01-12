@@ -86,7 +86,7 @@ namespace Roomie.Common.TextUtilities
 
             for (int i = 0; i < values.Length; i++)
             {
-                allContent[i + 1] = values[i].ToString();
+                allContent[i + 1] = (values[i] ?? string.Empty).ToString();
             }
 
             return String.Format(contentLineTemplate, allContent);

@@ -29,9 +29,9 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var tableBuilder = new TextTable(new int[]
                 {
                     Math.Max(history.Max(x => x.TimeStamp.ToLocalTime().ToString().Length), headers[0].Length),
-                    Math.Max(history.Max(x => ((x.Entity == null) ? string.Empty : x.Entity.Name).Length), headers[1].Length),
+                    Math.Max(history.Max(x => ((x.Entity == null || x.Entity.Name == null) ? string.Empty : x.Entity.Name).Length), headers[1].Length),
                     Math.Max(history.Max(x => ((x.Type == null) ? string.Empty : x.Type.Name).Length), headers[2].Length),
-                    Math.Max(history.Max(x => ((x.Source == null) ? string.Empty : x.Source.Name).Length), headers[3].Length),
+                    Math.Max(history.Max(x => ((x.Source == null || x.Source.Name == null) ? string.Empty : x.Source.Name).Length), headers[3].Length),
                     ExtraLength(history)
                 });
 
