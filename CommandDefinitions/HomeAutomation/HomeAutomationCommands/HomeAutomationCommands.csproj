@@ -87,6 +87,7 @@
     <Compile Include="Commands\HomeAutomation\WaitForChange.cs" />
     <Compile Include="Commands\HomeAutomation\WebHookConnectTasks.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="RunScriptTriggerAction.cs" />
     <Compile Include="ThermostatModeParameterType.cs" />
     <Compile Include="FanModeParameterType.cs" />
     <Compile Include="DeviceAddressParameterType.cs" />
@@ -115,6 +116,10 @@
     <Compile Include="DeviceCollection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Triggers\Triggers.csproj">
+      <Project>{5f72c80f-4c92-46ee-931b-7676dd2824e9}</Project>
+      <Name>Triggers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Libraries\WebCommunicator\WebCommunicator\WebCommunicator.csproj">
       <Project>{A7CCA3B4-F50B-43F0-9250-673C1D6AC351}</Project>
       <Name>WebCommunicator</Name>
