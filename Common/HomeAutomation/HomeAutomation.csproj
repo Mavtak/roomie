@@ -79,6 +79,7 @@
     <Compile Include="Events\NetworkHistory.cs" />
     <Compile Include="Events\TemperatureChanged.cs" />
     <Compile Include="DimmerSwitches\IDimmerSwitch.cs" />
+    <Compile Include="Events\Triggers\WhenAKeypadButtonIsPressedTrigger.cs" />
     <Compile Include="Events\Triggers\WhenDeviceEventHappenedWithinTimespanTrigger.cs" />
     <Compile Include="Events\Triggers\WhenDeviceEventHappensTrigger.cs" />
     <Compile Include="IDevice.cs" />

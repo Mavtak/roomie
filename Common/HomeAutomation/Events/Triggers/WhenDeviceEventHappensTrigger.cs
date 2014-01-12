@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.Triggers;
 
 namespace Roomie.Common.HomeAutomation.Events.Triggers
 {
+    //TODO: improve this
     public class WhenDeviceEventHappensTrigger : ITrigger
     {
         private IDevice _device;
@@ -40,11 +42,18 @@ namespace Roomie.Common.HomeAutomation.Events.Triggers
             return DateTime.UtcNow;
         }
 
-        public static bool HistoryContainsEvent(IDeviceHistory history, IDevice device, IEventType eventType, DateTime since)
+        protected virtual IEnumerable<IDeviceEvent> GetMatches(IDeviceHistory history, IDevice device, IEventType eventType, DateTime since)
         {
             var matches = history.Where(x => x.TimeStamp >= since);
             matches = matches.Where(x => x.Device.Equals(device));
             matches = matches.Where(x => x.Type.Matches(eventType));
+
+            return matches;
+        }
+
+        public bool HistoryContainsEvent(IDeviceHistory history, IDevice device, IEventType eventType, DateTime since)
+        {
+            var matches = GetMatches(history, device, eventType, since);
             var result = matches.Any();
 
             return result;

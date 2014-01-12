@@ -61,6 +61,7 @@
     <Compile Include="Attributes\NetworkAttribute.cs" />
     <Compile Include="Attributes\PowerParameterAttribute.cs" />
     <Compile Include="Commands\HomeAutomation\AddDevice.cs" />
+    <Compile Include="Commands\HomeAutomation\RegisterKeypadButtonPressedCommand.cs" />
     <Compile Include="Commands\HomeAutomation\SetThermostatMode.cs" />
     <Compile Include="Commands\HomeAutomation\SetThermostatFanMode.cs" />
     <Compile Include="Commands\HomeAutomation\ListDeviceEvents.cs" />

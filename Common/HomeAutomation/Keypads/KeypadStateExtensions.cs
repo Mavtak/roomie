@@ -60,7 +60,7 @@ namespace Roomie.Common.HomeAutomation.Keypads
 
         public static IKeypadState Changes(this IKeypadState newState, IKeypadState oldState)
         {
-            var buttons = newState.Buttons.Changes(oldState.Buttons);
+            var buttons = newState.Buttons.Changes(oldState == null ? new IKeypadButtonState[0] : oldState.Buttons);
 
             var result = new ReadOnlyKeypadState(buttons);
 
