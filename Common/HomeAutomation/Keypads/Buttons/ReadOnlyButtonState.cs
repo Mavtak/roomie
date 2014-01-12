@@ -46,5 +46,10 @@ namespace Roomie.Common.HomeAutomation.Keypads.Buttons
 
             return result;
         }
+
+        public override string ToString()
+        {
+            return this.Describe();
+        }
     }
 }
