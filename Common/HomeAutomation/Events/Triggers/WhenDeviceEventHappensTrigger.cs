@@ -21,15 +21,18 @@ namespace Roomie.Common.HomeAutomation.Events.Triggers
 
         public bool Check()
         {
-            var result = HistoryContainsEvent(_history, _device, _eventType, _lastCheck);
-            _lastCheck = UpdateLastCheck();
+            lock (this)
+            {
+                var result = HistoryContainsEvent(_history, _device, _eventType, _lastCheck);
+                _lastCheck = UpdateLastCheck();
 
-            return result;
+                return result;
+            }
         }
 
         protected virtual DateTime UpdateLastCheck()
         {
-            return GetNow();
+            return GetNow().AddMilliseconds(1);
         }
 
         protected virtual DateTime GetNow()
