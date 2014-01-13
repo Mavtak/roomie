@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ControlThink.ZWave.Devices.Specific;
+using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Temperature;
 
@@ -56,7 +57,10 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 {
                     Update(roomieSetpointType.Value, roomieTemperature);
                 }
-                //TODO: raise event
+
+                IEventSource source = null;
+                var @event = DeviceEvent.ThermostatSetpointsChanged(_device, source);
+                _device.AddEvent(@event);
             };
         }
 

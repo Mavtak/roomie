@@ -102,6 +102,13 @@ namespace Roomie.Common.HomeAutomation.Events
             return result;
         }
 
+        public static DeviceEvent ThermostatSetpointsChanged(IDevice device, IEventSource source)
+        {
+            var result = new DeviceEvent(device, new DeviceStateChanged(), source);
+
+            return result;
+        }
+
         public static DeviceEvent ThermostatFanModeChanged(IDevice device, IEventSource source)
         {
             var result = new DeviceEvent(device, new DeviceStateChanged(), source);
