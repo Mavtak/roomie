@@ -59,6 +59,7 @@
     <Compile Include="Commands\Computer\Hibernate.cs" />
     <Compile Include="Commands\Computer\Lock.cs" />
     <Compile Include="Commands\Computer\OpenFile.cs" />
+    <Compile Include="Commands\Computer\PlaySound.cs" />
     <Compile Include="Commands\Computer\Sleep.cs" />
     <Compile Include="Commands\Computer\PrintStats.cs" />
     <Compile Include="Commands\Computer\Speak.cs" />
