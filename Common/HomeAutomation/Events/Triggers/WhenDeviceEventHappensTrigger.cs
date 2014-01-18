@@ -44,9 +44,13 @@ namespace Roomie.Common.HomeAutomation.Events.Triggers
 
         protected virtual IEnumerable<IDeviceEvent> GetMatches(IDeviceHistory history, IDevice device, IEventType eventType, DateTime since)
         {
-            var matches = history.Where(x => x.TimeStamp >= since);
-            matches = matches.Where(x => x.Device.Equals(device));
-            matches = matches.Where(x => x.Type.Matches(eventType));
+            //TODO: save the last inspected node instead of using a timestamp
+
+            var matches = history.GetMatches(
+                x => x.TimeStamp >= since,
+                x => x.Device.Equals(device),
+                x => x.Type.Matches(eventType)
+                );
 
             return matches;
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Roomie.Common.HomeAutomation.Events
 {
@@ -6,5 +7,6 @@ namespace Roomie.Common.HomeAutomation.Events
         where TEvent : IEvent
     {
         void Add(TEvent @event);
+        IEnumerable<TEvent> GetMatches(params Func<TEvent, bool>[] filters);
     }
 }
