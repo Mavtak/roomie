@@ -64,7 +64,7 @@ namespace Roomie.Common.HomeAutomation
             if (!String.IsNullOrWhiteSpace(state.Name))
                 result.Add(new XAttribute("Name", state.Name));
 
-            if (state.Location.IsSet)
+            if (state.Location != null && state.Location.IsSet)
                 result.Add(new XAttribute("Location", state.Location.Format()));
 
             result.Add(new XAttribute("Type", state.Type));
