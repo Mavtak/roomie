@@ -49,6 +49,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
             //TODO: should this be elsewhere?
             Load();
+
+            Connected();
         }
 
         public override void ScanForDevices()

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.Events;
+using Roomie.Common.Triggers;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
@@ -22,6 +24,12 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         public abstract void ScanForDevices();
         public abstract Device RemoveDevice();
         public abstract Device AddDevice();
+
+        protected void Connected()
+        {
+            Context.History.Add(NetworkEvent.Connected(this, null));
+            Context.Triggers.CheckAndAct();
+        }
 
         public void Save()
         {

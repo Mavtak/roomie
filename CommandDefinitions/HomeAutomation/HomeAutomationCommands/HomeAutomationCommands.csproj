@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\AutoConnectParameterAttribute.cs" />
     <Compile Include="Attributes\ThermostatModeParameterAttribute.cs" />
     <Compile Include="Attributes\FanModeParameterAttribute.cs" />
     <Compile Include="Attributes\SetpointTypeParameterAttribute.cs" />

@@ -50,16 +50,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 network = networks.GetNetwork(networkName);
             }
 
-            if (scope.VariableDefinedInThisScope("AutoConnect")
-                && scope.GetValue("AutoConnect").ToBoolean())
-            {
-                network.Connect();
-
-                //TODO: does this belong here?  Where does "Disconnected" go?
-                network.Context.History.Add(NetworkEvent.Connected(network, null));
-                network.Context.Triggers.CheckAndAct();
-            }
-
             try
             {
                 var greaterContext = new HomeAutomationCommandContext(context)

@@ -6,7 +6,6 @@ using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
-    [AutoConnectParameter]
     [DeviceParameter]
     [RetriesParameter]
     public abstract class HomeAutomationSingleDeviceCommand : HomeAutomationNetworkCommand

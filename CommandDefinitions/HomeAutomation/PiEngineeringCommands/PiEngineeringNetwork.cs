@@ -25,6 +25,7 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
         public override void Connect()
         {
             ScanForDevices();
+            Connected();
         }
 
         public override void ScanForDevices()
