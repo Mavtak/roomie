@@ -1,4 +1,5 @@
-﻿@model DeviceViewModel
+﻿@using Roomie.Common.HomeAutomation
+@model DeviceViewModel
 @{
     var widgetData = Model.WidgetData;
     var device = Model.Device;
@@ -9,24 +10,17 @@
       
     *@@if (Model.DisplayButtons)
     {
-        if (device.Type.IsController)
+        if (device.Type.Equals(DeviceType.Thermostat))
         {
-            // Don't display
+            @Html.Partial("Partials/Device/ThermostatControls", Model);
         }
-        else if (device.Type.CanControl)
+        else if (device.Type.Equals(DeviceType.Dimmable))
         {
-            if (device.Type.Equals(Roomie.Common.HomeAutomation.DeviceType.Thermostat))
-            {
-                @Html.Partial("Partials/Device/ThermostatControls", Model);
-            }
-            else if (device.Type.CanDim)
-            {
-                @Html.Partial("Partials/Device/DimmerButtons", Model)
-            }
-            else
-            {
-                @Html.Partial("Partials/Device/ToggleButtons", Model.Device)
-            }
+            @Html.Partial("Partials/Device/DimmerButtons", Model)
+        }
+        else if(device.Type.Equals(DeviceType.Switch))
+        {
+            @Html.Partial("Partials/Device/ToggleButtons", Model.Device)
         }
     }@*
 

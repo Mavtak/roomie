@@ -5,16 +5,16 @@ namespace Roomie.Common.HomeAutomation
     //TODO: reconsider this class
     public class DeviceType
     {
-        private static Dictionary<string, DeviceType> types = new Dictionary<string, DeviceType>();
+        private static readonly Dictionary<string, DeviceType> types = new Dictionary<string, DeviceType>();
 
-        public static readonly DeviceType Dimmable = new DeviceType("Dimmable", true, true);
-        public static readonly DeviceType Switch = new DeviceType("Switch", false, true);
-        public static readonly DeviceType Controller = new DeviceType("Controller", false, false);
-        public static readonly DeviceType Relay = new DeviceType("Relay", false, false);
-        public static readonly DeviceType MotionDetector = new DeviceType("Motion Detector", false, false);
-        public static readonly DeviceType Thermostat = new DeviceType("Thermostat", false, false);
-        public static readonly DeviceType Keypad = new DeviceType("Keypad", false, false);
-        public static readonly DeviceType Unknown = new DeviceType("Unknown", true, true);
+        public static readonly DeviceType Dimmable = new DeviceType("Dimmable");
+        public static readonly DeviceType Switch = new DeviceType("Switch");
+        public static readonly DeviceType Controller = new DeviceType("Controller");
+        public static readonly DeviceType Relay = new DeviceType("Relay");
+        public static readonly DeviceType MotionDetector = new DeviceType("Motion Detector");
+        public static readonly DeviceType Thermostat = new DeviceType("Thermostat");
+        public static readonly DeviceType Keypad = new DeviceType("Keypad");
+        public static readonly DeviceType Unknown = new DeviceType("Unknown");
 
         public string Name { get; private set;}
 
@@ -22,11 +22,12 @@ namespace Roomie.Common.HomeAutomation
         {
             Name = Unknown.Name;
         }
-        private DeviceType(string typeName, bool canDim, bool canControl)
-        {
-            this.Name = typeName;
 
-            types.Add(this.Name, this);
+        private DeviceType(string typeName)
+        {
+            Name = typeName;
+
+            types.Add(Name, this);
         }
 
         public static bool IsValidType(string type)
@@ -42,7 +43,10 @@ namespace Roomie.Common.HomeAutomation
         public static DeviceType GetTypeFromString(string type)
         {
             if (IsValidType(type))
+            {
                 return types[type];
+            }
+
             return Unknown;
         }
 
@@ -54,32 +58,30 @@ namespace Roomie.Common.HomeAutomation
             }
         }
 
+        //TODO: move this to IDeviceActions
         public bool CanDim
         {
             get
             {
-                return Name.Equals("Dimmable") || Name.Equals("Unknown");
+                return this == Dimmable || this == Unknown;
             }
         }
+
+        //TODO: move this to IDeviceActions
         public bool CanControl
         {
             get
             {
-                return !Name.Equals("Controller") && !Name.Equals("Relay") && !Name.Equals("Motion Detector") && !Name.Equals("Keypad");
+                return this != Controller && this != Relay && this != MotionDetector && this != Keypad;
             }
         }
+
+        //TODO: move this to IDeviceActions
         public bool CanPoll
         {
             get
             {
                 return CanControl || Equals(Thermostat);
-            }
-        }
-        public bool IsController
-        {
-            get
-            {
-                return this.Equals(Controller);
             }
         }
 
@@ -92,19 +94,25 @@ namespace Roomie.Common.HomeAutomation
         {
             return Equals(GetTypeFromString(value));
         }
+
         public bool Equals(DeviceType that)
         {
-            return that != null
-                     && this.Name.Equals(that.Name);
+            if (that == null)
+            {
+                return false;
+            }
+
+            return Name == that.Name;
         }
 
         public static implicit operator string(DeviceType type)
         {
             return type.ToString();
         }
+
         public static implicit operator DeviceType(string type)
         {
-            return DeviceType.GetTypeFromString(type);
+            return GetTypeFromString(type);
         }
     }
 }
