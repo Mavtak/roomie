@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndTriggerTests.cs" />
+    <Compile Include="Fakes\OncePerTimespanTriggerFake.cs" />
     <Compile Include="NotTriggerTests.cs" />
+    <Compile Include="OncePerTimespanTriggerTests.cs" />
     <Compile Include="OrTriggerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OncePerEventTriggerTests.cs" />

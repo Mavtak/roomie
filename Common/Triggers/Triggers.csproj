@@ -46,6 +46,7 @@
     <Compile Include="ITriggerCollection.cs" />
     <Compile Include="NotTrigger.cs" />
     <Compile Include="OncePerEventTrigger.cs" />
+    <Compile Include="OncePerTimespanTrigger.cs" />
     <Compile Include="OrTrigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TriggerBundle.cs" />
