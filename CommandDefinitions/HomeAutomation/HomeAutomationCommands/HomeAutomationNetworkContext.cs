@@ -35,14 +35,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
         }
 
-        public IScriptCommand SyncWithCloudCommand
+        public IScriptCommand SyncWithCloudCommand(Network network)
         {
-            get
-            {
-                var result = _engine.CommandLibrary.GetCommandFromType(typeof(SyncWithCloud)).BlankCommandCall();
+            var commandName = _engine.CommandLibrary.GetCommandFromType(typeof (SyncWithCloud)).BlankCommandCall().OriginalText;
+            var parameters = " Network=\"" + network.Address + "\"";
 
-                return result;
-            }
+            var result = new TextScriptCommand(commandName + parameters);
+
+            return result;
         }
     }
 }

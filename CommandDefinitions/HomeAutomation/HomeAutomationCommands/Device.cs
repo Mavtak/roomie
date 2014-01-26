@@ -101,7 +101,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             if (Context.WebHookPresent)
             {
                 var syncScript = new ScriptCommandList();
-                syncScript.Add(Context.SyncWithCloudCommand);
+                syncScript.Add(Context.SyncWithCloudCommand(Network));
                 threadPool.AddCommands(syncScript);
             }
         }
