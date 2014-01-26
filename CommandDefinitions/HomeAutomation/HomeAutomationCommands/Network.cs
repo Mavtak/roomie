@@ -20,8 +20,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Devices = new List<Device>();
         }
 
-        public abstract void Connect();
-        public abstract void ScanForDevices();
         public abstract Device RemoveDevice();
         public abstract Device AddDevice();
 

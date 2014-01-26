@@ -22,13 +22,13 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
             Connect();
         }
 
-        public override void Connect()
+        public void Connect()
         {
             ScanForDevices();
             Connected();
         }
 
-        public override void ScanForDevices()
+        public void ScanForDevices()
         {
             if (_devices.Any())
             {

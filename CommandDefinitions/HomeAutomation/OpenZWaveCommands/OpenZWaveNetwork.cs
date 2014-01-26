@@ -78,7 +78,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
-        public override void Connect()
+        public void Connect()
         {
             if (_ready != null)
             {
@@ -97,10 +97,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
             Load();
             Connected();
-        }
-
-        public override void ScanForDevices()
-        {
         }
 
         public override Device RemoveDevice()

@@ -26,7 +26,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             Connect();
         }
 
-        public override void Connect()
+        public void Connect()
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             Connected();
         }
 
-        public override void ScanForDevices()
+        public void ScanForDevices()
         {
             foreach (global::ControlThink.ZWave.Devices.ZWaveDevice backingDevice in ZWaveController.Devices)
             {
