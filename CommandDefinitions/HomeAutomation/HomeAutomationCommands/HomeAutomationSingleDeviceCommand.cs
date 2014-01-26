@@ -8,13 +8,12 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
     [DeviceParameter]
     [RetriesParameter]
-    public abstract class HomeAutomationSingleDeviceCommand : HomeAutomationNetworkCommand
+    public abstract class HomeAutomationSingleDeviceCommand : HomeAutomationCommand
     {
-        protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
+        protected override void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context)
         {
             var interpreter = context.Interpreter;
             var scope = context.Scope;
-            var network = context.Network;
             var networks = context.Networks;
             var retries = scope.GetValue(RetriesParameterAttribute.Key).ToInteger();
 
