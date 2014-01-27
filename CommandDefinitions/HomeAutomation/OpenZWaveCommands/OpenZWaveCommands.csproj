@@ -46,6 +46,10 @@
   <ItemGroup>
     <Compile Include="CommandClass.cs" />
     <Compile Include="Commands\OpenZWave\RegisterNetwork.cs" />
+    <Compile Include="NodeDataEntries\General\ShortNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\IntNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\DecimalNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\StringNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\NodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\SwitchBinaryDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\BoolNodeDataEntry.cs" />
