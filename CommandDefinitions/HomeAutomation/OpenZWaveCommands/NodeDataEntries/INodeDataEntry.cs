@@ -8,5 +8,8 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         void SetValue(T value);
         void RefreshValue();
         bool ProcessValueChanged(ZWValueID entry);
+
+        string Help { get; }
+        string Label { get; }
     }
 }

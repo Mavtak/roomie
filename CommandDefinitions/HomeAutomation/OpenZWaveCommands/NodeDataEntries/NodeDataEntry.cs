@@ -27,5 +27,39 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         public abstract void RefreshValue();
 
         public abstract bool ProcessValueChanged(ZWValueID entry);
+
+        public string Label
+        {
+            get
+            {
+                var dataEntry = GetDataEntry();
+
+                if (dataEntry == null)
+                {
+                    return null;
+                }
+
+                var result = Device.Manager.GetValueLabel(dataEntry);
+
+                return result;
+            }
+        }
+
+        public string Help
+        {
+            get
+            {
+                var dataEntry = GetDataEntry();
+
+                if (dataEntry == null)
+                {
+                    return null;
+                }
+
+                var result = Device.Manager.GetValueHelp(dataEntry);
+
+                return result;
+            }
+        }
     }
 }
