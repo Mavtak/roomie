@@ -43,6 +43,14 @@
             }
         }
 
+        public string Units
+        {
+            get
+            {
+                return "Kelvin";
+            }
+        }
+
         public ITemperature Add(double amount)
         {
             var result = new FahrenheitTemperature(Value + amount);
@@ -52,7 +60,7 @@
 
         public override string ToString()
         {
-            return _value + " Kelvin";
+            return this.Format();
         }
 
         public override bool Equals(object obj)

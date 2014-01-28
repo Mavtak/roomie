@@ -44,6 +44,14 @@ namespace Roomie.Common.Measurements.Temperature
             }
         }
 
+        public string Units
+        {
+            get
+            {
+                return "Celsius";
+            }
+        }
+
         public ITemperature Add(double amount)
         {
             var result = new FahrenheitTemperature(Value + amount);
@@ -53,7 +61,7 @@ namespace Roomie.Common.Measurements.Temperature
 
         public override string ToString()
         {
-            return _value + " Celsius";
+            return this.Format();
         }
 
         public override bool Equals(object obj)

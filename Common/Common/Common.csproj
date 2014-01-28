@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumParser.cs" />
+    <Compile Include="Measurements\IMeasurement.cs" />
+    <Compile Include="Measurements\MeasurementExtensions.cs" />
+    <Compile Include="Measurements\ReadOnlyMeasurement.cs" />
     <Compile Include="Measurements\Temperature\CelsiusTemperature.cs" />
     <Compile Include="Measurements\Temperature\FahrenheitTemperature.cs" />
     <Compile Include="Measurements\Temperature\ITemperature.cs" />
