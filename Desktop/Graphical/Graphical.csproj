@@ -118,6 +118,10 @@
       <Project>{48e1a8a5-7204-4c21-a914-510933db87ea}</Project>
       <Name>HomeAutomationCommands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\HomeAutomation\OpenZWaveCommands\OpenZWaveCommands.csproj">
+      <Project>{8a4de8bd-5073-464f-bf77-71efa6e07fd0}</Project>
+      <Name>OpenZWaveCommands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CommandDefinitions\TwitterCommands\TwitterCommands.csproj">
       <Project>{f22862b7-cdb9-4d4e-83f3-9aa535db5841}</Project>
       <Name>TwitterCommands</Name>
