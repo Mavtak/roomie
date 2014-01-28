@@ -1,5 +1,5 @@
 ﻿
-namespace Roomie.Common.Temperature
+namespace Roomie.Common.Measurements.Temperature
 {
     public class CelsiusTemperature : ITemperature
     {

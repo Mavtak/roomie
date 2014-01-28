@@ -3,7 +3,7 @@ using System.Linq;
 using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.Temperature;
+using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {

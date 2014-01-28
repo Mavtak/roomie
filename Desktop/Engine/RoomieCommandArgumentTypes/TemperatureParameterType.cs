@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Roomie.Common.Temperature;
+using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 {

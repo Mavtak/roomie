@@ -4,7 +4,7 @@ using System.Linq;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.Temperature;
+using Roomie.Common.Measurements.Temperature;
 using ControlThinkFanMode = ControlThink.ZWave.Devices.ThermostatFanMode;
 using ControlThinkFanState = ControlThink.ZWave.Devices.ThermostatFanState;
 using ControlThinkSetpointType = ControlThink.ZWave.Devices.ThermostatSetpointType;

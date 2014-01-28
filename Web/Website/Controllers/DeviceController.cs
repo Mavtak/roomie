@@ -6,13 +6,13 @@ using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
+using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 using System.Linq;
 using Roomie.Web.Website.ViewModels;
-using Roomie.Common.Temperature;
 
 
 namespace Roomie.Web.Website.Controllers

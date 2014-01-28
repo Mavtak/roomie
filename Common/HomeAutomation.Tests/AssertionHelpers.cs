@@ -7,7 +7,7 @@ using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
-using Roomie.Common.Temperature;
+using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Tests
 {

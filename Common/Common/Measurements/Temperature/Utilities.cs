@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Roomie.Common.Tests")]
 
-namespace Roomie.Common.Temperature
+namespace Roomie.Common.Measurements.Temperature
 {
     internal static class Utilities
     {

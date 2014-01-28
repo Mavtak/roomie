@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Roomie.Common.Temperature;
+using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.Common.Tests.Temperature
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Roomie.Common.Temperature;
+using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {

@@ -1,6 +1,6 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.Temperature;
+using Roomie.Common.Measurements.Temperature;
 using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation

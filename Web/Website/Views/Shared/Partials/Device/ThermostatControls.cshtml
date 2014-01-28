@@ -2,10 +2,11 @@
 @using Roomie.Common.HomeAutomation.Thermostats.Cores
 @using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 @using Roomie.Common.HomeAutomation.Thermostats.Fans;
+@using Roomie.Common.Measurements.Temperature
 @model DeviceViewModel
 @*
 
-*@@helper FormatTemeprature(Roomie.Common.Temperature.ITemperature temperature){
+*@@helper FormatTemeprature(ITemperature temperature){
       if (temperature != null)
       {
           var parts = temperature.ToString().Split(' ');

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.Temperature;
+using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models

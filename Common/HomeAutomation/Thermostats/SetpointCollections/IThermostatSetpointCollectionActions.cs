@@ -1,4 +1,4 @@
-﻿using Roomie.Common.Temperature;
+﻿using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
 {

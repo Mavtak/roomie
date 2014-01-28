@@ -1,4 +1,4 @@
-﻿namespace Roomie.Common.Temperature
+﻿namespace Roomie.Common.Measurements.Temperature
 {
     public class KelvinTemperature : ITemperature
     {
