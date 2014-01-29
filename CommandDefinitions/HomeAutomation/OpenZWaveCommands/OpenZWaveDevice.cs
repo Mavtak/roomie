@@ -92,5 +92,10 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 return null;
             }
         }
+
+        public override string ToString()
+        {
+            return this.FormatData();
+        }
     }
 }
