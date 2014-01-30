@@ -25,7 +25,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             var result = new StringBuilder();
 
-            result.AppendLine("CC   : " + value.GetCommandClassId());
+            result.AppendLine("CC   : " + FormatCommandClass(value.GetCommandClassId()));
             result.AppendLine("Type : " + value.GetType());
             result.AppendLine("Index: " + value.GetIndex());
             result.AppendLine("Inst : " + value.GetInstance());
@@ -35,6 +35,24 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             result.AppendLine("Units: " + manager.GetValueUnits(value));
 
             return result.ToString();
+        }
+
+        public static string FormatCommandClass(byte commandClass)
+        {
+            var result = new StringBuilder();
+
+            result.Append(commandClass);
+
+            var value = ((CommandClass)commandClass).ToString();
+            if (commandClass.ToString() != value)
+            {
+                result.Append(" (");
+                result.Append(value);
+                result.Append(")");
+            }
+
+            return result.ToString();
+
         }
 
         // modified from Open Z-Wave demo code
