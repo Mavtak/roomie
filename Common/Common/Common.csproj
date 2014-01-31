@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumParser.cs" />
+    <Compile Include="Measurements\Energy\KilowattHoursEnergy.cs" />
+    <Compile Include="Measurements\Energy\IEnergy.cs" />
+    <Compile Include="Measurements\Energy\JoulesEnergy.cs" />
     <Compile Include="Measurements\IMeasurement.cs" />
     <Compile Include="Measurements\MeasurementExtensions.cs" />
     <Compile Include="Measurements\ReadOnlyMeasurement.cs" />
