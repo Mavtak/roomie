@@ -60,6 +60,8 @@
     <Compile Include="OpenZWaveDimmerSwitch.cs" />
     <Compile Include="OpenZWaveDevice.cs" />
     <Compile Include="OpenZWaveNetwork.cs" />
+    <Compile Include="OpenZWaveNotification.cs" />
+    <Compile Include="OpenZWaveNotificationProcessor.cs" />
     <Compile Include="OpenZWaveToggleSwitch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExtensionMethods.cs" />

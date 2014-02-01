@@ -11,11 +11,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
     public class OpenZWaveNetwork : Network
     {
-        private readonly ZWManager _manager;
+        public ZWManager Manager { get; private set; }
         private readonly List<OpenZWaveDevice> _devices;
         private readonly string _serialPortName;
-        private UInt32? _homeId;
+        public UInt32? HomeId { get; private set; }
         private bool? _ready;
+        private OpenZWaveNotificationProcessor _notificationProcessor;
 
         public OpenZWaveNetwork(HomeAutomationNetworkContext context, string serialPortName)
             : base(context)
@@ -24,58 +25,51 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
             _devices = new List<OpenZWaveDevice>();
             Devices = _devices;
+            _notificationProcessor = new OpenZWaveNotificationProcessor(this);
 
             ConfigureOptions();
 
-            _manager = new ZWManager();
-            _manager.Create();
-            _manager.OnNotification += OnNotification;
+            Manager = new ZWManager();
+            Manager.Create();
+            Manager.OnNotification += OnNotification;
 
             Connect();
         }
 
         private void OnNotification(ZWNotification notification)
         {
-            var homeId = notification.GetHomeId();
-            var nodeId = notification.GetNodeId();
-            var type = notification.GetType();
+            var notification2 = new OpenZWaveNotification(this, notification);
 
-            if (_homeId == null)
+            _notificationProcessor.Process(notification2);
+        }
+
+        internal void SetHomeId(UInt32 homeId)
+        {
+            if (HomeId != null)
             {
-                _homeId = homeId;
-                Address = "ZWave" + _homeId;
-                Name = Address;
-            }
-            else if (_homeId != homeId)
-            {
-                throw new Exception("Unexpected Home ID");
+                throw new Exception("Home ID already set.");
             }
 
-            if (type == ZWNotification.Type.NodeAdded)
-            {
-                var newDevice = new OpenZWaveDevice(this, _manager, nodeId);
+            HomeId = homeId;
+            Address = "ZWave" + HomeId;
+            Name = Address;
+        }
 
-                _devices.Add(newDevice);
-                return;
-            }
+        internal void AddDevice(OpenZWaveDevice device)
+        {
+            _devices.Add(device);
+        }
 
-            var device = _devices.FirstOrDefault(x => x.Id == nodeId);
-            var value = notification.GetValueID();
+        internal OpenZWaveDevice GetDevice(byte id)
+        {
+            var result = _devices.FirstOrDefault(x => x.Id == id);
 
-            switch (type)
-            {
-                case ZWNotification.Type.ValueAdded:
-                    device.Values.Add(value);
-                    break;
+            return result;
+        }
 
-                case ZWNotification.Type.ValueChanged:
-                    device.ProcessValueChanged(value);
-                    break;
-
-                case ZWNotification.Type.Notification:
-                    _ready = true;
-                    break;
-            }
+        internal void SetReady()
+        {
+            _ready = true;
         }
 
         public void Connect()
@@ -87,7 +81,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
             _ready = false;
 
-            _manager.AddDriver(_serialPortName);
+            Manager.AddDriver(_serialPortName);
 
             //TODO: improve
             while (_ready != true)
