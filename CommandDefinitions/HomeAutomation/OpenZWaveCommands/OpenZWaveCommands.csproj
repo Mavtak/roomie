@@ -63,11 +63,19 @@
     <Compile Include="OpenZWaveNetwork.cs" />
     <Compile Include="OpenZWaveNotification.cs" />
     <Compile Include="OpenZWaveNotificationProcessor.cs" />
+    <Compile Include="OpenZWaveSetpointCollection.cs" />
+    <Compile Include="OpenZWaveThermostat.cs" />
+    <Compile Include="OpenZWaveThermostatFan.cs" />
+    <Compile Include="OpenZWaveThermostatCore.cs" />
     <Compile Include="OpenZWaveToggleSwitch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common\Common.csproj">
+      <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeAutomationCommands\HomeAutomationCommands.csproj">
       <Project>{48e1a8a5-7204-4c21-a914-510933db87ea}</Project>
       <Name>HomeAutomationCommands</Name>

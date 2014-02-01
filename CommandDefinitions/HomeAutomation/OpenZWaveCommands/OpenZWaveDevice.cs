@@ -17,6 +17,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         private readonly OpenZWaveToggleSwitch _toggleSwitch;
         private readonly OpenZWaveDimmerSwitch _dimmerSwitch;
+        private readonly OpenZWaveThermostat _thermostat;
 
         public OpenZWaveDevice(Network network, ZWManager manager, byte id)
             : base(network)
@@ -30,6 +31,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
             _toggleSwitch = new OpenZWaveToggleSwitch(this);
             _dimmerSwitch = new OpenZWaveDimmerSwitch(this);
+            _thermostat = new OpenZWaveThermostat(this);
         }
 
         internal OpenZWaveDeviceValue GetValueByClassId(CommandClass classId)
@@ -58,6 +60,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 return true;
             }
 
+            if (_thermostat.ProcessValueChanged(value))
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -81,7 +88,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             get
             {
-                return null;
+                return _thermostat;
             }
         }
 
