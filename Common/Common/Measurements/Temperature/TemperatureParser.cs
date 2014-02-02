@@ -29,10 +29,16 @@ namespace Roomie.Common.Measurements.Temperature
             }
 
             var value = Convert.ToDouble(match.Groups["value"].Value);
+            var type = match.Groups["type"].Value;
+            var result = Parse(value, type);
 
+            return result;
+        }
+
+        public static ITemperature Parse(double value, string type)
+        {
             ITemperature result;
 
-            var type = match.Groups["type"].Value;
             switch (type.ToLower())
             {
                 case "c":

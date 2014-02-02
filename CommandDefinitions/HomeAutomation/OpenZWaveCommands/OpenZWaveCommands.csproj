@@ -47,6 +47,7 @@
     <Compile Include="CommandClass.cs" />
     <Compile Include="Commands\OpenZWave\PrintData.cs" />
     <Compile Include="Commands\OpenZWave\RegisterNetwork.cs" />
+    <Compile Include="NodeDataEntries\General\TemperatureNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\ShortNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\IntNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\DecimalNodeDataEntry.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="NodeDataEntries\General\ByteNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\INodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\SwitchMultilevelDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermometerDataEntry.cs" />
     <Compile Include="OpenZWaveDeviceValue.cs" />
     <Compile Include="OpenZWaveDimmerSwitch.cs" />
     <Compile Include="OpenZWaveDevice.cs" />
