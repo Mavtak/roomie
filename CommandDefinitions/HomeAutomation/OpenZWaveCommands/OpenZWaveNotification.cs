@@ -52,11 +52,17 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
-        public ZWValueID Value
+        private OpenZWaveDeviceValue _value;
+        public OpenZWaveDeviceValue Value
         {
             get
             {
-                return _notification.GetValueID();
+                if (_value == null)
+                {
+                    _value = new OpenZWaveDeviceValue(_network, _notification.GetValueID());
+                }
+
+                return _value;
             }
         }
 

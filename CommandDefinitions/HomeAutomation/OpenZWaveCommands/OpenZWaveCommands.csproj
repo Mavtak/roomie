@@ -57,6 +57,7 @@
     <Compile Include="NodeDataEntries\General\ByteNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\INodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\SwitchMultilevelDataEntry.cs" />
+    <Compile Include="OpenZWaveDeviceValue.cs" />
     <Compile Include="OpenZWaveDimmerSwitch.cs" />
     <Compile Include="OpenZWaveDevice.cs" />
     <Compile Include="OpenZWaveNetwork.cs" />

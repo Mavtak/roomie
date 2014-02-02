@@ -17,28 +17,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
                 return null;
             }
 
-            string result;
-
-            if (!Device.Manager.GetValueAsString(dataEntry, out result))
-            {
-                return null;
-            }
-
-            return result;
+            return dataEntry.StringValue;
         }
 
         public override void SetValue(string value)
         {
             var dataEntry = GetDataEntry();
 
-            Device.Manager.SetValue(dataEntry, value);
-        }
-
-        public override void RefreshValue()
-        {
-            var dataEntry = GetDataEntry();
-
-            Device.Manager.RefreshValue(dataEntry);
+            dataEntry.SetValue(value);
         }
     }
 }

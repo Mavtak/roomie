@@ -13,7 +13,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
             _commandClass = commandClass;
         }
 
-        protected ZWValueID GetDataEntry()
+        protected OpenZWaveDeviceValue GetDataEntry()
         {
             var result = Device.GetValueByClassId(_commandClass);
 
@@ -24,9 +24,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
 
         public abstract void SetValue(T value);
 
-        public abstract void RefreshValue();
+        public void RefreshValue()
+        {
+            var dataEntry = GetDataEntry();
 
-        public abstract bool ProcessValueChanged(ZWValueID entry);
+            dataEntry.Refresh();
+        }
+
+        public abstract bool ProcessValueChanged(OpenZWaveDeviceValue entry);
 
         public string Label
         {
@@ -39,9 +44,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
                     return null;
                 }
 
-                var result = Device.Manager.GetValueLabel(dataEntry);
-
-                return result;
+                return dataEntry.Label;
             }
         }
 
@@ -56,9 +59,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
                     return null;
                 }
 
-                var result = Device.Manager.GetValueHelp(dataEntry);
-
-                return result;
+                return dataEntry.Help;
             }
         }
     }

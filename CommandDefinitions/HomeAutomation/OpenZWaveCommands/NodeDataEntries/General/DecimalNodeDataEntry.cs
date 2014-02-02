@@ -17,28 +17,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
                 return null;
             }
 
-            decimal result;
-
-            if (!Device.Manager.GetValueAsDecimal(dataEntry, out result))
-            {
-                return null;
-            }
-
-            return result;
+            return dataEntry.DecimalValue;
         }
 
         public override void SetValue(decimal? value)
         {
             var dataEntry = GetDataEntry();
 
-            Device.Manager.SetValue(dataEntry, (float)value.Value);
-        }
-
-        public override void RefreshValue()
-        {
-            var dataEntry = GetDataEntry();
-
-            Device.Manager.RefreshValue(dataEntry);
+            dataEntry.SetValue(value.Value);
         }
     }
 }

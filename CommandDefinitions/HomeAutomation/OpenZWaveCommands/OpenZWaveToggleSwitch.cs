@@ -1,5 +1,4 @@
-﻿using OpenZWaveDotNet;
-using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
+﻿using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
@@ -13,7 +12,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _dataEntry = new SwitchBinaryDataEntry(device);
         }
 
-        internal bool ProcessValueChanged(ZWValueID entry)
+        internal bool ProcessValueChanged(OpenZWaveDeviceValue entry)
         {
             var result = _dataEntry.ProcessValueChanged(entry);
 

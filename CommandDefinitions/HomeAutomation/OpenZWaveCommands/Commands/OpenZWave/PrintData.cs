@@ -11,7 +11,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands.OpenZWave
 
             foreach (var value in device.Values)
             {
-                var text = device.Manager.FormatData(value);
+                var text = value.FormatData();
 
                 interpreter.WriteEvent(text);
             }

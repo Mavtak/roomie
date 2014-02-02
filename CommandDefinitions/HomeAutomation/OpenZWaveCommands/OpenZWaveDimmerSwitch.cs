@@ -1,5 +1,4 @@
-﻿using OpenZWaveDotNet;
-using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
+﻿using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 
@@ -17,7 +16,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             MaxPower = 99;
         }
 
-        internal bool ProcessValueChanged(ZWValueID entry)
+        internal bool ProcessValueChanged(OpenZWaveDeviceValue entry)
         {
             var result = _dataEntry.ProcessValueChanged(entry);
 

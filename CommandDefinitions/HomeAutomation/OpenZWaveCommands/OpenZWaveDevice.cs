@@ -11,7 +11,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
     public class OpenZWaveDevice : Device
     {
-        internal List<ZWValueID> Values { get; private set; }
+        internal List<OpenZWaveDeviceValue> Values { get; private set; }
         internal ZWManager Manager { get; private set; }
         internal byte Id { get; private set; }
 
@@ -23,7 +23,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             Manager = manager;
             Id = id;
-            Values = new List<ZWValueID>();
+            Values = new List<OpenZWaveDeviceValue>();
 
             Address = Id.ToString();
             IsConnected = true;
@@ -32,21 +32,21 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _dimmerSwitch = new OpenZWaveDimmerSwitch(this);
         }
 
-        internal ZWValueID GetValueByClassId(byte classId)
+        internal OpenZWaveDeviceValue GetValueByClassId(CommandClass classId)
         {
-            var result = Values.FirstOrDefault(x => x.GetCommandClassId() == classId);
+            var result = Values.FirstOrDefault(x => x.CommandClass == classId);
 
             return result;
         }
 
-        internal ZWValueID GetValueByClassId(CommandClass classId)
+        internal OpenZWaveDeviceValue GetValueByClassId(byte classId)
         {
-            var result = GetValueByClassId((byte) classId);
+            var result = GetValueByClassId((CommandClass) classId);
 
             return result;
         }
 
-        internal bool ProcessValueChanged(ZWValueID value)
+        internal bool ProcessValueChanged(OpenZWaveDeviceValue value)
         {
             if (_toggleSwitch.ProcessValueChanged(value))
             {

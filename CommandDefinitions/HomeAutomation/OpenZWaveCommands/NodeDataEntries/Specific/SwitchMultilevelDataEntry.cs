@@ -1,5 +1,4 @@
-﻿using OpenZWaveDotNet;
-using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General;
+﻿using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General;
 using Roomie.Common.HomeAutomation.Events;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
@@ -11,9 +10,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
         {
         }
 
-        public override bool ProcessValueChanged(ZWValueID entry)
+        public override bool ProcessValueChanged(OpenZWaveDeviceValue entry)
         {
-            if (entry.GetCommandClassId() != (byte)CommandClass.SwitchMultilevel)
+            if (entry.CommandClass != CommandClass.SwitchMultilevel)
             {
                 return false;
             }
