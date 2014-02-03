@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Roomie.Common.HomeAutomation
 {
@@ -7,25 +9,55 @@ namespace Roomie.Common.HomeAutomation
     {
         private static readonly Dictionary<string, DeviceType> types = new Dictionary<string, DeviceType>();
 
-        public static readonly DeviceType Dimmable = new DeviceType("Dimmable");
-        public static readonly DeviceType Switch = new DeviceType("Switch");
+        public static readonly DeviceType Dimmable = new DeviceType("Multilevel Switch", "Dimmable");
+        public static readonly DeviceType Switch = new DeviceType("Binary Switch", "Switch");
         public static readonly DeviceType Controller = new DeviceType("Controller");
         public static readonly DeviceType Relay = new DeviceType("Relay");
-        public static readonly DeviceType MotionDetector = new DeviceType("Motion Detector");
+        public static readonly DeviceType MotionDetector = new DeviceType("Binary Sensor", "Door Sensor", "Window Sensor", "Motion Detector");
         public static readonly DeviceType Thermostat = new DeviceType("Thermostat");
         public static readonly DeviceType Keypad = new DeviceType("Keypad");
-        public static readonly DeviceType Unknown = new DeviceType("Unknown");
+        public static readonly DeviceType Unknown = new DeviceType();
 
-        public string Name { get; private set;}
+        private const string UnknownName = "Unknown";
+
+        public string Name
+        {
+            get
+            {
+
+                var result = Names.FirstOrDefault() ?? UnknownName;
+
+                return result;
+            }
+            protected set
+            {
+                // used by Entity Framework
+                _names.AddFirst(value);
+            }
+        }
+
+        public IEnumerable<string> Names
+        {
+            get
+            {
+                return _names;
+            }
+        }
+
+        private readonly LinkedList<string> _names; 
 
         public DeviceType()
         {
-            Name = Unknown.Name;
+            _names = new LinkedList<string>();
         }
 
-        private DeviceType(string typeName)
+        private DeviceType(params string [] names)
+            :this()
         {
-            Name = typeName;
+            foreach (var name in names.Where(x => x != UnknownName))
+            {
+                _names.AddLast(name);
+            }
 
             types.Add(Name, this);
         }
@@ -40,11 +72,14 @@ namespace Roomie.Common.HomeAutomation
             return types.ContainsKey(type);
         }
 
-        public static DeviceType GetTypeFromString(string type)
+        public static DeviceType GetTypeFromString(string typeName)
         {
-            if (IsValidType(type))
+            foreach (var type in types.Values)
             {
-                return types[type];
+                if (type.Names.Any(x => x.Equals(typeName, StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    return type;
+                }
             }
 
             return Unknown;
@@ -92,7 +127,10 @@ namespace Roomie.Common.HomeAutomation
 
         public bool Equals(string value)
         {
-            return Equals(GetTypeFromString(value));
+            var one = GetTypeFromString(Name);
+            var two = GetTypeFromString(value);
+
+            return one == two;
         }
 
         public bool Equals(DeviceType that)
@@ -102,7 +140,10 @@ namespace Roomie.Common.HomeAutomation
                 return false;
             }
 
-            return Name == that.Name;
+            var one = GetTypeFromString(Name);
+            var two = GetTypeFromString(that.Name);
+
+            return one == two;
         }
 
         public static implicit operator string(DeviceType type)
