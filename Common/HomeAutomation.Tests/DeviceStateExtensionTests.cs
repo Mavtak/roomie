@@ -10,7 +10,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, true, true, true, true);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeThermostat: true, includeKeypad: true);
             }
         }
 
@@ -18,7 +18,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, false, true, true, false);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: false, includeDimmer: true, includeThermostat: true, includeKeypad: false);
             }
         }
 
@@ -26,7 +26,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, true, false, true, false);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: false, includeThermostat: true, includeKeypad: false);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, true, true, false, false);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeThermostat: false, includeKeypad: false);
             }
         }
 
@@ -42,7 +42,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, true, true, true, false);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeThermostat: true, includeKeypad: false);
             }
         }
 
@@ -52,7 +52,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = device.Copy();
 
             //TODO: assert truly separate objects
-            AssertionHelpers.AssertDevicesEqual(device, copy, true, true, true, true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("Devices")]
@@ -61,7 +61,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, true, false, false, false);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: false, checkThermostat: false, checkKeypad: false);
         }
 
         [TestCaseSource("Devices")]
@@ -70,7 +70,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, false, true, false, false);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: true, checkThermostat: false, checkKeypad: false);
         }
 
         [TestCaseSource("Devices")]
@@ -79,7 +79,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, false, false, true, false);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkThermostat: true, checkKeypad: false);
         }
 
         [TestCaseSource("Devices")]
@@ -88,7 +88,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, false, false, false, true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkThermostat: false, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutToggleSwitches")]
@@ -97,7 +97,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, true, true, true, true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutDimmerSwitches")]
@@ -106,7 +106,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, true, true, true, true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutThermostats")]
@@ -115,7 +115,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, true, true, true, true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutKeypads")]
@@ -124,7 +124,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, true, true, true, true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("Devices")]
@@ -133,7 +133,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, true, true, true, true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkThermostat: true, checkKeypad: true);
         }
     }
 }
