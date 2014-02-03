@@ -52,6 +52,7 @@
     <Compile Include="NodeDataEntries\General\IntNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\DecimalNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\StringNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\INodeDataEntryWithOptions.cs" />
     <Compile Include="NodeDataEntries\NodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\SwitchBinaryDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\BoolNodeDataEntry.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="NodeDataEntries\INodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\SwitchMultilevelDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\ThermometerDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermostatModeDataEntry.cs" />
     <Compile Include="OpenZWaveDeviceValue.cs" />
     <Compile Include="OpenZWaveDimmerSwitch.cs" />
     <Compile Include="OpenZWaveDevice.cs" />

@@ -134,6 +134,20 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
+        public string Selection
+        {
+            get
+            {
+                string result;
+                if (_network.Manager.GetValueListSelection(_value, out result))
+                {
+                    return result;
+                }
+
+                return null;
+            }
+        }
+
         public short? ShortValue
         {
             get
@@ -228,6 +242,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         public void SetValue(string value)
         {
             _network.Manager.SetValue(_value, value);
+        }
+
+        public void SetSelection(string value)
+        {
+            _network.Manager.SetValueListSelection(_value, value);
         }
 
         #endregion
