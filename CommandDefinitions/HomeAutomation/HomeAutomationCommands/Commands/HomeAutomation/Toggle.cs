@@ -17,11 +17,11 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             switch (device.ToggleSwitch.Power)
             {
                 case BinarySwitchPower.On:
-                    device.ToggleSwitch.PowerOff();
+                    device.ToggleSwitch.SetPower(BinarySwitchPower.Off);
                     break;
 
                     case BinarySwitchPower.Off:
-                    device.ToggleSwitch.PowerOn();
+                    device.ToggleSwitch.SetPower(BinarySwitchPower.On);
                     break;
             }
         }

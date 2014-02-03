@@ -12,13 +12,18 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device = device;
         }
 
-        public void PowerOn()
+        public void SetPower(BinarySwitchPower power)
         {
-            _device.DoDeviceOperation(_device.BackingObject.PowerOn);
-        }
-        public void PowerOff()
-        {
-            _device.DoDeviceOperation(_device.BackingObject.PowerOff);
+            switch (power)
+            {
+                case BinarySwitchPower.On:
+                    _device.DoDeviceOperation(_device.BackingObject.PowerOn);
+                    break;
+
+                case BinarySwitchPower.Off:
+                    _device.DoDeviceOperation(_device.BackingObject.PowerOff);
+                    break;
+            }
         }
 
         public void Poll()

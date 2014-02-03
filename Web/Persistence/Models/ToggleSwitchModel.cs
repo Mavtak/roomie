@@ -15,14 +15,18 @@ namespace Roomie.Web.Persistence.Models
             _device = device;
         }
 
-        public void PowerOn()
+        public void SetPower(BinarySwitchPower power)
         {
-            _device.DoCommand("HomeAutomation.PowerOn Device=\"{0}\"");
-        }
+            switch (power)
+            {
+                case BinarySwitchPower.On:
+                    _device.DoCommand("HomeAutomation.PowerOn Device=\"{0}\"");
+                    break;
 
-        public void PowerOff()
-        {
-            _device.DoCommand("HomeAutomation.PowerOff Device=\"{0}\"");
+                case BinarySwitchPower.Off:
+                    _device.DoCommand("HomeAutomation.PowerOff Device=\"{0}\"");
+                    break;
+            }
         }
 
         public void Poll()

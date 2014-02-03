@@ -1,4 +1,5 @@
-﻿
+﻿using Roomie.Common.HomeAutomation.BinarySwitches;
+
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     public class PowerOn : HomeAutomationSingleDeviceCommand
@@ -7,7 +8,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var device = context.Device;
 
-            device.ToggleSwitch.PowerOn();
+            device.ToggleSwitch.SetPower(BinarySwitchPower.On);
         }
     }
 }

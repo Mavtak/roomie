@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
@@ -73,7 +74,7 @@ namespace Roomie.Web.Website.Controllers
         {
             var device = this.SelectDevice(id);
 
-            device.ToggleSwitch.PowerOn();;
+            device.ToggleSwitch.SetPower(BinarySwitchPower.On);;
 
             Database.SaveChanges();
 
@@ -91,7 +92,7 @@ namespace Roomie.Web.Website.Controllers
         {
             var device = this.SelectDevice(id);
 
-            device.ToggleSwitch.PowerOff();
+            device.ToggleSwitch.SetPower(BinarySwitchPower.Off);
 
             Database.SaveChanges();
 

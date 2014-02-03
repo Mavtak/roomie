@@ -32,14 +32,18 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
-        public void PowerOn()
+        public void SetPower(BinarySwitchPower power)
         {
-            _dataEntry.SetValue(true);
-        }
+            switch (power)
+            {
+                case BinarySwitchPower.On:
+                    _dataEntry.SetValue(true);
+                    break;
 
-        public void PowerOff()
-        {
-            _dataEntry.SetValue(false);
+                case BinarySwitchPower.Off:
+                    _dataEntry.SetValue(false);
+                    break;
+            }
         }
 
         public void Poll()
