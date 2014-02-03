@@ -1,4 +1,4 @@
-﻿using OpenZWaveDotNet;
+﻿using System.Linq;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
 {
@@ -6,16 +6,18 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
     {
         protected readonly OpenZWaveDevice Device;
         private readonly CommandClass _commandClass;
+        private readonly byte? _index;
 
-        protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass)
+        protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass, byte? index = null)
         {
             Device = device;
             _commandClass = commandClass;
+            _index = index;
         }
 
         protected OpenZWaveDeviceValue GetDataEntry()
         {
-            var result = Device.GetValueByClassId(_commandClass);
+            var result = Device.GetValue(_commandClass, _index);
 
             return result;
         }

@@ -34,9 +34,16 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _thermostat = new OpenZWaveThermostat(this);
         }
 
-        internal OpenZWaveDeviceValue GetValueByClassId(CommandClass classId)
+        internal OpenZWaveDeviceValue GetValue(CommandClass classId, byte? index = null)
         {
-            var result = Values.FirstOrDefault(x => x.CommandClass == classId);
+            var matches = Values.Where(x => x.CommandClass == classId);
+
+            if (index != null)
+            {
+                matches = matches.Where(x => x.Index == index);
+            }
+
+            var result = matches.FirstOrDefault();
 
             return result;
         }
