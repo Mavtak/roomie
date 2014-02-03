@@ -94,11 +94,11 @@ namespace Roomie.Common.HomeAutomation.Tests
                         break;
 
                     case 1:
-                        type = DeviceType.Dimmable;
+                        type = DeviceType.MultilevelSwitch;
                         break;
 
                     case 2:
-                        type = DeviceType.MotionDetector;
+                        type = DeviceType.BinarySensor;
                         break;
 
                     case 3:
@@ -106,7 +106,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                         break;
 
                     case 4:
-                        type = DeviceType.Switch;
+                        type = DeviceType.BinarySwitch;
                         break;
 
                     case 5:

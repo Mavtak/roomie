@@ -45,7 +45,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             IEventSource source = null; //TODO: fill this in
             if (IsConnected == true)
             {
-                if (Type.Equals(DeviceType.MotionDetector))
+                if (Type.Equals(DeviceType.BinarySensor))
                 {
                     switch (BinarySwitch.Power)
                     {
@@ -60,7 +60,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 }
                 else
                 {
-                    if (Type.Equals(DeviceType.Switch))
+                    if (Type.Equals(DeviceType.BinarySwitch))
                     {
                         switch (BinarySwitch.Power)
                         {
@@ -204,13 +204,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public void Poll()
         {
-            if (Type == DeviceType.Switch)
+            if (Type == DeviceType.BinarySwitch)
             {
                 BinarySwitch.Poll();
                 return;
             }
 
-            if (Type == DeviceType.Dimmable)
+            if (Type == DeviceType.MultilevelSwitch)
             {
                 MultilevelSwitch.Poll();
                 return;

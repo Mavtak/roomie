@@ -9,11 +9,11 @@ namespace Roomie.Common.HomeAutomation
     {
         private static readonly Dictionary<string, DeviceType> types = new Dictionary<string, DeviceType>();
 
-        public static readonly DeviceType Dimmable = new DeviceType("Multilevel Switch", "Dimmable");
-        public static readonly DeviceType Switch = new DeviceType("Binary Switch", "Switch");
+        public static readonly DeviceType MultilevelSwitch = new DeviceType("Multilevel Switch", "Dimmable");
+        public static readonly DeviceType BinarySwitch = new DeviceType("Binary Switch", "Switch");
         public static readonly DeviceType Controller = new DeviceType("Controller");
         public static readonly DeviceType Relay = new DeviceType("Relay");
-        public static readonly DeviceType MotionDetector = new DeviceType("Binary Sensor", "Door Sensor", "Window Sensor", "Motion Detector");
+        public static readonly DeviceType BinarySensor = new DeviceType("Binary Sensor", "Door Sensor", "Window Sensor", "Motion Detector");
         public static readonly DeviceType Thermostat = new DeviceType("Thermostat");
         public static readonly DeviceType Keypad = new DeviceType("Keypad");
         public static readonly DeviceType Unknown = new DeviceType();
@@ -98,7 +98,7 @@ namespace Roomie.Common.HomeAutomation
         {
             get
             {
-                return this == Dimmable || this == Unknown;
+                return this == MultilevelSwitch || this == Unknown;
             }
         }
 
@@ -107,7 +107,7 @@ namespace Roomie.Common.HomeAutomation
         {
             get
             {
-                return this != Controller && this != Relay && this != MotionDetector && this != Keypad;
+                return this != Controller && this != Relay && this != BinarySensor && this != Keypad;
             }
         }
 

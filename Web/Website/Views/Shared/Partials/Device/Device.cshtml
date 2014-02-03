@@ -14,11 +14,11 @@
         {
             @Html.Partial("Partials/Device/ThermostatControls", Model);
         }
-        else if (device.Type.Equals(DeviceType.Dimmable))
+        else if (device.Type.Equals(DeviceType.MultilevelSwitch))
         {
             @Html.Partial("Partials/Device/DimmerButtons", Model)
         }
-        else if(device.Type.Equals(DeviceType.Switch))
+        else if(device.Type.Equals(DeviceType.BinarySwitch))
         {
             @Html.Partial("Partials/Device/ToggleButtons", Model.Device)
         }
