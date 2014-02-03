@@ -6,18 +6,27 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
     {
         protected readonly OpenZWaveDevice Device;
         private readonly CommandClass _commandClass;
-        private readonly byte? _index;
+        protected byte? Index { get; private set; }
 
         protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass, byte? index = null)
         {
             Device = device;
             _commandClass = commandClass;
-            _index = index;
+            Index = index;
         }
 
         protected OpenZWaveDeviceValue GetDataEntry()
         {
-            var result = Device.GetValue(_commandClass, _index);
+            var result = Device.GetValue(_commandClass, Index);
+
+            return result;
+        }
+
+        public bool HasValue()
+        {
+            var dataEntry = GetDataEntry();
+
+            var result = dataEntry != null;
 
             return result;
         }

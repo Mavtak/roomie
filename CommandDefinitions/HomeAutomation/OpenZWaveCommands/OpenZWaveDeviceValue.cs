@@ -224,6 +224,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             SetValue((float) value);
         }
 
+        public void SetValue(double value)
+        {
+            SetValue((float)value);
+        }
+
         public void SetValue(float value)
         {
             _network.Manager.SetValue(_value, value);
