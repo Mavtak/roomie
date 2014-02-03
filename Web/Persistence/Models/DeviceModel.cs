@@ -171,7 +171,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IMultilevelSwitch IDevice.DimmerSwitch
+        IMultilevelSwitch IDevice.MultilevelSwitch
         {
             get
             {

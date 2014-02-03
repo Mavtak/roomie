@@ -56,7 +56,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        public override IMultilevelSwitch DimmerSwitch
+        public override IMultilevelSwitch MultilevelSwitch
         {
             get
             {

@@ -83,7 +83,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
-        public override IMultilevelSwitch DimmerSwitch
+        public override IMultilevelSwitch MultilevelSwitch
         {
             get
             {

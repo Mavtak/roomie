@@ -123,7 +123,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         }
 
         public abstract IBinarySwitch BinarySwitch { get; }
-        public abstract IMultilevelSwitch DimmerSwitch { get; }
+        public abstract IMultilevelSwitch MultilevelSwitch { get; }
         public abstract IThermostat Thermostat { get; }
         public abstract IKeypad Keypad { get; }
 
@@ -134,7 +134,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Location.Update(state.Location);
             IsConnected = state.IsConnected;
             Type = state.Type;
-            DimmerSwitch.Update(state.MultilevelSwitchState);
+            MultilevelSwitch.Update(state.MultilevelSwitchState);
             //TODO: handle thermostat state and such
         }
 
@@ -168,7 +168,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             get
             {
-                return DimmerSwitch;
+                return MultilevelSwitch;
             }
         }
         IThermostatState IDeviceState.ThermostatState
@@ -201,7 +201,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
             if (Type == DeviceType.Dimmable)
             {
-                DimmerSwitch.Poll();
+                MultilevelSwitch.Poll();
                 return;
             }
 
@@ -243,7 +243,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             get
             {
-                return DimmerSwitch;
+                return MultilevelSwitch;
             }
         }
 

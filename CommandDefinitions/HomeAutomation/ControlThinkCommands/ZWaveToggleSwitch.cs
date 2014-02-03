@@ -28,14 +28,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void Poll()
         {
-            _device.DimmerSwitch.Poll();
+            _device.MultilevelSwitch.Poll();
         }
 
         public BinarySwitchPower? Power
         {
             get
             {
-                var power =_device.DimmerSwitch.Power;
+                var power = _device.MultilevelSwitch.Power;
 
                 if (Utilities.IsOn(power))
                 {
