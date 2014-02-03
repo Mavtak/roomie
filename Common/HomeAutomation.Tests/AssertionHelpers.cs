@@ -22,7 +22,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 
             if (checkToggleSwitch)
             {
-                AssertToggleSwitchEqual(one.ToggleSwitchState, two.ToggleSwitchState);
+                AssertToggleSwitchEqual(one.BinarySwitchState, two.BinarySwitchState);
             }
 
             if (checkDimmerSwitch)

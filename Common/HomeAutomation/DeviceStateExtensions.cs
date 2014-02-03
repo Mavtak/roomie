@@ -17,7 +17,7 @@ namespace Roomie.Common.HomeAutomation
             if (device.Type == DeviceType.Switch || device.Type == DeviceType.MotionDetector)
             {
                 //TODO: account for motion detectors specifically
-                result = device.ToggleSwitchState.Describe();
+                result = device.BinarySwitchState.Describe();
             }
             else if (device.Type == DeviceType.Dimmable)
             {
@@ -81,9 +81,9 @@ namespace Roomie.Common.HomeAutomation
                 result.Add(new XAttribute("IsConnected", state.IsConnected));
             }
 
-            if (state.ToggleSwitchState != null)
+            if (state.BinarySwitchState != null)
             {
-                var toggleSwitchNode = state.ToggleSwitchState.ToXElement();
+                var toggleSwitchNode = state.BinarySwitchState.ToXElement();
 
                 if (toggleSwitchNode.Attributes().Any() || toggleSwitchNode.Ancestors().Any())
                 {

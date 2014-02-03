@@ -14,7 +14,7 @@ namespace Roomie.Common.HomeAutomation
         INetworkState NetworkState { get; }
         bool? IsConnected { get; }
         DeviceType Type { get; }
-        IBinarySwitchState ToggleSwitchState { get; }
+        IBinarySwitchState BinarySwitchState { get; }
         IMultilevelSwitchState DimmerSwitchState { get; }
         IThermostatState ThermostatState { get; }
         IKeypadState KeypadState { get; }

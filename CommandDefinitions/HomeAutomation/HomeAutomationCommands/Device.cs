@@ -157,7 +157,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        IBinarySwitchState IDeviceState.ToggleSwitchState
+        IBinarySwitchState IDeviceState.BinarySwitchState
         {
             get
             {
@@ -231,7 +231,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        IBinarySwitchActions IDeviceActions.ToggleSwitchActions
+        IBinarySwitchActions IDeviceActions.BinarySwitchActions
         {
             get
             {

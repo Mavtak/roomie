@@ -62,9 +62,9 @@ namespace Roomie.Web.Persistence.Models
             //TODO: update more properties?
             IsConnected = state.IsConnected;
             
-            if (state.ToggleSwitchState != null)
+            if (state.BinarySwitchState != null)
             {
-                ToggleSwitch.Update(state.ToggleSwitchState);
+                ToggleSwitch.Update(state.BinarySwitchState);
             }
 
             if (state.DimmerSwitchState != null)
@@ -215,7 +215,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IBinarySwitchState IDeviceState.ToggleSwitchState
+        IBinarySwitchState IDeviceState.BinarySwitchState
         {
             get
             {
@@ -337,7 +337,7 @@ namespace Roomie.Web.Persistence.Models
 
         #region IDeviceActions
 
-        IBinarySwitchActions IDeviceActions.ToggleSwitchActions
+        IBinarySwitchActions IDeviceActions.BinarySwitchActions
         {
             get
             {
