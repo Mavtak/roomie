@@ -17,8 +17,6 @@
       {<text>--</text>}
   }
 @helper SetpointControl(IThermostat thermostat, ThermostatSetpointType type) {
-    var temperature = thermostat.Setpoints[type];
-    
     using (Ajax.BeginForm(
         actionName: "SetThermostatSetpoint",
         controllerName: "Device",
@@ -37,7 +35,12 @@
             id = string.Empty
         }
         ))
-     {@*
+    {
+        if (!thermostat.Setpoints.AvailableSetpoints.Contains(type))
+        {
+            return;
+        }
+        var temperature = thermostat.Setpoints[type];@*
     *@<button class="button setpoint-button hotter" type="submit" name="temperature" value="@temperature.Add(-1)">-</button>@*   
     *@<div class="value">@*
       *@@FormatTemeprature(temperature)@*
