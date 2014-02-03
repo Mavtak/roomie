@@ -6,7 +6,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
     public class ThermometerDataEntry : TemperatureNodeDataEntry
     {
         public ThermometerDataEntry(OpenZWaveDevice device)
-            : base(device, (byte)CommandClass.SensorMultilevel)
+            : base(device, CommandClass.SensorMultilevel)
         {
         }
 

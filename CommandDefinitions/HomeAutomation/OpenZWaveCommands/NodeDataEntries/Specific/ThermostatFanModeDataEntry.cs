@@ -10,7 +10,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
         INodeDataEntryWithOptions<ThermostatFanMode?>
     {
         public ThermostatFanModeDataEntry(OpenZWaveDevice device)
-            : base(device, (byte)CommandClass.ThermostatFanMode)
+            : base(device, CommandClass.ThermostatFanMode)
         {
         }
 

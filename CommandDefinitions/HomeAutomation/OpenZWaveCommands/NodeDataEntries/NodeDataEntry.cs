@@ -5,9 +5,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
     public abstract class NodeDataEntry<T> : INodeDataEntry<T>
     {
         protected readonly OpenZWaveDevice Device;
-        private readonly byte _commandClass;
+        private readonly CommandClass _commandClass;
 
-        protected NodeDataEntry(OpenZWaveDevice device, byte commandClass)
+        protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass)
         {
             Device = device;
             _commandClass = commandClass;

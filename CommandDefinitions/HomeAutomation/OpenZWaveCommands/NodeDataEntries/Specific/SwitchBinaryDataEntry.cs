@@ -7,7 +7,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
     public class SwitchBinaryDataEntry : BoolNodeDataEntry
     {
         public SwitchBinaryDataEntry(OpenZWaveDevice device)
-            : base(device, (byte) CommandClass.SwitchBinary)
+            : base(device, CommandClass.SwitchBinary)
         {
         }
 

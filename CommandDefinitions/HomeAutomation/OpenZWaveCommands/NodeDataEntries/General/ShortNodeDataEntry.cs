@@ -4,7 +4,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
     public abstract class ShortNodeDataEntry : NodeDataEntry<short?>,
         IWritableNodeDataEntry<short>
     {
-        protected ShortNodeDataEntry(OpenZWaveDevice device, byte commandClass)
+        protected ShortNodeDataEntry(OpenZWaveDevice device, CommandClass commandClass)
             : base(device, commandClass)
         {
         }

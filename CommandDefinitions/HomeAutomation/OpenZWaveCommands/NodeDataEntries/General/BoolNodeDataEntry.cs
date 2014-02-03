@@ -4,7 +4,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
     public abstract class BoolNodeDataEntry : NodeDataEntry<bool?>,
         IWritableNodeDataEntry<bool>
     {
-        protected BoolNodeDataEntry(OpenZWaveDevice device, byte commandClass)
+        protected BoolNodeDataEntry(OpenZWaveDevice device, CommandClass commandClass)
             : base(device, commandClass)
         {
         }

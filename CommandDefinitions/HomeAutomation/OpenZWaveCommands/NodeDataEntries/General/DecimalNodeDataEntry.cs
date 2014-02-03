@@ -4,7 +4,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
     public abstract class DecimalNodeDataEntry : NodeDataEntry<decimal?>,
         IWritableNodeDataEntry<decimal>
     {
-        protected DecimalNodeDataEntry(OpenZWaveDevice device, byte commandClass)
+        protected DecimalNodeDataEntry(OpenZWaveDevice device, CommandClass commandClass)
             : base(device, commandClass)
         {
         }

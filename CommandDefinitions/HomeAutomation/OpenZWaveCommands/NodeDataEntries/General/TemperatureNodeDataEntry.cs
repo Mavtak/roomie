@@ -4,7 +4,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
 {
     public abstract class TemperatureNodeDataEntry : NodeDataEntry<ITemperature>
     {
-        protected TemperatureNodeDataEntry(OpenZWaveDevice device, byte commandClass)
+        protected TemperatureNodeDataEntry(OpenZWaveDevice device, CommandClass commandClass)
             : base(device, commandClass)
         {
         }

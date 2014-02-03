@@ -6,7 +6,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
     public class SwitchMultilevelDataEntry : ByteNodeDataEntry
     {
         public SwitchMultilevelDataEntry(OpenZWaveDevice device)
-            : base(device, (byte)CommandClass.SwitchMultilevel)
+            : base(device, CommandClass.SwitchMultilevel)
         {
         }
 

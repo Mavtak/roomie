@@ -41,13 +41,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             return result;
         }
 
-        internal OpenZWaveDeviceValue GetValueByClassId(byte classId)
-        {
-            var result = GetValueByClassId((CommandClass) classId);
-
-            return result;
-        }
-
         internal bool ProcessValueChanged(OpenZWaveDeviceValue value)
         {
             if (_toggleSwitch.ProcessValueChanged(value))

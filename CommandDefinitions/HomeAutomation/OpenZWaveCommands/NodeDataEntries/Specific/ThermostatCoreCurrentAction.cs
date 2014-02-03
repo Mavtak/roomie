@@ -6,7 +6,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
     public class ThermostatCoreCurrentActionDataEntry : NodeDataEntry<ThermostatCurrentAction?>
     {
         public ThermostatCoreCurrentActionDataEntry(OpenZWaveDevice device)
-            : base(device, (byte) CommandClass.ThermostatOperatingState)
+            : base(device, CommandClass.ThermostatOperatingState)
         {
         }
 
