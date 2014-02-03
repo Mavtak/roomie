@@ -4,7 +4,8 @@ using System.Linq;
 
 namespace Roomie.Common.HomeAutomation
 {
-    //TODO: reconsider this class
+    //TODO: unit test
+    //TODO: make more efficient
     public class DeviceType
     {
         private static readonly Dictionary<string, DeviceType> types = new Dictionary<string, DeviceType>();
@@ -24,8 +25,9 @@ namespace Roomie.Common.HomeAutomation
         {
             get
             {
+                var staticType = GetTypeFromString(Names.FirstOrDefault());
 
-                var result = Names.FirstOrDefault() ?? UnknownName;
+                var result = staticType.Names.FirstOrDefault() ?? UnknownName;
 
                 return result;
             }
@@ -59,7 +61,7 @@ namespace Roomie.Common.HomeAutomation
                 _names.AddLast(name);
             }
 
-            types.Add(Name, this);
+            types.Add(_names.First(), this);
         }
 
         public static bool IsValidType(string type)
