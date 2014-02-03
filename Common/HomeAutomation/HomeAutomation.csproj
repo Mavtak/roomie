@@ -44,6 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinarySensors\BinarySensorType.cs" />
+    <Compile Include="BinarySensors\BinarySensorTypeParser.cs" />
+    <Compile Include="BinarySensors\BinarySwitchExtensions.cs" />
+    <Compile Include="BinarySensors\IBinarySensor.cs" />
+    <Compile Include="BinarySensors\IBinarySensorActions.cs" />
+    <Compile Include="BinarySensors\IBinarySensorState.cs" />
+    <Compile Include="BinarySensors\ReadOnlyBinarySensorState.cs" />
     <Compile Include="DeviceStateCollectionExtensions.cs" />
     <Compile Include="DeviceStateExtensions.cs" />
     <Compile Include="MultilevelSwitches\IMultilevelSwitchActions.cs" />

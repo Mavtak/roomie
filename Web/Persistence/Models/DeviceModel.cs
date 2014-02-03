@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -80,6 +81,7 @@ namespace Roomie.Web.Persistence.Models
 
         private readonly ToggleSwitchModel _toggleSwitch;
         private readonly DimmerSwitchModel _dimmerSwitch;
+        private readonly IBinarySensor _binarySensor;
         private readonly ThermostatModel _thermostat;
 
         public ToggleSwitchModel ToggleSwitch
@@ -95,6 +97,15 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return _dimmerSwitch;
+            }
+        }
+
+        //TODO: implement
+        public IBinarySensor BinarySensor
+        {
+            get
+            {
+                return _binarySensor;
             }
         }
 
@@ -120,6 +131,7 @@ namespace Roomie.Web.Persistence.Models
             _toggleSwitch = new ToggleSwitchModel(this);
             _dimmerSwitch = new DimmerSwitchModel(this);
             _thermostat = new ThermostatModel(this);
+            _binarySensor = null; //TODO: implement
         }
 
         #region LastPing
@@ -179,6 +191,15 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        IBinarySensor IDevice.BinarySensor
+        {
+            get
+            {
+                //TODO: implement
+                return null;
+            }
+        }
+
         IThermostat IDevice.Thermostat
         {
             get
@@ -228,6 +249,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return DimmerSwitch;
+            }
+        }
+
+        public IBinarySensorState BinarySensorState
+        {
+            get
+            {
+                return BinarySensor;
             }
         }
 
@@ -350,6 +379,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return DimmerSwitch;
+            }
+        }
+
+        public IBinarySensorActions BinarySensorActions
+        {
+            get
+            {
+                return BinarySensor;
             }
         }
 

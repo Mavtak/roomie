@@ -2,6 +2,7 @@
 using System.Linq;
 using OpenZWaveDotNet;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
+using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -18,6 +19,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly OpenZWaveToggleSwitch _toggleSwitch;
         private readonly OpenZWaveDimmerSwitch _dimmerSwitch;
         private readonly OpenZWaveThermostat _thermostat;
+        private readonly IBinarySensor _binarySensor; //TODO: implement
 
         public OpenZWaveDevice(Network network, ZWManager manager, byte id)
             : base(network)
@@ -32,6 +34,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _toggleSwitch = new OpenZWaveToggleSwitch(this);
             _dimmerSwitch = new OpenZWaveDimmerSwitch(this);
             _thermostat = new OpenZWaveThermostat(this);
+            _binarySensor = null; //TODO: implement
         }
         
         internal IEnumerable<OpenZWaveDeviceValue> GetValues(CommandClass classId, byte? index = null)
@@ -88,6 +91,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             get
             {
                 return _dimmerSwitch;
+            }
+        }
+
+        public override IBinarySensor BinarySensor
+        {
+            get
+            {
+                return _binarySensor;
             }
         }
 

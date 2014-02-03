@@ -1,4 +1,5 @@
-﻿using Roomie.Common.HomeAutomation.BinarySwitches;
+﻿using Roomie.Common.HomeAutomation.BinarySensors;
+using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
@@ -9,6 +10,7 @@ namespace Roomie.Common.HomeAutomation
     {
         IBinarySwitchActions BinarySwitchActions { get; }
         IMultilevelSwitchActions MultilevelSwitchActions { get; }
+        IBinarySensorActions BinarySensorActions { get; }
         IThermostatActions ThermostatActions { get; }
         IKeypadActions KeypadActions { get; }
 

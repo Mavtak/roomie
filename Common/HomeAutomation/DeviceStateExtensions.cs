@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -98,6 +99,16 @@ namespace Roomie.Common.HomeAutomation
                 if (dimmerSwitchNode.Attributes().Any() || dimmerSwitchNode.Ancestors().Any())
                 {
                     result.Add(dimmerSwitchNode);
+                }
+            }
+
+            if (state.BinarySensorState != null)
+            {
+                var binarySensorNode = state.BinarySensorState.ToXElement();
+
+                if (binarySensorNode.Attributes().Any() || binarySensorNode.Ancestors().Any())
+                {
+                    result.Add(binarySensorNode);
                 }
             }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -16,6 +17,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         private readonly ZWaveToggleSwitch _toggleSwitch;
         private readonly ZWaveDimmerSwitch _dimmerSwitch;
         private readonly ZWaveThermostat _thermostat;
+        private readonly IBinarySensor _binarySensor; //TODO: implement
 
         public ZWaveDevice(BaseNetwork network, BackingDevice backingDevice, DeviceType type = null, string name = null)
             : base(network, type, name)
@@ -29,6 +31,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _toggleSwitch = new ZWaveToggleSwitch(this);
             _dimmerSwitch = new ZWaveDimmerSwitch(this);
             _thermostat = new ZWaveThermostat(this);
+            _binarySensor = null; //TODO: implement
 
             if (Type.CanDim)
             {
@@ -61,6 +64,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             get
             {
                 return _dimmerSwitch;
+            }
+        }
+
+        public override IBinarySensor BinarySensor
+        {
+            get
+            {
+                return _binarySensor;
             }
         }
 

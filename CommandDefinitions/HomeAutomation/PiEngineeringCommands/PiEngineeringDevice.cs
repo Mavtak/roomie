@@ -2,6 +2,7 @@
 using PIEHidDotNet;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Keypads.Buttons;
@@ -36,6 +37,14 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
         }
 
         public override IMultilevelSwitch MultilevelSwitch
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public override IBinarySensor BinarySensor
         {
             get
             {

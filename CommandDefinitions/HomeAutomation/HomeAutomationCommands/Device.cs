@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Keypads;
@@ -124,6 +125,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public abstract IBinarySwitch BinarySwitch { get; }
         public abstract IMultilevelSwitch MultilevelSwitch { get; }
+        public abstract IBinarySensor BinarySensor { get; }
         public abstract IThermostat Thermostat { get; }
         public abstract IKeypad Keypad { get; }
 
@@ -171,6 +173,15 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 return MultilevelSwitch;
             }
         }
+
+        public IBinarySensorState BinarySensorState
+        {
+            get
+            {
+                return BinarySensor;
+            }
+        }
+
         IThermostatState IDeviceState.ThermostatState
         {
             get
@@ -244,6 +255,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             get
             {
                 return MultilevelSwitch;
+            }
+        }
+
+        public IBinarySensorActions BinarySensorActions
+        {
+            get
+            {
+                return BinarySensor;
             }
         }
 
