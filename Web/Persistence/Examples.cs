@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
@@ -44,6 +45,30 @@ namespace Roomie.Web.Persistence
                     };
                 offDimmerSwitch.DimmerSwitch.Power = 0;
 
+
+                var openDoorSensor = new DeviceModel
+                {
+                    Name = "A Door Sensor that is open",
+                    Type = DeviceType.BinarySensor
+                };
+                openDoorSensor.BinarySensor.Type = BinarySensorType.Door;
+                openDoorSensor.BinarySensor.Value = true;
+
+                var stillMotionSensor = new DeviceModel
+                {
+                    Name = "A Motion Sensor that is still",
+                    Type = DeviceType.BinarySensor
+                };
+                stillMotionSensor.BinarySensor.Type = BinarySensorType.Motion;
+                stillMotionSensor.BinarySensor.Value = false;
+
+                var falseGenericBinarySensor = new DeviceModel
+                {
+                    Name = "A generic Binary Sensor that is false",
+                    Type = DeviceType.BinarySensor
+                };
+                falseGenericBinarySensor.BinarySensor.Value = false;
+
                 var thermostat = new DeviceModel
                     {
                         Name = "A Thermostat with all data",
@@ -65,7 +90,7 @@ namespace Roomie.Web.Persistence
                         Type = DeviceType.Thermostat
                     };
 
-                var devices = new[] { onToggleSwitch, offToggleSwitch, onDimmerSwitch, offDimmerSwitch, thermostat, noDataThermostat };
+                var devices = new[] { onToggleSwitch, offToggleSwitch, onDimmerSwitch, offDimmerSwitch, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, thermostat, noDataThermostat };
 
                 var computer = new ComputerModel
                     {

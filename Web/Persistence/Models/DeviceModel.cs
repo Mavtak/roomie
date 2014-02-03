@@ -73,6 +73,11 @@ namespace Roomie.Web.Persistence.Models
                 DimmerSwitch.Update(state.MultilevelSwitchState);
             }
 
+            if (state.BinarySensorState != null)
+            {
+                BinarySensor.Update(state.BinarySensorState);
+            }
+
             if (state.ThermostatState != null)
             {
                 Thermostat.Update(state.ThermostatState);
@@ -81,7 +86,7 @@ namespace Roomie.Web.Persistence.Models
 
         private readonly ToggleSwitchModel _toggleSwitch;
         private readonly DimmerSwitchModel _dimmerSwitch;
-        private readonly IBinarySensor _binarySensor;
+        private readonly BinarySensorModel _binarySensor;
         private readonly ThermostatModel _thermostat;
 
         public ToggleSwitchModel ToggleSwitch
@@ -101,7 +106,7 @@ namespace Roomie.Web.Persistence.Models
         }
 
         //TODO: implement
-        public IBinarySensor BinarySensor
+        public BinarySensorModel BinarySensor
         {
             get
             {
@@ -131,7 +136,7 @@ namespace Roomie.Web.Persistence.Models
             _toggleSwitch = new ToggleSwitchModel(this);
             _dimmerSwitch = new DimmerSwitchModel(this);
             _thermostat = new ThermostatModel(this);
-            _binarySensor = null; //TODO: implement
+            _binarySensor = new BinarySensorModel(this);
         }
 
         #region LastPing
