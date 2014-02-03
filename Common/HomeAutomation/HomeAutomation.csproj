@@ -46,10 +46,10 @@
   <ItemGroup>
     <Compile Include="DeviceStateCollectionExtensions.cs" />
     <Compile Include="DeviceStateExtensions.cs" />
-    <Compile Include="DimmerSwitches\IDimmerSwitchActions.cs" />
-    <Compile Include="DimmerSwitches\IDimmerSwitchState.cs" />
-    <Compile Include="DimmerSwitches\ReadOnlyDimmerSwitchState.cs" />
-    <Compile Include="DimmerSwitches\DimmerSwitchStateExtensions.cs" />
+    <Compile Include="MultilevelSwitches\IMultilevelSwitchActions.cs" />
+    <Compile Include="MultilevelSwitches\IMultilevelSwitchState.cs" />
+    <Compile Include="MultilevelSwitches\ReadOnlyDimmerSwitchState.cs" />
+    <Compile Include="MultilevelSwitches\MultilevelSwitchStateExtensions.cs" />
     <Compile Include="Events\DeviceStateChanged.cs" />
     <Compile Include="Events\EventTypeExtensions.cs" />
     <Compile Include="Events\PoweredOff.cs" />
@@ -78,7 +78,7 @@
     <Compile Include="Events\NetworkEvent.cs" />
     <Compile Include="Events\NetworkHistory.cs" />
     <Compile Include="Events\TemperatureChanged.cs" />
-    <Compile Include="DimmerSwitches\IDimmerSwitch.cs" />
+    <Compile Include="MultilevelSwitches\IMultilevelSwitch.cs" />
     <Compile Include="Events\Triggers\WhenAKeypadButtonIsPressedTrigger.cs" />
     <Compile Include="Events\Triggers\WhenDeviceEventHappenedWithinTimespanTrigger.cs" />
     <Compile Include="Events\Triggers\WhenDeviceEventHappensTrigger.cs" />
