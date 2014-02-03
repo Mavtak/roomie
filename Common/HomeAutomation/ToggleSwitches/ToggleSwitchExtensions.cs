@@ -3,14 +3,14 @@ using System.Xml.Linq;
 
 namespace Roomie.Common.HomeAutomation.ToggleSwitches
 {
-    public static class ToggleSwitchExtensions
+    public static class BinarySwitchExtensions
     {
-        public static IToggleSwitchState Copy(this IToggleSwitchState state)
+        public static IBinarySwitchState Copy(this IBinarySwitchState state)
         {
-            return ReadOnlyToggleSwitchState.CopyFrom(state);
+            return ReadOnlyBinarySwitchSwitchState.CopyFrom(state);
         }
 
-        public static string Describe(this IToggleSwitchState state)
+        public static string Describe(this IBinarySwitchState state)
         {
             var result = new StringBuilder();
 
@@ -21,11 +21,11 @@ namespace Roomie.Common.HomeAutomation.ToggleSwitches
 
             switch (state.Power)
             {
-                case ToggleSwitchPower.On:
+                case BinarySwitchPower.On:
                     result.Append("on");
                     break;
 
-                case ToggleSwitchPower.Off:
+                case BinarySwitchPower.Off:
                     result.Append("off");
                     break;
             }
@@ -33,7 +33,7 @@ namespace Roomie.Common.HomeAutomation.ToggleSwitches
             return result.ToString();
         }
 
-        public static XElement ToXElement(this IToggleSwitchState state, string nodeName = "ToggleSwitch")
+        public static XElement ToXElement(this IBinarySwitchState state, string nodeName = "ToggleSwitch")
         {
             var result = new XElement(nodeName);
 
@@ -45,9 +45,9 @@ namespace Roomie.Common.HomeAutomation.ToggleSwitches
             return result;
         }
 
-        public static IToggleSwitchState ToToggleSwitch(this XElement element)
+        public static IBinarySwitchState ToToggleSwitch(this XElement element)
         {
-            return ReadOnlyToggleSwitchState.FromXElement(element);
+            return ReadOnlyBinarySwitchSwitchState.FromXElement(element);
         }
     }
 }

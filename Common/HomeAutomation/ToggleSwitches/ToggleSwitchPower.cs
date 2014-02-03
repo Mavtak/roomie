@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.ToggleSwitches
 {
-    public enum ToggleSwitchPower
+    public enum BinarySwitchPower
     {
         On,
         Off

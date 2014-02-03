@@ -48,11 +48,11 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 {
                     switch (ToggleSwitch.Power)
                     {
-                        case ToggleSwitchPower.On:
+                        case BinarySwitchPower.On:
                             @event = DeviceEvent.MotionDetected(this, source);
                             break;
 
-                        case ToggleSwitchPower.Off:
+                        case BinarySwitchPower.Off:
                             @event = DeviceEvent.StillnessDetected(this, source);
                             break;
                     }
@@ -63,11 +63,11 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                     {
                         switch (ToggleSwitch.Power)
                         {
-                            case ToggleSwitchPower.On:
+                            case BinarySwitchPower.On:
                                 @event = DeviceEvent.PoweredOn(this, source);
                                 break;
 
-                            case ToggleSwitchPower.Off:
+                            case BinarySwitchPower.Off:
                                 @event = DeviceEvent.PoweredOff(this, source);
                                 break;
                         }
@@ -122,7 +122,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        public abstract IToggleSwitch ToggleSwitch { get; }
+        public abstract IBinarySwitch ToggleSwitch { get; }
         public abstract IDimmerSwitch DimmerSwitch { get; }
         public abstract IThermostat Thermostat { get; }
         public abstract IKeypad Keypad { get; }
@@ -157,7 +157,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        IToggleSwitchState IDeviceState.ToggleSwitchState
+        IBinarySwitchState IDeviceState.ToggleSwitchState
         {
             get
             {
@@ -231,7 +231,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        IToggleSwitchActions IDeviceActions.ToggleSwitchActions
+        IBinarySwitchActions IDeviceActions.ToggleSwitchActions
         {
             get
             {

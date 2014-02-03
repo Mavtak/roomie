@@ -1,8 +1,8 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.ToggleSwitches
 {
-    public interface IToggleSwitchState
+    public interface IBinarySwitchState
     {
-        ToggleSwitchPower? Power { get; }
+        BinarySwitchPower? Power { get; }
     }
 }

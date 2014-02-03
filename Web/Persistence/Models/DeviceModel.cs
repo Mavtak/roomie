@@ -163,7 +163,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IToggleSwitch IDevice.ToggleSwitch
+        IBinarySwitch IDevice.ToggleSwitch
         {
             get
             {
@@ -215,7 +215,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IToggleSwitchState IDeviceState.ToggleSwitchState
+        IBinarySwitchState IDeviceState.ToggleSwitchState
         {
             get
             {
@@ -337,7 +337,7 @@ namespace Roomie.Web.Persistence.Models
 
         #region IDeviceActions
 
-        IToggleSwitchActions IDeviceActions.ToggleSwitchActions
+        IBinarySwitchActions IDeviceActions.ToggleSwitchActions
         {
             get
             {

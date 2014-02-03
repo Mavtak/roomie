@@ -3,7 +3,7 @@ using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
-    public class OpenZWaveToggleSwitch : IToggleSwitch
+    public class OpenZWaveToggleSwitch : IBinarySwitch
     {
         private readonly SwitchBinaryDataEntry _dataEntry;
 
@@ -21,7 +21,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         #region IToggleSwitch
 
-        public ToggleSwitchPower? Power
+        public BinarySwitchPower? Power
         {
             get
             {
@@ -49,18 +49,18 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         #endregion
 
-        private static ToggleSwitchPower? BoolToToggleSwitchPower(bool? input)
+        private static BinarySwitchPower? BoolToToggleSwitchPower(bool? input)
         {
-            ToggleSwitchPower? result;
+            BinarySwitchPower? result;
 
             switch (input)
             {
                 case true:
-                    result = ToggleSwitchPower.On;
+                    result = BinarySwitchPower.On;
                     break;
 
                 case false:
-                    result = ToggleSwitchPower.Off;
+                    result = BinarySwitchPower.Off;
                     break;
 
                 default:

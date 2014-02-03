@@ -6,7 +6,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class ToggleSwitchModel : IToggleSwitch
+    public class ToggleSwitchModel : IBinarySwitch
     {
         private DeviceModel _device;
 
@@ -31,9 +31,9 @@ namespace Roomie.Web.Persistence.Models
             throw new System.NotImplementedException();
         }
 
-        public ToggleSwitchPower? Power { get; set; }
+        public BinarySwitchPower? Power { get; set; }
 
-        public void Update(IToggleSwitchState state)
+        public void Update(IBinarySwitchState state)
         {
             Power = state.Power;
         }

@@ -3,22 +3,22 @@ using System.Xml.Linq;
 
 namespace Roomie.Common.HomeAutomation.ToggleSwitches
 {
-    public class ReadOnlyToggleSwitchState : IToggleSwitchState
+    public class ReadOnlyBinarySwitchSwitchState : IBinarySwitchState
     {
-        public ToggleSwitchPower? Power { get; private set; }
+        public BinarySwitchPower? Power { get; private set; }
 
-        private ReadOnlyToggleSwitchState()
+        private ReadOnlyBinarySwitchSwitchState()
         {
         }
 
-        public ReadOnlyToggleSwitchState(ToggleSwitchPower? power)
+        public ReadOnlyBinarySwitchSwitchState(BinarySwitchPower? power)
         {
             Power = power;
         }
 
-        public static ReadOnlyToggleSwitchState CopyFrom(IToggleSwitchState source)
+        public static ReadOnlyBinarySwitchSwitchState CopyFrom(IBinarySwitchState source)
         {
-            var result = new ReadOnlyToggleSwitchState
+            var result = new ReadOnlyBinarySwitchSwitchState
             {
                 Power = source.Power
             };
@@ -26,11 +26,11 @@ namespace Roomie.Common.HomeAutomation.ToggleSwitches
             return result;
         }
 
-        public static ReadOnlyToggleSwitchState FromXElement(XElement element)
+        public static ReadOnlyBinarySwitchSwitchState FromXElement(XElement element)
         {
             var power = element.GetAttributeStringValue("Power").ToToggleSwitchPower();
 
-            var result = new ReadOnlyToggleSwitchState
+            var result = new ReadOnlyBinarySwitchSwitchState
             {
                 Power = power
             };

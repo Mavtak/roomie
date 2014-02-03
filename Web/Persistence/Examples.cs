@@ -21,14 +21,14 @@ namespace Roomie.Web.Persistence
                         Name = "A Toggle Switch that is on",
                         Type = DeviceType.Switch
                     };
-                onToggleSwitch.ToggleSwitch.Power = ToggleSwitchPower.On;
+                onToggleSwitch.ToggleSwitch.Power = BinarySwitchPower.On;
 
                 var offToggleSwitch = new DeviceModel
                     {
                         Name = "A Toggle Switch that is off",
                         Type = DeviceType.Switch
                     };
-                offToggleSwitch.ToggleSwitch.Power = ToggleSwitchPower.Off;
+                offToggleSwitch.ToggleSwitch.Power = BinarySwitchPower.Off;
 
                 var onDimmerSwitch = new DeviceModel
                     {

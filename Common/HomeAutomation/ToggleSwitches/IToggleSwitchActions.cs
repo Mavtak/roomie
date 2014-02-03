@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.ToggleSwitches
 {
-    public interface IToggleSwitchActions
+    public interface IBinarySwitchActions
     {
         void PowerOn();
         void PowerOff();

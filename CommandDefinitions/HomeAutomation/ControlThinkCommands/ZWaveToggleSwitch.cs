@@ -3,7 +3,7 @@ using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
-    internal class ZWaveToggleSwitch : IToggleSwitch
+    internal class ZWaveToggleSwitch : IBinarySwitch
     {
         private readonly ZWaveDevice _device;
 
@@ -26,7 +26,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _device.DimmerSwitch.Poll();
         }
 
-        public ToggleSwitchPower? Power
+        public BinarySwitchPower? Power
         {
             get
             {
@@ -34,12 +34,12 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
                 if (Utilities.IsOn(power))
                 {
-                    return ToggleSwitchPower.On;
+                    return BinarySwitchPower.On;
                 }
 
                 if (Utilities.IsOff(power))
                 {
-                    return ToggleSwitchPower.Off;
+                    return BinarySwitchPower.Off;
                 }
 
                 return null;

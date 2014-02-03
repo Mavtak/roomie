@@ -14,7 +14,7 @@ namespace Roomie.Common.HomeAutomation
         public INetworkState NetworkState { get; private set; }
         public bool? IsConnected { get; private set; }
         public DeviceType Type { get; private set; }
-        public IToggleSwitchState ToggleSwitchState { get; private set; }
+        public IBinarySwitchState ToggleSwitchState { get; private set; }
         public IDimmerSwitchState DimmerSwitchState { get; private set; }
         public IThermostatState ThermostatState { get; private set; }
         public IKeypadState KeypadState { get; private set; }
@@ -23,7 +23,7 @@ namespace Roomie.Common.HomeAutomation
         {
         }
 
-        public ReadOnlyDeviceState(string name, string address, ILocation location, INetwork network, bool? isConnected, DeviceType type, IToggleSwitchState toggleSwitchState, IDimmerSwitchState dimmerSwitchState, IThermostatState thermostatState, IKeypadState keypadState)
+        public ReadOnlyDeviceState(string name, string address, ILocation location, INetwork network, bool? isConnected, DeviceType type, IBinarySwitchState toggleSwitchState, IDimmerSwitchState dimmerSwitchState, IThermostatState thermostatState, IKeypadState keypadState)
         {
             Name = name;
             Address = address;
@@ -83,7 +83,7 @@ namespace Roomie.Common.HomeAutomation
             var type = element.GetAttributeStringValue("Type");
             var locationName = element.GetAttributeStringValue("Location");
 
-            IToggleSwitchState toggleSwitch = null;
+            IBinarySwitchState toggleSwitch = null;
             var toggleSwitchElement = element.Element("ToggleSwitch");
             if (toggleSwitchElement != null)
             {

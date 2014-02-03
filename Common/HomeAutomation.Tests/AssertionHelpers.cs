@@ -54,7 +54,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             }
         }
 
-        public static void AssertToggleSwitchEqual(IToggleSwitchState one, IToggleSwitchState two)
+        public static void AssertToggleSwitchEqual(IBinarySwitchState one, IBinarySwitchState two)
         {
             if (one == null && two == null)
             {
