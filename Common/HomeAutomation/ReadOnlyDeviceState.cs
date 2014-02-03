@@ -1,8 +1,8 @@
 ﻿using System.Xml.Linq;
+using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
-using Roomie.Common.HomeAutomation.ToggleSwitches;
 
 namespace Roomie.Common.HomeAutomation
 {

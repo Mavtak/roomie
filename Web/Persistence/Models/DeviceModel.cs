@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
-using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models

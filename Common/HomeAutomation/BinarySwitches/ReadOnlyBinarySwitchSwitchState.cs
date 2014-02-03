@@ -1,7 +1,6 @@
-﻿
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
-namespace Roomie.Common.HomeAutomation.ToggleSwitches
+namespace Roomie.Common.HomeAutomation.BinarySwitches
 {
     public class ReadOnlyBinarySwitchSwitchState : IBinarySwitchState
     {

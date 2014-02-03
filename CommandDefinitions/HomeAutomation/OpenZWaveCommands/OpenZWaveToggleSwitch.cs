@@ -1,5 +1,5 @@
 ﻿using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
-using Roomie.Common.HomeAutomation.ToggleSwitches;
+using Roomie.Common.HomeAutomation.BinarySwitches;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {

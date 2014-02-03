@@ -4,7 +4,6 @@ using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
-using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Common.TextUtilities;
 using System;
 using System.Text;

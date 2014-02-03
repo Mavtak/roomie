@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Models;
 

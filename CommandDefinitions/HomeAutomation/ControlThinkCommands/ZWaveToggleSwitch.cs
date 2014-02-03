@@ -1,5 +1,5 @@
 ﻿using Roomie.Common.HomeAutomation;
-using Roomie.Common.HomeAutomation.ToggleSwitches;
+using Roomie.Common.HomeAutomation.BinarySwitches;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {

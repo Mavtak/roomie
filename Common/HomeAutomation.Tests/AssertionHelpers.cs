@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.HomeAutomation.ToggleSwitches;
 using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Tests
