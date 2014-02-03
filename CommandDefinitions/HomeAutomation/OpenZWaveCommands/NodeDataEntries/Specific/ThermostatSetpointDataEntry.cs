@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
 
         public override bool ProcessValueChanged(OpenZWaveDeviceValue entry)
         {
-            if (entry.CommandClass != CommandClass.ThermostatSetpoint && entry.Index == Index)
+            if (!Matches(entry))
             {
                 return false;
             }

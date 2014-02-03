@@ -6,18 +6,18 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
     {
         protected readonly OpenZWaveDevice Device;
         private readonly CommandClass _commandClass;
-        protected byte? Index { get; private set; }
+        protected readonly byte? _index;
 
         protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass, byte? index = null)
         {
             Device = device;
             _commandClass = commandClass;
-            Index = index;
+            _index = index;
         }
 
         protected OpenZWaveDeviceValue GetDataEntry()
         {
-            var result = Device.GetValue(_commandClass, Index);
+            var result = Device.GetValue(_commandClass, _index);
 
             return result;
         }
@@ -32,6 +32,26 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         }
 
         public abstract T GetValue();
+
+        public bool Matches(OpenZWaveDeviceValue entry)
+        {
+            if (entry.DeviceId != Device.Id)
+            {
+                return false;
+            }
+
+            if (entry.CommandClass != _commandClass)
+            {
+                return false;
+            }
+
+            if (_index != null && entry.Index != _index)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void RefreshValue()
         {
