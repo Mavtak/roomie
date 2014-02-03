@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation.Thermostats;
@@ -27,13 +26,23 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 return result;
             }
         }
-        public ThermostatCurrentAction? CurrentAction { get; private set; }
+        public ThermostatCurrentAction? CurrentAction
+        {
+            get
+            {
+                var result = _currentAction.GetValue();
+
+                return result;
+            }
+        }
 
         private readonly ThermostatModeDataEntry _mode;
+        private readonly ThermostatCoreCurrentActionDataEntry _currentAction;
 
         public OpenZWaveThermostatCore(OpenZWaveDevice device)
         {
             _mode = new ThermostatModeDataEntry(device);
+            _currentAction = new ThermostatCoreCurrentActionDataEntry(device);
         }
 
         public bool ProcessValueChanged(OpenZWaveDeviceValue entry)
@@ -43,15 +52,17 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 return true;
             }
 
-            //TODO: current action
+            if (_currentAction.ProcessValueChanged(entry))
+            {
+                return true;
+            }
 
             return false;
         }
 
         public void PollCurrentAction()
         {
-            //TODO: implement
-            throw new NotImplementedException();
+            _currentAction.RefreshValue();
         }
 
         public void PollMode()

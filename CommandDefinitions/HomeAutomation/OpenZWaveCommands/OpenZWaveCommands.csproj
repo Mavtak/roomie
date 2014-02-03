@@ -60,6 +60,7 @@
     <Compile Include="NodeDataEntries\INodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\SwitchMultilevelDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\ThermometerDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermostatCoreCurrentAction.cs" />
     <Compile Include="NodeDataEntries\Specific\ThermostatModeDataEntry.cs" />
     <Compile Include="OpenZWaveDeviceValue.cs" />
     <Compile Include="OpenZWaveDimmerSwitch.cs" />
