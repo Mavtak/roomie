@@ -163,7 +163,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IBinarySwitch IDevice.ToggleSwitch
+        IBinarySwitch IDevice.BinarySwitch
         {
             get
             {

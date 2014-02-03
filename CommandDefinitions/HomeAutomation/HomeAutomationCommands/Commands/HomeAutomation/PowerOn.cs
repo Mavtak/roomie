@@ -8,7 +8,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var device = context.Device;
 
-            device.ToggleSwitch.SetPower(BinarySwitchPower.On);
+            device.BinarySwitch.SetPower(BinarySwitchPower.On);
         }
     }
 }

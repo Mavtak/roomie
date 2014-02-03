@@ -46,7 +46,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             {
                 if (Type.Equals(DeviceType.MotionDetector))
                 {
-                    switch (ToggleSwitch.Power)
+                    switch (BinarySwitch.Power)
                     {
                         case BinarySwitchPower.On:
                             @event = DeviceEvent.MotionDetected(this, source);
@@ -61,7 +61,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 {
                     if (Type.Equals(DeviceType.Switch))
                     {
-                        switch (ToggleSwitch.Power)
+                        switch (BinarySwitch.Power)
                         {
                             case BinarySwitchPower.On:
                                 @event = DeviceEvent.PoweredOn(this, source);
@@ -122,7 +122,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        public abstract IBinarySwitch ToggleSwitch { get; }
+        public abstract IBinarySwitch BinarySwitch { get; }
         public abstract IMultilevelSwitch DimmerSwitch { get; }
         public abstract IThermostat Thermostat { get; }
         public abstract IKeypad Keypad { get; }
@@ -161,7 +161,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             get
             {
-                return ToggleSwitch;
+                return BinarySwitch;
             }
         }
         IMultilevelSwitchState IDeviceState.MultilevelSwitchState
@@ -195,7 +195,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             if (Type == DeviceType.Switch)
             {
-                ToggleSwitch.Poll();
+                BinarySwitch.Poll();
                 return;
             }
 
@@ -235,7 +235,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             get
             {
-                return ToggleSwitch;
+                return BinarySwitch;
             }
         }
 

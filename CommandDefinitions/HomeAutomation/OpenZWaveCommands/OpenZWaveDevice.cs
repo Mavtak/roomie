@@ -75,7 +75,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             return false;
         }
 
-        public override IBinarySwitch ToggleSwitch
+        public override IBinarySwitch BinarySwitch
         {
             get
             {

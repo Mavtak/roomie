@@ -9,19 +9,19 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var device = context.Device;
 
-            if (device.ToggleSwitch.Power == null)
+            if (device.BinarySwitch.Power == null)
             {
                 device.Poll();
             }
 
-            switch (device.ToggleSwitch.Power)
+            switch (device.BinarySwitch.Power)
             {
                 case BinarySwitchPower.On:
-                    device.ToggleSwitch.SetPower(BinarySwitchPower.Off);
+                    device.BinarySwitch.SetPower(BinarySwitchPower.Off);
                     break;
 
                     case BinarySwitchPower.Off:
-                    device.ToggleSwitch.SetPower(BinarySwitchPower.On);
+                    device.BinarySwitch.SetPower(BinarySwitchPower.On);
                     break;
             }
         }

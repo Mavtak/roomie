@@ -48,7 +48,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 };
         }
 
-        public override IBinarySwitch ToggleSwitch
+        public override IBinarySwitch BinarySwitch
         {
             get
             {

@@ -8,7 +8,7 @@ namespace Roomie.Common.HomeAutomation
     public interface IDevice : IDeviceState, IDeviceActions
     {
         INetwork Network { get; }
-        IBinarySwitch ToggleSwitch { get; }
+        IBinarySwitch BinarySwitch { get; }
         IMultilevelSwitch DimmerSwitch { get; }
         IThermostat Thermostat { get; }
         IKeypad Keypad { get; }

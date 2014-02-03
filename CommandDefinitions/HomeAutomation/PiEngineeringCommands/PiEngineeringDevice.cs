@@ -27,7 +27,7 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
 
         #region Device overrides
 
-        public override IBinarySwitch ToggleSwitch
+        public override IBinarySwitch BinarySwitch
         {
             get
             {
