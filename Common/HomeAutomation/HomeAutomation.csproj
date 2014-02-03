@@ -130,7 +130,7 @@
     <Compile Include="Thermostats\ThermostatMode.cs" />
     <Compile Include="Thermostats\ThermostatCurrentAction.cs" />
     <Compile Include="Thermostats\ThermostatModeParser.cs" />
-    <Compile Include="ToggleSwitches\IToggleSwitch.cs" />
+    <Compile Include="BinarySwitches\IBinarySwitch.cs" />
     <Compile Include="Thermostats\Fans\ThermostatFanModeParser.cs" />
     <Compile Include="Thermostats\Fans\ThermostatFanMode.cs" />
     <Compile Include="Thermostats\IThermostatState.cs" />
@@ -138,12 +138,12 @@
     <Compile Include="Thermostats\SetpointCollections\ThermostatSetpointTypeParser.cs" />
     <Compile Include="Thermostats\SetpointCollections\ThermostatSetpointType.cs" />
     <Compile Include="Thermostats\ThermostatStateExtensions.cs" />
-    <Compile Include="ToggleSwitches\IToggleSwitchActions.cs" />
-    <Compile Include="ToggleSwitches\IToggleSwitchState.cs" />
-    <Compile Include="ToggleSwitches\ReadOnlyToggleSwitchState.cs" />
-    <Compile Include="ToggleSwitches\ToggleSwitchPower.cs" />
-    <Compile Include="ToggleSwitches\ToggleSwitchExtensions.cs" />
-    <Compile Include="ToggleSwitches\ToggleSwitchPowerParser.cs" />
+    <Compile Include="BinarySwitches\IBinarySwitchActions.cs" />
+    <Compile Include="BinarySwitches\IBinarySwitchState.cs" />
+    <Compile Include="BinarySwitches\ReadOnlyBinarySwitchSwitchState.cs" />
+    <Compile Include="BinarySwitches\BinarySwitchPower.cs" />
+    <Compile Include="BinarySwitches\BinarySwitchExtensions.cs" />
+    <Compile Include="BinarySwitches\BinarySwitchPowerParser.cs" />
     <Compile Include="VirtualAddress.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DeviceType.cs" />
