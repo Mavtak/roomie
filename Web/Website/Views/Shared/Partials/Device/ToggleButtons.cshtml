@@ -1,4 +1,4 @@
-﻿@using Roomie.Common.HomeAutomation.ToggleSwitches
+﻿@using Roomie.Common.HomeAutomation.BinarySwitches
 @model Roomie.Web.Persistence.Models.DeviceModel
 @*
 
@@ -17,7 +17,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button" + (Model.ToggleSwitch.Power == ToggleSwitchPower.Off ? " activated" : ""),
+                    @class = "button" + (Model.ToggleSwitch.Power == BinarySwitchPower.Off ? " activated" : ""),
                     id = string.Empty
                 }
             )){<button class="button" >Off</button>}@*
@@ -35,7 +35,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button" + (Model.ToggleSwitch.Power == ToggleSwitchPower.On ? " activated" : ""),
+                    @class = "button" + (Model.ToggleSwitch.Power == BinarySwitchPower.On ? " activated" : ""),
                     id = string.Empty
                 }
             )){<button class="button">On</button>}@*
