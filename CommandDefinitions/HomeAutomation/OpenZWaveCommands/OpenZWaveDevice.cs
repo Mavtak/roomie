@@ -33,15 +33,22 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _dimmerSwitch = new OpenZWaveDimmerSwitch(this);
             _thermostat = new OpenZWaveThermostat(this);
         }
-
-        internal OpenZWaveDeviceValue GetValue(CommandClass classId, byte? index = null)
+        
+        internal IEnumerable<OpenZWaveDeviceValue> GetValues(CommandClass classId, byte? index = null)
         {
-            var matches = Values.Where(x => x.CommandClass == classId);
+            var results = Values.Where(x => x.CommandClass == classId);
 
             if (index != null)
             {
-                matches = matches.Where(x => x.Index == index);
+                results = results.Where(x => x.Index == index);
             }
+
+            return results;
+        }
+
+        internal OpenZWaveDeviceValue GetValue(CommandClass classId, byte? index = null)
+        {
+            var matches = GetValues(classId, index);
 
             var result = matches.FirstOrDefault();
 
