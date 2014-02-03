@@ -55,6 +55,7 @@
     <Compile Include="NodeDataEntries\INodeDataEntryWithOptions.cs" />
     <Compile Include="NodeDataEntries\IWritableNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\NodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermostatFanModeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\SwitchBinaryDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\BoolNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\ByteNodeDataEntry.cs" />
