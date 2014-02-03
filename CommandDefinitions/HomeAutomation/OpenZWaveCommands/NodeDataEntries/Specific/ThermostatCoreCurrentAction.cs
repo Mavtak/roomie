@@ -1,5 +1,4 @@
-﻿using System;
-using Roomie.Common.HomeAutomation.Events;
+﻿using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
@@ -24,11 +23,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
             var value = ThermostatCurrentActionParser.Parse(stringValue);
 
             return value;
-        }
-
-        public override void SetValue(ThermostatCurrentAction? value)
-        {
-            throw new NotSupportedException();
         }
 
         public override bool ProcessValueChanged(OpenZWaveDeviceValue entry)

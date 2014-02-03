@@ -1,5 +1,4 @@
-﻿using System;
-using Roomie.Common.Measurements.Temperature;
+﻿using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
 {
@@ -24,11 +23,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
             var result = TemperatureParser.Parse((double) number, units);
 
             return result;
-        }
-
-        public override void SetValue(ITemperature value)
-        {
-            throw new NotSupportedException();
         }
     }
 }

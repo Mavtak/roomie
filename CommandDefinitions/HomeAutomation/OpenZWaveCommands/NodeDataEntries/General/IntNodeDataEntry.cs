@@ -1,7 +1,8 @@
 ﻿
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
 {
-    public abstract class IntNodeDataEntry : NodeDataEntry<int?>
+    public abstract class IntNodeDataEntry : NodeDataEntry<int?>,
+        IWritableNodeDataEntry<int>
     {
         protected IntNodeDataEntry(OpenZWaveDevice device, byte commandClass)
             : base(device, commandClass)
@@ -20,11 +21,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
             return dataEntry.IntValue;
         }
 
-        public override void SetValue(int? value)
+        public void SetValue(int value)
         {
             var dataEntry = GetDataEntry();
 
-            dataEntry.SetValue(value.Value);
+            dataEntry.SetValue(value);
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
 {
-    public abstract class BoolNodeDataEntry : NodeDataEntry<bool?>
+    public abstract class BoolNodeDataEntry : NodeDataEntry<bool?>,
+        IWritableNodeDataEntry<bool>
     {
         protected BoolNodeDataEntry(OpenZWaveDevice device, byte commandClass)
             : base(device, commandClass)
@@ -20,11 +21,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
             return dataEntry.BooleanValue;
         }
 
-        public override void SetValue(bool? value)
+        public void SetValue(bool value)
         {
             var dataEntry = GetDataEntry();
 
-            dataEntry.SetValue(value.Value);
+            dataEntry.SetValue(value);
         }
     }
 }

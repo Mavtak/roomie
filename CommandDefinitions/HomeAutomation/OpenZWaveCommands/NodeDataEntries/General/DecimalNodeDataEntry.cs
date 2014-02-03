@@ -1,7 +1,8 @@
 ﻿
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
 {
-    public abstract class DecimalNodeDataEntry : NodeDataEntry<decimal?>
+    public abstract class DecimalNodeDataEntry : NodeDataEntry<decimal?>,
+        IWritableNodeDataEntry<decimal>
     {
         protected DecimalNodeDataEntry(OpenZWaveDevice device, byte commandClass)
             : base(device, commandClass)
@@ -20,11 +21,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
             return dataEntry.DecimalValue;
         }
 
-        public override void SetValue(decimal? value)
+        public void SetValue(decimal value)
         {
             var dataEntry = GetDataEntry();
 
-            dataEntry.SetValue(value.Value);
+            dataEntry.SetValue(value);
         }
     }
 }

@@ -22,8 +22,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
 
         public abstract T GetValue();
 
-        public abstract void SetValue(T value);
-
         public void RefreshValue()
         {
             var dataEntry = GetDataEntry();

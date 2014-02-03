@@ -1,7 +1,8 @@
 ﻿
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
 {
-    public abstract class ByteNodeDataEntry : NodeDataEntry<byte?>
+    public abstract class ByteNodeDataEntry : NodeDataEntry<byte?>,
+        IWritableNodeDataEntry<byte>
     {
         protected ByteNodeDataEntry(OpenZWaveDevice device, byte commandClass)
             : base(device, commandClass)
@@ -20,11 +21,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
             return dataEntry.ByteValue;
         }
 
-        public override void SetValue(byte? value)
+        public void SetValue(byte value)
         {
             var dataEntry = GetDataEntry();
 
-            dataEntry.SetValue(value.Value);
+            dataEntry.SetValue(value);
         }
     }
 }

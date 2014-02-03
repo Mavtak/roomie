@@ -53,6 +53,7 @@
     <Compile Include="NodeDataEntries\General\DecimalNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\StringNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\INodeDataEntryWithOptions.cs" />
+    <Compile Include="NodeDataEntries\IWritableNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\NodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\SwitchBinaryDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\BoolNodeDataEntry.cs" />

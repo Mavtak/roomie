@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
 {
-    public class ThermostatModeDataEntry : NodeDataEntry<ThermostatMode?>, INodeDataEntryWithOptions<ThermostatMode?>
+    public class ThermostatModeDataEntry : NodeDataEntry<ThermostatMode?>,
+        IWritableNodeDataEntry<ThermostatMode>,
+        INodeDataEntryWithOptions<ThermostatMode?>
     {
         public ThermostatModeDataEntry(OpenZWaveDevice device)
             : base(device, (byte)CommandClass.ThermostatMode)
@@ -47,13 +48,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
             return result;
         }
 
-        public override void SetValue(ThermostatMode? value)
+        public void SetValue(ThermostatMode value)
         {
             var dataEntry = GetDataEntry();
             var stringValue = value.ToString();
 
             dataEntry.SetSelection(stringValue);
-
         }
 
         public override bool ProcessValueChanged(OpenZWaveDeviceValue entry)
