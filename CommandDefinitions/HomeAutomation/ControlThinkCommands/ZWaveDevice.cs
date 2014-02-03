@@ -1,8 +1,8 @@
 ﻿using System;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySwitches;
-using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Keypads;
+using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using BackingDevice = ControlThink.ZWave.Devices.ZWaveDevice;
 using BaseDevice = Roomie.CommandDefinitions.HomeAutomationCommands.Device;

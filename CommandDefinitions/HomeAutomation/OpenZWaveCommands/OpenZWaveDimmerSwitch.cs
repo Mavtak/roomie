@@ -1,6 +1,6 @@
 ﻿using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation;
-using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.MultilevelSwitches;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {

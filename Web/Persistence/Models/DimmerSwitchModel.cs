@@ -1,5 +1,5 @@
 ﻿using Roomie.Common.HomeAutomation;
-using Roomie.Common.HomeAutomation.DimmerSwitches;
+using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models

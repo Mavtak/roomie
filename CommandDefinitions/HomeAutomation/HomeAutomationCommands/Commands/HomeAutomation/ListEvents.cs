@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.HomeAutomation;
-using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.TextUtilities;

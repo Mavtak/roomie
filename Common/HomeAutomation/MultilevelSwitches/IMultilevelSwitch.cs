@@ -1,5 +1,5 @@
 ﻿
-namespace Roomie.Common.HomeAutomation.DimmerSwitches
+namespace Roomie.Common.HomeAutomation.MultilevelSwitches
 {
     public interface IMultilevelSwitch : IMultilevelSwitchState, IMultilevelSwitchActions
     {

@@ -1,6 +1,6 @@
-﻿
-using System.Xml.Linq;
-namespace Roomie.Common.HomeAutomation.DimmerSwitches
+﻿using System.Xml.Linq;
+
+namespace Roomie.Common.HomeAutomation.MultilevelSwitches
 {
     public class ReadOnlyMultilevelSwitchState : IMultilevelSwitchState
     {

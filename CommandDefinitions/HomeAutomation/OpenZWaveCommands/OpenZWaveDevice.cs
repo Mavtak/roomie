@@ -3,8 +3,8 @@ using System.Linq;
 using OpenZWaveDotNet;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Common.HomeAutomation.BinarySwitches;
-using Roomie.Common.HomeAutomation.DimmerSwitches;
 using Roomie.Common.HomeAutomation.Keypads;
+using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
