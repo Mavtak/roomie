@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.DimmerSwitches
 {
-    public interface IDimmerSwitch : IDimmerSwitchState, IDimmerSwitchActions
+    public interface IMultilevelSwitch : IMultilevelSwitchState, IMultilevelSwitchActions
     {
     }
 }

@@ -66,7 +66,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             Assert.That(one.Power, Is.EqualTo(two.Power));
         }
 
-        public static void AssertDimmerSwitchEqual(IDimmerSwitchState one, IDimmerSwitchState two)
+        public static void AssertDimmerSwitchEqual(IMultilevelSwitchState one, IMultilevelSwitchState two)
         {
             if (one == null && two == null)
             {

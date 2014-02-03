@@ -35,7 +35,7 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
             }
         }
 
-        public override IDimmerSwitch DimmerSwitch
+        public override IMultilevelSwitch DimmerSwitch
         {
             get
             {

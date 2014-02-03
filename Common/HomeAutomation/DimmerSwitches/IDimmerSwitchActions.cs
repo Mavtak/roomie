@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.DimmerSwitches
 {
-    public interface IDimmerSwitchActions
+    public interface IMultilevelSwitchActions
     {
         void Poll();
         void SetPower(int power);

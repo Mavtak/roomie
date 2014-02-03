@@ -123,7 +123,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         }
 
         public abstract IBinarySwitch ToggleSwitch { get; }
-        public abstract IDimmerSwitch DimmerSwitch { get; }
+        public abstract IMultilevelSwitch DimmerSwitch { get; }
         public abstract IThermostat Thermostat { get; }
         public abstract IKeypad Keypad { get; }
 
@@ -164,7 +164,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 return ToggleSwitch;
             }
         }
-        IDimmerSwitchState IDeviceState.DimmerSwitchState
+        IMultilevelSwitchState IDeviceState.DimmerSwitchState
         {
             get
             {
@@ -239,7 +239,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        IDimmerSwitchActions IDeviceActions.DimmerSwitchActions
+        IMultilevelSwitchActions IDeviceActions.DimmerSwitchActions
         {
             get
             {

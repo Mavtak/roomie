@@ -2,24 +2,24 @@
 using System.Xml.Linq;
 namespace Roomie.Common.HomeAutomation.DimmerSwitches
 {
-    public class ReadOnlyDimmerSwitchState : IDimmerSwitchState
+    public class ReadOnlyMultilevelSwitchState : IMultilevelSwitchState
     {
         public int? Power { get; private set; }
         public int? MaxPower { get; private set; }
 
-        private ReadOnlyDimmerSwitchState()
+        private ReadOnlyMultilevelSwitchState()
         {
         }
 
-        public ReadOnlyDimmerSwitchState(int? power, int? maxPower)
+        public ReadOnlyMultilevelSwitchState(int? power, int? maxPower)
         {
             Power = power;
             MaxPower = maxPower;
         }
 
-        public static ReadOnlyDimmerSwitchState CopyFrom(IDimmerSwitchState source)
+        public static ReadOnlyMultilevelSwitchState CopyFrom(IMultilevelSwitchState source)
         {
-            var result = new ReadOnlyDimmerSwitchState
+            var result = new ReadOnlyMultilevelSwitchState
             {
                 Power = source.Power,
                 MaxPower =  source.MaxPower
@@ -28,17 +28,17 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
             return result;
         }
 
-        public void Update(IDimmerSwitchState state)
+        public void Update(IMultilevelSwitchState state)
         {
             throw new System.NotImplementedException();
         }
 
-        public static ReadOnlyDimmerSwitchState FromXElement(XElement element)
+        public static ReadOnlyMultilevelSwitchState FromXElement(XElement element)
         {
             var power = element.GetAttributeIntValue("Power");
             var maxPower = element.GetAttributeIntValue("MaxPower");
 
-            var result = new ReadOnlyDimmerSwitchState
+            var result = new ReadOnlyMultilevelSwitchState
                 {
                     Power = power,
                     MaxPower = maxPower

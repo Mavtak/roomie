@@ -3,14 +3,14 @@ using System.Xml.Linq;
 
 namespace Roomie.Common.HomeAutomation.DimmerSwitches
 {
-    public static class DimmerSwitchStateExtensions
+    public static class MultilevelSwitchStateExtensions
     {
-        public static ReadOnlyDimmerSwitchState Copy(this IDimmerSwitchState state)
+        public static ReadOnlyMultilevelSwitchState Copy(this IMultilevelSwitchState state)
         {
-            return ReadOnlyDimmerSwitchState.CopyFrom(state);
+            return ReadOnlyMultilevelSwitchState.CopyFrom(state);
         }
 
-        public static string Describe(this IDimmerSwitchState state)
+        public static string Describe(this IMultilevelSwitchState state)
         {
             var result = new StringBuilder();
 
@@ -29,7 +29,7 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
             return result.ToString();
         }
 
-        public static int? CalculatePowerPercentage(this IDimmerSwitchState state)
+        public static int? CalculatePowerPercentage(this IMultilevelSwitchState state)
         {
             if (state == null)
             {
@@ -46,7 +46,7 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
             return result;
         }
 
-        public static XElement ToXElement(this IDimmerSwitchState state, string nodeName = "DimmerSwitch")
+        public static XElement ToXElement(this IMultilevelSwitchState state, string nodeName = "DimmerSwitch")
         {
             var result = new XElement("DimmerSwitch");
 
@@ -63,9 +63,9 @@ namespace Roomie.Common.HomeAutomation.DimmerSwitches
             return result;
         }
 
-        public static ReadOnlyDimmerSwitchState ToDimmerSwitch(this XElement element)
+        public static ReadOnlyMultilevelSwitchState ToDimmerSwitch(this XElement element)
         {
-            return ReadOnlyDimmerSwitchState.FromXElement(element);
+            return ReadOnlyMultilevelSwitchState.FromXElement(element);
         }
     }
 }

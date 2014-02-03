@@ -4,7 +4,7 @@ using Roomie.Common.HomeAutomation.DimmerSwitches;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
-    public class OpenZWaveDimmerSwitch : IDimmerSwitch
+    public class OpenZWaveDimmerSwitch : IMultilevelSwitch
     {
         private int? _savedPower;
 
@@ -37,7 +37,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         public int? MaxPower { get; private set; }
 
-        public void Update(IDimmerSwitchState state)
+        public void Update(IMultilevelSwitchState state)
         {
             _savedPower = state.Power;
             MaxPower = state.MaxPower;

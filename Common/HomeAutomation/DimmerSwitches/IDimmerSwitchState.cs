@@ -1,11 +1,11 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.DimmerSwitches
 {
-    public interface IDimmerSwitchState
+    public interface IMultilevelSwitchState
     {
         int? Power { get;}
         int? MaxPower { get; }
 
-        void Update(IDimmerSwitchState state);
+        void Update(IMultilevelSwitchState state);
     }
 }

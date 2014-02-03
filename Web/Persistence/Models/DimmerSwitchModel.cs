@@ -4,7 +4,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class DimmerSwitchModel : IDimmerSwitch
+    public class DimmerSwitchModel : IMultilevelSwitch
     {
         private DeviceModel _device;
 
@@ -28,7 +28,7 @@ namespace Roomie.Web.Persistence.Models
             _device.DoCommand("HomeAutomation.Dim Device=\"{0}\" Power=\"{1}\"", power.ToString());
         }
 
-        public void Update(IDimmerSwitchState state)
+        public void Update(IMultilevelSwitchState state)
         {
             Power = state.Power;
             MaxPower = state.MaxPower;

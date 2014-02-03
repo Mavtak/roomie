@@ -171,7 +171,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IDimmerSwitch IDevice.DimmerSwitch
+        IMultilevelSwitch IDevice.DimmerSwitch
         {
             get
             {
@@ -223,7 +223,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IDimmerSwitchState IDeviceState.DimmerSwitchState
+        IMultilevelSwitchState IDeviceState.DimmerSwitchState
         {
             get
             {
@@ -345,7 +345,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IDimmerSwitchActions IDeviceActions.DimmerSwitchActions
+        IMultilevelSwitchActions IDeviceActions.DimmerSwitchActions
         {
             get
             {

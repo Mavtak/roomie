@@ -9,7 +9,7 @@ namespace Roomie.Common.HomeAutomation
     {
         INetwork Network { get; }
         IBinarySwitch ToggleSwitch { get; }
-        IDimmerSwitch DimmerSwitch { get; }
+        IMultilevelSwitch DimmerSwitch { get; }
         IThermostat Thermostat { get; }
         IKeypad Keypad { get; }
     }

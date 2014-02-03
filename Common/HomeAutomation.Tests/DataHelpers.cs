@@ -17,7 +17,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeToggle, bool includeDimmer, bool includeThermostat, bool includeKeypad)
         {
             var toggle = new ReadOnlyBinarySwitchSwitchState(BinarySwitchPower.On);
-            var dimmer = new ReadOnlyDimmerSwitchState(25, 100);
+            var dimmer = new ReadOnlyMultilevelSwitchState(25, 100);
 
             var thermostatCoreModes = new[] { ThermostatMode.Auto, ThermostatMode.Cool, ThermostatMode.Heat, ThermostatMode.FanOnly, ThermostatMode.Off };
             var thermostatCore = new ReadOnlyThermostatCoreState(thermostatCoreModes, ThermostatMode.Cool, ThermostatCurrentAction.Cooling);
