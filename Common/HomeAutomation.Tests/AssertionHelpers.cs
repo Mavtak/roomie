@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -13,7 +14,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 {
     public class AssertionHelpers
     {
-        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkToggleSwitch, bool checkDimmerSwitch, bool checkThermostat, bool checkKeypad)
+        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkToggleSwitch, bool checkDimmerSwitch, bool checkBinarySensor, bool checkThermostat, bool checkKeypad)
         {
             Assert.That(one.Name, Is.EqualTo(two.Name));
             Assert.That(one.Address, Is.EqualTo(two.Address));
@@ -28,6 +29,11 @@ namespace Roomie.Common.HomeAutomation.Tests
             if (checkDimmerSwitch)
             {
                 AssertDimmerSwitchEqual(one.MultilevelSwitchState, two.MultilevelSwitchState);
+            }
+
+            if (checkBinarySensor)
+            {
+                AssertBinarySensorEqual(one.BinarySensorState, two.BinarySensorState);
             }
 
             if (checkThermostat)
@@ -76,6 +82,19 @@ namespace Roomie.Common.HomeAutomation.Tests
             AssertHelperHelper(one, two);
 
             Assert.That(one.Power, Is.EqualTo(two.Power));
+        }
+
+        public static void AssertBinarySensorEqual(IBinarySensorState one, IBinarySensorState two)
+        {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
+            AssertHelperHelper(one, two);
+
+            Assert.That(one.Type, Is.EqualTo(two.Type));
+            Assert.That(one.Value, Is.EqualTo(two.Value));
         }
 
         public static void AssertThermostatEqual(IThermostatState one, IThermostatState two)

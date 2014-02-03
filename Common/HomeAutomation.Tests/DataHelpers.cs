@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Keypads.Buttons;
@@ -14,10 +15,12 @@ namespace Roomie.Common.HomeAutomation.Tests
     public static class DataHelpers
     {
         private static int _id;
-        public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeToggle, bool includeDimmer, bool includeThermostat, bool includeKeypad)
+        public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeToggle, bool includeDimmer, bool includeBinarySensor, bool includeThermostat, bool includeKeypad)
         {
             var toggle = new ReadOnlyBinarySwitchSwitchState(BinarySwitchPower.On);
             var dimmer = new ReadOnlyMultilevelSwitchState(25, 100);
+
+            var binarySensor = new ReadOnlyBinarySensorState(BinarySensorType.Motion, true);
 
             var thermostatCoreModes = new[] { ThermostatMode.Auto, ThermostatMode.Cool, ThermostatMode.Heat, ThermostatMode.FanOnly, ThermostatMode.Off };
             var thermostatCore = new ReadOnlyThermostatCoreState(thermostatCoreModes, ThermostatMode.Cool, ThermostatCurrentAction.Cooling);
@@ -58,6 +61,11 @@ namespace Roomie.Common.HomeAutomation.Tests
                 dimmer = null;
             }
 
+            if (!includeBinarySensor)
+            {
+                binarySensor = null;
+            }
+
             if (!includeThermostat)
             {
                 thermostat = null;
@@ -68,12 +76,12 @@ namespace Roomie.Common.HomeAutomation.Tests
                 keypad = null;
             }
 
-            var device = new ReadOnlyDeviceState("Sample Device", address, location, null, true, type, toggle, dimmer, thermostat, keypad);
+            var device = new ReadOnlyDeviceState("Sample Device", address, location, null, true, type, toggle, dimmer, binarySensor, thermostat, keypad);
 
             return device;
         }
 
-        public static IEnumerable<IDeviceState> GenerateExampleDevices(int count, bool includeToggle, bool includeDimmer, bool includeThermostat, bool includeKeypad)
+        public static IEnumerable<IDeviceState> GenerateExampleDevices(int count, bool includeToggle, bool includeDimmer, bool includeBinarySensor, bool includeThermostat, bool includeKeypad)
         {
             for (var i = 0; i < count; i++)
             {
@@ -114,7 +122,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                         break;
                 }
 
-                var device = GenerateExampleDevice(type, includeToggle, includeDimmer, includeThermostat, includeKeypad);
+                var device = GenerateExampleDevice(type, includeToggle, includeDimmer, includeBinarySensor, includeThermostat, includeKeypad);
 
                 yield return device;
             }
