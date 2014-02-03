@@ -67,9 +67,9 @@ namespace Roomie.Web.Persistence.Models
                 ToggleSwitch.Update(state.BinarySwitchState);
             }
 
-            if (state.DimmerSwitchState != null)
+            if (state.MultilevelSwitchState != null)
             {
-                DimmerSwitch.Update(state.DimmerSwitchState);
+                DimmerSwitch.Update(state.MultilevelSwitchState);
             }
 
             if (state.ThermostatState != null)
@@ -223,7 +223,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IMultilevelSwitchState IDeviceState.DimmerSwitchState
+        IMultilevelSwitchState IDeviceState.MultilevelSwitchState
         {
             get
             {
@@ -345,7 +345,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        IMultilevelSwitchActions IDeviceActions.DimmerSwitchActions
+        IMultilevelSwitchActions IDeviceActions.MultilevelSwitchActions
         {
             get
             {

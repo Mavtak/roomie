@@ -134,7 +134,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Location.Update(state.Location);
             IsConnected = state.IsConnected;
             Type = state.Type;
-            DimmerSwitch.Update(state.DimmerSwitchState);
+            DimmerSwitch.Update(state.MultilevelSwitchState);
             //TODO: handle thermostat state and such
         }
 
@@ -164,7 +164,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 return ToggleSwitch;
             }
         }
-        IMultilevelSwitchState IDeviceState.DimmerSwitchState
+        IMultilevelSwitchState IDeviceState.MultilevelSwitchState
         {
             get
             {
@@ -239,7 +239,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        IMultilevelSwitchActions IDeviceActions.DimmerSwitchActions
+        IMultilevelSwitchActions IDeviceActions.MultilevelSwitchActions
         {
             get
             {

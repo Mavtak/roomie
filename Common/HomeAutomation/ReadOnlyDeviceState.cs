@@ -15,7 +15,7 @@ namespace Roomie.Common.HomeAutomation
         public bool? IsConnected { get; private set; }
         public DeviceType Type { get; private set; }
         public IBinarySwitchState BinarySwitchState { get; private set; }
-        public IMultilevelSwitchState DimmerSwitchState { get; private set; }
+        public IMultilevelSwitchState MultilevelSwitchState { get; private set; }
         public IThermostatState ThermostatState { get; private set; }
         public IKeypadState KeypadState { get; private set; }
 
@@ -32,7 +32,7 @@ namespace Roomie.Common.HomeAutomation
             IsConnected = isConnected;
             Type = type;
             BinarySwitchState = toggleSwitchState;
-            DimmerSwitchState = dimmerSwitchState;
+            MultilevelSwitchState = dimmerSwitchState;
             ThermostatState = thermostatState;
             KeypadState = keypadState;
         }
@@ -49,7 +49,7 @@ namespace Roomie.Common.HomeAutomation
                 IsConnected = source.IsConnected,
                 Type = source.Type,
                 BinarySwitchState = (source.BinarySwitchState == null) ? null : source.BinarySwitchState.Copy(),
-                DimmerSwitchState = (source.DimmerSwitchState == null) ? null : source.DimmerSwitchState.Copy(),
+                MultilevelSwitchState = (source.MultilevelSwitchState == null) ? null : source.MultilevelSwitchState.Copy(),
                 ThermostatState = (source.ThermostatState == null) ? null : source.ThermostatState.Copy(),
                 KeypadState = (source.KeypadState == null) ? null : source.KeypadState.Copy()
             };
@@ -119,7 +119,7 @@ namespace Roomie.Common.HomeAutomation
                 IsConnected = isConnected,
                 Type = DeviceType.GetTypeFromString(type),
                 BinarySwitchState = toggleSwitch,
-                DimmerSwitchState = dimmerSwitch,
+                MultilevelSwitchState = dimmerSwitch,
                 ThermostatState = thermostat,
                 KeypadState = keypad
             };

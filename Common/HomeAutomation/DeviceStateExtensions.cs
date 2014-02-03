@@ -21,7 +21,7 @@ namespace Roomie.Common.HomeAutomation
             }
             else if (device.Type == DeviceType.Dimmable)
             {
-                result = device.DimmerSwitchState.Describe();
+                result = device.MultilevelSwitchState.Describe();
             }
             else if (device.Type == DeviceType.Thermostat)
             {
@@ -71,9 +71,9 @@ namespace Roomie.Common.HomeAutomation
             //TODO: LastPoll
 
             //TODO: this is included for compatibility.  remove it soon
-            if (state.DimmerSwitchState != null && state.DimmerSwitchState.Power != null)
+            if (state.MultilevelSwitchState != null && state.MultilevelSwitchState.Power != null)
             {
-                result.Add(new XAttribute("Power", state.DimmerSwitchState.Power.Value));
+                result.Add(new XAttribute("Power", state.MultilevelSwitchState.Power.Value));
             }
 
             if (state.IsConnected != null)
@@ -91,9 +91,9 @@ namespace Roomie.Common.HomeAutomation
                 }
             }
 
-            if (state.DimmerSwitchState != null)
+            if (state.MultilevelSwitchState != null)
             {
-                var dimmerSwitchNode = state.DimmerSwitchState.ToXElement();
+                var dimmerSwitchNode = state.MultilevelSwitchState.ToXElement();
 
                 if (dimmerSwitchNode.Attributes().Any() || dimmerSwitchNode.Ancestors().Any())
                 {

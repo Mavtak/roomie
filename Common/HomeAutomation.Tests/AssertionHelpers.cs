@@ -27,7 +27,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 
             if (checkDimmerSwitch)
             {
-                AssertDimmerSwitchEqual(one.DimmerSwitchState, two.DimmerSwitchState);
+                AssertDimmerSwitchEqual(one.MultilevelSwitchState, two.MultilevelSwitchState);
             }
 
             if (checkThermostat)

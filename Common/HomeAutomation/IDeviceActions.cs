@@ -8,7 +8,7 @@ namespace Roomie.Common.HomeAutomation
     public interface IDeviceActions
     {
         IBinarySwitchActions BinarySwitchActions { get; }
-        IMultilevelSwitchActions DimmerSwitchActions { get; }
+        IMultilevelSwitchActions MultilevelSwitchActions { get; }
         IThermostatActions ThermostatActions { get; }
         IKeypadActions KeypadActions { get; }
 
