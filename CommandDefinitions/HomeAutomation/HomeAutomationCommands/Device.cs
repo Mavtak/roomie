@@ -18,7 +18,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         //TODO: add public access for Network
         public Network Network { get; private set; }
 
-        private HomeAutomationNetworkContext Context
+        protected HomeAutomationNetworkContext Context
         {
             get
             {
@@ -33,59 +33,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Type = type ?? DeviceType.Unknown;
             Name = name;
             IsConnected = null;
-        }
-
-        protected void PowerChanged()
-        {
-            var threadPool = Context.ThreadPool;
-
-            //TODO: improve this logic
-            //TODO: read from event history in making powered on/off decision
-            IDeviceEvent @event = null;
-            IEventSource source = null; //TODO: fill this in
-            if (IsConnected == true)
-            {
-                if (Type.Equals(DeviceType.BinarySensor))
-                {
-                    switch (BinarySwitch.Power)
-                    {
-                        case BinarySwitchPower.On:
-                            @event = DeviceEvent.MotionDetected(this, source);
-                            break;
-
-                        case BinarySwitchPower.Off:
-                            @event = DeviceEvent.StillnessDetected(this, source);
-                            break;
-                    }
-                }
-                else
-                {
-                    if (Type.Equals(DeviceType.BinarySwitch))
-                    {
-                        switch (BinarySwitch.Power)
-                        {
-                            case BinarySwitchPower.On:
-                                @event = DeviceEvent.PoweredOn(this, source);
-                                break;
-
-                            case BinarySwitchPower.Off:
-                                @event = DeviceEvent.PoweredOff(this, source);
-                                break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                @event = DeviceEvent.Lost(this, source);
-            }
-
-            if (@event == null)
-            {
-                @event = DeviceEvent.PowerChanged(this, source);
-            }
-
-            AddEvent(@event);
         }
 
         public void AddEvent(IDeviceEvent @event)
