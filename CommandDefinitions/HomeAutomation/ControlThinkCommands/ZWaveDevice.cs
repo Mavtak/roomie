@@ -18,7 +18,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         private readonly ZWaveToggleSwitch _toggleSwitch;
         private readonly ZWaveDimmerSwitch _dimmerSwitch;
         private readonly ZWaveThermostat _thermostat;
-        private readonly IBinarySensor _binarySensor; //TODO: implement
+        private readonly ZWaveBinarySensor _binarySensor;
 
         public ZWaveDevice(BaseNetwork network, BackingDevice backingDevice, DeviceType type = null, string name = null)
             : base(network, type, name)
@@ -32,7 +32,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _toggleSwitch = new ZWaveToggleSwitch(this);
             _dimmerSwitch = new ZWaveDimmerSwitch(this);
             _thermostat = new ZWaveThermostat(this);
-            _binarySensor = null; //TODO: implement
+            _binarySensor = new ZWaveBinarySensor(this);
 
             if (Type.CanDim)
             {
@@ -62,31 +62,19 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             {
                 if (Type.Equals(DeviceType.BinarySensor))
                 {
+                    @event = DeviceEvent.BinarySensorValueChanged(this, source);
+                }
+                else if (Type.Equals(DeviceType.BinarySwitch))
+                {
                     switch (BinarySwitch.Power)
                     {
                         case BinarySwitchPower.On:
-                            @event = DeviceEvent.MotionDetected(this, source);
+                            @event = DeviceEvent.PoweredOn(this, source);
                             break;
 
                         case BinarySwitchPower.Off:
-                            @event = DeviceEvent.StillnessDetected(this, source);
+                            @event = DeviceEvent.PoweredOff(this, source);
                             break;
-                    }
-                }
-                else
-                {
-                    if (Type.Equals(DeviceType.BinarySwitch))
-                    {
-                        switch (BinarySwitch.Power)
-                        {
-                            case BinarySwitchPower.On:
-                                @event = DeviceEvent.PoweredOn(this, source);
-                                break;
-
-                            case BinarySwitchPower.Off:
-                                @event = DeviceEvent.PoweredOff(this, source);
-                                break;
-                        }
                     }
                 }
             }
