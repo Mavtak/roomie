@@ -15,14 +15,17 @@ namespace Roomie.Common.HomeAutomation
         {
             string result = null;
 
-            if (device.Type == DeviceType.BinarySwitch || device.Type == DeviceType.BinarySensor)
+            if (device.Type == DeviceType.BinarySwitch)
             {
-                //TODO: account for motion detectors specifically
                 result = device.BinarySwitchState.Describe();
             }
             else if (device.Type == DeviceType.MultilevelSwitch)
             {
                 result = device.MultilevelSwitchState.Describe();
+            }
+            else if (device.Type == DeviceType.BinarySensor)
+            {
+                result = device.BinarySensorState.Describe();
             }
             else if (device.Type == DeviceType.Thermostat)
             {
