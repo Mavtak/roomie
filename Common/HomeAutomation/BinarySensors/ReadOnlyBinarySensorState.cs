@@ -30,7 +30,7 @@ namespace Roomie.Common.HomeAutomation.BinarySensors
 
         public static ReadOnlyBinarySensorState FromXElement(XElement element)
         {
-            var type = element.GetAttributeStringValue("Type").ToBinarySensorType();
+            var type = element.GetAttributeStringValue("Type").ToBinarySensorTypeNullable();
             var value = element.GetAttributeBoolValue("Value");
 
             var result = new ReadOnlyBinarySensorState

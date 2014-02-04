@@ -17,5 +17,14 @@ namespace Roomie.Common.HomeAutomation.BinarySensors
         {
             return Parse(input);
         }
+        public static BinarySensorType? ToBinarySensorTypeNullable(this string input)
+        {
+            if (input == null)
+            {
+                return null;
+            }
+
+            return Parse(input);
+        }
     }
 }
