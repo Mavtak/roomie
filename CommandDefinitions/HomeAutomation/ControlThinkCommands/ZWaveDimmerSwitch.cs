@@ -30,12 +30,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             PullWhileChanging((byte)power);
         }
 
-        public void Update(IMultilevelSwitchState state)
-        {
-            Power = state.Power;
-            MaxPower = state.MaxPower;
-        }
-
         private void PullWhileChanging(byte expectedPower, int tries = 25)
         {
             var lastPower = Power;

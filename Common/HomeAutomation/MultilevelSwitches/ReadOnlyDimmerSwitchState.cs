@@ -28,11 +28,6 @@ namespace Roomie.Common.HomeAutomation.MultilevelSwitches
             return result;
         }
 
-        public void Update(IMultilevelSwitchState state)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public static ReadOnlyMultilevelSwitchState FromXElement(XElement element)
         {
             var power = element.GetAttributeIntValue("Power");

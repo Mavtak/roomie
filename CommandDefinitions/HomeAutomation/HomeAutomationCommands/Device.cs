@@ -83,8 +83,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Location.Update(state.Location);
             IsConnected = state.IsConnected;
             Type = state.Type;
-            MultilevelSwitch.Update(state.MultilevelSwitchState);
-            //TODO: handle thermostat state and such
+
+            //TODO: update subdevices?
         }
 
         #endregion

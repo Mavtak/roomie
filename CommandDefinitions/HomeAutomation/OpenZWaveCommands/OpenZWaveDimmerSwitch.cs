@@ -6,8 +6,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
     public class OpenZWaveDimmerSwitch : IMultilevelSwitch
     {
-        private int? _savedPower;
-
         private SwitchMultilevelDataEntry _dataEntry;
 
         public OpenZWaveDimmerSwitch(OpenZWaveDevice device)
@@ -29,19 +27,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             get
             {
-                var result = (int?)_dataEntry.GetValue() ?? _savedPower;
+                var result = (int?)_dataEntry.GetValue();
 
                 return result;
             }
         }
 
         public int? MaxPower { get; private set; }
-
-        public void Update(IMultilevelSwitchState state)
-        {
-            _savedPower = state.Power;
-            MaxPower = state.MaxPower;
-        }
 
         public void Poll()
         {

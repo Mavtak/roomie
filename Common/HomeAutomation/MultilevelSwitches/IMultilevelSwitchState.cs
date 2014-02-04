@@ -5,7 +5,5 @@ namespace Roomie.Common.HomeAutomation.MultilevelSwitches
     {
         int? Power { get;}
         int? MaxPower { get; }
-
-        void Update(IMultilevelSwitchState state);
     }
 }
