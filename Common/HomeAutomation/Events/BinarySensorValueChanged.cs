@@ -1,9 +1,9 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Events
 {
-    public class StillnessDetected : BinarySensorValueChanged
+    public class BinarySensorValueChanged : DeviceStateChanged
     {
-        public new const string Key = "Stillness Detected";
+        public new const string Key = "Binary Sensor Value Changed";
 
         public override string Name
         {

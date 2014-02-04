@@ -53,6 +53,7 @@
     <Compile Include="BinarySensors\ReadOnlyBinarySensorState.cs" />
     <Compile Include="DeviceStateCollectionExtensions.cs" />
     <Compile Include="DeviceStateExtensions.cs" />
+    <Compile Include="Events\BinarySensorValueChanged.cs" />
     <Compile Include="MultilevelSwitches\IMultilevelSwitchActions.cs" />
     <Compile Include="MultilevelSwitches\IMultilevelSwitchState.cs" />
     <Compile Include="MultilevelSwitches\ReadOnlyDimmerSwitchState.cs" />

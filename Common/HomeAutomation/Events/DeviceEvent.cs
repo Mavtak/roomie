@@ -1,4 +1,5 @@
 ﻿using System;
+using Roomie.Common.HomeAutomation.BinarySensors;
 
 namespace Roomie.Common.HomeAutomation.Events
 {
@@ -63,7 +64,30 @@ namespace Roomie.Common.HomeAutomation.Events
             return result;
         }
 
-        //TODO: make motion-detector-specific events
+        public static DeviceEvent BinarySensorValueChanged(IDevice device, IEventSource source)
+        {
+            var type = device.BinarySensor.Type;
+            var value = device.BinarySensor.Value;
+
+            switch (type)
+            {
+                case BinarySensorType.Motion:
+                    if (value == true)
+                    {
+                        return MotionDetected(device, source);
+                    }
+                    
+                    if (value == false)
+                    {
+                        return StillnessDetected(device, source);
+                    }
+                    break;
+            }
+
+            var result = new DeviceEvent(device, new BinarySensorValueChanged(), source);
+
+            return result;
+        }
 
         public static DeviceEvent MotionDetected(IDevice device, IEventSource source)
         {

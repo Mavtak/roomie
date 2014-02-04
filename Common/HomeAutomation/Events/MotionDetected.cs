@@ -1,7 +1,7 @@
 ﻿
 namespace Roomie.Common.HomeAutomation.Events
 {
-    public class MotionDetected : DevicePowerChanged
+    public class MotionDetected : BinarySensorValueChanged
     {
         public new const string Key = "Motion Detected";
 
