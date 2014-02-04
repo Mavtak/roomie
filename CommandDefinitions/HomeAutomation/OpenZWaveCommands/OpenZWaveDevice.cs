@@ -19,7 +19,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly OpenZWaveToggleSwitch _toggleSwitch;
         private readonly OpenZWaveDimmerSwitch _dimmerSwitch;
         private readonly OpenZWaveThermostat _thermostat;
-        private readonly IBinarySensor _binarySensor; //TODO: implement
+        private readonly OpenZWaveBinarySensor _binarySensor;
+
+        public byte? Event;
 
         public OpenZWaveDevice(Network network, ZWManager manager, byte id)
             : base(network)
@@ -34,7 +36,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _toggleSwitch = new OpenZWaveToggleSwitch(this);
             _dimmerSwitch = new OpenZWaveDimmerSwitch(this);
             _thermostat = new OpenZWaveThermostat(this);
-            _binarySensor = null; //TODO: implement
+            _binarySensor = new OpenZWaveBinarySensor(this);
         }
         
         internal IEnumerable<OpenZWaveDeviceValue> GetValues(CommandClass classId, byte? index = null)

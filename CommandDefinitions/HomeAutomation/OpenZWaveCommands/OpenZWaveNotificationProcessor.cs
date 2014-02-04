@@ -1,4 +1,6 @@
 ﻿using System;
+using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.Events;
 using NotificationType = OpenZWaveDotNet.ZWNotification.Type;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
@@ -48,6 +50,16 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     break;
 
                 case NotificationType.NodeEvent:
+                    var device = notification.Device;
+                    device.Event = notification.Event;
+
+                    //TODO: what else is this value used for?
+                    if (device.Type.Equals(DeviceType.BinarySensor))
+                    {
+                        device.AddEvent(DeviceEvent.BinarySensorValueChanged(device, null));
+                    }
+                    break;
+
                 case NotificationType.NodeNaming:
                 case NotificationType.NodeNew:
                 case NotificationType.NodeProtocolInfo:

@@ -67,6 +67,7 @@
     <Compile Include="NodeDataEntries\Specific\ThermostatCoreCurrentAction.cs" />
     <Compile Include="NodeDataEntries\Specific\ThermostatModeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\ThermostatSetpointDataEntry.cs" />
+    <Compile Include="OpenZWaveBinarySensor.cs" />
     <Compile Include="OpenZWaveDeviceValue.cs" />
     <Compile Include="OpenZWaveDimmerSwitch.cs" />
     <Compile Include="OpenZWaveDevice.cs" />
