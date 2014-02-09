@@ -20,6 +20,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
 
             var number = dataEntry.DecimalValue.Value;
             var units = dataEntry.Units;
+
+            if (number == 0 && units == string.Empty)
+            {
+                return null;
+            }
+
             var result = TemperatureParser.Parse((double) number, units);
 
             return result;
