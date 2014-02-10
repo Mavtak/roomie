@@ -49,6 +49,8 @@
     <Compile Include="Measurements\Energy\JoulesEnergy.cs" />
     <Compile Include="Measurements\IMeasurement.cs" />
     <Compile Include="Measurements\MeasurementExtensions.cs" />
+    <Compile Include="Measurements\Ratio\IRatio.cs" />
+    <Compile Include="Measurements\Ratio\PercentageRatio.cs" />
     <Compile Include="Measurements\ReadOnlyMeasurement.cs" />
     <Compile Include="Measurements\Temperature\CelsiusTemperature.cs" />
     <Compile Include="Measurements\Temperature\FahrenheitTemperature.cs" />
