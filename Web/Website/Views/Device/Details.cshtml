@@ -1,11 +1,6 @@
 ﻿@model Roomie.Web.Persistence.Models.DeviceModel
 @{
-    ViewBag.Title = "Devices: " + Model.Name;
-
-    if (Model.Location != null && Model.Location.IsSet)
-    {
-        ViewBag.Title += " in the " + Model.Location.Name; 
-    }
+    ViewBag.Title = "Device";
     
     var deviceViewModel = new DeviceViewModel(Model, Url)
     {
