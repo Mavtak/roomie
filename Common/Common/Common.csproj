@@ -50,6 +50,7 @@
     <Compile Include="Measurements\Energy\EnergyParser.cs" />
     <Compile Include="Measurements\IMeasurement.cs" />
     <Compile Include="Measurements\MeasurementExtensions.cs" />
+    <Compile Include="Measurements\MeasurementParser.cs" />
     <Compile Include="Measurements\Ratio\IRatio.cs" />
     <Compile Include="Measurements\Ratio\PercentageRatio.cs" />
     <Compile Include="Measurements\Ratio\RatioParser.cs" />
