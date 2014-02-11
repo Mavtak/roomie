@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="Energy\JoulesEnergyTests.cs" />
     <Compile Include="Energy\KilowattHoursEnergyTests.cs" />
+    <Compile Include="Energy\EntergyParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ratio\RatioParserTests.cs" />
     <Compile Include="Ratio\PercentageRatioTests.cs" />
     <Compile Include="Temperature\CelsiusTemperatureTests.cs" />
     <Compile Include="Temperature\KelvinTemperatureTests.cs" />
