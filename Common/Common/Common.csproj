@@ -51,6 +51,9 @@
     <Compile Include="Measurements\IMeasurement.cs" />
     <Compile Include="Measurements\MeasurementExtensions.cs" />
     <Compile Include="Measurements\MeasurementParser.cs" />
+    <Compile Include="Measurements\Power\IPower.cs" />
+    <Compile Include="Measurements\Power\PowerParser.cs" />
+    <Compile Include="Measurements\Power\WattsPower.cs" />
     <Compile Include="Measurements\Ratio\IRatio.cs" />
     <Compile Include="Measurements\Ratio\PercentageRatio.cs" />
     <Compile Include="Measurements\Ratio\RatioParser.cs" />

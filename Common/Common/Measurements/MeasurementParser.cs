@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Roomie.Common.Measurements.Energy;
+using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Ratio;
 using Roomie.Common.Measurements.Temperature;
 
@@ -50,6 +51,11 @@ namespace Roomie.Common.Measurements
             if (runtimeType == typeof (IEnergy))
             {
                 return (TMeasurement) EnergyParser.Parse(value, type);
+            }
+
+            if (runtimeType == typeof(IPower))
+            {
+                return (TMeasurement)PowerParser.Parse(value, type);
             }
 
             if (runtimeType == typeof (IRatio))

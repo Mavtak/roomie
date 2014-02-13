@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Roomie.Common.Measurements;
 using Roomie.Common.Measurements.Energy;
+using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Ratio;
 using Roomie.Common.Measurements.Temperature;
 
@@ -13,6 +14,15 @@ namespace Roomie.Common.Tests.Measurements
         public void ItParsesEnergyMeasurementsCorrectly(string input, double value, Type type)
         {
             var result = MeasurementParser.Parse<IEnergy>(input);
+
+            Assert.That(result.Value, Is.EqualTo(value));
+            Assert.That(result.GetType(), Is.EqualTo(type));
+        }
+
+        [TestCase("1W", 1, typeof(WattsPower))]
+        public void ItParsesPowerMeasurementsCorrectly(string input, double value, Type type)
+        {
+            var result = MeasurementParser.Parse<IPower>(input);
 
             Assert.That(result.Value, Is.EqualTo(value));
             Assert.That(result.GetType(), Is.EqualTo(type));
