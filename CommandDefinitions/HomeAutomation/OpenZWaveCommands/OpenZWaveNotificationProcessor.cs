@@ -80,12 +80,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     notification.Device.Values.Add(notification.Value);
                     break;
 
+                case NotificationType.ValueRefreshed:
                 case NotificationType.ValueChanged:
                     notification.Device.ProcessValueChanged(notification.Value);
                     break;
 
-                case NotificationType.ValueRefreshed:
                 case NotificationType.ValueRemoved:
+                    notification.Device.RemoveValue(notification.Value);
                     break;
 
                 default:
