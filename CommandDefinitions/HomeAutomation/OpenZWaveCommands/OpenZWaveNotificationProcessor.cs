@@ -36,6 +36,8 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 _network.SetReady();
             }
 
+            Debug.WriteLine(notification.NodeId + "\t" + notification.Type + "\t" + notification.Event + "\t" + notification.Value.GetValue());
+
             //TODO: fill in other cases
             switch (notification.Type)
             {
@@ -62,6 +64,8 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     var device = notification.Device;
                     device.Event = notification.Event;
 
+                    HandleDeviceConnected(device, true);
+
                     //TODO: what else is this value used for?
                     if (device.Type.Equals(DeviceType.BinarySensor))
                     {
@@ -77,6 +81,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     break;
 
                 case NotificationType.Notification:
+                    HandleDeviceConnected(notification.Device, false);
                     break;
 
                 case NotificationType.PollingDisabled:
@@ -90,6 +95,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
                 case NotificationType.ValueRefreshed:
                 case NotificationType.ValueChanged:
+                    HandleDeviceConnected(notification.Device, true);
                     notification.Device.ProcessValueChanged(notification.Value);
                     break;
 
@@ -100,6 +106,19 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 default:
                     throw new Exception("Unexpected notification type " + notification.Type);
             }
+        }
+
+        private void HandleDeviceConnected(OpenZWaveDevice device, bool connected)
+        {
+            if (device.IsConnected == connected)
+            {
+                return;
+            }
+
+            device.IsConnected = connected;
+
+            var @event = connected ? DeviceEvent.Found(device, null) : DeviceEvent.Lost(device, null);
+            device.AddEvent(@event);
         }
     }
 }
