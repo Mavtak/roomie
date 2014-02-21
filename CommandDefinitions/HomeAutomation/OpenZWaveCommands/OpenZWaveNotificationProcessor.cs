@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using OpenZWaveDotNet;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
 using NotificationType = OpenZWaveDotNet.ZWNotification.Type;
@@ -8,10 +10,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
     public class OpenZWaveNotificationProcessor
     {
         private readonly OpenZWaveNetwork _network;
+        private bool _networkReady;
 
         public OpenZWaveNotificationProcessor(OpenZWaveNetwork network)
         {
             _network = network;
+            _networkReady = false;
         }
 
         public void Process(OpenZWaveNotification notification)
@@ -25,6 +29,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             if (_network.HomeId != notification.HomeId)
             {
                 throw new Exception("Unexpected Home ID");
+            }
+
+            if (!_networkReady && notification.Type != NotificationType.DriverReady && notification.Type != NotificationType.NodeNew && notification.Type != NotificationType.NodeAdded)
+            {
+                _network.SetReady();
             }
 
             //TODO: fill in other cases
@@ -68,7 +77,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     break;
 
                 case NotificationType.Notification:
-                    _network.SetReady();
                     break;
 
                 case NotificationType.PollingDisabled:
