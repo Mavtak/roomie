@@ -87,6 +87,10 @@
       <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
       <Name>Common %28Common\Common%29</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\TextUtilities\TextUtilities.csproj">
+      <Project>{BD67D062-FBD1-4A00-8A44-639CB8537AC8}</Project>
+      <Name>TextUtilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeAutomationCommands\HomeAutomationCommands.csproj">
       <Project>{48e1a8a5-7204-4c21-a914-510933db87ea}</Project>
       <Name>HomeAutomationCommands</Name>
