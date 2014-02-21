@@ -125,7 +125,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             options.Create(path, string.Empty, string.Empty);
 
             // Add any app specific options here...
-            options.AddOptionInt("SaveLogLevel", (int)ZWLogLevel.Detail);			// ordinarily, just write "Detail" level messages to the log
+            options.AddOptionInt("SaveLogLevel", (int)ZWLogLevel.Error);			// ordinarily, just write "Detail" level messages to the log
             options.AddOptionInt("QueueLogLevel", (int)ZWLogLevel.Debug);			// save recent messages with "Debug" level messages to be dumped if an error occurs
             options.AddOptionInt("DumpTriggerLevel", (int)ZWLogLevel.Error);		// only "dump" Debug  to the log emessages when an error-level message is logged
 
