@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using Roomie.Web.Persistence.Models;
+using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Persistence.Database
 {
@@ -14,7 +15,7 @@ namespace Roomie.Web.Persistence.Database
         public IRoomieEntitySet<ComputerModel> Computers { get; set; }
         public IRoomieEntitySet<NetworkModel> Networks { get; set; }
         public IRoomieEntitySet<DeviceModel> Devices { get; set; }
-        public IRoomieEntitySet<TaskModel> Tasks { get; set; }
+        public ITaskRepository Tasks { get; set; }
         public IRoomieEntitySet<ScriptModel> Scripts { get; set; }
         public IRoomieEntitySet<SavedScriptModel> SavedScripts { get; set; }
         public IRoomieEntitySet<WebHookSessionModel> WebHookSessions { get; set; }
@@ -35,11 +36,13 @@ namespace Roomie.Web.Persistence.Database
             Computers = new DbContextAdapter<ComputerModel>(database.Computers);
             Networks = new DbContextAdapter<NetworkModel>(database.Networks);
             Devices = new DbContextAdapter<DeviceModel>(database.Devices);
-            Tasks = new DbContextAdapter<TaskModel>(database.Tasks);
             Scripts = new DbContextAdapter<ScriptModel>(database.Scripts);
             SavedScripts = new DbContextAdapter<SavedScriptModel>(database.SavedScripts);
             WebHookSessions = new DbContextAdapter<WebHookSessionModel>(database.WebHookSessions);
             DeviceLocations = new DbContextAdapter<DeviceLocationModel>(database.DeviceLocations);
+
+            var entityFrameworkTasks = new DbContextAdapter<TaskModel>(database.Tasks);
+            Tasks = new EntityFrameworkTaskRepository(entityFrameworkTasks);
         }
 
         public void Reset()

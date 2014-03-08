@@ -55,7 +55,7 @@ namespace Roomie.Web.Persistence.Helpers
 
         public static TaskModel GetTask(this IRoomieDatabaseContext database, UserModel user, int id)
         {
-            var task = database.Tasks.Find(id);
+            var task = database.Tasks.Get(id);
 
             if (task == null || task.Owner != user)
             {

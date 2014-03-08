@@ -28,7 +28,7 @@ namespace Roomie.Web.Website
             bundleStyles(bundles);
             bundleScripts(bundles);
             
-            BundleTable.EnableOptimizations = true;
+            //BundleTable.EnableOptimizations = true;
         }
 
         private static void bundleStyles(BundleCollection bundles)

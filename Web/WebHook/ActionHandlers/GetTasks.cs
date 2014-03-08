@@ -22,7 +22,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             // well, not as big as three minutes
             DateTime endTime = DateTime.Now.AddSeconds(90);
 
-            List<TaskModel> tasks = null;
+            TaskModel[] tasks = null;
 
             //tasks = new List<TaskModel>
             //{
@@ -35,7 +35,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             //    }
             //};
 
-            while ((tasks == null || tasks.Count == 0) && DateTime.Now <= endTime)
+            while ((tasks == null || tasks.Length == 0) && DateTime.Now <= endTime)
             {
                 computer.UpdatePing();
                 database.SaveChanges();
@@ -47,15 +47,8 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 var now = DateTime.UtcNow;
                 try
                 {
-                    var temp = from t in database.Tasks
-                               where t.Target.Id == context.Computer.Id
-                                   && t.ReceivedTimestamp == null
-                                   && t.Expiration.Value > now
-                               //TODO: fix above
-                               select t;
-
-                    tasks = new List<TaskModel>(temp);
-                    if (tasks.Count == 0)
+                    tasks = database.Tasks.ForComputer(computer, now);
+                    if (tasks.Length == 0)
                     {
                         System.Threading.Thread.Sleep(250);
                     }
@@ -71,7 +64,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             //tasks have been found or the timer has run out
 
 
-            if (tasks == null || tasks.Count == 0)
+            if (tasks == null || tasks.Length == 0)
             {
                 response.Values.Add("Response", "no tasks.");
             }
@@ -92,7 +85,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                     { }
                 }
 
-                response.Values.Add("Response", "added " + tasks.Count + " task(s)");
+                response.Values.Add("Response", "added " + tasks.Length + " task(s)");
             }
 
             database.SaveChanges();
