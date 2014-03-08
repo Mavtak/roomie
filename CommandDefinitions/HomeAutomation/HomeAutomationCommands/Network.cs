@@ -21,6 +21,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         }
 
         public abstract Device RemoveDevice();
+        public abstract void RemoveDevice(Device device);
         public abstract Device AddDevice();
 
         protected void Connected()

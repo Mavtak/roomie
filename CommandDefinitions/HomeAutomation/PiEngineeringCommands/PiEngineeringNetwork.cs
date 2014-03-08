@@ -54,6 +54,11 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
             throw new NotImplementedException();
         }
 
+        public override void RemoveDevice(Device device)
+        {
+            throw new NotImplementedException();
+        }
+
         public override Device AddDevice()
         {
             throw new NotImplementedException();

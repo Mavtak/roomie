@@ -81,6 +81,20 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             return result;
         }
 
+        public override void RemoveDevice(Device device)
+        {
+            var zWaveDevice = device as ZWaveDevice;
+
+            var result = ZWaveController.RemoveFailedDevice(zWaveDevice.BackingObject);
+
+            if (!result)
+            {
+                throw new HomeAutomationException("Failed to remove device " + device);
+            }
+
+            Devices.Remove(device);
+        }
+
         public override Device AddDevice()
         {
             var backingDevice = ZWaveController.AddDevice();

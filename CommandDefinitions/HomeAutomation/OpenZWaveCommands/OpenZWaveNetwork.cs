@@ -98,6 +98,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             throw new NotImplementedException();
         }
 
+        public override void RemoveDevice(Device device)
+        {
+            var zWaveDevice = device as OpenZWaveDevice;
+
+            Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveFailedNode, false, zWaveDevice.Id);
+        }
+
         public override Device AddDevice()
         {
             throw new NotImplementedException();
