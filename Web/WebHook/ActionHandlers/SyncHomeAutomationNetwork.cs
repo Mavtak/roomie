@@ -147,7 +147,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
         private static void RemoveDevices(IEnumerable<DeviceModel> devicesToRemove, List<DeviceModel> registeredDevices, IRoomieDatabaseContext database)
         {
-            foreach (var device in devicesToRemove)
+            foreach (var device in devicesToRemove.ToArray())
             {
                 database.Devices.Remove(device);
                 registeredDevices.Remove(device);
