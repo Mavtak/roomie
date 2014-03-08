@@ -139,7 +139,11 @@
                     success();
                 }
             },
-            error: function() {
+            error: function (response) {
+                if (response.statusText == 'abort') {
+                    return;
+                }
+
                 if (failure != null) {
                     failure();
                 }
