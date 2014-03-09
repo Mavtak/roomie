@@ -1,15 +1,20 @@
 ﻿/* widget
 -----------------------------------------------------------*/
-.widget,
+
 .widget .group
 {
     padding: 5px;
 }
 
-.widget,
-.widget .group
+.widget .group > :first-child
 {
-    margin: 5px;
+    margin-top: 0;
+}
+
+.widget
+{
+    margin-top: 5px;
+    padding: 0;
 }
 
 .widget,
@@ -27,11 +32,7 @@
 
 .widget
 {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-left: 0px;
-    margin-bottom: 2px;
-    padding: 0px;
+    margin-top: 5px;
 }
 
 .widget,
