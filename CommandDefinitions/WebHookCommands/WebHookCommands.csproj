@@ -89,8 +89,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <PreBuildEvent>Powershell -File "$(SolutionDir)Scripts\Increment-Build-Number.ps1" "$(ProjectDir)Properties\AssemblyInfo.cs"
-Powershell -File "$(SolutionDir)Scripts\Increment-Build-Number.ps1" "$(ProjectDir)InternalLibraryVersion.cs"</PreBuildEvent>
-  </PropertyGroup>
 </Project>
