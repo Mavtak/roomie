@@ -70,7 +70,7 @@ form
 #noJsMessage,
 #page #header
 {
-    font-size: 150%;
+    font-size: 175%;
 }
 
 #page #footer
@@ -99,8 +99,13 @@ form
 .menuButton .bar
 {
     display: block;
-    height: 14.285714285%;
-    margin-top: 14.285714285%;
+    height: 14.2857142857%;
+    margin-top: 14.2857142857%;
+}
+
+.menuButton .bar.indent
+{
+    margin-left: 30%;
 }
 
 .menuButton:hover {
