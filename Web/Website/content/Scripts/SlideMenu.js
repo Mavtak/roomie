@@ -147,7 +147,7 @@
             self.$menu.css('width', '');
             self.animating = false;
             
-            if (typeof (callback) == 'function') {
+            if (typeof (callback) === 'function') {
                 callback();
             }
         };
