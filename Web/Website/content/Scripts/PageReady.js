@@ -28,9 +28,6 @@
 
     });
 
-    $('#noJsMessage').css('display', 'none');
-    $('#page').css('display', '');
-
     roomie.ui.navigationMenu = new namespace.SlideMenu($('#navigationMenu'), $('#navigationMenuToggle'), 'left');
     roomie.ui.pageMenu = new namespace.SlideMenu($('#pageMenu'), $('#pageMenuToggle'), 'right');
     roomie.ui.pageMenu.hideButtonForEmptyMenu();

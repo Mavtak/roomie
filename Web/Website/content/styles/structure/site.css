@@ -73,6 +73,24 @@ form
     font-size: 175%;
 }
 
+#noJsMessage
+{
+    display: block;
+    text-align: center;
+    height: 100%;
+}
+
+#noJsMessage .positionThing {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#noJsMessage .message {
+    display: inline-block;
+    vertical-align: middle;
+ }
+
 #page #footer
 {
     font-size: 90%;
