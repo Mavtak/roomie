@@ -13,11 +13,11 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var button = context.Scope.GetValue("Button");
             var originalCommand = context.OriginalCommand;
             var commands = originalCommand.InnerCommands;
-            var network = context.Network;
+            var device = context.Device;
+            var network = device.Network;
             var triggers = network.Context.Triggers;
             var history = network.Context.History;
             var threadPool = network.Context.ThreadPool;
-            var device = context.Device;
 
             var trigger = new WhenAKeypadButtonIsPressedTrigger(device, button, history.DeviceEvents);
             var action = new RunScriptTriggerAction(threadPool, commands);
