@@ -5,7 +5,9 @@
     }
     namespace.startup = true;
 
-    function debug(message) {
+    var roomie = window.roomie;
+    
+   function debug(message) {
         return;
         $('#navigation').append('<div class="debugMessage">' + message + '</div>');
     }
@@ -33,6 +35,56 @@
     roomie.ui.pageMenu = new namespace.SlideMenu($('#pageMenu'), $('#pageMenuToggle'), 'right');
     roomie.ui.pageMenu.hideButtonForEmptyMenu();
 
+    var drag = function(direction) {
+        var showThis;
+        var hideThis;
+
+        if (direction == 'left') {
+            showThis = roomie.ui.pageMenu;
+            hideThis = roomie.ui.navigationMenu;
+        } else if (direction == 'right') {
+            showThis = roomie.ui.navigationMenu;
+            hideThis = roomie.ui.pageMenu;
+        } else {
+            return;
+        }
+
+        if (showThis.visible) {
+            return;
+        }
+
+        if (hideThis.visible) {
+            hideThis.hide();
+            return;
+        }
+
+        showThis.show();
+    };
+
+    var dragContent = function () {
+        var $page = $('#page');
+        var startTouch;
+
+        $page[0].addEventListener('touchstart', function (e) {
+            startTouch = e.touches[0];
+        });
+
+        $page[0].addEventListener('touchend', function (e) {
+            var endTouch = e.changedTouches[0];
+
+            var verticalDelta = endTouch.pageY - startTouch.pageY;
+            var horizontalDelta = endTouch.pageX - startTouch.pageX;
+            
+            if (Math.abs(horizontalDelta) < 25 || Math.abs(verticalDelta) > 25) {
+                return;
+            }
+
+            drag((horizontalDelta < 0) ? 'left' : 'right');
+        });
+    };
+    
+    dragContent();
+    
     var botZoom = function() {
         $(this).unbind();
 
@@ -100,4 +152,5 @@
 
     detatchFooter();
     sizeGhostFooter();
+
 })();
