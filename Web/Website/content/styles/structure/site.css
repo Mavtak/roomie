@@ -103,9 +103,19 @@ form
     margin-top: 14.285714285%;
 }
 
+.menuButton:hover {
+    cursor: pointer;
+}
+
+#navigationMenuToggle
+{
+    padding-left: 0px;
+}
+
 #pageMenuToggle
 {
-    float: right
+    float: right;
+    padding-right: 0;
 }
 
 #title
