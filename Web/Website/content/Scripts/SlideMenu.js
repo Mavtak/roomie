@@ -164,4 +164,14 @@
             this.show(callback);
         }
     };
+    
+    SlideMenu.prototype.hideButtonForEmptyMenu = function() {
+        var hasItems = this.$menu.children().length > 0;
+        
+        if (hasItems) {
+            this.$button.show();
+        } else {
+            this.$button.hide();
+        }
+    }
 })();

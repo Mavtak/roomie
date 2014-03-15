@@ -31,6 +31,7 @@
 
     roomie.ui.navigationMenu = new namespace.SlideMenu($('#navigationMenu'), $('#navigationMenuToggle'), 'left');
     roomie.ui.pageMenu = new namespace.SlideMenu($('#pageMenu'), $('#pageMenuToggle'), 'right');
+    roomie.ui.pageMenu.hideButtonForEmptyMenu();
 
     var botZoom = function() {
         $(this).unbind();

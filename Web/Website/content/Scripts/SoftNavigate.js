@@ -7,13 +7,13 @@
 
     var animatinoSpeed = 250;
     
-    var navigate = namespace.navigate = function (path, pushState, preAnimation, callback) {
+    var navigate = namespace.navigate = function (path, pushState, preAnimation, whileNavigating, callback) {
         var page;
         var animationComplete;
         
         var done = function() {
             if (page && animationComplete) {
-                finishNavigate(page, callback);
+                finishNavigate(page, whileNavigating, callback);
             }
         };
         
@@ -68,14 +68,14 @@
         }, animatinoSpeed, null, done);
     };
     
-    var finishNavigate = namespace.finishNavigate = function(page, callback) {
+    var finishNavigate = namespace.finishNavigate = function(page, whileNavigating, callback) {
         if (namespace.exitPage) {
             namespace.exitPage();
             delete namespace.exitPage;
         }
         
         roomie.ui.notifications.displayNext();
-        replace(page, callback);
+        replace(page, whileNavigating, callback);
     };
 
     var stashScriptTags = function (html) {
@@ -92,7 +92,7 @@
         return result;
     };
 
-    var replace = namespace.replace = function (page, callback) {
+    var replace = namespace.replace = function (page, whileNavigating, callback) {
         page = '<div>' + page + '</div>';
         page = stashScriptTags(page);
 
@@ -113,6 +113,11 @@
         replaceContent('#pageMenu');
         replaceContent('#pageSpecificScripts');
 
+
+        if (whileNavigating) {
+            whileNavigating();
+        }
+        
         var actionCount = 2;
         
         var done = function () {
@@ -141,6 +146,8 @@
             e.preventDefault();
             navigate(path, true, function(callback) {
                 roomie.ui.navigationMenu.hide(callback);
+            }, function() {
+                roomie.ui.pageMenu.hideButtonForEmptyMenu();
             });
         }
     };
