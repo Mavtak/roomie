@@ -28,17 +28,5 @@ namespace Roomie.Web.Persistence.Helpers
 
             return computer;
         }
-
-        public static TaskModel GetTask(this IRoomieDatabaseContext database, UserModel user, int id)
-        {
-            var task = database.Tasks.Get(id);
-
-            if (task == null || task.Owner != user)
-            {
-                return null;
-            }
-
-            return task;
-        }
     }
 }

@@ -75,7 +75,7 @@ namespace Roomie.Web.Website.Helpers
             var database = controller.Database;
             var user = controller.User;
 
-            var task = database.GetTask(user, id);
+            var task = database.Tasks.Get(user, id);
 
             if (task == null)
             {

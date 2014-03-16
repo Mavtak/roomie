@@ -21,6 +21,28 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
+        public TaskModel Get(UserModel user, int id)
+        {
+            var result = Get(id);
+
+            if (result == null)
+            {
+                return null;
+            }
+
+            if (result.Owner == null)
+            {
+                throw new Exception("Owner not set");
+            }
+
+            if (result.Owner.Id != user.Id)
+            {
+                result = null;
+            }
+
+            return result;
+        }
+
         public void Add(TaskModel task)
         {
             _tasks.Add(task);
