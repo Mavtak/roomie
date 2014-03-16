@@ -37,6 +37,14 @@ namespace Roomie.Web.Website.Controllers
             return View(builder.ToString());
         }
 
+        public ActionResult DatabaseSchema()
+        {
+            var database = new EntityFrameworkRoomieDatabaseBackend("derp");
+            var schema = database.GetObjectContext().CreateDatabaseScript();
+
+            return View(viewName: "PlainText", model: schema); 
+        }
+
         public ActionResult ResetDatabase()
         {
             string message = "working...";
