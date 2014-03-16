@@ -90,7 +90,9 @@
     <Compile Include="Models\WebHookSessionModel.cs" />
     <Compile Include="Models\DeviceModel.cs" />
     <Compile Include="Models\NetworkModel.cs" />
+    <Compile Include="Repositories\EntityFrameworkNetworkRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkTaskRepository.cs" />
+    <Compile Include="Repositories\INetworkRepository.cs" />
     <Compile Include="Repositories\ITaskRepository.cs" />
   </ItemGroup>
   <ItemGroup>

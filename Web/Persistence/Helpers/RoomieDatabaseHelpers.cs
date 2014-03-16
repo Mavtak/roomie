@@ -19,7 +19,7 @@ namespace Roomie.Web.Persistence.Helpers
 
         public static NetworkModel GetNetwork(this IRoomieDatabaseContext database, UserModel user, int id)
         {
-            var network = database.Networks.Find(id);
+            var network = database.Networks.Get(id);
 
             if (network == null || network.Owner != user)
             {

@@ -32,11 +32,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
             var networkAddress = request.Values["NetworkAddress"];
 
-            var network = (from n in database.Networks //TODO: user.HomeAutomationNetworks.CreateQueryContext(or whatever)
-                           where //TODO: fix 
-                           n.Address == networkAddress
-                           && n.Owner.Id == user.Id
-                           select n).FirstOrDefault();
+            var network = database.Networks.Get(user, networkAddress);
 
             if (network == null)
             {

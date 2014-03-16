@@ -10,7 +10,6 @@ namespace Roomie.Web.Persistence.Database
         IRoomieEntitySet<UserModel> Users { get; set; }
         IRoomieEntitySet<UserSessionModel> UserSessions { get; set; }
         IRoomieEntitySet<ComputerModel> Computers { get; set; }
-        IRoomieEntitySet<NetworkModel> Networks { get; set; }
         IRoomieEntitySet<DeviceModel> Devices { get; set; }
         IRoomieEntitySet<ScriptModel> Scripts { get; set; }
         IRoomieEntitySet<SavedScriptModel> SavedScripts { get; set; }
@@ -19,6 +18,7 @@ namespace Roomie.Web.Persistence.Database
         int SaveChanges();
         void Reset();
 
+        INetworkRepository Networks { get; set; }
         ITaskRepository Tasks { get; set; }
         //public DbSet<StringStringPair> StringStringDictionary { get; set; }
         //public DbSet<HomeModel> Homes { get; set; }
