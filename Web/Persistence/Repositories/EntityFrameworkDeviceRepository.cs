@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
-using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Models;
 
@@ -8,10 +8,10 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public class EntityFrameworkDeviceRepository : IDeviceRepository
     {
-        private readonly IRoomieEntitySet<DeviceModel> _devices;
+        private readonly DbSet<DeviceModel> _devices;
         private readonly INetworkRepository _networks;
 
-        public EntityFrameworkDeviceRepository(IRoomieEntitySet<DeviceModel> devices, INetworkRepository networks)
+        public EntityFrameworkDeviceRepository(DbSet<DeviceModel> devices, INetworkRepository networks)
         {
             _devices = devices;
             _networks = networks;

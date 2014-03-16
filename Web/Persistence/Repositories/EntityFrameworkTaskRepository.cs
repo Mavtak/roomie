@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
-using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories
 {
     public class EntityFrameworkTaskRepository : ITaskRepository
     {
-        private readonly IRoomieEntitySet<TaskModel> _tasks;
+        private readonly DbSet<TaskModel> _tasks;
 
-        public EntityFrameworkTaskRepository(IRoomieEntitySet<TaskModel> tasks)
+        public EntityFrameworkTaskRepository(DbSet<TaskModel> tasks)
         {
             _tasks = tasks;
         }

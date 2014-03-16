@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
-using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories
 {
     public class EntityFrameworkNetworkRepository : INetworkRepository
     {
-        private readonly IRoomieEntitySet<NetworkModel> _networks;
+        private readonly DbSet<NetworkModel> _networks;
 
-        public EntityFrameworkNetworkRepository(IRoomieEntitySet<NetworkModel> networks)
+        public EntityFrameworkNetworkRepository(DbSet<NetworkModel> networks)
         {
             _networks = networks;
         }

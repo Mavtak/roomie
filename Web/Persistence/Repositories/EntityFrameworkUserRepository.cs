@@ -1,14 +1,14 @@
-﻿using System.Linq;
-using Roomie.Web.Persistence.Database;
+﻿using System.Data.Entity;
+using System.Linq;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories
 {
     public class EntityFrameworkUserRepository : IUserRepository
     {
-        private readonly IRoomieEntitySet<UserModel> _users;
+        private readonly DbSet<UserModel> _users;
 
-        public EntityFrameworkUserRepository(IRoomieEntitySet<UserModel> users)
+        public EntityFrameworkUserRepository(DbSet<UserModel> users)
         {
             _users = users;
         }

@@ -1,14 +1,14 @@
-﻿using System.Linq;
-using Roomie.Web.Persistence.Database;
+﻿using System.Data.Entity;
+using System.Linq;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories
 {
     public class EntityFrameworkNetworkGuestRepository : INetworkGuestRepository
     {
-        private readonly IRoomieEntitySet<NetworkGuestModel> _entries;
+        private readonly DbSet<NetworkGuestModel> _entries;
 
-        public EntityFrameworkNetworkGuestRepository(IRoomieEntitySet<NetworkGuestModel> entries)
+        public EntityFrameworkNetworkGuestRepository(DbSet<NetworkGuestModel> entries)
         {
             _entries = entries;
         }

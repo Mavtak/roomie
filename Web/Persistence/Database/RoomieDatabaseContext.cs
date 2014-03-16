@@ -39,22 +39,17 @@ namespace Roomie.Web.Persistence.Database
             WebHookSessions = new DbContextAdapter<WebHookSessionModel>(database.WebHookSessions);
             DeviceLocations = new DbContextAdapter<DeviceLocationModel>(database.DeviceLocations);
 
-            var entityFrameworkNetworkGuests = new DbContextAdapter<NetworkGuestModel>(database.NetworkGuests);
-            NetworkGuests = new EntityFrameworkNetworkGuestRepository(entityFrameworkNetworkGuests);
+            NetworkGuests = new EntityFrameworkNetworkGuestRepository(database.NetworkGuests);
 
-            var entityFrameworkNetworks = new DbContextAdapter<NetworkModel>(database.Networks);
-            var entityframeworkNetworkRepository = new EntityFrameworkNetworkRepository(entityFrameworkNetworks);
+            var entityframeworkNetworkRepository = new EntityFrameworkNetworkRepository(database.Networks);
             Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
 
-            var entityFrameworkDevices = new DbContextAdapter<DeviceModel>(database.Devices);
-            var entityFrameworkDeviceRepository = new EntityFrameworkDeviceRepository(entityFrameworkDevices, Networks);
+            var entityFrameworkDeviceRepository = new EntityFrameworkDeviceRepository(database.Devices, Networks);
             Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
 
-            var entityFrameworkTasks = new DbContextAdapter<TaskModel>(database.Tasks);
-            Tasks = new EntityFrameworkTaskRepository(entityFrameworkTasks);
+            Tasks = new EntityFrameworkTaskRepository(database.Tasks);
 
-            var entityFrameworkUsers = new DbContextAdapter<UserModel>(database.Users);
-            Users = new EntityFrameworkUserRepository(entityFrameworkUsers);
+            Users = new EntityFrameworkUserRepository(database.Users);
         }
 
         public void Reset()
