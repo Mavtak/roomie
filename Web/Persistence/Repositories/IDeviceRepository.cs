@@ -5,6 +5,7 @@ namespace Roomie.Web.Persistence.Repositories
     public interface IDeviceRepository
     {
         DeviceModel Get(int id);
+        DeviceModel Get(UserModel user, int id);
         DeviceModel[] Get(NetworkModel network);
         DeviceModel[] Get(UserModel user);
         void Add(DeviceModel device);

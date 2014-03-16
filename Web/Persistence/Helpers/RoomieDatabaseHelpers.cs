@@ -5,18 +5,6 @@ namespace Roomie.Web.Persistence.Helpers
 {
     public static class RoomieDatabaseHelpers
     {
-        public static DeviceModel GetDevice(this IRoomieDatabaseContext database, UserModel user, int id)
-        {
-            var device = database.Devices.Get(id);
-
-            if (device == null || device.Network == null || device.Network.Owner != user)
-            {
-                return null;
-            }
-
-            return device;
-        }
-
         public static SavedScriptModel GetSavedScript(this IRoomieDatabaseContext database, UserModel user, int id)
         {
             var script = database.SavedScripts.Find(id);

@@ -15,7 +15,7 @@ namespace Roomie.Web.Website.Helpers
             var database = controller.Database;
             var user = controller.User;
 
-            var device = database.GetDevice(user, id);
+            var device = database.Devices.Get(user, id);
 
             if (device == null)
             {
