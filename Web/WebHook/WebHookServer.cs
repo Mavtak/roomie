@@ -79,8 +79,6 @@ namespace Roomie.Web.WebHook
 
             context.Database = new RoomieDatabaseContext();
 
-            //TODO: remove hack
-            var usersHack = context.Database.Users.ToList();
             var locationsHack = context.Database.DeviceLocations.ToList();
 
             context.Computer = context.Database.Computers.FirstOrDefault(c => c.AccessKey == eventArgs.AccessKey);

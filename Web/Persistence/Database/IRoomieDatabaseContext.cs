@@ -7,7 +7,6 @@ namespace Roomie.Web.Persistence.Database
 {
     public interface IRoomieDatabaseContext : IDisposable
     {
-        IRoomieEntitySet<UserModel> Users { get; set; }
         IRoomieEntitySet<UserSessionModel> UserSessions { get; set; }
         IRoomieEntitySet<ComputerModel> Computers { get; set; }
         IRoomieEntitySet<ScriptModel> Scripts { get; set; }
@@ -20,6 +19,7 @@ namespace Roomie.Web.Persistence.Database
         IDeviceRepository Devices { get; set; }
         INetworkRepository Networks { get; set; }
         ITaskRepository Tasks { get; set; }
+        IUserRepository Users { get; set; }
         //public DbSet<StringStringPair> StringStringDictionary { get; set; }
         //public DbSet<HomeModel> Homes { get; set; }
     }

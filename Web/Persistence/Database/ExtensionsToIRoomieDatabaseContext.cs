@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Roomie.Web.Persistence.Models;
+using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Persistence.Database
 {
@@ -42,14 +42,7 @@ namespace Roomie.Web.Persistence.Database
 
         public static UserModel CreateUser(this IRoomieDatabaseContext database, string token)
         {
-            var user = new UserModel
-            {
-                Token = token,
-                RegisteredTimestamp = DateTime.UtcNow,
-                IsAdmin = token.Equals("openid:http://davidmcgrath.com/")
-            };
-
-            database.Users.Add(user);
+            var user = database.Users.Add(token);
 
             database.CreateHome(user);
 

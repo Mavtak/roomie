@@ -92,9 +92,12 @@
     <Compile Include="Repositories\EntityFrameworkDeviceRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkNetworkRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkTaskRepository.cs" />
+    <Compile Include="Repositories\EntityFrameworkUserRepository.cs" />
     <Compile Include="Repositories\IDeviceRepository.cs" />
     <Compile Include="Repositories\INetworkRepository.cs" />
     <Compile Include="Repositories\ITaskRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\UserRepositoryExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

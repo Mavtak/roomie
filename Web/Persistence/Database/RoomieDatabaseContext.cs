@@ -10,7 +10,7 @@ namespace Roomie.Web.Persistence.Database
 {
     public sealed class RoomieDatabaseContext : IRoomieDatabaseContext
     {
-        public IRoomieEntitySet<UserModel> Users { get; set; }
+        public IUserRepository Users { get; set; }
         public IRoomieEntitySet<UserSessionModel> UserSessions { get; set; }
         public IRoomieEntitySet<ComputerModel> Computers { get; set; }
         public INetworkRepository Networks { get; set; }
@@ -31,7 +31,6 @@ namespace Roomie.Web.Persistence.Database
         {
             this.database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
-            Users = new DbContextAdapter<UserModel>(database.Users);
             UserSessions = new DbContextAdapter<UserSessionModel>(database.UserSessions);
             Computers = new DbContextAdapter<ComputerModel>(database.Computers);
             Scripts = new DbContextAdapter<ScriptModel>(database.Scripts);
@@ -47,6 +46,9 @@ namespace Roomie.Web.Persistence.Database
 
             var entityFrameworkTasks = new DbContextAdapter<TaskModel>(database.Tasks);
             Tasks = new EntityFrameworkTaskRepository(entityFrameworkTasks);
+
+            var entityFrameworkUsers = new DbContextAdapter<UserModel>(database.Users);
+            Users = new EntityFrameworkUserRepository(entityFrameworkUsers);
         }
 
         public void Reset()

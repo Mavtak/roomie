@@ -68,7 +68,7 @@ namespace Roomie.Web.Website.Controllers
 
                 var computer = new ComputerModel
                 {
-                    Owner = Database.Users.Find(1),
+                    Owner = Database.Users.Get(1),
                     Name = "Test Computer"
                 };
                 Database.Computers.Add(computer);

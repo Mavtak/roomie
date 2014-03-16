@@ -12,13 +12,6 @@ namespace Roomie.Web.Website.Helpers
     {
         private static string sessionTokenName = "roomie_session";
 
-        private static UserModel GetUserByToken(IRoomieDatabaseContext database, string token)
-        {
-            return (from r in database.Users
-                    where r.Token == token
-                    select r).FirstOrDefault();
-        }
-
         public static UserSessionModel GetCurrentUserSession(IRoomieDatabaseContext database)
         {
             var request = HttpContext.Current.Request;
@@ -59,7 +52,7 @@ namespace Roomie.Web.Website.Helpers
 
             var token = "openid:" + identifier;
 
-            var user = GetUserByToken(database, token);
+            var user = database.Users.Get(token);
 
             if (user == null)
             {
