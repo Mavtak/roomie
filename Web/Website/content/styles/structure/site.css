@@ -203,3 +203,9 @@ form
     display: block;
     max-height: 300px;
 }
+
+.exception.general .message
+{
+    text-align: center;
+    cursor: pointer;
+}
