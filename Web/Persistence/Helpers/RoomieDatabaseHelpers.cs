@@ -7,7 +7,7 @@ namespace Roomie.Web.Persistence.Helpers
     {
         public static DeviceModel GetDevice(this IRoomieDatabaseContext database, UserModel user, int id)
         {
-            var device = database.Devices.Find(id);
+            var device = database.Devices.Get(id);
 
             if (device == null || device.Network == null || device.Network.Owner != user)
             {
