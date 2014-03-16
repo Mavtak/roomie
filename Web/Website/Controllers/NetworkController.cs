@@ -20,7 +20,7 @@ namespace Roomie.Web.Website.Controllers
 
         public ActionResult Index()
         {
-            var networks = User.HomeAutomationNetworks.ToList();
+            var networks = Database.Networks.Get(User);
 
             foreach (var network in networks)
             {

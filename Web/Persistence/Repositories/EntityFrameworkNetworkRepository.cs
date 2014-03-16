@@ -20,6 +20,13 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
+        public NetworkModel[] Get(UserModel user)
+        {
+            var results = _networks.Where(x => x.Owner.Id == user.Id).ToArray();
+
+            return results;
+        }
+
         public NetworkModel Get(UserModel user, string address)
         {
             var result = _networks.Where(x => x.Owner.Id == user.Id)
