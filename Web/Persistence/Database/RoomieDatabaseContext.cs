@@ -43,10 +43,12 @@ namespace Roomie.Web.Persistence.Database
             NetworkGuests = new EntityFrameworkNetworkGuestRepository(entityFrameworkNetworkGuests);
 
             var entityFrameworkNetworks = new DbContextAdapter<NetworkModel>(database.Networks);
-            Networks = new EntityFrameworkNetworkRepository(entityFrameworkNetworks);
+            var entityframeworkNetworkRepository = new EntityFrameworkNetworkRepository(entityFrameworkNetworks);
+            Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
 
             var entityFrameworkDevices = new DbContextAdapter<DeviceModel>(database.Devices);
-            Devices = new EntityFrameworkDeviceRepository(entityFrameworkDevices, Networks);
+            var entityFrameworkDeviceRepository = new EntityFrameworkDeviceRepository(entityFrameworkDevices, Networks);
+            Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
 
             var entityFrameworkTasks = new DbContextAdapter<TaskModel>(database.Tasks);
             Tasks = new EntityFrameworkTaskRepository(entityFrameworkTasks);

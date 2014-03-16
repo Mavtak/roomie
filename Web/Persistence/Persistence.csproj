@@ -94,6 +94,8 @@
     <Compile Include="Repositories\EntityFrameworkNetworkRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkTaskRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkUserRepository.cs" />
+    <Compile Include="Repositories\GuestEnabledDeviceRepository.cs" />
+    <Compile Include="Repositories\GuestEnabledNetworkRepository.cs" />
     <Compile Include="Repositories\IDeviceRepository.cs" />
     <Compile Include="Repositories\INetworkGuestRepository.cs" />
     <Compile Include="Repositories\INetworkRepository.cs" />
