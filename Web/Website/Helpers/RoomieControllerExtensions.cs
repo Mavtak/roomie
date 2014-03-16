@@ -30,7 +30,7 @@ namespace Roomie.Web.Website.Helpers
             var database = controller.Database;
             var user = controller.User;
 
-            var network = database.GetNetwork(user, id);
+            var network = database.Networks.Get(user, id);
 
             if (network == null)
             {

@@ -17,18 +17,6 @@ namespace Roomie.Web.Persistence.Helpers
             return device;
         }
 
-        public static NetworkModel GetNetwork(this IRoomieDatabaseContext database, UserModel user, int id)
-        {
-            var network = database.Networks.Get(id);
-
-            if (network == null || network.Owner != user)
-            {
-                return null;
-            }
-
-            return network;
-        }
-
         public static SavedScriptModel GetSavedScript(this IRoomieDatabaseContext database, UserModel user, int id)
         {
             var script = database.SavedScripts.Find(id);
