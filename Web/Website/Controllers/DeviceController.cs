@@ -24,7 +24,7 @@ namespace Roomie.Web.Website.Controllers
         [WebsiteRestrictedAccess]
         public ActionResult Index(string location)
         {
-            var devices = User.GetAllDevices();
+            var devices = Database.Devices.Get(User).AsEnumerable();
 
             if (location != null)
             {

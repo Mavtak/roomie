@@ -13,7 +13,7 @@ namespace Roomie.Web.Website.Controllers.Api
         // GET api/values
         public IEnumerable<SerializedDevice> Get()
         {
-            var devices = User.GetAllDevices();
+            var devices = Database.Devices.Get(User);
 
             return SerializedDevice.Convert(devices);
             

@@ -39,11 +39,11 @@ namespace Roomie.Web.Persistence.Database
             WebHookSessions = new DbContextAdapter<WebHookSessionModel>(database.WebHookSessions);
             DeviceLocations = new DbContextAdapter<DeviceLocationModel>(database.DeviceLocations);
 
-            var entityFrameworkDevices = new DbContextAdapter<DeviceModel>(database.Devices);
-            Devices = new EntityFrameworkDeviceRepository(entityFrameworkDevices);
-
             var entityFrameworkNetworks = new DbContextAdapter<NetworkModel>(database.Networks);
             Networks = new EntityFrameworkNetworkRepository(entityFrameworkNetworks);
+
+            var entityFrameworkDevices = new DbContextAdapter<DeviceModel>(database.Devices);
+            Devices = new EntityFrameworkDeviceRepository(entityFrameworkDevices, Networks);
 
             var entityFrameworkTasks = new DbContextAdapter<TaskModel>(database.Tasks);
             Tasks = new EntityFrameworkTaskRepository(entityFrameworkTasks);
