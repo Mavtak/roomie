@@ -67,6 +67,7 @@
     <Compile Include="Helpers\DeviceSort.cs" />
     <Compile Include="Helpers\NetworkModelExtensions.cs" />
     <Compile Include="Models\BinarySensorModel.cs" />
+    <Compile Include="Models\NetworkGuestModel.cs" />
     <Compile Include="Models\ThermostatCoreModel.cs" />
     <Compile Include="Models\DeviceLocationModel.cs" />
     <Compile Include="Models\ComputerModel.cs" />
@@ -89,10 +90,12 @@
     <Compile Include="Models\DeviceModel.cs" />
     <Compile Include="Models\NetworkModel.cs" />
     <Compile Include="Repositories\EntityFrameworkDeviceRepository.cs" />
+    <Compile Include="Repositories\EntityFrameworkNetworkGuestRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkNetworkRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkTaskRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkUserRepository.cs" />
     <Compile Include="Repositories\IDeviceRepository.cs" />
+    <Compile Include="Repositories\INetworkGuestRepository.cs" />
     <Compile Include="Repositories\INetworkRepository.cs" />
     <Compile Include="Repositories\ITaskRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />

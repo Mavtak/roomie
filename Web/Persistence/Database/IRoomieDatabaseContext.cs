@@ -17,6 +17,7 @@ namespace Roomie.Web.Persistence.Database
         void Reset();
 
         IDeviceRepository Devices { get; set; }
+        INetworkGuestRepository NetworkGuests { get; set; }
         INetworkRepository Networks { get; set; }
         ITaskRepository Tasks { get; set; }
         IUserRepository Users { get; set; }

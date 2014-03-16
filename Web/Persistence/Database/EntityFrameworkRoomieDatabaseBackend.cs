@@ -12,6 +12,7 @@ namespace Roomie.Web.Persistence.Database
         public DbSet<UserModel> Users { get; set; }
         public DbSet<UserSessionModel> UserSessions { get; set; }
         public DbSet<ComputerModel> Computers { get; set; }
+        public DbSet<NetworkGuestModel> NetworkGuests { get; set; }
         public DbSet<NetworkModel> Networks { get; set; }
         public DbSet<DeviceModel> Devices { get; set; }
         public DbSet<TaskModel> Tasks { get; set; }
