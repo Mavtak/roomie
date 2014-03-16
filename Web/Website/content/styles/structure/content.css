@@ -53,3 +53,8 @@
 {
     display: block;
 }
+
+#content .collapse-next
+{
+    cursor: pointer;
+}
