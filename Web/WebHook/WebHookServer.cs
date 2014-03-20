@@ -81,7 +81,7 @@ namespace Roomie.Web.WebHook
 
             var locationsHack = context.Database.DeviceLocations.ToList();
 
-            context.Computer = context.Database.Computers.FirstOrDefault(c => c.AccessKey == eventArgs.AccessKey);
+            context.Computer = context.Database.Computers.Get(eventArgs.AccessKey);
             if (context.Computer == null)
             {
                 eventArgs.ErrorMessage = "Computer not found.";

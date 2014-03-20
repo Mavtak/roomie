@@ -16,17 +16,5 @@ namespace Roomie.Web.Persistence.Helpers
 
             return script;
         }
-
-        public static ComputerModel GetComputer(this IRoomieDatabaseContext database, UserModel user, int id)
-        {
-            var computer = database.Computers.Find(id);
-
-            if (computer == null || computer.Owner != user)
-            {
-                return null;
-            }
-
-            return computer;
-        }
     }
 }

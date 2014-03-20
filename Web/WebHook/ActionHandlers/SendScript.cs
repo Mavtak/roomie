@@ -29,7 +29,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 return;
             }
 
-            var targetComputer = user.Computers.FirstOrDefault(c => c.Name == request.Values["TargetComputerName"]);
+            var targetComputer = database.Computers.Get(user, request.Values["TargetComputerName"]);
 
             if(targetComputer == null)
             {

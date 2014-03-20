@@ -60,7 +60,7 @@ namespace Roomie.Web.Website.Helpers
             var database = controller.Database;
             var user = controller.User;
 
-            var computer = database.GetComputer(user, id);
+            var computer = database.Computers.Get(user, id);
 
             if (computer == null)
             {

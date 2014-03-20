@@ -11,7 +11,9 @@ namespace Roomie.Web.Website.Controllers
     {
         public ActionResult Index()
         {
-            return View(User.Computers);
+            var computers = Database.Computers.Get(User);
+
+            return View(computers);
         }
 
         public ActionResult Details(int id)

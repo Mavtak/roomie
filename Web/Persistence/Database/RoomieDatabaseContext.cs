@@ -12,7 +12,7 @@ namespace Roomie.Web.Persistence.Database
     {
         public IUserRepository Users { get; set; }
         public IRoomieEntitySet<UserSessionModel> UserSessions { get; set; }
-        public IRoomieEntitySet<ComputerModel> Computers { get; set; }
+        public IComputerRepository Computers { get; set; }
         public INetworkGuestRepository NetworkGuests { get; set; }
         public INetworkRepository Networks { get; set; }
         public IDeviceRepository Devices { get; set; }
@@ -33,11 +33,12 @@ namespace Roomie.Web.Persistence.Database
             this.database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
             UserSessions = new DbContextAdapter<UserSessionModel>(database.UserSessions);
-            Computers = new DbContextAdapter<ComputerModel>(database.Computers);
             Scripts = new DbContextAdapter<ScriptModel>(database.Scripts);
             SavedScripts = new DbContextAdapter<SavedScriptModel>(database.SavedScripts);
             WebHookSessions = new DbContextAdapter<WebHookSessionModel>(database.WebHookSessions);
             DeviceLocations = new DbContextAdapter<DeviceLocationModel>(database.DeviceLocations);
+
+            Computers = new EntityFrameworkComputerRepository(database.Computers);
 
             NetworkGuests = new EntityFrameworkNetworkGuestRepository(database.NetworkGuests);
 

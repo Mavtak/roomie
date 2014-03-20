@@ -8,7 +8,6 @@ namespace Roomie.Web.Persistence.Database
     public interface IRoomieDatabaseContext : IDisposable
     {
         IRoomieEntitySet<UserSessionModel> UserSessions { get; set; }
-        IRoomieEntitySet<ComputerModel> Computers { get; set; }
         IRoomieEntitySet<ScriptModel> Scripts { get; set; }
         IRoomieEntitySet<SavedScriptModel> SavedScripts { get; set; }
         IRoomieEntitySet<WebHookSessionModel> WebHookSessions { get; set; }
@@ -16,6 +15,7 @@ namespace Roomie.Web.Persistence.Database
         int SaveChanges();
         void Reset();
 
+        IComputerRepository Computers { get; set; }
         IDeviceRepository Devices { get; set; }
         INetworkGuestRepository NetworkGuests { get; set; }
         INetworkRepository Networks { get; set; }
