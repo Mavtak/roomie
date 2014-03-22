@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Database;
@@ -78,6 +79,8 @@ namespace Roomie.Web.Website.Controllers
 
         public ActionResult ResetDatabase()
         {
+            throw new HttpException(404, "Not Found");
+
             string message = "working...";
 
             try
@@ -99,6 +102,8 @@ namespace Roomie.Web.Website.Controllers
 
         public ActionResult SeedDatabase()
         {
+            throw new HttpException(404, "Not Found");
+
             string message = "working...";
 
             try
