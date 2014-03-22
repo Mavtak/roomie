@@ -19,7 +19,38 @@ namespace Roomie.Web.Website.Controllers
 
         public ActionResult ThrowException()
         {
-            throw new Exception("This is a test exception");
+            ExceptionLevel1();
+
+            return View(viewName: "PlainText", model: "Exception handling went weird."); 
+        }
+
+        private void ExceptionLevel1()
+        {
+            try
+            {
+                ExceptionLevel2();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("This is too generic.", exception);
+            }
+        }
+
+        private void ExceptionLevel2()
+        {
+            try
+            {
+                ExceptionLevel3();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("This exception is too middle.", exception);
+            }
+        }
+
+        private void ExceptionLevel3()
+        {
+            throw new Exception("This exception is juuuust right!");
         }
 
         public ActionResult MarkupTest()

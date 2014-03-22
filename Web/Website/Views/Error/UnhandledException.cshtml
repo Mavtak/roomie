@@ -26,8 +26,28 @@
 <div class="exception general">
     <h2 class="message">I messed up.  I can do better... I think.  Are you upset with me?  Sorry, forget I said that.  I'll try really hard and you'll see!</h2>
 </div>
-<div class="exception technical">
-  <h2 class="message">@Model.Message</h2>
-  <p>Exception type: @Model.GetType().Name</p>
-  <pre class="stackTrace">@Model.StackTrace</pre>
-</div>
+
+@{
+    var exceptions = new List<Exception>();
+
+    var currentException = Model;
+    
+    while (currentException != null)
+    {
+        exceptions.Add(currentException);
+        currentException = currentException.InnerException;
+    }
+
+    exceptions.Reverse();
+}
+
+
+@foreach (var exception in exceptions)
+{
+    <div class="exception technical">
+        <h2 class="message">@exception.Message</h2>
+        <p>Exception type: @exception.GetType().Name</p>
+        <pre class="stackTrace">@exception.StackTrace</pre>
+    </div>
+       
+}

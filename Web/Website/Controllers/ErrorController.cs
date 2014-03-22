@@ -27,9 +27,6 @@ namespace Roomie.Web.Website.Controllers
                 return UnknownError();
             }
 
-            while (exception.InnerException != null)
-                exception = exception.InnerException;
-
             if (exception.GetType().Equals(typeof(HttpException)))
             {
                 HttpException httpException = (HttpException)exception;
