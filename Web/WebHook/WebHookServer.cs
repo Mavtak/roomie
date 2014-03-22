@@ -109,7 +109,7 @@ namespace Roomie.Web.WebHook
                 throw new Exception("WebTransmission Context is null.");
             }
 
-            var session = context.Database.WebHookSessions.FirstOrDefault(s => s.Token == eventArgs.SessionKey);
+            var session = context.Database.Sessions.GetWebHookSession(eventArgs.SessionKey);
             if (session == null)
             {
                 //session does not exist.
@@ -154,7 +154,7 @@ namespace Roomie.Web.WebHook
                 LastPing = DateTime.UtcNow,
                 Token = Guid.NewGuid().ToString() //TODO: shorten
             };
-            context.Database.WebHookSessions.Add(session);
+            context.Database.Sessions.Add(session);
             context.Database.SaveChanges();
 
             eventArgs.Context.Session = session;

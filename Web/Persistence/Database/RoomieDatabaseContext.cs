@@ -11,7 +11,6 @@ namespace Roomie.Web.Persistence.Database
     public sealed class RoomieDatabaseContext : IRoomieDatabaseContext
     {
         public IUserRepository Users { get; set; }
-        public IRoomieEntitySet<UserSessionModel> UserSessions { get; set; }
         public IComputerRepository Computers { get; set; }
         public INetworkGuestRepository NetworkGuests { get; set; }
         public INetworkRepository Networks { get; set; }
@@ -19,8 +18,8 @@ namespace Roomie.Web.Persistence.Database
         public ITaskRepository Tasks { get; set; }
         public IRoomieEntitySet<ScriptModel> Scripts { get; set; }
         public IRoomieEntitySet<SavedScriptModel> SavedScripts { get; set; }
-        public IRoomieEntitySet<WebHookSessionModel> WebHookSessions { get; set; }
         public IRoomieEntitySet<DeviceLocationModel> DeviceLocations { get; set; }
+        public ISessionRepository Sessions { get; set; }
         //public IRoomieEntitySet<StringStringPair> StringStringDictionary { get; set; }
         //public IRoomieEntitySet<HomeModel> Homes { get; set; }
 
@@ -32,10 +31,8 @@ namespace Roomie.Web.Persistence.Database
         {
             this.database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
-            UserSessions = new DbContextAdapter<UserSessionModel>(database.UserSessions);
             Scripts = new DbContextAdapter<ScriptModel>(database.Scripts);
             SavedScripts = new DbContextAdapter<SavedScriptModel>(database.SavedScripts);
-            WebHookSessions = new DbContextAdapter<WebHookSessionModel>(database.WebHookSessions);
             DeviceLocations = new DbContextAdapter<DeviceLocationModel>(database.DeviceLocations);
 
             Computers = new EntityFrameworkComputerRepository(database.Computers);
@@ -51,6 +48,8 @@ namespace Roomie.Web.Persistence.Database
             Tasks = new EntityFrameworkTaskRepository(database.Tasks);
 
             Users = new EntityFrameworkUserRepository(database.Users);
+
+            Sessions = new EntityFrameworkSessionRepository(database.UserSessions, database.WebHookSessions);
         }
 
         public void Reset()

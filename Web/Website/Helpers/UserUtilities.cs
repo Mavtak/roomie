@@ -22,10 +22,7 @@ namespace Roomie.Web.Website.Helpers
 
             var token = request.Cookies[sessionTokenName].Value;
 
-            //TODO: use database.UserSessions.Find()
-            var session = (from s in database.UserSessions
-                           where s.Token == token
-                           select s).FirstOrDefault();
+            var session = database.Sessions.GetUserSession(token);
 
             if (session == null)
             {
@@ -73,7 +70,7 @@ namespace Roomie.Web.Website.Helpers
             {
                 User = user
             };
-            database.UserSessions.Add(userSession);
+            database.Sessions.Add(userSession);
 
             // set session cookie
             var cookie = new HttpCookie(sessionTokenName, userSession.Token);
