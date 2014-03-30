@@ -34,11 +34,21 @@
     var getHeaderByLocation = namespace.getHeaderByLocation = function (location) {
         var $matches = $();
         var $misses = $();
+        var $exactMatch;
 
         //TODO: improve
         $content.find('.collapse-next').each(function() {
             var $this = $(this);
             var location2 = $this.attr('data-location');
+
+            if (location == location2) {
+                $exactMatch = $this;
+            }
+
+            if (location2.length > location.length) {
+                location2 = location2.substr(0, location.length);
+            }
+
             if (location.indexOf(location2) == 0) {
                 $matches.push($this);
             } else {
@@ -48,7 +58,8 @@
 
         var result = {
             $matches: $matches,
-            $misses: $misses
+            $misses: $misses,
+            $exactMatch: $exactMatch
         };
 
         return result;
@@ -70,7 +81,7 @@
         });
 
         var scroll = function() {
-            var $exactLocationHeader = headers.$matches[headers.$matches.length - 1];
+            var $exactLocationHeader = headers.$exactMatch;
             var scrollPosition = $exactLocationHeader.offset().top - $header.height();
 
             $('body').animate({
