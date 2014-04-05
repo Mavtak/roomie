@@ -16,7 +16,7 @@ namespace Roomie.Web.Persistence.Database
         public INetworkRepository Networks { get; set; }
         public IDeviceRepository Devices { get; set; }
         public ITaskRepository Tasks { get; set; }
-        public IRoomieEntitySet<ScriptModel> Scripts { get; set; }
+        public IScriptRepository Scripts { get; set; }
         public ISavedScriptRepository SavedScripts { get; set; }
         public IDeviceLocationRepository DeviceLocations { get; set; }
         public ISessionRepository Sessions { get; set; }
@@ -31,8 +31,6 @@ namespace Roomie.Web.Persistence.Database
         {
             this.database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
-            Scripts = new DbContextAdapter<ScriptModel>(database.Scripts);
-
             Computers = new EntityFrameworkComputerRepository(database.Computers);
 
             NetworkGuests = new EntityFrameworkNetworkGuestRepository(database.NetworkGuests);
@@ -46,6 +44,8 @@ namespace Roomie.Web.Persistence.Database
             DeviceLocations = new EntityFrameworkDeviceLocationRepository(database.DeviceLocations);
 
             SavedScripts = new EntityFrameworkSavedScriptRepository(database.SavedScripts);
+
+            Scripts = new EntityFrameworkScriptRepository(database.Scripts);
 
             Tasks = new EntityFrameworkTaskRepository(database.Tasks);
 

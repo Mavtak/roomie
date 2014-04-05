@@ -40,10 +40,6 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 computer.UpdatePing();
                 database.SaveChanges();
 
-
-                //TODO: this is a hack
-                var scripts = database.Scripts.ToList();
-
                 var now = DateTime.UtcNow;
                 try
                 {
