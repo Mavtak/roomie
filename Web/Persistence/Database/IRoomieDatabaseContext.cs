@@ -10,15 +10,15 @@ namespace Roomie.Web.Persistence.Database
         int SaveChanges();
         void Reset();
 
-        IComputerRepository Computers { get; set; }
-        IDeviceRepository Devices { get; set; }
-        IDeviceLocationRepository DeviceLocations { get; set; }
-        INetworkGuestRepository NetworkGuests { get; set; }
-        INetworkRepository Networks { get; set; }
-        ISavedScriptRepository SavedScripts { get; set; }
-        IScriptRepository Scripts { get; set; }
-        ITaskRepository Tasks { get; set; }
-        IUserRepository Users { get; set; }
-        ISessionRepository Sessions { get; set; }
+        IComputerRepository Computers { get; }
+        IDeviceRepository Devices { get; }
+        IDeviceLocationRepository DeviceLocations { get; }
+        INetworkGuestRepository NetworkGuests { get; }
+        INetworkRepository Networks { get; }
+        ISavedScriptRepository SavedScripts { get; }
+        IScriptRepository Scripts { get; }
+        ITaskRepository Tasks { get; }
+        IUserRepository Users { get; }
+        ISessionRepository Sessions { get; }
     }
 }
