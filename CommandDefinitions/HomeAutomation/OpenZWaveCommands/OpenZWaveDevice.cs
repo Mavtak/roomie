@@ -56,6 +56,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             return results;
         }
 
+        public void OptimizePaths()
+        {
+            //TODO: remove the need for this cast
+            var homeId = ((OpenZWaveNetwork) Network).HomeId.Value;
+            Manager.HealNetworkNode(homeId, Id, true);
+        }
+
         internal OpenZWaveDeviceValue GetValue(CommandClass classId, byte? index = null, byte? instance = null)
         {
             var matches = GetValues(classId, index);

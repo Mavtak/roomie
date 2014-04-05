@@ -110,6 +110,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             throw new NotImplementedException();
         }
 
+        public void OptimizePaths()
+        {
+            Manager.HealNetwork(HomeId.Value, true);
+        }
+
         private static bool optionsConfigured = false;
         private const string ConfigurationPath = "OpenZWaveConfiguration";
         private static void ConfigureOptions()
