@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using Roomie.Web.Persistence.Models;
-using Roomie.Web.Persistence.Repositories;
+﻿using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Persistence.Database
 {
@@ -20,8 +14,6 @@ namespace Roomie.Web.Persistence.Database
         public ISavedScriptRepository SavedScripts { get; set; }
         public IDeviceLocationRepository DeviceLocations { get; set; }
         public ISessionRepository Sessions { get; set; }
-        //public IRoomieEntitySet<StringStringPair> StringStringDictionary { get; set; }
-        //public IRoomieEntitySet<HomeModel> Homes { get; set; }
 
         public static string ConnectionString { private get; set; }
 
@@ -29,7 +21,7 @@ namespace Roomie.Web.Persistence.Database
 
         public RoomieDatabaseContext()
         {
-            this.database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
+            database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
             Computers = new EntityFrameworkComputerRepository(database.Computers);
 
@@ -67,72 +59,6 @@ namespace Roomie.Web.Persistence.Database
         public void Dispose()
         {
             database.Dispose();
-        }
-
-        private sealed class DbContextAdapter<TEntityType> : IRoomieEntitySet<TEntityType>
-            where TEntityType : class
-        {
-            private DbSet<TEntityType> set;
-            private IQueryable<TEntityType> queriable;
-
-            public DbContextAdapter(DbSet<TEntityType> set)
-            {
-                this.set = set;
-                queriable = (IQueryable<TEntityType>)set;
-            }
-
-            #region IRoomieEntitySet implementation
-            void IRoomieEntitySet<TEntityType>.Add(TEntityType entity)
-            {
-                set.Add(entity);
-            }
-
-            void IRoomieEntitySet<TEntityType>.Remove(TEntityType entity)
-            {
-                set.Remove(entity);
-            }
-
-            TEntityType IRoomieEntitySet<TEntityType>.Find(object id)
-            {
-                return set.Find(id);
-            }
-            #endregion
-
-            #region IQueriable implementation
-            Type IQueryable.ElementType
-            {
-                get
-                {
-                    return queriable.ElementType;
-                }
-            }
-
-            System.Linq.Expressions.Expression IQueryable.Expression
-            {
-                get
-                {
-                    return queriable.Expression;
-                }
-            }
-
-            IQueryProvider IQueryable.Provider
-            {
-                get
-                {
-                    return queriable.Provider;
-                }
-            }
-
-            System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-            {
-                return queriable.GetEnumerator();
-            }
-
-            IEnumerator<TEntityType> IEnumerable<TEntityType>.GetEnumerator()
-            {
-                return queriable.GetEnumerator();
-            }
-            #endregion
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Roomie.Web.Persistence.Database
     {
         public DeviceTypeMapping()
         {
-            this.Property(p => p.Name);
+            Property(p => p.Name);
         }
     }
 }

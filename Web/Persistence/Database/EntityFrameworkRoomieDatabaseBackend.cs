@@ -1,9 +1,5 @@
-﻿using Roomie.Web.Persistence.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
+﻿using System.Data.Entity;
+using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Database
 {
@@ -20,8 +16,6 @@ namespace Roomie.Web.Persistence.Database
         public DbSet<SavedScriptModel> SavedScripts { get; set; }
         public DbSet<WebHookSessionModel> WebHookSessions { get; set; }
         public DbSet<DeviceLocationModel> DeviceLocations { get; set; }
-        //public DbSet<StringStringPair> StringStringDictionary { get; set; }
-        //public DbSet<HomeModel> Homes { get; set; }
 
         public EntityFrameworkRoomieDatabaseBackend(string nameOrConnectionString)
             : base(nameOrConnectionString)
@@ -30,7 +24,7 @@ namespace Roomie.Web.Persistence.Database
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add<Roomie.Common.HomeAutomation.DeviceType>(new DeviceTypeMapping());
+            modelBuilder.Configurations.Add(new DeviceTypeMapping());
         }
 
         public void Reset()
