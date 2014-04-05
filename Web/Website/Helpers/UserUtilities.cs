@@ -57,8 +57,7 @@ namespace Roomie.Web.Website.Helpers
                 user = new UserModel
                 {
                     RegisteredTimestamp = DateTime.UtcNow,
-                    Token = token,
-                    IsAdmin = token.Equals("openid:http://davidmcgrath.com/")
+                    Token = token
                 };
 
                 database.Users.Add(user);

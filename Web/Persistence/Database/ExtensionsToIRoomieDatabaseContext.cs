@@ -36,12 +36,5 @@ namespace Roomie.Web.Persistence.Database
 
             return result;
         }
-
-        public static UserModel CreateUser(this IRoomieDatabaseContext database, string token)
-        {
-            var user = database.Users.Add(token);
-
-            return user;
-        }
     }
 }

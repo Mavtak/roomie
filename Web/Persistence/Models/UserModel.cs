@@ -14,7 +14,6 @@ namespace Roomie.Web.Persistence.Models
         public string Alias { get; set; }
         public string Email { get; set; }
         public DateTime? RegisteredTimestamp { get; set; }
-        public bool? IsAdmin { get; set; }
 
         public virtual ICollection<ComputerModel> Computers { get; set; }
         public virtual ICollection<NetworkModel> HomeAutomationNetworks { get; set; }
