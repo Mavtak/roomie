@@ -45,7 +45,7 @@ namespace Roomie.Web.Website.Helpers
             var database = controller.Database;
             var user = controller.User;
 
-            var script = database.GetSavedScript(user, id);
+            var script = database.SavedScripts.Get(user, id);
 
             if (script == null)
             {
