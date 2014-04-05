@@ -79,8 +79,6 @@ namespace Roomie.Web.WebHook
 
             context.Database = new RoomieDatabaseContext();
 
-            var locationsHack = context.Database.DeviceLocations.ToList();
-
             context.Computer = context.Database.Computers.Get(eventArgs.AccessKey);
             if (context.Computer == null)
             {

@@ -17,27 +17,24 @@ namespace Roomie.Web.Persistence.Database
                 Owner = user,
                 Name = locationName
             };
-            //TODO: search in User.DeviceLocations instead?
-            var search = from l in database.DeviceLocations
-                         where l.Name == locationName && l.Owner.Id == user.Id
-                         select l;
 
-            if (search.Count() > 0)
+            var result = database.DeviceLocations.Get(user, locationName);
+
+            if (result == null)
             {
-                return search.First();
+                result = new DeviceLocationModel
+                    {
+                        Owner = user,
+                        Name = locationName
+                    };
+
+                database.DeviceLocations.Add(result);
+
             }
-
-            var newLocation = new DeviceLocationModel
-            {
-                Owner = user,
-                Name = locationName
-            };
-
-            database.DeviceLocations.Add(newLocation);
 
             //the DB changes will have to be saved
 
-            return newLocation;
+            return result;
         }
 
         public static UserModel CreateUser(this IRoomieDatabaseContext database, string token)

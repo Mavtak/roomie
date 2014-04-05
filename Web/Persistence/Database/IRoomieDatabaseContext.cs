@@ -9,12 +9,12 @@ namespace Roomie.Web.Persistence.Database
     {
         IRoomieEntitySet<ScriptModel> Scripts { get; set; }
         IRoomieEntitySet<SavedScriptModel> SavedScripts { get; set; }
-        IRoomieEntitySet<DeviceLocationModel> DeviceLocations { get; set; }
         int SaveChanges();
         void Reset();
 
         IComputerRepository Computers { get; set; }
         IDeviceRepository Devices { get; set; }
+        IDeviceLocationRepository DeviceLocations { get; set; }
         INetworkGuestRepository NetworkGuests { get; set; }
         INetworkRepository Networks { get; set; }
         ITaskRepository Tasks { get; set; }

@@ -89,6 +89,7 @@
     <Compile Include="Models\WebHookSessionModel.cs" />
     <Compile Include="Models\DeviceModel.cs" />
     <Compile Include="Models\NetworkModel.cs" />
+    <Compile Include="Repositories\EntityFrameworkDeviceLocationRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkSessionRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkComputerRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkDeviceRepository.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Repositories\GuestEnabledDeviceRepository.cs" />
     <Compile Include="Repositories\GuestEnabledNetworkRepository.cs" />
     <Compile Include="Repositories\IComputerRepository.cs" />
+    <Compile Include="Repositories\IDeviceLocationRepository.cs" />
     <Compile Include="Repositories\IDeviceRepository.cs" />
     <Compile Include="Repositories\INetworkGuestRepository.cs" />
     <Compile Include="Repositories\INetworkRepository.cs" />
