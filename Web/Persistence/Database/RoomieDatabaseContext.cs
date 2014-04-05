@@ -4,15 +4,15 @@ namespace Roomie.Web.Persistence.Database
 {
     public sealed class RoomieDatabaseContext : IRoomieDatabaseContext
     {
-        public IUserRepository Users { get; set; }
         public IComputerRepository Computers { get; set; }
+        public IDeviceRepository Devices { get; set; }
+        public IDeviceLocationRepository DeviceLocations { get; set; }
         public INetworkGuestRepository NetworkGuests { get; set; }
         public INetworkRepository Networks { get; set; }
-        public IDeviceRepository Devices { get; set; }
-        public ITaskRepository Tasks { get; set; }
-        public IScriptRepository Scripts { get; set; }
         public ISavedScriptRepository SavedScripts { get; set; }
-        public IDeviceLocationRepository DeviceLocations { get; set; }
+        public IScriptRepository Scripts { get; set; }
+        public ITaskRepository Tasks { get; set; }
+        public IUserRepository Users { get; set; }
         public ISessionRepository Sessions { get; set; }
 
         public static string ConnectionString { private get; set; }
