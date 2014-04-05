@@ -17,48 +17,48 @@ namespace Roomie.Web.Persistence.Database
 
         public static string ConnectionString { private get; set; }
 
-        private readonly EntityFrameworkRoomieDatabaseBackend database;
+        private readonly EntityFrameworkRoomieDatabaseBackend _database;
 
         public RoomieDatabaseContext()
         {
-            database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
+            _database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
-            Computers = new EntityFrameworkComputerRepository(database.Computers);
+            Computers = new EntityFrameworkComputerRepository(_database.Computers);
 
-            NetworkGuests = new EntityFrameworkNetworkGuestRepository(database.NetworkGuests);
+            NetworkGuests = new EntityFrameworkNetworkGuestRepository(_database.NetworkGuests);
 
-            var entityframeworkNetworkRepository = new EntityFrameworkNetworkRepository(database.Networks);
+            var entityframeworkNetworkRepository = new EntityFrameworkNetworkRepository(_database.Networks);
             Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
 
-            var entityFrameworkDeviceRepository = new EntityFrameworkDeviceRepository(database.Devices, Networks);
+            var entityFrameworkDeviceRepository = new EntityFrameworkDeviceRepository(_database.Devices, Networks);
             Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
 
-            DeviceLocations = new EntityFrameworkDeviceLocationRepository(database.DeviceLocations);
+            DeviceLocations = new EntityFrameworkDeviceLocationRepository(_database.DeviceLocations);
 
-            SavedScripts = new EntityFrameworkSavedScriptRepository(database.SavedScripts);
+            SavedScripts = new EntityFrameworkSavedScriptRepository(_database.SavedScripts);
 
-            Scripts = new EntityFrameworkScriptRepository(database.Scripts);
+            Scripts = new EntityFrameworkScriptRepository(_database.Scripts);
 
-            Tasks = new EntityFrameworkTaskRepository(database.Tasks);
+            Tasks = new EntityFrameworkTaskRepository(_database.Tasks);
 
-            Users = new EntityFrameworkUserRepository(database.Users);
+            Users = new EntityFrameworkUserRepository(_database.Users);
 
-            Sessions = new EntityFrameworkSessionRepository(database.UserSessions, database.WebHookSessions);
+            Sessions = new EntityFrameworkSessionRepository(_database.UserSessions, _database.WebHookSessions);
         }
 
         public void Reset()
         {
-            DatabaseUtilities.Reset(database);
+            DatabaseUtilities.Reset(_database);
         }
 
         public int SaveChanges()
         {
-            return database.SaveChanges();
+            return _database.SaveChanges();
         }
 
         public void Dispose()
         {
-            database.Dispose();
+            _database.Dispose();
         }
     }
 }
