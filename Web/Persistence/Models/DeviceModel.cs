@@ -6,8 +6,10 @@ using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
+using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.Measurements.Power;
 using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
@@ -78,6 +80,11 @@ namespace Roomie.Web.Persistence.Models
                 BinarySensor.Update(state.BinarySensorState);
             }
 
+            if (state.PowerSensorState != null)
+            {
+                PowerSensor.Update(state.PowerSensorState);
+            }
+
             if (state.ThermostatState != null)
             {
                 Thermostat.Update(state.ThermostatState);
@@ -87,6 +94,7 @@ namespace Roomie.Web.Persistence.Models
         private readonly ToggleSwitchModel _toggleSwitch;
         private readonly DimmerSwitchModel _dimmerSwitch;
         private readonly BinarySensorModel _binarySensor;
+        private readonly MultilevelSensorModel<IPower> _powerSensor;
         private readonly ThermostatModel _thermostat;
 
         public ToggleSwitchModel ToggleSwitch
@@ -114,6 +122,14 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        public MultilevelSensorModel<IPower> PowerSensor
+        {
+            get
+            {
+                return _powerSensor;
+            }
+        }
+
         public ThermostatModel Thermostat
         {
             get
@@ -137,6 +153,7 @@ namespace Roomie.Web.Persistence.Models
             _dimmerSwitch = new DimmerSwitchModel(this);
             _thermostat = new ThermostatModel(this);
             _binarySensor = new BinarySensorModel(this);
+            _powerSensor = new MultilevelSensorModel<IPower>(this);
         }
 
         #region LastPing
@@ -205,6 +222,14 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        IMultilevelSensor<IPower> IDevice.PowerSensor
+        {
+            get
+            {
+                return PowerSensor;
+            }
+        }
+
         IThermostat IDevice.Thermostat
         {
             get
@@ -262,6 +287,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return BinarySensor;
+            }
+        }
+
+        public IMultilevelSensorState<IPower> PowerSensorState
+        {
+            get
+            {
+                return PowerSensor;
             }
         }
 
@@ -392,6 +425,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return BinarySensor;
+            }
+        }
+
+        public IMultilevelSensorActions PowerSensorActions
+        {
+            get
+            {
+                return PowerSensor;
             }
         }
 

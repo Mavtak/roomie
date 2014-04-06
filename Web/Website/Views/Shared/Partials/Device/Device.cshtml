@@ -11,6 +11,11 @@
       
     *@@if (Model.DisplayButtons)
     {
+        if (device.PowerSensor.Value != null)
+        {
+            <div class="group">@device.PowerSensor.Value</div>
+        }
+          
         if (device.Type.Equals(DeviceType.Thermostat))
         {
             @Html.Partial("Partials/Device/ThermostatControls", Model);

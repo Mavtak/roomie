@@ -3,18 +3,20 @@ using NUnit.Framework;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
+using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
+using Roomie.Common.Measurements;
 using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Tests
 {
     public class AssertionHelpers
     {
-        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkToggleSwitch, bool checkDimmerSwitch, bool checkBinarySensor, bool checkThermostat, bool checkKeypad)
+        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkToggleSwitch, bool checkDimmerSwitch, bool checkBinarySensor, bool checkPowerSensor, bool checkThermostat, bool checkKeypad)
         {
             Assert.That(one.Name, Is.EqualTo(two.Name));
             Assert.That(one.Address, Is.EqualTo(two.Address));
@@ -34,6 +36,11 @@ namespace Roomie.Common.HomeAutomation.Tests
             if (checkBinarySensor)
             {
                 AssertBinarySensorEqual(one.BinarySensorState, two.BinarySensorState);
+            }
+
+            if (checkPowerSensor)
+            {
+                AssertMultilevelSensorEqual(one.PowerSensorState, two.PowerSensorState);
             }
 
             if (checkThermostat)
@@ -95,6 +102,20 @@ namespace Roomie.Common.HomeAutomation.Tests
 
             Assert.That(one.Type, Is.EqualTo(two.Type));
             Assert.That(one.Value, Is.EqualTo(two.Value));
+        }
+
+        public static void AssertMultilevelSensorEqual<TMeasurement>(IMultilevelSensorState<TMeasurement> one, IMultilevelSensorState<TMeasurement> two)
+            where TMeasurement : IMeasurement
+        {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
+            AssertHelperHelper(one, two);
+
+            Assert.That(one.Value.Format(), Is.EqualTo(two.Value.Format()));
+
         }
 
         public static void AssertThermostatEqual(IThermostatState one, IThermostatState two)

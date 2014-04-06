@@ -1,8 +1,10 @@
 ﻿using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
+using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.Measurements.Power;
 
 namespace Roomie.Common.HomeAutomation
 {
@@ -17,6 +19,7 @@ namespace Roomie.Common.HomeAutomation
         DeviceType Type { get; }
         
         IBinarySwitchState BinarySwitchState { get; }
+        IMultilevelSensorState<IPower> PowerSensorState { get; }
         IMultilevelSwitchState MultilevelSwitchState { get; }
         IBinarySensorState BinarySensorState { get; }
         IThermostatState ThermostatState { get; }

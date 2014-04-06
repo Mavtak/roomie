@@ -4,8 +4,10 @@ using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Keypads;
+using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.Measurements.Power;
 using BackingDevice = ControlThink.ZWave.Devices.ZWaveDevice;
 using BaseDevice = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
 using BaseNetwork = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
@@ -112,6 +114,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             get
             {
                 return _binarySensor;
+            }
+        }
+
+        public override IMultilevelSensor<IPower> PowerSensor
+        {
+            get
+            {
+                return null;
             }
         }
 

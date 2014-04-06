@@ -6,8 +6,10 @@ using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Keypads.Buttons;
+using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.Measurements.Power;
 
 namespace Roomie.CommandDefinitions.PiEngineeringCommands
 {
@@ -45,6 +47,14 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
         }
 
         public override IBinarySensor BinarySensor
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public override IMultilevelSensor<IPower> PowerSensor
         {
             get
             {

@@ -6,6 +6,7 @@ using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
+using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Models;
 
@@ -27,9 +28,10 @@ namespace Roomie.Web.Persistence
                 var offToggleSwitch = new DeviceModel
                     {
                         Name = "A Toggle Switch that is off",
-                        Type = DeviceType.BinarySwitch
+                        Type = DeviceType.BinarySwitch,
                     };
                 offToggleSwitch.ToggleSwitch.Power = BinarySwitchPower.Off;
+                offToggleSwitch.PowerSensor.Value = new WattsPower(0);
 
                 var onDimmerSwitch = new DeviceModel
                     {
@@ -37,6 +39,7 @@ namespace Roomie.Web.Persistence
                         Type = DeviceType.MultilevelSwitch
                     };
                 onDimmerSwitch.DimmerSwitch.Power = 75;
+                onDimmerSwitch.PowerSensor.Value = new WattsPower(25.2);
 
                 var offDimmerSwitch = new DeviceModel
                     {
