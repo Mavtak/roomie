@@ -22,6 +22,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly OpenZWaveDimmerSwitch _dimmerSwitch;
         private readonly OpenZWaveThermostat _thermostat;
         private readonly OpenZWaveBinarySensor _binarySensor;
+        private readonly OpenZWavePowerSensor _powerSensor;
 
         public byte? Event;
 
@@ -39,6 +40,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _dimmerSwitch = new OpenZWaveDimmerSwitch(this);
             _thermostat = new OpenZWaveThermostat(this);
             _binarySensor = new OpenZWaveBinarySensor(this);
+            _powerSensor = new OpenZWavePowerSensor(this);
         }
         
         internal IEnumerable<OpenZWaveDeviceValue> GetValues(CommandClass classId, byte? index = null, byte? instance = null)
@@ -93,6 +95,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 return true;
             }
 
+            if (_powerSensor.ProcessValueChanged(value))
+            {
+                return true;
+            }
+
             if (_thermostat.ProcessValueChanged(value))
             {
                 return true;
@@ -129,8 +136,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             get
             {
-                //TODO: implement
-                return null;
+                return _powerSensor;
             }
         }
 

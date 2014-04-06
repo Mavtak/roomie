@@ -58,6 +58,7 @@
     <Compile Include="NodeDataEntries\INodeDataEntryWithOptions.cs" />
     <Compile Include="NodeDataEntries\IWritableNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\NodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ImmediatePowerDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\ThermostatFanCurrentAction.cs" />
     <Compile Include="NodeDataEntries\Specific\ThermostatFanModeDataEntry.cs" />
     <Compile Include="NodeDataEntries\Specific\SwitchBinaryDataEntry.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="OpenZWaveNetwork.cs" />
     <Compile Include="OpenZWaveNotification.cs" />
     <Compile Include="OpenZWaveNotificationProcessor.cs" />
+    <Compile Include="OpenZWavePowerSensor.cs" />
     <Compile Include="OpenZWaveSetpointCollection.cs" />
     <Compile Include="OpenZWaveThermostat.cs" />
     <Compile Include="OpenZWaveThermostatFan.cs" />
