@@ -22,20 +22,20 @@ namespace Roomie.Web.Website.Controllers
     public class DeviceController : RoomieBaseController
     {
         [WebsiteRestrictedAccess]
-        public ActionResult Index(string location)
+        public ActionResult Index(string search)
         {
             var devices = Database.Devices.Get(User).AsEnumerable();
 
-            if (location != null)
+            if (!string.IsNullOrEmpty(search))
             {
+                search = search.ToLower();
+
                 devices = devices.Where(device =>
                     {
-                        if (location.Equals(string.Empty))
-                        {
-                            return device.Location == null || device.Location.Name == null || device.Location.Name == string.Empty;
-                        }
+                        var comparisonString = device.BuildVirtualAddress(false, false).ToLower();
+                        var result = comparisonString.Contains(search);
 
-                        return device.Location != null && string.Equals(device.Location.Name, location, StringComparison.InvariantCultureIgnoreCase);
+                        return result;
                     });
             }
 
