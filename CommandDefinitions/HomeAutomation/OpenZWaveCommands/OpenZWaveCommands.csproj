@@ -49,12 +49,15 @@
     <Compile Include="Commands\OpenZWave\OptimizeNetwork.cs" />
     <Compile Include="Commands\OpenZWave\PrintData.cs" />
     <Compile Include="Commands\OpenZWave\RegisterNetwork.cs" />
+    <Compile Include="OpenZWaveHumiditySensor.cs" />
+    <Compile Include="NodeDataEntries\General\HumidityNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\TemperatureNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\ShortNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\IntNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\DecimalNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\StringNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\WritableTemperatureNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\HumiditySensorDataEntry.cs" />
     <Compile Include="OpenZWaveDeviceValueExtensions.cs" />
     <Compile Include="OpenZWaveDeviceValueMatchers\CommandClassMatcher.cs" />
     <Compile Include="OpenZWaveDeviceValueMatchers\CompositeMatcher.cs" />

@@ -23,6 +23,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly OpenZWaveThermostat _thermostat;
         private readonly OpenZWaveBinarySensor _binarySensor;
         private readonly OpenZWavePowerSensor _powerSensor;
+        private readonly OpenZWaveHumiditySensor _humiditySensor;
 
         public byte? Event;
 
@@ -41,6 +42,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _thermostat = new OpenZWaveThermostat(this);
             _binarySensor = new OpenZWaveBinarySensor(this);
             _powerSensor = new OpenZWavePowerSensor(this);
+            _humiditySensor = new OpenZWaveHumiditySensor(this);
         }
 
         public void OptimizePaths()
@@ -70,6 +72,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
 
             if (_powerSensor.ProcessValueChanged(value))
+            {
+                return true;
+            }
+
+            if (_humiditySensor.ProcessValueChanged(value))
             {
                 return true;
             }
@@ -118,7 +125,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             get
             {
-                return null;
+                return _humiditySensor;
             }
         }
 
