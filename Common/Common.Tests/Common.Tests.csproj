@@ -47,6 +47,8 @@
     <Compile Include="Energy\JoulesEnergyTests.cs" />
     <Compile Include="Energy\KilowattHoursEnergyTests.cs" />
     <Compile Include="Energy\EntergyParserTests.cs" />
+    <Compile Include="Humidity\RelativeHumidityTests.cs" />
+    <Compile Include="Humidity\HumidityParserTests.cs" />
     <Compile Include="Measurements\MeasurementParserTests.cs" />
     <Compile Include="Power\RatioParserTests.cs" />
     <Compile Include="Power\WattsPowerTests.cs" />

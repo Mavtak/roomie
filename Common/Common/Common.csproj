@@ -48,6 +48,9 @@
     <Compile Include="Measurements\Energy\IEnergy.cs" />
     <Compile Include="Measurements\Energy\JoulesEnergy.cs" />
     <Compile Include="Measurements\Energy\EnergyParser.cs" />
+    <Compile Include="Measurements\Humidity\IHumidity.cs" />
+    <Compile Include="Measurements\Humidity\HumidityParser.cs" />
+    <Compile Include="Measurements\Humidity\RelativeHumidity.cs" />
     <Compile Include="Measurements\IMeasurement.cs" />
     <Compile Include="Measurements\MeasurementExtensions.cs" />
     <Compile Include="Measurements\MeasurementParser.cs" />

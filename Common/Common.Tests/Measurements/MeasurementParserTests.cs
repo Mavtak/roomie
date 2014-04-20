@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Roomie.Common.Measurements;
 using Roomie.Common.Measurements.Energy;
+using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Ratio;
 using Roomie.Common.Measurements.Temperature;
@@ -32,6 +33,15 @@ namespace Roomie.Common.Tests.Measurements
         public void ItParsesRatioMeasurementsCorrectly(string input, double value, Type type)
         {
             var result = MeasurementParser.Parse<IRatio>(input);
+
+            Assert.That(result.Value, Is.EqualTo(value));
+            Assert.That(result.GetType(), Is.EqualTo(type));
+        }
+
+        [TestCase("1%", 1, typeof(RelativeHumidity))]
+        public void ItParsesHumidityMeasurementsCorrectly(string input, double value, Type type)
+        {
+            var result = MeasurementParser.Parse<IHumidity>(input);
 
             Assert.That(result.Value, Is.EqualTo(value));
             Assert.That(result.GetType(), Is.EqualTo(type));
