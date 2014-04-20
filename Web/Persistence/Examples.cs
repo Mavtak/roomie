@@ -6,6 +6,7 @@ using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
+using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Models;
@@ -72,6 +73,13 @@ namespace Roomie.Web.Persistence
                 };
                 falseGenericBinarySensor.BinarySensor.Value = false;
 
+                var multisensor = new DeviceModel
+                {
+                    Name = "A Multisensor",
+                    Type = DeviceType.BinarySensor
+                };
+                multisensor.HumiditySensor.Value = new RelativeHumidity(35);
+
                 var thermostat = new DeviceModel
                     {
                         Name = "A Thermostat with all data",
@@ -93,7 +101,7 @@ namespace Roomie.Web.Persistence
                         Type = DeviceType.Thermostat
                     };
 
-                var devices = new[] { onToggleSwitch, offToggleSwitch, onDimmerSwitch, offDimmerSwitch, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, thermostat, noDataThermostat };
+                var devices = new[] { onToggleSwitch, offToggleSwitch, onDimmerSwitch, offDimmerSwitch, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, multisensor, thermostat, noDataThermostat };
 
                 var computer = new ComputerModel
                     {
