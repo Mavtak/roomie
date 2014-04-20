@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.OpenZWaveDeviceValueMatchers
 {
@@ -17,6 +18,26 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.OpenZWaveDeviceValueMatche
             var result = _units.Any(x => string.Equals(x, entry.Units, StringComparison.InvariantCultureIgnoreCase));
 
             return result;
+        }
+
+        public override string ToString()
+        {
+            var result = new StringBuilder();
+            result.Append("Units ");
+
+            if (_units.Length == 1)
+            {
+                result.Append("= ");
+                result.Append(_units.First());
+            }
+            else
+            {
+                result.Append("in (");
+                result.Append(string.Join(",", _units));
+                result.Append(")");
+            }
+
+            return result.ToString();
         }
 
         public static IOpenZWaveDeviceValueMatcher Time()

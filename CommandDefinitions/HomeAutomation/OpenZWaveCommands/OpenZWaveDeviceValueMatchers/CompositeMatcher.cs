@@ -41,5 +41,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.OpenZWaveDeviceValueMatche
 
             return result;
         }
+
+        public override string ToString()
+        {
+            var result = string.Join(" and ", _matchers.Select(x => x.ToString()));
+
+            return result;
+        }
     }
 }

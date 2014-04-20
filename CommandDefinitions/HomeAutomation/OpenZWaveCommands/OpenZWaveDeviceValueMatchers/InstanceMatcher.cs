@@ -16,5 +16,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.OpenZWaveDeviceValueMatche
 
             return result;
         }
+
+        public override string ToString()
+        {
+            var result = "instance = " + _instance;
+
+            return result;
+        }
     }
 }
