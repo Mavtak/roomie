@@ -10,7 +10,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: true, includePowerSensor: true, includeThermostat: true, includeKeypad: true);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: true, includePowerSensor: true, includeHumiditySensor: true, includeThermostat: true, includeKeypad: true);
             }
         }
 
@@ -18,7 +18,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, includeToggle: false, includeDimmer: true, includeBinarySensor: true, includePowerSensor: true, includeThermostat: true, includeKeypad: false);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: false, includeDimmer: true, includeBinarySensor: true, includePowerSensor: true, includeHumiditySensor: true, includeThermostat: true, includeKeypad: false);
             }
         }
 
@@ -26,7 +26,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: false, includeBinarySensor: true, includePowerSensor: true, includeThermostat: true, includeKeypad: false);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: false, includeBinarySensor: true, includePowerSensor: true, includeHumiditySensor: true, includeThermostat: true, includeKeypad: false);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: false, includePowerSensor: true, includeThermostat: true, includeKeypad: false);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: false, includePowerSensor: true, includeHumiditySensor: true, includeThermostat: true, includeKeypad: false);
             }
         }
 
@@ -42,7 +42,15 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: true, includePowerSensor: false, includeThermostat: true, includeKeypad: true);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: true, includePowerSensor: false, includeHumiditySensor: true, includeThermostat: true, includeKeypad: true);
+            }
+        }
+
+        public IEnumerable<IDeviceState> DevicesWithoutHumiditySensors
+        {
+            get
+            {
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: true, includePowerSensor: true, includeHumiditySensor: false, includeThermostat: true, includeKeypad: true);
             }
         }
 
@@ -50,7 +58,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: true, includePowerSensor: true, includeThermostat: false, includeKeypad: false);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: true, includePowerSensor: true, includeHumiditySensor: true, includeThermostat: false, includeKeypad: false);
             }
         }
 
@@ -58,7 +66,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         {
             get
             {
-                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: true, includePowerSensor: true, includeThermostat: true, includeKeypad: false);
+                return DataHelpers.GenerateExampleDevices(20, includeToggle: true, includeDimmer: true, includeBinarySensor: true, includePowerSensor: true, includeHumiditySensor: true, includeThermostat: true, includeKeypad: false);
             }
         }
 
@@ -68,7 +76,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = device.Copy();
 
             //TODO: assert truly separate objects
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true,  checkPowerSensor: true, checkThermostat: true, checkKeypad: true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkHumiditySensor: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("Devices")]
@@ -77,7 +85,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: false, checkBinarySensor: false, checkPowerSensor: false, checkThermostat: false, checkKeypad: false);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: false, checkBinarySensor: false, checkPowerSensor: false, checkHumiditySensor: false, checkThermostat: false, checkKeypad: false);
         }
 
         [TestCaseSource("Devices")]
@@ -86,7 +94,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: true, checkBinarySensor: false, checkPowerSensor: false, checkThermostat: false, checkKeypad: false);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: true, checkBinarySensor: false, checkPowerSensor: false, checkHumiditySensor: false, checkThermostat: false, checkKeypad: false);
         }
 
         [TestCaseSource("Devices")]
@@ -95,7 +103,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkBinarySensor: true, checkPowerSensor: false, checkThermostat: false, checkKeypad: false);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkBinarySensor: true, checkPowerSensor: false, checkHumiditySensor: false, checkThermostat: false, checkKeypad: false);
         }
 
         [TestCaseSource("Devices")]
@@ -104,7 +112,16 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkBinarySensor: false, checkPowerSensor: true, checkThermostat: false, checkKeypad: false);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkBinarySensor: false, checkPowerSensor: true, checkHumiditySensor: false, checkThermostat: false, checkKeypad: false);
+        }
+
+        [TestCaseSource("Devices")]
+        public void HumiditySensorSerializationWorks(IDeviceState device)
+        {
+            var node = device.ToXElement();
+            var copy = node.ToDeviceState();
+
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkBinarySensor: false, checkPowerSensor: false, checkHumiditySensor: true, checkThermostat: false, checkKeypad: false);
         }
 
         [TestCaseSource("Devices")]
@@ -113,7 +130,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkBinarySensor: false, checkPowerSensor: false, checkThermostat: true, checkKeypad: false);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkBinarySensor: false, checkPowerSensor: false, checkHumiditySensor: false, checkThermostat: true, checkKeypad: false);
         }
 
         [TestCaseSource("Devices")]
@@ -122,7 +139,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkBinarySensor: false, checkPowerSensor: false, checkThermostat: false, checkKeypad: true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: false, checkDimmerSwitch: false, checkBinarySensor: false, checkPowerSensor: false, checkHumiditySensor: false, checkThermostat: false, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutToggleSwitches")]
@@ -131,7 +148,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkThermostat: true, checkKeypad: true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkHumiditySensor: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutDimmerSwitches")]
@@ -140,7 +157,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkThermostat: true, checkKeypad: true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkHumiditySensor: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutBinarySensors")]
@@ -149,7 +166,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkThermostat: true, checkKeypad: true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkHumiditySensor: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutPowerSensors")]
@@ -158,7 +175,16 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkThermostat: true, checkKeypad: true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkHumiditySensor: true, checkThermostat: true, checkKeypad: true);
+        }
+
+        [TestCaseSource("DevicesWithoutHumiditySensors")]
+        public void SerializationWorksWithNullHumiditySensor(IDeviceState device)
+        {
+            var node = device.ToXElement();
+            var copy = node.ToDeviceState();
+
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkHumiditySensor: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutThermostats")]
@@ -167,7 +193,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkThermostat: true, checkKeypad: true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkHumiditySensor: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("DevicesWithoutKeypads")]
@@ -176,7 +202,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkThermostat: true, checkKeypad: true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkHumiditySensor: true, checkThermostat: true, checkKeypad: true);
         }
 
         [TestCaseSource("Devices")]
@@ -185,7 +211,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkThermostat: true, checkKeypad: true);
+            AssertionHelpers.AssertDevicesEqual(device, copy, checkToggleSwitch: true, checkDimmerSwitch: true, checkBinarySensor: true, checkPowerSensor: true, checkHumiditySensor: true, checkThermostat: true, checkKeypad: true);
         }
     }
 }

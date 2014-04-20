@@ -4,6 +4,7 @@ using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Power;
 
 namespace Roomie.Common.HomeAutomation
@@ -20,6 +21,7 @@ namespace Roomie.Common.HomeAutomation
         
         IBinarySwitchState BinarySwitchState { get; }
         IMultilevelSensorState<IPower> PowerSensorState { get; }
+        IMultilevelSensorState<IHumidity> HumiditySensorState { get; }
         IMultilevelSwitchState MultilevelSwitchState { get; }
         IBinarySensorState BinarySensorState { get; }
         IThermostatState ThermostatState { get; }

@@ -7,6 +7,7 @@ using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
+using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Power;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
@@ -110,6 +111,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             get
             {
                 return _powerSensor;
+            }
+        }
+
+        public override IMultilevelSensor<IHumidity> HumiditySensor
+        {
+            get
+            {
+                return null;
             }
         }
 
