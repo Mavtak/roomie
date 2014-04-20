@@ -58,6 +58,7 @@
     <Compile Include="OpenZWaveDeviceValueExtensions.cs" />
     <Compile Include="OpenZWaveDeviceValueMatchers\CommandClassMatcher.cs" />
     <Compile Include="OpenZWaveDeviceValueMatchers\CompositeMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\LabelMatcher.cs" />
     <Compile Include="OpenZWaveDeviceValueMatchers\InstanceMatcher.cs" />
     <Compile Include="OpenZWaveDeviceValueMatchers\IdMatcher.cs" />
     <Compile Include="OpenZWaveDeviceValueMatchers\IndexMatcher.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="NodeDataEntries\Specific\ThermostatSetpointDataEntry.cs" />
     <Compile Include="OpenZWaveBinarySensor.cs" />
     <Compile Include="OpenZWaveDeviceValue.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\UnitsMatcher.cs" />
     <Compile Include="OpenZWaveDimmerSwitch.cs" />
     <Compile Include="OpenZWaveDevice.cs" />
     <Compile Include="OpenZWaveNetwork.cs" />
