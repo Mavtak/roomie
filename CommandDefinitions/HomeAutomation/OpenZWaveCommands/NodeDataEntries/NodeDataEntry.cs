@@ -1,23 +1,28 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Roomie.CommandDefinitions.OpenZWaveCommands.OpenZWaveDeviceValueMatchers;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
 {
     public abstract class NodeDataEntry<T> : INodeDataEntry<T>
     {
         protected readonly OpenZWaveDevice Device;
-        private readonly CommandClass _commandClass;
-        protected readonly byte? _index;
+        protected readonly IOpenZWaveDeviceValueMatcher Matcher;
 
         protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass, byte? index = null)
+            : this(device, CompositeMatcher.Create(device.Id, commandClass, index))
+        {
+        }
+
+        protected NodeDataEntry(OpenZWaveDevice device, IOpenZWaveDeviceValueMatcher matcher)
         {
             Device = device;
-            _commandClass = commandClass;
-            _index = index;
+            Matcher = matcher;
         }
 
         protected OpenZWaveDeviceValue GetDataEntry()
         {
-            var result = Device.GetValue(_commandClass, _index);
+            var result = Device.Values.FirstOrDefault(x => Matcher.Matches(x));
 
             return result;
         }
@@ -35,22 +40,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
 
         public bool Matches(OpenZWaveDeviceValue entry)
         {
-            if (entry.DeviceId != Device.Id)
-            {
-                return false;
-            }
+            var result = Matcher.Matches(entry);
 
-            if (entry.CommandClass != _commandClass)
-            {
-                return false;
-            }
-
-            if (_index != null && entry.Index != _index)
-            {
-                return false;
-            }
-
-            return true;
+            return result;
         }
 
         public void RefreshValue()

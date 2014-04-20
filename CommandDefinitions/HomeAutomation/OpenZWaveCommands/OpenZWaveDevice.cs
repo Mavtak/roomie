@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using OpenZWaveDotNet;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Common.HomeAutomation.BinarySensors;
@@ -42,23 +41,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _binarySensor = new OpenZWaveBinarySensor(this);
             _powerSensor = new OpenZWavePowerSensor(this);
         }
-        
-        internal IEnumerable<OpenZWaveDeviceValue> GetValues(CommandClass classId, byte? index = null, byte? instance = null)
-        {
-            var results = Values.Where(x => x.CommandClass == classId);
-
-            if (index != null)
-            {
-                results = results.Where(x => x.Index == index);
-            }
-
-            if (instance != null)
-            {
-                results = results.Where(x => x.Instance == instance);
-            }
-
-            return results;
-        }
 
         public void OptimizePaths()
         {
@@ -67,18 +49,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             Manager.HealNetworkNode(homeId, Id, true);
         }
 
-        internal OpenZWaveDeviceValue GetValue(CommandClass classId, byte? index = null, byte? instance = null)
-        {
-            var matches = GetValues(classId, index);
-
-            var result = matches.FirstOrDefault();
-
-            return result;
-        }
-
         internal void RemoveValue(OpenZWaveDeviceValue value)
         {
-            var remove = GetValue(value.CommandClass, value.Index, value.Instance);
+            var remove = Values.Match(value.DeviceId, value.CommandClass, value.Index);
 
             Values.Remove(remove);
         }

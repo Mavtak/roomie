@@ -55,6 +55,13 @@
     <Compile Include="NodeDataEntries\General\DecimalNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\StringNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\General\WritableTemperatureNodeDataEntry.cs" />
+    <Compile Include="OpenZWaveDeviceValueExtensions.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\CommandClassMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\CompositeMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\InstanceMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\IdMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\IndexMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\IOpenZWaveDeviceValueMatcher.cs" />
     <Compile Include="NodeDataEntries\INodeDataEntryWithOptions.cs" />
     <Compile Include="NodeDataEntries\IWritableNodeDataEntry.cs" />
     <Compile Include="NodeDataEntries\NodeDataEntry.cs" />
