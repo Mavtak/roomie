@@ -26,7 +26,5 @@ namespace Roomie.Common.HomeAutomation
         IBinarySensorState BinarySensorState { get; }
         IThermostatState ThermostatState { get; }
         IKeypadState KeypadState { get; }
-
-        void Update(IDeviceState state);
     }
 }

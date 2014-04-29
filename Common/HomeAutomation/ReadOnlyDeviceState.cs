@@ -164,10 +164,5 @@ namespace Roomie.Common.HomeAutomation
             return result;
             
         }
-
-        public void Update(IDeviceState state)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
