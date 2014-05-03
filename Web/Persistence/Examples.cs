@@ -41,6 +41,7 @@ namespace Roomie.Web.Persistence
                     };
                 onDimmerSwitch.DimmerSwitch.Power = 75;
                 onDimmerSwitch.PowerSensor.Value = new WattsPower(25.2);
+                onDimmerSwitch.PowerSensor.TimeStamp = DateTime.UtcNow.AddSeconds(-5);
 
                 var offDimmerSwitch = new DeviceModel
                     {
@@ -79,6 +80,7 @@ namespace Roomie.Web.Persistence
                     Type = DeviceType.BinarySensor
                 };
                 multisensor.HumiditySensor.Value = new RelativeHumidity(35);
+                multisensor.HumiditySensor.TimeStamp = DateTime.UtcNow.AddMinutes(-3).AddSeconds(-14);
 
                 var thermostat = new DeviceModel
                     {
