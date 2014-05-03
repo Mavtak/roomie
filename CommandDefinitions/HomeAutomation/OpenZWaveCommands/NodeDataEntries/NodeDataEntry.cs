@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Roomie.CommandDefinitions.OpenZWaveCommands.OpenZWaveDeviceValueMatchers;
 using Roomie.Common.HomeAutomation.Events;
@@ -10,6 +11,8 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         protected readonly OpenZWaveDevice Device;
         protected readonly IOpenZWaveDeviceValueMatcher Matcher;
 
+        public DateTime LastUpdated { get; private set; }
+
         protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass, byte? index = null)
             : this(device, CompositeMatcher.Create(device.Id, commandClass, index))
         {
@@ -19,6 +22,8 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         {
             Device = device;
             Matcher = matcher;
+
+            RefreshLastUpdated();
         }
 
         protected OpenZWaveDeviceValue GetDataEntry()
@@ -60,6 +65,8 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
                 return false;
             }
 
+            RefreshLastUpdated();
+
             var @event = CreateDeviceEvent();
             Device.AddEvent(@event);
 
@@ -67,6 +74,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         }
 
         protected abstract IDeviceEvent CreateDeviceEvent();
+
+        private void RefreshLastUpdated()
+        {
+            LastUpdated = DateTime.UtcNow;
+        }
 
         public string Label
         {
