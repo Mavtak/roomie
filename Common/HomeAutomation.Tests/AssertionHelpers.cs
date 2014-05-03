@@ -120,7 +120,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             AssertHelperHelper(one, two);
 
             Assert.That(one.Value.Format(), Is.EqualTo(two.Value.Format()));
-
+            Assert.That(one.TimeStamp, Is.EqualTo(two.TimeStamp));
         }
 
         public static void AssertThermostatEqual(IThermostatState one, IThermostatState two)

@@ -1,4 +1,5 @@
-﻿using Roomie.Common.Measurements;
+﻿using System;
+using Roomie.Common.Measurements;
 
 namespace Roomie.Common.HomeAutomation.MultilevelSensors
 {
@@ -6,5 +7,6 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
         where TMeasurement : IMeasurement
     {
         TMeasurement Value { get; }
+        DateTime? TimeStamp { get; }
     }
 }

@@ -29,6 +29,14 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
                 result.Append(value);
             }
 
+            var timestamp = state.TimeStamp;
+            if (timestamp != null)
+            {
+                result.Append(" (at ");
+                result.Append(state.TimeStamp);
+                result.Append(")");
+            }
+
             return result.ToString();
         }
 
@@ -40,6 +48,11 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
             if (state.Value != null)
             {
                 result.Add(new XAttribute("Value", state.Value));
+            }
+
+            if (state.TimeStamp != null)
+            {
+                result.Add(new XAttribute("TimeStamp", state.TimeStamp));
             }
 
             return result;

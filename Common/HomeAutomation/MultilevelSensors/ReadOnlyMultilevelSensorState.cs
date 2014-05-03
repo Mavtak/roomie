@@ -8,21 +8,24 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
         where TMeasurement : IMeasurement
     {
         public TMeasurement Value { get; private set; }
+        public DateTime? TimeStamp { get; private set; }
 
         private ReadOnlyMultilevelSensorState()
         {
         }
 
-        public ReadOnlyMultilevelSensorState(TMeasurement value)
+        public ReadOnlyMultilevelSensorState(TMeasurement value, DateTime? timeStamp)
         {
             Value = value;
+            TimeStamp = timeStamp;
         }
 
         public static ReadOnlyMultilevelSensorState<TMeasurement> CopyFrom(IMultilevelSensorState<TMeasurement> source)
         {
             var result = new ReadOnlyMultilevelSensorState<TMeasurement>
                 {
-                    Value = source.Value
+                    Value = source.Value,
+                    TimeStamp = source.TimeStamp
                 };
 
             return result;
@@ -38,9 +41,17 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
                 value = MeasurementParser.Parse<TMeasurement>(valueString);
             }
 
+            DateTime? timeStamp = null;
+            var timeStampString = element.GetAttributeStringValue("TimeStamp");
+            if (timeStampString != null)
+            {
+                timeStamp = Convert.ToDateTime(timeStampString).ToUniversalTime();
+            }
+
             var result = new ReadOnlyMultilevelSensorState<TMeasurement>
                 {
-                    Value = value
+                    Value = value,
+                    TimeStamp = timeStamp
                 };
 
             return result;

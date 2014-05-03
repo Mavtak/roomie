@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Keypads;
@@ -25,9 +26,9 @@ namespace Roomie.Common.HomeAutomation.Tests
 
             var binarySensor = new ReadOnlyBinarySensorState(BinarySensorType.Motion, true);
 
-            var powerSensor = new ReadOnlyMultilevelSensorState<IPower>(new WattsPower(25));
+            var powerSensor = new ReadOnlyMultilevelSensorState<IPower>(new WattsPower(25), DateTime.UtcNow.AddSeconds(-2));
 
-            var humiditySensor = new ReadOnlyMultilevelSensorState<IHumidity>(new RelativeHumidity(25));
+            var humiditySensor = new ReadOnlyMultilevelSensorState<IHumidity>(new RelativeHumidity(25), DateTime.UtcNow.AddSeconds(-5));
 
             var thermostatCoreModes = new[] { ThermostatMode.Auto, ThermostatMode.Cool, ThermostatMode.Heat, ThermostatMode.FanOnly, ThermostatMode.Off };
             var thermostatCore = new ReadOnlyThermostatCoreState(thermostatCoreModes, ThermostatMode.Cool, ThermostatCurrentAction.Cooling);

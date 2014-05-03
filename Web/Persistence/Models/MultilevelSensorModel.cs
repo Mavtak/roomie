@@ -15,6 +15,7 @@ namespace Roomie.Web.Persistence.Models
         }
 
         public TMeasurement Value { get; set; }
+        public DateTime? TimeStamp { get; set; }
 
         public void Poll()
         {
@@ -24,6 +25,7 @@ namespace Roomie.Web.Persistence.Models
         public void Update(IMultilevelSensorState<TMeasurement> state)
         {
             Value = state.Value;
+            TimeStamp = state.TimeStamp;
         }
 
     }
