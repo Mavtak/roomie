@@ -1,4 +1,5 @@
-﻿using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
+﻿using System;
+using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.Measurements.Humidity;
 
@@ -29,6 +30,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 var result = _dataEntry.GetValue();
 
                 return result;
+            }
+        }
+
+        public DateTime? TimeStamp
+        {
+            get
+            {
+                return _dataEntry.LastUpdated;
             }
         }
 

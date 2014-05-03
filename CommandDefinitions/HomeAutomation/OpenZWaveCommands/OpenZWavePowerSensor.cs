@@ -1,4 +1,5 @@
-﻿using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
+﻿using System;
+using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.Measurements.Power;
 
@@ -41,6 +42,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 var result = new WattsPower((double) value);
 
                 return result;
+            }
+        }
+
+        public DateTime? TimeStamp
+        {
+            get
+            {
+                return _dataEntry.LastUpdated;
             }
         }
 
