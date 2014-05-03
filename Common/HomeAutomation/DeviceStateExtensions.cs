@@ -54,12 +54,12 @@ namespace Roomie.Common.HomeAutomation
 
             if (device.PowerSensorState != null && device.PowerSensorState.Value != null)
             {
-                result += " " + device.PowerSensorState.Value.Format();
+                result += " " + device.PowerSensorState.Describe();
             }
 
             if (device.HumiditySensorState != null && device.HumiditySensorState.Value != null)
             {
-                result += " " + device.HumiditySensorState.Value.Format();
+                result += " " + device.HumiditySensorState.Describe();
             }
 
             return result;

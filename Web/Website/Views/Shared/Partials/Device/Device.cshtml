@@ -1,5 +1,6 @@
 ﻿@using Roomie.Common.HomeAutomation
 @using Roomie.Common.HomeAutomation.BinarySensors
+@using Roomie.Common.HomeAutomation.MultilevelSensors
 @model DeviceViewModel
 @{
     var widgetData = Model.WidgetData;
@@ -13,12 +14,12 @@
     {
         if (device.PowerSensor.Value != null)
         {
-            <div class="group">@device.PowerSensor.Value</div>
+            <div class="group">Power: @device.PowerSensor.Describe()</div>
         }
 
         if (device.HumiditySensor.Value != null)
         {
-            <div class="group">@device.HumiditySensor.Value (humidity)</div>
+            <div class="group">Humidity: @device.HumiditySensor.Describe()</div>
         }
           
         if (device.Type.Equals(DeviceType.Thermostat))
