@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Roomie.CommandDefinitions.OpenZWaveCommands.OpenZWaveDeviceValueMatchers;
+using Roomie.Common.HomeAutomation.Events;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
 {
@@ -52,7 +53,20 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
             dataEntry.Refresh();
         }
 
-        public abstract bool ProcessValueChanged(OpenZWaveDeviceValue entry);
+        public bool ProcessValueChanged(OpenZWaveDeviceValue entry)
+        {
+            if (!Matches(entry))
+            {
+                return false;
+            }
+
+            var @event = CreateDeviceEvent();
+            Device.AddEvent(@event);
+
+            return true;
+        }
+
+        protected abstract IDeviceEvent CreateDeviceEvent();
 
         public string Label
         {

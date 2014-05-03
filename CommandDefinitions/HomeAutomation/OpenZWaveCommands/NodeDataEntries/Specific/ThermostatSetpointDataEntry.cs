@@ -15,17 +15,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
         {
         }
 
-        public override bool ProcessValueChanged(OpenZWaveDeviceValue entry)
+        protected override IDeviceEvent CreateDeviceEvent()
         {
-            if (!Matches(entry))
-            {
-                return false;
-            }
-
-            var @event = DeviceEvent.ThermostatSetpointsChanged(Device, null);
-            Device.AddEvent(@event);
-
-            return true;
+            return DeviceEvent.ThermostatSetpointsChanged(Device, null);
         }
 
         private static byte GetSetpointIndex(ThermostatSetpointType setpointType)

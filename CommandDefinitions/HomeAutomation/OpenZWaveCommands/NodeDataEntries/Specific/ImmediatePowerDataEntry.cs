@@ -10,18 +10,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
         {
         }
 
-        public override bool ProcessValueChanged(OpenZWaveDeviceValue entry)
+        protected override IDeviceEvent CreateDeviceEvent()
         {
-            if (!Matches(entry))
-            {
-                return false;
-            }
-
-            var @event = DeviceEvent.PowerSensorValueChanged(Device, null);
-
-            Device.AddEvent(@event);
-
-            return true;
+            return DeviceEvent.PowerSensorValueChanged(Device, null);
         }
     }
 }
