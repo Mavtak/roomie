@@ -60,6 +60,8 @@
     <Compile Include="Attributes\NetworkAttribute.cs" />
     <Compile Include="Attributes\PowerParameterAttribute.cs" />
     <Compile Include="Commands\HomeAutomation\AddDevice.cs" />
+    <Compile Include="Commands\HomeAutomation\PollPower.cs" />
+    <Compile Include="Commands\HomeAutomation\PollHumidity.cs" />
     <Compile Include="Commands\HomeAutomation\RegisterKeypadButtonPressedCommand.cs" />
     <Compile Include="Commands\HomeAutomation\RemoveBrokenDevice.cs" />
     <Compile Include="Commands\HomeAutomation\SetThermostatMode.cs" />
