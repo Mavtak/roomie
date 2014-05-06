@@ -57,6 +57,11 @@ namespace Roomie.Common.HomeAutomation
                 result += " " + device.PowerSensorState.Describe();
             }
 
+            if (device.TemperatureSensorState != null && device.TemperatureSensorState.Value != null)
+            {
+                result += " " + device.TemperatureSensorState.Describe();
+            }
+
             if (device.HumiditySensorState != null && device.HumiditySensorState.Value != null)
             {
                 result += " " + device.HumiditySensorState.Describe();
@@ -134,6 +139,16 @@ namespace Roomie.Common.HomeAutomation
                 if (powerSensorNode.Attributes().Any() || powerSensorNode.Ancestors().Any())
                 {
                     result.Add(powerSensorNode);
+                }
+            }
+
+            if (state.TemperatureSensorState != null)
+            {
+                var temperatureSensorNode = state.TemperatureSensorState.ToXElement("TemperatureSensor");
+
+                if (temperatureSensorNode.Attributes().Any() || temperatureSensorNode.Ancestors().Any())
+                {
+                    result.Add(temperatureSensorNode);
                 }
             }
 

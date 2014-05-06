@@ -11,6 +11,7 @@ namespace Roomie.Common.HomeAutomation
     {
         IBinarySwitchActions BinarySwitchActions { get; }
         IMultilevelSensorActions PowerSensorActions { get; }
+        IMultilevelSensorActions TemperatureSensorActions { get; }
         IMultilevelSensorActions HumiditySensorActions { get; }
         IMultilevelSwitchActions MultilevelSwitchActions { get; }
         IBinarySensorActions BinarySensorActions { get; }

@@ -79,6 +79,8 @@ namespace Roomie.Web.Persistence
                     Name = "A Multisensor",
                     Type = DeviceType.BinarySensor
                 };
+                multisensor.TemperatureSensor.Value = new CelsiusTemperature(25);
+                multisensor.TemperatureSensor.TimeStamp = DateTime.UtcNow.AddSeconds(-45);
                 multisensor.HumiditySensor.Value = new RelativeHumidity(35);
                 multisensor.HumiditySensor.TimeStamp = DateTime.UtcNow.AddMinutes(-3).AddSeconds(-14);
 

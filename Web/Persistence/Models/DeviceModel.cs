@@ -11,6 +11,7 @@ using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Power;
+using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
@@ -86,6 +87,11 @@ namespace Roomie.Web.Persistence.Models
                 PowerSensor.Update(state.PowerSensorState);
             }
 
+            if (state.TemperatureSensorState != null)
+            {
+                TemperatureSensor.Update(state.TemperatureSensorState);
+            }
+
             if (state.HumiditySensorState != null)
             {
                 HumiditySensor.Update(state.HumiditySensorState);
@@ -101,6 +107,7 @@ namespace Roomie.Web.Persistence.Models
         private readonly DimmerSwitchModel _dimmerSwitch;
         private readonly BinarySensorModel _binarySensor;
         private readonly MultilevelSensorModel<IPower> _powerSensor;
+        private readonly MultilevelSensorModel<ITemperature> _temperatureSensor;
         private readonly MultilevelSensorModel<IHumidity> _humiditySensor;
         private readonly ThermostatModel _thermostat;
 
@@ -137,6 +144,14 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        public MultilevelSensorModel<ITemperature> TemperatureSensor
+        {
+            get
+            {
+                return _temperatureSensor;
+            }
+        }
+
         public MultilevelSensorModel<IHumidity> HumiditySensor
         {
             get
@@ -169,6 +184,7 @@ namespace Roomie.Web.Persistence.Models
             _thermostat = new ThermostatModel(this);
             _binarySensor = new BinarySensorModel(this);
             _powerSensor = new MultilevelSensorModel<IPower>(this);
+            _temperatureSensor = new MultilevelSensorModel<ITemperature>(this);
             _humiditySensor = new MultilevelSensorModel<IHumidity>(this);
         }
 
@@ -246,6 +262,14 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        IMultilevelSensor<ITemperature> IDevice.TemperatureSensor
+        {
+            get
+            {
+                return TemperatureSensor;
+            }
+        }
+
         IMultilevelSensor<IHumidity> IDevice.HumiditySensor
         {
             get
@@ -319,6 +343,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return PowerSensor;
+            }
+        }
+
+        public IMultilevelSensorState<ITemperature> TemperatureSensorState
+        {
+            get
+            {
+                return TemperatureSensor;
             }
         }
 
@@ -465,6 +497,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return PowerSensor;
+            }
+        }
+
+        public IMultilevelSensorActions TemperatureSensorActions
+        {
+            get
+            {
+                return TemperatureSensor;
             }
         }
 

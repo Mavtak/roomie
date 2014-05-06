@@ -16,7 +16,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 {
     public class AssertionHelpers
     {
-        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkToggleSwitch, bool checkDimmerSwitch, bool checkBinarySensor, bool checkPowerSensor, bool checkHumiditySensor, bool checkThermostat, bool checkKeypad)
+        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkToggleSwitch, bool checkDimmerSwitch, bool checkBinarySensor, bool checkPowerSensor, bool checkTempeartureSensor, bool checkHumiditySensor, bool checkThermostat, bool checkKeypad)
         {
             Assert.That(one.Name, Is.EqualTo(two.Name));
             Assert.That(one.Address, Is.EqualTo(two.Address));
@@ -41,6 +41,11 @@ namespace Roomie.Common.HomeAutomation.Tests
             if (checkPowerSensor)
             {
                 AssertMultilevelSensorEqual(one.PowerSensorState, two.PowerSensorState);
+            }
+
+            if (checkTempeartureSensor)
+            {
+                AssertMultilevelSensorEqual(one.TemperatureSensorState, two.TemperatureSensorState);
             }
 
             if (checkHumiditySensor)

@@ -17,6 +17,11 @@
             <div class="group">Power: @device.PowerSensor.Describe()</div>
         }
 
+        if (device.TemperatureSensor.Value != null && !device.Type.Equals(DeviceType.Thermostat))
+        {
+            <div class="group">Temperature: @device.TemperatureSensor.Describe()</div>
+        }
+        
         if (device.HumiditySensor.Value != null)
         {
             <div class="group">Humidity: @device.HumiditySensor.Describe()</div>
