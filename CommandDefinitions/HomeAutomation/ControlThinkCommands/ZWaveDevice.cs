@@ -9,6 +9,7 @@ using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Power;
+using Roomie.Common.Measurements.Temperature;
 using BackingDevice = ControlThink.ZWave.Devices.ZWaveDevice;
 using BaseDevice = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
 using BaseNetwork = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
@@ -22,6 +23,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         private readonly ZWaveDimmerSwitch _dimmerSwitch;
         private readonly ZWaveThermostat _thermostat;
         private readonly ZWaveBinarySensor _binarySensor;
+        private readonly ZWaveTemperatureSensor _temperatureSensor;
 
         public ZWaveDevice(BaseNetwork network, BackingDevice backingDevice, DeviceType type = null, string name = null)
             : base(network, type, name)
@@ -36,6 +38,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _dimmerSwitch = new ZWaveDimmerSwitch(this);
             _thermostat = new ZWaveThermostat(this);
             _binarySensor = new ZWaveBinarySensor(this);
+            _temperatureSensor = new ZWaveTemperatureSensor(this);
 
             if (Type.CanDim)
             {
@@ -123,6 +126,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             get
             {
                 return null;
+            }
+        }
+
+        public override IMultilevelSensor<ITemperature> TemperatureSensor
+        {
+            get
+            {
+                return _temperatureSensor;
             }
         }
 

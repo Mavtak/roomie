@@ -55,6 +55,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="ConverstionExtensions.cs" />
     <Compile Include="ZWaveBinarySensor.cs" />
+    <Compile Include="ZWaveTemperatureSensor.cs" />
     <Compile Include="ZWaveThermostatCore.cs" />
     <Compile Include="ZWaveDeviceExtensions.cs" />
     <Compile Include="ZWaveDimmerSwitch.cs" />
