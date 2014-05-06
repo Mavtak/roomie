@@ -9,6 +9,7 @@ using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Power;
+using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
@@ -22,6 +23,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly OpenZWaveDimmerSwitch _dimmerSwitch;
         private readonly OpenZWaveThermostat _thermostat;
         private readonly OpenZWaveBinarySensor _binarySensor;
+        private readonly OpenZWaveTemperatureSensor _temperatureSensor;
         private readonly OpenZWavePowerSensor _powerSensor;
         private readonly OpenZWaveHumiditySensor _humiditySensor;
 
@@ -42,6 +44,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _thermostat = new OpenZWaveThermostat(this);
             _binarySensor = new OpenZWaveBinarySensor(this);
             _powerSensor = new OpenZWavePowerSensor(this);
+            _temperatureSensor = new OpenZWaveTemperatureSensor(this);
             _humiditySensor = new OpenZWaveHumiditySensor(this);
         }
 
@@ -77,6 +80,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
 
             if (_humiditySensor.ProcessValueChanged(value))
+            {
+                return true;
+            }
+
+            if (_temperatureSensor.ProcessValueChanged(value))
             {
                 return true;
             }
@@ -118,6 +126,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             get
             {
                 return _powerSensor;
+            }
+        }
+
+        public override IMultilevelSensor<ITemperature> TemperatureSensor
+        {
+            get
+            {
+                return _temperatureSensor;
             }
         }
 
