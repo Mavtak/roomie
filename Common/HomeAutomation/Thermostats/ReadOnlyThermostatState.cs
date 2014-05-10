@@ -20,7 +20,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         public ReadOnlyThermostatState(ITemperature temperature, IThermostatCoreState coreState, IThermostatFanState fanState, IThermostatSetpointCollectionState setpointStates)
         {
             Temperature = temperature;
-            CoreState = CoreState;
+            CoreState = coreState;
             FanState = fanState;
             SetpointStates = setpointStates;
         }
