@@ -80,7 +80,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             {
                 var coreNode = state.CoreState.ToXElement();
 
-                if (coreNode.Attributes().Any() || coreNode.Ancestors().Any())
+                if (coreNode.Attributes().Any() || coreNode.Descendants().Any())
                 {
                     result.Add(coreNode);
                 }
@@ -90,7 +90,7 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             {
                 var fanNode = state.FanState.ToXElement();
 
-                if (fanNode.Attributes().Any() || fanNode.Ancestors().Any())
+                if (fanNode.Attributes().Any() || fanNode.Descendants().Any())
                 {
                     result.Add(fanNode);
                 }

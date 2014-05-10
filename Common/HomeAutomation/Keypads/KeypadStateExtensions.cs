@@ -43,7 +43,7 @@ namespace Roomie.Common.HomeAutomation.Keypads
                 
                 foreach (var node in nodes)
                 {
-                    if (node.Attributes().Any() || node.Ancestors().Any())
+                    if (node.Attributes().Any() || node.Descendants().Any())
                     {
                         result.Add(node);
                     }

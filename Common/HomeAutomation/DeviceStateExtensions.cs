@@ -106,7 +106,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 var toggleSwitchNode = state.BinarySwitchState.ToXElement();
 
-                if (toggleSwitchNode.Attributes().Any() || toggleSwitchNode.Ancestors().Any())
+                if (toggleSwitchNode.Attributes().Any() || toggleSwitchNode.Descendants().Any())
                 {
                     result.Add(toggleSwitchNode);
                 }
@@ -116,7 +116,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 var dimmerSwitchNode = state.MultilevelSwitchState.ToXElement();
 
-                if (dimmerSwitchNode.Attributes().Any() || dimmerSwitchNode.Ancestors().Any())
+                if (dimmerSwitchNode.Attributes().Any() || dimmerSwitchNode.Descendants().Any())
                 {
                     result.Add(dimmerSwitchNode);
                 }
@@ -126,7 +126,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 var binarySensorNode = state.BinarySensorState.ToXElement();
 
-                if (binarySensorNode.Attributes().Any() || binarySensorNode.Ancestors().Any())
+                if (binarySensorNode.Attributes().Any() || binarySensorNode.Descendants().Any())
                 {
                     result.Add(binarySensorNode);
                 }
@@ -136,7 +136,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 var powerSensorNode = state.PowerSensorState.ToXElement("PowerSensor");
 
-                if (powerSensorNode.Attributes().Any() || powerSensorNode.Ancestors().Any())
+                if (powerSensorNode.Attributes().Any() || powerSensorNode.Descendants().Any())
                 {
                     result.Add(powerSensorNode);
                 }
@@ -146,7 +146,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 var temperatureSensorNode = state.TemperatureSensorState.ToXElement("TemperatureSensor");
 
-                if (temperatureSensorNode.Attributes().Any() || temperatureSensorNode.Ancestors().Any())
+                if (temperatureSensorNode.Attributes().Any() || temperatureSensorNode.Descendants().Any())
                 {
                     result.Add(temperatureSensorNode);
                 }
@@ -156,7 +156,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 var humiditySensorNode = state.HumiditySensorState.ToXElement("HumiditySensor");
 
-                if (humiditySensorNode.Attributes().Any() || humiditySensorNode.Ancestors().Any())
+                if (humiditySensorNode.Attributes().Any() || humiditySensorNode.Descendants().Any())
                 {
                     result.Add(humiditySensorNode);
                 }
@@ -166,7 +166,7 @@ namespace Roomie.Common.HomeAutomation
             {
                 var thermostatNode = state.ThermostatState.ToXElement();
 
-                if (thermostatNode.Attributes().Any() || thermostatNode.Ancestors().Any())
+                if (thermostatNode.Attributes().Any() || thermostatNode.Descendants().Any())
                 {
                     result.Add(thermostatNode);
                 }
