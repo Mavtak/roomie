@@ -45,7 +45,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 });
 
             
-            var thermostat = new ReadOnlyThermostatState(new FahrenheitTemperature(75), thermostatCore, thermostatFan, thermostatSetpoints);
+            var thermostat = new ReadOnlyThermostatState(thermostatCore, thermostatFan, thermostatSetpoints);
 
             var keypadButtons = new []
                 {

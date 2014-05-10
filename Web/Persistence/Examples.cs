@@ -89,7 +89,7 @@ namespace Roomie.Web.Persistence
                         Name = "A Thermostat with all data",
                         Type = DeviceType.Thermostat,
                     };
-                thermostat.Thermostat.Temperature = new FahrenheitTemperature(75);
+                thermostat.TemperatureSensor.Value = new FahrenheitTemperature(75);
                 thermostat.Thermostat.Core.Mode = ThermostatMode.Auto;
                 thermostat.Thermostat.Core.SupportedModes = new[] { ThermostatMode.Heat, ThermostatMode.Cool, ThermostatMode.Auto, ThermostatMode.FanOnly, ThermostatMode.Off };
                 thermostat.Thermostat.Core.CurrentAction = ThermostatCurrentAction.Cooling;

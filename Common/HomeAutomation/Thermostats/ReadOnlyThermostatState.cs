@@ -2,13 +2,11 @@
 using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.Common.HomeAutomation.Thermostats
 {
     public class ReadOnlyThermostatState : IThermostatState
     {
-        public ITemperature Temperature { get; private set; }
         public IThermostatCoreState CoreState { get; private set; }
         public IThermostatFanState FanState { get; private set; }
         public IThermostatSetpointCollectionState SetpointStates { get; private set; }
@@ -17,9 +15,8 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         {
         }
 
-        public ReadOnlyThermostatState(ITemperature temperature, IThermostatCoreState coreState, IThermostatFanState fanState, IThermostatSetpointCollectionState setpointStates)
+        public ReadOnlyThermostatState(IThermostatCoreState coreState, IThermostatFanState fanState, IThermostatSetpointCollectionState setpointStates)
         {
-            Temperature = temperature;
             CoreState = coreState;
             FanState = fanState;
             SetpointStates = setpointStates;
@@ -28,7 +25,6 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         {
             var result = new ReadOnlyThermostatState
             {
-                Temperature = state.Temperature,
                 CoreState = (state.CoreState == null) ? null : state.CoreState.Copy(),
                 FanState = (state.FanState == null) ? null : state.FanState.Copy(),
                 SetpointStates = (state.SetpointStates == null) ? null : state.SetpointStates.Copy(),
@@ -51,13 +47,6 @@ namespace Roomie.Common.HomeAutomation.Thermostats
 
         public static ReadOnlyThermostatState FromXElement(XElement element)
         {
-            ITemperature temperature = null;
-            var temperatureString = element.GetAttributeStringValue("Temperature");
-            if (temperatureString != null)
-            {
-                temperature = temperatureString.ToTemperature();
-            }
-
             IThermostatCoreState coreState = null;
             var coreStateNode = element.Element("ThermostatCoreState");
             if (coreStateNode != null)
@@ -81,7 +70,6 @@ namespace Roomie.Common.HomeAutomation.Thermostats
 
             var result = new ReadOnlyThermostatState
             {
-                Temperature = temperature,
                 CoreState = coreState,
                 FanState = fanState,
                 SetpointStates = setpoints

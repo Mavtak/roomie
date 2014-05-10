@@ -5,15 +5,12 @@ using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
     public class ThermostatModel : IThermostat
     {
-        public ITemperature Temperature { get; set; }
-
         public ThermostatCoreModel Core { get; private set; }
         public ThermostatFanModel Fan { get; private set; }
         public ThermostatSetpointModel Setpoints { get; private set; }
@@ -27,11 +24,6 @@ namespace Roomie.Web.Persistence.Models
             Core = new ThermostatCoreModel(_device);
             Fan = new ThermostatFanModel(_device);
             Setpoints = new ThermostatSetpointModel(_device);
-        }
-
-        public void PollTemperature()
-        {
-            throw new NotImplementedException();
         }
 
         public void PollCurrentAction()
@@ -56,7 +48,6 @@ namespace Roomie.Web.Persistence.Models
 
         internal void Update(IThermostatState data)
         {
-            Temperature = data.Temperature;
 
             if (data.CoreState != null)
             {

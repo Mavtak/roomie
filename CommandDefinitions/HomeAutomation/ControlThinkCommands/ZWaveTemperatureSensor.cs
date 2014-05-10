@@ -21,7 +21,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         {
             get
             {
-                return _device.Thermostat.Temperature;
+                return _device.ZWaveThermostat.Temperature;
             }
         }
 
@@ -35,7 +35,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
 
         public void Poll()
         {
-            _device.Thermostat.PollTemperature();
+            _device.ZWaveThermostat.PollTemperature();
         }
     }
 }

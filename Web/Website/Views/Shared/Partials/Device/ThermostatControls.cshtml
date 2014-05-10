@@ -50,9 +50,9 @@
 *@}
 }
 @{
-    var thermostat = Model.Device.Thermostat;
-
-
+    var device = Model.Device;
+    var thermostat = device.Thermostat;
+    var temperatureSensor = device.TemperatureSensor;
 }@*
 //TODO: make this work
 
@@ -62,7 +62,7 @@
 
   *@<div class="temperature">@*
     *@<div class="value">@*
-      *@@FormatTemeprature(thermostat.Temperature)@*
+      *@@FormatTemeprature(temperatureSensor.Value)@*
     *@</div>@*
     *@<div class="description">Current</div>@*
   *@</div>@*

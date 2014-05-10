@@ -25,6 +25,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         private readonly ZWaveBinarySensor _binarySensor;
         private readonly ZWaveTemperatureSensor _temperatureSensor;
 
+        internal ZWaveThermostat ZWaveThermostat
+        {
+            get
+            {
+                return _thermostat;
+            }
+        }
+
         public ZWaveDevice(BaseNetwork network, BackingDevice backingDevice, DeviceType type = null, string name = null)
             : base(network, type, name)
         {

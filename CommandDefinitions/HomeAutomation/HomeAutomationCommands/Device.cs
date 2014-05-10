@@ -196,7 +196,10 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
             if (Type == DeviceType.Thermostat)
             {
-                Thermostat.PollTemperature();
+                if (TemperatureSensor != null)
+                {
+                    TemperatureSensor.Poll();
+                }
 
                 if (Thermostat.Core != null)
                 {

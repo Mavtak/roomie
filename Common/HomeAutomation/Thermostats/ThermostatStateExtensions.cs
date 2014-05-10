@@ -23,11 +23,6 @@ namespace Roomie.Common.HomeAutomation.Thermostats
                 return result.ToString();
             }
 
-            if (state.Temperature != null)
-            {
-                result.Append(state.Temperature);
-            }
-
             var coreDescription = state.CoreState.Describe();
             if (!string.IsNullOrEmpty(coreDescription))
             {
@@ -70,11 +65,6 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         public static XElement ToXElement(this IThermostatState state, string nodeName = "Thermostat")
         {
             var result = new XElement(nodeName);
-
-            if (state.Temperature != null)
-            {
-                result.Add(new XAttribute("Temperature", state.Temperature));
-            }
 
             if (state.CoreState != null)
             {

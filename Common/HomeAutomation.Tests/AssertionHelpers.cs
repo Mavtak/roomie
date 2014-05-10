@@ -137,7 +137,6 @@ namespace Roomie.Common.HomeAutomation.Tests
 
             AssertHelperHelper(one, two);
 
-            AssertTemperatureEqual(one.Temperature, two.Temperature);
             AssertThermostatCoreEqual(one.CoreState, two.CoreState);
             AssertThermostatFanEqual(one.FanState, two.FanState);
             AssertThermostatSetpointsAreEqual(one.SetpointStates, two.SetpointStates);
