@@ -10,27 +10,15 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
     public class OpenZWaveThermostat : IThermostat
     {
-        public ITemperature Temperature
-        {
-            get
-            {
-                return _thermometer.GetValue();
-            }
-        }
-
         private readonly OpenZWaveThermostatCore _core;
         private readonly OpenZWaveThermostatFan _fan;
         private readonly OpenZWaveSetpointCollection _setpoints;
-
-        private readonly ThermometerDataEntry _thermometer;
 
         public OpenZWaveThermostat(OpenZWaveDevice device)
         {
             _core = new OpenZWaveThermostatCore(device);
             _fan = new OpenZWaveThermostatFan(device);
             _setpoints = new OpenZWaveSetpointCollection(device);
-
-            _thermometer = new ThermometerDataEntry(device);
         }
 
         public bool ProcessValueChanged(OpenZWaveDeviceValue entry)
@@ -50,17 +38,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 return true;
             }
 
-            if (_thermometer.ProcessValueChanged(entry))
-            {
-                return true;
-            }
-
             return false;
-        }
-
-        public void PollTemperature()
-        {
-            _thermometer.RefreshValue();
         }
 
         #region IThermostat definitions
