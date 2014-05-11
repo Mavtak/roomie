@@ -11,6 +11,7 @@ using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Measurements.Humidity;
+using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 
@@ -19,7 +20,7 @@ namespace Roomie.Common.HomeAutomation.Tests
     public static class DataHelpers
     {
         private static int _id;
-        public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeToggle, bool includeDimmer, bool includeBinarySensor, bool includePowerSensor, bool includeTemperatureSensor, bool includeHumiditySensor, bool includeThermostat, bool includeKeypad)
+        public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeToggle, bool includeDimmer, bool includeBinarySensor, bool includePowerSensor, bool includeTemperatureSensor, bool includeHumiditySensor, bool includeIlluminanceSensor, bool includeThermostat, bool includeKeypad)
         {
             var toggle = new ReadOnlyBinarySwitchSwitchState(BinarySwitchPower.On);
             var dimmer = new ReadOnlyMultilevelSwitchState(25, 100);
@@ -31,6 +32,8 @@ namespace Roomie.Common.HomeAutomation.Tests
             var temperatureSensor = new ReadOnlyMultilevelSensorState<ITemperature>(new CelsiusTemperature(3), DateTime.UtcNow.AddSeconds(-1));
 
             var humiditySensor = new ReadOnlyMultilevelSensorState<IHumidity>(new RelativeHumidity(25), DateTime.UtcNow.AddSeconds(-5));
+
+            var illuminanceSensor = new ReadOnlyMultilevelSensorState<IIlluminance>(new LuxIlluminance(50), DateTime.UtcNow.AddSeconds(-4));
 
             var thermostatCoreModes = new[] { ThermostatMode.Auto, ThermostatMode.Cool, ThermostatMode.Heat, ThermostatMode.FanOnly, ThermostatMode.Off };
             var thermostatCore = new ReadOnlyThermostatCoreState(thermostatCoreModes, ThermostatMode.Cool, ThermostatCurrentAction.Cooling);
@@ -91,6 +94,11 @@ namespace Roomie.Common.HomeAutomation.Tests
                 humiditySensor = null;
             }
 
+            if (!includeIlluminanceSensor)
+            {
+                illuminanceSensor = null;
+            }
+
             if (!includeThermostat)
             {
                 thermostat = null;
@@ -101,12 +109,12 @@ namespace Roomie.Common.HomeAutomation.Tests
                 keypad = null;
             }
 
-            var device = new ReadOnlyDeviceState("Sample Device", address, location, null, true, type, toggle, dimmer, binarySensor, powerSensor, temperatureSensor, humiditySensor, thermostat, keypad);
+            var device = new ReadOnlyDeviceState("Sample Device", address, location, null, true, type, toggle, dimmer, binarySensor, powerSensor, temperatureSensor, humiditySensor, illuminanceSensor, thermostat, keypad);
 
             return device;
         }
 
-        public static IEnumerable<IDeviceState> GenerateExampleDevices(int count, bool includeToggle, bool includeDimmer, bool includeBinarySensor, bool includePowerSensor, bool includeTemperatureSensor, bool includeHumiditySensor, bool includeThermostat, bool includeKeypad)
+        public static IEnumerable<IDeviceState> GenerateExampleDevices(int count, bool includeToggle, bool includeDimmer, bool includeBinarySensor, bool includePowerSensor, bool includeTemperatureSensor, bool includeHumiditySensor, bool inclueIlluminanceSensor, bool includeThermostat, bool includeKeypad)
         {
             for (var i = 0; i < count; i++)
             {
@@ -147,7 +155,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                         break;
                 }
 
-                var device = GenerateExampleDevice(type, includeToggle, includeDimmer, includeBinarySensor, includePowerSensor, includeTemperatureSensor, includeHumiditySensor, includeThermostat, includeKeypad);
+                var device = GenerateExampleDevice(type, includeToggle, includeDimmer, includeBinarySensor, includePowerSensor, includeTemperatureSensor, includeHumiditySensor, inclueIlluminanceSensor, includeThermostat, includeKeypad);
 
                 yield return device;
             }

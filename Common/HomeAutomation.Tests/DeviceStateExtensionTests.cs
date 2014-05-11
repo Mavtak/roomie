@@ -17,6 +17,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                     includePowerSensor: true,
                     includeTemperatureSensor: true,
                     includeHumiditySensor: true,
+                    inclueIlluminanceSensor: true,
                     includeThermostat: true,
                     includeKeypad: true
                     );
@@ -34,6 +35,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                     includePowerSensor: true,
                     includeTemperatureSensor: true,
                     includeHumiditySensor: true,
+                    inclueIlluminanceSensor: true,
                     includeThermostat: true,
                     includeKeypad: false
                     );
@@ -51,6 +53,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                     includePowerSensor: true,
                     includeTemperatureSensor: true,
                     includeHumiditySensor: true,
+                    inclueIlluminanceSensor: true,
                     includeThermostat: true,
                     includeKeypad: false
                     );
@@ -68,6 +71,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                     includePowerSensor: true,
                     includeTemperatureSensor: true,
                     includeHumiditySensor: true,
+                    inclueIlluminanceSensor: true,
                     includeThermostat: true,
                     includeKeypad: false
                     );
@@ -85,6 +89,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                     includePowerSensor: false,
                     includeTemperatureSensor: true,
                     includeHumiditySensor: true,
+                    inclueIlluminanceSensor: true,
                     includeThermostat: true,
                     includeKeypad: true
                     );
@@ -102,6 +107,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                     includePowerSensor: true,
                     includeTemperatureSensor: false,
                     includeHumiditySensor: true,
+                    inclueIlluminanceSensor: true,
                     includeThermostat: true,
                     includeKeypad: true
                     );
@@ -119,6 +125,25 @@ namespace Roomie.Common.HomeAutomation.Tests
                     includePowerSensor: true,
                     includeTemperatureSensor: true,
                     includeHumiditySensor: false,
+                    inclueIlluminanceSensor: true,
+                    includeThermostat: true,
+                    includeKeypad: true
+                    );
+            }
+        }
+
+        public IEnumerable<IDeviceState> DevicesWithoutIlluminanceSensors
+        {
+            get
+            {
+                return DataHelpers.GenerateExampleDevices(20,
+                    includeToggle: true,
+                    includeDimmer: true,
+                    includeBinarySensor: true,
+                    includePowerSensor: true,
+                    includeTemperatureSensor: true,
+                    includeHumiditySensor: false,
+                    inclueIlluminanceSensor: true,
                     includeThermostat: true,
                     includeKeypad: true
                     );
@@ -136,6 +161,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                     includePowerSensor: true,
                     includeTemperatureSensor: true,
                     includeHumiditySensor: true,
+                    inclueIlluminanceSensor: true,
                     includeThermostat: false,
                     includeKeypad: false
                     );
@@ -153,6 +179,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                     includePowerSensor: true,
                     includeTemperatureSensor: true,
                     includeHumiditySensor: true,
+                    inclueIlluminanceSensor: true,
                     includeThermostat: true,
                     includeKeypad: false
                     );
@@ -172,6 +199,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );
@@ -190,6 +218,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: false,
                 checkTempeartureSensor: false,
                 checkHumiditySensor: false,
+                checkIlluminanceSensor: true,
                 checkThermostat: false,
                 checkKeypad: false
                 );
@@ -208,6 +237,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: false,
                 checkTempeartureSensor: false,
                 checkHumiditySensor: false,
+                checkIlluminanceSensor: false,
                 checkThermostat: false,
                 checkKeypad: false
                 );
@@ -226,6 +256,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: false,
                 checkTempeartureSensor: false,
                 checkHumiditySensor: false,
+                checkIlluminanceSensor: false,
                 checkThermostat: false,
                 checkKeypad: false
                 );
@@ -244,6 +275,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: false,
                 checkHumiditySensor: false,
+                checkIlluminanceSensor: false,
                 checkThermostat: false,
                 checkKeypad: false
                 );
@@ -261,6 +293,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: false,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: false,
+                checkIlluminanceSensor: false,
                 checkThermostat: false,
                 checkKeypad: false
                 );
@@ -279,6 +312,26 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: false,
                 checkTempeartureSensor: false,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: false,
+                checkThermostat: false,
+                checkKeypad: false
+                );
+        }
+
+        [TestCaseSource("Devices")]
+        public void IlluminanceSensorSerializationWorks(IDeviceState device)
+        {
+            var node = device.ToXElement();
+            var copy = node.ToDeviceState();
+
+            AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkToggleSwitch: false,
+                checkDimmerSwitch: false,
+                checkBinarySensor: false,
+                checkPowerSensor: false,
+                checkTempeartureSensor: false,
+                checkHumiditySensor: false,
+                checkIlluminanceSensor: true,
                 checkThermostat: false,
                 checkKeypad: false
                 );
@@ -297,6 +350,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: false,
                 checkTempeartureSensor: false,
                 checkHumiditySensor: false,
+                checkIlluminanceSensor: false,
                 checkThermostat: true,
                 checkKeypad: false
                 );
@@ -315,6 +369,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: false,
                 checkTempeartureSensor: false,
                 checkHumiditySensor: false,
+                checkIlluminanceSensor: false,
                 checkThermostat: false,
                 checkKeypad: true
                 );
@@ -333,6 +388,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );
@@ -351,6 +407,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );
@@ -369,6 +426,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );
@@ -387,6 +445,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );
@@ -405,6 +464,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );
@@ -423,6 +483,26 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
+                checkThermostat: true,
+                checkKeypad: true
+                );
+        }
+
+        [TestCaseSource("DevicesWithoutIlluminanceSensors")]
+        public void SerializationWorksWithNullIlluminanceSensor(IDeviceState device)
+        {
+            var node = device.ToXElement();
+            var copy = node.ToDeviceState();
+
+            AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkToggleSwitch: true,
+                checkDimmerSwitch: true,
+                checkBinarySensor: true,
+                checkPowerSensor: true,
+                checkTempeartureSensor: true,
+                checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );
@@ -441,6 +521,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );
@@ -459,6 +540,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );
@@ -477,6 +559,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkPowerSensor: true,
                 checkTempeartureSensor: true,
                 checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
                 checkThermostat: true,
                 checkKeypad: true
                 );

@@ -6,6 +6,7 @@ using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Measurements.Humidity;
+using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 
@@ -23,6 +24,7 @@ namespace Roomie.Common.HomeAutomation
         public IMultilevelSensorState<IPower> PowerSensorState { get; set; }
         public IMultilevelSensorState<ITemperature> TemperatureSensorState { get; private set; }
         public IMultilevelSensorState<IHumidity> HumiditySensorState { get; set; }
+        public IMultilevelSensorState<IIlluminance> IlluminanceSensorState { get; private set; }
         public IMultilevelSwitchState MultilevelSwitchState { get; private set; }
         public IBinarySensorState BinarySensorState { get; private set; }
         public IThermostatState ThermostatState { get; private set; }
@@ -32,7 +34,7 @@ namespace Roomie.Common.HomeAutomation
         {
         }
 
-        public ReadOnlyDeviceState(string name, string address, ILocation location, INetwork network, bool? isConnected, DeviceType type, IBinarySwitchState toggleSwitchState, IMultilevelSwitchState dimmerSwitchState, IBinarySensorState binarySensorState, IMultilevelSensorState<IPower> powerSensorState, IMultilevelSensorState<ITemperature> temperatureSensorState, IMultilevelSensorState<IHumidity> humiditySensorState, IThermostatState thermostatState, IKeypadState keypadState)
+        public ReadOnlyDeviceState(string name, string address, ILocation location, INetwork network, bool? isConnected, DeviceType type, IBinarySwitchState toggleSwitchState, IMultilevelSwitchState dimmerSwitchState, IBinarySensorState binarySensorState, IMultilevelSensorState<IPower> powerSensorState, IMultilevelSensorState<ITemperature> temperatureSensorState, IMultilevelSensorState<IHumidity> humiditySensorState, IMultilevelSensorState<IIlluminance> illuminanceSensorState, IThermostatState thermostatState, IKeypadState keypadState)
         {
             Name = name;
             Address = address;
@@ -46,6 +48,7 @@ namespace Roomie.Common.HomeAutomation
             PowerSensorState = powerSensorState;
             TemperatureSensorState = temperatureSensorState;
             HumiditySensorState = humiditySensorState;
+            IlluminanceSensorState = illuminanceSensorState;
             ThermostatState = thermostatState;
             KeypadState = keypadState;
         }
@@ -65,6 +68,7 @@ namespace Roomie.Common.HomeAutomation
                 PowerSensorState = (source.PowerSensorState == null)?null:source.PowerSensorState.Copy(),
                 TemperatureSensorState = (source.TemperatureSensorState == null) ? null : source.TemperatureSensorState.Copy(),
                 HumiditySensorState = (source.HumiditySensorState == null) ? null : source.HumiditySensorState.Copy(),
+                IlluminanceSensorState = (source.IlluminanceSensorState == null) ? null : source.IlluminanceSensorState.Copy(),
                 MultilevelSwitchState = (source.MultilevelSwitchState == null) ? null : source.MultilevelSwitchState.Copy(),
                 BinarySensorState = (source.BinarySensorState == null)?null : source.BinarySensorState.Copy(),
                 ThermostatState = (source.ThermostatState == null) ? null : source.ThermostatState.Copy(),
@@ -142,6 +146,13 @@ namespace Roomie.Common.HomeAutomation
                 humiditySensor = humiditySensorElement.ToMultilevelSensor<IHumidity>();
             }
 
+            ReadOnlyMultilevelSensorState<IIlluminance> illuminanceSensor = null;
+            var illuminanceSensorElement = element.Element("IlluminanceSensor");
+            if (illuminanceSensorElement != null)
+            {
+                illuminanceSensor = illuminanceSensorElement.ToMultilevelSensor<IIlluminance>();
+            }
+
             IThermostatState thermostat = null;
             var thermostatElement = element.Element("Thermostat");
             if (thermostatElement != null)
@@ -169,6 +180,7 @@ namespace Roomie.Common.HomeAutomation
                 PowerSensorState = powerSensor,
                 TemperatureSensorState = temperatureSensor,
                 HumiditySensorState = humiditySensor,
+                IlluminanceSensorState = illuminanceSensor,
                 ThermostatState = thermostat,
                 KeypadState = keypad
             };

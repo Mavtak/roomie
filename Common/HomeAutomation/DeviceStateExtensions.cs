@@ -72,6 +72,11 @@ namespace Roomie.Common.HomeAutomation
                 result += " " + device.HumiditySensorState.Describe();
             }
 
+            if (device.IlluminanceSensorState != null && device.IlluminanceSensorState.Value != null)
+            {
+                result += " " + device.IlluminanceSensorState.Describe();
+            }
+
             return result;
         }
 
@@ -164,6 +169,16 @@ namespace Roomie.Common.HomeAutomation
                 if (humiditySensorNode.Attributes().Any() || humiditySensorNode.Descendants().Any())
                 {
                     result.Add(humiditySensorNode);
+                }
+            }
+
+            if (state.IlluminanceSensorState != null)
+            {
+                var illuminanceSensorNode = state.IlluminanceSensorState.ToXElement("IlluminanceSensor");
+
+                if (illuminanceSensorNode.Attributes().Any() || illuminanceSensorNode.Descendants().Any())
+                {
+                    result.Add(illuminanceSensorNode);
                 }
             }
 
