@@ -9,6 +9,7 @@ using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Measurements.Humidity;
+using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Common.ScriptingLanguage;
@@ -80,6 +81,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         public abstract IMultilevelSensor<IPower> PowerSensor { get; }
         public abstract IMultilevelSensor<ITemperature> TemperatureSensor { get; }
         public abstract IMultilevelSensor<IHumidity> HumiditySensor { get; }
+        public abstract IMultilevelSensor<IIlluminance> IlluminanceSensor { get; }
         public abstract IThermostat Thermostat { get; }
         public abstract IKeypad Keypad { get; }
 
@@ -157,6 +159,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             get
             {
                 return HumiditySensor;
+            }
+        }
+
+        public IMultilevelSensorState<IIlluminance> IlluminanceSensorState
+        {
+            get
+            {
+                return IlluminanceSensor;
             }
         }
 
@@ -268,6 +278,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             get
             {
                 return HumiditySensor;
+            }
+        }
+
+        public IMultilevelSensorActions IlluminanceSensorActions
+        {
+            get
+            {
+                return IlluminanceSensor;
             }
         }
 

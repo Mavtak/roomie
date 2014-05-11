@@ -60,6 +60,7 @@
     <Compile Include="Attributes\NetworkAttribute.cs" />
     <Compile Include="Attributes\PowerParameterAttribute.cs" />
     <Compile Include="Commands\HomeAutomation\AddDevice.cs" />
+    <Compile Include="Commands\HomeAutomation\PollIlluminance.cs" />
     <Compile Include="Commands\HomeAutomation\PollTempearture.cs" />
     <Compile Include="Commands\HomeAutomation\PollPower.cs" />
     <Compile Include="Commands\HomeAutomation\PollHumidity.cs" />
