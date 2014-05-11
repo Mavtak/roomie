@@ -51,6 +51,9 @@
     <Compile Include="Measurements\Humidity\IHumidity.cs" />
     <Compile Include="Measurements\Humidity\HumidityParser.cs" />
     <Compile Include="Measurements\Humidity\RelativeHumidity.cs" />
+    <Compile Include="Measurements\Illuminance\IIlluminance.cs" />
+    <Compile Include="Measurements\Illuminance\IlluminanceParser.cs" />
+    <Compile Include="Measurements\Illuminance\LuxIlluminance.cs" />
     <Compile Include="Measurements\IMeasurement.cs" />
     <Compile Include="Measurements\MeasurementExtensions.cs" />
     <Compile Include="Measurements\MeasurementParser.cs" />

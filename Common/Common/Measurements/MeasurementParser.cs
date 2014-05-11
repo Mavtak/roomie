@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using Roomie.Common.Measurements.Energy;
 using Roomie.Common.Measurements.Humidity;
+using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Ratio;
 using Roomie.Common.Measurements.Temperature;
@@ -72,6 +73,11 @@ namespace Roomie.Common.Measurements
             if (runtimeType == typeof (IHumidity))
             {
                 return (TMeasurement) HumidityParser.Parse(value, type);
+            }
+
+            if (runtimeType == typeof(IIlluminance))
+            {
+                return (TMeasurement)IlluminanceParser.Parse(value, type);
             }
 
             if (runtimeType == typeof (IMeasurement))
