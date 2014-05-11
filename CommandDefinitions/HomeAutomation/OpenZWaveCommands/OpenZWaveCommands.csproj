@@ -49,6 +49,7 @@
     <Compile Include="Commands\OpenZWave\OptimizeNetwork.cs" />
     <Compile Include="Commands\OpenZWave\PrintData.cs" />
     <Compile Include="Commands\OpenZWave\RegisterNetwork.cs" />
+    <Compile Include="NodeDataEntries\Specific\BinarySensorDataEntry.cs" />
     <Compile Include="OpenZWaveTemperatureSensor.cs" />
     <Compile Include="OpenZWaveHumiditySensor.cs" />
     <Compile Include="NodeDataEntries\General\HumidityNodeDataEntry.cs" />

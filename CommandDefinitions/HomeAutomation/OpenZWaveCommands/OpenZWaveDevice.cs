@@ -74,6 +74,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 return true;
             }
 
+            if (_binarySensor.ProcessValueChanged(value))
+            {
+                return true;
+            }
+
             if (_powerSensor.ProcessValueChanged(value))
             {
                 return true;
