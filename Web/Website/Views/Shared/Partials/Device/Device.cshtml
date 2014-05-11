@@ -39,7 +39,7 @@
         {
             @Html.Partial("Partials/Device/ToggleButtons", Model.Device)
         }
-        else if (device.Type.Equals(DeviceType.BinarySensor))
+        else if (device.Type.Equals(DeviceType.BinarySensor) || device.BinarySensor.Value != null)
         {
             <div class="group">@device.BinarySensor.Describe()</div>
         }

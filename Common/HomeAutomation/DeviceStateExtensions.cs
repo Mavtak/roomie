@@ -52,6 +52,11 @@ namespace Roomie.Common.HomeAutomation
                 result += "?";
             }
 
+            if (device.Type != DeviceType.BinarySensor && (device.BinarySensorState != null && device.BinarySensorState.Value != null))
+            {
+                result = device.BinarySensorState.Describe();
+            }
+
             if (device.PowerSensorState != null && device.PowerSensorState.Value != null)
             {
                 result += " " + device.PowerSensorState.Describe();
