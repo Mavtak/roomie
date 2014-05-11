@@ -54,7 +54,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.OpenZWaveDeviceValueMatche
             return result;
         }
 
-        public static IOpenZWaveDeviceValueMatcher Luminance()
+        public static IOpenZWaveDeviceValueMatcher Illuminance()
         {
             var result = new UnitsMatcher("lux");
 

@@ -8,6 +8,7 @@ using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Measurements.Humidity;
+using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 
@@ -26,6 +27,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly OpenZWaveTemperatureSensor _temperatureSensor;
         private readonly OpenZWavePowerSensor _powerSensor;
         private readonly OpenZWaveHumiditySensor _humiditySensor;
+        private readonly OpenZWaveIlluminanceSensor _illuminanceSensor;
 
         public byte? Event;
 
@@ -46,6 +48,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _powerSensor = new OpenZWavePowerSensor(this);
             _temperatureSensor = new OpenZWaveTemperatureSensor(this);
             _humiditySensor = new OpenZWaveHumiditySensor(this);
+            _illuminanceSensor = new OpenZWaveIlluminanceSensor(this);
         }
 
         public void OptimizePaths()
@@ -85,6 +88,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
 
             if (_humiditySensor.ProcessValueChanged(value))
+            {
+                return true;
+            }
+
+            if (_illuminanceSensor.ProcessValueChanged(value))
             {
                 return true;
             }
@@ -147,6 +155,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             get
             {
                 return _humiditySensor;
+            }
+        }
+
+        public override IMultilevelSensor<IIlluminance> IlluminanceSensor
+        {
+            get
+            {
+                return _illuminanceSensor;
             }
         }
 
