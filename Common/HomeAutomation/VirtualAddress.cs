@@ -161,7 +161,7 @@ namespace Roomie.Common.HomeAutomation
 
                 DeviceNodeId =  device.Address,
                 DeviceName = (justAddresses) ? (null) : (device.Name),
-                DeviceLocation = (justAddresses) ? (null) : (device.Location.Format()),
+                DeviceLocation = (justAddresses || device.Location == null) ? (null) : (device.Location.Format()),
 
                 Remark = remarks
             };
