@@ -429,25 +429,9 @@ namespace Roomie.Web.Persistence.Models
         {
             var builder = new System.Text.StringBuilder();
 
-            builder.Append("Device{Name='");
-            builder.Append(Name);
-            builder.Append("', Address='");
-            builder.Append(Address);
-            builder.Append("', Location-'");
-            if (Location == null)
-            {
-                builder.Append("(unknown)");
-            }
-            else
-            {
-                builder.Append(Location.Name);
-            }
-            builder.Append("', Type='");
-            builder.Append(Type);
+            builder.Append(this.BuildVirtualAddress(false, false));
+            builder.Append(" - ");
             builder.Append(this.Describe());
-            builder.Append("', Network='");
-            builder.Append((Network != null) ? Network.Name : "(none}");
-            builder.Append("'}");
 
             return builder.ToString();
         }
