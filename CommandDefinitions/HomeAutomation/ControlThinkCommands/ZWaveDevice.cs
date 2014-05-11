@@ -8,6 +8,7 @@ using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Measurements.Humidity;
+using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 using BackingDevice = ControlThink.ZWave.Devices.ZWaveDevice;
@@ -146,6 +147,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
         }
 
         public override IMultilevelSensor<IHumidity> HumiditySensor
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public override IMultilevelSensor<IIlluminance> IlluminanceSensor
         {
             get
             {
