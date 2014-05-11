@@ -26,6 +26,11 @@
         {
             <div class="group">Humidity: @device.HumiditySensor.Describe()</div>
         }
+        
+        if (device.IlluminanceSensor.Value != null)
+        {
+            <div class="group">Illuminance: @device.IlluminanceSensor.Describe()</div>
+        }
           
         if (device.Type.Equals(DeviceType.Thermostat))
         {

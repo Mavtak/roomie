@@ -10,6 +10,7 @@ using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.Measurements.Humidity;
+using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Helpers;
@@ -97,6 +98,11 @@ namespace Roomie.Web.Persistence.Models
                 HumiditySensor.Update(state.HumiditySensorState);
             }
 
+            if (state.IlluminanceSensorState != null)
+            {
+                IlluminanceSensor.Update(state.IlluminanceSensorState);
+            }
+
             if (state.ThermostatState != null)
             {
                 Thermostat.Update(state.ThermostatState);
@@ -109,6 +115,7 @@ namespace Roomie.Web.Persistence.Models
         private readonly MultilevelSensorModel<IPower> _powerSensor;
         private readonly MultilevelSensorModel<ITemperature> _temperatureSensor;
         private readonly MultilevelSensorModel<IHumidity> _humiditySensor;
+        private readonly MultilevelSensorModel<IIlluminance> _illuminanceSensor;
         private readonly ThermostatModel _thermostat;
 
         public ToggleSwitchModel ToggleSwitch
@@ -160,6 +167,14 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        public MultilevelSensorModel<IIlluminance> IlluminanceSensor
+        {
+            get
+            {
+                return _illuminanceSensor;
+            }
+        }
+
         public ThermostatModel Thermostat
         {
             get
@@ -186,6 +201,7 @@ namespace Roomie.Web.Persistence.Models
             _powerSensor = new MultilevelSensorModel<IPower>(this);
             _temperatureSensor = new MultilevelSensorModel<ITemperature>(this);
             _humiditySensor = new MultilevelSensorModel<IHumidity>(this);
+            _illuminanceSensor = new MultilevelSensorModel<IIlluminance>(this);
         }
 
         #region LastPing
@@ -278,6 +294,14 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        IMultilevelSensor<IIlluminance> IDevice.IlluminanceSensor
+        {
+            get
+            {
+                return IlluminanceSensor;
+            }
+        }
+
         IThermostat IDevice.Thermostat
         {
             get
@@ -359,6 +383,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return HumiditySensor;
+            }
+        }
+
+        public IMultilevelSensorState<IIlluminance> IlluminanceSensorState
+        {
+            get
+            {
+                return IlluminanceSensor;
             }
         }
 
@@ -497,6 +529,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return HumiditySensor;
+            }
+        }
+
+        public IMultilevelSensorActions IlluminanceSensorActions
+        {
+            get
+            {
+                return IlluminanceSensor;
             }
         }
 

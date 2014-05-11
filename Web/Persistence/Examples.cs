@@ -7,6 +7,7 @@ using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Measurements.Humidity;
+using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Models;
@@ -83,6 +84,8 @@ namespace Roomie.Web.Persistence
                 multisensor.TemperatureSensor.TimeStamp = DateTime.UtcNow.AddSeconds(-45);
                 multisensor.HumiditySensor.Value = new RelativeHumidity(35);
                 multisensor.HumiditySensor.TimeStamp = DateTime.UtcNow.AddMinutes(-3).AddSeconds(-14);
+                multisensor.IlluminanceSensor.Value = new LuxIlluminance(234);
+                multisensor.IlluminanceSensor.TimeStamp = DateTime.UtcNow.AddMinutes(-36).AddSeconds(-14);
 
                 var thermostat = new DeviceModel
                     {
