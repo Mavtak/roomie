@@ -1,4 +1,5 @@
-﻿using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
+﻿using System;
+using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 
@@ -17,6 +18,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 var result = GetValueFromDataEntry() ?? GetValueFromEventValue();
 
                 return result;
+            }
+        }
+
+        public DateTime? TimeStamp
+        {
+            get
+            {
+                return _dataEntry.LastUpdated;
             }
         }
 
