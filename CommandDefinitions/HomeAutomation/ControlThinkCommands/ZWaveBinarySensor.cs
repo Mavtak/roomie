@@ -1,4 +1,5 @@
-﻿using Roomie.Common.HomeAutomation;
+﻿using System;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 
@@ -27,6 +28,14 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
                 var result = _device.BinarySwitch.Power == BinarySwitchPower.On;
 
                 return result;
+            }
+        }
+
+        public DateTime? TimeStamp
+        {
+            get
+            {
+                return null;
             }
         }
 
