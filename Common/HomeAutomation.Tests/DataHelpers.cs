@@ -25,7 +25,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var toggle = new ReadOnlyBinarySwitchSwitchState(BinarySwitchPower.On);
             var dimmer = new ReadOnlyMultilevelSwitchState(25, 100);
 
-            var binarySensor = new ReadOnlyBinarySensorState(BinarySensorType.Motion, true);
+            var binarySensor = new ReadOnlyBinarySensorState(BinarySensorType.Motion, true, DateTime.UtcNow.AddMinutes(-4));
 
             var powerSensor = new ReadOnlyMultilevelSensorState<IPower>(new WattsPower(25), DateTime.UtcNow.AddSeconds(-2));
 

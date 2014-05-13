@@ -117,6 +117,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 
             Assert.That(one.Type, Is.EqualTo(two.Type));
             Assert.That(one.Value, Is.EqualTo(two.Value));
+            Assert.That(one.TimeStamp, Is.EqualTo(two.TimeStamp));
         }
 
         public static void AssertMultilevelSensorEqual<TMeasurement>(IMultilevelSensorState<TMeasurement> one, IMultilevelSensorState<TMeasurement> two)
