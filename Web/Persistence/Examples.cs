@@ -59,6 +59,7 @@ namespace Roomie.Web.Persistence
                 };
                 openDoorSensor.BinarySensor.Type = BinarySensorType.Door;
                 openDoorSensor.BinarySensor.Value = true;
+                openDoorSensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddSeconds(-24);
 
                 var stillMotionSensor = new DeviceModel
                 {
@@ -74,6 +75,8 @@ namespace Roomie.Web.Persistence
                     Type = DeviceType.BinarySensor
                 };
                 falseGenericBinarySensor.BinarySensor.Value = false;
+                falseGenericBinarySensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddMinutes(-4);
+
 
                 var multisensor = new DeviceModel
                 {

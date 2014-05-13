@@ -16,6 +16,8 @@ namespace Roomie.Web.Persistence.Models
 
         public bool? Value { get; set; }
 
+        public DateTime? TimeStamp { get; set; }
+
         public void Poll()
         {
             throw new NotImplementedException();
@@ -25,6 +27,7 @@ namespace Roomie.Web.Persistence.Models
         {
             Type = state.Type;
             Value = state.Value;
+            TimeStamp = state.TimeStamp;
         }
     }
 }
