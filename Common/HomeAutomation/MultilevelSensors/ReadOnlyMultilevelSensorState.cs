@@ -41,12 +41,7 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
                 value = MeasurementParser.Parse<TMeasurement>(valueString);
             }
 
-            DateTime? timeStamp = null;
-            var timeStampString = element.GetAttributeStringValue("TimeStamp");
-            if (timeStampString != null)
-            {
-                timeStamp = Convert.ToDateTime(timeStampString).ToUniversalTime();
-            }
+            var timeStamp = element.GetAttributeDateTimeValue("TimeStamp");
 
             var result = new ReadOnlyMultilevelSensorState<TMeasurement>
                 {

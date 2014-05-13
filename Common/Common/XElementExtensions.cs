@@ -40,5 +40,17 @@ namespace Roomie.Common
 
             return Convert.ToInt32(value);
         }
+
+        public static DateTime? GetAttributeDateTimeValue(this XElement element, string attribute)
+        {
+            var value = element.GetAttributeStringValue(attribute);
+
+            if (value == null)
+            {
+                return null;
+            }
+
+            return Convert.ToDateTime(value).ToUniversalTime();
+        }
     }
 }
