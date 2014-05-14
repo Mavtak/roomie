@@ -21,9 +21,9 @@ namespace Roomie.Common.HomeAutomation
         public bool? IsConnected { get; private set; }
         public DeviceType Type { get; private set; }
         public IBinarySwitchState BinarySwitchState { get; private set; }
-        public IMultilevelSensorState<IPower> PowerSensorState { get; set; }
+        public IMultilevelSensorState<IPower> PowerSensorState { get; private set; }
         public IMultilevelSensorState<ITemperature> TemperatureSensorState { get; private set; }
-        public IMultilevelSensorState<IHumidity> HumiditySensorState { get; set; }
+        public IMultilevelSensorState<IHumidity> HumiditySensorState { get; private set; }
         public IMultilevelSensorState<IIlluminance> IlluminanceSensorState { get; private set; }
         public IMultilevelSwitchState MultilevelSwitchState { get; private set; }
         public IBinarySensorState BinarySensorState { get; private set; }

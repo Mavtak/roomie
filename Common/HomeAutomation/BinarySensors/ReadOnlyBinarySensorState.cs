@@ -7,7 +7,7 @@ namespace Roomie.Common.HomeAutomation.BinarySensors
     {
         public BinarySensorType? Type { get; private set; }
         public bool? Value { get; private set; }
-        public DateTime? TimeStamp { get; set; }
+        public DateTime? TimeStamp { get; private set; }
 
         private ReadOnlyBinarySensorState()
         {
