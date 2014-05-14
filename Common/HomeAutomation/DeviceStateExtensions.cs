@@ -116,90 +116,63 @@ namespace Roomie.Common.HomeAutomation
             {
                 var element = state.BinarySwitchState.ToXElement();
 
-                if (element.Attributes().Any() || element.Descendants().Any())
-                {
-                    result.Add(element);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.MultilevelSwitchState != null)
             {
                 var element = state.MultilevelSwitchState.ToXElement();
 
-                if (element.Attributes().Any() || element.Descendants().Any())
-                {
-                    result.Add(element);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.BinarySensorState != null)
             {
                 var element = state.BinarySensorState.ToXElement();
 
-                if (element.Attributes().Any() || element.Descendants().Any())
-                {
-                    result.Add(element);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.PowerSensorState != null)
             {
                 var element = state.PowerSensorState.ToXElement("PowerSensor");
 
-                if (element.Attributes().Any() || element.Descendants().Any())
-                {
-                    result.Add(element);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.TemperatureSensorState != null)
             {
                 var element = state.TemperatureSensorState.ToXElement("TemperatureSensor");
 
-                if (element.Attributes().Any() || element.Descendants().Any())
-                {
-                    result.Add(element);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.HumiditySensorState != null)
             {
                 var element = state.HumiditySensorState.ToXElement("HumiditySensor");
 
-                if (element.Attributes().Any() || element.Descendants().Any())
-                {
-                    result.Add(element);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.IlluminanceSensorState != null)
             {
                 var element = state.IlluminanceSensorState.ToXElement("IlluminanceSensor");
 
-                if (element.Attributes().Any() || element.Descendants().Any())
-                {
-                    result.Add(element);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.ThermostatState != null)
             {
                 var element = state.ThermostatState.ToXElement();
 
-                if (element.Attributes().Any() || element.Descendants().Any())
-                {
-                    result.Add(element);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.KeypadState != null)
             {
                 var element = state.KeypadState.ToXElement();
 
-                if (element.Attributes().Any() || element.Descendants().Any())
-                {
-                    result.Add(element);
-                }
+                result.AddIfHasData(element);
             }
 
             return result;

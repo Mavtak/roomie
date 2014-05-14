@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 using Roomie.Common.Measurements;
 
@@ -64,6 +65,16 @@ namespace Roomie.Common
             }
 
             return MeasurementParser.Parse<TMeasurement>(valueString);
+        }
+
+        public static void AddIfHasData(this XElement root, XElement element)
+        {
+            if (!element.Attributes().Any() && !element.Descendants().Any())
+            {
+                return;
+            }
+
+            root.Add(element);
         }
     }
 }
