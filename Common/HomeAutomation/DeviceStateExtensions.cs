@@ -114,91 +114,91 @@ namespace Roomie.Common.HomeAutomation
 
             if (state.BinarySwitchState != null)
             {
-                var toggleSwitchNode = state.BinarySwitchState.ToXElement();
+                var element = state.BinarySwitchState.ToXElement();
 
-                if (toggleSwitchNode.Attributes().Any() || toggleSwitchNode.Descendants().Any())
+                if (element.Attributes().Any() || element.Descendants().Any())
                 {
-                    result.Add(toggleSwitchNode);
+                    result.Add(element);
                 }
             }
 
             if (state.MultilevelSwitchState != null)
             {
-                var dimmerSwitchNode = state.MultilevelSwitchState.ToXElement();
+                var element = state.MultilevelSwitchState.ToXElement();
 
-                if (dimmerSwitchNode.Attributes().Any() || dimmerSwitchNode.Descendants().Any())
+                if (element.Attributes().Any() || element.Descendants().Any())
                 {
-                    result.Add(dimmerSwitchNode);
+                    result.Add(element);
                 }
             }
 
             if (state.BinarySensorState != null)
             {
-                var binarySensorNode = state.BinarySensorState.ToXElement();
+                var element = state.BinarySensorState.ToXElement();
 
-                if (binarySensorNode.Attributes().Any() || binarySensorNode.Descendants().Any())
+                if (element.Attributes().Any() || element.Descendants().Any())
                 {
-                    result.Add(binarySensorNode);
+                    result.Add(element);
                 }
             }
 
             if (state.PowerSensorState != null)
             {
-                var powerSensorNode = state.PowerSensorState.ToXElement("PowerSensor");
+                var element = state.PowerSensorState.ToXElement("PowerSensor");
 
-                if (powerSensorNode.Attributes().Any() || powerSensorNode.Descendants().Any())
+                if (element.Attributes().Any() || element.Descendants().Any())
                 {
-                    result.Add(powerSensorNode);
+                    result.Add(element);
                 }
             }
 
             if (state.TemperatureSensorState != null)
             {
-                var temperatureSensorNode = state.TemperatureSensorState.ToXElement("TemperatureSensor");
+                var element = state.TemperatureSensorState.ToXElement("TemperatureSensor");
 
-                if (temperatureSensorNode.Attributes().Any() || temperatureSensorNode.Descendants().Any())
+                if (element.Attributes().Any() || element.Descendants().Any())
                 {
-                    result.Add(temperatureSensorNode);
+                    result.Add(element);
                 }
             }
 
             if (state.HumiditySensorState != null)
             {
-                var humiditySensorNode = state.HumiditySensorState.ToXElement("HumiditySensor");
+                var element = state.HumiditySensorState.ToXElement("HumiditySensor");
 
-                if (humiditySensorNode.Attributes().Any() || humiditySensorNode.Descendants().Any())
+                if (element.Attributes().Any() || element.Descendants().Any())
                 {
-                    result.Add(humiditySensorNode);
+                    result.Add(element);
                 }
             }
 
             if (state.IlluminanceSensorState != null)
             {
-                var illuminanceSensorNode = state.IlluminanceSensorState.ToXElement("IlluminanceSensor");
+                var element = state.IlluminanceSensorState.ToXElement("IlluminanceSensor");
 
-                if (illuminanceSensorNode.Attributes().Any() || illuminanceSensorNode.Descendants().Any())
+                if (element.Attributes().Any() || element.Descendants().Any())
                 {
-                    result.Add(illuminanceSensorNode);
+                    result.Add(element);
                 }
             }
 
             if (state.ThermostatState != null)
             {
-                var thermostatNode = state.ThermostatState.ToXElement();
+                var element = state.ThermostatState.ToXElement();
 
-                if (thermostatNode.Attributes().Any() || thermostatNode.Descendants().Any())
+                if (element.Attributes().Any() || element.Descendants().Any())
                 {
-                    result.Add(thermostatNode);
+                    result.Add(element);
                 }
             }
 
             if (state.KeypadState != null)
             {
-                var node = state.KeypadState.ToXElement();
+                var element = state.KeypadState.ToXElement();
 
-                if (node.Attributes().Any() || node.Descendants().Any())
+                if (element.Attributes().Any() || element.Descendants().Any())
                 {
-                    result.Add(node);
+                    result.Add(element);
                 }
             }
 
