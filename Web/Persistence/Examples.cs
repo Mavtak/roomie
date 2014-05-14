@@ -89,6 +89,9 @@ namespace Roomie.Web.Persistence
                 multisensor.HumiditySensor.TimeStamp = DateTime.UtcNow.AddMinutes(-3).AddSeconds(-14);
                 multisensor.IlluminanceSensor.Value = new LuxIlluminance(234);
                 multisensor.IlluminanceSensor.TimeStamp = DateTime.UtcNow.AddMinutes(-36).AddSeconds(-14);
+                multisensor.BinarySensor.Type = BinarySensorType.Motion;
+                multisensor.BinarySensor.Value = true;
+                multisensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddSeconds(-43);
 
                 var thermostat = new DeviceModel
                     {
