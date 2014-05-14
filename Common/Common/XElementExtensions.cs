@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using Roomie.Common.Measurements;
 
 namespace Roomie.Common
 {
@@ -51,6 +52,18 @@ namespace Roomie.Common
             }
 
             return Convert.ToDateTime(value).ToUniversalTime();
+        }
+
+        public static TMeasurement GetAttributeMeasurementValue<TMeasurement>(this XElement element, string attribute)
+            where TMeasurement : IMeasurement
+        {
+            var valueString = element.GetAttributeStringValue("Value");
+            if (valueString == null)
+            {
+                return default(TMeasurement);
+            }
+
+            return MeasurementParser.Parse<TMeasurement>(valueString);
         }
     }
 }

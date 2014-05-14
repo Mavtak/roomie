@@ -33,13 +33,7 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
 
         public static ReadOnlyMultilevelSensorState<TMeasurement> FromXElement(XElement element)
         {
-            var value = default(TMeasurement);
-
-            var valueString = element.GetAttributeStringValue("Value");
-            if (valueString != null)
-            {
-                value = MeasurementParser.Parse<TMeasurement>(valueString);
-            }
+            var value = element.GetAttributeMeasurementValue<TMeasurement>("Value");
 
             var timeStamp = element.GetAttributeDateTimeValue("TimeStamp");
 
