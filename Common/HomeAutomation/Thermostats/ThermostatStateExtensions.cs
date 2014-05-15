@@ -68,32 +68,23 @@ namespace Roomie.Common.HomeAutomation.Thermostats
 
             if (state.CoreState != null)
             {
-                var coreNode = state.CoreState.ToXElement();
+                var element = state.CoreState.ToXElement();
 
-                if (coreNode.Attributes().Any() || coreNode.Descendants().Any())
-                {
-                    result.Add(coreNode);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.FanState != null)
             {
-                var fanNode = state.FanState.ToXElement();
+                var element = state.FanState.ToXElement();
 
-                if (fanNode.Attributes().Any() || fanNode.Descendants().Any())
-                {
-                    result.Add(fanNode);
-                }
+                result.AddIfHasData(element);
             }
 
             if (state.SetpointStates != null)
             {
-                var setpointsNode = state.SetpointStates.ToXElement();
+                var element = state.SetpointStates.ToXElement();
 
-                if (setpointsNode.Attributes().Any() || setpointsNode.Elements().Any())
-                {
-                    result.Add(setpointsNode);
-                }
+                result.AddIfHasData(element);
             }
 
             return result;

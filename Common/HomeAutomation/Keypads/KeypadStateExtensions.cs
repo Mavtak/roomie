@@ -39,14 +39,11 @@ namespace Roomie.Common.HomeAutomation.Keypads
 
             if (state.Buttons != null)
             {
-                var nodes = state.Buttons.Select(x => x.ToXElement());
+                var elements = state.Buttons.Select(x => x.ToXElement());
                 
-                foreach (var node in nodes)
+                foreach (var element in elements)
                 {
-                    if (node.Attributes().Any() || node.Descendants().Any())
-                    {
-                        result.Add(node);
-                    }
+                    result.AddIfHasData(element);
                 }
             }
             
