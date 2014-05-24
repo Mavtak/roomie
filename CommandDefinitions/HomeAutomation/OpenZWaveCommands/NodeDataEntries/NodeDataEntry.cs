@@ -11,7 +11,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         protected readonly OpenZWaveDevice Device;
         protected readonly IOpenZWaveDeviceValueMatcher Matcher;
 
-        public DateTime LastUpdated { get; private set; }
+        public DateTime? LastUpdated { get; private set; }
 
         protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass, byte? index = null)
             : this(device, CompositeMatcher.Create(device.Id, commandClass, index))
@@ -22,8 +22,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         {
             Device = device;
             Matcher = matcher;
-
-            RefreshLastUpdated();
         }
 
         protected OpenZWaveDeviceValue GetDataEntry()
