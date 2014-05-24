@@ -20,6 +20,8 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         internal ZWManager Manager { get; private set; }
         internal byte Id { get; private set; }
 
+        public OpenZWaveEvent Event { get; private set; }
+
         private readonly OpenZWaveToggleSwitch _toggleSwitch;
         private readonly OpenZWaveDimmerSwitch _dimmerSwitch;
         private readonly OpenZWaveThermostat _thermostat;
@@ -28,8 +30,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly OpenZWavePowerSensor _powerSensor;
         private readonly OpenZWaveHumiditySensor _humiditySensor;
         private readonly OpenZWaveIlluminanceSensor _illuminanceSensor;
-
-        public byte? Event;
 
         public OpenZWaveDevice(Network network, ZWManager manager, byte id)
             : base(network)
@@ -40,6 +40,8 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
             Address = Id.ToString();
             IsConnected = true;
+
+            Event = new OpenZWaveEvent(this);
 
             _toggleSwitch = new OpenZWaveToggleSwitch(this);
             _dimmerSwitch = new OpenZWaveDimmerSwitch(this);

@@ -62,15 +62,10 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
                 case NotificationType.NodeEvent:
                     var device = notification.Device;
-                    device.Event = notification.Event;
 
                     HandleDeviceConnected(device, true);
 
-                    //TODO: what else is this value used for?
-                    if (device.Type.Equals(DeviceType.BinarySensor))
-                    {
-                        device.AddEvent(DeviceEvent.BinarySensorValueChanged(device, null));
-                    }
+                    device.Event.Update(notification.Event);
                     break;
 
                 case NotificationType.NodeNaming:

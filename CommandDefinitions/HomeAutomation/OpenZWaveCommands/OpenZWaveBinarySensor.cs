@@ -51,7 +51,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 return null;
             }
 
-            var value = _device.Event;
+            var value = _device.Event.Value;
 
             if (value == null)
             {
