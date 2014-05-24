@@ -15,7 +15,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             get
             {
-                var result = GetValueFromDataEntry() ?? GetValueFromEventValue();
+                var result = GetValueFromEventValue();
+
+                if (result == null)
+                {
+                    result = GetValueFromDataEntry();
+                }
 
                 return result;
             }
@@ -25,6 +30,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             get
             {
+                var value = GetValueFromEventValue();
+
+                if (value != null)
+                {
+                    return _device.Event.TimeStamp;
+                }
+
                 return _dataEntry.LastUpdated;
             }
         }
