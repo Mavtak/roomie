@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySwitches;
@@ -9,12 +8,9 @@ using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Database;
-using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
-using System.Linq;
 using Roomie.Web.Website.ViewModels;
-
 
 namespace Roomie.Web.Website.Controllers
 {
@@ -24,7 +20,7 @@ namespace Roomie.Web.Website.Controllers
         [WebsiteRestrictedAccess]
         public ActionResult Index(string search)
         {
-            var devices = Database.Devices.Get(User).AsEnumerable();
+            var devices = Database.GetDevicesForUser(User).AsEnumerable();
 
             if (!string.IsNullOrEmpty(search))
             {

@@ -30,7 +30,7 @@ namespace Roomie.Web.Persistence.Database
             var entityframeworkNetworkRepository = new EntityFrameworkNetworkRepository(_database.Networks);
             Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
 
-            var entityFrameworkDeviceRepository = new EntityFrameworkDeviceRepository(_database.Devices, Networks);
+            var entityFrameworkDeviceRepository = new EntityFrameworkDeviceRepository(_database.Devices);
             Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
 
             DeviceLocations = new EntityFrameworkDeviceLocationRepository(_database.DeviceLocations);

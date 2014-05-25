@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Website.Helpers;
 
@@ -13,7 +14,7 @@ namespace Roomie.Web.Website.Controllers.Api
         // GET api/values
         public IEnumerable<SerializedDevice> Get()
         {
-            var devices = Database.Devices.Get(User);
+            var devices = Database.GetDevicesForUser(User);
 
             return SerializedDevice.Convert(devices);
             

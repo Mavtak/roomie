@@ -59,6 +59,7 @@
     <Compile Include="Database\EntityFrameworkRoomieDatabaseBackend.cs" />
     <Compile Include="Database\ExtensionsToIRoomieDatabaseContext.cs" />
     <Compile Include="Database\IRoomieDatabaseContext.cs" />
+    <Compile Include="Database\RoomieDatabaseContextExtensions.cs" />
     <Compile Include="Examples.cs" />
     <Compile Include="Helpers\DeviceModelExtensions.cs" />
     <Compile Include="Helpers\LocationModelExtensions.cs" />

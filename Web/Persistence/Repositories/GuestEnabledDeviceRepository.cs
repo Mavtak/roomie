@@ -60,13 +60,6 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public DeviceModel[] Get(UserModel user)
-        {
-            var result = _devices.Get(user);
-
-            return result;
-        }
-
         public void Add(DeviceModel device)
         {
             _devices.Add(device);

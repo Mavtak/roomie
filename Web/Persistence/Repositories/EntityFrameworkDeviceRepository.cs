@@ -9,12 +9,10 @@ namespace Roomie.Web.Persistence.Repositories
     public class EntityFrameworkDeviceRepository : IDeviceRepository
     {
         private readonly DbSet<DeviceModel> _devices;
-        private readonly INetworkRepository _networks;
 
-        public EntityFrameworkDeviceRepository(DbSet<DeviceModel> devices, INetworkRepository networks)
+        public EntityFrameworkDeviceRepository(DbSet<DeviceModel> devices)
         {
             _devices = devices;
-            _networks = networks;
         }
 
         public DeviceModel Get(int id)
@@ -54,18 +52,6 @@ namespace Roomie.Web.Persistence.Repositories
         public DeviceModel[] Get(NetworkModel network)
         {
             var result = _devices.Where(x => x.Network.Id == network.Id).ToArray();
-
-            return result;
-        }
-
-        public DeviceModel[] Get(UserModel user)
-        {
-            var networks = _networks.Get(user);
-            var devices = networks.SelectMany(Get).ToList();
-
-            devices.Sort(new DeviceSort());
-
-            var result = devices.ToArray();
 
             return result;
         }
