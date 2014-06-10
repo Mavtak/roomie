@@ -59,10 +59,10 @@ namespace Roomie.Web.Persistence.Models
                 Fan.Update(data.FanState);
             }
 
-            Setpoints = new ThermostatSetpointModel(_device);
-
             if (data.SetpointStates != null)
             {
+                Setpoints = new ThermostatSetpointModel(_device);
+
                 foreach (var pair in data.SetpointStates.ToDictionary())
                 {
                     Setpoints.Add(pair.Key, pair.Value);
