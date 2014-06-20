@@ -21,19 +21,19 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _setpoints = new OpenZWaveSetpointCollection(device);
         }
 
-        public bool ProcessValueChanged(OpenZWaveDeviceValue entry)
+        public bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)
         {
-            if (_core.ProcessValueChanged(entry))
+            if (_core.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_fan.ProcessValueChanged(entry))
+            if (_fan.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_setpoints.ProcessValueChanged(entry))
+            if (_setpoints.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }

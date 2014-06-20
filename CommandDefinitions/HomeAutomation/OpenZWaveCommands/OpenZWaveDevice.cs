@@ -67,44 +67,44 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             Values.Remove(remove);
         }
 
-        internal bool ProcessValueChanged(OpenZWaveDeviceValue value)
+        internal bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)
         {
-            if (_toggleSwitch.ProcessValueChanged(value))
+            if (_toggleSwitch.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_dimmerSwitch.ProcessValueChanged(value))
+            if (_dimmerSwitch.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_binarySensor.ProcessValueChanged(value))
+            if (_binarySensor.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_powerSensor.ProcessValueChanged(value))
+            if (_powerSensor.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_humiditySensor.ProcessValueChanged(value))
+            if (_humiditySensor.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_illuminanceSensor.ProcessValueChanged(value))
+            if (_illuminanceSensor.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_temperatureSensor.ProcessValueChanged(value))
+            if (_temperatureSensor.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_thermostat.ProcessValueChanged(value))
+            if (_thermostat.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }

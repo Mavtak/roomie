@@ -56,9 +56,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
             dataEntry.Refresh();
         }
 
-        public bool ProcessValueChanged(OpenZWaveDeviceValue entry)
+        public bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)
         {
-            if (!Matches(entry))
+            if (!Matches(value))
             {
                 return false;
             }

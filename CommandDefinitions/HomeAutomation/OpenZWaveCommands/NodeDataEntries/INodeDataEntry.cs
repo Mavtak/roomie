@@ -9,7 +9,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         bool Matches(OpenZWaveDeviceValue entry);
 
         void RefreshValue();
-        bool ProcessValueChanged(OpenZWaveDeviceValue entry);
+        bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType);
 
         string Help { get; }
         string Label { get; }

@@ -61,13 +61,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
-        public bool ProcessValueChanged(OpenZWaveDeviceValue entry)
+        public bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)
         {
             var availableSetpoints = _setpoints.Values.Where(x => x.HasValue()).ToArray();
 
             foreach (var setpoint in availableSetpoints)
             {
-                if (setpoint.ProcessValueChanged(entry))
+                if (setpoint.ProcessValueUpdate(value, updateType))
                 {
                     return true;
                 }

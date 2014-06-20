@@ -45,14 +45,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _currentAction = new ThermostatCoreCurrentActionDataEntry(device);
         }
 
-        public bool ProcessValueChanged(OpenZWaveDeviceValue entry)
+        public bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)
         {
-            if (_mode.ProcessValueChanged(entry))
+            if (_mode.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }
 
-            if (_currentAction.ProcessValueChanged(entry))
+            if (_currentAction.ProcessValueUpdate(value, updateType))
             {
                 return true;
             }

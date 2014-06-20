@@ -86,16 +86,20 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
                 case NotificationType.ValueAdded:
                     notification.Device.Values.Add(notification.Value);
+                    HandleDeviceValueUpdated(notification.Device, notification.Value, ValueUpdateType.Add);
                     break;
 
                 case NotificationType.ValueRefreshed:
+                    HandleDeviceValueUpdated(notification.Device, notification.Value, ValueUpdateType.Refresh);
+                    break;
+
                 case NotificationType.ValueChanged:
-                    HandleDeviceConnected(notification.Device, true);
-                    notification.Device.ProcessValueChanged(notification.Value);
+                    HandleDeviceValueUpdated(notification.Device, notification.Value, ValueUpdateType.Change);
                     break;
 
                 case NotificationType.ValueRemoved:
                     notification.Device.RemoveValue(notification.Value);
+                    HandleDeviceValueUpdated(notification.Device, notification.Value, ValueUpdateType.Remove);
                     break;
 
                 default:
@@ -114,6 +118,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
             var @event = connected ? DeviceEvent.Found(device, null) : DeviceEvent.Lost(device, null);
             device.AddEvent(@event);
+        }
+
+        private void HandleDeviceValueUpdated(OpenZWaveDevice device, OpenZWaveDeviceValue value, ValueUpdateType updateType)
+        {
+            HandleDeviceConnected(device, true);
+            device.ProcessValueUpdate(value, updateType);
         }
     }
 }

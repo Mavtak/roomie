@@ -12,9 +12,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _dataEntry = new SwitchBinaryDataEntry(device);
         }
 
-        internal bool ProcessValueChanged(OpenZWaveDeviceValue entry)
+        internal bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)
         {
-            var result = _dataEntry.ProcessValueChanged(entry);
+            var result = _dataEntry.ProcessValueUpdate(value, updateType);
 
             return result;
         }
