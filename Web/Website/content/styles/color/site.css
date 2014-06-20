@@ -4,6 +4,7 @@ html,
 {
     background-color: rgb(195, 20, 20);
     background-color: #660198;
+    background-color: #4D007F; /* 10% darker than "roomie purple" */
 }
 
 .menuButton .bar
