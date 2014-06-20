@@ -98,6 +98,7 @@
             var $this = $(this);
 
             $this.next().toggle();
+            $(window).resize();
         });
     };
 
