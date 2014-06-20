@@ -71,7 +71,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     return value.IntValue.ToString();
 
                 case ZWValueID.ValueType.List:
-                    return "{" + string.Join("/", value.ListItemsValue) + "}";
+                    return "{" + string.Join("/", (value.ListItemsValue ?? new string[0])) + "}";
 
                 case ZWValueID.ValueType.Schedule:
                     return "Schedule";
