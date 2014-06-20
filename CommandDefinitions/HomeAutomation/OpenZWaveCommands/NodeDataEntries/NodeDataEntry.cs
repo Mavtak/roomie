@@ -11,17 +11,20 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
         protected readonly OpenZWaveDevice Device;
         protected readonly IOpenZWaveDeviceValueMatcher Matcher;
 
+        private readonly bool _initialValueIsValid;
+
         public DateTime? LastUpdated { get; private set; }
 
-        protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass, byte? index = null)
-            : this(device, CompositeMatcher.Create(device.Id, commandClass, index))
+        protected NodeDataEntry(OpenZWaveDevice device, CommandClass commandClass, byte? index = null, bool? initialValueIsValid = null)
+            : this(device, CompositeMatcher.Create(device.Id, commandClass, index), initialValueIsValid)
         {
         }
 
-        protected NodeDataEntry(OpenZWaveDevice device, IOpenZWaveDeviceValueMatcher matcher)
+        protected NodeDataEntry(OpenZWaveDevice device, IOpenZWaveDeviceValueMatcher matcher, bool? initialValueIsValid = null)
         {
             Device = device;
             Matcher = matcher;
+            _initialValueIsValid = initialValueIsValid ?? true;
         }
 
         protected OpenZWaveDeviceValue GetDataEntry()
@@ -61,6 +64,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
             if (!Matches(value))
             {
                 return false;
+            }
+
+            if (!_initialValueIsValid && updateType == ValueUpdateType.Add)
+            {
+                return true;
             }
 
             RefreshLastUpdated();
