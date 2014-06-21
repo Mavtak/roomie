@@ -1,12 +1,9 @@
-﻿@using Roomie.Web.Persistence.Helpers
+﻿@using Roomie.Common.HomeAutomation
+@using Roomie.Web.Persistence.Helpers
 @model IEnumerable<Roomie.Web.Persistence.Models.DeviceModel>
 @{
     ViewBag.Title = "Devices";
 }@*
-
-*@@section PageSpecificScripts{@*
-    *@<script type="text/javascript">roomie.ui.pages.devices.index.init();</script>@*
-*@}@*
 
 
 *@@{
@@ -42,7 +39,7 @@ else
 *@@section PageMenu{@*
 
   *@@foreach (var header in headers)
-    {
-        <div class="item"data-location="@header.Item3"><div class="content" style="padding-left: @(header.Item2*10)px;">@header.Item1</div></div>
-    }@*
+    {@*
+        *@<div class="item"data-location="@header.Item3"><div class="content" style="padding-left: @(header.Item2*10)px;">@header.Item1</div></div>@*
+    *@}@*
 *@}
