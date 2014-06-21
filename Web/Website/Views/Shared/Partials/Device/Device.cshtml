@@ -7,6 +7,10 @@
     var device = Model.Device;
 }@*
 
+*@@helper WriteDetail(string label, string value)
+{@*
+      *@<div class="group">@label @value</div>@*
+*@}@*
 
 *@@Html.Partial("Partials/WidgetStart", widgetData)@*
       
@@ -14,22 +18,22 @@
     {
         if (device.PowerSensor.Value != null)
         {
-            <div class="group">Power: @device.PowerSensor.Describe()</div>
+            @WriteDetail("Power", device.PowerSensor.Describe())
         }
 
         if (device.TemperatureSensor.Value != null && !device.Type.Equals(DeviceType.Thermostat))
         {
-            <div class="group">Temperature: @device.TemperatureSensor.Describe()</div>
+            @WriteDetail("Temperature", device.TemperatureSensor.Describe())
         }
         
         if (device.HumiditySensor.Value != null)
         {
-            <div class="group">Humidity: @device.HumiditySensor.Describe()</div>
+            @WriteDetail("Humidity", @device.HumiditySensor.Describe())
         }
         
         if (device.IlluminanceSensor.Value != null)
         {
-            <div class="group">Illuminance: @device.IlluminanceSensor.Describe()</div>
+            @WriteDetail("Illuminance", device.IlluminanceSensor.Describe())
         }
           
         if (device.Type.Equals(DeviceType.Thermostat))
@@ -46,7 +50,7 @@
         }
         else if (device.Type.Equals(DeviceType.BinarySensor) || device.BinarySensor.Value != null)
         {
-            <div class="group">@device.BinarySensor.Describe()</div>
+            @WriteDetail("Binary State", @device.BinarySensor.Describe())
         }
     }@*
 
