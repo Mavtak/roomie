@@ -129,6 +129,9 @@
         var animation = {};
         animation[this.side] = metrics.menu.width;
         this.$content.animate(animation, animationSpeed, null, done);
+        roomie.ui.$contentSpringShade.animate({
+            opacity: 0
+        }, animationSpeed);
     };
 
     SlideMenu.prototype.hide = function (callback) {
@@ -155,6 +158,9 @@
         var animation = {};
         animation[this.side] = 0;
         this.$content.animate(animation, animationSpeed, null, done);
+        roomie.ui.$contentSpringShade.animate({
+            opacity: 1
+        }, animationSpeed);
     };
 
     SlideMenu.prototype.toggle = function(callback) {

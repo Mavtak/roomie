@@ -151,3 +151,24 @@
     sizeGhostFooter();
 
 })();
+
+(function () {
+    var namespace = createNamespace('roomie.ui');
+    if (namespace.$contentSpringShade) {
+        return;
+    }
+
+    var $shade = namespace.$contentSpringShade = $('<div />');
+    $shade.insertAfter($('#content'));
+    $shade.css('background-color', $('#page').css('background-color'));
+    $shade.css('position', 'relative');
+    $shade.css('pointer-events', 'none');
+
+    var sizeShade = namespace.sizeShade = function () {
+        $shade.height(0);
+        $shade.height($('#page').height() - $('#content').height() - $('#content').position().top - $('#footer').height() - 16);
+    };
+
+    $(window).resize(sizeShade);
+    sizeShade();
+})();
