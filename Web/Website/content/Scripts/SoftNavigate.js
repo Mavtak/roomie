@@ -75,7 +75,14 @@
         }
         
         roomie.ui.notifications.displayNext();
-        replace(page, whileNavigating, callback);
+
+        replace(page, whileNavigating, function () {
+            $(window).resize();
+            
+            if (callback) {
+                callback();
+            }
+        });
     };
 
     var stashScriptTags = function (html) {
@@ -113,6 +120,7 @@
         replaceContent('#pageMenu');
         replaceContent('#pageSpecificScripts');
 
+        $(window).resize();
 
         if (whileNavigating) {
             whileNavigating();
