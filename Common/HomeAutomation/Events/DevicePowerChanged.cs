@@ -3,9 +3,9 @@ namespace Roomie.Common.HomeAutomation.Events
 {
     public class DevicePowerChanged : DeviceStateChanged
     {
-        public const string Key = "Device Power Changed";
+        public new const string Key = "Device Power Changed";
 
-        public virtual string Name
+        public override string Name
         {
             get
             {
