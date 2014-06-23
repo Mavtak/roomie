@@ -54,6 +54,7 @@
     <Compile Include="DeviceStateCollectionExtensions.cs" />
     <Compile Include="DeviceStateExtensions.cs" />
     <Compile Include="Events\BinarySensorValueChanged.cs" />
+    <Compile Include="Events\EventTypeParser.cs" />
     <Compile Include="MultilevelSensors\IMultilevelSensor.cs" />
     <Compile Include="MultilevelSensors\IMultilevelSensorActions.cs" />
     <Compile Include="MultilevelSensors\IMultilevelSensorState.cs" />

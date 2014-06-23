@@ -62,6 +62,7 @@
     <Compile Include="DataHelpers.cs" />
     <Compile Include="DeviceFake.cs" />
     <Compile Include="DeviceStateExtensionTests.cs" />
+    <Compile Include="Events\EventParserTests.cs" />
     <Compile Include="Events\FilterEntityIHistoryExtensionTests.cs" />
     <Compile Include="Events\EventHistoryTests.cs" />
     <Compile Include="Events\MasterEventHistoryTests.cs" />
