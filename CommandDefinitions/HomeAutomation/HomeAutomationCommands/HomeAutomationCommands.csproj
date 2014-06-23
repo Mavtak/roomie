@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\EventTypeParameterAttribute.cs" />
     <Compile Include="Attributes\ThermostatModeParameterAttribute.cs" />
     <Compile Include="Attributes\FanModeParameterAttribute.cs" />
     <Compile Include="Attributes\SetpointTypeParameterAttribute.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Attributes\NetworkAttribute.cs" />
     <Compile Include="Attributes\PowerParameterAttribute.cs" />
     <Compile Include="Commands\HomeAutomation\AddDevice.cs" />
+    <Compile Include="Commands\HomeAutomation\RegisterDeviceEventTigger.cs" />
     <Compile Include="Commands\HomeAutomation\PollIlluminance.cs" />
     <Compile Include="Commands\HomeAutomation\PollTempearture.cs" />
     <Compile Include="Commands\HomeAutomation\PollPower.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Commands\HomeAutomation\WaitForChange.cs" />
     <Compile Include="Commands\HomeAutomation\WebHookConnectTasks.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="EventTypeParameterType.cs" />
     <Compile Include="RunScriptTriggerAction.cs" />
     <Compile Include="ThermostatModeParameterType.cs" />
     <Compile Include="FanModeParameterType.cs" />
