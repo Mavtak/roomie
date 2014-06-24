@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
 
             if (state == true)
             {
-                return DeviceEvent.PoweredOff(Device, null);
+                return DeviceEvent.PoweredOn(Device, null);
             }
 
             if (state == false)
