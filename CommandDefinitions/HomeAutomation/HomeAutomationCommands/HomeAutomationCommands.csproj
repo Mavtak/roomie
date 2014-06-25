@@ -72,8 +72,6 @@
     <Compile Include="Commands\HomeAutomation\SetThermostatFanMode.cs" />
     <Compile Include="Commands\HomeAutomation\ListDeviceEvents.cs" />
     <Compile Include="Commands\HomeAutomation\ListEvents.cs" />
-    <Compile Include="Commands\HomeAutomation\RegisterPowerChangedCommand.cs" />
-    <Compile Include="Commands\HomeAutomation\RegisterPowerOffCommand.cs" />
     <Compile Include="Commands\HomeAutomation\PollDevice.cs" />
     <Compile Include="Commands\HomeAutomation\Dim.cs" />
     <Compile Include="Commands\HomeAutomation\ListDevices.cs" />
@@ -81,7 +79,6 @@
     <Compile Include="Commands\HomeAutomation\PowerOff.cs" />
     <Compile Include="Commands\HomeAutomation\PowerOn.cs" />
     <Compile Include="Commands\HomeAutomation\PrintStats.cs" />
-    <Compile Include="Commands\HomeAutomation\RegisterPowerOnCommand.cs" />
     <Compile Include="Commands\HomeAutomation\RemoveDevice.cs" />
     <Compile Include="Commands\HomeAutomation\SaveData.cs" />
     <Compile Include="Commands\HomeAutomation\SetSetpoint.cs" />
