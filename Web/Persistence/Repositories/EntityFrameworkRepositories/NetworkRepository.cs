@@ -3,13 +3,13 @@ using System.Data.Entity;
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Repositories
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
-    public class EntityFrameworkNetworkRepository : INetworkRepository
+    public class NetworkRepository : INetworkRepository
     {
         private readonly DbSet<NetworkModel> _networks;
 
-        public EntityFrameworkNetworkRepository(DbSet<NetworkModel> networks)
+        public NetworkRepository(DbSet<NetworkModel> networks)
         {
             _networks = networks;
         }

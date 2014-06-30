@@ -3,13 +3,13 @@ using System.Data.Entity;
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Repositories
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
-    public class EntityFrameworkComputerRepository : IComputerRepository
+    public class ComputerRepository : IComputerRepository
     {
         private readonly DbSet<ComputerModel> _computers;
 
-        public EntityFrameworkComputerRepository(DbSet<ComputerModel> computers)
+        public ComputerRepository(DbSet<ComputerModel> computers)
         {
             _computers = computers;
         }

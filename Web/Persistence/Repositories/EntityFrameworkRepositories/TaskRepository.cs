@@ -3,13 +3,13 @@ using System.Data.Entity;
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Repositories
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
-    public class EntityFrameworkTaskRepository : ITaskRepository
+    public class TaskRepository : ITaskRepository
     {
         private readonly DbSet<TaskModel> _tasks;
 
-        public EntityFrameworkTaskRepository(DbSet<TaskModel> tasks)
+        public TaskRepository(DbSet<TaskModel> tasks)
         {
             _tasks = tasks;
         }

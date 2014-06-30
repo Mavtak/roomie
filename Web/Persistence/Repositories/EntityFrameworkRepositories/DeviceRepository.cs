@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Repositories
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
-    public class EntityFrameworkDeviceRepository : IDeviceRepository
+    public class DeviceRepository : IDeviceRepository
     {
         private readonly DbSet<DeviceModel> _devices;
 
-        public EntityFrameworkDeviceRepository(DbSet<DeviceModel> devices)
+        public DeviceRepository(DbSet<DeviceModel> devices)
         {
             _devices = devices;
         }

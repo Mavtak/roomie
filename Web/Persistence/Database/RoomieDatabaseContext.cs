@@ -1,4 +1,5 @@
 ﻿using Roomie.Web.Persistence.Repositories;
+using Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories;
 
 namespace Roomie.Web.Persistence.Database
 {
@@ -23,27 +24,27 @@ namespace Roomie.Web.Persistence.Database
         {
             _database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
-            Computers = new EntityFrameworkComputerRepository(_database.Computers);
+            Computers = new ComputerRepository(_database.Computers);
 
-            NetworkGuests = new EntityFrameworkNetworkGuestRepository(_database.NetworkGuests);
+            NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests);
 
-            var entityframeworkNetworkRepository = new EntityFrameworkNetworkRepository(_database.Networks);
+            var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks);
             Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
 
-            var entityFrameworkDeviceRepository = new EntityFrameworkDeviceRepository(_database.Devices);
+            var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices);
             Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
 
-            DeviceLocations = new EntityFrameworkDeviceLocationRepository(_database.DeviceLocations);
+            DeviceLocations = new DeviceLocationRepository(_database.DeviceLocations);
 
-            SavedScripts = new EntityFrameworkSavedScriptRepository(_database.SavedScripts);
+            SavedScripts = new SavedScriptRepository(_database.SavedScripts);
 
-            Scripts = new EntityFrameworkScriptRepository(_database.Scripts);
+            Scripts = new ScriptRepository(_database.Scripts);
 
-            Tasks = new EntityFrameworkTaskRepository(_database.Tasks);
+            Tasks = new TaskRepository(_database.Tasks);
 
-            Users = new EntityFrameworkUserRepository(_database.Users);
+            Users = new UserRepository(_database.Users);
 
-            Sessions = new EntityFrameworkSessionRepository(_database.UserSessions, _database.WebHookSessions);
+            Sessions = new SessionRepository(_database.UserSessions, _database.WebHookSessions);
         }
 
         public void Reset()

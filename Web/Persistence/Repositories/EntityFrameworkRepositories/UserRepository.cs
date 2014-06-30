@@ -2,13 +2,13 @@
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Repositories
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
-    public class EntityFrameworkUserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly DbSet<UserModel> _users;
 
-        public EntityFrameworkUserRepository(DbSet<UserModel> users)
+        public UserRepository(DbSet<UserModel> users)
         {
             _users = users;
         }

@@ -3,13 +3,13 @@ using System.Data.Entity;
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Repositories
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
-    public class EntityFrameworkSavedScriptRepository : ISavedScriptRepository
+    public class SavedScriptRepository : ISavedScriptRepository
     {
         private readonly DbSet<SavedScriptModel> _scripts;
 
-        public EntityFrameworkSavedScriptRepository(DbSet<SavedScriptModel> scripts)
+        public SavedScriptRepository(DbSet<SavedScriptModel> scripts)
         {
             _scripts = scripts;
         }

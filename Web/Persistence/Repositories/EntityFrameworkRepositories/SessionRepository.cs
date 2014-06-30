@@ -2,14 +2,14 @@
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Repositories
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
-    public class EntityFrameworkSessionRepository : ISessionRepository
+    public class SessionRepository : ISessionRepository
     {
         private readonly DbSet<UserSessionModel> _userSessions;
         private readonly DbSet<WebHookSessionModel> _webHookSessions;
 
-        public EntityFrameworkSessionRepository(DbSet<UserSessionModel> userSessions, DbSet<WebHookSessionModel> webHookSessions)
+        public SessionRepository(DbSet<UserSessionModel> userSessions, DbSet<WebHookSessionModel> webHookSessions)
         {
             _userSessions = userSessions;
             _webHookSessions = webHookSessions;

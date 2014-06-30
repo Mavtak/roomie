@@ -1,15 +1,14 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Repositories
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
-    public class EntityFrameworkDeviceLocationRepository : IDeviceLocationRepository
+    public class DeviceLocationRepository : IDeviceLocationRepository
     {
         private readonly DbSet<DeviceLocationModel> _locations;
 
-        public EntityFrameworkDeviceLocationRepository(DbSet<DeviceLocationModel> locations)
+        public DeviceLocationRepository(DbSet<DeviceLocationModel> locations)
         {
             _locations = locations;
         }

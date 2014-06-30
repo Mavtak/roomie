@@ -2,13 +2,13 @@
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Repositories
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
-    public class EntityFrameworkNetworkGuestRepository : INetworkGuestRepository
+    public class NetworkGuestRepository : INetworkGuestRepository
     {
         private readonly DbSet<NetworkGuestModel> _entries;
 
-        public EntityFrameworkNetworkGuestRepository(DbSet<NetworkGuestModel> entries)
+        public NetworkGuestRepository(DbSet<NetworkGuestModel> entries)
         {
             _entries = entries;
         }
