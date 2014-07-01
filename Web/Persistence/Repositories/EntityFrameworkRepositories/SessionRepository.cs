@@ -39,23 +39,23 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             _webHookSessions.Add(session);
         }
 
-        UserSessionModel[] ISessionRepository.ListUserSessions(UserModel user, int? page, int? count)
+        UserSessionModel[] ISessionRepository.ListUserSessions(UserModel user, ListFilter filter)
         {
             var results = (from x in _userSessions
                            where x.User.Id == user.Id
                            orderby x.Id descending
-                           select x).Page(page, count)
+                           select x).Page(filter)
                                     .ToArray();
 
             return results;
         }
 
-        WebHookSessionModel[] ISessionRepository.ListWebhookSessions(UserModel user, int? page, int? count)
+        WebHookSessionModel[] ISessionRepository.ListWebhookSessions(UserModel user, ListFilter filter)
         {
             var results = (from x in _webHookSessions
                            where x.Computer.Owner.Id == user.Id
                            orderby x.Id descending
-                           select x).Page(page, count)
+                           select x).Page(filter)
                                     .ToArray();
 
             return results;

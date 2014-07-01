@@ -4,27 +4,18 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public static class Helpers
     {
-        public const int MaxPageSize = 50;
-
-        public static IQueryable<T> Page<T>(this IQueryable<T> items, int? page, int? count)
+        public static IQueryable<T> Page<T>(this IQueryable<T> items, ListFilter filter)
         {
-            if (page < 1)
+            if (filter == null)
             {
-                page = 1;
+                filter = new ListFilter();
             }
 
-            if (count < 1)
-            {
-                count = 1;
-            }
+            var page = filter.Page;
+            var count = filter.Count;
 
-            if (count > MaxPageSize)
-            {
-                count = MaxPageSize;
-            }
-
-            var result = items.Skip((page ?? 1 - 1)*count ?? 0)
-                              .Take(count ?? 0);
+            var result = items.Skip((page - 1)*count)
+                              .Take(count);
 
             return result;
         }

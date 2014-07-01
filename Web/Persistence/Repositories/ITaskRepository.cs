@@ -8,7 +8,7 @@ namespace Roomie.Web.Persistence.Repositories
         TaskModel Get(int id);
         TaskModel Get(UserModel user, int id);
         void Add(TaskModel task);
-        TaskModel[] List(UserModel user, int page, int count);
+        TaskModel[] List(UserModel user, ListFilter filter);
         TaskModel[] ForComputer(ComputerModel computer, DateTime now);
     }
 }
