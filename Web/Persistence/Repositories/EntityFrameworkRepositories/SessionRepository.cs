@@ -44,8 +44,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var results = (from x in _userSessions
                            where x.User.Id == user.Id
                            orderby x.Id descending
-                           select x).Skip((page ?? 1 - 1) * count ?? 0)
-                                    .Take(count ?? 0)
+                           select x).Page(page, count)
                                     .ToArray();
 
             return results;
@@ -56,8 +55,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var results = (from x in _webHookSessions
                            where x.Computer.Owner.Id == user.Id
                            orderby x.Id descending
-                           select x).Skip((page ?? 1 - 1) * count ?? 0)
-                                    .Take(count ?? 0)
+                           select x).Page(page, count)
                                     .ToArray();
 
             return results;

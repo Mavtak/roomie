@@ -53,7 +53,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var results = (from t in _tasks
                          where t.Owner.Id == user.Id
                          orderby t.Script.CreationTimestamp descending
-                         select t).Skip((page - 1) * count).Take(count)
+                         select t).Page(page, count)
                          .ToArray();
 
             return results;

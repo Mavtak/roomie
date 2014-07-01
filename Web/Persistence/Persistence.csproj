@@ -89,6 +89,7 @@
     <Compile Include="Models\WebHookSessionModel.cs" />
     <Compile Include="Models\DeviceModel.cs" />
     <Compile Include="Models\NetworkModel.cs" />
+    <Compile Include="Repositories\EntityFrameworkRepositories\Helpers.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\ScriptRepository.cs" />
     <Compile Include="Repositories\IScriptRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\SavedScriptRepository.cs" />
