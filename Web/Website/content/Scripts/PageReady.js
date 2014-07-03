@@ -67,12 +67,12 @@
         });
 
         $page[0].addEventListener('touchend', function (e) {
-            var endTouch = e.changedTouches[0];
+            var endTouch = e.changedTouches[e.changedTouches.length - 1];
 
-            var verticalDelta = endTouch.pageY - startTouch.pageY;
-            var horizontalDelta = endTouch.pageX - startTouch.pageX;
-            
-            if (Math.abs(horizontalDelta) < 25 || Math.abs(verticalDelta) > 25) {
+            var verticalDelta = endTouch.screenY - startTouch.screenY;
+            var horizontalDelta = endTouch.screenX - startTouch.screenX;
+
+            if (Math.abs(horizontalDelta) < 25 || Math.abs(horizontalDelta)  < Math.abs(verticalDelta)) {
                 return;
             }
 
