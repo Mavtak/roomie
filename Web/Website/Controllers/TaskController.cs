@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Web.Mvc;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
@@ -18,23 +19,39 @@ namespace Roomie.Web.Website.Controllers
 
         public ActionResult Clean(int? timeout)
         {
-            if (timeout < 1 || timeout == null)
+            if (timeout < 1)
             {
-                timeout = 5;
+                timeout = null;
             }
 
             var count = 0;
+
+            DoUntilTimeout(() =>
+                {
+                    var iterationCount = Database.Tasks.Clean(User);
+                    Database.SaveChanges();
+
+                    count += iterationCount;
+
+                    return iterationCount == 0;
+                }, timeout ?? 5);
+
+            return Content(count + " tasks cleaned up");
+        }
+
+        private static void DoUntilTimeout(Func<bool> action, int timeout)
+        {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
             while (stopwatch.Elapsed.TotalSeconds < timeout)
             {
-                count += Database.Tasks.Clean(User);
-                Database.SaveChanges();
+                var done = action();
+                if (done)
+                {
+                    return;
+                }
             }
-            
-
-            return Content(count + " tasks cleaned up");
         }
     }
 }
