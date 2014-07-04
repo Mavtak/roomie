@@ -114,6 +114,7 @@
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\ListFilter.cs" />
     <Compile Include="Repositories\SortDirection.cs" />
+    <Compile Include="Repositories\TaskRepositoryExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

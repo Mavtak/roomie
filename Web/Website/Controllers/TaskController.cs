@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
+using Roomie.Web.Persistence.Database;
 
 namespace Roomie.Web.Website.Controllers
 {
@@ -12,6 +13,19 @@ namespace Roomie.Web.Website.Controllers
             var tasks = Database.Tasks.List(User, filter);
 
             return View(tasks);
+        }
+
+        public ActionResult Clean(int? timeout)
+        {
+            if (timeout < 1)
+            {
+                timeout = null;
+            }
+
+            var count = Database.Tasks.Clean(User, timeout ?? 5);
+            Database.SaveChanges();
+
+            return Content(count + " tasks cleaned up");
         }
     }
 }
