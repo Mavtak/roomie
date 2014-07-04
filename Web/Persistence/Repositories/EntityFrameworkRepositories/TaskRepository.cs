@@ -50,11 +50,11 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public TaskModel[] List(UserModel user, ListFilter filter)
         {
-            var results = (from t in _tasks
-                         where t.Owner.Id == user.Id
-                         orderby t.Script.CreationTimestamp descending
-                         select t).Page(filter)
-                         .ToArray();
+            var results = _tasks
+                .Where(x => x.Owner.Id == user.Id)
+                .OrderByDescending(x => x.Script.CreationTimestamp)
+                .Page(filter)
+                .ToArray();
 
             return results;
         }
