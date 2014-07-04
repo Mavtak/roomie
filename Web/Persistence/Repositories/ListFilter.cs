@@ -5,9 +5,11 @@ namespace Roomie.Web.Persistence.Repositories
     {
         public const int MaxPageSize = 50;
         public const int DefaultPageSize = 25;
+        public const SortDirection DefaultSortDirection = SortDirection.Descending;
 
         private int? _page;
         private int? _count;
+        private SortDirection? _sortDirection;
 
         public int Page
         {
@@ -48,5 +50,21 @@ namespace Roomie.Web.Persistence.Repositories
             }
         }
 
+        public SortDirection SortDirection
+        {
+            get
+            {
+                if (_sortDirection == null)
+                {
+                    return DefaultSortDirection;
+                }
+
+                return _sortDirection.Value;
+            }
+            set
+            {
+                _sortDirection = value;
+            }
+        }
     }
 }

@@ -43,8 +43,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         {
             var results = (from x in _userSessions
                            where x.User.Id == user.Id
-                           orderby x.Id descending
-                           select x).Page(filter)
+                           select x).Page(filter, x => x.Id)
                                     .ToArray();
 
             return results;
@@ -54,8 +53,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         {
             var results = (from x in _webHookSessions
                            where x.Computer.Owner.Id == user.Id
-                           orderby x.Id descending
-                           select x).Page(filter)
+                           select x).Page(filter, x => x.Id)
                                     .ToArray();
 
             return results;

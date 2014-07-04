@@ -52,8 +52,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         {
             var results = _tasks
                 .Where(x => x.Owner.Id == user.Id)
-                .OrderByDescending(x => x.Script.CreationTimestamp)
-                .Page(filter)
+                .Page(filter, x => x.Script.CreationTimestamp)
                 .ToArray();
 
             return results;
