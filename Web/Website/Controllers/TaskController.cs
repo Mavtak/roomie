@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Diagnostics;
+using System.Web.Mvc;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 using Roomie.Web.Persistence.Database;
@@ -17,12 +18,21 @@ namespace Roomie.Web.Website.Controllers
 
         public ActionResult Clean(int? timeout)
         {
-            if (timeout < 1)
+            if (timeout < 1 || timeout == null)
             {
-                timeout = null;
+                timeout = 5;
             }
 
-            var count = Database.Tasks.Clean(User, () => Database.SaveChanges(), timeout ?? 5);
+            var count = 0;
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            while (stopwatch.Elapsed.TotalSeconds < timeout)
+            {
+                count += Database.Tasks.Clean(User);
+                Database.SaveChanges();
+            }
+            
 
             return Content(count + " tasks cleaned up");
         }
