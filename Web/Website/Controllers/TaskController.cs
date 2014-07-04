@@ -26,7 +26,7 @@ namespace Roomie.Web.Website.Controllers
 
             var count = 0;
 
-            DoUntilTimeout(() =>
+            DoUntilTimeout(timeout ?? 5, () =>
                 {
                     var iterationCount = Database.Tasks.Clean(User);
                     Database.SaveChanges();
@@ -34,12 +34,12 @@ namespace Roomie.Web.Website.Controllers
                     count += iterationCount;
 
                     return iterationCount == 0;
-                }, timeout ?? 5);
+                });
 
             return Content(count + " tasks cleaned up");
         }
 
-        private static void DoUntilTimeout(Func<bool> action, int timeout)
+        private static void DoUntilTimeout(int timeout, Func<bool> action)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
