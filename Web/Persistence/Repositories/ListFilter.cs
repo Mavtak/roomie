@@ -6,28 +6,22 @@ namespace Roomie.Web.Persistence.Repositories
         public const int MaxPageSize = 50;
         public const int DefaultPageSize = 25;
 
-        private int _page;
-        private int _count;
-
-        public ListFilter()
-        {
-            Page = 1;
-            Count = DefaultPageSize;
-        }
+        private int? _page;
+        private int? _count;
 
         public int Page
         {
             get
             {
-                return _page;
+                if (_page < 1 || _page == null)
+                {
+                    return 1;
+                }
+
+                return _page.Value;
             }
             set
             {
-                if (value < 1)
-                {
-                    value = 1;
-                }
-
                 _page = value;
             }
         }
@@ -36,21 +30,20 @@ namespace Roomie.Web.Persistence.Repositories
         {
             get
             {
-                return _count;
-            }
+                if (_count < 1)
+                {
+                    return 1;
+                }
 
+                if (_count > MaxPageSize || _count == null)
+                {
+                    return MaxPageSize;
+                }
+
+                return _count.Value;
+            }
             set
             {
-                if (value < 1)
-                {
-                    value = 1;
-                }
-
-                if (value > MaxPageSize)
-                {
-                    value = MaxPageSize;
-                }
-
                 _count = value;
             }
         }
