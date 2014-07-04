@@ -48,6 +48,11 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             _tasks.Add(task);
         }
 
+        public void Remove(TaskModel task)
+        {
+            _tasks.Remove(task);
+        }
+
         public TaskModel[] List(UserModel user, ListFilter filter)
         {
             var results = _tasks
