@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 
@@ -6,7 +7,7 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public static class TaskRepositoryExtensions
     {
-        public static int Clean(this ITaskRepository repository, UserModel user, int timeout)
+        public static int Clean(this ITaskRepository repository, UserModel user, Action save, int timeout)
         {
             var count = 0;
 
@@ -32,6 +33,11 @@ namespace Roomie.Web.Persistence.Repositories
                     repository.Remove(task);
 
                     count++;
+                }
+
+                if (save != null)
+                {
+                    save();
                 }
             }
 

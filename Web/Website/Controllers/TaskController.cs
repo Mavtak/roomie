@@ -22,8 +22,7 @@ namespace Roomie.Web.Website.Controllers
                 timeout = null;
             }
 
-            var count = Database.Tasks.Clean(User, timeout ?? 5);
-            Database.SaveChanges();
+            var count = Database.Tasks.Clean(User, () => Database.SaveChanges(), timeout ?? 5);
 
             return Content(count + " tasks cleaned up");
         }
