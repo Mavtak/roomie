@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories
 {
@@ -13,25 +15,21 @@ namespace Roomie.Web.Persistence.Repositories
 
             scripts = scripts.Where(x =>
                 {
-                    var taskOwners = taskRepository.Get(x);
+                    var getOwnersFunctions = new Func<ScriptModel, object[]>[]
+                        {
+                            taskRepository.Get,
+                            savedScriptRepository.Get,
+                            computerRepository.Get
+                        };
 
-                    if (taskOwners.Any())
+                    foreach (var getOwnersFunction in getOwnersFunctions)
                     {
-                        return false;
-                    }
+                        var owners = getOwnersFunction(x);
 
-                    var savedScriptOwners = savedScriptRepository.Get(x);
-
-                    if (savedScriptOwners.Any())
-                    {
-                        return false;
-                    }
-
-                    var computerOwners = computerRepository.Get(x);
-
-                    if (computerOwners.Any())
-                    {
-                        return false;
+                        if (owners.Any())
+                        {
+                            return false;
+                        }
                     }
 
                     return true;
