@@ -43,6 +43,15 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
+        public SavedScriptModel[] Get(ScriptModel script)
+        {
+            var result = _scripts
+                .Where(x => x.Script.Id == script.Id)
+                .ToArray();
+
+            return result;
+        }
+
         public SavedScriptModel[] List(UserModel user, int page, int count)
         {
             var results = (from t in _scripts
