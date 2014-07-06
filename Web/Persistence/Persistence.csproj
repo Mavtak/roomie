@@ -113,6 +113,7 @@
     <Compile Include="Repositories\ITaskRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\ListFilter.cs" />
+    <Compile Include="Repositories\ScriptRepositoryExtensions.cs" />
     <Compile Include="Repositories\SortDirection.cs" />
     <Compile Include="Repositories\TaskRepositoryExtensions.cs" />
   </ItemGroup>
