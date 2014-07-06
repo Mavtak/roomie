@@ -173,6 +173,7 @@
     </Compile>
     <Compile Include="Helpers\AutoSaveAttribute.cs" />
     <Compile Include="Helpers\CacheCookie.cs" />
+    <Compile Include="Helpers\DoWork.cs" />
     <Compile Include="Helpers\HttpContextExtensions.cs" />
     <Compile Include="Helpers\LocationHeaderPrinter.cs" />
     <Compile Include="Helpers\RoomieControllerExtensions.cs" />

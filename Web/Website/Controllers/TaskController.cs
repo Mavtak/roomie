@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Web.Mvc;
+using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 using Roomie.Web.Persistence.Database;
@@ -26,7 +27,7 @@ namespace Roomie.Web.Website.Controllers
 
             var count = 0;
 
-            DoUntilTimeout(timeout ?? 5, () =>
+            DoWork.UntilTimeout(timeout ?? 5, () =>
                 {
                     var iterationCount = Database.Tasks.Clean(User);
                     Database.SaveChanges();
@@ -37,21 +38,6 @@ namespace Roomie.Web.Website.Controllers
                 });
 
             return Content(count + " tasks cleaned up");
-        }
-
-        private static void DoUntilTimeout(int timeout, Func<bool> action)
-        {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            while (stopwatch.Elapsed.TotalSeconds < timeout)
-            {
-                var done = action();
-                if (done)
-                {
-                    return;
-                }
-            }
         }
     }
 }
