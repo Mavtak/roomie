@@ -59,6 +59,15 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
+        public ComputerModel[] Get(ScriptModel script)
+        {
+            var result = _computers
+                .Where(x => x.LastScript.Id == script.Id)
+                .ToArray();
+
+            return result;
+        }
+
         public ComputerModel[] Get(UserModel user)
         {
             var result = _computers.Where(x => x.Owner.Id == user.Id).ToArray();

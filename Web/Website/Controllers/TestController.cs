@@ -143,7 +143,7 @@ namespace Roomie.Web.Website.Controllers
 
             DoWork.UntilTimeout(timeout ?? 5, () =>
                 {
-                    var iterationCount = Database.Scripts.Clean(Database.Tasks, Database.SavedScripts);
+                    var iterationCount = Database.Scripts.Clean(Database.Tasks, Database.SavedScripts, Database.Computers);
                     Database.SaveChanges();
 
                     count += iterationCount;

@@ -9,6 +9,7 @@ namespace Roomie.Web.Persistence.Repositories
         ComputerModel Get(UserModel user, int id);
         ComputerModel Get(string accessKey);
         ComputerModel Get(UserModel user, string name);
+        ComputerModel[] Get(ScriptModel script);
         ComputerModel[] Get(UserModel user);
         void Add(ComputerModel computer);
         void Remove(ComputerModel computer);

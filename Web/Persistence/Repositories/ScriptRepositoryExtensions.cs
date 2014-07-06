@@ -4,7 +4,7 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public static class ScriptRepositoryExtensions
     {
-        public static int Clean(this IScriptRepository repository, ITaskRepository taskRepository, ISavedScriptRepository savedScriptRepository)
+        public static int Clean(this IScriptRepository repository, ITaskRepository taskRepository, ISavedScriptRepository savedScriptRepository, IComputerRepository computerRepository)
         {
             var scripts = repository.List(new ListFilter
             {
@@ -23,6 +23,13 @@ namespace Roomie.Web.Persistence.Repositories
                     var savedScriptOwners = savedScriptRepository.Get(x);
 
                     if (savedScriptOwners.Any())
+                    {
+                        return false;
+                    }
+
+                    var computerOwners = computerRepository.Get(x);
+
+                    if (computerOwners.Any())
                     {
                         return false;
                     }
