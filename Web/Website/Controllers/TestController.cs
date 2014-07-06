@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
+using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers
@@ -127,6 +128,30 @@ namespace Roomie.Web.Website.Controllers
             {
                 message += "\n" + exception.ToString();
             }
+
+            return View(viewName: "PlainText", model: message);
+        }
+
+        public ActionResult CleanUpScripts(int? timeout)
+        {
+            if (timeout < 1)
+            {
+                timeout = null;
+            }
+
+            var count = 0;
+
+            DoWork.UntilTimeout(timeout ?? 5, () =>
+                {
+                    var iterationCount = Database.Scripts.Clean(Database.Tasks, Database.SavedScripts);
+                    Database.SaveChanges();
+
+                    count += iterationCount;
+
+                    return iterationCount == 0;
+                });
+
+            var message = count + " scripts cleaned up";
 
             return View(viewName: "PlainText", model: message);
         }
