@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
@@ -17,6 +18,15 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var result = _scripts.Find(id);
 
             return result;
+        }
+
+        public ScriptModel[] List(ListFilter filter)
+        {
+            var results = _scripts
+                .Page(filter, x => x.Id)
+                .ToArray();
+
+            return results;
         }
 
         public void Add(ScriptModel script)
