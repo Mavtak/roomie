@@ -43,6 +43,15 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
+        public TaskModel[] Get(ScriptModel script)
+        {
+            var result = _tasks
+                .Where(x => x.Script.Id == script.Id)
+                .ToArray();
+
+            return result;
+        }
+
         public void Add(TaskModel task)
         {
             _tasks.Add(task);

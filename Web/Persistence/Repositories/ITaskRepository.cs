@@ -7,6 +7,7 @@ namespace Roomie.Web.Persistence.Repositories
     {
         TaskModel Get(int id);
         TaskModel Get(UserModel user, int id);
+        TaskModel[] Get(ScriptModel script);
         void Add(TaskModel task);
         void Remove(TaskModel task);
         TaskModel[] List(UserModel user, ListFilter filter);
