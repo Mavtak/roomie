@@ -3,6 +3,8 @@
     if (namespace.SlideMenu) {
         return;
     }
+
+    var visibleMenu;
     
     var SlideMenu = namespace.SlideMenu = function ($menu, $button, side) {
         var self = this;
@@ -105,6 +107,20 @@
         }
 
         var self = this;
+
+        if (visibleMenu && visibleMenu.visible) {
+            if (visibleMenu.animating) {
+                return;
+            }
+
+            visibleMenu.hide(function () {
+                self.show();
+            });
+
+            return;
+        }
+
+        visibleMenu = self;
         this.animating = true;
 
         this.visible = true;
@@ -150,6 +166,10 @@
             self.$menu.css('width', '');
             self.animating = false;
             
+            if (visibleMenu == self) {
+                visibleMenu = null;
+            }
+
             if (typeof (callback) === 'function') {
                 callback();
             }
