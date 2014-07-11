@@ -109,10 +109,6 @@
         var self = this;
 
         if (visibleMenu && visibleMenu.visible) {
-            if (visibleMenu.animating) {
-                return;
-            }
-
             visibleMenu.hide(function () {
                 self.show();
             });
