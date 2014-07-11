@@ -1,5 +1,6 @@
 ﻿using System;
 using Roomie.Common.HomeAutomation.BinarySensors;
+using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -20,7 +21,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void Poll()
         {
-            throw new NotImplementedException();
+            _device.DoCommand("HomeAutomation.PollBinarySensor Device=\"{0}\"");
         }
 
         public void Update(IBinarySensorState state)
