@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Xml.Linq;
 
 namespace Roomie.Common.HomeAutomation.BinarySensors
@@ -10,7 +11,7 @@ namespace Roomie.Common.HomeAutomation.BinarySensors
             return ReadOnlyBinarySensorState.CopyFrom(state);
         }
 
-        public static string Describe(this IBinarySensorState state)
+        public static string Describe(this IBinarySensorState state, TimeZoneInfo timeZone = null)
         {
             var result = new StringBuilder();
 
@@ -48,7 +49,7 @@ namespace Roomie.Common.HomeAutomation.BinarySensors
             if (timestamp != null)
             {
                 result.Append(" (at ");
-                result.Append(state.TimeStamp);
+                result.AppendDateTime(state.TimeStamp, timeZone);
                 result.Append(")");
             }
 

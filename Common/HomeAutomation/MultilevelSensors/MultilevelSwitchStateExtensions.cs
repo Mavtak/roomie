@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Xml.Linq;
 using Roomie.Common.Measurements;
 
@@ -13,7 +14,7 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
             return ReadOnlyMultilevelSensorState<TMeasurement>.CopyFrom(state);
         }
 
-        public static string Describe<TMeasurement>(this IMultilevelSensorState<TMeasurement> state)
+        public static string Describe<TMeasurement>(this IMultilevelSensorState<TMeasurement> state, TimeZoneInfo timeZone = null)
             where TMeasurement : IMeasurement
         {
             var result = new StringBuilder();
@@ -33,7 +34,7 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
             if (timestamp != null)
             {
                 result.Append(" (at ");
-                result.Append(state.TimeStamp);
+                result.AppendDateTime(state.TimeStamp, timeZone);
                 result.Append(")");
             }
 
