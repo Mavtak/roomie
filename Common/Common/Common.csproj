@@ -70,6 +70,7 @@
     <Compile Include="Measurements\Temperature\KelvinTemperature.cs" />
     <Compile Include="Measurements\Temperature\Utilities.cs" />
     <Compile Include="Measurements\Temperature\TemperatureParser.cs" />
+    <Compile Include="StringBuilderExtensions.cs" />
     <Compile Include="TimeUtils.cs" />
     <Compile Include="XElementExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
