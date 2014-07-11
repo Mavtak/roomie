@@ -93,6 +93,42 @@ namespace Roomie.Web.Website.Controllers
 
         [HttpPost]
         [WebsiteRestrictedAccess]
+        public ActionResult PollPowerSensor(int id)
+        {
+            return DeviceAction(id, device => device.PowerSensor.Poll());
+        }
+
+        [HttpPost]
+        [WebsiteRestrictedAccess]
+        public ActionResult PollTemperatureSensor(int id)
+        {
+            return DeviceAction(id, device => device.TemperatureSensor.Poll());
+        }
+
+
+        [HttpPost]
+        [WebsiteRestrictedAccess]
+        public ActionResult PollHumiditySensor(int id)
+        {
+            return DeviceAction(id, device => device.HumiditySensor.Poll());
+        }
+
+        [HttpPost]
+        [WebsiteRestrictedAccess]
+        public ActionResult PollIlluminanceSensor(int id)
+        {
+            return DeviceAction(id, device => device.IlluminanceSensor.Poll());
+        }
+
+        [HttpPost]
+        [WebsiteRestrictedAccess]
+        public ActionResult PollBinarySensor(int id)
+        {
+            return DeviceAction(id, device => device.BinarySensor.Poll());
+        }
+
+        [HttpPost]
+        [WebsiteRestrictedAccess]
         public ActionResult Edit(int id, string name, string location, string type)
         {
             var device = this.SelectDevice(id);
