@@ -30,13 +30,20 @@
     margin: 0px;
 }
 
-.widget form.group button {
+.widget form.group
+{
+    padding: 0;
+}
+
+.widget form.group button
+{
     display: block;
     width: 100%;
     text-align: inherit;
     background-color: transparent;
     cursor: pointer;
-    font-size:inherit
+    font-size: inherit;
+    padding: 5px;
 }
 
 .widget
