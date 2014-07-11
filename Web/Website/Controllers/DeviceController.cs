@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Roomie.Common.HomeAutomation;
@@ -50,110 +51,44 @@ namespace Roomie.Web.Website.Controllers
         [WebsiteRestrictedAccess]
         public ActionResult Dim(int id, int power)
         {
-            var device = this.SelectDevice(id);
-
-            device.DimmerSwitch.SetPower(power);
-
-            Database.SaveChanges();
-
-            return Json(new
-            {
-                success = true,
-                id = id
-            }
-            );
+            return DeviceAction(id, device => device.DimmerSwitch.SetPower(power));
         }
 
         [HttpPost]
         [WebsiteRestrictedAccess]
         public ActionResult PowerOn(int id)
         {
-            var device = this.SelectDevice(id);
-
-            device.ToggleSwitch.SetPower(BinarySwitchPower.On);;
-
-            Database.SaveChanges();
-
-            return Json(new
-            {
-                success = true,
-                id = id
-            }
-            );
+            return DeviceAction(id, device => device.ToggleSwitch.SetPower(BinarySwitchPower.On));
         }
 
         [HttpPost]
         [WebsiteRestrictedAccess]
         public ActionResult PowerOff(int id)
         {
-            var device = this.SelectDevice(id);
-
-            device.ToggleSwitch.SetPower(BinarySwitchPower.Off);
-
-            Database.SaveChanges();
-
-            return Json(new
-            {
-                success = true,
-                id = id
-            }
-            );
+            return DeviceAction(id, device => device.ToggleSwitch.SetPower(BinarySwitchPower.Off));
         }
 
         [HttpPost]
         [WebsiteRestrictedAccess]
         public ActionResult SetThermostatMode(int id, ThermostatMode mode)
         {
-            var device = this.SelectDevice(id);
-
-            device.Thermostat.SetMode(mode);
-
-            Database.SaveChanges();
-
-            return Json(new
-            {
-                success = true,
-                id = id
-            }
-            );
+            return DeviceAction(id, device => device.Thermostat.SetMode(mode));
         }
 
         [HttpPost]
         [WebsiteRestrictedAccess]
         public ActionResult SetThermostatFanMode(int id, ThermostatFanMode mode)
         {
-            var device = this.SelectDevice(id);
-
-            device.Thermostat.Fan.SetMode(mode);
-
-            Database.SaveChanges();
-
-            return Json(new
-            {
-                success = true,
-                id = id
-            }
-            );
+            return DeviceAction(id, device => device.Thermostat.Fan.SetMode(mode));
         }
 
         [HttpPost]
         [WebsiteRestrictedAccess]
         public ActionResult SetThermostatSetpoint(int id, ThermostatSetpointType type, string temperature)
         {
-            var device = this.SelectDevice(id);
-
             var temperatureValue = TemperatureParser.Parse(temperature);
 
-            device.Thermostat.Setpoints.SetSetpoint(type, temperatureValue);
-
-            Database.SaveChanges();
-
-            return Json(new
-            {
-                success = true,
-                id = id
-            }
-            );
+            return DeviceAction(id, device => device.Thermostat.Setpoints.SetSetpoint(type, temperatureValue));
         }
 
         [HttpPost]
@@ -266,6 +201,22 @@ namespace Roomie.Web.Website.Controllers
             var devices = Persistence.Examples.Devices;
 
             return View("Index", devices);
+        }
+
+        private ActionResult DeviceAction(int id, Action<DeviceModel> action)
+        {
+            var device = this.SelectDevice(id);
+
+            action(device);
+
+            Database.SaveChanges();
+
+            return Json(new
+            {
+                success = true,
+                id = id
+            }
+            );
         }
     }
 }
