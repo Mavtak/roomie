@@ -7,9 +7,17 @@
     var device = Model.Device;
 }@*
 
-*@@helper WriteDetail(string label, string value)
+*@@helper WriteDetail(DeviceModel device, string label, string value, string pollAction)
 {@*
-      *@<div class="group">@label @value</div>@*
+      *@using (Ajax.BeginForm(pollAction, "Device", new
+            {
+                Id = device.Id
+            }, null, new
+            {
+                @class = "group"
+            })) {@*
+                *@<button>@label: @value</button>@*            
+          *@}@*
 *@}@*
 
 *@@Html.Partial("Partials/WidgetStart", widgetData)@*
@@ -18,22 +26,22 @@
     {
         if (device.PowerSensor.Value != null)
         {
-            @WriteDetail("Power", device.PowerSensor.Describe())
+            @WriteDetail(device, "Power", device.PowerSensor.Describe(), "PollPowerSensor")
         }
 
         if (device.TemperatureSensor.Value != null && !device.Type.Equals(DeviceType.Thermostat))
         {
-            @WriteDetail("Temperature", device.TemperatureSensor.Describe())
+            @WriteDetail(device, "Temperature", device.TemperatureSensor.Describe(), "PollTemperatureSensor")
         }
         
         if (device.HumiditySensor.Value != null)
         {
-            @WriteDetail("Humidity", @device.HumiditySensor.Describe())
+            @WriteDetail(device, "Humidity", @device.HumiditySensor.Describe(), "PollHumiditySensor")
         }
         
         if (device.IlluminanceSensor.Value != null)
         {
-            @WriteDetail("Illuminance", device.IlluminanceSensor.Describe())
+            @WriteDetail(device, "Illuminance", device.IlluminanceSensor.Describe(), "PollIlluminanceSensor")
         }
           
         if (device.Type.Equals(DeviceType.Thermostat))
@@ -50,7 +58,7 @@
         }
         else if (device.Type.Equals(DeviceType.BinarySensor) || device.BinarySensor.Value != null)
         {
-            @WriteDetail("Binary State", @device.BinarySensor.Describe())
+            @WriteDetail(device, "Binary State", @device.BinarySensor.Describe(), "PollBinarySensor")
         }
     }@*
 

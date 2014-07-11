@@ -30,6 +30,15 @@
     margin: 0px;
 }
 
+.widget form.group button {
+    display: block;
+    width: 100%;
+    text-align: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    font-size:inherit
+}
+
 .widget
 {
     margin-top: 5px;
