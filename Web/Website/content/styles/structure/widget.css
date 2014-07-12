@@ -44,6 +44,7 @@
     cursor: pointer;
     font-size: inherit;
     padding: 5px;
+    border: none;
 }
 
 .widget
