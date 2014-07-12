@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Roomie.Web.Persistence.Models;
+﻿using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
@@ -16,7 +15,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public object[] Get(int page = 0, int count = 0)
+        public Page<object> Get(int page = 0, int count = 0)
         {
             var filter = new ListFilter
             {
@@ -25,7 +24,8 @@ namespace Roomie.Web.Website.Controllers.Api
             };
 
             var sessions = Database.Sessions.ListUserSessions(User, filter);
-            var result = sessions.Items.Select(Transform).ToArray();
+
+            var result = sessions.Transform(Transform);
 
             return result;
         }
