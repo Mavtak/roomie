@@ -20,11 +20,11 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public ScriptModel[] List(ListFilter filter)
+        public Page<ScriptModel> List(ListFilter filter)
         {
             var results = _scripts
                 .Page(filter, x => x.Id)
-                .ToArray();
+                ;
 
             return results;
         }

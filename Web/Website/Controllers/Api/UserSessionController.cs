@@ -25,7 +25,7 @@ namespace Roomie.Web.Website.Controllers.Api
             };
 
             var sessions = Database.Sessions.ListUserSessions(User, filter);
-            var result = sessions.Select(Transform).ToArray();
+            var result = sessions.Items.Select(Transform).ToArray();
 
             return result;
         }

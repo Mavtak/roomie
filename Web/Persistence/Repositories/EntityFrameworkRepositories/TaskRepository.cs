@@ -62,12 +62,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             _tasks.Remove(task);
         }
 
-        public TaskModel[] List(UserModel user, ListFilter filter)
+        public Page<TaskModel> List(UserModel user, ListFilter filter)
         {
             var results = _tasks
                 .Where(x => x.Owner.Id == user.Id)
                 .Page(filter, x => x.Script.CreationTimestamp)
-                .ToArray();
+                ;
 
             return results;
         }

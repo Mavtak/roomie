@@ -10,7 +10,7 @@ namespace Roomie.Web.Persistence.Repositories
         TaskModel[] Get(ScriptModel script);
         void Add(TaskModel task);
         void Remove(TaskModel task);
-        TaskModel[] List(UserModel user, ListFilter filter);
+        Page<TaskModel> List(UserModel user, ListFilter filter);
         TaskModel[] ForComputer(ComputerModel computer, DateTime now);
     }
 }

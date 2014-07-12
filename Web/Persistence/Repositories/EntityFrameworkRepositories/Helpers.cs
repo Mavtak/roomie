@@ -6,7 +6,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public static class Helpers
     {
-        public static IQueryable<T> Page<T, TKey>(this IQueryable<T> items, ListFilter filter, Expression<Func<T, TKey>> keySelector)
+        public static Page<T> Page<T, TKey>(this IQueryable<T> items, ListFilter filter, Expression<Func<T, TKey>> keySelector)
         {
             if (filter == null)
             {
@@ -15,6 +15,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
             var page = filter.Page;
             var count = filter.Count;
+            var total = items.Count();
 
             IOrderedQueryable<T> wholeList;
 
@@ -34,8 +35,18 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
             var pagedList = wholeList.Skip((page - 1)*count);
             pagedList = pagedList.Take(count);
+            var resultItems = pagedList.ToArray();
 
-            return pagedList;
+            var result = new Page<T>
+            {
+                Items = resultItems,
+                PageNumber = filter.Page,
+                PageSize = filter.Count,
+                Sort = filter.SortDirection,
+                Total = total
+            };
+
+            return result;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Roomie.Web.Persistence.Repositories
             var tasks = repository.List(user, new ListFilter
             {
                 SortDirection = SortDirection.Ascending
-            });
+            }).Items;
 
             tasks = tasks.Where(x => x.Received || x.Expired).ToArray();
 

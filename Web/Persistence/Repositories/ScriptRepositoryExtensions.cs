@@ -11,7 +11,7 @@ namespace Roomie.Web.Persistence.Repositories
             var scripts = repository.List(new ListFilter
             {
                 SortDirection = SortDirection.Ascending
-            });
+            }).Items;
 
             scripts = scripts.Where(x =>
                 {

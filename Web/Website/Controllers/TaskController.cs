@@ -15,7 +15,7 @@ namespace Roomie.Web.Website.Controllers
         {
             var tasks = Database.Tasks.List(User, filter);
 
-            return View(tasks);
+            return View(tasks.Items);
         }
 
         public ActionResult Clean(int? timeout)
