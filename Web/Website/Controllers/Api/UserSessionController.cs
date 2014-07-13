@@ -1,4 +1,5 @@
-﻿using Roomie.Web.Persistence.Models;
+﻿using System.Web.Http;
+using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
@@ -15,14 +16,8 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public Page<object> Get(int page = 0, int count = 0)
+        public Page<object> Get([FromUri] ListFilter filter)
         {
-            var filter = new ListFilter
-            {
-                Page = page,
-                Count = count
-            };
-
             var sessions = Database.Sessions.ListUserSessions(User, filter);
 
             var result = sessions.Transform(Transform);
