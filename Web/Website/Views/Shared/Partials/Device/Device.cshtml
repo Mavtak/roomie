@@ -26,6 +26,11 @@
       
     *@@if (Model.DisplayButtons)
     {
+        if (device.CurrentAction != null)
+        {
+            <div class="group">@device.CurrentAction</div>
+        }
+
         if (device.PowerSensor.Value != null)
         {
             @WriteDetail(device, "Power", device.PowerSensor.Describe(timeZone), "PollPowerSensor")

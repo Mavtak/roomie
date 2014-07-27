@@ -24,6 +24,9 @@ namespace Roomie.Web.Persistence.Models
 
         public bool? IsConnected { get; set; }
         public DeviceType Type { get; set; }
+
+        public string CurrentAction { get; set; }
+
         public virtual NetworkModel Network { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -67,6 +70,7 @@ namespace Roomie.Web.Persistence.Models
         {
             //TODO: update more properties?
             IsConnected = state.IsConnected;
+            CurrentAction = state.CurrentAction;
             
             if (state.BinarySwitchState != null)
             {

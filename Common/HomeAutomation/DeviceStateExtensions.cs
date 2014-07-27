@@ -52,6 +52,11 @@ namespace Roomie.Common.HomeAutomation
                 result += "?";
             }
 
+            if (device.CurrentAction != null)
+            {
+                result += ", Current Action = " + device.CurrentAction;
+            }
+
             if (device.Type != DeviceType.BinarySensor && (device.BinarySensorState != null && device.BinarySensorState.Value != null))
             {
                 result = device.BinarySensorState.Describe();
@@ -99,6 +104,11 @@ namespace Roomie.Common.HomeAutomation
                 result.Add(new XAttribute("Location", state.Location.Format()));
 
             result.Add(new XAttribute("Type", state.Type));
+
+            if (state.CurrentAction != null)
+            {
+                result.Add(new XAttribute("CurrentAction", state.CurrentAction));
+            }
             //TODO: LastPoll
 
             //TODO: this is included for compatibility.  remove it soon

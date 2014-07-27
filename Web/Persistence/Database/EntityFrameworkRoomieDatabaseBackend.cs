@@ -25,6 +25,8 @@ namespace Roomie.Web.Persistence.Database
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new DeviceTypeMapping());
+
+            modelBuilder.Entity<DeviceModel>().Ignore(x => x.CurrentAction);
         }
 
         public void Reset()

@@ -11,6 +11,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: true,
                     includeDimmer: true,
                     includeBinarySensor: true,
@@ -24,11 +25,31 @@ namespace Roomie.Common.HomeAutomation.Tests
             }
         }
 
+        public IEnumerable<IDeviceState> DevicesWithoutCurrentAction
+        {
+            get
+            {
+                return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: false,
+                    includeToggle: true,
+                    includeDimmer: true,
+                    includeBinarySensor: true,
+                    includePowerSensor: true,
+                    includeTemperatureSensor: true,
+                    includeHumiditySensor: true,
+                    inclueIlluminanceSensor: true,
+                    includeThermostat: true,
+                    includeKeypad: false
+                    );
+            }
+        }
+
         public IEnumerable<IDeviceState> DevicesWithoutToggleSwitches
         {
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: false,
                     includeDimmer: true,
                     includeBinarySensor: true,
@@ -47,6 +68,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: true,
                     includeDimmer: false,
                     includeBinarySensor: true,
@@ -65,6 +87,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: true,
                     includeDimmer: true,
                     includeBinarySensor: false,
@@ -83,6 +106,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: true,
                     includeDimmer: true,
                     includeBinarySensor: true,
@@ -101,6 +125,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: true,
                     includeDimmer: true,
                     includeBinarySensor: true,
@@ -119,6 +144,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: true,
                     includeDimmer: true,
                     includeBinarySensor: true,
@@ -137,6 +163,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: true,
                     includeDimmer: true,
                     includeBinarySensor: true,
@@ -155,6 +182,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: true,
                     includeDimmer: true,
                     includeBinarySensor: true,
@@ -173,6 +201,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             get
             {
                 return DataHelpers.GenerateExampleDevices(20,
+                    includeCurrentAction: true,
                     includeToggle: true,
                     includeDimmer: true,
                     includeBinarySensor: true,
@@ -193,6 +222,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 
             //TODO: assert truly separate objects
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: true,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -206,12 +236,33 @@ namespace Roomie.Common.HomeAutomation.Tests
         }
 
         [TestCaseSource("Devices")]
+        public void CurrentActionSerializationWorks(IDeviceState device)
+        {
+            var node = device.ToXElement();
+            var copy = node.ToDeviceState();
+
+            AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: true,
+                checkToggleSwitch: false,
+                checkDimmerSwitch: false,
+                checkBinarySensor: false,
+                checkPowerSensor: false,
+                checkTempeartureSensor: false,
+                checkHumiditySensor: false,
+                checkIlluminanceSensor: true,
+                checkThermostat: false,
+                checkKeypad: false
+                );
+        }
+
+        [TestCaseSource("Devices")]
         public void ToggleSwitchSerializationWorks(IDeviceState device)
         {
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: false,
                 checkBinarySensor: false,
@@ -231,6 +282,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: false,
                 checkDimmerSwitch: true,
                 checkBinarySensor: false,
@@ -250,6 +302,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: false,
                 checkDimmerSwitch: false,
                 checkBinarySensor: true,
@@ -269,6 +322,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: false,
                 checkDimmerSwitch: false,
                 checkBinarySensor: false,
@@ -287,6 +341,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: false,
                 checkDimmerSwitch: false,
                 checkBinarySensor: false,
@@ -306,6 +361,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: false,
                 checkDimmerSwitch: false,
                 checkBinarySensor: false,
@@ -325,6 +381,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: false,
                 checkDimmerSwitch: false,
                 checkBinarySensor: false,
@@ -344,6 +401,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: false,
                 checkDimmerSwitch: false,
                 checkBinarySensor: false,
@@ -363,6 +421,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: false,
                 checkDimmerSwitch: false,
                 checkBinarySensor: false,
@@ -375,6 +434,26 @@ namespace Roomie.Common.HomeAutomation.Tests
                 );
         }
 
+        [TestCaseSource("DevicesWithoutCurrentAction")]
+        public void SerializationWorksWithNullCurrentAction(IDeviceState device)
+        {
+            var node = device.ToXElement();
+            var copy = node.ToDeviceState();
+
+            AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
+                checkToggleSwitch: true,
+                checkDimmerSwitch: true,
+                checkBinarySensor: true,
+                checkPowerSensor: true,
+                checkTempeartureSensor: true,
+                checkHumiditySensor: true,
+                checkIlluminanceSensor: true,
+                checkThermostat: true,
+                checkKeypad: true
+                );
+        }
+
         [TestCaseSource("DevicesWithoutToggleSwitches")]
         public void SerializationWorksWithNullToggleSwitch(IDeviceState device)
         {
@@ -382,6 +461,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -401,6 +481,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -420,6 +501,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -439,6 +521,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -458,6 +541,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -477,6 +561,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -496,6 +581,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -515,6 +601,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -534,6 +621,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: false,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,
@@ -553,6 +641,7 @@ namespace Roomie.Common.HomeAutomation.Tests
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
+                checkCurrentAction: true,
                 checkToggleSwitch: true,
                 checkDimmerSwitch: true,
                 checkBinarySensor: true,

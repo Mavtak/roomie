@@ -20,6 +20,8 @@ namespace Roomie.Common.HomeAutomation
         INetworkState NetworkState { get; }
         bool? IsConnected { get; }
         DeviceType Type { get; }
+
+        string CurrentAction { get; }
         
         IBinarySwitchState BinarySwitchState { get; }
         IMultilevelSensorState<IPower> PowerSensorState { get; }

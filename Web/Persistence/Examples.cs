@@ -35,6 +35,25 @@ namespace Roomie.Web.Persistence
                 offToggleSwitch.ToggleSwitch.Power = BinarySwitchPower.Off;
                 offToggleSwitch.PowerSensor.Value = new WattsPower(0);
 
+                var idleDevice = new DeviceModel
+                    {
+                        Name = "An appliance that is on, but idle",
+                        Type = DeviceType.BinarySwitch,
+                    };
+                idleDevice.ToggleSwitch.Power = BinarySwitchPower.On;
+                idleDevice.PowerSensor.Value = new WattsPower(5);
+                idleDevice.CurrentAction = "Idle";
+
+                var runningDevice = new DeviceModel
+                    {
+                        Name = "An appliance that is on and running",
+                        Type = DeviceType.BinarySwitch,
+                    };
+                runningDevice.ToggleSwitch.Power = BinarySwitchPower.On;
+                runningDevice.PowerSensor.Value = new WattsPower(50);
+                runningDevice.CurrentAction = "Running";
+
+
                 var onDimmerSwitch = new DeviceModel
                     {
                         Name = "A Dimmer Switch that is on",
@@ -114,7 +133,7 @@ namespace Roomie.Web.Persistence
                         Type = DeviceType.Thermostat
                     };
 
-                var devices = new[] { onToggleSwitch, offToggleSwitch, onDimmerSwitch, offDimmerSwitch, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, multisensor, thermostat, noDataThermostat };
+                var devices = new[] { onToggleSwitch, offToggleSwitch, idleDevice, runningDevice, onDimmerSwitch, offDimmerSwitch, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, multisensor, thermostat, noDataThermostat };
 
                 var computer = new ComputerModel
                     {
