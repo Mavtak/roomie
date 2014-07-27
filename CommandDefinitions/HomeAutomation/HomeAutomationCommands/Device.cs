@@ -38,6 +38,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Type = type ?? DeviceType.Unknown;
             Name = name;
             IsConnected = null;
+            CurrentStateGenerator = new CurrentStateGenerator();
         }
 
         public void AddEvent(IDeviceEvent @event)
@@ -105,7 +106,15 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         public string Address { get; set; }
         public ILocation Location { get; private set; }
         public DeviceType Type { get; set; }
+        public string CurrentAction { get; set; }
+        public CurrentStateGenerator CurrentStateGenerator { get; private set; }
         public bool? IsConnected { get; set; }
+
+        public void UpdateCurrentAction()
+        {
+            var newCurrentAction = CurrentStateGenerator.Generate(BinarySwitch.Power, PowerSensor.Value);
+            CurrentAction = newCurrentAction;
+        }
 
         INetworkState IDeviceState.NetworkState
         {
