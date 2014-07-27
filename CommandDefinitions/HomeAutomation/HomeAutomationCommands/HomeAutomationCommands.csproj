@@ -92,6 +92,7 @@
     <Compile Include="Commands\HomeAutomation\WaitForChange.cs" />
     <Compile Include="Commands\HomeAutomation\WebHookConnectTasks.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="CurrentStateGenerator.cs" />
     <Compile Include="EventTypeParameterType.cs" />
     <Compile Include="RunScriptTriggerAction.cs" />
     <Compile Include="ThermostatModeParameterType.cs" />
