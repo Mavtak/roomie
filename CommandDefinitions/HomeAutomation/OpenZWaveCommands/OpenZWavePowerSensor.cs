@@ -1,4 +1,5 @@
 ﻿using System;
+using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.Measurements.Power;
@@ -20,6 +21,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         internal bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)
         {
             var result = _dataEntry.ProcessValueUpdate(value, updateType);
+
+            if (result)
+            {
+                _device.UpdateCurrentAction();
+            }
 
             return result;
         }

@@ -6,15 +6,22 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
     public class OpenZWaveToggleSwitch : IBinarySwitch
     {
         private readonly SwitchBinaryDataEntry _dataEntry;
+        private readonly OpenZWaveDevice _device;
 
         public OpenZWaveToggleSwitch(OpenZWaveDevice device)
         {
+            _device = device;
             _dataEntry = new SwitchBinaryDataEntry(device);
         }
 
         internal bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)
         {
             var result = _dataEntry.ProcessValueUpdate(value, updateType);
+
+            if (result)
+            {
+                _device.UpdateCurrentAction();
+            }
 
             return result;
         }
