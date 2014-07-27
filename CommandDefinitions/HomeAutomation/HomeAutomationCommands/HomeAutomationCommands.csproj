@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\HomeAutomation\AddCurrentStateStep.cs" />
     <Compile Include="Attributes\EventTypeParameterAttribute.cs" />
     <Compile Include="Attributes\ThermostatModeParameterAttribute.cs" />
     <Compile Include="Attributes\FanModeParameterAttribute.cs" />
