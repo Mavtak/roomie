@@ -113,7 +113,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         public void UpdateCurrentAction()
         {
             var newCurrentAction = CurrentStateGenerator.Generate(BinarySwitch.Power, PowerSensor.Value);
-            CurrentAction = newCurrentAction;
+
+            if (newCurrentAction != CurrentAction)
+            {
+                CurrentAction = newCurrentAction;
+
+                var @event = DeviceEvent.CurrentActionChanged(this, null);
+                AddEvent(@event);
+            }
         }
 
         INetworkState IDeviceState.NetworkState

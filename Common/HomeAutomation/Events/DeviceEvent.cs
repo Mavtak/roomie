@@ -43,6 +43,13 @@ namespace Roomie.Common.HomeAutomation.Events
             return result;
         }
 
+        public static DeviceEvent CurrentActionChanged(IDevice device, IEventSource source)
+        {
+            var result = new DeviceEvent(device, new CurrentActionChanged(), source);
+
+            return result;
+        }
+
         public static DeviceEvent PoweredOn(IDevice device, IEventSource source)
         {
             var result = new DeviceEvent(device, new PoweredOn(), source);
