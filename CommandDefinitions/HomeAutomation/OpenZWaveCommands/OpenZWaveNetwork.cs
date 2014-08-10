@@ -95,7 +95,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         public override Device RemoveDevice()
         {
-            throw new NotImplementedException();
+            Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RequestNetworkUpdate, true, 0);
+
+            return null;
         }
 
         public override void RemoveDevice(Device device)
@@ -107,7 +109,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         public override Device AddDevice()
         {
-            throw new NotImplementedException();
+            Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.AddDevice, true, 0);
+
+            return null;
         }
 
         public void OptimizePaths()
