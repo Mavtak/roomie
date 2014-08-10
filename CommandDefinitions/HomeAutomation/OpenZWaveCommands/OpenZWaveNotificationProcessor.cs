@@ -42,8 +42,17 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             switch (notification.Type)
             {
                 case NotificationType.AllNodesQueried:
+                    _network.Log("All nodes queried");
+                    break;
+
                 case NotificationType.AllNodesQueriedSomeDead:
+                    _network.Log("All nodes queried, some dead");
+                    break;
+
                 case NotificationType.AwakeNodesQueried:
+                    _network.Log("All awake nodes queried");
+                    break;
+
                 case NotificationType.ButtonOff:
                 case NotificationType.ButtonOn:
                 case NotificationType.CreateButton:
@@ -72,7 +81,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 case NotificationType.NodeNew:
                 case NotificationType.NodeProtocolInfo:
                 case NotificationType.NodeQueriesComplete:
+                    Nodification("done initializing", notification.Device);
+                    break;
+
                 case NotificationType.NodeRemoved:
+                    Nodification("removed", notification.Device);
                     break;
 
                 case NotificationType.Notification:
@@ -80,7 +93,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     break;
 
                 case NotificationType.PollingDisabled:
+                    Nodification("polling disabled", notification.Device);
+                    break;
+
                 case NotificationType.PollingEnabled:
+                    Nodification("polling enabled", notification.Device);
+                    break;
+
                 case NotificationType.SceneEvent:
                     break;
 
@@ -124,6 +143,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             HandleDeviceConnected(device, true);
             device.ProcessValueUpdate(value, updateType);
+        }
+
+        private void Nodification(string operation, IDeviceState device)
+        {
+            var message = string.Format("Node {0}: {1}", operation, device.BuildVirtualAddress(false, false));
+
+            _network.Log(message);
         }
     }
 }

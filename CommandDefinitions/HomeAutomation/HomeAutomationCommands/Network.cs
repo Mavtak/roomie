@@ -24,6 +24,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         public abstract void RemoveDevice(Device device);
         public abstract Device AddDevice();
 
+        public void Log(string message)
+        {
+            var pool = Context.ThreadPool;
+            var line = string.Format("{0}: {1}", Address, message);
+            
+            pool.Print(line);
+        }
+
         protected void Connected()
         {
             Context.History.Add(NetworkEvent.Connected(this, null));
