@@ -11,6 +11,8 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         public OpenZWaveDimmerSwitch(OpenZWaveDevice device)
         {
             _dataEntry = new SwitchMultilevelDataEntry(device);
+
+            //TODO: only set max power if actually a dimmer switch
             MaxPower = 99;
         }
 
