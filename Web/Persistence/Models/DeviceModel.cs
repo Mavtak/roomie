@@ -69,6 +69,25 @@ namespace Roomie.Web.Persistence.Models
         public void Update(IDeviceState state)
         {
             //TODO: update more properties?
+
+            if (Name == null && state.Name != null)
+            {
+                Name = state.Name;
+            }
+
+            if ((Type == null ||  Type.Equals(DeviceType.Unknown)) && state.Type != null)
+            {
+                Type = state.Type;
+            }
+
+            if (Location == null && state.Location != null && state.Location.IsSet)
+            {
+                Location = new DeviceLocationModel
+                {
+                    Name = string.Join("/", state.Location.GetParts())
+                };
+            }
+
             IsConnected = state.IsConnected;
             CurrentAction = state.CurrentAction;
             
