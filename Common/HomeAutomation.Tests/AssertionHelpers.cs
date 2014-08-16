@@ -74,6 +74,11 @@ namespace Roomie.Common.HomeAutomation.Tests
             }
         }
 
+        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two)
+        {
+            AssertDevicesEqual(one, two, true, true, true, true, true, true, true, true, true, true);
+        }
+
         public static void AssertHelperHelper(object one, object two)
         {
             if (one == two)

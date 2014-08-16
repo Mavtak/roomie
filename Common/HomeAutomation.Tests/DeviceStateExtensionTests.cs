@@ -1,657 +1,85 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Roomie.Common.HomeAutomation.Tests
 {
     //TODO: make these more thorough, test IDeviceState substates in other test classes
     public class DeviceStateExtensionTests
     {
-        public IEnumerable<IDeviceState> Devices
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: true,
-                    includeDimmer: true,
-                    includeBinarySensor: true,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: true,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: true
-                    );
-            }
-        }
+        private const bool X = true;
+        private const bool O = false;
 
-        public IEnumerable<IDeviceState> DevicesWithoutCurrentAction
+        [Test]
+        public void CopyWorks()
         {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: false,
-                    includeToggle: true,
-                    includeDimmer: true,
-                    includeBinarySensor: true,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: true,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: false
-                    );
-            }
-        }
-
-        public IEnumerable<IDeviceState> DevicesWithoutToggleSwitches
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: false,
-                    includeDimmer: true,
-                    includeBinarySensor: true,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: true,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: false
-                    );
-            }
-        }
-
-        public IEnumerable<IDeviceState> DevicesWithoutDimmerSwitches
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: true,
-                    includeDimmer: false,
-                    includeBinarySensor: true,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: true,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: false
-                    );
-            }
-        }
-
-        public IEnumerable<IDeviceState> DevicesWithoutBinarySensors
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: true,
-                    includeDimmer: true,
-                    includeBinarySensor: false,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: true,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: false
-                    );
-            }
-        }
-
-        public IEnumerable<IDeviceState> DevicesWithoutPowerSensors
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: true,
-                    includeDimmer: true,
-                    includeBinarySensor: true,
-                    includePowerSensor: false,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: true,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: true
-                    );
-            }
-        }
-
-        public IEnumerable<IDeviceState> DevicesWithoutTemperatureSensors
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: true,
-                    includeDimmer: true,
-                    includeBinarySensor: true,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: false,
-                    includeHumiditySensor: true,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: true
-                    );
-            }
-        }
-
-        public IEnumerable<IDeviceState> DevicesWithoutHumiditySensors
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: true,
-                    includeDimmer: true,
-                    includeBinarySensor: true,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: false,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: true
-                    );
-            }
-        }
-
-        public IEnumerable<IDeviceState> DevicesWithoutIlluminanceSensors
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: true,
-                    includeDimmer: true,
-                    includeBinarySensor: true,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: false,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: true
-                    );
-            }
-        }
-
-        public IEnumerable<IDeviceState> DevicesWithoutThermostats
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: true,
-                    includeDimmer: true,
-                    includeBinarySensor: true,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: true,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: false,
-                    includeKeypad: false
-                    );
-            }
-        }
-
-        public IEnumerable<IDeviceState> DevicesWithoutKeypads
-        {
-            get
-            {
-                return DataHelpers.GenerateExampleDevices(20,
-                    includeCurrentAction: true,
-                    includeToggle: true,
-                    includeDimmer: true,
-                    includeBinarySensor: true,
-                    includePowerSensor: true,
-                    includeTemperatureSensor: true,
-                    includeHumiditySensor: true,
-                    inclueIlluminanceSensor: true,
-                    includeThermostat: true,
-                    includeKeypad: false
-                    );
-            }
-        }
-
-        [TestCaseSource("Devices")]
-        public void CopyWorks(IDeviceState device)
-        {
+            //TODO: include tests for when properties are null
+            var device = DataHelpers.GenerateExampleDevice();
             var copy = device.Copy();
 
             //TODO: assert truly separate objects
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: true,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
+            AssertionHelpers.AssertDevicesEqual(device, copy);
         }
 
-        [TestCaseSource("Devices")]
-        public void CurrentActionSerializationWorks(IDeviceState device)
+        [TestCase(X, O, O, O, O, O, O, O, O, O, TestName = "Just Current Action")]
+        [TestCase(O, X, O, O, O, O, O, O, O, O, TestName = "Just Binary Switch")]
+        [TestCase(O, O, X, O, O, O, O, O, O, O, TestName = "Just Multilevel Switch")]
+        [TestCase(O, O, O, X, O, O, O, O, O, O, TestName = "Just Binary Sensor")]
+        [TestCase(O, O, O, O, X, O, O, O, O, O, TestName = "Just Power Sensor")]
+        [TestCase(O, O, O, O, O, X, O, O, O, O, TestName = "Just Temperature Sensor")]
+        [TestCase(O, O, O, O, O, O, X, O, O, O, TestName = "Just Humidity Sensor")]
+        [TestCase(O, O, O, O, O, O, O, X, O, O, TestName = "Just Illuminance Sensor")]
+        [TestCase(O, O, O, O, O, O, O, O, X, O, TestName = "Just Thermostat")]
+        [TestCase(O, O, O, O, O, O, O, O, O, X, TestName = "Just Keypad")]
+        [TestCase(X, X, X, X, X, X, X, X, X, X, TestName = "Everything")]
+        public void SerializationWorks(bool currentAction, bool binarySwitch, bool multilevelSwitch, bool binarySensor, bool powerSensor, bool tempeartureSensor, bool humiditySensor, bool illuminanceSensor, bool thermostat, bool keypad)
         {
+            var device = DataHelpers.GenerateExampleDevice();
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
             AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: true,
-                checkToggleSwitch: false,
-                checkDimmerSwitch: false,
-                checkBinarySensor: false,
-                checkPowerSensor: false,
-                checkTempeartureSensor: false,
-                checkHumiditySensor: false,
-                checkIlluminanceSensor: true,
-                checkThermostat: false,
-                checkKeypad: false
+                checkCurrentAction: currentAction,
+                checkToggleSwitch: binarySwitch,
+                checkDimmerSwitch: multilevelSwitch,
+                checkBinarySensor: binarySensor,
+                checkPowerSensor: powerSensor,
+                checkTempeartureSensor: tempeartureSensor,
+                checkHumiditySensor: humiditySensor,
+                checkIlluminanceSensor: illuminanceSensor,
+                checkThermostat: thermostat,
+                checkKeypad: keypad
                 );
         }
 
-        [TestCaseSource("Devices")]
-        public void ToggleSwitchSerializationWorks(IDeviceState device)
+        [TestCase(X, O, O, O, O, O, O, O, O, O, TestName = "Without Current Action")]
+        [TestCase(O, X, O, O, O, O, O, O, O, O, TestName = "Without Binary Switch")]
+        [TestCase(O, O, X, O, O, O, O, O, O, O, TestName = "Without Multilevel Switch")]
+        [TestCase(O, O, O, X, O, O, O, O, O, O, TestName = "Without Binary Sensor")]
+        [TestCase(O, O, O, O, X, O, O, O, O, O, TestName = "Without Power Sensor")]
+        [TestCase(O, O, O, O, O, X, O, O, O, O, TestName = "Without Temperature Sensor")]
+        [TestCase(O, O, O, O, O, O, X, O, O, O, TestName = "Without Humidity Sensor")]
+        [TestCase(O, O, O, O, O, O, O, X, O, O, TestName = "Without Illuminance Sensor")]
+        [TestCase(O, O, O, O, O, O, O, O, X, O, TestName = "Without Thermostat")]
+        [TestCase(O, O, O, O, O, O, O, O, O, X, TestName = "Without Keypad")]
+        [TestCase(X, X, X, X, X, X, X, X, X, X, TestName = "Nothing")]
+        public void SerializationWorksWithNullProperty(bool currentAction, bool binarySwitch, bool multilevelSwitch, bool binarySensor, bool powerSensor, bool tempeartureSensor, bool humiditySensor, bool illuminanceSensor, bool thermostat, bool keypad)
         {
+            var device = DataHelpers.GenerateExampleDevice(
+                type: DeviceType.Controller,
+                includeCurrentAction: !currentAction,
+                includeToggle: !binarySwitch,
+                includeDimmer: !multilevelSwitch,
+                includeBinarySensor: !binarySensor,
+                includePowerSensor: !powerSensor,
+                includeTemperatureSensor: !tempeartureSensor,
+                includeHumiditySensor: !humiditySensor,
+                includeIlluminanceSensor: !illuminanceSensor,
+                includeThermostat: !thermostat,
+                includeKeypad: !keypad
+                );
             var node = device.ToXElement();
             var copy = node.ToDeviceState();
 
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: false,
-                checkBinarySensor: false,
-                checkPowerSensor: false,
-                checkTempeartureSensor: false,
-                checkHumiditySensor: false,
-                checkIlluminanceSensor: true,
-                checkThermostat: false,
-                checkKeypad: false
-                );
-        }
-
-        [TestCaseSource("Devices")]
-        public void DimmerSwitchSerializationWorks(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: false,
-                checkDimmerSwitch: true,
-                checkBinarySensor: false,
-                checkPowerSensor: false,
-                checkTempeartureSensor: false,
-                checkHumiditySensor: false,
-                checkIlluminanceSensor: false,
-                checkThermostat: false,
-                checkKeypad: false
-                );
-        }
-
-        [TestCaseSource("Devices")]
-        public void BinarySensorSerializationWorks(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: false,
-                checkDimmerSwitch: false,
-                checkBinarySensor: true,
-                checkPowerSensor: false,
-                checkTempeartureSensor: false,
-                checkHumiditySensor: false,
-                checkIlluminanceSensor: false,
-                checkThermostat: false,
-                checkKeypad: false
-                );
-        }
-
-        [TestCaseSource("Devices")]
-        public void PowerSensorSerializationWorks(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: false,
-                checkDimmerSwitch: false,
-                checkBinarySensor: false,
-                checkPowerSensor: true,
-                checkTempeartureSensor: false,
-                checkHumiditySensor: false,
-                checkIlluminanceSensor: false,
-                checkThermostat: false,
-                checkKeypad: false
-                );
-        }
-
-        public void TemperatureSensorSerializationWorks(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: false,
-                checkDimmerSwitch: false,
-                checkBinarySensor: false,
-                checkPowerSensor: false,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: false,
-                checkIlluminanceSensor: false,
-                checkThermostat: false,
-                checkKeypad: false
-                );
-        }
-
-        [TestCaseSource("Devices")]
-        public void HumiditySensorSerializationWorks(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: false,
-                checkDimmerSwitch: false,
-                checkBinarySensor: false,
-                checkPowerSensor: false,
-                checkTempeartureSensor: false,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: false,
-                checkThermostat: false,
-                checkKeypad: false
-                );
-        }
-
-        [TestCaseSource("Devices")]
-        public void IlluminanceSensorSerializationWorks(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: false,
-                checkDimmerSwitch: false,
-                checkBinarySensor: false,
-                checkPowerSensor: false,
-                checkTempeartureSensor: false,
-                checkHumiditySensor: false,
-                checkIlluminanceSensor: true,
-                checkThermostat: false,
-                checkKeypad: false
-                );
-        }
-
-        [TestCaseSource("Devices")]
-        public void ThermostatSerializationWorks(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: false,
-                checkDimmerSwitch: false,
-                checkBinarySensor: false,
-                checkPowerSensor: false,
-                checkTempeartureSensor: false,
-                checkHumiditySensor: false,
-                checkIlluminanceSensor: false,
-                checkThermostat: true,
-                checkKeypad: false
-                );
-        }
-
-        [TestCaseSource("Devices")]
-        public void KeypadSerializationWorks(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: false,
-                checkDimmerSwitch: false,
-                checkBinarySensor: false,
-                checkPowerSensor: false,
-                checkTempeartureSensor: false,
-                checkHumiditySensor: false,
-                checkIlluminanceSensor: false,
-                checkThermostat: false,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutCurrentAction")]
-        public void SerializationWorksWithNullCurrentAction(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutToggleSwitches")]
-        public void SerializationWorksWithNullToggleSwitch(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutDimmerSwitches")]
-        public void SerializationWorksWithNullDimmerSwitch(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutBinarySensors")]
-        public void SerializationWorksWithNullBinarySensor(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutPowerSensors")]
-        public void SerializationWorksWithNullPowerSensor(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutTemperatureSensors")]
-        public void SerializationWorksWithNullTemperatureSensor(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutHumiditySensors")]
-        public void SerializationWorksWithNullHumiditySensor(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutIlluminanceSensors")]
-        public void SerializationWorksWithNullIlluminanceSensor(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutThermostats")]
-        public void SerializationWorksWithNullThermostat(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("DevicesWithoutKeypads")]
-        public void SerializationWorksWithNullKeypad(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: false,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
-        }
-
-        [TestCaseSource("Devices")]
-        public void SerializationWorks(IDeviceState device)
-        {
-            var node = device.ToXElement();
-            var copy = node.ToDeviceState();
-
-            AssertionHelpers.AssertDevicesEqual(device, copy,
-                checkCurrentAction: true,
-                checkToggleSwitch: true,
-                checkDimmerSwitch: true,
-                checkBinarySensor: true,
-                checkPowerSensor: true,
-                checkTempeartureSensor: true,
-                checkHumiditySensor: true,
-                checkIlluminanceSensor: true,
-                checkThermostat: true,
-                checkKeypad: true
-                );
+            AssertionHelpers.AssertDevicesEqual(device, copy);
         }
     }
 }

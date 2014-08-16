@@ -122,51 +122,9 @@ namespace Roomie.Common.HomeAutomation.Tests
             return device;
         }
 
-        public static IEnumerable<IDeviceState> GenerateExampleDevices(int count, bool includeCurrentAction, bool includeToggle, bool includeDimmer, bool includeBinarySensor, bool includePowerSensor, bool includeTemperatureSensor, bool includeHumiditySensor, bool inclueIlluminanceSensor, bool includeThermostat, bool includeKeypad)
+        public static IDeviceState GenerateExampleDevice()
         {
-            for (var i = 0; i < count; i++)
-            {
-                DeviceType type;
-
-                switch (i % 8)
-                {
-                    case 0:
-                        type = DeviceType.Controller;
-                        break;
-
-                    case 1:
-                        type = DeviceType.MultilevelSwitch;
-                        break;
-
-                    case 2:
-                        type = DeviceType.BinarySensor;
-                        break;
-
-                    case 3:
-                        type = DeviceType.Relay;
-                        break;
-
-                    case 4:
-                        type = DeviceType.BinarySwitch;
-                        break;
-
-                    case 5:
-                        type = DeviceType.Thermostat;
-                        break;
-
-                    case 6:
-                        type = DeviceType.Keypad;
-                        break;
-
-                    default:
-                        type = DeviceType.Unknown;
-                        break;
-                }
-
-                var device = GenerateExampleDevice(type, includeCurrentAction, includeToggle, includeDimmer, includeBinarySensor, includePowerSensor, includeTemperatureSensor, includeHumiditySensor, inclueIlluminanceSensor, includeThermostat, includeKeypad);
-
-                yield return device;
-            }
+            return GenerateExampleDevice(DeviceType.Controller, true, true, true, true, true, true, true, true, true, true);
         }
     }
 }
