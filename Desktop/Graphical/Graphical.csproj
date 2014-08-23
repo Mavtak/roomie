@@ -122,6 +122,10 @@
       <Project>{8a4de8bd-5073-464f-bf77-71efa6e07fd0}</Project>
       <Name>OpenZWaveCommands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\HomeAutomation\Q42HueCommands\Q42HueCommands.csproj">
+      <Project>{9b945f89-b6b3-4e7e-b670-b9db24ad00df}</Project>
+      <Name>Q42HueCommands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CommandDefinitions\TwitterCommands\TwitterCommands.csproj">
       <Project>{f22862b7-cdb9-4d4e-83f3-9aa535db5841}</Project>
       <Name>TwitterCommands</Name>
