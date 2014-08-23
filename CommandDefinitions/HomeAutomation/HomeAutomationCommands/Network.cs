@@ -38,15 +38,21 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Context.Triggers.CheckAndAct();
         }
 
-        public void Save()
+        private string CalculateSavedFilename()
         {
             if (Name == null)
             {
                 throw new Exception("Network name cannot be null");
             }
 
-            var filename = Name + ".xml";
+            var result = Name + ".xml";
 
+            return result;
+        }
+
+        public void Save()
+        {
+            var filename = CalculateSavedFilename();
             var writer = XmlWriter.Create(filename);
             writer.WriteStartDocument();
             this.ToXElement().WriteTo(writer);
@@ -56,12 +62,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public void Load()
         {
-            if (Name == null)
-            {
-                throw new Exception("Network name cannot be null");
-            }
-
-            var filename = Name + ".xml";
+            var filename = CalculateSavedFilename();
 
             if (!System.IO.File.Exists(filename))
             {
