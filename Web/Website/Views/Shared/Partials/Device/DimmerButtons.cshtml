@@ -23,7 +23,21 @@
     {@*
 
         *@for (int power = 0; power <= 10; power++)
-          {@*
+          {
+             var label = string.Empty;
+             
+             switch (power)
+             {
+                 case 0:
+                     label = "Off";
+                     break;
+                     
+                 case 10:
+                     label = "On";
+                     break;
+             }
+             
+           @*
           *@<div class="@{
             if (power == 0 || power == 10)
                 {<text>bigger</text>}
@@ -32,14 +46,7 @@
                 if ((percentage > (power - 1))
                     && (percentage <= (power)))
                 {<text> activated</text>}
-        } button"><button class="button" type="submit" name="power" value="@(power * (Model.Device.DimmerSwitch.MaxPower ?? 100) / 10)">@{
-            if (power == 0)
-            {<text>Off</text>}
-            else if (power == 10)
-            {<text>On</text>}
-            else
-            {<text></text>}
-        }</button></div>}@*
+        } button"><button class="button" type="submit" name="power" value="@(power * (Model.Device.DimmerSwitch.MaxPower ?? 100) / 10)">@label</button></div>}@*
 
     *@}@*
 *@
