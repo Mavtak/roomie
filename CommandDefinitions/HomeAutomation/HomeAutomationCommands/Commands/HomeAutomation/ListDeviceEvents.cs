@@ -7,9 +7,10 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
-            var network = context.Network;
             var device = context.Device;
-            var history = network.Context.History;
+            var network = device.Network;
+            var networkContext = network.Context;
+            var history = networkContext.History;
             var interpreter = context.Interpreter;
             var deviceHistory = history.DeviceEvents.FilterEntity(device);
 
