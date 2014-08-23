@@ -47,14 +47,13 @@
                      break;
 
                  default:
-                     var lower = power - 1;
-                     var upper = power;
+                     var lower = (power - 1) * maxPower / 10;
+                     var upper = (power) * maxPower / 10;
                      var middle = ((double) lower + upper)/2;
-                     var percentage = (double?) dimmer.CalculatePowerPercentage() / 10;
 
                      label = string.Empty;
-                     target = (int)(middle * maxPower / 10);
-                     activated = (percentage > lower) && (percentage <= upper);
+                     target = (int)(middle);
+                     activated = (currentPower > lower) && (currentPower <= upper);
                      break;
              }
            @*
