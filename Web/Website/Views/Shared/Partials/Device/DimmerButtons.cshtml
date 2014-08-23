@@ -1,6 +1,9 @@
 ﻿@using Roomie.Common.HomeAutomation.MultilevelSwitches
 @model DeviceViewModel
-@*
+@{
+    var dimmer = Model.Device.DimmerSwitch;
+    var maxPower = dimmer.MaxPower ?? 100;
+}@*
 
 
 *@@using (Ajax.BeginForm(
@@ -39,7 +42,7 @@
                      break;
              }
              
-            var percentage = Model.Device.DimmerSwitch.CalculatePowerPercentage() / 10;
+            var percentage = dimmer.CalculatePowerPercentage() / 10;
             bool activated = (percentage > lower) && (percentage <= upper);
 
            @*
@@ -48,7 +51,7 @@
                 {<text>bigger</text>}
                 if (activated)
                 {<text> activated</text>}
-        } button"><button class="button" type="submit" name="power" value="@(power * (Model.Device.DimmerSwitch.MaxPower ?? 100) / 10)">@label</button></div>}@*
+        } button"><button class="button" type="submit" name="power" value="@(power * (maxPower) / 10)">@label</button></div>}@*
 
     *@}@*
 *@
