@@ -25,6 +25,8 @@
         *@for (int power = 0; power <= 10; power++)
           {
              var label = string.Empty;
+             var lower = power - 1;
+             var upper = power;
              
              switch (power)
              {
@@ -37,14 +39,14 @@
                      break;
              }
              
+            var percentage = Model.Device.DimmerSwitch.CalculatePowerPercentage() / 10;
+            bool activated = (percentage > lower) && (percentage <= upper);
+
            @*
           *@<div class="@{
             if (power == 0 || power == 10)
                 {<text>bigger</text>}
-
-                var percentage = Model.Device.DimmerSwitch.CalculatePowerPercentage() / 10;
-                if ((percentage > (power - 1))
-                    && (percentage <= (power)))
+                if (activated)
                 {<text> activated</text>}
         } button"><button class="button" type="submit" name="power" value="@(power * (Model.Device.DimmerSwitch.MaxPower ?? 100) / 10)">@label</button></div>}@*
 
