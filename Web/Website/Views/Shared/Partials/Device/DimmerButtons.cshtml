@@ -45,13 +45,14 @@
             var percentage = dimmer.CalculatePowerPercentage() / 10;
             bool activated = (percentage > lower) && (percentage <= upper);
 
+            var target = power * maxPower / 10;
            @*
           *@<div class="@{
             if (power == 0 || power == 10)
                 {<text>bigger</text>}
                 if (activated)
                 {<text> activated</text>}
-        } button"><button class="button" type="submit" name="power" value="@(power * (maxPower) / 10)">@label</button></div>}@*
+        } button"><button class="button" type="submit" name="power" value="@target">@label</button></div>}@*
 
     *@}@*
 *@
