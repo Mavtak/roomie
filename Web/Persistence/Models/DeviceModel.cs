@@ -47,7 +47,7 @@ namespace Roomie.Web.Persistence.Models
                     var element = XElement.Parse(value);
                     var state = element.ToDeviceState();
 
-                    Update(state);
+                    Update(state, true);
 
                     _deserializedFromDatabase = true;
                 }
@@ -66,26 +66,29 @@ namespace Roomie.Web.Persistence.Models
             this.DoCommand("HomeAutomation.PollDevice Device=\"{0}\"");
         }
 
-        public void Update(IDeviceState state)
+        public void Update(IDeviceState state, bool fromDatabase = false)
         {
             //TODO: update more properties?
 
-            if (Name == null && state.Name != null)
+            if (!fromDatabase)
             {
-                Name = state.Name;
-            }
-
-            if ((Type == null ||  Type.Equals(DeviceType.Unknown)) && state.Type != null)
-            {
-                Type = state.Type;
-            }
-
-            if (Location == null && state.Location != null && state.Location.IsSet)
-            {
-                Location = new DeviceLocationModel
+                if (Name == null && state.Name != null)
                 {
-                    Name = string.Join("/", state.Location.GetParts())
-                };
+                    Name = state.Name;
+                }
+
+                if ((Type == null || Type.Equals(DeviceType.Unknown)) && state.Type != null)
+                {
+                    Type = state.Type;
+                }
+
+                if (Location == null && state.Location != null && state.Location.IsSet)
+                {
+                    Location = new DeviceLocationModel
+                    {
+                        Name = string.Join("/", state.Location.GetParts())
+                    };
+                }
             }
 
             IsConnected = state.IsConnected;
