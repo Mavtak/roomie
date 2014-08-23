@@ -76,15 +76,15 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        public abstract IBinarySwitch BinarySwitch { get; }
-        public abstract IMultilevelSwitch MultilevelSwitch { get; }
-        public abstract IBinarySensor BinarySensor { get; }
-        public abstract IMultilevelSensor<IPower> PowerSensor { get; }
-        public abstract IMultilevelSensor<ITemperature> TemperatureSensor { get; }
-        public abstract IMultilevelSensor<IHumidity> HumiditySensor { get; }
-        public abstract IMultilevelSensor<IIlluminance> IlluminanceSensor { get; }
-        public abstract IThermostat Thermostat { get; }
-        public abstract IKeypad Keypad { get; }
+        public virtual IBinarySwitch BinarySwitch { get { return null; } }
+        public virtual IMultilevelSwitch MultilevelSwitch { get { return null; } }
+        public virtual IBinarySensor BinarySensor { get { return null; } }
+        public virtual IMultilevelSensor<IPower> PowerSensor { get { return null; } }
+        public virtual IMultilevelSensor<ITemperature> TemperatureSensor { get { return null; } }
+        public virtual IMultilevelSensor<IHumidity> HumiditySensor { get { return null; } }
+        public virtual IMultilevelSensor<IIlluminance> IlluminanceSensor { get { return null; } }
+        public virtual IThermostat Thermostat { get { return null; } }
+        public virtual IKeypad Keypad { get { return null; } }
 
         public void Update(IDeviceState state)
         {

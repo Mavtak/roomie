@@ -3,13 +3,9 @@ using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Events;
-using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
-using Roomie.Common.Measurements.Humidity;
-using Roomie.Common.Measurements.Illuminance;
-using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 using BackingDevice = ControlThink.ZWave.Devices.ZWaveDevice;
 using BaseDevice = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
@@ -130,14 +126,6 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        public override IMultilevelSensor<IPower> PowerSensor
-        {
-            get
-            {
-                return null;
-            }
-        }
-
         public override IMultilevelSensor<ITemperature> TemperatureSensor
         {
             get
@@ -146,35 +134,12 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        public override IMultilevelSensor<IHumidity> HumiditySensor
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public override IMultilevelSensor<IIlluminance> IlluminanceSensor
-        {
-            get
-            {
-                return null;
-            }
-        }
 
         public override IThermostat Thermostat
         {
             get
             {
                 return _thermostat;
-            }
-        }
-
-        public override IKeypad Keypad
-        {
-            get
-            {
-                return null;
             }
         }
     }
