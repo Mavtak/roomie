@@ -18,6 +18,7 @@ namespace Roomie.Common.HomeAutomation
         public static readonly DeviceType MultilevelSensor = new DeviceType("Multilevel Sensor", "Temperature Sensor", "Humidity Sensor", "Light Sensor");
         public static readonly DeviceType Thermostat = new DeviceType("Thermostat");
         public static readonly DeviceType Keypad = new DeviceType("Keypad");
+        public static readonly DeviceType Lock = new DeviceType("Lock");
         public static readonly DeviceType Unknown = new DeviceType();
 
         private const string UnknownName = "Unknown";
