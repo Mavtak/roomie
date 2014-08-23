@@ -22,20 +22,20 @@
                     ))
     {@*
 
-        *@for (int power = 0; power <= 100; power += 10)
+        *@for (int power = 0; power <= 10; power++)
           {@*
           *@<div class="@{
-            if (power == 0 || power == 100)
+            if (power == 0 || power == 10)
                 {<text>bigger</text>}
 
-                var percentage = Model.Device.DimmerSwitch.CalculatePowerPercentage();
-                if ((percentage > (power - 10))
+                var percentage = Model.Device.DimmerSwitch.CalculatePowerPercentage() / 10;
+                if ((percentage > (power - 1))
                     && (percentage <= (power)))
                 {<text> activated</text>}
-        } button"><button class="button" type="submit" name="power" value="@power">@{
+        } button"><button class="button" type="submit" name="power" value="@(power * (Model.Device.DimmerSwitch.MaxPower ?? 100) / 10)">@{
             if (power == 0)
             {<text>Off</text>}
-            else if (power == 100)
+            else if (power == 10)
             {<text>On</text>}
             else
             {<text></text>}
