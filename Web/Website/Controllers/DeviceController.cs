@@ -151,7 +151,7 @@ namespace Roomie.Web.Website.Controllers
             addTask(
                 computer: device.Network.AttatchedComputer,
                 origin: "RoomieBot",
-                scriptText: "HomeAutomation.SyncWithCloud"
+                scriptText: "HomeAutomation.SyncWithCloud Network=\"" + device.Network.Address + "\""
             );
 
             Database.SaveChanges();
