@@ -2,6 +2,7 @@
 @model DeviceViewModel
 @{
     var dimmer = Model.Device.DimmerSwitch;
+    var currentPower = dimmer.Power;
     var maxPower = dimmer.MaxPower ?? 100;
 }@*
 
@@ -27,25 +28,35 @@
 
         *@for (int power = 0; power <= 10; power++)
           {
-             var label = string.Empty;
-             var lower = power - 1;
-             var upper = power;
-             
+             string label;
+             bool activated;
+             int target;
+
              switch (power)
              {
                  case 0:
                      label = "Off";
+                     target = 0;
+                     activated = currentPower == 0;
                      break;
-                     
+
                  case 10:
                      label = "On";
+                     activated = currentPower >= maxPower;
+                     target = maxPower;
+                     break;
+
+                 default:
+                     var lower = power - 1;
+                     var upper = power;
+                     var middle = ((double) lower + upper)/2;
+                     var percentage = (double?) dimmer.CalculatePowerPercentage() / 10;
+
+                     label = string.Empty;
+                     target = (int)(middle * maxPower / 10);
+                     activated = (percentage > lower) && (percentage <= upper);
                      break;
              }
-             
-            var percentage = dimmer.CalculatePowerPercentage() / 10;
-            bool activated = (percentage > lower) && (percentage <= upper);
-
-            var target = power * maxPower / 10;
            @*
           *@<div class="@{
             if (power == 0 || power == 10)
