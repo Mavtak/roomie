@@ -1,7 +1,8 @@
 ﻿using System;
 using Q42.HueApi;
-using Roomie.Common.HomeAutomation;
+using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation.BinarySwitches;
+using Utilities = Roomie.Common.HomeAutomation.Utilities;
 
 namespace Q42HueCommands
 {
@@ -19,6 +20,14 @@ namespace Q42HueCommands
             {
                 result = 0;
             }
+
+            return result;
+        }
+
+        public static IColor CalculateColor(Light light)
+        {
+            var hexColor = "#" + light.State.ToHex();
+            var result = hexColor.ToColor();
 
             return result;
         }
@@ -60,6 +69,16 @@ namespace Q42HueCommands
                 default:
                     throw new Exception();
             }
+
+            return result;
+        }
+
+        public static LightCommand CreateCommand(IColor color)
+        {
+            var rgb = color.RedGreenBlue;
+
+            var result = new LightCommand()
+                .SetColor(rgb.Red, rgb.Blue, rgb.Green);
 
             return result;
         }

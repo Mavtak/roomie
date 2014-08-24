@@ -15,6 +15,7 @@ namespace Q42HueCommands
 
         private readonly Q42HueBinarySwitch _binarySwitch;
         private readonly Q42HueMultilevelSwitch _multilevelSwitch;
+        private readonly Q42HueColorSwitch _colorSwitch;
 
         public Q42HueDevice(Q42HueNetwork network, Light light)
             : base(network, DeviceType.MultilevelSwitch)
@@ -24,6 +25,7 @@ namespace Q42HueCommands
 
             _binarySwitch = new Q42HueBinarySwitch(this);
             _multilevelSwitch = new Q42HueMultilevelSwitch(this);
+            _colorSwitch = new Q42HueColorSwitch(this);
             
             Name = light.Name;
             Address = light.Id;
@@ -61,6 +63,14 @@ namespace Q42HueCommands
             {
                 AddEvent(DeviceEvent.PowerChanged(this, null));
             }
+
+            var oldColor = Helpers.CalculateColor(oldLight);
+            var newColor = Helpers.CalculateColor(newLight);
+
+            if (!oldColor.RedGreenBlue.Equals(newColor.RedGreenBlue))
+            {
+                AddEvent(DeviceEvent.ColorChanged(this, null));
+            }
         }
 
         public override IBinarySwitch BinarySwitch
@@ -76,6 +86,14 @@ namespace Q42HueCommands
             get
             {
                 return _multilevelSwitch;
+            }
+        }
+
+        public override Roomie.Common.HomeAutomation.ColorSwitch.IColorSwitch ColorSwitch
+        {
+            get
+            {
+                return _colorSwitch;
             }
         }
     }

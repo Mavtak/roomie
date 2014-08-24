@@ -61,6 +61,7 @@
     <Compile Include="Commands\Q42Hue\RegisterNetwork.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Q42HueBinarySwitch.cs" />
+    <Compile Include="Q42HueColorSwitch.cs" />
     <Compile Include="Q42HueMultilevelSwitch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Q42HueDevice.cs" />
