@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Thermostats;
@@ -52,6 +53,15 @@ namespace Roomie.Web.Website.Controllers
         public ActionResult Dim(int id, int power)
         {
             return DeviceAction(id, device => device.DimmerSwitch.SetPower(power));
+        }
+
+        [HttpPost]
+        [WebsiteRestrictedAccess]
+        public ActionResult SetColor(int id, string color)
+        {
+            var parsedColor = color.ToColor();
+
+            return DeviceAction(id, device => device.ColorSwitch.SetValue(parsedColor));
         }
 
         [HttpPost]

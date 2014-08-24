@@ -1,6 +1,7 @@
 ﻿using System;
 using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation.ColorSwitch;
+using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -24,7 +25,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void SetValue(IColor color)
         {
-            throw new NotImplementedException();
+            _device.DoCommand("HomeAutomation.SetColor Device=\"{0}\" Color=\"{1}\"", color.ToHexString());
         }
 
         public void Poll()
