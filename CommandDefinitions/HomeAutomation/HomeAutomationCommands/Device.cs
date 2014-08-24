@@ -230,6 +230,11 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 return;
             }
 
+            if (ColorSwitch != null)
+            {
+                ColorSwitch.Poll();
+            }
+
             if (Type == DeviceType.Thermostat)
             {
                 if (TemperatureSensor != null)
