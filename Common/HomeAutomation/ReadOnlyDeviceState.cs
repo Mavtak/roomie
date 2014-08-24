@@ -1,6 +1,7 @@
 ﻿using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
+using Roomie.Common.HomeAutomation.ColorSwitch;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -27,6 +28,7 @@ namespace Roomie.Common.HomeAutomation
         public IMultilevelSensorState<IHumidity> HumiditySensorState { get; private set; }
         public IMultilevelSensorState<IIlluminance> IlluminanceSensorState { get; private set; }
         public IMultilevelSwitchState MultilevelSwitchState { get; private set; }
+        public IColorSwitchState ColorSwitchState { get; private set; }
         public IBinarySensorState BinarySensorState { get; private set; }
         public IThermostatState ThermostatState { get; private set; }
         public IKeypadState KeypadState { get; private set; }
@@ -35,7 +37,7 @@ namespace Roomie.Common.HomeAutomation
         {
         }
 
-        public ReadOnlyDeviceState(string name, string address, ILocation location, INetwork network, bool? isConnected, DeviceType type, string currentAction, IBinarySwitchState toggleSwitchState, IMultilevelSwitchState dimmerSwitchState, IBinarySensorState binarySensorState, IMultilevelSensorState<IPower> powerSensorState, IMultilevelSensorState<ITemperature> temperatureSensorState, IMultilevelSensorState<IHumidity> humiditySensorState, IMultilevelSensorState<IIlluminance> illuminanceSensorState, IThermostatState thermostatState, IKeypadState keypadState)
+        public ReadOnlyDeviceState(string name, string address, ILocation location, INetwork network, bool? isConnected, DeviceType type, string currentAction, IBinarySwitchState toggleSwitchState, IMultilevelSwitchState dimmerSwitchState, IColorSwitchState colorSwitchState, IBinarySensorState binarySensorState, IMultilevelSensorState<IPower> powerSensorState, IMultilevelSensorState<ITemperature> temperatureSensorState, IMultilevelSensorState<IHumidity> humiditySensorState, IMultilevelSensorState<IIlluminance> illuminanceSensorState, IThermostatState thermostatState, IKeypadState keypadState)
         {
             Name = name;
             Address = address;
@@ -46,6 +48,7 @@ namespace Roomie.Common.HomeAutomation
             CurrentAction = currentAction;
             BinarySwitchState = toggleSwitchState;
             MultilevelSwitchState = dimmerSwitchState;
+            ColorSwitchState = colorSwitchState;
             BinarySensorState = binarySensorState;
             PowerSensorState = powerSensorState;
             TemperatureSensorState = temperatureSensorState;
@@ -73,6 +76,7 @@ namespace Roomie.Common.HomeAutomation
                 HumiditySensorState = (source.HumiditySensorState == null) ? null : source.HumiditySensorState.Copy(),
                 IlluminanceSensorState = (source.IlluminanceSensorState == null) ? null : source.IlluminanceSensorState.Copy(),
                 MultilevelSwitchState = (source.MultilevelSwitchState == null) ? null : source.MultilevelSwitchState.Copy(),
+                ColorSwitchState = (source.ColorSwitchState == null) ? null : source.ColorSwitchState.Copy(),
                 BinarySensorState = (source.BinarySensorState == null)?null : source.BinarySensorState.Copy(),
                 ThermostatState = (source.ThermostatState == null) ? null : source.ThermostatState.Copy(),
                 KeypadState = (source.KeypadState == null) ? null : source.KeypadState.Copy()
@@ -120,6 +124,13 @@ namespace Roomie.Common.HomeAutomation
             if (dimmerSwitchElement != null)
             {
                 dimmerSwitch = dimmerSwitchElement.ToDimmerSwitch();
+            }
+
+            IColorSwitchState colorSwitch = null;
+            var colorSwitchElement = element.Element("ColorSwitch");
+            if (colorSwitchElement != null)
+            {
+                colorSwitch = colorSwitchElement.ToColorSwitch();
             }
 
             IBinarySensorState binarySensor = null;
@@ -181,6 +192,7 @@ namespace Roomie.Common.HomeAutomation
                 CurrentAction = currentAction,
                 BinarySwitchState = toggleSwitch,
                 MultilevelSwitchState = dimmerSwitch,
+                ColorSwitchState = colorSwitch,
                 BinarySensorState = binarySensor,
                 PowerSensorState = powerSensor,
                 TemperatureSensorState = temperatureSensor,

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
+using Roomie.Common.HomeAutomation.ColorSwitch;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -16,7 +17,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 {
     public class AssertionHelpers
     {
-        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkCurrentAction, bool checkToggleSwitch, bool checkDimmerSwitch, bool checkBinarySensor, bool checkPowerSensor, bool checkTempeartureSensor, bool checkHumiditySensor, bool checkIlluminanceSensor, bool checkThermostat, bool checkKeypad)
+        public static void AssertDevicesEqual(IDeviceState one, IDeviceState two, bool checkCurrentAction, bool checkToggleSwitch, bool checkDimmerSwitch, bool checkColorSwitch, bool checkBinarySensor, bool checkPowerSensor, bool checkTempeartureSensor, bool checkHumiditySensor, bool checkIlluminanceSensor, bool checkThermostat, bool checkKeypad)
         {
             Assert.That(one.Name, Is.EqualTo(two.Name));
             Assert.That(one.Address, Is.EqualTo(two.Address));
@@ -36,6 +37,11 @@ namespace Roomie.Common.HomeAutomation.Tests
             if (checkDimmerSwitch)
             {
                 AssertDimmerSwitchEqual(one.MultilevelSwitchState, two.MultilevelSwitchState);
+            }
+
+            if (checkColorSwitch)
+            {
+                AssertColorSwitchEqual(one.ColorSwitchState, two.ColorSwitchState);
             }
 
             if (checkBinarySensor)
@@ -76,7 +82,7 @@ namespace Roomie.Common.HomeAutomation.Tests
 
         public static void AssertDevicesEqual(IDeviceState one, IDeviceState two)
         {
-            AssertDevicesEqual(one, two, true, true, true, true, true, true, true, true, true, true);
+            AssertDevicesEqual(one, two, true, true, true, true, true, true, true, true, true, true, true);
         }
 
         public static void AssertHelperHelper(object one, object two)
@@ -114,6 +120,19 @@ namespace Roomie.Common.HomeAutomation.Tests
             AssertHelperHelper(one, two);
 
             Assert.That(one.Power, Is.EqualTo(two.Power));
+        }
+
+        private static void AssertColorSwitchEqual(IColorSwitchState one, IColorSwitchState two)
+        {
+            if (one == null && two == null)
+            {
+                return;
+            }
+
+            AssertHelperHelper(one, two);
+            AssertHelperHelper(one.Value, two.Value);
+
+            Assert.That(one.Value.RedGreenBlue, Is.EqualTo(two.Value.RedGreenBlue));
         }
 
         public static void AssertBinarySensorEqual(IBinarySensorState one, IBinarySensorState two)

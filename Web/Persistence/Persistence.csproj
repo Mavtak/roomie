@@ -66,6 +66,7 @@
     <Compile Include="Helpers\DeviceSort.cs" />
     <Compile Include="Helpers\NetworkModelExtensions.cs" />
     <Compile Include="Models\BinarySensorModel.cs" />
+    <Compile Include="Models\ColorSwitchModel.cs" />
     <Compile Include="Models\MultilevelSensorModel.cs" />
     <Compile Include="Models\NetworkGuestModel.cs" />
     <Compile Include="Models\ThermostatCoreModel.cs" />

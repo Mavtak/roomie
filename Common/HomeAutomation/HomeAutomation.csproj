@@ -51,6 +51,11 @@
     <Compile Include="BinarySensors\IBinarySensorActions.cs" />
     <Compile Include="BinarySensors\IBinarySensorState.cs" />
     <Compile Include="BinarySensors\ReadOnlyBinarySensorState.cs" />
+    <Compile Include="ColorSwitch\ColorSwitchStateExtensions.cs" />
+    <Compile Include="ColorSwitch\IColorSwitch.cs" />
+    <Compile Include="ColorSwitch\IColorSwitchActions.cs" />
+    <Compile Include="ColorSwitch\IColorSwitchState.cs" />
+    <Compile Include="ColorSwitch\ReadOnlyColorSwitchState.cs" />
     <Compile Include="DeviceStateCollectionExtensions.cs" />
     <Compile Include="DeviceStateExtensions.cs" />
     <Compile Include="Events\BinarySensorValueChanged.cs" />

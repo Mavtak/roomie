@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
+using Roomie.Common.HomeAutomation.ColorSwitch;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -104,6 +105,11 @@ namespace Roomie.Web.Persistence.Models
                 DimmerSwitch.Update(state.MultilevelSwitchState);
             }
 
+            if (state.ColorSwitchState != null)
+            {
+                ColorSwitch.Update(state.ColorSwitchState);
+            }
+
             if (state.BinarySensorState != null)
             {
                 BinarySensor.Update(state.BinarySensorState);
@@ -137,6 +143,7 @@ namespace Roomie.Web.Persistence.Models
 
         private readonly ToggleSwitchModel _toggleSwitch;
         private readonly DimmerSwitchModel _dimmerSwitch;
+        private readonly ColorSwitchModel _colorSwitch;
         private readonly BinarySensorModel _binarySensor;
         private readonly MultilevelSensorModel<IPower> _powerSensor;
         private readonly MultilevelSensorModel<ITemperature> _temperatureSensor;
@@ -157,6 +164,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return _dimmerSwitch;
+            }
+        }
+
+        public ColorSwitchModel ColorSwitch
+        {
+            get
+            {
+                return _colorSwitch;
             }
         }
 
@@ -222,6 +237,7 @@ namespace Roomie.Web.Persistence.Models
         {
             _toggleSwitch = new ToggleSwitchModel(this);
             _dimmerSwitch = new DimmerSwitchModel(this);
+            _colorSwitch = new ColorSwitchModel(this);
             _thermostat = new ThermostatModel(this);
             _binarySensor = new BinarySensorModel(this);
             _powerSensor = new MultilevelSensorModel<IPower>(this);
@@ -284,6 +300,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return DimmerSwitch;
+            }
+        }
+
+        IColorSwitch IDevice.ColorSwitch
+        {
+            get
+            {
+                return ColorSwitch;
             }
         }
 
@@ -377,6 +401,14 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return DimmerSwitch;
+            }
+        }
+
+        IColorSwitchState IDeviceState.ColorSwitchState
+        {
+            get
+            {
+                return ColorSwitch;
             }
         }
 
@@ -526,6 +558,13 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        IColorSwitchActions IDeviceActions.ColorSwitchActions
+        {
+            get
+            {
+                return ColorSwitch;
+            }
+        }
         public IBinarySensorActions BinarySensorActions
         {
             get

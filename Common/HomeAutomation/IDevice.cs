@@ -1,5 +1,6 @@
 ﻿using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
+using Roomie.Common.HomeAutomation.ColorSwitch;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -16,6 +17,7 @@ namespace Roomie.Common.HomeAutomation
         INetwork Network { get; }
         IBinarySwitch BinarySwitch { get; }
         IMultilevelSwitch MultilevelSwitch { get; }
+        IColorSwitch ColorSwitch { get; }
         IBinarySensor BinarySensor { get;}
         IMultilevelSensor<IPower> PowerSensor { get; }
         IMultilevelSensor<ITemperature> TemperatureSensor { get; }

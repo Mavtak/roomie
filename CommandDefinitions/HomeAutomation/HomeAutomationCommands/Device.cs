@@ -3,6 +3,7 @@ using System.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
+using Roomie.Common.HomeAutomation.ColorSwitch;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
@@ -78,6 +79,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public virtual IBinarySwitch BinarySwitch { get { return null; } }
         public virtual IMultilevelSwitch MultilevelSwitch { get { return null; } }
+        public virtual IColorSwitch ColorSwitch { get { return null; } }
         public virtual IBinarySensor BinarySensor { get { return null; } }
         public virtual IMultilevelSensor<IPower> PowerSensor { get { return null; } }
         public virtual IMultilevelSensor<ITemperature> TemperatureSensor { get { return null; } }
@@ -143,6 +145,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             get
             {
                 return MultilevelSwitch;
+            }
+        }
+
+        IColorSwitchState IDeviceState.ColorSwitchState
+        {
+            get
+            {
+                return ColorSwitch;
             }
         }
 
@@ -262,6 +272,14 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             get
             {
                 return MultilevelSwitch;
+            }
+        }
+
+        IColorSwitchActions IDeviceActions.ColorSwitchActions
+        {
+            get
+            {
+                return ColorSwitch;
             }
         }
 

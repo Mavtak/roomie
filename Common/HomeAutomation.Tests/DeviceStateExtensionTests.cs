@@ -19,18 +19,19 @@ namespace Roomie.Common.HomeAutomation.Tests
             AssertionHelpers.AssertDevicesEqual(device, copy);
         }
 
-        [TestCase(X, O, O, O, O, O, O, O, O, O, TestName = "Just Current Action")]
-        [TestCase(O, X, O, O, O, O, O, O, O, O, TestName = "Just Binary Switch")]
-        [TestCase(O, O, X, O, O, O, O, O, O, O, TestName = "Just Multilevel Switch")]
-        [TestCase(O, O, O, X, O, O, O, O, O, O, TestName = "Just Binary Sensor")]
-        [TestCase(O, O, O, O, X, O, O, O, O, O, TestName = "Just Power Sensor")]
-        [TestCase(O, O, O, O, O, X, O, O, O, O, TestName = "Just Temperature Sensor")]
-        [TestCase(O, O, O, O, O, O, X, O, O, O, TestName = "Just Humidity Sensor")]
-        [TestCase(O, O, O, O, O, O, O, X, O, O, TestName = "Just Illuminance Sensor")]
-        [TestCase(O, O, O, O, O, O, O, O, X, O, TestName = "Just Thermostat")]
-        [TestCase(O, O, O, O, O, O, O, O, O, X, TestName = "Just Keypad")]
-        [TestCase(X, X, X, X, X, X, X, X, X, X, TestName = "Everything")]
-        public void SerializationWorks(bool currentAction, bool binarySwitch, bool multilevelSwitch, bool binarySensor, bool powerSensor, bool tempeartureSensor, bool humiditySensor, bool illuminanceSensor, bool thermostat, bool keypad)
+        [TestCase(X, O, O, O, O, O, O, O, O, O, O, TestName = "Without Current Action")]
+        [TestCase(O, X, O, O, O, O, O, O, O, O, O, TestName = "Without Binary Switch")]
+        [TestCase(O, O, X, O, O, O, O, O, O, O, O, TestName = "Without Multilevel Switch")]
+        [TestCase(O, O, O, X, O, O, O, O, O, O, O, TestName = "Without Color Switch")]
+        [TestCase(O, O, O, O, X, O, O, O, O, O, O, TestName = "Without Binary Sensor")]
+        [TestCase(O, O, O, O, O, X, O, O, O, O, O, TestName = "Without Power Sensor")]
+        [TestCase(O, O, O, O, O, O, X, O, O, O, O, TestName = "Without Temperature Sensor")]
+        [TestCase(O, O, O, O, O, O, O, X, O, O, O, TestName = "Without Humidity Sensor")]
+        [TestCase(O, O, O, O, O, O, O, O, X, O, O, TestName = "Without Illuminance Sensor")]
+        [TestCase(O, O, O, O, O, O, O, O, O, X, O, TestName = "Without Thermostat")]
+        [TestCase(O, O, O, O, O, O, O, O, O, O, X, TestName = "Without Keypad")]
+        [TestCase(X, X, X, X, X, X, X, X, X, X, X, TestName = "Nothing")]
+        public void SerializationWorks(bool currentAction, bool binarySwitch, bool multilevelSwitch, bool colorSwitch, bool binarySensor, bool powerSensor, bool tempeartureSensor, bool humiditySensor, bool illuminanceSensor, bool thermostat, bool keypad)
         {
             var device = DataHelpers.GenerateExampleDevice();
             var node = device.ToXElement();
@@ -40,6 +41,7 @@ namespace Roomie.Common.HomeAutomation.Tests
                 checkCurrentAction: currentAction,
                 checkToggleSwitch: binarySwitch,
                 checkDimmerSwitch: multilevelSwitch,
+                checkColorSwitch: colorSwitch,
                 checkBinarySensor: binarySensor,
                 checkPowerSensor: powerSensor,
                 checkTempeartureSensor: tempeartureSensor,
@@ -50,24 +52,26 @@ namespace Roomie.Common.HomeAutomation.Tests
                 );
         }
 
-        [TestCase(X, O, O, O, O, O, O, O, O, O, TestName = "Without Current Action")]
-        [TestCase(O, X, O, O, O, O, O, O, O, O, TestName = "Without Binary Switch")]
-        [TestCase(O, O, X, O, O, O, O, O, O, O, TestName = "Without Multilevel Switch")]
-        [TestCase(O, O, O, X, O, O, O, O, O, O, TestName = "Without Binary Sensor")]
-        [TestCase(O, O, O, O, X, O, O, O, O, O, TestName = "Without Power Sensor")]
-        [TestCase(O, O, O, O, O, X, O, O, O, O, TestName = "Without Temperature Sensor")]
-        [TestCase(O, O, O, O, O, O, X, O, O, O, TestName = "Without Humidity Sensor")]
-        [TestCase(O, O, O, O, O, O, O, X, O, O, TestName = "Without Illuminance Sensor")]
-        [TestCase(O, O, O, O, O, O, O, O, X, O, TestName = "Without Thermostat")]
-        [TestCase(O, O, O, O, O, O, O, O, O, X, TestName = "Without Keypad")]
-        [TestCase(X, X, X, X, X, X, X, X, X, X, TestName = "Nothing")]
-        public void SerializationWorksWithNullProperty(bool currentAction, bool binarySwitch, bool multilevelSwitch, bool binarySensor, bool powerSensor, bool tempeartureSensor, bool humiditySensor, bool illuminanceSensor, bool thermostat, bool keypad)
+        [TestCase(X, O, O, O, O, O, O, O, O, O, O, TestName = "Without Current Action")]
+        [TestCase(O, X, O, O, O, O, O, O, O, O, O, TestName = "Without Binary Switch")]
+        [TestCase(O, O, X, O, O, O, O, O, O, O, O, TestName = "Without Multilevel Switch")]
+        [TestCase(O, O, O, X, O, O, O, O, O, O, O, TestName = "Without Color Switch")]
+        [TestCase(O, O, O, O, X, O, O, O, O, O, O, TestName = "Without Binary Sensor")]
+        [TestCase(O, O, O, O, O, X, O, O, O, O, O, TestName = "Without Power Sensor")]
+        [TestCase(O, O, O, O, O, O, X, O, O, O, O, TestName = "Without Temperature Sensor")]
+        [TestCase(O, O, O, O, O, O, O, X, O, O, O, TestName = "Without Humidity Sensor")]
+        [TestCase(O, O, O, O, O, O, O, O, X, O, O, TestName = "Without Illuminance Sensor")]
+        [TestCase(O, O, O, O, O, O, O, O, O, X, O, TestName = "Without Thermostat")]
+        [TestCase(O, O, O, O, O, O, O, O, O, O, X, TestName = "Without Keypad")]
+        [TestCase(X, X, X, X, X, X, X, X, X, X, X, TestName = "Nothing")]
+        public void SerializationWorksWithNullProperty(bool currentAction, bool binarySwitch, bool multilevelSwitch, bool colorSwitch, bool binarySensor, bool powerSensor, bool tempeartureSensor, bool humiditySensor, bool illuminanceSensor, bool thermostat, bool keypad)
         {
             var device = DataHelpers.GenerateExampleDevice(
                 type: DeviceType.Controller,
                 includeCurrentAction: !currentAction,
                 includeToggle: !binarySwitch,
                 includeDimmer: !multilevelSwitch,
+                includeColorSwitch: !colorSwitch,
                 includeBinarySensor: !binarySensor,
                 includePowerSensor: !powerSensor,
                 includeTemperatureSensor: !tempeartureSensor,

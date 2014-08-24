@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
+using Roomie.Common.HomeAutomation.ColorSwitch;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
@@ -55,6 +56,11 @@ namespace Roomie.Common.HomeAutomation
             if (device.CurrentAction != null)
             {
                 result += ", Current Action = " + device.CurrentAction;
+            }
+
+            if (device.ColorSwitchState != null && device.ColorSwitchState.Value != null)
+            {
+                result += " " + device.ColorSwitchState.Describe();
             }
 
             if (device.Type != DeviceType.BinarySensor && (device.BinarySensorState != null && device.BinarySensorState.Value != null))
@@ -132,6 +138,13 @@ namespace Roomie.Common.HomeAutomation
             if (state.MultilevelSwitchState != null)
             {
                 var element = state.MultilevelSwitchState.ToXElement();
+
+                result.AddIfHasData(element);
+            }
+
+            if (state.ColorSwitchState != null)
+            {
+                var element = state.ColorSwitchState.ToXElement();
 
                 result.AddIfHasData(element);
             }

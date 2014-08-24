@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
+using Roomie.Common.HomeAutomation.ColorSwitch;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Keypads.Buttons;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
@@ -20,12 +22,13 @@ namespace Roomie.Common.HomeAutomation.Tests
     public static class DataHelpers
     {
         private static int _id;
-        public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeCurrentAction, bool includeToggle, bool includeDimmer, bool includeBinarySensor, bool includePowerSensor, bool includeTemperatureSensor, bool includeHumiditySensor, bool includeIlluminanceSensor, bool includeThermostat, bool includeKeypad)
+        public static IDeviceState GenerateExampleDevice(DeviceType type, bool includeCurrentAction, bool includeToggle, bool includeDimmer, bool includeColorSwitch, bool includeBinarySensor, bool includePowerSensor, bool includeTemperatureSensor, bool includeHumiditySensor, bool includeIlluminanceSensor, bool includeThermostat, bool includeKeypad)
         {
             string currentAction = "Idle";
 
             var toggle = new ReadOnlyBinarySwitchSwitchState(BinarySwitchPower.On);
             var dimmer = new ReadOnlyMultilevelSwitchState(25, 100);
+            var colorSwitch = new ReadOnlyColorSwitchState(new NamedColor("Purple"));
 
             var binarySensor = new ReadOnlyBinarySensorState(BinarySensorType.Motion, true, DateTime.UtcNow.AddMinutes(-4));
 
@@ -82,6 +85,11 @@ namespace Roomie.Common.HomeAutomation.Tests
                 dimmer = null;
             }
 
+            if (!includeColorSwitch)
+            {
+                colorSwitch = null;
+            }
+
             if (!includeBinarySensor)
             {
                 binarySensor = null;
@@ -117,14 +125,14 @@ namespace Roomie.Common.HomeAutomation.Tests
                 keypad = null;
             }
 
-            var device = new ReadOnlyDeviceState("Sample Device", address, location, null, true, type, currentAction, toggle, dimmer, binarySensor, powerSensor, temperatureSensor, humiditySensor, illuminanceSensor, thermostat, keypad);
+            var device = new ReadOnlyDeviceState("Sample Device", address, location, null, true, type, currentAction, toggle, dimmer, colorSwitch, binarySensor, powerSensor, temperatureSensor, humiditySensor, illuminanceSensor, thermostat, keypad);
 
             return device;
         }
 
         public static IDeviceState GenerateExampleDevice()
         {
-            return GenerateExampleDevice(DeviceType.Controller, true, true, true, true, true, true, true, true, true, true);
+            return GenerateExampleDevice(DeviceType.Controller, true, true, true, true, true, true, true, true, true, true, true);
         }
     }
 }
