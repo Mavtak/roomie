@@ -58,6 +58,7 @@
     <Compile Include="ArgumentTypeCollection.cs" />
     <Compile Include="Commands\BooleanParameterAttribute.cs" />
     <Compile Include="Commands\ByteParameterAttribute.cs" />
+    <Compile Include="Commands\ColorParameterAttribute.cs" />
     <Compile Include="Commands\IntegerParameterAttribute.cs" />
     <Compile Include="Commands\IntegerRangeParameterAttribute.cs" />
     <Compile Include="Commands\TemperatureParameterAttribute.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Exceptions\VariableException.cs" />
     <Compile Include="RoomieCommand.cs" />
     <Compile Include="RoomieCommandArgument.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\ColorParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\TemperatureParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\IntegerRangeParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\ParameterValidationMessageHelper.cs" />
