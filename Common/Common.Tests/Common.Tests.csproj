@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Color\ColorExtensionsTests.cs" />
+    <Compile Include="Color\ColorNamesDictionaryTests.cs" />
+    <Compile Include="Color\NamedColorTests.cs" />
+    <Compile Include="Color\RgbColorTests.cs" />
     <Compile Include="Illuminance\IlluminanceParserTests.cs" />
     <Compile Include="Illuminance\LuxIlluminanceTests.cs" />
     <Compile Include="Energy\JoulesEnergyTests.cs" />
