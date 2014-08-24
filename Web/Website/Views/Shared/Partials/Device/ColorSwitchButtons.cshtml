@@ -1,0 +1,34 @@
+﻿@model DeviceViewModel
+@{
+    //TODO more colors
+    var colors = new[] {"Red", "Orange", "Yellow", "Green", "Blue", "Purple"};
+    //TODO: show selected color
+}@*
+
+
+*@@using (Ajax.BeginForm(
+                    actionName: "SetColor",
+                    controllerName: "Device",
+                    routeValues: new
+                    {
+                        id = Model.Device.Id
+                    },
+                    ajaxOptions: new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                    },
+                    htmlAttributes: new
+                    {
+                        @class = "buttonGroup",
+                        id = string.Empty
+                    }
+                    ))
+    {@*
+
+        *@foreach (var color in colors)
+          {
+              <div class="button" ><button class="button" style="background-color: @color; opacity: .25;" type="submit" name="color" value="@color">&nbsp;</button></div>
+          }@*
+
+    *@}@*
+*@

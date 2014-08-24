@@ -67,6 +67,11 @@
         {
             @WriteDetail(device, "Binary State", @device.BinarySensor.Describe(timeZone), "PollBinarySensor")
         }
+
+        if (device.ColorSwitch.Value != null)
+        {
+            @Html.Partial("Partials/Device/ColorSwitchButtons", Model)
+        }
     }@*
 
     *@@if (Model.DisplayEditor)
