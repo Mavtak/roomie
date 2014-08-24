@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Color\ColorExtensions.cs" />
     <Compile Include="Color\ColorNamesDictionary.cs" />
+    <Compile Include="Color\ColorParser.cs" />
     <Compile Include="Color\IColor.cs" />
     <Compile Include="Color\NamedColor.cs" />
     <Compile Include="Color\Utilities.cs" />
