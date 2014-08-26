@@ -34,15 +34,34 @@ namespace Q42HueCommands
             Address = "Hue-" + bridge.Config.MacAddress.Replace(":", "");
             Name = Address;
 
-            foreach (var light in bridge.Lights)
-            {
-                var device = new Q42HueDevice(this, light);
-
-                _devices.Add(device);
-            }
-
+            UpdateList(bridge);
             Load();
             Connected();
+        }
+
+        internal void UpdateList(Bridge bridge)
+        {
+            foreach (var light in bridge.Lights)
+            {
+                var existingDevice = _devices.FirstOrDefault(x => x.Address == light.Id);
+
+                if (existingDevice == null)
+                {
+                    var device = new Q42HueDevice(this, light);
+
+                    _devices.Add(device);
+                }
+                else
+                {
+                    existingDevice.UpdateLight(light);
+                }
+            }
+        }
+
+        internal void UpdateList()
+        {
+            var bridge = _client.GetBridgeAsync().Result;
+            UpdateList(bridge);
         }
 
         internal void SendCommand(LightCommand command, IEnumerable<string> lightList)
