@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Q42Hue\RegisterNetwork.cs" />
+    <Compile Include="Commands\Q42Hue\UpdateList.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Q42HueBinarySwitch.cs" />
     <Compile Include="Q42HueColorSwitch.cs" />
