@@ -28,35 +28,20 @@ namespace Roomie.Desktop.Engine
             _cachedPluginVersion = version;
             _arguments = arguments;
 
-            //Reflect on the parameters
-            foreach (ParameterAttribute parameter in this.GetType().GetCustomAttributes(typeof(ParameterAttribute), true))
-            {
-                var argument = new RoomieCommandArgument(
-                    name: parameter.Name,
-                    type: parameter.Type,
-                    defaultValue: parameter.Default,
-                    hasDefault: parameter.HasDefault
-                    );
-                arguments.Add(argument);
-            }
+            _arguments.AddRange(this.GetArgumentsFromAttributes());
 
             if (description != null)
             {
-                this.Description = description;
+                Description = description;
             }
             else
             {
-                //Reflect on the description
-                var descriptionAttribute = this.GetType().GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
-                if (descriptionAttribute != null)
-                {
-                    this.Description = descriptionAttribute.Value;
-                }
+                Description = this.GetDescriptionFromAttributes();
             }
 
             Finalized = true;
 
-            if (this.GetType().GetCustomAttributes(typeof(NotFinishedAttribute), true).Any())
+            if (GetType().GetCustomAttributes(typeof(NotFinishedAttribute), true).Any())
             {
                 finalized = false;
             }
@@ -177,19 +162,7 @@ namespace Roomie.Desktop.Engine
             {
                 if (_cachedGroup == null)
                 {
-                    try
-                    {
-                        string result = GetType().Namespace;
-                        result = result.Substring(result.LastIndexOf(".Commands.") + ".Commands.".Length);
-                        if (string.IsNullOrEmpty(result))
-                            throw new Exception("just goin' to the catch block"); //TODO: review this.  It seems awful
-                        _cachedGroup = result;
-                    }
-                    catch
-                    {
-                        //TODO: What kind of exception should be thrown here?
-                        throw new Exception("Command " + Name + "'s namespace is not in the proper form");
-                    }
+                    _cachedGroup = this.GetGroupFromNamespace();
                 }
 
                 return _cachedGroup;
@@ -203,7 +176,7 @@ namespace Roomie.Desktop.Engine
             {
                 if (_cachedName == null)
                 {
-                    _cachedName = GetType().Name;
+                    _cachedName = this.GetNameFromType();
                 }
 
                 return _cachedName;

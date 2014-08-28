@@ -69,6 +69,7 @@
     <Compile Include="Commands\ParameterAttribute.cs" />
     <Compile Include="Commands\RoomieCommandAttribute.cs" />
     <Compile Include="Commands\StringParameterAttribute.cs" />
+    <Compile Include="CommandUtilities.cs" />
     <Compile Include="DataStore.cs" />
     <Compile Include="Delegates\EngineStateChangedEventArgs.cs" />
     <Compile Include="Delegates\EngineStateChangedEventHandler.cs" />
