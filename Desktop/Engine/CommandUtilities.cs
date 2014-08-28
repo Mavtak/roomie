@@ -7,21 +7,27 @@ namespace Roomie.Desktop.Engine
 {
     public static class CommandUtilities
     {
+        public static string GetGroupFromNamespace(string @namespace)
+        {
+            const string token = ".Commands.";
+
+            var start = @namespace.LastIndexOf(token);
+
+            if (start < 0)
+            {
+                return null;
+            }
+
+            var length = token.Length;
+
+            var result = @namespace.Substring(start + length);
+
+            return result;
+        }
+
         public static string GetGroupFromNamespace(Type type)
         {
-            try
-            {
-                string result = type.Namespace;
-                result = result.Substring(result.LastIndexOf(".Commands.") + ".Commands.".Length);
-                if (string.IsNullOrEmpty(result))
-                    throw new Exception("just goin' to the catch block"); //TODO: review this.  It seems awful
-                return result;
-            }
-            catch
-            {
-                //TODO: What kind of exception should be thrown here?
-                throw new Exception("Command " + GetNameFromType(type) + "'s namespace is not in the proper form");
-            }
+            return GetGroupFromNamespace(type.Namespace);
         }
 
         public static string GetGroupFromNamespace(this RoomieCommand command)

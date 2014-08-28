@@ -163,6 +163,11 @@ namespace Roomie.Desktop.Engine
                 if (_cachedGroup == null)
                 {
                     _cachedGroup = this.GetGroupFromNamespace();
+
+                    if (_cachedGroup == null)
+                    {
+                        throw new Exception("Command " + Name + "'s namespace is not in the proper form");
+                    }
                 }
 
                 return _cachedGroup;
