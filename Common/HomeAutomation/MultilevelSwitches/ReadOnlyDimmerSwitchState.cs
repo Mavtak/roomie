@@ -17,6 +17,13 @@ namespace Roomie.Common.HomeAutomation.MultilevelSwitches
             MaxPower = maxPower;
         }
 
+        public static ReadOnlyMultilevelSwitchState Blank()
+        {
+            var result = new ReadOnlyMultilevelSwitchState();
+
+            return result;
+        }
+
         public static ReadOnlyMultilevelSwitchState CopyFrom(IMultilevelSwitchState source)
         {
             var result = new ReadOnlyMultilevelSwitchState

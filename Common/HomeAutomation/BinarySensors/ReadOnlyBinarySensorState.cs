@@ -20,6 +20,13 @@ namespace Roomie.Common.HomeAutomation.BinarySensors
             TimeStamp = timeStamp;
         }
 
+        public static ReadOnlyBinarySensorState Blank()
+        {
+            var result = new ReadOnlyBinarySensorState();
+
+            return result;
+        }
+
         public static ReadOnlyBinarySensorState CopyFrom(IBinarySensorState source)
         {
             var result = new ReadOnlyBinarySensorState

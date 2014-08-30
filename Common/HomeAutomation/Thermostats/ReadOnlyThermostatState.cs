@@ -21,6 +21,19 @@ namespace Roomie.Common.HomeAutomation.Thermostats
             FanState = fanState;
             SetpointStates = setpointStates;
         }
+
+        public static ReadOnlyThermostatState Blank()
+        {
+            var result = new ReadOnlyThermostatState
+            {
+                CoreState = ReadOnlyThermostatCoreState.Blank(),
+                FanState =  ReadOnlyThermostatFanState.Blank(),
+                SetpointStates = ReadOnlyThermostatSetpointCollection.Blank()
+            };
+
+            return result;
+        }
+
         public static ReadOnlyThermostatState CopyFrom(IThermostatState state)
         {
             var result = new ReadOnlyThermostatState

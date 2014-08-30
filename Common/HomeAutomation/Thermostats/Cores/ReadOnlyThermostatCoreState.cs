@@ -21,6 +21,16 @@ namespace Roomie.Common.HomeAutomation.Thermostats.Cores
             CurrentAction = currentAction;
         }
 
+        public static ReadOnlyThermostatCoreState Blank()
+        {
+            var result = new ReadOnlyThermostatCoreState
+            {
+                SupportedModes = new ThermostatMode[0]
+            };
+
+            return result;
+        }
+
         public static ReadOnlyThermostatCoreState CopyFrom(IThermostatCoreState state)
         {
             var supportedModes = new List<ThermostatMode>();

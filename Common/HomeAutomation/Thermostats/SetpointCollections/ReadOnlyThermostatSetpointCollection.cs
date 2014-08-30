@@ -36,6 +36,13 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             _setpoints = setpoints;
         }
 
+        public static ReadOnlyThermostatSetpointCollection Blank()
+        {
+            var result = new ReadOnlyThermostatSetpointCollection();
+
+            return result;
+        }
+
         public static ReadOnlyThermostatSetpointCollection CopyFrom(IThermostatSetpointCollectionState source)
         {
             var result = new ReadOnlyThermostatSetpointCollection

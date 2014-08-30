@@ -16,6 +16,13 @@ namespace Roomie.Common.HomeAutomation.ColorSwitch
             Value = value;
         }
 
+        public static ReadOnlyColorSwitchState Blank()
+        {
+            var result = new ReadOnlyColorSwitchState();
+
+            return result;
+        }
+
         public static ReadOnlyColorSwitchState CopyFrom(IColorSwitchState source)
         {
             var result = new ReadOnlyColorSwitchState

@@ -21,6 +21,16 @@ namespace Roomie.Common.HomeAutomation.Thermostats.Fans
             CurrentAction = currentAction;
         }
 
+        public static ReadOnlyThermostatFanState Blank()
+        {
+            var result = new ReadOnlyThermostatFanState
+            {
+                SupportedModes = new ThermostatFanMode[0]
+            };
+
+            return result;
+        }
+
         public static ReadOnlyThermostatFanState CopyFrom(IThermostatFanState state)
         {
             var supportedModes = new List<ThermostatFanMode>();

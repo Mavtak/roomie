@@ -20,6 +20,13 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
             TimeStamp = timeStamp;
         }
 
+        public static ReadOnlyMultilevelSensorState<TMeasurement> Blank()
+        {
+            var result = new ReadOnlyMultilevelSensorState<TMeasurement>();
+
+            return result;
+        }
+
         public static ReadOnlyMultilevelSensorState<TMeasurement> CopyFrom(IMultilevelSensorState<TMeasurement> source)
         {
             var result = new ReadOnlyMultilevelSensorState<TMeasurement>

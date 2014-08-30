@@ -15,6 +15,13 @@ namespace Roomie.Common.HomeAutomation.BinarySwitches
             Power = power;
         }
 
+        public static ReadOnlyBinarySwitchSwitchState Blank()
+        {
+            var result = new ReadOnlyBinarySwitchSwitchState();
+
+            return result;
+        }
+
         public static ReadOnlyBinarySwitchSwitchState CopyFrom(IBinarySwitchState source)
         {
             var result = new ReadOnlyBinarySwitchSwitchState
