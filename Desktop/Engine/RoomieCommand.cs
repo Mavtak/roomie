@@ -22,10 +22,17 @@ namespace Roomie.Desktop.Engine
 
         protected internal RoomieCommand(string group, string name, string source, Version version, List<RoomieCommandArgument> arguments, bool? finalized, string description = null)
         {
-            _cachedGroup = group;
-            _cachedName = name;
-            _cashedSource = source;
-            _cachedPluginVersion = version;
+            Name = name ?? this.GetNameFromType();
+            Group = group ?? this.GetGroupFromNamespace();
+
+            if (Group == null)
+            {
+                throw new Exception("Command " + Name + "'s is not set");
+            }
+
+            Source = source ?? this.GetExtensionSource();
+            ExtensionName = this.GetExtensionNameFromNamespace();
+            ExtensionVersion = version ?? this.GetExtensionVersion();
             _arguments = arguments;
 
             _arguments.AddRange(this.GetArgumentsFromAttributes());
@@ -43,7 +50,7 @@ namespace Roomie.Desktop.Engine
 
             if (GetType().GetCustomAttributes(typeof(NotFinishedAttribute), true).Any())
             {
-                finalized = false;
+                Finalized = false;
             }
         }
 
@@ -155,103 +162,23 @@ namespace Roomie.Desktop.Engine
         protected abstract void Execute_Definition(RoomieCommandContext context);
 
         #region names
-        private string _cachedGroup;
-        public string Group
-        {
-            get
-            {
-                if (_cachedGroup == null)
-                {
-                    _cachedGroup = this.GetGroupFromNamespace();
+        public string Group { get; private set; }
+        public string Name { get; private set; }
+        public string Source { get; private set; }
+        public string ExtensionName { get; private set; }
+        public Version ExtensionVersion { get; private set; }
 
-                    if (_cachedGroup == null)
-                    {
-                        throw new Exception("Command " + Name + "'s namespace is not in the proper form");
-                    }
-                }
-
-                return _cachedGroup;
-            }
-        }
-
-        private string _cachedName;
-        public string Name
-        {
-            get
-            {
-                if (_cachedName == null)
-                {
-                    _cachedName = this.GetNameFromType();
-                }
-
-                return _cachedName;
-            }
-        }
-
-        private string _cashedSource;
-        public string Source
-        {
-            get
-            {
-                if (_cashedSource == null)
-                {
-                    _cashedSource = Assembly.GetAssembly(GetType()).CodeBase;
-                }
-
-                return _cashedSource;
-            }
-        }
-
-        private string _cachedPluginName;
-        public string ExtensionName
-        {
-            get
-            {
-                if (_cachedPluginName == null)
-                {
-                    var temp = GetType().Namespace;
-                    temp = temp.Substring(0, temp.LastIndexOf(".Commands."));
-
-                    _cachedPluginName = temp;
-                }
-
-                return _cachedPluginName;
-            }
-        }
-
-        private Version _cachedPluginVersion;
-        //private static string[] possibleVersionClassNames = { "LibraryVersion", "Common", "Version", "InternalLibraryVersion" };
-        //private static string[] possibleVersionMethodNames = { "Get", "GetVersion", "GetLibraryVersion" };
-        public Version ExtensionVersion
-        {
-            get
-            {
-                if(_cachedPluginVersion == null)
-                {
-                    //TODO: make this more dynamic
-
-                    var assembly = Assembly.GetAssembly(GetType());
-
-                    //cachedPluginVersion = (Version)RoomieUtils.TryInvoke(assembly, possibleVersionClassNames, possibleVersionMethodNames, new object[] { }, typeof(Version));
-
-                    _cachedPluginVersion = assembly.GetName().Version;
-                }
-
-                return _cachedPluginVersion;
-            }
-        }
-
-        private string _cashedFullName;
+        private string _fullName;
         public string FullName
         {
             get
             {
-                if (_cashedFullName == null)
+                if (_fullName == null)
                 {
-                    _cashedFullName = Group + "." + Name;
+                    _fullName = Group + "." + Name;
                 }
 
-                return _cashedFullName;
+                return _fullName;
             }
         }
 

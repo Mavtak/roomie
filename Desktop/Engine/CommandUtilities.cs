@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.Desktop.Engine
 {
     public static class CommandUtilities
     {
+        const string Token = ".Commands.";
+
         public static string GetGroupFromNamespace(string @namespace)
         {
-            const string token = ".Commands.";
-
-            var start = @namespace.LastIndexOf(token);
+            var start = @namespace.LastIndexOf(Token);
 
             if (start < 0)
             {
                 return null;
             }
 
-            var length = token.Length;
+            var length = Token.Length;
 
             var result = @namespace.Substring(start + length);
 
@@ -35,6 +36,23 @@ namespace Roomie.Desktop.Engine
             return GetGroupFromNamespace(command.GetType());
         }
 
+        public static string GetExtensionNameFromNamespace(string @namespace)
+        {
+            var result = @namespace.Substring(0, @namespace.LastIndexOf(Token));
+
+            return result;
+        }
+
+        public static string GetExtensionNameFromNamespace(Type type)
+        {
+            return GetExtensionNameFromNamespace(type.Namespace);
+        }
+
+        public static string GetExtensionNameFromNamespace(this RoomieCommand command)
+        {
+            return GetExtensionNameFromNamespace(command.GetType());
+        }
+
         public static string GetNameFromType(Type type)
         {
             return type.Name;
@@ -43,6 +61,31 @@ namespace Roomie.Desktop.Engine
         public static string GetNameFromType(this RoomieCommand command)
         {
             return GetNameFromType(command.GetType());
+        }
+
+        public static Version GetExtensionVersion(Type type)
+        {
+            var assembly = Assembly.GetAssembly(type);
+            var result = assembly.GetName().Version;
+
+            return result;
+        }
+
+        public static Version GetExtensionVersion(this RoomieCommand command)
+        {
+            return GetExtensionVersion(command.GetType());
+        }
+
+        public static string GetExtensionSource(Type type)
+        {
+            var result = Assembly.GetAssembly(type).CodeBase;
+
+            return result;
+        }
+
+        public static string GetExtensionSource(this RoomieCommand command)
+        {
+            return GetExtensionSource(command.GetType());
         }
 
         public static string GetDescriptionFromAttributes(Type type)
