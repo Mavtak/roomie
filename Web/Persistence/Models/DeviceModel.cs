@@ -95,50 +95,15 @@ namespace Roomie.Web.Persistence.Models
             IsConnected = state.IsConnected;
             CurrentAction = state.CurrentAction;
             
-            if (state.BinarySwitchState != null)
-            {
-                ToggleSwitch.Update(state.BinarySwitchState);
-            }
-
-            if (state.MultilevelSwitchState != null)
-            {
-                DimmerSwitch.Update(state.MultilevelSwitchState);
-            }
-
-            if (state.ColorSwitchState != null)
-            {
-                ColorSwitch.Update(state.ColorSwitchState);
-            }
-
-            if (state.BinarySensorState != null)
-            {
-                BinarySensor.Update(state.BinarySensorState);
-            }
-
-            if (state.PowerSensorState != null)
-            {
-                PowerSensor.Update(state.PowerSensorState);
-            }
-
-            if (state.TemperatureSensorState != null)
-            {
-                TemperatureSensor.Update(state.TemperatureSensorState);
-            }
-
-            if (state.HumiditySensorState != null)
-            {
-                HumiditySensor.Update(state.HumiditySensorState);
-            }
-
-            if (state.IlluminanceSensorState != null)
-            {
-                IlluminanceSensor.Update(state.IlluminanceSensorState);
-            }
-
-            if (state.ThermostatState != null)
-            {
-                Thermostat.Update(state.ThermostatState);
-            }
+            ToggleSwitch.Update(state.BinarySwitchState ?? ReadOnlyBinarySwitchSwitchState.Blank());
+            DimmerSwitch.Update(state.MultilevelSwitchState ?? ReadOnlyMultilevelSwitchState.Blank());
+            ColorSwitch.Update(state.ColorSwitchState ?? ReadOnlyColorSwitchState.Blank());
+            BinarySensor.Update(state.BinarySensorState ?? ReadOnlyBinarySensorState.Blank());
+            PowerSensor.Update(state.PowerSensorState ?? ReadOnlyMultilevelSensorState<IPower>.Blank());
+            TemperatureSensor.Update(state.TemperatureSensorState ?? ReadOnlyMultilevelSensorState<ITemperature>.Blank());
+            HumiditySensor.Update(state.HumiditySensorState ?? ReadOnlyMultilevelSensorState<IHumidity>.Blank());
+            IlluminanceSensor.Update(state.IlluminanceSensorState ?? ReadOnlyMultilevelSensorState<IIlluminance>.Blank());
+            Thermostat.Update(state.ThermostatState ?? ReadOnlyThermostatState.Blank());
         }
 
         private readonly ToggleSwitchModel _toggleSwitch;
