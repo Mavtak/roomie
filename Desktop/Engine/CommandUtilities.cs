@@ -38,7 +38,14 @@ namespace Roomie.Desktop.Engine
 
         public static string GetExtensionNameFromNamespace(string @namespace)
         {
-            var result = @namespace.Substring(0, @namespace.LastIndexOf(Token));
+            var length = @namespace.LastIndexOf(Token);
+
+            if (length < 0)
+            {
+                return null;
+            }
+
+            var result = @namespace.Substring(0, length);
 
             return result;
         }
