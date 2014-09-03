@@ -53,11 +53,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _illuminanceSensor = new OpenZWaveIlluminanceSensor(this);
         }
 
-        public void OptimizePaths()
+        public void OptimizePaths(bool returnRouteOptimization)
         {
             //TODO: remove the need for this cast
             var homeId = ((OpenZWaveNetwork) Network).HomeId.Value;
-            Manager.HealNetworkNode(homeId, Id, true);
+            Manager.HealNetworkNode(homeId, Id, returnRouteOptimization);
         }
 
         internal void RemoveValue(OpenZWaveDeviceValue value)

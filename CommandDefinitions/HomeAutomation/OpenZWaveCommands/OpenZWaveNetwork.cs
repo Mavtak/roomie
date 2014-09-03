@@ -114,9 +114,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             return null;
         }
 
-        public void OptimizePaths()
+        public void OptimizePaths(bool returnRouteOptimization)
         {
-            Manager.HealNetwork(HomeId.Value, true);
+            Manager.HealNetwork(HomeId.Value, returnRouteOptimization);
         }
 
         private static bool optionsConfigured = false;
