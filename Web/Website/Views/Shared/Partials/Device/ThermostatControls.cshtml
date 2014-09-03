@@ -70,12 +70,13 @@
   *@@(SetpointControl(thermostat, ThermostatSetpointType.Cool))@*  
 *@</div>@*
 
+*@@if(thermostat.Core.CurrentAction != null || thermostat.Core.Mode != null || (thermostat.Core.SupportedModes != null && thermostat.Core.SupportedModes.Any())) {@*
 *@<div class="header">@*
   *@<div class="secondary">Currently @thermostat.Core.CurrentAction</div>@*  
   *@System Mode@*
 *@</div>@*  
 
-*@@using (Ajax.BeginForm(
+*@using (Ajax.BeginForm(
                     actionName: "SetThermostatMode",
                     controllerName: "Device",
                     routeValues: new
@@ -99,14 +100,17 @@
               *@<button class="button" type="submit" name="mode" value="@mode">@mode</button>@*
           *@</div>@*
       *@}@*    
-*@}@*
+*@}
+  }@*
+
+*@@if(thermostat.Fan.CurrentAction != null || thermostat.Fan.Mode != null || (thermostat.Fan.SupportedModes != null && thermostat.Fan.SupportedModes.Any())) {@*
 
 *@<div class="header">@*
   *@<div class="secondary">Currently @thermostat.Fan.CurrentAction</div>@*  
   *@Fan Mode@*
 *@</div>@*  
 
-*@@using (Ajax.BeginForm(
+*@using (Ajax.BeginForm(
                     actionName: "SetThermostatFanMode",
                     controllerName: "Device",
                     routeValues: new
@@ -130,7 +134,8 @@
               *@<button class="button" type="submit" name="mode" value="@mode">@mode</button>@*
           *@</div>@*
       *@}@*    
-*@}@*
+*@}
+  }@*
 
 
 
