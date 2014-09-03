@@ -48,26 +48,9 @@ namespace Roomie.Web.Persistence.Models
 
         internal void Update(IThermostatState data)
         {
-
-            if (data.CoreState != null)
-            {
-                Core.Update(data.CoreState);
-            }
-
-            if (data.FanState != null)
-            {
-                Fan.Update(data.FanState);
-            }
-
-            if (data.SetpointStates != null)
-            {
-                Setpoints = new ThermostatSetpointModel(_device);
-
-                foreach (var pair in data.SetpointStates.ToDictionary())
-                {
-                    Setpoints.Add(pair.Key, pair.Value);
-                }
-            }
+            Core.Update(data.CoreState ?? ReadOnlyThermostatCoreState.Blank());
+            Fan.Update(data.FanState ?? ReadOnlyThermostatFanState.Blank());
+            Setpoints.Update(data.SetpointStates ?? ReadOnlyThermostatSetpointCollection.Blank());
         }
 
         #region IThermostatState definitions

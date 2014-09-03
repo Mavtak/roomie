@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Helpers;
@@ -32,6 +33,31 @@ namespace Roomie.Web.Persistence.Models
         {
             _device = device;
             _setpoints = new Dictionary<ThermostatSetpointType, ITemperature>();
+        }
+
+        public void Update(IThermostatSetpointCollectionState state)
+        {
+            var originalKeys = _setpoints.Keys.ToList();
+
+            foreach (var key in state.AvailableSetpoints)
+            {
+                var value = state[key];
+
+                if (originalKeys.Contains(key))
+                {
+                    _setpoints[key] = value;
+                    originalKeys.Remove(key);
+                }
+                else
+                {
+                    Add(key, value);
+                }
+            }
+
+            foreach (var key in originalKeys)
+            {
+                _setpoints.Remove(key);
+            }
         }
 
         public void PollSupportedSetpoints()
