@@ -79,14 +79,23 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     break;
 
                 case NotificationType.NodeNaming:
+                    Nodification("node named", notification);
+                    break;
+
                 case NotificationType.NodeNew:
+                    Nodification("new device", notification);
+                    break;
+
                 case NotificationType.NodeProtocolInfo:
+                    Nodification("protocol info", notification);
+                    break;
+
                 case NotificationType.NodeQueriesComplete:
-                    Nodification("done initializing", notification.Device);
+                    _network.Log("node queries complete");
                     break;
 
                 case NotificationType.NodeRemoved:
-                    Nodification("removed", notification.Device);
+                    Nodification("removed", notification);
                     break;
 
                 case NotificationType.Notification:
@@ -94,11 +103,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     break;
 
                 case NotificationType.PollingDisabled:
-                    Nodification("polling disabled", notification.Device);
+                    Nodification("polling disabled", notification);
                     break;
 
                 case NotificationType.PollingEnabled:
-                    Nodification("polling enabled", notification.Device);
+                    Nodification("polling enabled", notification);
                     break;
 
                 case NotificationType.SceneEvent:
@@ -146,13 +155,23 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             device.ProcessValueUpdate(value, updateType);
         }
 
-        private void Nodification(string operation, IDeviceState device)
+        private void Nodification(string operation, OpenZWaveNotification notification)
         {
-            var deviceString = "unknown device";
+            string deviceString;
+            var device = notification.Device;
+            var id = notification.NodeId;
 
             if (device != null)
             {
                 deviceString = device.BuildVirtualAddress(false, false);
+            }
+            else if (id > 0)
+            {
+                deviceString = "device id " + id;
+            }
+            else
+            {
+                deviceString = "unknown device";
             }
 
             var message = string.Format("Node {0}: {1}", operation, deviceString);
