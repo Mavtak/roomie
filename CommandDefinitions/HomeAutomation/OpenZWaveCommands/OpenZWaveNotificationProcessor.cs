@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using OpenZWaveDotNet;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
@@ -147,7 +148,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         private void Nodification(string operation, IDeviceState device)
         {
-            var message = string.Format("Node {0}: {1}", operation, device.BuildVirtualAddress(false, false));
+            var deviceString = "unknown device";
+
+            if (device != null)
+            {
+                deviceString = device.BuildVirtualAddress(false, false);
+            }
+
+            var message = string.Format("Node {0}: {1}", operation, deviceString);
 
             _network.Log(message);
         }
