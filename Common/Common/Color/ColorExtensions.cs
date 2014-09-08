@@ -101,5 +101,36 @@ namespace Roomie.Common.Color
 
             return new RgbColor(red, green, blue);
         }
+
+        public static IEnumerable<IColor> AddInBetweenColors(this IEnumerable<IColor> colors, bool cycle)
+        {
+            return AddInBetweenColors(colors.Select(x => x.RedGreenBlue), cycle);
+        }
+
+        public static IEnumerable<RgbColor> AddInBetweenColors(this IEnumerable<RgbColor> colors, bool cycle)
+        {
+            var result = new List<RgbColor>();
+            RgbColor previous = null;
+            
+            foreach (var next in colors)
+            {
+                if (previous != null)
+                {
+                    var mix = Mix(previous, next);
+                    result.Add(mix);
+                }
+
+                result.Add(next);
+                previous = next;
+            }
+
+            if (cycle && result.Count > 4)
+            {
+                var mix = Mix(result.First(), result.Last());
+                result.Add(mix);
+            }
+
+            return result;
+        }
     }
 }

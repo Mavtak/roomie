@@ -75,5 +75,22 @@ namespace Roomie.Common.Tests.Color
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [TestCase(false, "", "")]
+        [TestCase(false, "#000000", "#000000")]
+        [TestCase(false, "#000000,#222222", "#000000,#111111,#222222")]
+        [TestCase(false, "#000000,#222222,#444444", "#000000,#111111,#222222,#333333,#444444")]
+        [TestCase(true, "", "")]
+        [TestCase(true, "#000000", "#000000")]
+        [TestCase(true, "#000000,#222222", "#000000,#111111,#222222")]
+        [TestCase(true, "#000000,#222222,#444444", "#000000,#111111,#222222,#333333,#444444,#222222")]
+        public void AddInBetweenColorsWorks(bool cycle, string colorsAsHex, string expectedAsHex)
+        {
+            var expected = expectedAsHex.Split(',').Select(ColorExtensions.FromHexString).ToArray();
+            var colors = colorsAsHex.Split(',').Select(ColorExtensions.FromHexString).ToArray();
+            var actual = ColorExtensions.AddInBetweenColors(colors, cycle).ToArray();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }
