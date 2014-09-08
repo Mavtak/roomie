@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
@@ -70,6 +71,13 @@ namespace Roomie.Web.Persistence
                     };
                 offDimmerSwitch.DimmerSwitch.Power = 0;
 
+                var dimmableColorChangingLight = new DeviceModel
+                    {
+                        Name = "A dimmable, color-changing light",
+                        Type = DeviceType.MultilevelSwitch
+                    };
+                dimmableColorChangingLight.DimmerSwitch.Power = 50;
+                dimmableColorChangingLight.ColorSwitch.Value = new NamedColor("Purple");
 
                 var openDoorSensor = new DeviceModel
                 {
@@ -133,7 +141,7 @@ namespace Roomie.Web.Persistence
                         Type = DeviceType.Thermostat
                     };
 
-                var devices = new[] { onToggleSwitch, offToggleSwitch, idleDevice, runningDevice, onDimmerSwitch, offDimmerSwitch, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, multisensor, thermostat, noDataThermostat };
+                var devices = new[] { onToggleSwitch, offToggleSwitch, idleDevice, runningDevice, onDimmerSwitch, offDimmerSwitch, dimmableColorChangingLight, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, multisensor, thermostat, noDataThermostat };
 
                 var computer = new ComputerModel
                     {
