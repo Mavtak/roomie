@@ -78,7 +78,7 @@ namespace Q42HueCommands
             var rgb = color.RedGreenBlue;
 
             var result = new LightCommand()
-                .SetColor(rgb.Red, rgb.Blue, rgb.Green);
+                .SetColor(rgb.Red, rgb.Green, rgb.Blue);
 
             return result;
         }
