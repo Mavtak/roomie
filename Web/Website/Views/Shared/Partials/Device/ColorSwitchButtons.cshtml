@@ -31,9 +31,9 @@
 
         *@foreach (var color in colors)
           {
-              var hex = color.ToHexString();
-              <div class="button" ><button class="button" style="background-color: @hex;" type="submit" name="color" value="@hex">&nbsp;</button></div>
-          }@*
+              var hex = color.ToHexString();@*
+              *@<div class="button" ><button class="button" style="background-color: @hex;" type="submit" name="color" value="@hex">&nbsp;</button></div>@*
+          *@}@*
 
     *@}@*
 *@
