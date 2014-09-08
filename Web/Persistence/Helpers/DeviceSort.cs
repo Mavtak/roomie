@@ -16,6 +16,13 @@ namespace Roomie.Web.Persistence.Helpers
 
             result = string.Compare(x.Name ?? String.Empty, y.Name ?? String.Empty, StringComparison.InvariantCultureIgnoreCase);
 
+            if (result != 0)
+            {
+                return result;
+            }
+
+            result = string.Compare(x.Address ?? String.Empty, y.Address ?? string.Empty, StringComparison.CurrentCultureIgnoreCase);
+
             return result;
         }
     }
