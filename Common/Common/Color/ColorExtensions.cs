@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace Roomie.Common.Color
@@ -70,6 +71,35 @@ namespace Roomie.Common.Color
             }
 
             return result.ToString();
+        }
+
+        public static RgbColor Mix(params IColor[] colors)
+        {
+            return Mix(colors.Select(x => x.RedGreenBlue).ToArray());
+        }
+
+        public static RgbColor Mix(params RgbColor[] colors)
+        {
+            Func<Func<RgbColor, byte>, byte> average = getComponent =>
+            {
+                int sum = 0;
+
+                foreach (var color in colors)
+                {
+                    var component = getComponent(color);
+                    sum += component;
+                }
+
+                var result = (byte) (sum/colors.Length);
+
+                return result;
+            };
+
+            var red = average(x => x.Red);
+            var green = average(x => x.Green);
+            var blue = average(x => x.Blue);
+
+            return new RgbColor(red, green, blue);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 using Roomie.Common.Color;
 
 namespace Roomie.Common.Tests.Color
@@ -42,6 +43,37 @@ namespace Roomie.Common.Tests.Color
             var actual = rgb.ToHexString();
 
             Assert.That(actual, Is.EqualTo(hexValue));
+        }
+
+        [TestCase("#000000", "#000000")]
+        [TestCase("#000000", "#000000,#000000")]
+        [TestCase("#000000", "#000000,#000000,#000000")]
+        [TestCase("#FFFFFF", "#FFFFFF")]
+        [TestCase("#FFFFFF", "#FFFFFF,#FFFFFF")]
+        [TestCase("#FFFFFF", "#FFFFFF,#FFFFFF,#FFFFFF")]
+        [TestCase("#012345", "#012345")]
+        [TestCase("#FFFFFF", "#FFFFFF,#FFFFFF")]
+        [TestCase("#FFFFFF", "#FFFFFF,#FFFFFF,#FFFFFF")]
+        [TestCase("#7F7F7F", "#000000,#FFFFFF")]
+        public void MixingColorsWorks(string expectedAsHex, string colorsAsHex)
+        {
+            var expected = ColorExtensions.FromHexString(expectedAsHex);
+            var colors = colorsAsHex.Split(',').Select(ColorExtensions.FromHexString).ToArray();
+
+            var actual = ColorExtensions.Mix(colors);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [TestCase("#7F007F", "red,blue")]
+        public void MixingColorNamesWorksToo(string expectedAsHex, string colorNames)
+        {
+            var expected = ColorExtensions.FromHexString(expectedAsHex);
+            var colors = colorNames.Split(',').Select(x => new NamedColor(x)).Cast<IColor>().ToArray();
+
+            var actual = ColorExtensions.Mix(colors);
+
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }

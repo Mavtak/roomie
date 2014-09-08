@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Roomie.Common.Color
 {
@@ -25,6 +26,20 @@ namespace Roomie.Common.Color
         }
 
         public static IColor TryParse(string input)
+        {
+            if (input == null)
+            {
+                return null;
+            }
+
+            var parts = input.Split('+');
+            var colors = parts.Select(TryParseSingle).ToArray();
+            var result = ColorExtensions.Mix(colors);
+
+            return result;
+        }
+
+        private static IColor TryParseSingle(string input)
         {
             var result = ColorExtensions.FromHexString(input);
             
