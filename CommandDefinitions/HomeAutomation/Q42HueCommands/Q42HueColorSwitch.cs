@@ -20,7 +20,7 @@ namespace Q42HueCommands
         {
             get
             {
-                var result = Helpers.CalculateColor(_light.Light);
+                var result = Helpers.CalculateColor(_light.BackingObject);
 
                 return result;
             }

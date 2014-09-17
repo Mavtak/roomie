@@ -11,7 +11,7 @@ namespace Q42HueCommands
     public class Q42HueDevice : Device
     {
         internal readonly Q42HueNetwork HueNetwork;
-        public Light Light { get; private set; }
+        public Light BackingObject { get; private set; }
 
         private readonly Q42HueBinarySwitch _binarySwitch;
         private readonly Q42HueMultilevelSwitch _multilevelSwitch;
@@ -21,7 +21,7 @@ namespace Q42HueCommands
             : base(network, DeviceType.MultilevelSwitch)
         {
             HueNetwork = network;
-            Light = light;
+            BackingObject = light;
 
             _binarySwitch = new Q42HueBinarySwitch(this);
             _multilevelSwitch = new Q42HueMultilevelSwitch(this);
@@ -43,29 +43,29 @@ namespace Q42HueCommands
             HueNetwork.UpdateDevice(this);
         }
 
-        internal void UpdateLight(Light newLight)
+        internal void UpdateBackingObject(Light newBackingObject)
         {
-            if (Light.Id != newLight.Id)
+            if (BackingObject.Id != newBackingObject.Id)
             {
                 throw new Exception("Light ID does not match");
             }
 
-            var oldLight = Light;
+            var oldBackingObject = BackingObject;
 
-            Light = newLight;
+            BackingObject = newBackingObject;
 
-            if (oldLight.State.IsReachable != newLight.State.IsReachable)
+            if (oldBackingObject.State.IsReachable != newBackingObject.State.IsReachable)
             {
-                AddEvent(newLight.State.IsReachable ? DeviceEvent.Found(this, null) : DeviceEvent.Lost(this, null));
+                AddEvent(newBackingObject.State.IsReachable ? DeviceEvent.Found(this, null) : DeviceEvent.Lost(this, null));
             }
 
-            if (Helpers.CalculatePower(oldLight) != Helpers.CalculatePower(newLight))
+            if (Helpers.CalculatePower(oldBackingObject) != Helpers.CalculatePower(newBackingObject))
             {
                 AddEvent(DeviceEvent.PowerChanged(this, null));
             }
 
-            var oldColor = Helpers.CalculateColor(oldLight);
-            var newColor = Helpers.CalculateColor(newLight);
+            var oldColor = Helpers.CalculateColor(oldBackingObject);
+            var newColor = Helpers.CalculateColor(newBackingObject);
 
             if (!oldColor.RedGreenBlue.Equals(newColor.RedGreenBlue))
             {

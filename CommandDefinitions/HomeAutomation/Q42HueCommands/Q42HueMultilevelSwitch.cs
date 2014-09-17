@@ -17,7 +17,7 @@ namespace Q42HueCommands
         {
             get
             {
-                return Helpers.CalculatePower(_light.Light);
+                return Helpers.CalculatePower(_light.BackingObject);
             }
         }
 

@@ -17,7 +17,7 @@ namespace Q42HueCommands
         {
             get
             {
-                if (_light.Light.State.On)
+                if (_light.BackingObject.State.On)
                 {
                     return BinarySwitchPower.On;
                 }

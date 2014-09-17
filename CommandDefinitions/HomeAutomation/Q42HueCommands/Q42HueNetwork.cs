@@ -53,7 +53,7 @@ namespace Q42HueCommands
                 }
                 else
                 {
-                    existingDevice.UpdateLight(light);
+                    existingDevice.UpdateBackingObject(light);
                 }
             }
         }
@@ -77,12 +77,12 @@ namespace Q42HueCommands
 
         internal void UpdateDevice(Q42HueDevice device)
         {
-            var id = device.Light.Id;
+            var id = device.BackingObject.Id;
             var task = _client.GetLightAsync(id);
             var light = task.Result;
             light.Id = id;
 
-            device.UpdateLight(light);
+            device.UpdateBackingObject(light);
         }
 
         public override Device RemoveDevice()
