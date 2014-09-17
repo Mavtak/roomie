@@ -103,7 +103,15 @@ namespace Q42HueCommands
 
         public override Device AddDevice()
         {
-            throw new NotImplementedException();
+            _client.SearchNewLightsAsync();
+
+            //TODO: improve the Network model to allow this experience to be better
+            Thread.Sleep(TimeSpan.FromMinutes(1)); // via http://www.developers.meethue.com/documentation/lights-api#12_get_new_lights
+
+            var newLights = UpdateList();
+            var result = newLights.FirstOrDefault();
+
+            return result;
         }
     }
 }
