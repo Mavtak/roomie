@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Q42.HueApi;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 
@@ -39,8 +40,10 @@ namespace Q42HueCommands
             Connected();
         }
 
-        internal void UpdateList(Bridge bridge)
+        internal IEnumerable<Q42HueDevice> UpdateList(Bridge bridge)
         {
+            var newDevices = new List<Q42HueDevice>();
+
             foreach (var light in bridge.Lights)
             {
                 var existingDevice = _devices.FirstOrDefault(x => x.Address == light.Id);
@@ -50,18 +53,21 @@ namespace Q42HueCommands
                     var device = new Q42HueDevice(this, light);
 
                     _devices.Add(device);
+                    newDevices.Add(device);
                 }
                 else
                 {
                     existingDevice.UpdateBackingObject(light);
                 }
             }
+
+            return newDevices;
         }
 
-        internal void UpdateList()
+        internal IEnumerable<Q42HueDevice> UpdateList()
         {
             var bridge = _client.GetBridgeAsync().Result;
-            UpdateList(bridge);
+            return UpdateList(bridge);
         }
 
         internal void SendCommand(LightCommand command, IEnumerable<string> lightList)
