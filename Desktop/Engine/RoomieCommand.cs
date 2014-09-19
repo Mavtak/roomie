@@ -23,7 +23,7 @@ namespace Roomie.Desktop.Engine
         protected internal RoomieCommand(string group, string name, string source, Version version, List<RoomieCommandArgument> arguments, bool? finalized, string description = null)
         {
             Name = name ?? this.GetNameFromType();
-            Group = group ?? this.GetGroupFromNamespace();
+            Group = group ?? this.GetGroupFromAttribute() ?? this.GetGroupFromNamespace();
 
             if (Group == null)
             {

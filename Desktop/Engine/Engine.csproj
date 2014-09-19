@@ -59,6 +59,7 @@
     <Compile Include="Commands\BooleanParameterAttribute.cs" />
     <Compile Include="Commands\ByteParameterAttribute.cs" />
     <Compile Include="Commands\ColorParameterAttribute.cs" />
+    <Compile Include="Commands\GroupAttribute.cs" />
     <Compile Include="Commands\IntegerParameterAttribute.cs" />
     <Compile Include="Commands\IntegerRangeParameterAttribute.cs" />
     <Compile Include="Commands\TemperatureParameterAttribute.cs" />

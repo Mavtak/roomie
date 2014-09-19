@@ -95,6 +95,24 @@ namespace Roomie.Desktop.Engine
             return GetExtensionSource(command.GetType());
         }
 
+
+        public static string GetGroupFromAttribute(Type type)
+        {
+            var attribute = type.GetCustomAttributes(typeof(GroupAttribute), false).FirstOrDefault() as GroupAttribute;
+
+            if (attribute == null)
+            {
+                return null;
+            }
+
+            return attribute.Value;
+        }
+
+        public static string GetGroupFromAttribute(this RoomieCommand command)
+        {
+            return GetGroupFromAttribute(command.GetType());
+        }
+
         public static string GetDescriptionFromAttributes(Type type)
         {
             var descriptionAttribute = type.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
