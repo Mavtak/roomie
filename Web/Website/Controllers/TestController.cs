@@ -139,19 +139,23 @@ namespace Roomie.Web.Website.Controllers
                 timeout = null;
             }
 
-            var count = 0;
+            var deleted = 0;
+            var skipped = 0;
+            ListFilter filter = null;
 
             DoWork.UntilTimeout(timeout ?? 5, () =>
                 {
-                    var iterationCount = Database.Scripts.Clean(Database.Tasks, Database.SavedScripts, Database.Computers);
+                    var result = Database.Scripts.Clean(Database.Tasks, Database.SavedScripts, Database.Computers, filter);
                     Database.SaveChanges();
 
-                    count += iterationCount;
+                    deleted += result.Deleted;
+                    skipped += result.Skipped;
+                    filter = result.NextFilter;
 
-                    return iterationCount == 0;
+                    return result.Done;
                 });
 
-            var message = count + " scripts cleaned up";
+            var message = deleted + " scripts cleaned up, " + skipped + " scripts skipped";
 
             return View(viewName: "PlainText", model: message);
         }

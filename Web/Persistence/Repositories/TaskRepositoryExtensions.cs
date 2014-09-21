@@ -1,34 +1,33 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories
 {
     public static class TaskRepositoryExtensions
     {
-        public static int Clean(this ITaskRepository repository, UserModel user)
+        public static CleaningResult Clean(this ITaskRepository repository, UserModel user, ListFilter filter = null)
         {
-            var tasks = repository.List(user, new ListFilter
+            if (filter == null)
             {
-                SortDirection = SortDirection.Ascending
-            }).Items;
-
-            tasks = tasks.Where(x => x.Received || x.Expired).ToArray();
-
-            if (!tasks.Any())
-            {
-                return 0;
+                filter = new ListFilter
+                    {
+                        SortDirection = SortDirection.Ascending
+                    };
             }
 
-            var count = 0;
+            var allTasks = repository.List(user, filter).Items;
 
-            foreach (var task in tasks)
+            var oldTasks = allTasks.Where(x => x.Received || x.Expired).ToArray();
+
+            foreach (var task in allTasks)
             {
                 repository.Remove(task);
-
-                count++;
             }
 
-            return count;
+            var result = new CleaningResult(filter, allTasks.Length, oldTasks.Length);
+
+            return result;
         }
     }
 }

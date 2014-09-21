@@ -25,19 +25,23 @@ namespace Roomie.Web.Website.Controllers
                 timeout = null;
             }
 
-            var count = 0;
+            var deleted = 0;
+            var skipped = 0;
+            ListFilter filter = null;
 
             DoWork.UntilTimeout(timeout ?? 5, () =>
                 {
-                    var iterationCount = Database.Tasks.Clean(User);
+                    var result = Database.Tasks.Clean(User, filter);
                     Database.SaveChanges();
 
-                    count += iterationCount;
+                    deleted += result.Deleted;
+                    skipped += result.Skipped;
+                    filter = result.NextFilter;
 
-                    return iterationCount == 0;
+                    return result.Done;
                 });
 
-            return Content(count + " tasks cleaned up");
+            return Content(deleted + " tasks cleaned up, " + skipped + " tasks skipped");
         }
     }
 }

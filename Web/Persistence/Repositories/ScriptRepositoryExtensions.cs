@@ -6,14 +6,22 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public static class ScriptRepositoryExtensions
     {
-        public static int Clean(this IScriptRepository repository, ITaskRepository taskRepository, ISavedScriptRepository savedScriptRepository, IComputerRepository computerRepository)
+        public static CleaningResult Clean(this IScriptRepository repository, ITaskRepository taskRepository, ISavedScriptRepository savedScriptRepository, IComputerRepository computerRepository, ListFilter filter = null)
         {
-            var scripts = repository.List(new ListFilter
+            if (filter == null)
+            {
+                filter = new ListFilter
+                {
+                    SortDirection = SortDirection.Ascending
+                };
+            }
+
+            var allScripts = repository.List(new ListFilter
             {
                 SortDirection = SortDirection.Ascending
             }).Items;
 
-            scripts = scripts.Where(x =>
+            var unusedScripts = allScripts.Where(x =>
                 {
                     var getOwnersFunctions = new Func<ScriptModel, object[]>[]
                         {
@@ -35,21 +43,15 @@ namespace Roomie.Web.Persistence.Repositories
                     return true;
                 }).ToArray();
 
-            if (!scripts.Any())
-            {
-                return 0;
-            }
 
-            var count = 0;
-
-            foreach (var task in scripts)
+            foreach (var task in allScripts)
             {
                 repository.Remove(task);
-
-                count++;
             }
 
-            return count;
+            var result = new CleaningResult(filter, allScripts.Length, unusedScripts.Length);
+
+            return result;
         }
     }
 }
