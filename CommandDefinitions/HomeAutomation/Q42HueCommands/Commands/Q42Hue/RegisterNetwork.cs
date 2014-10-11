@@ -9,7 +9,7 @@ namespace Q42HueCommands.Commands.Q42Hue
 {
     [StringParameter("IP", "")]
     [StringParameter("Secret")]
-    [System.ComponentModel.Description("This command attempts to connect to a USB Z-Wave adapater.")]
+    [Description("This command attempts to connect to a USB Z-Wave adapater.")]
     public class RegisterNetwork : HomeAutomationCommand
     {
         protected override void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context)
