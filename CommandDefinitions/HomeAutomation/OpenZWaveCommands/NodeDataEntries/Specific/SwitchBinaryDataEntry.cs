@@ -1,5 +1,4 @@
-﻿using System;
-using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General;
+﻿using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General;
 using Roomie.Common.HomeAutomation.Events;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
@@ -25,7 +24,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
                 return DeviceEvent.PoweredOff(Device, null);
             }
 
-            throw new Exception("unexpected state");
+            return DeviceEvent.PowerChanged(Device, null);
         }
     }
 }

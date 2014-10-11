@@ -2,23 +2,24 @@
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands.OpenZWave
+namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands
 {
     [BooleanParameter(ReturnRouteKey, true)]
-    public class OptimizeNetwork : HomeAutomationNetworkCommand
+    [Group("OpenZWave")]
+    public class OptimizeDevice : HomeAutomationSingleDeviceCommand
     {
         private const string ReturnRouteKey = "ReturnRoute";
 
-        protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
+        protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var interpreter = context.Interpreter;
-            var network = context.Network as OpenZWaveNetwork;
+            var device = context.Device as OpenZWaveDevice;
             var scope = context.Scope;
             var returnRoute = scope.GetValue(ReturnRouteKey).ToBoolean();
 
-            interpreter.WriteEvent("Optimizing " + network);
+            interpreter.WriteEvent("Optimizing " + device);
 
-            network.OptimizePaths(returnRoute);
+            device.OptimizePaths(returnRoute);
 
             interpreter.WriteEvent("Done");
         }

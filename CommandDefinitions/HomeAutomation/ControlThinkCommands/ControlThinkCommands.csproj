@@ -46,12 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\ControlThink\SetConfigurationParameter.cs" />
-    <Compile Include="Commands\ControlThink\GetConfigurationParameters.cs" />
-    <Compile Include="Commands\ControlThink\GetConfigurationParameter.cs" />
-    <Compile Include="Commands\ControlThink\PrintStats.cs" />
-    <Compile Include="Commands\ControlThink\RegisterNetwork.cs" />
-    <Compile Include="Commands\ControlThink\ShutDownTasks.cs" />
+    <Compile Include="Commands\SetConfigurationParameter.cs" />
+    <Compile Include="Commands\GetConfigurationParameters.cs" />
+    <Compile Include="Commands\GetConfigurationParameter.cs" />
+    <Compile Include="Commands\PrintStats.cs" />
+    <Compile Include="Commands\RegisterNetwork.cs" />
+    <Compile Include="Commands\ShutDownTasks.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ConverstionExtensions.cs" />
     <Compile Include="ZWaveBinarySensor.cs" />

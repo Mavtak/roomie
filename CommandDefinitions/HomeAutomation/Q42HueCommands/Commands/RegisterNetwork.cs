@@ -5,11 +5,12 @@ using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Common.HomeAutomation.Exceptions;
 using Roomie.Desktop.Engine.Commands;
 
-namespace Q42HueCommands.Commands.Q42Hue
+namespace Q42HueCommands.Commands
 {
     [StringParameter("IP", "")]
     [StringParameter("Secret")]
     [Description("This command attempts to connect to a USB Z-Wave adapater.")]
+    [Group("Q42Hue")]
     public class RegisterNetwork : HomeAutomationCommand
     {
         protected override void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context)

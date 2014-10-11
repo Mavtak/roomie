@@ -1,8 +1,10 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Desktop.Engine;
+using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands.ControlThink
+namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands
 {
+    [Group("ControlThink")]
     class GetConfigurationParameters : HomeAutomationSingleDeviceCommand
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)

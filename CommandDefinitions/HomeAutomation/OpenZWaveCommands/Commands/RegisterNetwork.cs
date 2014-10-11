@@ -1,10 +1,11 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands.OpenZWave
+namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands
 {
     [StringParameter("Port")]
     [Description("This command attempts to connect to a USB Z-Wave adapater.")]
+    [Group("OpenZWave")]
     public class RegisterNetwork : HomeAutomationCommand
     {
         protected override void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context)

@@ -1,9 +1,10 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands.PiEngineering
+namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands
 {
-    [Description("This command attempts to connect to P. I. Engineering devices.")]
+    [Description("This command attempts to connect to a ControlThink USB Z-Wave adapater.")]
+    [Group("ControlThink")]
     public class RegisterNetwork : HomeAutomationCommand
     {
         protected override void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context)
@@ -11,9 +12,9 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands.PiEngineering
             var interpreter = context.Interpreter;
             var networks = context.Networks;
 
-            interpreter.WriteEvent("Searching for PiEngineering devices");
+            interpreter.WriteEvent("Searching for Z-Wave network adapater...");
 
-            var network = new PiEngineeringNetwork(new HomeAutomationNetworkContext(context.Engine, context.ThreadPool));
+            var network = new ZWaveNetwork(new HomeAutomationNetworkContext(context.Engine, context.ThreadPool));
             networks.Add(network);
 
             interpreter.WriteEvent("Done.");

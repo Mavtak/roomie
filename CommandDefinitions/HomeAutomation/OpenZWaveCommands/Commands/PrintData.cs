@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Common.TextUtilities;
+using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands.OpenZWave
+namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands
 {
+    [Group("OpenZWave")]
     public class PrintData : HomeAutomationSingleDeviceCommand
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
