@@ -49,7 +49,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
                 case "New Thread":
                     if (string.IsNullOrEmpty(threadName))
                         throw new MissingArgumentsException("NewThreadName");
-                    RoomieThread newThread = threads.CreateNewThread(threadName);
+                    RoomieThread newThread = threads.CreateNewThread(threadName, scope);
                     newThread.AddCommands(commandsToAdd);
                     return;
                 default:
