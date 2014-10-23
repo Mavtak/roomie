@@ -19,11 +19,11 @@ namespace Roomie.Desktop.Engine
             _threads = new List<RoomieThread>();
         }
 
-        public RoomieThread CreateNewThread(string name)
+        public RoomieThread CreateNewThread(string name, RoomieCommandScope parentScope = null)
         {
             lock (_threads)
             {
-                var result = new RoomieThread(_engine, name);
+                var result = new RoomieThread(_engine, name, parentScope);
                 lock (_threads)
                 {
                     _threads.Add(result);

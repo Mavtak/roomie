@@ -12,11 +12,11 @@ namespace Roomie.Desktop.Engine
         private readonly RoomieCommandInterpreter _interpreter;
         private Thread _parallelThread;
 
-        public RoomieThread(RoomieEngine engine, string name)
+        public RoomieThread(RoomieEngine engine, string name, RoomieCommandScope parentScope)
         {
             Engine = engine;
             Name = name;
-            _interpreter = new RoomieCommandInterpreter(this, this.Engine.GlobalScope, this.Name);
+            _interpreter = new RoomieCommandInterpreter(this, parentScope ?? Engine.GlobalScope, Name);
             Run();
         }
 
