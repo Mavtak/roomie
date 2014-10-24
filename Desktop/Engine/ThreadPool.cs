@@ -51,7 +51,7 @@ namespace Roomie.Desktop.Engine
 
         public void AddCommand(IScriptCommand command)
         {
-            lock (this)
+            lock (_threads)
             {
                 var thread = GetFreeThread();
                 
@@ -62,7 +62,7 @@ namespace Roomie.Desktop.Engine
 
         public void AddCommands(IEnumerable<IScriptCommand> commands)
         {
-            lock (this)
+            lock (_threads)
             {
                 var thread = GetFreeThread();
 
