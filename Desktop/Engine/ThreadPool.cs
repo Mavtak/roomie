@@ -29,10 +29,9 @@ namespace Roomie.Desktop.Engine
                 }
 
                 var result = new RoomieThread(_engine, name, parentScope);
-                lock (_threads)
-                {
-                    _threads.Add(result);
-                }
+                
+                _threads.Add(result);
+
                 return result;
             }
         }
