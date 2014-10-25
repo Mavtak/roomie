@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using Roomie.Desktop.Engine.Commands;
 
@@ -102,9 +103,9 @@ namespace Roomie.Desktop.Engine.Tests.Commands
             }
         }
 
-        [TestCase("a", "b", "a")]
-        [TestCase("a", null, "a")]
-        [TestCase(null, "b", "b")]
+        [TestCase("a,b", "c,d", "a,b,c,d")]
+        [TestCase("a,b", null, "a,b")]
+        [TestCase(null, "c,d", "c,d")]
         [TestCase(null, null, null)]
         public void ArgumentsWorks(string first, string second, string expected)
         {
@@ -112,35 +113,30 @@ namespace Roomie.Desktop.Engine.Tests.Commands
                 new ReadOnlyCommandSpecification(arguments: GetArguments(first)),
                 new ReadOnlyCommandSpecification(arguments: GetArguments(second)));
 
-            Assert.That(specification.Arguments, Is.EqualTo(GetArguments(expected)));
+            var actual = specification.Arguments;
+
+            if (expected == null)
+            {
+                Assert.That(actual, Is.Null);
+            }
+            else
+            {
+                Assert.That(string.Join(",", actual.Select(x => x.Name)), Is.EqualTo(expected));
+            }
         }
 
-
-        [SetUp]
-        public void SetUpArguments()
-        {
-            _argumentsA = new[] {new RoomieCommandArgument("a", null)};
-            _argumentsB = new[] {new RoomieCommandArgument("b", null)};
-        }
-
-        private RoomieCommandArgument[] _argumentsA;
-        private RoomieCommandArgument[] _argumentsB;
         private RoomieCommandArgument[] GetArguments(string token)
         {
-            switch (token)
+            if (token == null)
             {
-                case "a":
-                    return _argumentsA;
-
-                case "b":
-                    return _argumentsB;
-
-                case null:
-                    return null;
-
-                default:
-                    throw new ArgumentException();
+                return null;
             }
+
+            var result = token.Split(',')
+                .Select(x => new RoomieCommandArgument(x, null))
+                .ToArray();
+
+            return result;
         }
     }
 }

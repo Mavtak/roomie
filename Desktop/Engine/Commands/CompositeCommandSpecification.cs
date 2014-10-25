@@ -218,14 +218,16 @@ namespace Roomie.Desktop.Engine.Commands
 
         private void RefreshArguments()
         {
-            var match = _sources.FirstOrDefault(x => x.Arguments != null);
+            var matches = _sources
+                .Where(x => x.Arguments != null)
+                .ToArray();
 
-            if (match == null)
+            if (!matches.Any())
             {
                 return;
             }
 
-            _arguments = match.Arguments;
+            _arguments = matches.SelectMany(x => x.Arguments).ToArray();
         }
 
         #endregion
