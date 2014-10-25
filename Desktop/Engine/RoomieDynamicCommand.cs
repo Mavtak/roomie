@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 using Roomie.Common.ScriptingLanguage;
+using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.Desktop.Engine
 {
@@ -11,7 +10,13 @@ namespace Roomie.Desktop.Engine
         readonly ScriptCommandList subcommands;
 
         public RoomieDynamicCommand(string group, string name, List<RoomieCommandArgument> arguments, ScriptCommandList subcommands, string description)
-            : base(group, name, "(dynamic command)", new Version(0,0,0,0), arguments, true, description)
+            : base(new ReadOnlyCommandSpecification(
+                name: name,
+                group: group,
+                description: description,
+                source: "(dynamic command)",
+                arguments: arguments
+            ))
         {
             this.subcommands = subcommands;
         }

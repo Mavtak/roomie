@@ -15,37 +15,27 @@ namespace Roomie.Desktop.Engine
     {
         private readonly IEnumerable<RoomieCommandArgument> _arguments;
 
-
-        protected RoomieCommand()
-            : this(group: null, name: null, source: null, version: null, arguments: new List<RoomieCommandArgument>())
+        protected internal RoomieCommand(ICommandSpecification specificationOverrides = null)
         {
-        }
-
-        protected internal RoomieCommand(string group, string name, string source, Version version, List<RoomieCommandArgument> arguments, string description = null)
-        {
-            var type = GetType();
+        var type = GetType();
 
             var specification = new CompositeCommandSpecification(
+                specificationOverrides ?? new ReadOnlyCommandSpecification(),
                 new AttributeBasedCommandSpecification(type),
                 new NamespaceBasedCommandSpecification(type)
                 );
 
-            Name = name ?? specification.Name;
-            Group = group ?? specification.Group;
-            Description = description ?? specification.Description;
-            Source = source ?? specification.Source;
+            Name = specification.Name;
+            Group = specification.Group;
+            Description = specification.Description;
+            Source = specification.Source;
             ExtensionName = specification.ExtensionName;
-            ExtensionVersion = version ?? specification.ExtensionVersion;
+            ExtensionVersion = specification.ExtensionVersion;
             _arguments = specification.Arguments;
 
             if (Group == null)
             {
                 throw new Exception("Command " + Name + "'s is not set");
-            }
-
-            if (arguments != null)
-            {
-                _arguments = _arguments.Union(arguments).ToArray();
             }
 
             Finalized = true;
