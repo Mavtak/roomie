@@ -13,8 +13,6 @@ namespace Roomie.Desktop.Engine
 {
     public abstract class RoomieCommand : ICommandSpecification
     {
-        private readonly IEnumerable<RoomieCommandArgument> _arguments;
-
         protected internal RoomieCommand(ICommandSpecification specificationOverrides = null)
         {
         var type = GetType();
@@ -31,7 +29,7 @@ namespace Roomie.Desktop.Engine
             Source = specification.Source;
             ExtensionName = specification.ExtensionName;
             ExtensionVersion = specification.ExtensionVersion;
-            _arguments = specification.Arguments;
+            Arguments = specification.Arguments;
 
             if (Group == null)
             {
@@ -77,7 +75,7 @@ namespace Roomie.Desktop.Engine
             //require specified arguments
 
             var missingArguments = new List<string>();
-            foreach (var argument in _arguments)
+            foreach (var argument in Arguments)
             {
                 if (!argument.HasDefault & !scope.VariableDefinedInThisScope(argument.Name))
                 {
@@ -93,7 +91,7 @@ namespace Roomie.Desktop.Engine
             //here we know that all undefined arguments have available defaults.
 
             //fill in defaults
-            foreach (var argument in _arguments)
+            foreach (var argument in Arguments)
             {
                 if (!scope.VariableDefinedInThisScope(argument.Name))
                 {
@@ -131,7 +129,7 @@ namespace Roomie.Desktop.Engine
 
             //check argument types
             var mistypedArguments = new List<string>();
-            foreach (var argument in _arguments)
+            foreach (var argument in Arguments)
             {
                 var value = scope.GetValue(argument.Name);
                 var type = argument.Type;
@@ -174,13 +172,7 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public IEnumerable<RoomieCommandArgument> Arguments
-        {
-            get
-            {
-                return _arguments;
-            }
-        }
+        public IEnumerable<RoomieCommandArgument> Arguments { get; private set; }
 
         #endregion
 
