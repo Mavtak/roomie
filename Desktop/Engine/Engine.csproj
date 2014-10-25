@@ -56,12 +56,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArgumentTypeCollection.cs" />
+    <Compile Include="Commands\AttributeBasedCommandSpecification.cs" />
     <Compile Include="Commands\BooleanParameterAttribute.cs" />
     <Compile Include="Commands\ByteParameterAttribute.cs" />
     <Compile Include="Commands\ColorParameterAttribute.cs" />
     <Compile Include="Commands\GroupAttribute.cs" />
     <Compile Include="Commands\IntegerParameterAttribute.cs" />
     <Compile Include="Commands\IntegerRangeParameterAttribute.cs" />
+    <Compile Include="Commands\ReadOnlyCommandSpecification.cs" />
     <Compile Include="Commands\TemperatureParameterAttribute.cs" />
     <Compile Include="Commands\TimeSpanParameterAttribute.cs" />
     <Compile Include="Commands\DateTimeParameterAttribute.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Commands\RoomieCommandAttribute.cs" />
     <Compile Include="Commands\StringParameterAttribute.cs" />
     <Compile Include="CommandUtilities.cs" />
+    <Compile Include="Commands\CompositeCommandSpecification.cs" />
     <Compile Include="DataStore.cs" />
     <Compile Include="Delegates\EngineStateChangedEventArgs.cs" />
     <Compile Include="Delegates\EngineStateChangedEventHandler.cs" />
@@ -85,6 +88,8 @@
     <Compile Include="Exceptions\MissingArgumentsException.cs" />
     <Compile Include="Exceptions\MistypedArgumentException.cs" />
     <Compile Include="Exceptions\VariableException.cs" />
+    <Compile Include="Commands\ICommandSpecification.cs" />
+    <Compile Include="Commands\NamespaceBasedCommandSpecification.cs" />
     <Compile Include="RoomieCommand.cs" />
     <Compile Include="RoomieCommandArgument.cs" />
     <Compile Include="RoomieCommandArgumentTypes\ColorParameterType.cs" />

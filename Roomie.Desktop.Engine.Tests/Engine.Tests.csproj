@@ -44,6 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AttributeBasedCommandSpecificationTests.cs" />
+    <Compile Include="Commands\CompositeCommandSpecificationTests.cs" />
+    <Compile Include="Commands\NamespaceBasedCommandSpecification.cs" />
+    <Compile Include="Commands\AttributeTestCommand.cs" />
+    <Compile Include="Commands\TestCommands\NamespaceTestCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkQueues\WorkQueueItemResultsTests.cs" />
     <Compile Include="WorkQueues\WorkQueueItemTests.cs" />
