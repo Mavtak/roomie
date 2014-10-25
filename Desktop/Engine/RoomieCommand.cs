@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Xml;
-using Roomie.Common.Exceptions;
 using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine.Commands;
 using Roomie.Desktop.Engine.Exceptions;
@@ -15,7 +13,7 @@ namespace Roomie.Desktop.Engine
     {
         protected internal RoomieCommand(ICommandSpecification specificationOverrides = null)
         {
-        var type = GetType();
+            var type = GetType();
 
             var specification = new CompositeCommandSpecification(
                 specificationOverrides ?? new ReadOnlyCommandSpecification(),
@@ -38,7 +36,7 @@ namespace Roomie.Desktop.Engine
 
             Finalized = true;
 
-            if (GetType().GetCustomAttributes(typeof(NotFinishedAttribute), true).Any())
+            if (GetType().GetCustomAttributes(typeof (NotFinishedAttribute), true).Any())
             {
                 Finalized = false;
             }
@@ -152,6 +150,7 @@ namespace Roomie.Desktop.Engine
         protected abstract void Execute_Definition(RoomieCommandContext context);
 
         #region names
+
         public string Group { get; private set; }
         public string Name { get; private set; }
         public string Source { get; private set; }
@@ -159,6 +158,7 @@ namespace Roomie.Desktop.Engine
         public Version ExtensionVersion { get; private set; }
 
         private string _fullName;
+
         public string FullName
         {
             get
@@ -203,7 +203,7 @@ namespace Roomie.Desktop.Engine
                 writer.WriteAttributeString("PluginName", ExtensionName);
                 writer.WriteAttributeString("Group", Group);
                 writer.WriteAttributeString("Name", Name);
-                
+
                 if (!String.IsNullOrEmpty(Description))
                 {
                     writer.WriteAttributeString("Description", Description);
