@@ -17,11 +17,11 @@ namespace Roomie.Desktop.Engine
 
 
         protected RoomieCommand()
-            : this(group: null, name: null, source: null, version: null, arguments: new List<RoomieCommandArgument>(), finalized: null)
+            : this(group: null, name: null, source: null, version: null, arguments: new List<RoomieCommandArgument>())
         {
         }
 
-        protected internal RoomieCommand(string group, string name, string source, Version version, List<RoomieCommandArgument> arguments, bool? finalized, string description = null)
+        protected internal RoomieCommand(string group, string name, string source, Version version, List<RoomieCommandArgument> arguments, string description = null)
         {
             var type = GetType();
 
