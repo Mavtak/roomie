@@ -31,11 +31,6 @@ namespace Roomie.Desktop.Engine
             return GetGroupFromNamespace(type.Namespace);
         }
 
-        public static string GetGroupFromNamespace(this RoomieCommand command)
-        {
-            return GetGroupFromNamespace(command.GetType());
-        }
-
         public static string GetExtensionNameFromNamespace(string @namespace)
         {
             var length = @namespace.LastIndexOf(Token);
@@ -55,19 +50,9 @@ namespace Roomie.Desktop.Engine
             return GetExtensionNameFromNamespace(type.Namespace);
         }
 
-        public static string GetExtensionNameFromNamespace(this RoomieCommand command)
-        {
-            return GetExtensionNameFromNamespace(command.GetType());
-        }
-
         public static string GetNameFromType(Type type)
         {
             return type.Name;
-        }
-
-        public static string GetNameFromType(this RoomieCommand command)
-        {
-            return GetNameFromType(command.GetType());
         }
 
         public static Version GetExtensionVersion(Type type)
@@ -78,23 +63,12 @@ namespace Roomie.Desktop.Engine
             return result;
         }
 
-        public static Version GetExtensionVersion(this RoomieCommand command)
-        {
-            return GetExtensionVersion(command.GetType());
-        }
-
         public static string GetExtensionSource(Type type)
         {
             var result = Assembly.GetAssembly(type).CodeBase;
 
             return result;
         }
-
-        public static string GetExtensionSource(this RoomieCommand command)
-        {
-            return GetExtensionSource(command.GetType());
-        }
-
 
         public static string GetGroupFromAttribute(Type type)
         {
@@ -108,11 +82,6 @@ namespace Roomie.Desktop.Engine
             return attribute.Value;
         }
 
-        public static string GetGroupFromAttribute(this RoomieCommand command)
-        {
-            return GetGroupFromAttribute(command.GetType());
-        }
-
         public static string GetDescriptionFromAttributes(Type type)
         {
             var descriptionAttribute = type.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
@@ -123,11 +92,6 @@ namespace Roomie.Desktop.Engine
             }
 
             return descriptionAttribute.Value;
-        }
-
-        public static string GetDescriptionFromAttributes(this RoomieCommand command)
-        {
-            return GetDescriptionFromAttributes(command.GetType());
         }
 
         public static IEnumerable<RoomieCommandArgument> GetArgumentsFromAttributes(Type type)
