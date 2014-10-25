@@ -13,7 +13,8 @@ namespace Roomie.Desktop.Engine
 {
     public abstract class RoomieCommand
     {
-        private readonly List<RoomieCommandArgument> _arguments;
+        private readonly IEnumerable<RoomieCommandArgument> _arguments;
+
 
         protected RoomieCommand()
             : this(group: null, name: null, source: null, version: null, arguments: new List<RoomieCommandArgument>(), finalized: null)
@@ -22,28 +23,29 @@ namespace Roomie.Desktop.Engine
 
         protected internal RoomieCommand(string group, string name, string source, Version version, List<RoomieCommandArgument> arguments, bool? finalized, string description = null)
         {
-            Name = name ?? this.GetNameFromType();
-            Group = group ?? this.GetGroupFromAttribute() ?? this.GetGroupFromNamespace();
+            var type = GetType();
+
+            var specification = new CompositeCommandSpecification(
+                new AttributeBasedCommandSpecification(type),
+                new NamespaceBasedCommandSpecification(type)
+                );
+
+            Name = name ?? specification.Name;
+            Group = group ?? specification.Group;
+            Description = description ?? specification.Description;
+            Source = source ?? specification.Source;
+            ExtensionName = specification.ExtensionName;
+            ExtensionVersion = version ?? specification.ExtensionVersion;
+            _arguments = specification.Arguments;
 
             if (Group == null)
             {
                 throw new Exception("Command " + Name + "'s is not set");
             }
 
-            Source = source ?? this.GetExtensionSource();
-            ExtensionName = this.GetExtensionNameFromNamespace();
-            ExtensionVersion = version ?? this.GetExtensionVersion();
-            _arguments = arguments;
-
-            _arguments.AddRange(this.GetArgumentsFromAttributes());
-
-            if (description != null)
+            if (arguments != null)
             {
-                Description = description;
-            }
-            else
-            {
-                Description = this.GetDescriptionFromAttributes();
+                _arguments = _arguments.Union(arguments).ToArray();
             }
 
             Finalized = true;
