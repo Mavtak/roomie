@@ -11,7 +11,7 @@ using Roomie.Desktop.Engine.Exceptions;
 
 namespace Roomie.Desktop.Engine
 {
-    public abstract class RoomieCommand
+    public abstract class RoomieCommand : ICommandSpecification
     {
         private readonly IEnumerable<RoomieCommandArgument> _arguments;
 
@@ -184,11 +184,11 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public ICollection<RoomieCommandArgument> Arguments
+        public IEnumerable<RoomieCommandArgument> Arguments
         {
             get
             {
-                return new List<RoomieCommandArgument>(_arguments);
+                return _arguments;
             }
         }
 
@@ -270,7 +270,7 @@ namespace Roomie.Desktop.Engine
 
             builder.Append("Arguments:");
 
-            if (Arguments.Count == 0)
+            if (!Arguments.Any())
             {
                 builder.Append(" (none)");
             }
