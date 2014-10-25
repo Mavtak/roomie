@@ -31,6 +31,11 @@ namespace Roomie.Desktop.Engine.WorkQueues
 
         }
 
+        public WorkQueueItem(Action work)
+            : this(work, 1, null)
+        {
+        }
+
         public void WaitUntilComplete()
         {
             _event.WaitOne();
