@@ -78,7 +78,7 @@ namespace Roomie.Desktop.Engine
                 return _engineState;
             }
 
-            set
+            private set
             {
                 var oldState = _engineState;
                 var newState = value;
