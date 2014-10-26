@@ -61,12 +61,24 @@ namespace Roomie.Desktop.Engine
             SimpleOutputText(RootThread, e.Message);
         }
 
+        #region startup
+
         public void Start()
         {
             EngineState = EngineState.Starting;
-            //TODO: catch more exceptions
-            RootThread.WriteEvent("Roomie Engine started.  VROOOOOM! :D");
 
+            RootThread.WriteEvent("Roomie Engine started.  VROOOOOM! :D");
+            
+            SetInitialVariables();
+            LoadCommands();
+            InitializePlugins();
+            RunUserStartupScript();
+
+            EngineState = EngineState.Running;
+        }
+
+        private void SetInitialVariables()
+        {
             if (DevelopmentEnvironment)
             {
                 RootThread.WriteEvent("mmm, I'm in development now.  Be gentle. :'3");
@@ -75,25 +87,27 @@ namespace Roomie.Desktop.Engine
             GlobalScope.DeclareVariable("Name", "Roomie");
             GlobalScope.DeclareVariable("Version", Common.LibraryVersion.ToString());
             GlobalScope.DeclareVariable("Started", DateTime.Now.ToString());
-            
-            //load core commands
+        }
+
+        private void LoadCommands()
+        {
             CommandLibrary.AddCommandsFromAssembly(GetType().Assembly);
-
-            //load plugins
             CommandLibrary.AddCommandsFromPluginFolder(AppDomain.CurrentDomain.BaseDirectory);
+        }
 
-            //run startup tasks
+        private void InitializePlugins()
+        {
             foreach (var command in CommandLibrary.StartupTasks)
             {
                 var newThread = Threads.CreateNewThread(command.ExtensionName + " Plugin Startup");
 
                 newThread.AddCommand(command.BlankCommandCall());
             }
+        }
 
-            //run user's startup script
-
+        private void RunUserStartupScript()
+        {
             //TODO: add a startup script search if DevelopmentEnvironment.
-
             RootThread.WriteEvent("Searching in \"" + Environment.CurrentDirectory + "\" for \"" + StartupScriptPath + "\"");
             if (System.IO.File.Exists(StartupScriptPath))
             {
@@ -112,9 +126,9 @@ namespace Roomie.Desktop.Engine
                 //TODO: add a utility function for building single commands
                 RootThread.WriteEvent("No Startup Script Found.  Create 'Startup.RoomieScript' in the working directory to use this feature.");
             }
-
-            EngineState = EngineState.Running;
         }
+
+        #endregion
 
         #region accessors
 
