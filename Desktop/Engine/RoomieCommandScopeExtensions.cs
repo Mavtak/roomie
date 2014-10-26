@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Exceptions;
 
 namespace Roomie.Desktop.Engine
 {
@@ -65,6 +68,71 @@ namespace Roomie.Desktop.Engine
             }
 
             return result.ToArray();
+        }
+
+        public static void PrepareForCall(this RoomieCommandScope scope, ICommandSpecification command, RoomieCommandInterpreter interpreter)
+        {
+            var givenValues = scope.FindGivenValues();
+            var missingArguments = scope.FindMissingArguments(command.Arguments);
+
+            if (missingArguments.Length > 0)
+            {
+                throw new MissingArgumentsException(missingArguments);
+            }
+
+            var defaultedValues = scope.ApplyDefaults(command.Arguments);
+
+            if (interpreter.Engine.PrintCommandCalls)
+            {
+                var call = BuilCommandCall(command.Group + "." + command.Name, givenValues, defaultedValues);
+                interpreter.WriteEvent(call);
+            }
+
+            var mistypedArguments = scope.FindMistypedArguments(command.Arguments);
+
+            if (mistypedArguments.Any())
+            {
+                foreach (var argument in mistypedArguments)
+                {
+                    interpreter.WriteEvent(argument.Type.ValidationMessage(argument.Name));
+                }
+
+                throw new MistypedArgumentException(mistypedArguments);
+            }
+        }
+
+        private static string BuilCommandCall(string fullName, KeyValuePair<string, string>[] givenValues, KeyValuePair<string, string>[] defaultedValues)
+        {
+            var result = new StringBuilder();
+
+            result.Append(fullName);
+
+            foreach (var pair in givenValues)
+            {
+                result.Append(" ");
+                result.Append(pair.Key);
+                result.Append("=\"");
+                result.Append(pair.Value);
+                result.Append("\"");
+            }
+
+            if (defaultedValues.Any())
+            {
+                result.Append("(with defaults:");
+
+                foreach (var pair in defaultedValues)
+                {
+                    result.Append(" ");
+                    result.Append(pair.Key);
+                    result.Append("=\"");
+                    result.Append(pair.Value);
+                    result.Append("\"");
+                }
+
+                result.Append(")");
+            }
+
+            return result.ToString();
         }
     }
 }

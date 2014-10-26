@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml;
 using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine.Commands;
 using Roomie.Desktop.Engine.Exceptions;
@@ -52,33 +50,7 @@ namespace Roomie.Desktop.Engine
                 throw new CommandImplementationException(this, "Can not execute a command that is not finalized.");
             }
 
-            var givenValues = scope.FindGivenValues();
-            var missingArguments = scope.FindMissingArguments(Arguments);
-
-            if (missingArguments.Length > 0)
-            {
-                throw new MissingArgumentsException(missingArguments);
-            }
-
-            var defaultedValues = scope.ApplyDefaults(Arguments);
-
-            if (interpreter.Engine.PrintCommandCalls)
-            {
-                var call = BuilCommandCall(FullName, givenValues, defaultedValues);
-                interpreter.WriteEvent(call);
-            }
-
-            var mistypedArguments = scope.FindMistypedArguments(Arguments);
-
-            if (mistypedArguments.Any())
-            {
-                foreach (var argument in mistypedArguments)
-                {
-                    interpreter.WriteEvent(argument.Type.ValidationMessage(argument.Name));
-                }
-
-                throw new MistypedArgumentException(mistypedArguments);
-            }
+            scope.PrepareForCall(this, interpreter);
 
             Execute_Definition(context);
         }
@@ -135,40 +107,6 @@ namespace Roomie.Desktop.Engine
         public IScriptCommand BlankCommandCall()
         {
             return new TextScriptCommand(FullName);
-        }
-
-        private static string BuilCommandCall(string fullName, KeyValuePair<string, string>[] givenValues, KeyValuePair<string, string>[] defaultedValues)
-        {
-            var result = new StringBuilder();
-
-            result.Append(fullName);
-
-            foreach (var pair in givenValues)
-            {
-                result.Append(" ");
-                result.Append(pair.Key);
-                result.Append("=\"");
-                result.Append(pair.Value);
-                result.Append("\"");
-            }
-
-            if (defaultedValues.Any())
-            {
-                result.Append("(with defaults:");
-
-                foreach (var pair in defaultedValues)
-                {
-                    result.Append(" ");
-                    result.Append(pair.Key);
-                    result.Append("=\"");
-                    result.Append(pair.Value);
-                    result.Append("\"");
-                }
-
-                result.Append(")");
-            }
-
-            return result.ToString();
         }
     }
 }
