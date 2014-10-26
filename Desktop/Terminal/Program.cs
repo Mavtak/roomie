@@ -39,7 +39,7 @@ namespace Roomie.Desktop.Terminal
                         try
                         {
                             var script = ScriptCommandList.FromText(input);
-                            engine.RootThread.AddCommands(script);
+                            engine.Threads.AddCommands(script);
                             Console.WriteLine("Command accepted.");
                             input = "";
                         }

@@ -17,8 +17,6 @@ namespace Roomie.Desktop.Engine
         public readonly ArgumentTypeCollection ArgumentTypes;
         private EngineState _engineState;
 
-        private RoomieThread _rootThread;
-
         //TODO: investigate "public readonly"
         public ThreadPool Threads { get; private set; }
         
@@ -56,7 +54,7 @@ namespace Roomie.Desktop.Engine
         /// <param name="e"></param>
         private void CommandLibrary_Message(object sender, Delegates.RoomieCommandLibraryEventArgs e)
         {
-            SimpleOutputText(RootThread, e.Message);
+            Threads.Print(e.Message);
         }
 
         public void Start()
@@ -89,22 +87,6 @@ namespace Roomie.Desktop.Engine
                 {
                     var eventArgs = new EngineStateChangedEventArgs(oldState, newState);
                     EngineStateChanged(this, eventArgs);
-                }
-            }
-        }
-
-        public RoomieThread RootThread
-        {
-            get
-            {
-                lock (this)
-                {
-                    if (_rootThread == null)
-                    {
-                        _rootThread = Threads.CreateNewThread("Root Thread");
-                    }
-
-                    return _rootThread;
                 }
             }
         }

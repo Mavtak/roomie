@@ -23,14 +23,14 @@ namespace Roomie.Desktop.Engine
                 return;
             }
 
-            _engine.RootThread.WriteEvent("Shutting Down...");
+            Print("Shutting Down...");
 
             _engine.Threads.ShutDown(); //TODO: what about other thread pools?
             var shutdownThreads = new ThreadPool(_engine, "Shutdown Tasks");
 
             foreach (var command in _engine.CommandLibrary.ShutDownTasks)
             {
-                _engine.RootThread.WriteEvent("Calling " + command.FullName);
+                Print("Calling " + command.FullName);
 
                 shutdownThreads.AddCommands(command.BlankCommandCall());
             }
@@ -44,11 +44,16 @@ namespace Roomie.Desktop.Engine
 
             shutdownThreads.ShutDown();
 
-            _engine.RootThread.WriteEvent("Done.");
+            Print("Done.");
 
             //this thread will die when the function returns, and all threads will be killed.
 
             done();
+        }
+
+        private void Print(string text)
+        {
+            _engine.Threads.Print(text);
         }
     }
 }

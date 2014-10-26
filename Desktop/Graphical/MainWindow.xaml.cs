@@ -50,11 +50,11 @@ namespace Roomie.Desktop.Graphical
             {
                 var thread = new Thread(() =>
                     {
-                        _engine.RootThread.WriteEvent("Goodbye!");
+                        Print("Goodbye!");
                         Thread.Sleep(1000);
-                        _engine.RootThread.WriteEvent("I'll miss you!");
+                        Print("I'll miss you!");
                         Thread.Sleep(500);
-                        _engine.RootThread.WriteEvent("Okay goodbye. :'c");
+                        Print("Okay goodbye. :'c");
                         Thread.Sleep(250);
                         Dispatcher.InvokeAsync(Close);
                     });
@@ -125,7 +125,7 @@ namespace Roomie.Desktop.Graphical
             {
                 Input.Clear();
             }
-            _engine.RootThread.AddCommands(script);
+            _engine.Threads.AddCommands(script);
         }
 
         private void Input_OnPreviewKeyDown(object sender, KeyEventArgs e)
@@ -152,6 +152,11 @@ namespace Roomie.Desktop.Graphical
             {
                 ScrollToEnd();
             }
+        }
+
+        private void Print(string text)
+        {
+            _engine.Threads.Print(text);
         }
         
     }

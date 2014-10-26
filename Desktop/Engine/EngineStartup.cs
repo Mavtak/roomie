@@ -17,7 +17,7 @@ namespace Roomie.Desktop.Engine
 
         public void Run()
         {
-            _engine.RootThread.WriteEvent("Roomie Engine started.  VROOOOOM! :D");
+            _engine.Threads.Print("Roomie Engine started.  VROOOOOM! :D");
 
             SetInitialVariables();
             LoadCommands();
@@ -29,7 +29,7 @@ namespace Roomie.Desktop.Engine
         {
             if (_engine.DevelopmentEnvironment)
             {
-                _engine.RootThread.WriteEvent("mmm, I'm in development now.  Be gentle. :'3");
+                Print("mmm, I'm in development now.  Be gentle. :'3");
             }
 
             _engine.GlobalScope.DeclareVariable("Name", "Roomie");
@@ -56,7 +56,7 @@ namespace Roomie.Desktop.Engine
         private void RunUserStartupScript()
         {
             //TODO: add a startup script search if DevelopmentEnvironment.
-            _engine.RootThread.WriteEvent("Searching in \"" + Environment.CurrentDirectory + "\" for \"" + StartupScriptPath + "\"");
+            Print("Searching in \"" + Environment.CurrentDirectory + "\" for \"" + StartupScriptPath + "\"");
             if (File.Exists(StartupScriptPath))
             {
                 try
@@ -66,14 +66,19 @@ namespace Roomie.Desktop.Engine
                 }
                 catch (RoomieRuntimeException exception)
                 {
-                    _engine.RootThread.WriteEvent("I had trouble loading the startup script: " + exception.Message);
+                    Print("I had trouble loading the startup script: " + exception.Message);
                 }
             }
             else
             {
                 //TODO: add a utility function for building single commands
-                _engine.RootThread.WriteEvent("No Startup Script Found.  Create 'Startup.RoomieScript' in the working directory to use this feature.");
+                Print("No Startup Script Found.  Create 'Startup.RoomieScript' in the working directory to use this feature.");
             }
+        }
+
+        private void Print(string text)
+        {
+            _engine.Threads.Print(text);
         }
     }
 }
