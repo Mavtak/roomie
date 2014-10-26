@@ -1,6 +1,4 @@
 ﻿using System;
-using Roomie.Common.Exceptions;
-using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine.Delegates;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
@@ -19,7 +17,7 @@ namespace Roomie.Desktop.Engine
 
         //TODO: investigate "public readonly"
         public ThreadPool Threads { get; private set; }
-        
+
         public event RoomieThreadEventHandler ScriptMessageSent;
         public event EngineStateChangedEventHandler EngineStateChanged;
 
@@ -36,7 +34,7 @@ namespace Roomie.Desktop.Engine
             DevelopmentEnvironment = Environment.CurrentDirectory.EndsWith(@"\bin\Debug");
 
             ArgumentTypes = new ArgumentTypeCollection();
-            
+
             //TODO: reflect for types
             ArgumentTypes.Add(new BooleanParameterType());
             ArgumentTypes.Add(new ByteParameterType());
@@ -47,11 +45,6 @@ namespace Roomie.Desktop.Engine
             ArgumentTypes.Add(new TimeSpanParameterType());
         }
 
-        /// <summary>
-        /// event handler for CommandLibrary
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void CommandLibrary_Message(object sender, Delegates.RoomieCommandLibraryEventArgs e)
         {
             Threads.Print(e.Message);
@@ -66,8 +59,6 @@ namespace Roomie.Desktop.Engine
 
             EngineState = EngineState.Running;
         }
-
-        #region accessors
 
         public EngineState EngineState
         {
@@ -91,8 +82,6 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        #endregion
-
         internal void SimpleOutputText(RoomieThread thread, string message)
         {
             if (ScriptMessageSent == null)
@@ -114,6 +103,6 @@ namespace Roomie.Desktop.Engine
                 EngineState = EngineState.ShutDown;
             });
         }
-        
+
     }
 }
