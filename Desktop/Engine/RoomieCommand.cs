@@ -42,8 +42,7 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        //TODO: make internal
-        public void Execute(RoomieCommandContext context)
+        internal void Execute(RoomieCommandContext context)
         {
             var interpreter = context.Interpreter;
             var scope = context.Scope;
@@ -53,94 +52,31 @@ namespace Roomie.Desktop.Engine
                 throw new CommandImplementationException(this, "Can not execute a command that is not finalized.");
             }
 
-            //print call if neccisary
-            StringBuilder call = null;
-            if (interpreter.Engine.PrintCommandCalls)
-            {
-                call = new StringBuilder();
-                call.Append(FullName);
-                foreach (string variable in scope.Variables)
-                {
-                    call.Append(" ");
-                    call.Append(variable);
-                    call.Append("=\"");
-                    call.Append(scope.GetLiteralValue(variable));
-                    call.Append("\"");
-                }
-            }
-            bool defaultsUsed = false;
+            var givenValues = GivenValues(scope);
+            var missingArguments = MissingArguments(this, scope);
 
-            //require specified arguments
-
-            var missingArguments = new List<string>();
-            foreach (var argument in Arguments)
-            {
-                if (!argument.HasDefault & !scope.VariableDefinedInThisScope(argument.Name))
-                {
-                    missingArguments.Add(argument.Name);
-                }
-            }
-
-            if (missingArguments.Count > 0)
+            if (missingArguments.Length > 0)
             {
                 throw new MissingArgumentsException(missingArguments);
             }
 
-            //here we know that all undefined arguments have available defaults.
+            var defaultedValues = Defaults(this, scope);
 
-            //fill in defaults
-            foreach (var argument in Arguments)
-            {
-                if (!scope.VariableDefinedInThisScope(argument.Name))
-                {
-                    scope.DeclareVariable(argument.Name, argument.DefaultValue);
-
-                    if (interpreter.Engine.PrintCommandCalls)
-                    {
-                        if (!defaultsUsed)
-                        {
-                            call.Append(" (with defaults");
-                        }
-                        call.Append(" ");
-                        call.Append(argument.Name);
-                        call.Append("=\"");
-                        call.Append(argument.DefaultValue);
-                        call.Append("\"");
-                    }
-
-                    defaultsUsed = true;
-                }
-            }
-
-            if (interpreter.Engine.PrintCommandCalls && defaultsUsed)
-            {
-                call.Append(")");
-            }
-
-            //print out the command call
             if (interpreter.Engine.PrintCommandCalls)
             {
-                interpreter.WriteEvent(call.ToString());
+                var call = BuilCommandCall(FullName, givenValues, defaultedValues);
+                interpreter.WriteEvent(call);
             }
 
-            //now we know that all arguments are defined, but must still check the types.
+            var mistypedArguments = MistypedArguments(this, scope);
 
-            //check argument types
-            var mistypedArguments = new List<string>();
-            foreach (var argument in Arguments)
+            if (mistypedArguments.Any())
             {
-                var value = scope.GetValue(argument.Name);
-                var type = argument.Type;
-                var isValid = type.Validate(value);
-
-                if (!isValid)
+                foreach (var argument in mistypedArguments)
                 {
-                    mistypedArguments.Add(argument.Name);
-                    interpreter.WriteEvent(type.ValidationMessage(argument.Name));
+                    interpreter.WriteEvent(argument.Type.ValidationMessage(argument.Name));
                 }
-            }
-            if (mistypedArguments.Count != 0)
-            {
+
                 throw new MistypedArgumentException(mistypedArguments);
             }
 
@@ -199,6 +135,102 @@ namespace Roomie.Desktop.Engine
         public IScriptCommand BlankCommandCall()
         {
             return new TextScriptCommand(FullName);
+        }
+
+        private static KeyValuePair<string, string>[] Defaults(ICommandSpecification command, RoomieCommandScope scope)
+        {
+            var result = new List<KeyValuePair<string, string>>();
+
+            foreach (var argument in command.Arguments)
+            {
+                if (!scope.VariableDefinedInThisScope(argument.Name))
+                {
+                    scope.DeclareVariable(argument.Name, argument.DefaultValue);
+
+                    result.Add(new KeyValuePair<string, string>(argument.Name, argument.DefaultValue));
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        private static KeyValuePair<string, string>[] GivenValues(RoomieCommandScope scope)
+        {
+            var variables = scope.Variables;
+
+            var result = variables
+                .Select(x => new KeyValuePair<string, string>(x, scope.GetLiteralValue(x)))
+                .ToArray();
+
+            return result;
+        }
+
+        private static RoomieCommandArgument[] MissingArguments(ICommandSpecification command, RoomieCommandScope scope)
+        {
+            var result = new List<RoomieCommandArgument>();
+
+            foreach (var argument in command.Arguments)
+            {
+                if (!argument.HasDefault & !scope.VariableDefinedInThisScope(argument.Name))
+                {
+                    result.Add(argument);
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        private static RoomieCommandArgument[] MistypedArguments(ICommandSpecification command, RoomieCommandScope scope)
+        {
+            var result = new List<RoomieCommandArgument>();
+
+            foreach (var argument in command.Arguments)
+            {
+                var value = scope.GetValue(argument.Name);
+                var type = argument.Type;
+                var isValid = type.Validate(value);
+
+                if (!isValid)
+                {
+                    result.Add(argument);
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        private static string BuilCommandCall(string fullName, KeyValuePair<string, string>[] givenValues, KeyValuePair<string, string>[] defaultedValues)
+        {
+            var result = new StringBuilder();
+
+            result.Append(fullName);
+
+            foreach (var pair in givenValues)
+            {
+                result.Append(" ");
+                result.Append(pair.Key);
+                result.Append("=\"");
+                result.Append(pair.Value);
+                result.Append("\"");
+            }
+
+            if (defaultedValues.Any())
+            {
+                result.Append("(with defaults:");
+
+                foreach (var pair in defaultedValues)
+                {
+                    result.Append(" ");
+                    result.Append(pair.Key);
+                    result.Append("=\"");
+                    result.Append(pair.Value);
+                    result.Append("\"");
+                }
+
+                result.Append(")");
+            }
+
+            return result.ToString();
         }
     }
 }
