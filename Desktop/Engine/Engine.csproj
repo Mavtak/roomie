@@ -93,6 +93,7 @@
     <Compile Include="Commands\NamespaceBasedCommandSpecification.cs" />
     <Compile Include="RoomieCommand.cs" />
     <Compile Include="RoomieCommandArgument.cs" />
+    <Compile Include="RoomieCommandScopeExtensions.cs" />
     <Compile Include="RoomieCommandArgumentTypes\ColorParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\TemperatureParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\IntegerRangeParameterType.cs" />

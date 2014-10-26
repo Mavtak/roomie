@@ -52,15 +52,15 @@ namespace Roomie.Desktop.Engine
                 throw new CommandImplementationException(this, "Can not execute a command that is not finalized.");
             }
 
-            var givenValues = GivenValues(scope);
-            var missingArguments = MissingArguments(this, scope);
+            var givenValues = scope.GivenValues();
+            var missingArguments = scope.MissingArguments(Arguments);
 
             if (missingArguments.Length > 0)
             {
                 throw new MissingArgumentsException(missingArguments);
             }
 
-            var defaultedValues = Defaults(this, scope);
+            var defaultedValues = scope.Defaults(Arguments);
 
             if (interpreter.Engine.PrintCommandCalls)
             {
@@ -68,7 +68,7 @@ namespace Roomie.Desktop.Engine
                 interpreter.WriteEvent(call);
             }
 
-            var mistypedArguments = MistypedArguments(this, scope);
+            var mistypedArguments = scope.MistypedArguments(Arguments);
 
             if (mistypedArguments.Any())
             {
@@ -135,68 +135,6 @@ namespace Roomie.Desktop.Engine
         public IScriptCommand BlankCommandCall()
         {
             return new TextScriptCommand(FullName);
-        }
-
-        private static KeyValuePair<string, string>[] Defaults(ICommandSpecification command, RoomieCommandScope scope)
-        {
-            var result = new List<KeyValuePair<string, string>>();
-
-            foreach (var argument in command.Arguments)
-            {
-                if (!scope.VariableDefinedInThisScope(argument.Name))
-                {
-                    scope.DeclareVariable(argument.Name, argument.DefaultValue);
-
-                    result.Add(new KeyValuePair<string, string>(argument.Name, argument.DefaultValue));
-                }
-            }
-
-            return result.ToArray();
-        }
-
-        private static KeyValuePair<string, string>[] GivenValues(RoomieCommandScope scope)
-        {
-            var variables = scope.Variables;
-
-            var result = variables
-                .Select(x => new KeyValuePair<string, string>(x, scope.GetLiteralValue(x)))
-                .ToArray();
-
-            return result;
-        }
-
-        private static RoomieCommandArgument[] MissingArguments(ICommandSpecification command, RoomieCommandScope scope)
-        {
-            var result = new List<RoomieCommandArgument>();
-
-            foreach (var argument in command.Arguments)
-            {
-                if (!argument.HasDefault & !scope.VariableDefinedInThisScope(argument.Name))
-                {
-                    result.Add(argument);
-                }
-            }
-
-            return result.ToArray();
-        }
-
-        private static RoomieCommandArgument[] MistypedArguments(ICommandSpecification command, RoomieCommandScope scope)
-        {
-            var result = new List<RoomieCommandArgument>();
-
-            foreach (var argument in command.Arguments)
-            {
-                var value = scope.GetValue(argument.Name);
-                var type = argument.Type;
-                var isValid = type.Validate(value);
-
-                if (!isValid)
-                {
-                    result.Add(argument);
-                }
-            }
-
-            return result.ToArray();
         }
 
         private static string BuilCommandCall(string fullName, KeyValuePair<string, string>[] givenValues, KeyValuePair<string, string>[] defaultedValues)
