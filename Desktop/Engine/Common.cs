@@ -6,7 +6,7 @@ namespace Roomie.Desktop.Engine
 {
     public static class Common
     {
-        public static string NiceList(List<string> items)
+        public static string NiceList(IEnumerable<string> items)
         {
             var builder = new StringBuilder();
             builder.Append("{");
