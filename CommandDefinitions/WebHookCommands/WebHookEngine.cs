@@ -218,7 +218,7 @@ namespace Roomie.CommandDefinitions.WebHookCommands
         #region Add Commands
         internal void AddCommand(IScriptCommand command)
         {
-            threadPool.AddCommand(command);
+            threadPool.AddCommands(command);
         }
         internal void AddCommands(IEnumerable<IScriptCommand> commands)
         {

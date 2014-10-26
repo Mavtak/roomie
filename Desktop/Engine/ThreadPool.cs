@@ -48,15 +48,9 @@ namespace Roomie.Desktop.Engine
             return CreateNewThread();
         }
 
-        public void AddCommand(IScriptCommand command)
+        public void AddCommands(params IScriptCommand[] commands)
         {
-            lock (_threads)
-            {
-                var thread = GetFreeThread();
-                
-                thread.ResetLocalScope();
-                thread.AddCommand(command);
-            }
+            AddCommands(commands.AsEnumerable());
         }
 
         public void AddCommands(IEnumerable<IScriptCommand> commands)
@@ -68,17 +62,6 @@ namespace Roomie.Desktop.Engine
                 thread.ResetLocalScope();
                 thread.AddCommands(commands);
             }
-        }
-
-        public void AddCommands(string text)
-        {
-            var commands = ScriptCommandList.FromText(text);
-            AddCommands(commands);
-        }
-
-        public void AddCommands(System.Xml.XmlNode commands)
-        {
-            AddCommands(commands.OuterXml);
         }
 
         public void Print(string text)

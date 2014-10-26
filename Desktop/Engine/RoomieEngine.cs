@@ -187,7 +187,7 @@ namespace Roomie.Desktop.Engine
             {
                 _rootThread.WriteEvent("Calling " + command.FullName);
 
-                shutdownThreads.AddCommand(command.BlankCommandCall());
+                shutdownThreads.AddCommands(command.BlankCommandCall());
             }
 
             //TODO: fix this
