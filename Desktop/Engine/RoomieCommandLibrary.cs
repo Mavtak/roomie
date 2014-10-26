@@ -93,12 +93,6 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public void AddCommands(IEnumerable<RoomieCommand> newCommands)
-        {
-            foreach (var newCommand in newCommands)
-                AddCommand(newCommand);
-        }
-
         public void AddCommandsFromAssembly(System.Reflection.Assembly assembly)
         {
             try
