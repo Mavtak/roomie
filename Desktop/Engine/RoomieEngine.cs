@@ -124,39 +124,14 @@ namespace Roomie.Desktop.Engine
         //TODO: add timeout
         public void Shutdown()
         {
-            var thread = new System.Threading.Thread(shutdown_helper);
-            thread.Start();
-        }
-        private void shutdown_helper()
-        {
             EngineState = EngineState.ShuttingDown;
 
-            RootThread.WriteEvent("Shutting Down...");
-
-            Threads.ShutDown(); //TODO: what about other thread pools?
-            var shutdownThreads = new ThreadPool(this, "Shutdown Tasks");
-
-            foreach (var command in CommandLibrary.ShutDownTasks)
+            var shutdown = new EngineShutdown(this);
+            shutdown.Run(() =>
             {
-                _rootThread.WriteEvent("Calling " + command.FullName);
-
-                shutdownThreads.AddCommands(command.BlankCommandCall());
-            }
-
-            //TODO: fix this
-            var killTime = DateTime.Now.AddSeconds(10);
-            while(shutdownThreads.IsBusy && DateTime.Now<=killTime)
-            {
-                System.Threading.Thread.Sleep(100);
-            }
-
-            shutdownThreads.ShutDown();
-
-            RootThread.WriteEvent("Done.");
-
-            EngineState = EngineState.ShutDown;
-
-            //this thread will die when the function returns, and all threads will be killed.
+                EngineState = EngineState.ShutDown;
+            });
         }
+        
     }
 }

@@ -82,6 +82,7 @@
     <Compile Include="Delegates\RoomieCommandLibraryEventDelegate.cs" />
     <Compile Include="Delegates\RoomieThreadEventHandler.cs" />
     <Compile Include="DocumentationWriter.cs" />
+    <Compile Include="EngineShutdown.cs" />
     <Compile Include="EngineState.cs" />
     <Compile Include="Exceptions\CommandImplementationException.cs" />
     <Compile Include="Exceptions\CommandNotFoundException.cs" />
