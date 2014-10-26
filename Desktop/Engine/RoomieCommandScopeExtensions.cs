@@ -5,7 +5,7 @@ namespace Roomie.Desktop.Engine
 {
     public static class RoomieCommandScopeExtensions
     {
-        public static KeyValuePair<string, string>[] GivenValues(this RoomieCommandScope scope)
+        public static KeyValuePair<string, string>[] FindGivenValues(this RoomieCommandScope scope)
         {
             var variables = scope.Variables;
 
@@ -16,7 +16,7 @@ namespace Roomie.Desktop.Engine
             return result;
         }
 
-        public static RoomieCommandArgument[] MissingArguments(this RoomieCommandScope scope, IEnumerable<RoomieCommandArgument> arguments)
+        public static RoomieCommandArgument[] FindMissingArguments(this RoomieCommandScope scope, IEnumerable<RoomieCommandArgument> arguments)
         {
             var result = new List<RoomieCommandArgument>();
 
@@ -31,7 +31,7 @@ namespace Roomie.Desktop.Engine
             return result.ToArray();
         }
 
-        public static KeyValuePair<string, string>[] Defaults(this RoomieCommandScope scope, IEnumerable<RoomieCommandArgument> arguments)
+        public static KeyValuePair<string, string>[] ApplyDefaults(this RoomieCommandScope scope, IEnumerable<RoomieCommandArgument> arguments)
         {
             var result = new List<KeyValuePair<string, string>>();
 
@@ -48,7 +48,7 @@ namespace Roomie.Desktop.Engine
             return result.ToArray();
         }
 
-        public static RoomieCommandArgument[] MistypedArguments(this RoomieCommandScope scope, IEnumerable<RoomieCommandArgument> arguments)
+        public static RoomieCommandArgument[] FindMistypedArguments(this RoomieCommandScope scope, IEnumerable<RoomieCommandArgument> arguments)
         {
             var result = new List<RoomieCommandArgument>();
 

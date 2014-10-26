@@ -52,15 +52,15 @@ namespace Roomie.Desktop.Engine
                 throw new CommandImplementationException(this, "Can not execute a command that is not finalized.");
             }
 
-            var givenValues = scope.GivenValues();
-            var missingArguments = scope.MissingArguments(Arguments);
+            var givenValues = scope.FindGivenValues();
+            var missingArguments = scope.FindMissingArguments(Arguments);
 
             if (missingArguments.Length > 0)
             {
                 throw new MissingArgumentsException(missingArguments);
             }
 
-            var defaultedValues = scope.Defaults(Arguments);
+            var defaultedValues = scope.ApplyDefaults(Arguments);
 
             if (interpreter.Engine.PrintCommandCalls)
             {
@@ -68,7 +68,7 @@ namespace Roomie.Desktop.Engine
                 interpreter.WriteEvent(call);
             }
 
-            var mistypedArguments = scope.MistypedArguments(Arguments);
+            var mistypedArguments = scope.FindMistypedArguments(Arguments);
 
             if (mistypedArguments.Any())
             {
