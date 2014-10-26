@@ -196,78 +196,9 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public void WriteToXml(XmlWriter writer)
-        {
-            writer.WriteStartElement("Command");
-            {
-                writer.WriteAttributeString("PluginName", ExtensionName);
-                writer.WriteAttributeString("Group", Group);
-                writer.WriteAttributeString("Name", Name);
-
-                if (!String.IsNullOrEmpty(Description))
-                {
-                    writer.WriteAttributeString("Description", Description);
-                }
-
-                foreach (RoomieCommandArgument argument in Arguments)
-                {
-                    argument.WriteToXml(writer);
-                }
-            }
-            writer.WriteEndElement();
-        }
-
         public IScriptCommand BlankCommandCall()
         {
             return new TextScriptCommand(FullName);
-        }
-
-        public string ToConsoleFriendlyString()
-        {
-            var builder = new StringBuilder();
-
-            builder.Append("Command: ");
-            builder.Append(FullName);
-            builder.AppendLine();
-
-            if (!IsDynamic)
-            {
-                builder.Append("Source: ");
-                builder.Append(Source);
-                builder.AppendLine();
-
-                builder.Append("Version: ");
-                builder.Append(ExtensionVersion);
-                builder.AppendLine();
-            }
-            else
-            {
-                builder.Append("Dynamic Command");
-                builder.AppendLine();
-            }
-
-            builder.Append("Description: ");
-            builder.Append(Description);
-            builder.AppendLine();
-
-            builder.Append("Arguments:");
-
-            if (!Arguments.Any())
-            {
-                builder.Append(" (none)");
-            }
-            else
-            {
-                foreach (var argument in Arguments)
-                {
-                    builder.AppendLine();
-                    builder.Append("\t");
-                    builder.Append(argument);
-                }
-            }
-            builder.AppendLine();
-
-            return builder.ToString();
         }
     }
 }

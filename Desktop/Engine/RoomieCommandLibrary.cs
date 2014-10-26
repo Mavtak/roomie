@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using Roomie.Desktop.Engine.Commands;
 using Roomie.Desktop.Engine.Delegates;
 using Roomie.Desktop.Engine.Exceptions;
 
