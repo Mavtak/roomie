@@ -8,8 +8,6 @@ namespace Roomie.Desktop.Engine
 {
     public class RoomieEngine
     {
-        private const string StartupScriptPath = "Startup.RoomieScript";
-
         //TODO: is the access level of GlobalScope appropriate?
         public RoomieCommandScope GlobalScope { get; private set; }
         public bool PrintCommandCalls;
@@ -61,74 +59,15 @@ namespace Roomie.Desktop.Engine
             SimpleOutputText(RootThread, e.Message);
         }
 
-        #region startup
-
         public void Start()
         {
             EngineState = EngineState.Starting;
 
-            RootThread.WriteEvent("Roomie Engine started.  VROOOOOM! :D");
-            
-            SetInitialVariables();
-            LoadCommands();
-            InitializePlugins();
-            RunUserStartupScript();
+            var startup = new EngineStartup(this);
+            startup.Run();
 
             EngineState = EngineState.Running;
         }
-
-        private void SetInitialVariables()
-        {
-            if (DevelopmentEnvironment)
-            {
-                RootThread.WriteEvent("mmm, I'm in development now.  Be gentle. :'3");
-            }
-
-            GlobalScope.DeclareVariable("Name", "Roomie");
-            GlobalScope.DeclareVariable("Version", Common.LibraryVersion.ToString());
-            GlobalScope.DeclareVariable("Started", DateTime.Now.ToString());
-        }
-
-        private void LoadCommands()
-        {
-            CommandLibrary.AddCommandsFromAssembly(GetType().Assembly);
-            CommandLibrary.AddCommandsFromPluginFolder(AppDomain.CurrentDomain.BaseDirectory);
-        }
-
-        private void InitializePlugins()
-        {
-            foreach (var command in CommandLibrary.StartupTasks)
-            {
-                var newThread = Threads.CreateNewThread(command.ExtensionName + " Plugin Startup");
-
-                newThread.AddCommand(command.BlankCommandCall());
-            }
-        }
-
-        private void RunUserStartupScript()
-        {
-            //TODO: add a startup script search if DevelopmentEnvironment.
-            RootThread.WriteEvent("Searching in \"" + Environment.CurrentDirectory + "\" for \"" + StartupScriptPath + "\"");
-            if (System.IO.File.Exists(StartupScriptPath))
-            {
-                try
-                {
-                    var script = RoomieScript.FromFile(StartupScriptPath);
-                    Threads.AddCommands(script);
-                }
-                catch (RoomieRuntimeException exception)
-                {
-                    RootThread.WriteEvent("I had trouble loading the startup script: " + exception.Message);
-                }
-            }
-            else
-            {
-                //TODO: add a utility function for building single commands
-                RootThread.WriteEvent("No Startup Script Found.  Create 'Startup.RoomieScript' in the working directory to use this feature.");
-            }
-        }
-
-        #endregion
 
         #region accessors
 

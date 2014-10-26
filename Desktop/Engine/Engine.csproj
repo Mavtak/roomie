@@ -118,6 +118,7 @@
     <Compile Include="RoomieCommandArgumentTypes\TimeSpanParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\IntegerParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\StringParameterType.cs" />
+    <Compile Include="EngineStartup.cs" />
     <Compile Include="StartupCommand.cs" />
     <Compile Include="Delegates\TerminalOutputEventArgs.cs" />
     <Compile Include="StringConversionExtensions.cs" />
