@@ -10,10 +10,20 @@ namespace Roomie.Desktop.Engine
         {
             var builder = new StringBuilder();
             builder.Append("{");
-            foreach (string item in items)
+            var first = true;
+
+            foreach (var item in items)
             {
-                builder.Append(item + " ");
+                if (!first)
+                {
+                    builder.Append(", ");
+                }
+
+                first = false;
+
+                builder.Append(item);
             }
+
             builder.Append("}");
             return builder.ToString();
         }
