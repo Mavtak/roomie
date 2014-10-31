@@ -26,7 +26,7 @@ namespace Roomie.Desktop.Engine
             Print("Shutting Down...");
 
             _engine.Threads.ShutDown(); //TODO: what about other thread pools?
-            var shutdownThreads = new ThreadPool(_engine, "Shutdown Tasks");
+            var shutdownThreads = _engine.CreateThreadPool("Shutdown Tasks");
 
             foreach (var command in _engine.CommandLibrary.ShutDownTasks)
             {

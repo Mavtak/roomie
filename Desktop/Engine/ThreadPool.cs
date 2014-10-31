@@ -11,7 +11,7 @@ namespace Roomie.Desktop.Engine
         readonly string _name;
         readonly List<RoomieThread> _threads;
 
-        public ThreadPool(RoomieEngine engine, string name)
+        internal ThreadPool(RoomieEngine engine, string name)
         {
             _engine = engine;
             _name = name;

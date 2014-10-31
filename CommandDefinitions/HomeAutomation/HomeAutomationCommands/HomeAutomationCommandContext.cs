@@ -37,7 +37,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
                 if (!DataStore.Contains(key))
                 {
-                    DataStore.Add(key, new ThreadPool(Engine, "Home Authomation"));
+                    DataStore.Add(key, Engine.CreateThreadPool("Home Authomation"));
                 }
 
                 var value = DataStore[key] as ThreadPool;

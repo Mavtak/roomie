@@ -39,7 +39,7 @@ namespace Roomie.CommandDefinitions.WebHookCommands
             //if (engineCount > 0)
             //    threadPoolName += "(" + engineCount + ")";
 
-            this.threadPool = new ThreadPool(this.roomieController, threadPoolName);
+            this.threadPool = roomieController.CreateThreadPool(threadPoolName);
 
             this.running = false;
             communicator = new WebCommunicator.CommunicatorClient(communicationUrl, accessKey, encryptionKey);

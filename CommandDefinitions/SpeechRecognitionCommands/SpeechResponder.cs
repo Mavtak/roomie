@@ -19,7 +19,7 @@ namespace Roomie.CommandDefinitions.SpeechRecognition
         {
             RegisteredCommands = new Dictionary<string, ScriptCommandList>();
             SpeechRecognizer = new SpeechRecognitionEngine();
-            ThreadPool = new ThreadPool(engine, "Speech Recognizer");
+            ThreadPool = engine.CreateThreadPool("Speech Recognizer");
 
             SpeechRecognizer.SetInputToDefaultAudioDevice();
         }

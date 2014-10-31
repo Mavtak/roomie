@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Roomie.Desktop.Engine.Delegates;
 
 namespace Roomie.Desktop.Engine
@@ -16,6 +17,7 @@ namespace Roomie.Desktop.Engine
 
         //TODO: investigate "public readonly"
         public ThreadPool Threads { get; private set; }
+        private List<ThreadPool> ThreadPools { get; set; }
 
         public event RoomieThreadEventHandler ScriptMessageSent;
         public event EngineStateChangedEventHandler EngineStateChanged;
@@ -25,7 +27,8 @@ namespace Roomie.Desktop.Engine
             _engineState = EngineState.New;
             GlobalScope = new RoomieCommandScope();
             DataStore = new DataStore();
-            Threads = new ThreadPool(this, "Root Threads");
+            ThreadPools = new List<ThreadPool>();
+            Threads = CreateThreadPool("Root Threads");
             CommandLibrary = new RoomieCommandLibrary();
             CommandLibrary.Message += CommandLibrary_Message;
             PrintCommandCalls = false;
@@ -36,6 +39,14 @@ namespace Roomie.Desktop.Engine
         private void CommandLibrary_Message(object sender, Delegates.RoomieCommandLibraryEventArgs e)
         {
             Threads.Print(e.Message);
+        }
+
+        public ThreadPool CreateThreadPool(string name)
+        {
+            var result = new ThreadPool(this, name);
+            ThreadPools.Add(result);
+
+            return result;
         }
 
         public void Start()
