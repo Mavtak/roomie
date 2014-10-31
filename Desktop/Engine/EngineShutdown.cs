@@ -28,19 +28,9 @@ namespace Roomie.Desktop.Engine
 
             ShutDownThreadPools();
 
-            foreach (var command in _engine.CommandLibrary.ShutDownTasks)
-            {
-                Print("Calling " + command.FullName);
+            RunShutDownTasks();
 
-                _threadpool.AddCommands(command.BlankCommandCall());
-            }
-
-            //TODO: fix this
-            var killTime = DateTime.Now.AddSeconds(10);
-            while (_threadpool.IsBusy && DateTime.Now <= killTime)
-            {
-                Thread.Sleep(100);
-            }
+            WaitForShutDownTasks();
 
             _threadpool.ShutDown();
 
@@ -49,6 +39,26 @@ namespace Roomie.Desktop.Engine
             //this thread will die when the function returns, and all threads will be killed.
 
             done();
+        }
+
+        private void RunShutDownTasks()
+        {
+            foreach (var command in _engine.CommandLibrary.ShutDownTasks)
+            {
+                Print("Calling " + command.FullName);
+
+                _threadpool.AddCommands(command.BlankCommandCall());
+            }
+        }
+
+        private void WaitForShutDownTasks()
+        {
+            //TODO: fix this
+            var killTime = DateTime.Now.AddSeconds(10);
+            while (_threadpool.IsBusy && DateTime.Now <= killTime)
+            {
+                Thread.Sleep(100);
+            }
         }
 
         private void ShutDownThreadPools()
