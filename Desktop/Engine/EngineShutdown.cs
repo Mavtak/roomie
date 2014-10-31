@@ -26,17 +26,11 @@ namespace Roomie.Desktop.Engine
 
             Print("Shutting Down...");
 
+            RunShutDownTasks();
+            WaitForShutDownTasks();
             ShutDownThreadPools();
 
-            RunShutDownTasks();
-
-            WaitForShutDownTasks();
-
-            _threadpool.ShutDown();
-
             Print("Done.");
-
-            //this thread will die when the function returns, and all threads will be killed.
 
             done();
         }
