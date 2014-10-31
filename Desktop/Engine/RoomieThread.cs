@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine.WorkQueues;
 
@@ -15,7 +16,7 @@ namespace Roomie.Desktop.Engine
         {
             Engine = engine;
             Name = name;
-            _interpreter = new RoomieCommandInterpreter(this, parentScope ?? Engine.GlobalScope, Name);
+            _interpreter = new RoomieCommandInterpreter(this, parentScope ?? Engine.GlobalScope);
             _workQueue = new ParallelWorkQueue();
         }
 
