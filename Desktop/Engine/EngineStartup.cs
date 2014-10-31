@@ -10,15 +10,17 @@ namespace Roomie.Desktop.Engine
     {
         private const string StartupScriptPath = "Startup.RoomieScript";
         private readonly RoomieEngine _engine;
+        private readonly ThreadPool _startupThreads;
 
         public EngineStartup(RoomieEngine engine)
         {
             _engine = engine;
+            _startupThreads = engine.CreateThreadPool("Startup Threads");
         }
 
         public void Run()
         {
-            _engine.Threads.Print("Roomie Engine started.  VROOOOOM! :D");
+            _startupThreads.Print("Roomie Engine started.  VROOOOOM! :D");
 
             SetInitialVariables();
             LoadCommands();
@@ -61,7 +63,7 @@ namespace Roomie.Desktop.Engine
         {
             foreach (var command in _engine.CommandLibrary.StartupTasks)
             {
-                var newThread = _engine.Threads.CreateNewThread(command.ExtensionName + " Plugin Startup");
+                var newThread = _startupThreads.CreateNewThread(command.ExtensionName + " Plugin Startup");
 
                 newThread.AddCommand(command.BlankCommandCall());
             }
@@ -76,7 +78,7 @@ namespace Roomie.Desktop.Engine
                 try
                 {
                     var script = RoomieScript.FromFile(StartupScriptPath);
-                    _engine.Threads.AddCommands(script);
+                    _startupThreads.AddCommands(script);
                 }
                 catch (RoomieRuntimeException exception)
                 {
@@ -92,7 +94,7 @@ namespace Roomie.Desktop.Engine
 
         private void Print(string text)
         {
-            _engine.Threads.Print(text);
+            _startupThreads.Print(text);
         }
     }
 }
