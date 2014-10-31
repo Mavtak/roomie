@@ -26,7 +26,7 @@ namespace Roomie.Desktop.Engine
 
             Print("Shutting Down...");
 
-            _engine.Threads.ShutDown(); //TODO: what about other thread pools?
+            ShutDownThreadPools();
 
             foreach (var command in _engine.CommandLibrary.ShutDownTasks)
             {
@@ -49,6 +49,14 @@ namespace Roomie.Desktop.Engine
             //this thread will die when the function returns, and all threads will be killed.
 
             done();
+        }
+
+        private void ShutDownThreadPools()
+        {
+            foreach (var threadpool in _engine.ThreadPools)
+            {
+                threadpool.ShutDown();
+            }
         }
 
         private void Print(string text)

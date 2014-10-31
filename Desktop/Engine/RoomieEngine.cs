@@ -17,7 +17,7 @@ namespace Roomie.Desktop.Engine
 
         //TODO: investigate "public readonly"
         public ThreadPool Threads { get; private set; }
-        private List<ThreadPool> ThreadPools { get; set; }
+        internal List<ThreadPool> ThreadPools { get; private set; }
 
         public event RoomieThreadEventHandler ScriptMessageSent;
         public event EngineStateChangedEventHandler EngineStateChanged;
