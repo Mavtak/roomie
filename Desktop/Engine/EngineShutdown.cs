@@ -7,11 +7,12 @@ namespace Roomie.Desktop.Engine
     public class EngineShutdown
     {
         private readonly RoomieEngine _engine;
+        private ThreadPool _threadpool;
         private Thread _thread;
-
         public EngineShutdown(RoomieEngine engine)
         {
             _engine = engine;
+            _threadpool = _engine.CreateThreadPool("Shutdown Tasks");
         }
 
         public void Run(Action done)
@@ -26,23 +27,22 @@ namespace Roomie.Desktop.Engine
             Print("Shutting Down...");
 
             _engine.Threads.ShutDown(); //TODO: what about other thread pools?
-            var shutdownThreads = _engine.CreateThreadPool("Shutdown Tasks");
 
             foreach (var command in _engine.CommandLibrary.ShutDownTasks)
             {
                 Print("Calling " + command.FullName);
 
-                shutdownThreads.AddCommands(command.BlankCommandCall());
+                _threadpool.AddCommands(command.BlankCommandCall());
             }
 
             //TODO: fix this
             var killTime = DateTime.Now.AddSeconds(10);
-            while (shutdownThreads.IsBusy && DateTime.Now <= killTime)
+            while (_threadpool.IsBusy && DateTime.Now <= killTime)
             {
                 Thread.Sleep(100);
             }
 
-            shutdownThreads.ShutDown();
+            _threadpool.ShutDown();
 
             Print("Done.");
 
@@ -53,7 +53,7 @@ namespace Roomie.Desktop.Engine
 
         private void Print(string text)
         {
-            _engine.Threads.Print(text);
+            _threadpool.Print(text);
         }
     }
 }
