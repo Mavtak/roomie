@@ -48,18 +48,7 @@ namespace Roomie.Desktop.Graphical
         {
             if (e.NewState == EngineState.ShutDown && _shuttingDown)
             {
-                var thread = new Thread(() =>
-                    {
-                        Print("Goodbye!");
-                        Thread.Sleep(1000);
-                        Print("I'll miss you!");
-                        Thread.Sleep(500);
-                        Print("Okay goodbye. :'c");
-                        Thread.Sleep(250);
-                        Dispatcher.InvokeAsync(Close);
-                    });
-
-                thread.Start();
+                Dispatcher.InvokeAsync(Close);
             }
         }
 
