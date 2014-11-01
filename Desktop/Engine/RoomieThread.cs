@@ -8,6 +8,7 @@ namespace Roomie.Desktop.Engine
     public class RoomieThread
     {
         public readonly RoomieEngine Engine;
+        public string Id { get; private set; }
         public string Name { get; set; }
         private readonly RoomieCommandInterpreter _interpreter;
         private readonly ParallelWorkQueue _workQueue;
@@ -15,6 +16,7 @@ namespace Roomie.Desktop.Engine
         public RoomieThread(RoomieEngine engine, string name, RoomieCommandScope parentScope)
         {
             Engine = engine;
+            Id = Guid.NewGuid().ToString();
             Name = name;
             _interpreter = new RoomieCommandInterpreter(this, parentScope ?? Engine.GlobalScope);
             _workQueue = new ParallelWorkQueue();
