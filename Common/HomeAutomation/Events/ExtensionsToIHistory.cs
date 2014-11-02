@@ -12,5 +12,13 @@ namespace Roomie.Common.HomeAutomation.Events
 
             return results;
         }
+
+        public static IEnumerable<TEvent> FilterType<TEvent>(this IEnumerable<TEvent> history, IEventType type)
+            where TEvent : class, IEvent
+        {
+            var results = history.Where(x => x.Type.Matches(type));
+
+            return results;
+        }
     }
 }
