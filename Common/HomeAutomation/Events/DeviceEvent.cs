@@ -106,8 +106,7 @@ namespace Roomie.Common.HomeAutomation.Events
 
         public static DeviceEvent PowerSensorValueChanged(IDevice device, IEventSource source)
         {
-            //TODO: more specific event type
-            var result = new DeviceEvent(device, new DeviceStateChanged(), source);
+            var result = new DeviceEvent(device, new DevicePowerSensorValueChanged(), source);
 
             return result;
         }

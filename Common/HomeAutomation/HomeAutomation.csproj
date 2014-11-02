@@ -59,6 +59,7 @@
     <Compile Include="DeviceStateCollectionExtensions.cs" />
     <Compile Include="DeviceStateExtensions.cs" />
     <Compile Include="Events\BinarySensorValueChanged.cs" />
+    <Compile Include="Events\DevicePowerSensorValueChanged.cs" />
     <Compile Include="Events\CurrentActionChanged.cs" />
     <Compile Include="Events\EventTypeParser.cs" />
     <Compile Include="Events\Triggers\WhenTheCurrentActionChangesTrigger.cs" />
