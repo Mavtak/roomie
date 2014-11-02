@@ -62,6 +62,7 @@
     <Compile Include="Attributes\NetworkAttribute.cs" />
     <Compile Include="Attributes\PowerParameterAttribute.cs" />
     <Compile Include="Commands\HomeAutomation\AddDevice.cs" />
+    <Compile Include="Commands\HomeAutomation\SaveDevicePowerEvents.cs" />
     <Compile Include="Commands\HomeAutomation\SetColor.cs" />
     <Compile Include="Commands\HomeAutomation\RegisterCurrentActionChangedCommand.cs" />
     <Compile Include="Commands\HomeAutomation\PollBinarySensor.cs" />
