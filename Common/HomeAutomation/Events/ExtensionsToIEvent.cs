@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Roomie.Common.HomeAutomation.Events
 {
-    public static class ExtensionsToIHistory
+    public static class ExtensionsToIEvent
     {
         public static IEnumerable<TEvent> FilterEntity<TEvent>(this IEnumerable<TEvent> history, IHasName entity)
             where TEvent : class, IEvent

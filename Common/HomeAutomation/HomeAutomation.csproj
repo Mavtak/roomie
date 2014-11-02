@@ -83,7 +83,7 @@
     <Compile Include="Events\DeviceEvent.cs" />
     <Compile Include="Events\DeviceFound.cs" />
     <Compile Include="Events\History.cs" />
-    <Compile Include="Events\ExtensionsToIHistory.cs" />
+    <Compile Include="Events\ExtensionsToIEvent.cs" />
     <Compile Include="Events\IDeviceEvent.cs" />
     <Compile Include="Events\IDeviceHistory.cs" />
     <Compile Include="Events\IHistory.cs" />
