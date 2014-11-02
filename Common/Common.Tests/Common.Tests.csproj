@@ -48,6 +48,7 @@
     <Compile Include="Color\ColorNamesDictionaryTests.cs" />
     <Compile Include="Color\NamedColorTests.cs" />
     <Compile Include="Color\RgbColorTests.cs" />
+    <Compile Include="CsvWriterTests.cs" />
     <Compile Include="Illuminance\IlluminanceParserTests.cs" />
     <Compile Include="Illuminance\LuxIlluminanceTests.cs" />
     <Compile Include="Energy\JoulesEnergyTests.cs" />

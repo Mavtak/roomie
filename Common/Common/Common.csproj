@@ -49,7 +49,10 @@
     <Compile Include="Color\IColor.cs" />
     <Compile Include="Color\NamedColor.cs" />
     <Compile Include="Color\Utilities.cs" />
+    <Compile Include="CsvWriter.cs" />
+    <Compile Include="CsvWriterExtensions.cs" />
     <Compile Include="EnumParser.cs" />
+    <Compile Include="KeyValuePairConverter.cs" />
     <Compile Include="Measurements\Energy\KilowattHoursEnergy.cs" />
     <Compile Include="Measurements\Energy\IEnergy.cs" />
     <Compile Include="Measurements\Energy\JoulesEnergy.cs" />
