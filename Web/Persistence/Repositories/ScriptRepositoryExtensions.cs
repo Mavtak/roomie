@@ -16,10 +16,7 @@ namespace Roomie.Web.Persistence.Repositories
                 };
             }
 
-            var allScripts = repository.List(new ListFilter
-            {
-                SortDirection = SortDirection.Ascending
-            }).Items;
+            var allScripts = repository.List(filter).Items;
 
             var unusedScripts = allScripts.Where(x =>
                 {
@@ -44,9 +41,9 @@ namespace Roomie.Web.Persistence.Repositories
                 }).ToArray();
 
 
-            foreach (var task in allScripts)
+            foreach (var script in unusedScripts)
             {
-                repository.Remove(task);
+                repository.Remove(script);
             }
 
             var result = new CleaningResult(filter, allScripts.Length, unusedScripts.Length);
