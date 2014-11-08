@@ -8,8 +8,8 @@ namespace Roomie.Web.Persistence.Repositories
         public T[] Items { get; internal set; }
         public int Total { get; internal set; }
         public SortDirection Sort { get; internal set; }
-        public int PageNumber { get; internal set; }
-        public int PageSize { get; internal set; }
+        public int Start { get; internal set; }
+        public int Count { get; internal set; }
 
         public Page<TOther> Transform<TOther>(Func<T, TOther> transform)
         {
@@ -20,8 +20,8 @@ namespace Roomie.Web.Persistence.Repositories
                 Items = newItems,
                 Total = Total,
                 Sort = Sort,
-                PageNumber = PageNumber,
-                PageSize = PageSize
+                Start = Start,
+                Count = Count
             };
 
             return result;

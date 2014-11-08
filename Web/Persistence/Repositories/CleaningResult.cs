@@ -15,19 +15,12 @@ namespace Roomie.Web.Persistence.Repositories
             NextFilter = new ListFilter
             {
                 SortDirection = filter.SortDirection,
-                Page = filter.Page
+                Start = filter.Start + Skipped
             };
 
-            if (Deleted == 0)
+            if (Deleted == 0 && Skipped == 0)
             {
-                if (Skipped == 0)
-                {
-                    Done = true;
-                }
-                else
-                {
-                    NextFilter.Page++;
-                }
+                Done = true;
             }
         }
     }

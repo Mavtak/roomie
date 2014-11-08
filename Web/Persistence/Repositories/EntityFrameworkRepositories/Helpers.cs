@@ -13,7 +13,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
                 filter = new ListFilter();
             }
 
-            var page = filter.Page;
+            var offset = filter.Start;
             var count = filter.Count;
             var total = items.Count();
 
@@ -33,15 +33,15 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
                     throw new Exception("Unknown SortDirection " + filter.SortDirection + ".");
             }
 
-            var pagedList = wholeList.Skip((page - 1)*count);
+            var pagedList = wholeList.Skip(offset);
             pagedList = pagedList.Take(count);
             var resultItems = pagedList.ToArray();
 
             var result = new Page<T>
             {
                 Items = resultItems,
-                PageNumber = filter.Page,
-                PageSize = filter.Count,
+                Start = filter.Start,
+                Count = filter.Count,
                 Sort = filter.SortDirection,
                 Total = total
             };

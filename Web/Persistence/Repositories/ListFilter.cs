@@ -7,24 +7,24 @@ namespace Roomie.Web.Persistence.Repositories
         public const int DefaultPageSize = 25;
         public const SortDirection DefaultSortDirection = SortDirection.Descending;
 
-        private int? _page;
+        private int? _start;
         private int? _count;
         private SortDirection? _sortDirection;
 
-        public int Page
+        public int Start
         {
             get
             {
-                if (_page < 1 || _page == null)
+                if (_start < 1 || _start == null)
                 {
-                    return 1;
+                    return 0;
                 }
 
-                return _page.Value;
+                return _start.Value;
             }
             set
             {
-                _page = value;
+                _start = value;
             }
         }
 
