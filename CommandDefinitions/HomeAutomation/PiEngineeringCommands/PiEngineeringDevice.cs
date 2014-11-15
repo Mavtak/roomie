@@ -20,6 +20,13 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
             BackingObject = device;
             IsConnected = true;
             _keypad = new PiEngineeringKeypad(this);
+
+            Reconnect();
+        }
+
+        public void Reconnect()
+        {
+            BackingObject.SetupInterface(false);
         }
 
         #region Device overrides

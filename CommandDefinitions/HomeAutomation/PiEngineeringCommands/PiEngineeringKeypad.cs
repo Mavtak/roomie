@@ -21,7 +21,6 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
 
             _device = device;
 
-            _device.BackingObject.SetupInterface(false);
             _device.BackingObject.SetDataCallback(this, DataCallbackFilterType.callOnNewData);
         }
 
