@@ -2,12 +2,13 @@
 using PIEHidDotNet;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Common.HomeAutomation;
+using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Keypads;
 using Roomie.Common.HomeAutomation.Keypads.Buttons;
 
 namespace Roomie.CommandDefinitions.PiEngineeringCommands
 {
-    public class PiEngineeringDevice : Device
+    public class PiEngineeringDevice : Device, PIEErrorHandler
     {
         public IEnumerable<IKeypadButtonState> Buttons { get; private set; }
 
@@ -18,8 +19,9 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
             : base(network, DeviceType.Keypad, name, location)
         {
             BackingObject = device;
-            IsConnected = true;
             _keypad = new PiEngineeringKeypad(this);
+
+            BackingObject.SetErrorCallback(this);
 
             Reconnect();
         }
@@ -27,7 +29,36 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
         public void Reconnect()
         {
             BackingObject.SetupInterface(false);
+
+            HandleDeviceConnected(BackingObject.Connected);
         }
+
+        private void HandleDeviceConnected(bool connected)
+        {
+            if (IsConnected == connected)
+            {
+                return;
+            }
+
+            IsConnected = connected;
+
+            var @event = connected ? DeviceEvent.Found(this, null) : DeviceEvent.Lost(this, null);
+            AddEvent(@event);
+        }
+
+        #region PIEErrorHandler implementation
+
+        public void HandlePIEHidError(int error, PIEDevice sourceDevice)
+        {
+            if (sourceDevice != BackingObject)
+            {
+                return;
+            }
+
+            HandleDeviceConnected(error != 301 && BackingObject.Connected);
+        }
+
+        #endregion
 
         #region Device overrides
 
