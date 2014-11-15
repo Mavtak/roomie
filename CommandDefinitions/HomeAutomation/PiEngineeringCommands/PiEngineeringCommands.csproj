@@ -42,9 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bank.cs" />
     <Compile Include="BinaryConversions.cs" />
     <Compile Include="Commands\ReconnectDevice.cs" />
     <Compile Include="Commands\RegisterNetwork.cs" />
+    <Compile Include="Led.cs" />
+    <Compile Include="LightStatus.cs" />
     <Compile Include="PiEngineeringDevice.cs" />
     <Compile Include="PiEngineeringKeypad.cs" />
     <Compile Include="PiEngineeringNetwork.cs" />
