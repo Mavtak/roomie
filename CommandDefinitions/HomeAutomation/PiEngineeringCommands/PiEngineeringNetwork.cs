@@ -35,17 +35,17 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
                 return;
             }
 
-            foreach (var piDevice in PIEDevice.EnumeratePIE())
+            var backingObjects = PIEDevice.EnumeratePIE()
+                .Where(x => x.HidUsagePage == 0xc);
+
+            foreach (var backingObject in backingObjects)
             {
-                if (piDevice.HidUsagePage == 0xc)
-                {
-                    var device = new PiEngineeringDevice(this, piDevice)
+                var device = new PiEngineeringDevice(this, backingObject)
                     {
                         Address = (_devices.Count + 1).ToString()
                     };
 
-                    _devices.Add(device);
-                }
+                _devices.Add(device);
             }
         }
 
