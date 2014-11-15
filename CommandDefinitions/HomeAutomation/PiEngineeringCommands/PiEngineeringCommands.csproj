@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryConversions.cs" />
+    <Compile Include="Commands\ReconnectDevice.cs" />
     <Compile Include="Commands\RegisterNetwork.cs" />
     <Compile Include="PiEngineeringDevice.cs" />
     <Compile Include="PiEngineeringKeypad.cs" />
