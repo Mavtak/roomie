@@ -26,8 +26,8 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
                 throw new RoomieRuntimeException("Color \"" + bankString + "\" is not valid");
             }
 
-            var row = (byte) (button[0] - 'A');
-            var column = (byte) (button[1] - '1');
+            var column = (byte) (button[0] - 'A');
+            var row = (byte) (button[1] - '1');
 
             LightStatus status;
             if (!Enum.TryParse(statusString, out status))
