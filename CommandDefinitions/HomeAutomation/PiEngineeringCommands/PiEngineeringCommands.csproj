@@ -44,8 +44,12 @@
   <ItemGroup>
     <Compile Include="Bank.cs" />
     <Compile Include="BinaryConversions.cs" />
+    <Compile Include="Commands\SetLed.cs" />
+    <Compile Include="Commands\SetButtonLight.cs" />
+    <Compile Include="Commands\SetButtonLightIntensity.cs" />
     <Compile Include="Commands\ReconnectDevice.cs" />
     <Compile Include="Commands\RegisterNetwork.cs" />
+    <Compile Include="Commands\SetAllButtonLights.cs" />
     <Compile Include="Led.cs" />
     <Compile Include="LightStatus.cs" />
     <Compile Include="PiEngineeringDevice.cs" />
