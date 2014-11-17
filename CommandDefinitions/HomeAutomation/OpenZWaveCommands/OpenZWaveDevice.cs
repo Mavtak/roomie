@@ -39,7 +39,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             Values = new List<OpenZWaveDeviceValue>();
 
             Address = Id.ToString();
-            IsConnected = true;
 
             Event = new OpenZWaveEvent(this);
 
