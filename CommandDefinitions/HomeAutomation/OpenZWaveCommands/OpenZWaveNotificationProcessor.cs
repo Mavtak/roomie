@@ -91,7 +91,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     break;
 
                 case NotificationType.NodeQueriesComplete:
-                    _network.Log("node queries complete");
+                    Nodification("queries complete", notification);
                     break;
 
                 case NotificationType.NodeRemoved:
