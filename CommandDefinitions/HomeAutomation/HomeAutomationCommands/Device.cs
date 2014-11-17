@@ -93,7 +93,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             Name = state.Name;
             Address = state.Address;
             Location.Update(state.Location);
-            IsConnected = state.IsConnected;
             Type = state.Type;
 
             //TODO: update subdevices?
