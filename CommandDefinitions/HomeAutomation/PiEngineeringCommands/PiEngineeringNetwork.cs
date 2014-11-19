@@ -24,19 +24,31 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
 
         public void Connect()
         {
-            ScanForDevices();
+            ScanForNewDevices();
             Connected();
         }
 
-        public void ScanForDevices()
+        private IEnumerable<PIEDevice> ScanForBackingDevices()
         {
-            if (_devices.Any())
-            {
-                return;
-            }
-
-            var backingObjects = PIEDevice.EnumeratePIE()
+            var result = PIEDevice.EnumeratePIE()
                 .Where(x => x.HidUsagePage == 0xc);
+
+            return result;
+        }
+
+        private IEnumerable<PIEDevice> ScanForNewBackingDevices()
+        {
+            var backingDevices = ScanForBackingDevices();
+            var result = backingDevices
+                .Where(x => !_devices.Any(y => string.Equals(y.BackingObject.Path, x.Path)));
+
+            return result;
+        }
+
+        public IEnumerable<PiEngineeringDevice> ScanForNewDevices()
+        {
+            var backingObjects = ScanForNewBackingDevices();
+            var newDevices = new List<PiEngineeringDevice>();
 
             foreach (var backingObject in backingObjects)
             {
@@ -46,7 +58,10 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
                     };
 
                 _devices.Add(device);
+                newDevices.Add(device);
             }
+
+            return newDevices;
         }
 
         public override Device RemoveDevice()
@@ -59,9 +74,12 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
             throw new NotImplementedException();
         }
 
+        //TODO update this "AddDevice" interface to understand that multiple devices might be added.
         public override Device AddDevice()
         {
-            throw new NotImplementedException();
+            var result = ScanForNewDevices().FirstOrDefault();
+
+            return result;
         }
     }
 }
