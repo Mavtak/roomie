@@ -5,7 +5,6 @@ namespace Roomie.Common.HomeAutomation.Tests
     public class VirtualAddressTests
     {
         //TODO: test "IsValid"
-        //TODO: test that whitespace is trimmed when appropriate
 
         [TestCase("derp", null, null, null, null, "derp", null)]
         [TestCase("Derp", null, null, null, null, "Derp", null)]
@@ -21,8 +20,10 @@ namespace Roomie.Common.HomeAutomation.Tests
         [TestCase("[derp]", null, null, null, null, null, "derp")]
         [TestCase("[123]", null, null, null, null, null, "123")]
         [TestCase("[herp]/derp[boop]", null, null, "herp", null, "derp", "boop")]
+        [TestCase("[herp]/derp [boop]", null, null, "herp", null, "derp", "boop")]
         [TestCase("herp: derp/beep: boop", "herp", "derp", null, "beep", "boop", null)]
         [TestCase("a: b[c]/d: e[f]", "a", "b", "c", "d", "e", "f")]
+        [TestCase("a: b [c]/d: e [f]", "a", "b", "c", "d", "e", "f")]
         public void WorksForValidAddresses(string input, string networkLocation, string networkName, string networkId, string deviceLocation, string deviceName, string deviceId)
         {
             var result = VirtualAddress.Parse(input);
@@ -48,6 +49,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         [TestCase("herp &")]
         [TestCase("a&")]
         [TestCase("&")]
+        [TestCase("a : b [c]")]
         public void FailsForInvalidAddresses(string input)
         {
             var result = VirtualAddress.Parse(input);
