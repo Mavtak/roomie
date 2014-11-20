@@ -8,7 +8,7 @@ namespace Roomie.Common.HomeAutomation
 {
     public class VirtualAddress
     {
-        private const string namePattern = @"[a-z0-9]([ (']*[-a-z0-9._)])*";
+        private const string namePattern = @"[a-z0-9]([ ('&]*[-a-z0-9._)])*";
 
         private const string addressPatttern = @"^"
 

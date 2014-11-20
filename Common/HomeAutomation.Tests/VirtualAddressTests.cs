@@ -11,6 +11,7 @@ namespace Roomie.Common.HomeAutomation.Tests
         [TestCase("Derp", null, null, null, null, "Derp", null)]
         [TestCase("123", null, null, null, null, "123", null)]
         [TestCase("derp (herp)", null, null, null, null, "derp (herp)", null)]
+        [TestCase("herp & derp", null, null, null, null, "herp & derp", null)]
         [TestCase("herp: derp", null, null, null, "herp", "derp", null)]
         [TestCase("herp/derp", null, "herp", null, null, "derp", null)]
         [TestCase("Herp/Derp", null, "Herp", null, null, "Derp", null)]
@@ -44,6 +45,9 @@ namespace Roomie.Common.HomeAutomation.Tests
         [TestCase("a/b/c")]
         [TestCase("herp (derp(")]
         [TestCase(")herp")]
+        [TestCase("herp &")]
+        [TestCase("a&")]
+        [TestCase("&")]
         public void FailsForInvalidAddresses(string input)
         {
             var result = VirtualAddress.Parse(input);
