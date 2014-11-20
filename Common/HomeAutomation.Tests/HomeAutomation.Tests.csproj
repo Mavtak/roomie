@@ -73,6 +73,7 @@
     <Compile Include="Thermostats\ThermostatModeParserTests.cs" />
     <Compile Include="Thermostats\ThermostatFanModeParserTests.cs" />
     <Compile Include="Thermostats\SetpointTypeParserTests.cs" />
+    <Compile Include="VirtualAddressTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
