@@ -58,7 +58,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressParsing.cs" />
     <Compile Include="DataHelpers.cs" />
     <Compile Include="DeviceFake.cs" />
     <Compile Include="DeviceStateExtensionTests.cs" />
