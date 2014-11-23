@@ -52,13 +52,14 @@ namespace Roomie.Common.HomeAutomation
         {
             //TODO: select device by ID
             var results = (from d in deviceStates
-                           where true
+                           let locationMatch = LocationCloseness(d.Location, address.DeviceLocation)
+                           where locationMatch != null
                                //TODO: add networkLocation
                                  && ((address.NetworkName == null) || d.NetworkState.Name == address.NetworkName)
                                  && ((address.NetworkNodeId == null) || d.NetworkState.Address == address.NetworkNodeId)
                                  && ((address.DeviceName == null) || (d.Name == address.DeviceName || d.Address == address.DeviceName))
                                  && ((address.DeviceNodeId == null) || d.Address == address.DeviceNodeId)
-                           orderby LocationCloseness(d.Location, address.DeviceLocation) ascending
+                           orderby locationMatch  ascending
                            select d)
                       .ToList();
 
@@ -79,7 +80,7 @@ namespace Roomie.Common.HomeAutomation
             return results.First();
         }
 
-        private static int LocationCloseness(ILocation location1, string location2)
+        private static int? LocationCloseness(ILocation location1, string location2)
         {
             return location1.CalculateCloseness(new Location(location2));
         }

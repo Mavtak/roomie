@@ -24,26 +24,28 @@ namespace Roomie.Common.HomeAutomation.Tests
         [TestCase("Inside/Upstairs/Living Room/Aquarium/Thermostat", "Aquarium/Thermostat", 3)]
         [TestCase("Inside/Upstairs/Living Room/Aquarium/Thermostat", "Living Room/Thermostat", 3)]
         [TestCase("Inside/Upstairs/Living Room/Aquarium/Thermostat", "Upstairs/Thermostat", 3)]
-        [TestCase("Inside/Upstairs/Living Room/Aquarium/Thermostat", "Outside", 6)]
+        [TestCase("Inside/Upstairs/Living Room/Aquarium/Thermostat", "Outside", null)]
 
         [TestCase("Inside/Upstairs/Thermostat", "Inside/Thermostat", 1)]
         [TestCase("Inside/Upstairs/Thermostat", "Inside/Upstairs/Thermostat", 0)]
-        [TestCase("Inside/Upstairs/Thermostat", "Aquarium/Thermostat", 5)]
-        [TestCase("Inside/Upstairs/Thermostat", "Living Room/Thermostat", 5)]
+        [TestCase("Inside/Upstairs/Thermostat", "Aquarium/Thermostat", null)]
+        [TestCase("Inside/Upstairs/Thermostat", "Living Room/Thermostat", null)]
         [TestCase("Inside/Upstairs/Thermostat", "Upstairs/Thermostat", 1)]
-        [TestCase("Inside/Upstairs/Thermostat", "Outside", 4)]
+        [TestCase("Inside/Upstairs/Thermostat", "Outside", null)]
 
         [TestCase("Inside/Downstairs/Thermostat", "Inside/Thermostat", 1)]
-        [TestCase("Inside/Downstairs/Thermostat", "Inside/Upstairs/Thermostat", 4)]
-        [TestCase("Inside/Downstairs/Thermostat", "Aquarium/Thermostat", 5)]
-        [TestCase("Inside/Downstairs/Thermostat", "Living Room/Thermostat", 5)]
-        [TestCase("Inside/Downstairs/Thermostat", "Upstairs/Thermostat", 5)]
-        [TestCase("Inside/Downstairs/Thermostat", "Outside", 4)]
+        [TestCase("Inside/Downstairs/Thermostat", "Inside/Upstairs/Thermostat", null)]
+        [TestCase("Inside/Downstairs/Thermostat", "Aquarium/Thermostat", null)]
+        [TestCase("Inside/Downstairs/Thermostat", "Living Room/Thermostat", null)]
+        [TestCase("Inside/Downstairs/Thermostat", "Upstairs/Thermostat", null)]
+        [TestCase("Inside/Downstairs/Thermostat", "Outside", null)]
 
         [TestCase("Inside/Upstairs/Thermostat", "Upstairs/Master Bedroom/Master Bathroom/Thermostat", 3)]
         [TestCase("Derp", "derp", 0)]
 
-        public void CalculateClosenessWorks(string locationAFormat, string locationBFormat, int expected)
+        [TestCase("a/b/c", "", 3)]
+
+        public void CalculateClosenessWorks(string locationAFormat, string locationBFormat, int? expected)
         {
             var locationA = new Location(locationAFormat);
             var locationB = new Location(locationBFormat);

@@ -23,9 +23,9 @@ namespace Roomie.Common.HomeAutomation
             return int.MaxValue;
         }
 
-        public static int CalculateCloseness(this IEnumerable<string> sequenceA, IEnumerable<string> sequenceB, StringComparison comparisonType = StringComparison.InvariantCultureIgnoreCase)
+        public static int? CalculateCloseness(this IEnumerable<string> sequenceA, IEnumerable<string> sequenceB, StringComparison comparisonType = StringComparison.InvariantCultureIgnoreCase)
         {
-            var score = 0;
+            int? score = 0;
 
             var a = new Queue<string>(sequenceA);
             var b = new Queue<string>(sequenceB);
@@ -44,7 +44,7 @@ namespace Roomie.Common.HomeAutomation
 
                     if (aDistance == int.MaxValue && bDistance == int.MaxValue)
                     {
-                        break;
+                        return null;
                     }
 
                     if (aDistance < bDistance)
@@ -71,7 +71,7 @@ namespace Roomie.Common.HomeAutomation
             return score;
         }
 
-        public static int CalculateCloseness(this ILocation locationA, ILocation locationB, StringComparison comparisonType = StringComparison.InvariantCultureIgnoreCase)
+        public static int? CalculateCloseness(this ILocation locationA, ILocation locationB, StringComparison comparisonType = StringComparison.InvariantCultureIgnoreCase)
         {
             var sequenceA = locationA.GetParts();
             var sequenceB = locationB.GetParts();
