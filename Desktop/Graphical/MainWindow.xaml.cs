@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using Roomie.Common.ScriptingLanguage;
+using Roomie.Common.ScriptingLanguage.Exceptions;
 using Roomie.Desktop.Engine;
 
 namespace Roomie.Desktop.Graphical
@@ -100,7 +101,19 @@ namespace Roomie.Desktop.Graphical
 
         private void RunInput(bool clearInput = true)
         {
-            var script = ScriptCommandList.FromText(Input.Text);
+            ScriptCommandList script;
+
+            try
+            {
+                script = ScriptCommandList.FromText(Input.Text);
+            }
+            catch (RoomieScriptSyntaxErrorException exception)
+            {
+                MessageBox.Show(exception.Message);
+
+                return;
+            }
+
             if (clearInput)
             {
                 Input.Clear();
