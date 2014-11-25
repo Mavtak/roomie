@@ -25,6 +25,7 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
         public void Connect()
         {
             ScanForNewDevices();
+            Load();
             Connected();
         }
 
