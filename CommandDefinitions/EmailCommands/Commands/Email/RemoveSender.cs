@@ -1,7 +1,8 @@
 ﻿using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
+namespace Roomie.CommandDefinitions.EmailCommands.Commands
 {
+    [Group("Email")]
     [Description("This command unregistered the given sender.")]
     public class RemoveSender : EmailCommand
     {

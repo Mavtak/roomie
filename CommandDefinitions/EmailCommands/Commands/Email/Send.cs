@@ -1,10 +1,10 @@
 ﻿using System;
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
-namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
+namespace Roomie.CommandDefinitions.EmailCommands.Commands
 {
+    [Group("Email")]
     [StringParameter("To")]
     [StringParameter("Subject")]
     [StringParameter("Body")]

@@ -1,8 +1,8 @@
 ﻿using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
-namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
+namespace Roomie.CommandDefinitions.EmailCommands.Commands
 {
+    [Group("Email")]
     [StringParameter("Password")]
     [StringParameter("DisplayName")]
     [Description("This is a shortcut command for Email.RegisterSender where the user is a GoDaddy account.")]

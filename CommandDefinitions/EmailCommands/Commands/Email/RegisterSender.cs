@@ -1,8 +1,9 @@
 ﻿using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.EmailCommands.Commands.Email
+namespace Roomie.CommandDefinitions.EmailCommands.Commands
 {
+    [Group("Email")]
     [StringParameter("Host")]
     [IntegerParameter("Port")]
     [BooleanParameter("UseSSL")]
