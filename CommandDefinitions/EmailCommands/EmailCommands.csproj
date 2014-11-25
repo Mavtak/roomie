@@ -52,12 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Email\RegisterGoDaddySender.cs" />
-    <Compile Include="Commands\Email\PrintStats.cs" />
-    <Compile Include="Commands\Email\RegisterGmailSender.cs" />
-    <Compile Include="Commands\Email\RegisterSender.cs" />
-    <Compile Include="Commands\Email\RemoveSender.cs" />
-    <Compile Include="Commands\Email\Send.cs" />
+    <Compile Include="Commands\RegisterGoDaddySender.cs" />
+    <Compile Include="Commands\PrintStats.cs" />
+    <Compile Include="Commands\RegisterGmailSender.cs" />
+    <Compile Include="Commands\RegisterSender.cs" />
+    <Compile Include="Commands\RemoveSender.cs" />
+    <Compile Include="Commands\Send.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="EmailCommandContext.cs" />
     <Compile Include="Mailer.cs" />
