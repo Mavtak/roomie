@@ -49,6 +49,7 @@
     <Compile Include="Commands\OptimizeNetwork.cs" />
     <Compile Include="Commands\PrintData.cs" />
     <Compile Include="Commands\RegisterNetwork.cs" />
+    <Compile Include="ControllerStateWatcher.cs" />
     <Compile Include="OpenZWaveEvent.cs" />
     <Compile Include="OpenZWaveIlluminanceSensor.cs" />
     <Compile Include="NodeDataEntries\Specific\BinarySensorDataEntry.cs" />
