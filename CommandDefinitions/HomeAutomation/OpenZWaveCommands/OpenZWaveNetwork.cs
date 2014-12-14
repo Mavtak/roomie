@@ -95,7 +95,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         public override Device RemoveDevice()
         {
-            Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RequestNetworkUpdate, true, 0);
+            using (var watcher = new ControllerStateWatcher(this))
+            {
+                Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RequestNetworkUpdate, true, 0);
+                watcher.ProcessChanges();
+            }
 
             return null;
         }
@@ -104,19 +108,33 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             var zWaveDevice = device as OpenZWaveDevice;
 
-            Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveFailedNode, false, zWaveDevice.Id);
+            using (var watcher = new ControllerStateWatcher(this))
+            {
+                Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveFailedNode, false, zWaveDevice.Id);
+                watcher.ProcessChanges();
+            }
+
+            _devices.Remove(zWaveDevice);
         }
 
         public override Device AddDevice()
         {
-            Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.AddDevice, true, 0);
+            using (var watcher = new ControllerStateWatcher(this))
+            {
+                Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.AddDevice, true, 0);
+                watcher.ProcessChanges();
+            }
 
             return null;
         }
 
         public void OptimizePaths(bool returnRouteOptimization)
         {
-            Manager.HealNetwork(HomeId.Value, returnRouteOptimization);
+            using (var stateWatcher = new ControllerStateWatcher(this))
+            {
+                Manager.HealNetwork(HomeId.Value, returnRouteOptimization);
+                stateWatcher.ProcessChanges();
+            }
         }
 
         private static bool optionsConfigured = false;
