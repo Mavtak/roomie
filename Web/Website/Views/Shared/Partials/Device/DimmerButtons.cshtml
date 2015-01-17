@@ -7,12 +7,13 @@
 }@*
 
 
-*@@using (Ajax.BeginForm(
-                    actionName: "Dim",
-                    controllerName: "Device",
+*@@using (Ajax.BeginRouteForm(
+                    routeName: "DefaultApi",
                     routeValues: new
                     {
-                        id = Model.Device.Id
+                        id = Model.Device.Id,
+                        action = "Dim",
+                        httproute = true
                     },
                     ajaxOptions: new AjaxOptions
                     {

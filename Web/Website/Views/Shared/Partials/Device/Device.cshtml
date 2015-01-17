@@ -11,9 +11,11 @@
 
 *@@helper WriteDetail(DeviceModel device, string label, string value, string pollAction)
 {@*
-      *@using (Ajax.BeginForm(pollAction, "Device", new
+      *@using (Ajax.BeginRouteForm("DefaultApi", new
             {
-                Id = device.Id
+                id = device.Id,
+                action = pollAction,
+                httproute = true
             }, null, new
             {
                 @class = "group"

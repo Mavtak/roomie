@@ -17,13 +17,14 @@
       {<text>--</text>}
   }
 @helper SetpointControl(IThermostat thermostat, ThermostatSetpointType type) {
-    using (Ajax.BeginForm(
-        actionName: "SetThermostatSetpoint",
-        controllerName: "Device",
+    using (Ajax.BeginRouteForm(
+        routeName: "DefaultApi",
         routeValues: new
         {
             id = Model.Device.Id,
-            type = type.ToString()
+            action = "SetThermostatSetpoint",
+            type = type.ToString(),
+            httproute = true
         },
         ajaxOptions: new AjaxOptions
         {
@@ -76,12 +77,13 @@
   *@System Mode@*
 *@</div>@*  
 
-*@using (Ajax.BeginForm(
-                    actionName: "SetThermostatMode",
-                    controllerName: "Device",
+*@using (Ajax.BeginRouteForm(
+                    routeName: "DefaultApi",
                     routeValues: new
                     {
-                        id = Model.Device.Id
+                        id = Model.Device.Id,
+                        action = "SetThermostatMode",
+                        httproute = true
                     },
                     ajaxOptions: new AjaxOptions
                     {
@@ -110,12 +112,13 @@
   *@Fan Mode@*
 *@</div>@*  
 
-*@using (Ajax.BeginForm(
-                    actionName: "SetThermostatFanMode",
-                    controllerName: "Device",
+*@using (Ajax.BeginRouteForm(
+                    routeName: "DefaultApi",
                     routeValues: new
                     {
-                        id = Model.Device.Id
+                        id = Model.Device.Id,
+                        action = "SetThermostatFanMode",
+                        httproute = true
                     },
                     ajaxOptions: new AjaxOptions
                     {

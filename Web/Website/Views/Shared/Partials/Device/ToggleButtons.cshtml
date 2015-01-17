@@ -4,12 +4,13 @@
 
 *@<div class="buttonGroup two">@*
 
-*@@using (Ajax.BeginForm(
-            actionName: "PowerOff",
-            controllerName: "Device",
+*@@using (Ajax.BeginRouteForm(
+            routeName: "DefaultApi",
             routeValues: new
                 {
-                    id = Model.Id
+                    id = Model.Id,
+                    action = "PowerOff",
+                    httproute=true
                 },
             ajaxOptions: new AjaxOptions
                 {
@@ -22,13 +23,14 @@
                 }
             )){<button class="button" >Off</button>}@*
 
-*@@using (Ajax.BeginForm(
-            actionName: "PowerOn",
-            controllerName: "Device",
+*@@using (Ajax.BeginRouteForm(
+            routeName: "DefaultApi",
             routeValues: new
-                {
-                    id = Model.Id
-                },
+            {
+                id = Model.Id,
+                action = "PowerOn",
+                httproute = true
+            },
             ajaxOptions: new AjaxOptions
                 {
                     HttpMethod = "Post",

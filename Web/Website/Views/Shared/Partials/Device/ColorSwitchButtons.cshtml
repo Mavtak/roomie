@@ -10,12 +10,13 @@
 }@*
 
 
-*@@using (Ajax.BeginForm(
-                    actionName: "SetColor",
-                    controllerName: "Device",
+*@@using (Ajax.BeginRouteForm(
+                    routeName: "DefaultApi",
                     routeValues: new
                     {
-                        id = Model.Device.Id
+                        id = Model.Device.Id,
+                        action = "SetColor",
+                        httproute = true
                     },
                     ajaxOptions: new AjaxOptions
                     {
