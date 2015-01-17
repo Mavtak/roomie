@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Roomie.Web.Website
 {
@@ -13,6 +15,10 @@ namespace Roomie.Web.Website
             var formatters = config.Formatters;
 
             formatters.Remove(formatters.XmlFormatter);
+
+            formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+            formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            formatters.JsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter { CamelCaseText = true });
         }
 
         public static void Register(HttpConfiguration config)
