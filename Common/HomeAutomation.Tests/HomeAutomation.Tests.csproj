@@ -67,6 +67,7 @@
     <Compile Include="Events\MasterEventHistoryTests.cs" />
     <Compile Include="Events\Utilities.cs" />
     <Compile Include="AssertionHelpers.cs" />
+    <Compile Include="LocationExtensionsTests.cs" />
     <Compile Include="LocationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Thermostats\ThermostatModeParserTests.cs" />

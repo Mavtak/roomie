@@ -89,7 +89,12 @@ namespace Roomie.Common.HomeAutomation
 
         public static bool Equals(this ILocation a, ILocation b)
         {
-            if (b == null)
+            if (a == null && b == null)
+            {
+                return true;
+            }
+
+            if ((a == null) ^ (b == null))
             {
                 return false;
             }
