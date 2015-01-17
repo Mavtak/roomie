@@ -57,11 +57,6 @@ namespace Roomie.Common.HomeAutomation
         {
             var that = obj as ILocation;
 
-            if (obj == null)
-            {
-                return false;
-            }
-
             return LocationExtensions.Equals(this, that);
         }
 

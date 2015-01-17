@@ -89,6 +89,11 @@ namespace Roomie.Common.HomeAutomation
 
         public static bool Equals(this ILocation a, ILocation b)
         {
+            if (b == null)
+            {
+                return false;
+            }
+
             var result = a.GetParts().SequenceEqual(b.GetParts());
 
             return result;
