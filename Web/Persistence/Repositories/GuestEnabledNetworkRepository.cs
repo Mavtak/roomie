@@ -53,7 +53,7 @@ namespace Roomie.Web.Persistence.Repositories
         {
             var primaryNetworks = _networks.Get(user);
             var guestNetworks = _guests.Get(user);
-            var result = primaryNetworks.Union(guestNetworks).ToArray();
+            var result = primaryNetworks.Concat(guestNetworks).ToArray();
 
             return result;
         }

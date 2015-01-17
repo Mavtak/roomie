@@ -32,7 +32,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands
 
             var rows = values.Select(TransformValue).ToArray();
 
-            var rowsAndHeaders = new[] {headers}.Union(rows).ToArray();
+            var rowsAndHeaders = new[] {headers}.Concat(rows).ToArray();
 
             var columnWidths = new int[headers.Length];
 

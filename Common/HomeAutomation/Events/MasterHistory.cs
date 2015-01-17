@@ -40,7 +40,7 @@ namespace Roomie.Common.HomeAutomation.Events
             var deviceMatches = DeviceEvents.GetMatches(filters).Cast<IEvent>();
             var networkEvents = NetworkEvents.GetMatches(filters).Cast<IEvent>();
 
-            var result = deviceMatches.Union(networkEvents);
+            var result = deviceMatches.Concat(networkEvents);
             result = result.OrderBy(x => x.TimeStamp);
             result = result.ToArray();
 
