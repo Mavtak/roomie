@@ -50,95 +50,6 @@ namespace Roomie.Web.Website.Controllers
 
         [HttpPost]
         [WebsiteRestrictedAccess]
-        public ActionResult Dim(int id, int power)
-        {
-            return DeviceAction(id, device => device.DimmerSwitch.SetPower(power));
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult SetColor(int id, string color)
-        {
-            var parsedColor = color.ToColor();
-
-            return DeviceAction(id, device => device.ColorSwitch.SetValue(parsedColor));
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult PowerOn(int id)
-        {
-            return DeviceAction(id, device => device.ToggleSwitch.SetPower(BinarySwitchPower.On));
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult PowerOff(int id)
-        {
-            return DeviceAction(id, device => device.ToggleSwitch.SetPower(BinarySwitchPower.Off));
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult SetThermostatMode(int id, ThermostatMode mode)
-        {
-            return DeviceAction(id, device => device.Thermostat.SetMode(mode));
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult SetThermostatFanMode(int id, ThermostatFanMode mode)
-        {
-            return DeviceAction(id, device => device.Thermostat.Fan.SetMode(mode));
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult SetThermostatSetpoint(int id, ThermostatSetpointType type, string temperature)
-        {
-            var temperatureValue = TemperatureParser.Parse(temperature);
-
-            return DeviceAction(id, device => device.Thermostat.Setpoints.SetSetpoint(type, temperatureValue));
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult PollPowerSensor(int id)
-        {
-            return DeviceAction(id, device => device.PowerSensor.Poll());
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult PollTemperatureSensor(int id)
-        {
-            return DeviceAction(id, device => device.TemperatureSensor.Poll());
-        }
-
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult PollHumiditySensor(int id)
-        {
-            return DeviceAction(id, device => device.HumiditySensor.Poll());
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult PollIlluminanceSensor(int id)
-        {
-            return DeviceAction(id, device => device.IlluminanceSensor.Poll());
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult PollBinarySensor(int id)
-        {
-            return DeviceAction(id, device => device.BinarySensor.Poll());
-        }
-
-        [HttpPost]
-        [WebsiteRestrictedAccess]
         public ActionResult Edit(int id, string name, string location, string type)
         {
             var device = this.SelectDevice(id);
@@ -247,22 +158,6 @@ namespace Roomie.Web.Website.Controllers
             var devices = Persistence.Examples.Devices;
 
             return View("Index", devices);
-        }
-
-        private ActionResult DeviceAction(int id, Action<DeviceModel> action)
-        {
-            var device = this.SelectDevice(id);
-
-            action(device);
-
-            Database.SaveChanges();
-
-            return Json(new
-            {
-                success = true,
-                id = id
-            }
-            );
         }
     }
 }
