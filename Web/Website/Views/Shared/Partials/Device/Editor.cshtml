@@ -26,14 +26,17 @@ IEnumerable<SelectListItem> types(Roomie.Common.HomeAutomation.DeviceType select
 }@*
 
 
-*@@using (Html.BeginForm(
+*@@using (Ajax.BeginForm(
     actionName: "Edit",
     controllerName: "Device",
     routeValues: new
     {
         id = Model.Id
     },
-    method: FormMethod.Post,
+    ajaxOptions: new AjaxOptions
+    {
+        HttpMethod = "Post"
+    },
     htmlAttributes: new
     {
         @class = "data"
