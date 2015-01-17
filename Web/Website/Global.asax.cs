@@ -22,6 +22,7 @@ namespace Roomie.Web.Website
             Database.SetInitializer<EntityFrameworkRoomieDatabaseBackend>(new RoomieDatabaseInitializer());
             AreaRegistration.RegisterAllAreas();
 
+            WebApiConfig.ConfigureSerialization(GlobalConfiguration.Configuration);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

@@ -8,6 +8,13 @@ namespace Roomie.Web.Website
 {
     public static class WebApiConfig
     {
+        public static void ConfigureSerialization(HttpConfiguration config)
+        {
+            var formatters = config.Formatters;
+
+            formatters.Remove(formatters.XmlFormatter);
+        }
+
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
