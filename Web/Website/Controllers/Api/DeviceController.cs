@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Http;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Database;
-using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api
@@ -11,40 +10,28 @@ namespace Roomie.Web.Website.Controllers.Api
     [AutoSave]
     public class DeviceController : RoomieBaseApiController
     {
-        // GET api/values
-        public IEnumerable<SerializedDevice> Get()
+        public IEnumerable<IDeviceState> Get()
         {
             var devices = Database.GetDevicesForUser(User);
+            var result = devices.Select(GetSerializableVersion);
 
-            return SerializedDevice.Convert(devices);
-            
+            return result;
         }
 
-        // GET api/values/5
-        public SerializedDevice Get(int id)
+        public IDeviceState Get(int id)
         {
             var device = this.SelectDevice(id);
+            var result = GetSerializableVersion(device);
 
-            return SerializedDevice.Convert(device);
+            return result;
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        private static IDeviceState GetSerializableVersion(IDeviceState device)
         {
-            throw new NotImplementedException();
-        }
+            var result = ReadOnlyDeviceState.CopyFrom(device)
+                .NewWithNetwork(null);
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-            throw new NotImplementedException();
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-            var device = this.SelectDevice(id);
-            Database.Devices.Remove(device);
+            return result;
         }
     }
 }
