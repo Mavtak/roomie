@@ -26,26 +26,6 @@ namespace Roomie.Web.Persistence.Models
             Setpoints = new ThermostatSetpointModel(_device);
         }
 
-        public void PollCurrentAction()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PollMode()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PollSupportedModes()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetMode(ThermostatMode mode)
-        {
-            _device.DoCommand("SetThermostatMode", "ThermostatMode", mode.ToString());
-        }
-
         internal void Update(IThermostatState data)
         {
             Core.Update(data.CoreState ?? ReadOnlyThermostatCoreState.Blank());
