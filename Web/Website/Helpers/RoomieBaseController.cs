@@ -103,22 +103,6 @@ namespace Roomie.Web.Website.Helpers
             }
         }
 
-        protected void addTask(ComputerModel computer, string origin, string scriptText)
-        {
-            var task = new TaskModel
-            {
-                Owner = User,
-                Target = computer,
-                Origin = origin,
-                Script = new ScriptModel
-                {
-                    Mutable = false,
-                    Text = scriptText
-                }
-            };
-            Database.Tasks.Add(task);
-        }
-
         protected override void Dispose(bool disposing)
         {
             Database.Dispose();

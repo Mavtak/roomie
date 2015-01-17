@@ -84,5 +84,25 @@ namespace Roomie.Web.Website.Helpers
 
             return task;
         }
+
+        public static void AddTask(this IRoomieController controller, ComputerModel computer, string origin, string scriptText)
+        {
+            var database = controller.Database;
+            var user = controller.User;
+
+            var task = new TaskModel
+            {
+                Owner = user,
+                Target = computer,
+                Origin = origin,
+                Script = new ScriptModel
+                {
+                    Mutable = false,
+                    Text = scriptText
+                }
+            };
+
+            database.Tasks.Add(task);
+        }
     }
 }

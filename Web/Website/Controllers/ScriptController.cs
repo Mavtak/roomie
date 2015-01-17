@@ -132,7 +132,7 @@ namespace Roomie.Web.Website.Controllers
             var savedScript = this.SelectSavedScript(id);
             var computer = this.SelectComputer(computerId);
 
-            addTask(
+            this.AddTask(
                 computer: computer,
                 origin: "Scripts Menu",
                 scriptText: savedScript.Script.Text
