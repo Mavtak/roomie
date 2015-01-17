@@ -25,7 +25,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void SetValue(IColor color)
         {
-            _device.DoCommand("HomeAutomation.SetColor Device=\"{0}\" Color=\"{1}\"", color.ToHexString());
+            _device.DoCommand("SetColor", "Color", color.ToHexString());
         }
 
         public void Poll()

@@ -20,11 +20,11 @@ namespace Roomie.Web.Persistence.Models
             switch (power)
             {
                 case BinarySwitchPower.On:
-                    _device.DoCommand("HomeAutomation.PowerOn Device=\"{0}\"");
+                    _device.DoCommand("PowerOn");
                     break;
 
                 case BinarySwitchPower.Off:
-                    _device.DoCommand("HomeAutomation.PowerOff Device=\"{0}\"");
+                    _device.DoCommand("PowerOff");
                     break;
             }
         }

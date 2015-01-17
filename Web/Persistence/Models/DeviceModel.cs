@@ -64,7 +64,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void Poll()
         {
-            this.DoCommand("HomeAutomation.PollDevice Device=\"{0}\"");
+            this.DoCommand("PollDevice");
         }
 
         public void Update(IDeviceState state, bool fromDatabase = false)

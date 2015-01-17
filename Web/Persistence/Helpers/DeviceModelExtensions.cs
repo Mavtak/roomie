@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Models;
 
@@ -6,11 +7,9 @@ namespace Roomie.Web.Persistence.Helpers
 {
     internal static class DeviceModelExtensions
     {
-        public static void DoCommand(this DeviceModel device, string command, params string[] moreParams)
+        public static void DoCommand(this DeviceModel device, string name, params string[] additionalData)
         {
-            var deviceAddress = device.BuildVirtualAddress(true, true);
-            var commandParameters = new []{deviceAddress}.Union(moreParams).ToArray();
-            command = string.Format(command, commandParameters);
+            var command = BuildCommand(device, name, additionalData);
 
             var network = device.Network;
             var user = network.Owner;
@@ -32,6 +31,42 @@ namespace Roomie.Web.Persistence.Helpers
             var tasks = user.Tasks;
 
             tasks.Add(task);
+        }
+
+        public static string BuildCommand(this DeviceModel device, string name, params string[] additionalData)
+        {
+            var deviceAddress = device.BuildVirtualAddress(true, true);
+            var commandData = new []{"Device", deviceAddress}.Concat(additionalData).ToArray();
+
+            var command = new StringBuilder();
+
+            command.Append("HomeAutomation.");
+            command.Append(name);
+
+            var key = true;
+
+            foreach (var entry in commandData)
+            {
+                if (key)
+                {
+                    command.Append(" ");
+                }
+                else
+                {
+                    command.Append("=\"");
+                }
+
+                command.Append(entry);
+
+                if (!key)
+                {
+                    command.Append("\"");
+                }
+
+                key = !key;
+            }
+
+            return command.ToString();
         }
     }
 }

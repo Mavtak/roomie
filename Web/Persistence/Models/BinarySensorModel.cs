@@ -21,7 +21,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void Poll()
         {
-            _device.DoCommand("HomeAutomation.PollBinarySensor Device=\"{0}\"");
+            _device.DoCommand("PollBinarySensor");
         }
 
         public void Update(IBinarySensorState state)

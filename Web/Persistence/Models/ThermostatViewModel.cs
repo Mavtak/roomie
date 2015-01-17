@@ -43,7 +43,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void SetMode(ThermostatMode mode)
         {
-            _device.DoCommand("HomeAutomation.SetThermostatMode Device=\"{0}\" ThermostatMode=\"{1}\"", mode.ToString());
+            _device.DoCommand("SetThermostatMode", "ThermostatMode", mode.ToString());
         }
 
         internal void Update(IThermostatState data)

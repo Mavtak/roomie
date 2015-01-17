@@ -72,7 +72,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void SetSetpoint(ThermostatSetpointType setpointType, ITemperature temperature)
         {
-            _device.DoCommand("HomeAutomation.SetSetpoint Device=\"{0}\" Setpoint=\"{1}\" Temperature=\"{2}\"", setpointType.ToString(), temperature.ToString());
+            _device.DoCommand("SetSetpoint", "Setpoint", setpointType.ToString(), "Temperature", temperature.ToString());
         }
 
         public void Add(ThermostatSetpointType setpoint, ITemperature temperature)

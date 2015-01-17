@@ -28,25 +28,25 @@ namespace Roomie.Web.Persistence.Models
 
             if (type.IsAssignableFrom(typeof(IPower)))
             {
-                _device.DoCommand("HomeAutomation.PollPower Device=\"{0}\"");
+                _device.DoCommand("PollPower");
                 return;
             }
 
             if (type.IsAssignableFrom(typeof(ITemperature)))
             {
-                _device.DoCommand("HomeAutomation.PollTemperature Device=\"{0}\"");
+                _device.DoCommand("PollTemperature");
                 return;
             }
 
             if (type.IsAssignableFrom(typeof(IHumidity)))
             {
-                _device.DoCommand("HomeAutomation.PollHumidity Device=\"{0}\"");
+                _device.DoCommand("PollHumidity");
                 return;
             }
 
             if (type.IsAssignableFrom(typeof(IIlluminance)))
             {
-                _device.DoCommand("HomeAutomation.PollIlluminance Device=\"{0}\"");
+                _device.DoCommand("PollIlluminance");
                 return;
             }
 

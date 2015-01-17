@@ -35,7 +35,7 @@ namespace Roomie.Web.Persistence.Models
 
         public void SetMode(ThermostatFanMode mode)
         {
-            _device.DoCommand("HomeAutomation.SetThermostatFanMode Device=\"{0}\" FanMode=\"{1}\"", mode.ToString());
+            _device.DoCommand("SetThermostatFanMode", "FanMode", mode.ToString());
         }
 
         public void Update(IThermostatFanState state)
