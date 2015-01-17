@@ -42,6 +42,34 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
+        public void Put(int id, [FromBody] DeviceUpdateModel update)
+        {
+            update = update ?? new DeviceUpdateModel();
+
+            var device = this.SelectDevice(id);
+
+            if (update.Name != null)
+            {
+                device.Name = update.Name;
+            }
+
+            if (update.Location != null)
+            {
+                device.Location = Database.GetDeviceLocation(User, update.Location);
+            }
+
+            if (update.Type != null)
+            {
+                device.Type = update.Type;
+            }
+
+            this.AddTask(
+                computer: device.Network.AttatchedComputer,
+                origin: "RoomieBot",
+                scriptText: "HomeAutomation.SyncWithCloud Network=\"" + device.Network.Address + "\""
+            );
+        }
+
         public void Post(int id, string action, [FromBody] DeviceActionOptions options,
             [FromUri] string color = null,
             [FromUri] string mode = null,
