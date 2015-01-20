@@ -4,7 +4,7 @@ namespace Roomie.Desktop.Engine.WorkQueues
 {
     public class WorkQueue
     {
-        private Queue<WorkQueueItem> _workQueue;
+        private readonly Queue<WorkQueueItem> _workQueue;
 
         public WorkQueue()
         {

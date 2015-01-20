@@ -4,9 +4,9 @@ namespace Roomie.Desktop.Engine.WorkQueues
 {
     public class ParallelWorkQueue
     {
-        private Thread _thread;
-        private WorkQueue _workQueue;
-        private AutoResetEvent _event;
+        private readonly Thread _thread;
+        private readonly WorkQueue _workQueue;
+        private readonly AutoResetEvent _event;
 
         public ParallelWorkQueue()
         {

@@ -10,7 +10,7 @@ namespace Roomie.Desktop.Engine.WorkQueues
         private WorkQueueItemResult _result;
         private readonly Type[] _retryExceptions;
         private uint _tries;
-        private ManualResetEvent _event;
+        private readonly ManualResetEvent _event;
 
         public WorkQueueItemResult Result
         {
