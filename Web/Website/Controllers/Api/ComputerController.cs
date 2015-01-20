@@ -53,12 +53,16 @@ namespace Roomie.Web.Website.Controllers.Api
                 Id = device.Id,
                 LastPing = device.LastPing,
                 LastScript = device.LastScript,
-                Name = device.Name,
-                Owner = new UserModel
+                Name = device.Name
+            };
+
+            if (device.Owner != null)
+            {
+                result.Owner = new UserModel
                 {
                     Id = device.Owner.Id
-                }
-            };
+                };
+            }
 
             return result;
         }
