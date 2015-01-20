@@ -32,6 +32,8 @@ namespace Roomie.Desktop.Engine
 
             Print("Done.");
 
+            ShutDownThreadPools();
+
             done();
         }
 
