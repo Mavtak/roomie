@@ -10,6 +10,7 @@ using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api
@@ -18,7 +19,7 @@ namespace Roomie.Web.Website.Controllers.Api
     [AutoSave]
     public class DeviceController : RoomieBaseApiController
     {
-        public IEnumerable<IDeviceState> Get()
+        public IEnumerable<DeviceModel> Get()
         {
             var devices = Database.GetDevicesForUser(User);
             var result = devices.Select(GetSerializableVersion);
@@ -26,18 +27,10 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public IDeviceState Get(int id)
+        public DeviceModel Get(int id)
         {
             var device = this.SelectDevice(id);
             var result = GetSerializableVersion(device);
-
-            return result;
-        }
-
-        private static IDeviceState GetSerializableVersion(IDeviceState device)
-        {
-            var result = ReadOnlyDeviceState.CopyFrom(device)
-                .NewWithNetwork(null);
 
             return result;
         }
@@ -144,6 +137,18 @@ namespace Roomie.Web.Website.Controllers.Api
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        private static DeviceModel GetSerializableVersion(DeviceModel device)
+        {
+            var result = new DeviceModel
+            {
+                Id = device.Id
+            };
+
+            result.Update(device);
+
+            return result;
         }
     }
 }
