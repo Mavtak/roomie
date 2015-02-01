@@ -6,14 +6,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
     public class OpenZWaveDimmerSwitch : IMultilevelSwitch
     {
+        private OpenZWaveDevice _device;
         private SwitchMultilevelDataEntry _dataEntry;
 
         public OpenZWaveDimmerSwitch(OpenZWaveDevice device)
         {
+            _device = device;
             _dataEntry = new SwitchMultilevelDataEntry(device);
-
-            //TODO: only set max power if actually a dimmer switch
-            MaxPower = 99;
         }
 
         internal bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)
@@ -35,7 +34,18 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
-        public int? MaxPower { get; private set; }
+        public int? MaxPower
+        {
+            get
+            {
+                if (_device.Type != DeviceType.MultilevelSensor)
+                {
+                    return null;
+                }
+
+                return 99;
+            }
+        }
 
         public void Poll()
         {
