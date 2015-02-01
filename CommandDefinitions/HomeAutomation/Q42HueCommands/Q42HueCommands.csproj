@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ColorLoop.cs" />
     <Compile Include="Commands\PushNames.cs" />
     <Compile Include="Commands\RegisterNetwork.cs" />
     <Compile Include="Commands\UpdateList.cs" />
