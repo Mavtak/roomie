@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace Roomie.Web.Website
 {
@@ -19,6 +20,7 @@ namespace Roomie.Web.Website
             formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             formatters.JsonFormatter.SerializerSettings.Converters.Add(new StringEnumConverter { CamelCaseText = true });
+            formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
 
         public static void Register(HttpConfiguration config)
