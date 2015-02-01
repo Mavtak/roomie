@@ -43,6 +43,11 @@ namespace Q42HueCommands
             HueNetwork.UpdateDevice(this);
         }
 
+        internal void SetHueName(string name)
+        {
+            HueNetwork.SetLightName(BackingObject.Id, name);
+        }
+
         internal void UpdateBackingObject(Light newBackingObject)
         {
             if (BackingObject.Id != newBackingObject.Id)

@@ -81,6 +81,12 @@ namespace Q42HueCommands
             SendCommand(command, devices.Select(x => x.Address));
         }
 
+        internal void SetLightName(string id, string name)
+        {
+            var task = _client.SetLightNameAsync(id, name);
+            task.Wait();
+        }
+
         internal void UpdateDevice(Q42HueDevice device)
         {
             var id = device.BackingObject.Id;
