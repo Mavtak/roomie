@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http.Filters;
 namespace Roomie.Web.Website.Helpers
 {
@@ -18,7 +17,20 @@ namespace Roomie.Web.Website.Helpers
 
             if (controller.User == null)
             {
-                throw new HttpException(403, "Access Denied.  Please sign in.");
+                //TODO: define and use static "error" object type
+                var errorObject = new
+                {
+                    Error = new
+                    {
+                        Message = "Access denied.  Please sign in."
+                    }
+                };
+
+                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
+                {
+                    //TODO: get MediaTypeFormatter from actionContext
+                    Content = new ObjectContent(typeof (object), errorObject, actionContext.ControllerContext.Configuration.Formatters.JsonFormatter)
+                };
             }
 
             base.OnActionExecuting(actionContext);
