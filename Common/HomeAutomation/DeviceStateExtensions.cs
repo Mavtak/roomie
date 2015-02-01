@@ -38,14 +38,13 @@ namespace Roomie.Common.HomeAutomation
             {
                 result = device.KeypadState.Describe();
             }
-            else if (!device.Type.CanControl || !device.Type.CanPoll)
-            {
-                result = "n/a";
-            }
-
-            if (result == null)
+            else if (device.Type == DeviceType.Unknown)
             {
                 result = "?";
+            }
+            else
+            {
+                result = "n/a";
             }
 
             if (device.IsConnected != true)

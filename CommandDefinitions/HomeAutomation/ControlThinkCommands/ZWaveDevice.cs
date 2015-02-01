@@ -45,7 +45,7 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             _binarySensor = new ZWaveBinarySensor(this);
             _temperatureSensor = new ZWaveTemperatureSensor(this);
 
-            if (Type.CanDim)
+            if (Type == DeviceType.MultilevelSwitch || Type == DeviceType.Unknown)
             {
                 _dimmerSwitch.MaxPower = 99;
             }

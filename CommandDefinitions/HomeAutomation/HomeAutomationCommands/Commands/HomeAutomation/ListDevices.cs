@@ -46,7 +46,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             {
                 var address = device.BuildVirtualAddress(false, false);
 
-                if (poll && device.Type.CanPoll)
+                if (poll)
                 {
                     try
                     {

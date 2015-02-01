@@ -40,7 +40,7 @@ namespace Roomie.Common.HomeAutomation
             }
         }
 
-        public IEnumerable<string> Names
+        private IEnumerable<string> Names
         {
             get
             {
@@ -94,33 +94,6 @@ namespace Roomie.Common.HomeAutomation
             get
             {
                 return types.Values;
-            }
-        }
-
-        //TODO: move this to IDeviceActions
-        public bool CanDim
-        {
-            get
-            {
-                return this == MultilevelSwitch || this == Unknown;
-            }
-        }
-
-        //TODO: move this to IDeviceActions
-        public bool CanControl
-        {
-            get
-            {
-                return this != Controller && this != Relay && this != BinarySensor && this != Keypad;
-            }
-        }
-
-        //TODO: move this to IDeviceActions
-        public bool CanPoll
-        {
-            get
-            {
-                return CanControl || Equals(Thermostat);
             }
         }
 
