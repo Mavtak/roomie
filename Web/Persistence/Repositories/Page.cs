@@ -5,11 +5,11 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public class Page<T>
     {
-        public T[] Items { get; internal set; }
         public int Total { get; internal set; }
         public SortDirection Sort { get; internal set; }
         public int Start { get; internal set; }
         public int Count { get; internal set; }
+        public T[] Items { get; internal set; }
 
         public Page<TOther> Transform<TOther>(Func<T, TOther> transform)
         {
