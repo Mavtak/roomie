@@ -48,7 +48,8 @@ namespace Roomie.Web.Website.Controllers.Api
             {
                 result.Target = new ComputerModel
                 {
-                    Id = task.Target.Id
+                    Id = task.Target.Id,
+                    Name = task.Target.Name
                 };
             }
 
