@@ -52,7 +52,7 @@ namespace Roomie.Web.Website.Controllers.Api
                 };
             }
 
-            return task;
+            return result;
         }
     }
 }
