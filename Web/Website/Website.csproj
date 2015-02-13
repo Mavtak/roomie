@@ -152,6 +152,7 @@
     <Content Include="content\scriptsTests\angular\common\keyValue.spec.js" />
     <Content Include="content\scriptsTests\angular\tasks\received.spec.js" />
     <Content Include="content\Scripts\angular\common\widgetDataSection.js" />
+    <Content Include="content\Scripts\angular\routing.js" />
     <Content Include="content\Scripts\Libraries\angular-1.3.13.min.js" />
     <Content Include="content\Scripts\angular\common\keyValue.js" />
     <Content Include="content\Scripts\angular\common\widget.js" />
