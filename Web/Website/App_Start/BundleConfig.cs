@@ -15,6 +15,7 @@ namespace Roomie.Web.Website
         private const string bundlesPath = "~/content/";
         public const string StyleBundlePath = bundlesPath + "styles.css";
         public const string ScriptBundlePath = bundlesPath + "scripts.js";
+        public const string AngularScriptBundlePath = bundlesPath + "angularScripts.js";
 
         private const string ResourceStrategyKey = "ResourceStrategy";
         private const string AlwaysInline = "inline";
@@ -27,6 +28,7 @@ namespace Roomie.Web.Website
 
             bundleStyles(bundles);
             bundleScripts(bundles);
+            bundleAngularScripts(bundles);
             
             //BundleTable.EnableOptimizations = true;
         }
@@ -72,6 +74,17 @@ namespace Roomie.Web.Website
             bundles.Add(bundle);
         }
 
+        private static void bundleAngularScripts(BundleCollection bundles)
+        {
+            var scriptDirectory = "~/content/Scripts/";
+            
+            var bundle = new ScriptBundle(AngularScriptBundlePath)
+                .IncludeDirectory(scriptDirectory + "angular", "*.js", true)
+                ;
+
+            bundles.Add(bundle);
+        }
+
         public static IHtmlString RenderStyles(this HtmlHelper htmlHelper)
         {
             return RenderBundle(htmlHelper, StyleBundlePath, false);
@@ -80,6 +93,11 @@ namespace Roomie.Web.Website
         public static IHtmlString RenderScripts(this HtmlHelper htmlHelper)
         {
             return RenderBundle(htmlHelper, ScriptBundlePath, true);
+        }
+
+        public static IHtmlString RenderAngularScripts(this HtmlHelper htmlHelper)
+        {
+            return RenderBundle(htmlHelper, AngularScriptBundlePath, true);
         }
 
         private static IHtmlString RenderBundle(this HtmlHelper htmlHelper, string bundlePath, bool javaScript)
