@@ -3,7 +3,11 @@
     margin-top: 5px;
 }
 
-#content > :first-child
+#content > :first-child,
+#content > :first-child > :first-child.widget,
+#content > :first-child > :first-child > :first-child.widget,
+#content > :first-child > :first-child > :first-child > :first-child.widget,
+#content > :first-child > :first-child > :first-child > :first-child > :first-child.widget
 {
     margin-top: 0;
     padding: 0;
