@@ -5,6 +5,12 @@ module.run(['$rootScope', '$state', function ($rootScope, $state) {
 }]);
 
 module.config(['$stateProvider', function ($stateProvider) {
+  $stateProvider.state('devices', {
+    url: '/devices',
+    controller: 'DevicesController',
+    template: '<device-widget device="device" ng-repeat="device in page.items"></device-widget>'
+  });
+
   $stateProvider.state('tasks', {
     url: '/tasks?start&count',
     controller: 'TasksController',
