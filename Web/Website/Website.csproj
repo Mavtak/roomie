@@ -174,6 +174,7 @@
     <Content Include="content\Scripts\DeviceIndex.js" />
     <Content Include="content\Scripts\CreateNamespace.js" />
     <Content Include="content\Scripts\Libraries\angular-ui-router-0.2.13.min.js" />
+    <Content Include="content\Scripts\Libraries\lodash-3.4.0.min.js" />
     <Content Include="content\Scripts\Notifications.js" />
     <Content Include="content\Scripts\SlideMenu.js" />
     <Content Include="content\Scripts\SoftNavigate.js" />
