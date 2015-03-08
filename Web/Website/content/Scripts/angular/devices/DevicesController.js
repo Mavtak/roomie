@@ -70,7 +70,14 @@ module.controller('DevicesController', ['$http', '$scope', '$timeout', function(
   }
 
   function applyUpdate(original, update) {
-    //todo: copy updated data from update to original
+    //TODO: delete data from original when it makes sense (functions on original should be preserved)
+    //TODO: decide array behavior (which might be context dependent)
+
+    _.merge(original, update, function (a, b) {
+      if (typeof a === 'object' && typeof b === 'object') {
+        return _.merge(a, b);
+      }
+    });
   }
 
 }]);
