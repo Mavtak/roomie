@@ -22,6 +22,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     });
 
     data.run();
+
+    $scope.$on('$destroy', function () {
+      data.stop();
+    });
   }
   
   function setFunctions(device) {
