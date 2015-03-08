@@ -1,24 +1,42 @@
 ﻿var module = angular.module('roomie.tasks');
 
-module.controller('TasksController', ['$http', '$scope', function ($http, $scope) {
+module.controller('TasksController', ['$http', '$scope', 'ManualPollingUpdater', function($http, $scope, ManualPollingUpdater) {
 
-  var start = 0;
-  var count = 10;
-  
-  if (typeof $scope.$state.params.start !== 'undefined') {
-    start = $scope.$state.params.start;
-  }
-  
-  if (typeof $scope.$state.params.count !== "undefined") {
-    count = $scope.$state.params.count;
+
+  initializeScope();
+  connectData();
+
+  function initializeScope() {
+    $scope.page = {
+      items: []
+    };
   }
 
-  $http.get('/api/task?start=' + start + '&count=' + count).success(function(page) {
-    $scope.page = page;
-    for (var i = 0; i < $scope.page.items.length; i++) {
-      processTask($scope.page.items[i]);
+  function connectData() {
+    //TODO: move paging into ManualPoller
+    var start = 0;
+    var count = 10;
+
+    if (typeof $scope.$state.params.start !== 'undefined') {
+      start = $scope.$state.params.start;
     }
-  });
+
+    if (typeof $scope.$state.params.count !== "undefined") {
+      count = $scope.$state.params.count;
+    }
+
+    var data = new ManualPollingUpdater({
+      url: '/api/task?start=' + start + '&count=' + count,
+      originals: $scope.page.items,
+      setFunctions: processTask
+    });
+
+    data.run()
+      .then(function() {
+        console.log('done');
+        console.log($scope.page.items);
+      });
+  }
 
   function processTask(task) {
     if (task.expiration) {
