@@ -5,15 +5,21 @@ module.factory('AutomaticPollingUpdater', ['$timeout', 'ManualPollingUpdater', f
   return function AutomaticPollingUpdater(options) {
     var pollingUpdater = new ManualPollingUpdater(options);
 
-    this.run = function() {
-      forever(function() {
-        return pollingUpdater.run()
+    var running;
+
+    this.run = function () {
+      running = true;
+
+      forever(function () {
+        if (running) {
+          return pollingUpdater.run()
           .then(wait);
+        }
       });
     };
 
     this.stop = function() {
-      //TODO: write me!
+      running = false;
     };
 
     function forever(promiseFactory) {
