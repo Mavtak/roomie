@@ -18,7 +18,7 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
         return items;
       },
       originals: $scope.page.items,
-      setFunctions: setFunctions
+      ammendOriginal: setFunctions
     });
 
     data.run();

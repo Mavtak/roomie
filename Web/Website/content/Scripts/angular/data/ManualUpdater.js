@@ -4,7 +4,7 @@ module.factory('ManualUpdater', [function() {
 
   return function ManualUpdater(options) {
     var originals = options.originals;
-    var setFunctions = options.setFunctions;
+    var ammendOriginal = options.ammendOriginal;
 
     this.run = function(updates) {
       for (var i = 0; i < updates.length; i++) {
@@ -24,7 +24,7 @@ module.factory('ManualUpdater', [function() {
     }
 
     function addOriginal(originals, item) {
-      setFunctions(item);
+      ammendOriginal(item);
       originals.push(item);
     }
 

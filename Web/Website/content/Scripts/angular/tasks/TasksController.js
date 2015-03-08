@@ -28,7 +28,7 @@ module.controller('TasksController', ['$http', '$scope', 'ManualPollingUpdater',
     var data = new ManualPollingUpdater({
       url: '/api/task?start=' + start + '&count=' + count,
       originals: $scope.page.items,
-      setFunctions: processTask
+      ammendOriginal: processTask
     });
 
     data.run()
