@@ -7,8 +7,12 @@
 angular.module('roomie.common', [
 ]);
 
+angular.module('roomie.data', [
+]);
+
 angular.module('roomie.devices', [
-  'roomie.common'
+  'roomie.common',
+  'roomie.data'
 ]);
 
 angular.module('roomie.tasks', [
