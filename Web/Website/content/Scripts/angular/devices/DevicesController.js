@@ -13,6 +13,9 @@ module.controller('DevicesController', ['$http', '$scope', function($http, $scop
   });
 
   function processDevices(device) {
+    device.binarySwitch.setPower = function(power) {
+      $http.post('/api/device/' + device.id + '?action=Power' + power);
+    };
   }
 
 }]);
