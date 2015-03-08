@@ -31,11 +31,7 @@ module.controller('TasksController', ['$http', '$scope', 'ManualPollingUpdater',
       ammendOriginal: processTask
     });
 
-    data.run()
-      .then(function() {
-        console.log('done');
-        console.log($scope.page.items);
-      });
+    data.run();
   }
 
   function processTask(task) {
