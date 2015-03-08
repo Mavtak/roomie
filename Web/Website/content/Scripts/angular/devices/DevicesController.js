@@ -6,6 +6,13 @@ module.controller('DevicesController', ['$http', '$scope', function($http, $scop
     $scope.page = {
       items: devices
     };
+
+    for (var i = 0; i < $scope.page.items.length; i++) {
+      processDevices($scope.page.items[i]);
+    }
   });
+
+  function processDevices(device) {
+  }
 
 }]);
