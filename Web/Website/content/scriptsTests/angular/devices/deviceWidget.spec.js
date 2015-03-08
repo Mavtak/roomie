@@ -4,6 +4,7 @@
 /// <reference path="../../../Scripts/angular/dependencies.js"/>
 /// <reference path="../../../Scripts/angular/common/widget.js"/>
 /// <reference path="../../../Scripts/angular/common/widgetHeader.js"/>
+/// <reference path="../../../Scripts/angular/devices/binarySwitchDeviceControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/deviceWidget.js"/>
 
 describe('roomie.devices.deviceWidget', function() {
@@ -54,6 +55,43 @@ describe('roomie.devices.deviceWidget', function() {
 
     });
 
+  });
+
+  describe('the binary switch controls', function() {
+
+    it('exists when device.binarySwitch.power exists', function() {
+      $rootScope.device.binarySwitch = {
+        power: "any value. not picky about value at this level of abstraction"
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('does now exist when device.binarySwitch.power is undefined', function() {
+      $rootScope.device.binarySwitch = {};
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('is bound to device.binarySwitch', function() {
+      $rootScope.device.binarySwitch = {
+        power: "a value that should result in no activated buttons"
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().find('.button.activated')).length = 0;
+
+      $rootScope.device.binarySwitch.power = "on";
+      $rootScope.$digest();
+
+      expect(selectControls().find('.button.activated')).length = 1;
+    });
+
+    function selectControls() {
+      return $(element).find('.widget binary-switch-device-controls');
+    }
   });
 
 });
