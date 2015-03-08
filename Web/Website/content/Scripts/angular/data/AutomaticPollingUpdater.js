@@ -5,9 +5,15 @@ module.factory('AutomaticPollingUpdater', ['$timeout', 'ManualPollingUpdater', f
   return function AutomaticPollingUpdater(options) {
     var pollingUpdater = new ManualPollingUpdater(options);
 
-    var running;
+    var running = false;
 
     this.run = function () {
+      if (running) {
+        throw {
+          message: "this instance of AutomaticPollingUpdater is already running."
+        };
+      }
+
       running = true;
 
       forever(function () {
@@ -19,6 +25,12 @@ module.factory('AutomaticPollingUpdater', ['$timeout', 'ManualPollingUpdater', f
     };
 
     this.stop = function() {
+      if (!running) {
+        throw {
+          message: "this instance of AutomaticPollingUpdater is already stopped."
+        };
+      }
+
       running = false;
     };
 
