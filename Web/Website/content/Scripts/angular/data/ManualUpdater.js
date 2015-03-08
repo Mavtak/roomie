@@ -9,23 +9,23 @@ module.factory('ManualUpdater', [function() {
     this.run = function(updates) {
       for (var i = 0; i < updates.length; i++) {
         var update = updates[i];
-        var original = getOriginal(originals, update);
+        var original = getOriginal(update);
 
         if (original === update) {
-          addOriginal(originals, original);
+          addOriginal(original);
         } else {
           applyUpdate(original, update);
         }
       }
     };
 
-    function getOriginal(originals, update) {
+    function getOriginal(update) {
       return _.find(originals, { id: update.id }) || update;
     }
 
-    function addOriginal(originals, item) {
-      ammendOriginal(item);
-      originals.push(item);
+    function addOriginal(original) {
+      ammendOriginal(original);
+      originals.push(original);
     }
 
     function applyUpdate(original, update) {
