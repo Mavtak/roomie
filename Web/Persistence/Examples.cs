@@ -26,14 +26,14 @@ namespace Roomie.Web.Persistence
                         Name = "A Toggle Switch that is on",
                         Type = DeviceType.BinarySwitch
                     };
-                onToggleSwitch.ToggleSwitch.Power = BinarySwitchPower.On;
+                onToggleSwitch.BinarySwitch.Power = BinarySwitchPower.On;
 
                 var offToggleSwitch = new DeviceModel
                     {
                         Name = "A Toggle Switch that is off",
                         Type = DeviceType.BinarySwitch,
                     };
-                offToggleSwitch.ToggleSwitch.Power = BinarySwitchPower.Off;
+                offToggleSwitch.BinarySwitch.Power = BinarySwitchPower.Off;
                 offToggleSwitch.PowerSensor.Value = new WattsPower(0);
 
                 var idleDevice = new DeviceModel
@@ -41,7 +41,7 @@ namespace Roomie.Web.Persistence
                         Name = "An appliance that is on, but idle",
                         Type = DeviceType.BinarySwitch,
                     };
-                idleDevice.ToggleSwitch.Power = BinarySwitchPower.On;
+                idleDevice.BinarySwitch.Power = BinarySwitchPower.On;
                 idleDevice.PowerSensor.Value = new WattsPower(5);
                 idleDevice.CurrentAction = "Idle";
 
@@ -50,7 +50,7 @@ namespace Roomie.Web.Persistence
                         Name = "An appliance that is on and running",
                         Type = DeviceType.BinarySwitch,
                     };
-                runningDevice.ToggleSwitch.Power = BinarySwitchPower.On;
+                runningDevice.BinarySwitch.Power = BinarySwitchPower.On;
                 runningDevice.PowerSensor.Value = new WattsPower(50);
                 runningDevice.CurrentAction = "Running";
 

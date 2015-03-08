@@ -18,7 +18,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button" + (Model.ToggleSwitch.Power == BinarySwitchPower.Off ? " activated" : ""),
+                    @class = "button" + (Model.BinarySwitch.Power == BinarySwitchPower.Off ? " activated" : ""),
                     id = string.Empty
                 }
             )){<button class="button" >Off</button>}@*
@@ -37,7 +37,7 @@
                 },
             htmlAttributes: new
                 {
-                    @class = "button" + (Model.ToggleSwitch.Power == BinarySwitchPower.On ? " activated" : ""),
+                    @class = "button" + (Model.BinarySwitch.Power == BinarySwitchPower.On ? " activated" : ""),
                     id = string.Empty
                 }
             )){<button class="button">On</button>}@*
