@@ -14,6 +14,9 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
   function connectData() {
     var data = new AutomaticPollingUpdater({
       url: '/api/device',
+      itemSelector: function (items) {
+        return items;
+      },
       originals: $scope.page.items,
       setFunctions: setFunctions
     });

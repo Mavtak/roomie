@@ -8,7 +8,7 @@ module.factory('ManualPollingUpdater', ['ManualPoller', 'ManualUpdater', functio
 
     this.run = function() {
       return poller.run()
-        .success(updater.run);
+        .then(updater.run);
     };
   };
 
