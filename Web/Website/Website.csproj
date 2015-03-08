@@ -159,6 +159,9 @@
     <Content Include="content\Scripts\angular\common\widgetButton.js" />
     <Content Include="content\Scripts\angular\common\widgetButtonGroup.js" />
     <Content Include="content\Scripts\angular\common\widgetDataSection.js" />
+    <Content Include="content\Scripts\angular\data\ManualPoller.js" />
+    <Content Include="content\Scripts\angular\data\ManualPollingUpdater.js" />
+    <Content Include="content\Scripts\angular\data\ManualUpdater.js" />
     <Content Include="content\Scripts\angular\devices\binarySwitchDeviceControls.js" />
     <Content Include="content\Scripts\angular\devices\DevicesController.js" />
     <Content Include="content\Scripts\angular\devices\deviceWidget.js" />
