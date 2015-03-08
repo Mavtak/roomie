@@ -47,15 +47,7 @@ module.controller('DevicesController', ['$http', '$scope', '$timeout', function(
   }
 
   function getOriginal(originals, update) {
-    for (var i = 0; i < originals.length; i++) {
-      var original = originals[i];
-
-      if (original.id === update.id) {
-        return original;
-      }
-    }
-
-    return update;
+    return _.find(originals, { id: update.id }) || update;
   }
 
   function addOriginal(originals, item) {
