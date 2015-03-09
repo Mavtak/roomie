@@ -24,7 +24,10 @@ module.factory('ManualUpdater', [function() {
     }
 
     function addOriginal(original) {
-      ammendOriginal(original);
+      if (typeof ammendOriginal !== 'undefined') {
+        ammendOriginal(original);
+      }
+
       originals.push(original);
     }
 
