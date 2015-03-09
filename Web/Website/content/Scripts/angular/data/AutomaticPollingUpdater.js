@@ -36,7 +36,7 @@ module.factory('AutomaticPollingUpdater', ['$timeout', 'ManualPollingUpdater', f
 
     function forever(promiseFactory) {
       return promiseFactory().then(function() {
-        forever(promiseFactory);
+        return forever(promiseFactory);
       });
     }
 
