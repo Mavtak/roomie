@@ -35,11 +35,7 @@ module.factory('ManualUpdater', [function() {
       //TODO: delete data from original when it makes sense (functions on original should be preserved)
       //TODO: decide array behavior (which might be context dependent)
 
-      _.merge(original, update, function(a, b) {
-        if (typeof a === 'object' && typeof b === 'object') {
-          return _.merge(a, b);
-        }
-      });
+      _.merge(original, update);
     }
   };
 
