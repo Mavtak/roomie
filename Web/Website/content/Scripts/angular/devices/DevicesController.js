@@ -12,22 +12,36 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
   }
 
   function connectData() {
-    var data = new AutomaticPollingUpdater({
+    var options = {
       url: '/api/device',
-      itemSelector: function (items) {
-        return items;
-      },
       originals: $scope.page.items,
       ammendOriginal: setFunctions
-    });
+    };
+
+    if (typeof $scope.$state.params.id === 'undefined') {
+      options.itemSelector = selectItemsFromList;
+    } else {
+      options.url += '/' + $scope.$state.params.id;
+      options.itemSelector = selectItemFromDetail;
+    }
+
+    var data = new AutomaticPollingUpdater(options);
 
     data.run();
 
-    $scope.$on('$destroy', function () {
+    $scope.$on('$destroy', function() {
       data.stop();
     });
   }
+
+  function selectItemsFromList(items) {
+    return items;
+  }
   
+  function selectItemFromDetail(item) {
+    return [item];
+  }
+
   function setFunctions(device) {
     device.binarySwitch.setPower = function (power) {
       $http.post('/api/device/' + device.id + '?action=Power' + power);
