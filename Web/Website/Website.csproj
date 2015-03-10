@@ -152,6 +152,7 @@
     <Content Include="content\scriptsTests\angular\common\widget.js" />
     <Content Include="content\scriptsTests\angular\common\widgetHeader.spec.js" />
     <Content Include="content\scriptsTests\angular\common\keyValue.spec.js" />
+    <Content Include="content\scriptsTests\angular\data\ManualPoller.spec.js" />
     <Content Include="content\scriptsTests\angular\data\ManualUpdater.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\binarySwitchDeviceControls.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\deviceWidget.spec.js" />
