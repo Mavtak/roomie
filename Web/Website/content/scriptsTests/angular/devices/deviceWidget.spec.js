@@ -41,10 +41,11 @@ describe('roomie.devices.deviceWidget', function() {
         expect($(element).find('.widget widget-header .header .name').html()).toEqual("Light Switch");
       });
 
-      it('does not link to anywhere', function() {
+      it('links to the detail', function () {
+        $rootScope.device.id = '123';
         $rootScope.$digest();
 
-        expect($(element).find('.widget widget-header .header').attr('href')).not.toBeDefined();
+        expect($(element).find('.widget widget-header .header').attr('href')).toEqual('#/devices/123');
       });
 
       it('has no subtitle', function() {

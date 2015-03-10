@@ -9,7 +9,8 @@ module.directive('deviceWidget', function() {
     template: '' +
       '<widget>' +
         '<widget-header ' +
-          'title="{{device.name}}"' +
+          'title="{{device.name}} "' +
+          'href="#/devices/{{device.id}}"' +
           '>' +
         '</widget-header>' +
         '<binary-switch-device-controls ' +
