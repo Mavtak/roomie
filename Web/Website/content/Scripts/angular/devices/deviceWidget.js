@@ -8,7 +8,10 @@ module.directive('deviceWidget', function() {
     },
     template: '' +
       '<widget>' +
-        '<widget-header title="{{device.name}}"></widget-header>' +
+        '<widget-header ' +
+          'title="{{device.name}}"' +
+          '>' +
+        '</widget-header>' +
         '<binary-switch-device-controls ' +
           'binary-switch="device.binarySwitch" ' +
           'ng-if="!!device.binarySwitch.power"' +
