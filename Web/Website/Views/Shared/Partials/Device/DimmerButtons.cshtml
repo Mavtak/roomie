@@ -1,7 +1,7 @@
 ﻿@using Roomie.Common.HomeAutomation.MultilevelSwitches
 @model DeviceViewModel
 @{
-    var dimmer = Model.Device.DimmerSwitch;
+    var dimmer = Model.Device.MultilevelSwitch;
     var currentPower = dimmer.Power;
     var maxPower = dimmer.MaxPower ?? 100;
 }@*

@@ -60,7 +60,7 @@ namespace Roomie.Web.Persistence
                         Name = "A Dimmer Switch that is on",
                         Type = DeviceType.MultilevelSwitch
                     };
-                onDimmerSwitch.DimmerSwitch.Power = 75;
+                onDimmerSwitch.MultilevelSwitch.Power = 75;
                 onDimmerSwitch.PowerSensor.Value = new WattsPower(25.2);
                 onDimmerSwitch.PowerSensor.TimeStamp = DateTime.UtcNow.AddSeconds(-5);
 
@@ -69,14 +69,14 @@ namespace Roomie.Web.Persistence
                         Name = "A Dimmer Switch that is off",
                         Type = DeviceType.MultilevelSwitch
                     };
-                offDimmerSwitch.DimmerSwitch.Power = 0;
+                offDimmerSwitch.MultilevelSwitch.Power = 0;
 
                 var dimmableColorChangingLight = new DeviceModel
                     {
                         Name = "A dimmable, color-changing light",
                         Type = DeviceType.MultilevelSwitch
                     };
-                dimmableColorChangingLight.DimmerSwitch.Power = 50;
+                dimmableColorChangingLight.MultilevelSwitch.Power = 50;
                 dimmableColorChangingLight.ColorSwitch.Value = new NamedColor("Purple");
 
                 var openDoorSensor = new DeviceModel

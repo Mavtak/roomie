@@ -96,7 +96,7 @@ namespace Roomie.Web.Persistence.Models
             CurrentAction = state.CurrentAction;
             
             BinarySwitch.Update(state.BinarySwitchState ?? ReadOnlyBinarySwitchSwitchState.Blank());
-            DimmerSwitch.Update(state.MultilevelSwitchState ?? ReadOnlyMultilevelSwitchState.Blank());
+            MultilevelSwitch.Update(state.MultilevelSwitchState ?? ReadOnlyMultilevelSwitchState.Blank());
             ColorSwitch.Update(state.ColorSwitchState ?? ReadOnlyColorSwitchState.Blank());
             BinarySensor.Update(state.BinarySensorState ?? ReadOnlyBinarySensorState.Blank());
             PowerSensor.Update(state.PowerSensorState ?? ReadOnlyMultilevelSensorState<IPower>.Blank());
@@ -107,7 +107,7 @@ namespace Roomie.Web.Persistence.Models
         }
 
         private readonly ToggleSwitchModel _binarySwitch;
-        private readonly DimmerSwitchModel _dimmerSwitch;
+        private readonly DimmerSwitchModel _multilevelSwitch;
         private readonly ColorSwitchModel _colorSwitch;
         private readonly BinarySensorModel _binarySensor;
         private readonly MultilevelSensorModel<IPower> _powerSensor;
@@ -124,11 +124,11 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public DimmerSwitchModel DimmerSwitch
+        public DimmerSwitchModel MultilevelSwitch
         {
             get
             {
-                return _dimmerSwitch;
+                return _multilevelSwitch;
             }
         }
 
@@ -201,7 +201,7 @@ namespace Roomie.Web.Persistence.Models
         public DeviceModel()
         {
             _binarySwitch = new ToggleSwitchModel(this);
-            _dimmerSwitch = new DimmerSwitchModel(this);
+            _multilevelSwitch = new DimmerSwitchModel(this);
             _colorSwitch = new ColorSwitchModel(this);
             _thermostat = new ThermostatModel(this);
             _binarySensor = new BinarySensorModel(this);
@@ -264,7 +264,7 @@ namespace Roomie.Web.Persistence.Models
         {
             get
             {
-                return DimmerSwitch;
+                return MultilevelSwitch;
             }
         }
 
@@ -365,7 +365,7 @@ namespace Roomie.Web.Persistence.Models
         {
             get
             {
-                return DimmerSwitch;
+                return MultilevelSwitch;
             }
         }
 
@@ -519,7 +519,7 @@ namespace Roomie.Web.Persistence.Models
         {
             get
             {
-                return DimmerSwitch;
+                return MultilevelSwitch;
             }
         }
 

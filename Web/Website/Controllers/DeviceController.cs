@@ -108,7 +108,7 @@ namespace Roomie.Web.Website.Controllers
                     devices.Add(new
                     {
                         id = device.DivId,
-                        power = device.DimmerSwitch.Power,
+                        power = device.MultilevelSwitch.Power,
                         isAvailable = device.IsAvailable
                     });
                     
