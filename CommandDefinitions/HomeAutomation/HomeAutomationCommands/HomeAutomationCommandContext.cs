@@ -50,7 +50,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         {
             var scriptCommand = Network.Context.SyncWithCloudCommand(Network);
 
-            Interpreter.CommandQueue.AddBeginning(scriptCommand);
+            ThreadPool.AddCommands(scriptCommand);
         }
     }
 }
