@@ -32,12 +32,12 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             }
         }
 
-        protected Device(Network network, DeviceType type = null, string name = null, ILocation location = null)
+        protected Device(Network network, DeviceType type = null)
         {
             Network = network;
-            Location = location ?? new Location();
+            Location = new Location();
             Type = type ?? DeviceType.Unknown;
-            Name = name;
+            Name = null;
             IsConnected = null;
             CurrentStateGenerator = new CurrentStateGenerator();
         }

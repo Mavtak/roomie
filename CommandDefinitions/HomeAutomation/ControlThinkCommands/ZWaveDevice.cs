@@ -30,8 +30,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands
             }
         }
 
-        public ZWaveDevice(BaseNetwork network, BackingDevice backingDevice, DeviceType type = null, string name = null)
-            : base(network, type, name)
+        public ZWaveDevice(BaseNetwork network, BackingDevice backingDevice)
+            : base(network)
         {
             BackingObject = backingDevice;
 

@@ -16,8 +16,8 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
         private readonly PiEngineeringKeypad _keypad;
         internal PIEDevice BackingObject { get; private set; }
 
-        public PiEngineeringDevice(Network network, PIEDevice device, string name = null, ILocation location = null)
-            : base(network, DeviceType.Keypad, name, location)
+        public PiEngineeringDevice(Network network, PIEDevice device)
+            : base(network, DeviceType.Keypad)
         {
             BackingObject = device;
             _keypad = new PiEngineeringKeypad(this);
