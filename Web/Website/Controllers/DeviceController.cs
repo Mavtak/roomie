@@ -124,34 +124,6 @@ namespace Roomie.Web.Website.Controllers
             );
         }
 
-        [HttpPost]
-        [WebsiteRestrictedAccess]
-        public ActionResult IndexAjaxJson()
-        {
-            var devices = new List<object>();
-            foreach (var network in User.HomeAutomationNetworks)
-            {
-                foreach (var device in network.Devices)
-                {
-                    devices.Add(new
-                        {
-                            id = device.DivId,
-                            name = device.Name,
-                            location = device.Location,
-                            isAvailable = device.IsAvailable,
-                            power = device.DimmerSwitch.Power,
-                            maxPower = device.DimmerSwitch.MaxPower
-                        });
-                }
-            }
-
-
-            return Json(new
-                {
-                    devices = devices
-                });
-        }
-
         [HttpGet]
         public ActionResult Examples()
         {
