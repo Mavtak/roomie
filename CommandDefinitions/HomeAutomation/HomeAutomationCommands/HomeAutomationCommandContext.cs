@@ -48,7 +48,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public void AddSyncWithCloud()
         {
-            var scriptCommand = GetBlankCommand(typeof(SyncWithCloud));
+            var scriptCommand = Network.Context.SyncWithCloudCommand(Network);
 
             Interpreter.CommandQueue.AddBeginning(scriptCommand);
         }
