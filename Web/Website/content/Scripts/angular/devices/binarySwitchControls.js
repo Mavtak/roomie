@@ -9,15 +9,10 @@ module.directive('binarySwitchControls', function() {
     template: '' +
       '<widget-button-group>' +
         '<widget-button ' +
-          'label="Off" ' +
-          'activate="binarySwitch.setPower(\'Off\')" ' +
-          'activated="binarySwitch.power == \'off\'" ' +
-          '>' +
-        '</widget-button>' +
-        '<widget-button ' +
-          'label="On" ' +
-          'activate="binarySwitch.setPower(\'On\')" ' +
-          'activated="binarySwitch.power == \'on\'" ' +
+          'ng-repeat="power in [\'Off\', \'On\']" ' +
+          'label="{{power}}" ' +
+          'activate="binarySwitch.setPower(power)" ' +
+          'activated="binarySwitch.power == power.toLowerCase()" ' +
           '>' +
         '</widget-button>' +
       '</widget-button-group>'
