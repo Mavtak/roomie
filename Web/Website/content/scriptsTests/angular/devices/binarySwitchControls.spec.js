@@ -5,7 +5,7 @@
 /// <reference path="../../../Scripts/angular/common/widget.js"/>
 /// <reference path="../../../Scripts/angular/common/widgetButton.js"/>
 /// <reference path="../../../Scripts/angular/common/widgetButtonGroup.js"/>
-/// <reference path="../../../Scripts/angular/devices/binarySwitchDeviceControls.js"/>
+/// <reference path="../../../Scripts/angular/devices/binarySwitchControls.js"/>
 
 describe('roomie.devices.binarySwitchControls', function() {
   var $compile;

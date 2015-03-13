@@ -154,7 +154,7 @@
     <Content Include="content\scriptsTests\angular\common\keyValue.spec.js" />
     <Content Include="content\scriptsTests\angular\data\ManualPoller.spec.js" />
     <Content Include="content\scriptsTests\angular\data\ManualUpdater.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\binarySwitchDeviceControls.spec.js" />
+    <Content Include="content\scriptsTests\angular\devices\binarySwitchControls.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\deviceWidget.spec.js" />
     <Content Include="content\scriptsTests\angular\tasks\received.spec.js" />
     <Content Include="content\scriptsTests\angular\tasks\taskWidget.spec.js" />
@@ -164,7 +164,7 @@
     <Content Include="content\Scripts\angular\data\ManualPoller.js" />
     <Content Include="content\Scripts\angular\data\ManualPollingUpdater.js" />
     <Content Include="content\Scripts\angular\data\ManualUpdater.js" />
-    <Content Include="content\Scripts\angular\devices\binarySwitchDeviceControls.js" />
+    <Content Include="content\Scripts\angular\devices\binarySwitchControls.js" />
     <Content Include="content\Scripts\angular\devices\DevicesController.js" />
     <Content Include="content\Scripts\angular\devices\deviceWidget.js" />
     <Content Include="content\Scripts\angular\data\AutomaticPollingUpdater.js" />
