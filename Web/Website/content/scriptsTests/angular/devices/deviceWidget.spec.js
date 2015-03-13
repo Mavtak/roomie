@@ -91,7 +91,7 @@ describe('roomie.devices.deviceWidget', function() {
     });
 
     function selectControls() {
-      return $(element).find('.widget binary-switch-device-controls');
+      return $(element).find('.widget binary-switch-controls');
     }
   });
 

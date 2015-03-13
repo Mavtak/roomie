@@ -7,7 +7,7 @@
 /// <reference path="../../../Scripts/angular/common/widgetButtonGroup.js"/>
 /// <reference path="../../../Scripts/angular/devices/binarySwitchDeviceControls.js"/>
 
-describe('roomie.devices.binarySwitchDeviceControls', function() {
+describe('roomie.devices.binarySwitchControls', function() {
   var $compile;
   var $rootScope;
   var element;
@@ -20,7 +20,7 @@ describe('roomie.devices.binarySwitchDeviceControls', function() {
   }));
 
   beforeEach(function() {
-    element = $compile('<binary-switch-device-controls binary-switch="binarySwitch"></binary-switch-device-controls>')($rootScope);
+    element = $compile('<binary-switch-controls binary-switch="binarySwitch"></binary-switch-controls>')($rootScope);
 
     $rootScope.binarySwitch = {};
   });

@@ -13,11 +13,11 @@ module.directive('deviceWidget', function() {
           'href="#/devices/{{device.id}}"' +
           '>' +
         '</widget-header>' +
-        '<binary-switch-device-controls ' +
+        '<binary-switch-controls ' +
           'binary-switch="device.binarySwitch" ' +
           'ng-if="!!device.binarySwitch.power"' +
           '>' +
-        '</binary-switch-device-controls>' +
+        '</binary-switch-controls>' +
       '</widget>'
   };
 });

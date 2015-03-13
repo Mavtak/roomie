@@ -1,6 +1,6 @@
 ﻿var module = angular.module('roomie.devices');
 
-module.directive('binarySwitchDeviceControls', function() {
+module.directive('binarySwitchControls', function() {
   return {
     restrict: 'E',
     scope: {
