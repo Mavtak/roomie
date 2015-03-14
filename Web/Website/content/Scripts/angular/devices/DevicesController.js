@@ -46,6 +46,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     device.binarySwitch.setPower = function (power) {
       $http.post('/api/device/' + device.id + '?action=Power' + power);
     };
+
+    device.multilevelSwitch.setPower = function (power) {
+      $http.post('/api/device/' + device.id + '?action=Dim&power=' + power);
+    };
   }
 
 }]);
