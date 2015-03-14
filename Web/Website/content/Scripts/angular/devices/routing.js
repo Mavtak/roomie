@@ -4,7 +4,11 @@ module.config(['$stateProvider', function ($stateProvider) {
   $stateProvider.state('devices', {
     url: '/devices',
     controller: 'DevicesController',
-    template: '<device-widget device="device" ng-repeat="device in page.items"></device-widget>'
+    template: '' +
+      '<device-list ' +
+        'devices="page.items"' +
+        '>' +
+      '</device-list>'
   });
 
   $stateProvider.state('device detail', {
