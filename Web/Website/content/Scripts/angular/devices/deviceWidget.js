@@ -18,6 +18,11 @@ module.directive('deviceWidget', function() {
           'ng-if="!!device.binarySwitch.power"' +
           '>' +
         '</binary-switch-controls>' +
+        '<multilevel-switch-controls ' +
+          'multilevel-switch="device.multilevelSwitch" ' +
+          'ng-if="!!device.multilevelSwitch.power || device.multilevelSwitch.power === 0"' +
+          '>' +
+        '</multilevel-switch-controls>' +
       '</widget>'
   };
 });

@@ -95,4 +95,50 @@ describe('roomie.devices.deviceWidget', function() {
     }
   });
 
+  describe('the multilevel switch controls', function() {
+
+    it('exists when device.multilevelSwitch.power exists', function() {
+      $rootScope.device.multilevelSwitch = {
+        power: 'any value. not picky about value at this level of abstraction'
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('exists when device.multilevelSwitch.power = 0 (special case)', function() {
+      $rootScope.device.multilevelSwitch = {
+        power: 0
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('does now exist when device.multilevelSwitch.power is undefined', function() {
+      $rootScope.device.multilevelSwitch = {};
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('is bound to device.multilevelSwitch', function() {
+      $rootScope.device.multilevelSwitch = {
+        power: -1
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().find('.button.activated')).length = 0;
+
+      $rootScope.device.multilevelSwitch.power = 1;
+      $rootScope.$digest();
+
+      expect(selectControls().find('.button.activated')).length = 1;
+    });
+
+    function selectControls() {
+      return $(element).find('.widget multilevel-switch-controls');
+    }
+  });
+
 });
