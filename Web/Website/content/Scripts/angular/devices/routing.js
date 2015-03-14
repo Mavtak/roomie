@@ -10,6 +10,11 @@ module.config(['$stateProvider', function ($stateProvider) {
   $stateProvider.state('device detail', {
     url: '/devices/:id',
     controller: 'DevicesController',
-    template: '<device-widget device="device" ng-repeat="device in page.items"></device-widget>'
+    template: '' +
+      '<device-widget ' +
+        'ng-if="page.items[0]" ' +
+        'device="page.items[0]"' +
+        '>' +
+      '</device-widget>'
   });
 }]);
