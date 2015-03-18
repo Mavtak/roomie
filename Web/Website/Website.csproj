@@ -157,6 +157,7 @@
     <Content Include="content\scriptsTests\angular\devices\binarySwitchControls.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\deviceList.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\deviceWidget.spec.js" />
+    <Content Include="content\scriptsTests\angular\devices\locationHeaderGroup.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\LocationHeaderLabelGenerator.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\MultilevelSwitchButtonGenerator.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\multilevelSwitchControls.spec.js" />
@@ -173,6 +174,7 @@
     <Content Include="content\Scripts\angular\devices\DevicesController.js" />
     <Content Include="content\Scripts\angular\devices\deviceWidget.js" />
     <Content Include="content\Scripts\angular\data\AutomaticPollingUpdater.js" />
+    <Content Include="content\Scripts\angular\devices\locationHeaderGroup.js" />
     <Content Include="content\Scripts\angular\devices\LocationHeaderLabelGenerator.js" />
     <Content Include="content\Scripts\angular\devices\MultilevelSwitchButtonGenerator.js" />
     <Content Include="content\Scripts\angular\devices\multilevelSwitchControls.js" />
