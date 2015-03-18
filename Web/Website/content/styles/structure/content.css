@@ -8,6 +8,10 @@
 #content > :first-child > :first-child > :first-child.widget,
 #content > :first-child > :first-child > :first-child > :first-child.widget,
 #content > :first-child > :first-child > :first-child > :first-child > :first-child.widget
+#content > :first-child > h2:first-child,
+#content > :first-child > :first-child > h2:first-child,
+#content > :first-child > :first-child > :first-child > h2:first-child,
+#content > :first-child > :first-child > :first-child > :first-child > h2:first-child
 {
     margin-top: 0;
     padding: 0;
