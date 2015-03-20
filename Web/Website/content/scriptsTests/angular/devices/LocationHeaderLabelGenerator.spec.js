@@ -9,8 +9,8 @@ describe('roomie.devices.LocationHeaderLabelGenerator', function() {
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(inject(function(_LocationHeaderLabelGenerator_) {
-    LocationHeaderLabelGenerator = _LocationHeaderLabelGenerator_;
+  beforeEach(angular.mock.inject(function ($injector) {
+    LocationHeaderLabelGenerator = $injector.get('LocationHeaderLabelGenerator');
   }));
 
   describe('getParts', function() {

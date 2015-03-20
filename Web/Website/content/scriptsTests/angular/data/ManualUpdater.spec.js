@@ -12,8 +12,8 @@ describe('roomie.data.ManualUpdater', function() {
 
   beforeEach(angular.mock.module('roomie.data'));
 
-  beforeEach(angular.mock.inject(function(_ManualUpdater_) {
-    ManualUpdater = _ManualUpdater_;
+  beforeEach(angular.mock.inject(function ($injector) {
+    ManualUpdater = $injector.get('ManualUpdater');
   }));
 
   beforeEach(function() {

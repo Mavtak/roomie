@@ -18,9 +18,9 @@ describe('roomie.devices.locationHeaderGroup', function() {
     });
   }));
 
-  beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_) {
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
+  beforeEach(angular.mock.inject(function ($injector) {
+    $compile = $injector.get('$compile');
+    $rootScope = $injector.get('$rootScope');
   }));
 
   beforeEach(function() {

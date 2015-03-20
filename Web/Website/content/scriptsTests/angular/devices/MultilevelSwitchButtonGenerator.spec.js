@@ -9,8 +9,8 @@ describe('roomie.devices.MultilevelSwitchButtonGenerator', function() {
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(inject(function(_MultilevelSwitchButtonGenerator_) {
-    MultilevelSwitchButtonGenerator = _MultilevelSwitchButtonGenerator_;
+  beforeEach(angular.mock.inject(function ($injector) {
+    MultilevelSwitchButtonGenerator = $injector.get('MultilevelSwitchButtonGenerator');
   }));
 
   describe('generate', function() {

@@ -10,9 +10,9 @@ describe('roomie.common.keyValue', function () {
 
   beforeEach(angular.mock.module('roomie.common'));
 
-  beforeEach(angular.mock.inject(function (_$compile_, _$rootScope_) {
-    $compile = _$compile_;
-    $rootScope = _$rootScope_;
+  beforeEach(angular.mock.inject(function ($injector) {
+    $compile = $injector.get('$compile');
+    $rootScope = $injector.get('$rootScope');
   }));
 
   it('works given a key and value', function () {

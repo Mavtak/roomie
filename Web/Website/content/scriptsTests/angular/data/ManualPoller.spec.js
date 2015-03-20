@@ -13,9 +13,9 @@ describe('roomie.data.ManualPoller', function() {
 
   beforeEach(angular.mock.module('roomie.data'));
 
-  beforeEach(angular.mock.inject(function(_$httpBackend_, _ManualPoller_) {
-    $httpBackend = _$httpBackend_;
-    ManualPoller = _ManualPoller_;
+  beforeEach(angular.mock.inject(function ($injector) {
+    $httpBackend = $injector.get('$httpBackend');
+    ManualPoller = $injector.get('ManualPoller');
   }));
 
   beforeEach(function() {
