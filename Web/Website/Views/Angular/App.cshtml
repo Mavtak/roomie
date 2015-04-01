@@ -14,20 +14,6 @@
     @Html.RenderAngularScripts()
   </head>
   <body>
-    <div id="page">
-      <div id="headerRow" class="horizontalCrossSection">
-        <div id="header" class="mainColumn">
-          <h1 id="title">Roomie</h1>
-        </div>
-      </div>
-      <div id="contentRow" class="horizontalCrossSection">
-        <div id="content" class="mainColumn" ui-view></div>
-      </div>
-      <div id="footerRow" class="horizontalCrossSection">
-        <div id="footer">
-          <a href="http://davidmcgrath.com/roomie">Roomie</a> is an <a href="/source">open source</a> project by <a href="http://davidmcgrath.com">David McGrath</a>.
-        </div>
-      </div>
-    </div>
+    <roomie-app></roomie-app>
   </body>
 </html>
