@@ -4,6 +4,7 @@ module.directive('roomieApp', function() {
 
   return {
     restrict: 'E',
+    link: link,
     template: '' +
       '<div id="page">' +
         '<app-horizontal-section ' +
@@ -17,7 +18,13 @@ module.directive('roomieApp', function() {
         '<app-horizontal-section ' +
           'row-id="contentRow" ' +
           '>' +
-          '<app-content' +
+          '<side-menu ' +
+            'ng-show="navigationMenu.isOpen" ' +
+            'item-selected="navigationMenuItemSelected()" ' +
+            '>' +
+          '</side-menu>' +
+          '<app-content ' +
+            'ng-style="contentStyle" ' +
             '>' +
           '</app-content>' +
         '</app-horizontal-section>' +
@@ -30,5 +37,26 @@ module.directive('roomieApp', function() {
         '</div>' +
       '</app-horizontal-section>'
   };
+
+  function link(scope) {
+    scope.contentStyle = {};
+    scope.navigationMenu = {
+      close: closeNavigationMenu,
+      isOpen: false,
+      open: openNavigationMenu
+    };
+
+    scope.navigationMenuItemSelected = closeNavigationMenu;
+
+    function openNavigationMenu() {
+      scope.contentStyle.left = '150px';
+      scope.navigationMenu.isOpen = true;
+    };
+
+    function closeNavigationMenu() {
+      delete scope.contentStyle.left;
+      scope.navigationMenu.isOpen = false;
+    };
+  }
 
 });

@@ -4,6 +4,7 @@ module.directive('appContent', function () {
 
   return {
     restrict: 'E',
+    replace: true,
     template: '' +
       '<div ' +
         'id="content" ' +
