@@ -146,6 +146,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="content\scriptsTests\angular\angular-mocks.js" />
+    <Content Include="content\scriptsTests\angular\common\siteMenu.spec.js" />
     <Content Include="content\scriptsTests\angular\common\widgetButton.spec.js" />
     <Content Include="content\scriptsTests\angular\common\widgetButtonGroup.spec.js" />
     <Content Include="content\scriptsTests\angular\common\widgetDataSection.js" />
@@ -167,6 +168,7 @@
     <Content Include="content\Scripts\angular\common\appHeader.js" />
     <Content Include="content\Scripts\angular\common\appContent.js" />
     <Content Include="content\Scripts\angular\common\app-horizontal-section.js" />
+    <Content Include="content\Scripts\angular\common\sideMenu.js" />
     <Content Include="content\Scripts\angular\common\roomieApp.js" />
     <Content Include="content\Scripts\angular\common\sideMenuButton.js" />
     <Content Include="content\Scripts\angular\common\widgetButton.js" />
