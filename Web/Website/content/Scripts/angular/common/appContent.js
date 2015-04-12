@@ -7,7 +7,6 @@ module.directive('appContent', function () {
     template: '' +
       '<div ' +
         'id="content" ' +
-        'class="mainColumn" ' +
         'ui-view' +
         '>' +
       '</div>'

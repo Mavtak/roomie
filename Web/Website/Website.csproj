@@ -166,6 +166,7 @@
     <Content Include="content\Scripts\angular\common\appFooter.js" />
     <Content Include="content\Scripts\angular\common\appHeader.js" />
     <Content Include="content\Scripts\angular\common\appContent.js" />
+    <Content Include="content\Scripts\angular\common\app-horizontal-section.js" />
     <Content Include="content\Scripts\angular\common\roomieApp.js" />
     <Content Include="content\Scripts\angular\common\widgetButton.js" />
     <Content Include="content\Scripts\angular\common\widgetButtonGroup.js" />

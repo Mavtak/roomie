@@ -6,31 +6,29 @@ module.directive('roomieApp', function() {
     restrict: 'E',
     template: '' +
       '<div id="page">' +
-        '<div ' +
-          'id="headerRow" ' +
-          'class="horizontalCrossSection"' +
+        '<app-horizontal-section ' +
+          'row-id="headerRow" ' +
           '>' +
-          '<app-header' +
+          '<app-header ' +
+            'navigation-menu="navigationMenu" ' +
             '>' +
           '</app-header>' +
-        '</div>' +
-        '<div ' +
-          'id="contentRow" ' +
-          'class="horizontalCrossSection"' +
+        '</app-horizontal-section>' +
+        '<app-horizontal-section ' +
+          'row-id="contentRow" ' +
           '>' +
           '<app-content' +
             '>' +
           '</app-content>' +
-        '</div>' +
-        '<div ' +
-          'id="footerRow" ' +
-          'class="horizontalCrossSection"' +
+        '</app-horizontal-section>' +
+        '<app-horizontal-section ' +
+          'row-id="footerRow" ' +
           '>' +
           '<app-footer' +
             '>' +
           '</app-footer>' +
         '</div>' +
-      '</div>'
+      '</app-horizontal-section>'
   };
 
 });

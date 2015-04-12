@@ -5,7 +5,7 @@ module.directive('appHeader', function () {
   return {
     restrict: 'E',
     template: '' +
-      '<div id="header" class="mainColumn">' +
+      '<div id="header">' +
         '<h1 id="title">Roomie</h1>' +
       '</div>'
   };
