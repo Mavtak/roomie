@@ -20,6 +20,7 @@ module.directive('roomieApp', function() {
           '>' +
           '<side-menu ' +
             'ng-show="navigationMenu.isOpen" ' +
+            'calculated-width="navigationMenu.calculatedWidth" ' +
             'item-selected="navigationMenuItemSelected()" ' +
             '>' +
           '</side-menu>' +
@@ -49,7 +50,7 @@ module.directive('roomieApp', function() {
     scope.navigationMenuItemSelected = closeNavigationMenu;
 
     function openNavigationMenu() {
-      scope.contentStyle.left = '150px';
+      scope.contentStyle.left = scope.navigationMenu.calculatedWidth;
       scope.navigationMenu.isOpen = true;
     };
 
