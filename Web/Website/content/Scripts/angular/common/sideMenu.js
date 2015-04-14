@@ -5,6 +5,7 @@ module.directive('sideMenu', ['$window', function($window) {
   return {
     restrict: 'E',
     scope: {
+      calculatedWidth: '=calculatedWidth',
       itemSelected: '&itemSelected'
     },
     link: link,
@@ -18,11 +19,33 @@ module.directive('sideMenu', ['$window', function($window) {
       '</div>'
   };
   
-  function link(scope) {
+  function link(scope, element, attributes) {
     scope.style = {
       left: 'inherit',
       width: 'inherit'
     };
+
+    if (attributes.hasOwnProperty('calculatedWidth')) {
+      scope.$watch(calculateWidth, updateWidth);
+    }
+
+    function calculateWidth() {
+      var sideMenu = element.contents()[0];
+      var result = sideMenu.offsetWidth;
+
+      if (result === 0 && typeof scope.calculatedWidth !== 'undefined') {
+        result = scope.calculatedWidth;
+      } else {
+        result += 'px';
+      }
+
+      return result;
+    }
+    
+    function updateWidth(newValue) {
+      scope.calculatedWidth = newValue;
+      console.log(newValue);
+    }
   }
 
 }]);

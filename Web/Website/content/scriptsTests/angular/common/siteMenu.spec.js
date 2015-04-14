@@ -17,7 +17,7 @@ describe('roomie.common.sideMenu', function() {
   }));
 
   beforeEach(function() {
-    element = $compile('<side-menu item-selected="callback()"></side-menu>')($rootScope);
+    element = $compile('<side-menu calculated-width="width" item-selected="callback()"></side-menu>')($rootScope);
 
     $rootScope.$digest();
   });
@@ -77,6 +77,15 @@ describe('roomie.common.sideMenu', function() {
     function clickItem(index) {
       angular.element(selectItem(index)).triggerHandler('click');
     }
+  });
+
+  describe('the calculated-width attribute', function() {
+
+    it('is set automatically', function() {
+      expect($rootScope.width).toEqual(jasmine.any(String));
+      expect($rootScope.width).toMatch(/^[0-9]*px$/);
+    });
+
   });
 
   function selectItems() {
