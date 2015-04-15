@@ -19,6 +19,7 @@
 
 .widget,
 .widget .content,
+.widget .content > *,
 .widget .group
 {
     overflow: hidden;
