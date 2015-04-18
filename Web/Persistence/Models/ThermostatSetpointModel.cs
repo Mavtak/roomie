@@ -7,37 +7,26 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class ThermostatSetpointModel : IThermostatSetpointCollection
+    public class ThermostatSetpointModel : Dictionary<ThermostatSetpointType, ITemperature>, IThermostatSetpointCollection
     {
-        private Dictionary<ThermostatSetpointType, ITemperature> _setpoints;
- 
         private DeviceModel _device;
-
-        public ITemperature this[ThermostatSetpointType setpoint]
-        {
-            get
-            {
-                return _setpoints[setpoint];
-            }
-        }
 
         public IEnumerable<ThermostatSetpointType> AvailableSetpoints
         {
             get
             {
-                return _setpoints.Keys;
+                return Keys;
             }
         }
 
         public ThermostatSetpointModel(DeviceModel device)
         {
             _device = device;
-            _setpoints = new Dictionary<ThermostatSetpointType, ITemperature>();
         }
 
         public void Update(IThermostatSetpointCollectionState state)
         {
-            var originalKeys = _setpoints.Keys.ToList();
+            var originalKeys = Keys.ToList();
 
             foreach (var key in state.AvailableSetpoints)
             {
@@ -45,7 +34,7 @@ namespace Roomie.Web.Persistence.Models
 
                 if (originalKeys.Contains(key))
                 {
-                    _setpoints[key] = value;
+                    this[key] = value;
                     originalKeys.Remove(key);
                 }
                 else
@@ -56,7 +45,7 @@ namespace Roomie.Web.Persistence.Models
 
             foreach (var key in originalKeys)
             {
-                _setpoints.Remove(key);
+                Remove(key);
             }
         }
 
@@ -73,11 +62,6 @@ namespace Roomie.Web.Persistence.Models
         public void SetSetpoint(ThermostatSetpointType setpointType, ITemperature temperature)
         {
             _device.DoCommand("SetSetpoint", "Setpoint", setpointType.ToString(), "Temperature", temperature.ToString());
-        }
-
-        public void Add(ThermostatSetpointType setpoint, ITemperature temperature)
-        {
-            _setpoints.Add(setpoint, temperature);
         }
     }
 }
