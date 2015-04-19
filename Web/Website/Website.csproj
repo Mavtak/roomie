@@ -163,6 +163,7 @@
     <Content Include="content\scriptsTests\angular\devices\LocationHeaderLabelGenerator.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\MultilevelSwitchButtonGenerator.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\multilevelSwitchControls.spec.js" />
+    <Content Include="content\scriptsTests\angular\devices\thermostatTemperatureControls.spec.js" />
     <Content Include="content\scriptsTests\angular\tasks\received.spec.js" />
     <Content Include="content\scriptsTests\angular\tasks\taskWidget.spec.js" />
     <Content Include="content\Scripts\angular\common\appFooter.js" />
@@ -189,6 +190,7 @@
     <Content Include="content\Scripts\angular\devices\multilevelSwitchControls.js" />
     <Content Include="content\Scripts\angular\devices\routing.js" />
     <Content Include="content\Scripts\angular\devices\thermostatSingleTemperatureControls.js" />
+    <Content Include="content\Scripts\angular\devices\thermostatTemperatureControls.js" />
     <Content Include="content\Scripts\angular\routing.js" />
     <Content Include="content\Scripts\angular\tasks\routing.js" />
     <Content Include="content\Scripts\Libraries\angular-1.3.13.min.js" />
