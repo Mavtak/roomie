@@ -55,29 +55,31 @@
 
 .widget,
 .widget .content > *,
-.widget .buttonGroup,
-.widget .code,
+.widget .content thermostat-mode-controls > *,
 .widget .buttonGroup > *
 
 {
+    display: block;
     border: 1px solid black;
 }
 
 .widget .content > *,
-.widget .buttonGroup,
-.widget .code
+.widget .content thermostat-mode-controls > *
 {
     border-left: none;
     border-right: none;
     border-bottom: none;
 }
 
-.widget .content :first-child
+.widget .content > :first-child,
+.widget .content > :first-child > :first-child,
+.widget .content thermostat-controls > :first-child > :first-child
 {
     border: none;
 }
 
-.widget .header:first-child
+.widget .content > :first-child.header,
+.widget .content > :first-child .header
 {
     text-align: left;
     background-color: transparent;
@@ -297,6 +299,7 @@
     display: inline-block;
     font-size: 150%;
     width: 40%;
+    height: 1.2em;
 }
 
 .widget .thermostat-controls .temperature .description

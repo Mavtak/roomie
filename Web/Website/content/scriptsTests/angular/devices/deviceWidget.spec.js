@@ -4,7 +4,11 @@
 /// <reference path="../../../Scripts/angular/dependencies.js"/>
 /// <reference path="../../../Scripts/angular/common/widget.js"/>
 /// <reference path="../../../Scripts/angular/common/widgetHeader.js"/>
+/// <reference path="../../../Scripts/angular/devices/thermostatControls.js"/>
+/// <reference path="../../../Scripts/angular/devices/thermostatModeControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/binarySwitchDeviceControls.js"/>
+/// <reference path="../../../Scripts/angular/devices/thermostatSingleTemperatureControls.js"/>
+/// <reference path="../../../Scripts/angular/devices/thermostatTemperatureControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/deviceWidget.js"/>
 
 describe('roomie.devices.deviceWidget', function() {
@@ -138,6 +142,82 @@ describe('roomie.devices.deviceWidget', function() {
 
     function selectControls() {
       return $(element).find('.widget multilevel-switch-controls');
+    }
+  });
+
+  describe('the thermostat controls', function() {
+
+    it('exists when device.hasThermostat() returns true', function() {
+      $rootScope.device.hasThermostat = function() {
+        return true;
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('does not exist when device.hasThermostat() returns false', function() {
+      $rootScope.device.hasThermostat = function() {
+        return false;
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('is bound to device.thermostat', function() {
+      $rootScope.device.hasThermostat = function() {
+        return true;
+      };
+      $rootScope.device.thermostat = {
+        core: {
+          currentAction: 'derping'
+        }
+      };
+      $rootScope.$digest();
+
+      expect($(element).text()).toContain('Derping');
+      expect($(element).text()).not.toContain('Herping');
+
+      $rootScope.device.thermostat = {
+        core: {
+          currentAction: 'herping'
+        }
+      };
+      $rootScope.$digest();
+
+      expect($(element).text()).not.toContain('Derping');
+      expect($(element).text()).toContain('Herping');
+
+    });
+
+    it('is bound to device.temperatureSensor', function() {
+      $rootScope.device.hasThermostat = function() {
+        return true;
+      };
+      $rootScope.device.temperatureSensor = {
+        value: {
+          value: 10
+        }
+      };
+      $rootScope.$digest();
+
+      expect($(element).text()).toContain('10');
+      expect($(element).text()).not.toContain('20');
+
+      $rootScope.device.temperatureSensor = {
+        value: {
+          value: 20
+        }
+      };
+      $rootScope.$digest();
+
+      expect($(element).text()).not.toContain('10');
+      expect($(element).text()).toContain('20');
+    });
+
+    function selectControls() {
+      return $(element).find('.widget thermostat-controls');
     }
   });
 

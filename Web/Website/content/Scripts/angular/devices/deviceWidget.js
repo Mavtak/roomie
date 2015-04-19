@@ -23,6 +23,12 @@ module.directive('deviceWidget', function() {
           'ng-if="!!device.multilevelSwitch.power || device.multilevelSwitch.power === 0"' +
           '>' +
         '</multilevel-switch-controls>' +
+        '<thermostat-controls ' +
+          'ng-if="device.hasThermostat()" ' +
+          'temperature-sensor="device.temperatureSensor" ' +
+          'thermostat="device.thermostat"' +
+          '>' +
+        '</thermostat-controls>' +
       '</widget>'
   };
 });
