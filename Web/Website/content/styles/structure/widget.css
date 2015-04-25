@@ -31,12 +31,12 @@
     margin: 0px;
 }
 
-.widget form.group
+.widget .group
 {
     padding: 0;
 }
 
-.widget form.group button
+.widget .group button
 {
     display: block;
     width: 100%;
