@@ -5,10 +5,16 @@ module.factory('ManualUpdater', [function() {
   return function ManualUpdater(options) {
     var originals = options.originals;
     var ammendOriginal = options.ammendOriginal;
+    var processUpdate = options.processUpdate;
 
     this.run = function(updates) {
       for (var i = 0; i < updates.length; i++) {
         var update = updates[i];
+
+        if (typeof processUpdate !== 'undefined') {
+          processUpdate(update);
+        }
+
         var original = getOriginal(update);
 
         if (original === update) {

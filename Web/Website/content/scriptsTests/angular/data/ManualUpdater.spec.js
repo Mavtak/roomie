@@ -58,6 +58,21 @@ describe('roomie.data.ManualUpdater', function() {
       expect(items[2]).toBe(c);
     });
 
+    it('runs the optional processUpdate function on new items', function () {
+      var counter = 0;
+      var manualUpdater = new ManualUpdater({
+        originals: items,
+        processUpdate: function (item) {
+          item.customThingy = counter;
+          counter++;
+        }
+      });
+
+      manualUpdater.run([{ id: 'a' }, { id: 'b' }, { id: 'c' }]);
+
+      expect(items).toEqual([{ id: 'a', customThingy: 0 }, { id: 'b', customThingy: 1 }, { id: 'c', customThingy: 2 }]);
+    });
+    
     it('runs the optional ammendOriginal function on new items', function () {
       var counter = 0;
       var manualUpdater = new ManualUpdater({
@@ -265,6 +280,22 @@ describe('roomie.data.ManualUpdater', function() {
         expect(result.baseObject.nestedObject.nestedObjectProperty).toEqual(1234);
       });
 
+    });
+    
+    it('runs the optional processUpdate function on updated items', function () {
+      var counter = 0;
+      var manualUpdater = new ManualUpdater({
+        originals: items,
+        processUpdate: function (item) {
+          item.customThingy = counter;
+          counter++;
+        }
+      });
+
+      manualUpdater.run([{ id: 'a' }, { id: 'b' }, { id: 'c' }]);
+      manualUpdater.run([{ id: 'a' }, { id: 'b' }, { id: 'c' }]);
+
+      expect(items).toEqual([{ id: 'a', customThingy: 3 }, { id: 'b', customThingy: 4 }, { id: 'c', customThingy: 5 }]);
     });
     
     it('does not run the optional ammendOriginal function on updated items', function () {
