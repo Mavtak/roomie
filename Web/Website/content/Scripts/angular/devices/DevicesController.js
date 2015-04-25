@@ -39,6 +39,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     if (device.temperatureSensor.timeStamp) {
       device.temperatureSensor.timeStamp = new Date(device.temperatureSensor.timeStamp);
     }
+
+    if (device.humiditySensor.timeStamp) {
+      device.humiditySensor.timeStamp = new Date(device.humiditySensor.timeStamp);
+    }
   }
 
   function selectItemsFromList(items) {
@@ -76,6 +80,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
 
     device.temperatureSensor.poll = function() {
       $http.post('/api/device/' + device.id + '?action=PollTemperatureSensor');
+    };
+    
+    device.humiditySensor.poll = function() {
+      $http.post('/api/device/' + device.id + '?action=PollHumiditySensor');
     };
   }
 
