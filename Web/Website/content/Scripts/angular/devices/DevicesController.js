@@ -15,7 +15,8 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     var options = {
       url: '/api/device',
       originals: $scope.page.items,
-      ammendOriginal: setFunctions
+      ammendOriginal: setFunctions,
+      processUpdate: processUpdate
     };
 
     if (typeof $scope.$state.params.id === 'undefined') {
@@ -32,6 +33,12 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     $scope.$on('$destroy', function() {
       data.stop();
     });
+  }
+
+  function processUpdate(device) {
+    if (device.temperatureSensor.timeStamp) {
+      device.temperatureSensor.timeStamp = new Date(device.temperatureSensor.timeStamp);
+    }
   }
 
   function selectItemsFromList(items) {
@@ -65,6 +72,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
 
     device.hasThermostat = function() {
       return hasThermostat(device);
+    };
+
+    device.temperatureSensor.poll = function() {
+      $http.post('/api/device/' + device.id + '?action=PollTemperatureSensor');
     };
   }
 
