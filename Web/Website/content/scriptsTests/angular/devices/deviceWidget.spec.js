@@ -138,6 +138,50 @@ describe('roomie.devices.deviceWidget', function() {
     }
   });
 
+  describe('the humidity sensor controls', function () {
+
+    it('exists when device.temperatureSensor.value exists', function () {
+      $rootScope.device.humiditySensor = {
+        value: {}
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('does not exist when device.humiditySensor.value does not exist', function () {
+      $rootScope.device.temperatureSensor = {};
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('is bound to device.humiditySensor', function () {
+      $rootScope.device.humiditySensor = {
+        value: {
+          value: 10
+        }
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('10') >= 0).toEqual(true);
+      expect(selectControls().text().indexOf('15') < 0).toEqual(true);
+
+      $rootScope.device.humiditySensor.value.value = 15;
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('10') < 0).toEqual(true);
+      expect(selectControls().text().indexOf('15') >= 0).toEqual(true);
+    });
+
+
+    function selectControls() {
+      return $(element).find('.widget sensor-controls').filter(function () {
+        return $(this).text().indexOf('Humidity') >= 0;
+      });
+    }
+  });
+
   describe('the binary switch controls', function() {
 
     it('exists when device.binarySwitch.power exists', function() {
