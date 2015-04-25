@@ -7,6 +7,7 @@
 /// <reference path="../../../Scripts/angular/devices/thermostatControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatModeControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/binarySwitchDeviceControls.js"/>
+/// <reference path="../../../Scripts/angular/devices/sensorControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatSingleTemperatureControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatTemperatureControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/deviceWidget.js"/>
@@ -60,6 +61,81 @@ describe('roomie.devices.deviceWidget', function() {
 
     });
 
+  });
+
+  describe('the temperature sensor controls', function() {
+
+    it('exists when device.temperatureSensor.value exists and device.hasThermostat() returns false', function () {
+      $rootScope.device.temperatureSensor = {
+        value: {}
+      };
+      $rootScope.hasThermostat = function() {
+        return false;
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+    
+    it('does not exist when device.temperatureSensor.value exists and device.hasThermostat() returns true', function () {
+      $rootScope.device.temperatureSensor = {
+        value: {}
+      };
+      $rootScope.device.hasThermostat = function () {
+        return true;
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+    
+    it('does not exist when device.temperatureSensor.value does not exist and device.hasThermostat() returns true', function () {
+      $rootScope.device.temperatureSensor = {};
+      $rootScope.device.hasThermostat = function () {
+        return true;
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+    
+    it('does not exist when device.temperatureSensor.value does not exist and device.hasThermostat() returns false', function () {
+      $rootScope.device.temperatureSensor = {};
+      $rootScope.device.hasThermostat = function () {
+        return false;
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('is bound to device.temperatureSensor', function() {
+      $rootScope.device.temperatureSensor = {
+        value: {
+          value: 10
+        }
+      };
+      $rootScope.device.hasThermostat = function () {
+        return false;
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('10') >= 0).toEqual(true);
+      expect(selectControls().text().indexOf('15') < 0).toEqual(true);
+
+      $rootScope.device.temperatureSensor.value.value = 15;
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('10') < 0).toEqual(true);
+      expect(selectControls().text().indexOf('15') >= 0).toEqual(true);
+    });
+
+
+    function selectControls() {
+      return $(element).find('.widget sensor-controls').filter(function() {
+        return $(this).text().indexOf('Temperature') >= 0;
+      });
+    }
   });
 
   describe('the binary switch controls', function() {

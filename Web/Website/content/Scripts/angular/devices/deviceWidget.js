@@ -13,6 +13,12 @@ module.directive('deviceWidget', function() {
           'href="#/devices/{{device.id}}"' +
           '>' +
         '</widget-header>' +
+        '<sensor-controls ' +
+          'label="Temperature" ' +
+          'ng-if="!!device.temperatureSensor.value && !device.hasThermostat()" ' +
+          'sensor="device.temperatureSensor" ' +
+          '>'+
+        '</sensor-controls>' +
         '<binary-switch-controls ' +
           'binary-switch="device.binarySwitch" ' +
           'ng-if="!!device.binarySwitch.power"' +
