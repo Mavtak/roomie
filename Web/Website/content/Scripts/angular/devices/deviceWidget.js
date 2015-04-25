@@ -25,6 +25,12 @@ module.directive('deviceWidget', function() {
           'sensor="device.humiditySensor" ' +
           '>' +
         '</sensor-controls>' +
+        '<sensor-controls ' +
+          'label="Illuminance" ' +
+          'ng-if="!!device.illuminanceSensor.value" ' +
+          'sensor="device.illuminanceSensor" ' +
+          '>' +
+        '</sensor-controls>' +
         '<binary-switch-controls ' +
           'binary-switch="device.binarySwitch" ' +
           'ng-if="!!device.binarySwitch.power"' +

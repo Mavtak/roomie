@@ -182,6 +182,50 @@ describe('roomie.devices.deviceWidget', function() {
     }
   });
 
+  describe('the illuminance sensor controls', function () {
+
+    it('exists when device.illuminanceSensor.value exists', function () {
+      $rootScope.device.illuminanceSensor = {
+        value: {}
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('does not exist when device.illuminanceSensor.value does not exist', function () {
+      $rootScope.device.illuminanceSensor = {};
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('is bound to device.illuminanceSensor', function () {
+      $rootScope.device.illuminanceSensor = {
+        value: {
+          value: 10
+        }
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('10') >= 0).toEqual(true);
+      expect(selectControls().text().indexOf('15') < 0).toEqual(true);
+
+      $rootScope.device.illuminanceSensor.value.value = 15;
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('10') < 0).toEqual(true);
+      expect(selectControls().text().indexOf('15') >= 0).toEqual(true);
+    });
+
+
+    function selectControls() {
+      return $(element).find('.widget sensor-controls').filter(function () {
+        return $(this).text().indexOf('Illuminance') >= 0;
+      });
+    }
+  });
+
   describe('the binary switch controls', function() {
 
     it('exists when device.binarySwitch.power exists', function() {
