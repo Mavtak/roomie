@@ -155,6 +155,7 @@
     <Content Include="content\scriptsTests\angular\common\keyValue.spec.js" />
     <Content Include="content\scriptsTests\angular\data\ManualPoller.spec.js" />
     <Content Include="content\scriptsTests\angular\data\ManualUpdater.spec.js" />
+    <Content Include="content\scriptsTests\angular\devices\sensorControls.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\thermostatControls.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\thermostatModeControls.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\thermostatSingleTemperatureControls.spec.js" />
@@ -191,6 +192,7 @@
     <Content Include="content\Scripts\angular\devices\MultilevelSwitchButtonGenerator.js" />
     <Content Include="content\Scripts\angular\devices\multilevelSwitchControls.js" />
     <Content Include="content\Scripts\angular\devices\routing.js" />
+    <Content Include="content\Scripts\angular\devices\sensorControls.js" />
     <Content Include="content\Scripts\angular\devices\thermostatControls.js" />
     <Content Include="content\Scripts\angular\devices\thermostatModeControls.js" />
     <Content Include="content\Scripts\angular\devices\thermostatSingleTemperatureControls.js" />
