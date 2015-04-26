@@ -36,6 +36,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
   }
 
   function processUpdate(device) {
+    if (device.binarySensor.timeStamp) {
+      device.binarySensor.timeStamp = new Date(device.binarySensor.timeStamp);
+    }
+
     if (device.temperatureSensor.timeStamp) {
       device.temperatureSensor.timeStamp = new Date(device.temperatureSensor.timeStamp);
     }
@@ -84,6 +88,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
 
     device.hasThermostat = function() {
       return hasThermostat(device);
+    };
+
+    device.binarySensor.poll = function () {
+      $http.post('/api/device/' + device.id + '?action=PollBinarySensor');
     };
 
     device.temperatureSensor.poll = function() {
