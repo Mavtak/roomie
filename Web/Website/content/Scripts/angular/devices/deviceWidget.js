@@ -13,30 +13,30 @@ module.directive('deviceWidget', function() {
           'href="#/devices/{{device.id}}"' +
           '>' +
         '</widget-header>' +
-        '<sensor-controls ' +
+        '<multilevel-sensor-controls ' +
           'label="Temperature" ' +
           'ng-if="!!device.temperatureSensor.value && !device.hasThermostat()" ' +
           'sensor="device.temperatureSensor" ' +
           '>'+
-        '</sensor-controls>' +
-        '<sensor-controls ' +
+        '</multilevel-sensor-controls>' +
+        '<multilevel-sensor-controls ' +
           'label="Humidity" ' +
           'ng-if="!!device.humiditySensor.value" ' +
           'sensor="device.humiditySensor" ' +
           '>' +
-        '</sensor-controls>' +
-        '<sensor-controls ' +
+        '</multilevel-sensor-controls>' +
+        '<multilevel-sensor-controls ' +
           'label="Illuminance" ' +
           'ng-if="!!device.illuminanceSensor.value" ' +
           'sensor="device.illuminanceSensor" ' +
           '>' +
-        '</sensor-controls>' +
-        '<sensor-controls ' +
+        '</multilevel-sensor-controls>' +
+        '<multilevel-sensor-controls ' +
           'label="Power" ' +
           'ng-if="!!device.powerSensor.value" ' +
           'sensor="device.powerSensor" ' +
           '>' +
-        '</sensor-controls>' +
+        '</multilevel-sensor-controls>' +
         '<binary-switch-controls ' +
           'binary-switch="device.binarySwitch" ' +
           'ng-if="!!device.binarySwitch.power"' +

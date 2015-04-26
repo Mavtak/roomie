@@ -132,7 +132,7 @@ describe('roomie.devices.deviceWidget', function() {
 
 
     function selectControls() {
-      return $(element).find('.widget sensor-controls').filter(function() {
+      return $(element).find('.widget multilevel-sensor-controls').filter(function() {
         return $(this).text().indexOf('Temperature') >= 0;
       });
     }
@@ -176,7 +176,7 @@ describe('roomie.devices.deviceWidget', function() {
 
 
     function selectControls() {
-      return $(element).find('.widget sensor-controls').filter(function () {
+      return $(element).find('.widget multilevel-sensor-controls').filter(function () {
         return $(this).text().indexOf('Humidity') >= 0;
       });
     }
@@ -220,7 +220,7 @@ describe('roomie.devices.deviceWidget', function() {
 
 
     function selectControls() {
-      return $(element).find('.widget sensor-controls').filter(function () {
+      return $(element).find('.widget multilevel-sensor-controls').filter(function () {
         return $(this).text().indexOf('Illuminance') >= 0;
       });
     }
@@ -264,7 +264,7 @@ describe('roomie.devices.deviceWidget', function() {
 
 
     function selectControls() {
-      return $(element).find('.widget sensor-controls').filter(function () {
+      return $(element).find('.widget multilevel-sensor-controls').filter(function () {
         return $(this).text().indexOf('Power') >= 0;
       });
     }

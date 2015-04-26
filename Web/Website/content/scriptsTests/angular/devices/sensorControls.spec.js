@@ -4,7 +4,7 @@
 /// <reference path="../../../Scripts/angular/dependencies.js"/>
 /// <reference path="../../../Scripts/angular/devices/sensorControls.js"/>
 
-describe('roomie.devices.sensorControls', function() {
+describe('roomie.devices.multilevelSensorControls', function() {
   var $compile;
   var $rootScope;
   var attributes;
@@ -18,7 +18,7 @@ describe('roomie.devices.sensorControls', function() {
   }));
 
   beforeEach(function() {
-    element = $compile('<sensor-controls label="derp!" sensor="attributes.sensor"></sensor-controls>')($rootScope);
+    element = $compile('<multilevel-sensor-controls label="derp!" sensor="attributes.sensor"></multilevel-sensor-controls>')($rootScope);
 
     attributes = {
       sensor: {
