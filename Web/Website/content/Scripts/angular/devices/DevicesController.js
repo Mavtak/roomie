@@ -47,6 +47,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     if (device.illuminanceSensor.timeStamp) {
       device.illuminanceSensor.timeStamp = new Date(device.illuminanceSensor.timeStamp);
     }
+
+    if (device.powerSensor.timeStamp) {
+      device.powerSensor.timeStamp = new Date(device.powerSensor.timeStamp);
+    }
   }
 
   function selectItemsFromList(items) {
@@ -92,6 +96,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
 
     device.illuminanceSensor.poll = function() {
       $http.post('/api/device/' + device.id + '?action=PollIlluminanceSensor');
+    };
+
+    device.powerSensor.poll = function() {
+      $http.post('/api/device/' + device.id + '?action=PollPowerSensor');
     };
   }
 
