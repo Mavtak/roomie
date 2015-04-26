@@ -6,6 +6,7 @@
 /// <reference path="../../../Scripts/angular/common/widgetHeader.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatModeControls.js"/>
+/// <reference path="../../../Scripts/angular/devices/binarySensorControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/binarySwitchDeviceControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/multilevelSensorControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatSingleTemperatureControls.js"/>
@@ -61,6 +62,47 @@ describe('roomie.devices.deviceWidget', function() {
 
     });
 
+  });
+
+  describe('the binary sensor controls', function () {
+
+    it('exists when device.binarySensor.timeStamp exists', function () {
+      $rootScope.device.binarySensor = {
+        timeStamp: {}
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('does not exist when device.binarySensor.timeStamp does not exist', function () {
+      $rootScope.device.binarySensor = {};
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('is bound to device.binarySensor', function () {
+      $rootScope.device.binarySensor = {
+        value: true,
+        timeStamp: {}
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('True') >= 0).toEqual(true);
+      expect(selectControls().text().indexOf('False') < 0).toEqual(true);
+
+      $rootScope.device.binarySensor.value = false;
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('True') < 0).toEqual(true);
+      expect(selectControls().text().indexOf('False') >= 0).toEqual(true);
+    });
+
+
+    function selectControls() {
+      return $(element).find('.widget binary-sensor-controls');
+    }
   });
 
   describe('the temperature sensor controls', function() {

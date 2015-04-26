@@ -37,6 +37,11 @@ module.directive('deviceWidget', function() {
           'sensor="device.powerSensor" ' +
           '>' +
         '</multilevel-sensor-controls>' +
+        '<binary-sensor-controls ' +
+          'ng-if="!!device.binarySensor.timeStamp" ' +
+          'sensor="device.binarySensor" ' +
+          '>' +
+        '</binary-sensor-controls>' +
         '<binary-switch-controls ' +
           'binary-switch="device.binarySwitch" ' +
           'ng-if="!!device.binarySwitch.power"' +
