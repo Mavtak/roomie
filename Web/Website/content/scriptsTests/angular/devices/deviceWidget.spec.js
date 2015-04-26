@@ -226,6 +226,50 @@ describe('roomie.devices.deviceWidget', function() {
     }
   });
 
+  describe('the power sensor controls', function () {
+
+    it('exists when device.powerSensor.value exists', function () {
+      $rootScope.device.powerSensor = {
+        value: {}
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('does not exist when device.powerSensor.value does not exist', function () {
+      $rootScope.device.powerSensor = {};
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('is bound to device.powerSensor', function () {
+      $rootScope.device.powerSensor = {
+        value: {
+          value: 10
+        }
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('10') >= 0).toEqual(true);
+      expect(selectControls().text().indexOf('15') < 0).toEqual(true);
+
+      $rootScope.device.powerSensor.value.value = 15;
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('10') < 0).toEqual(true);
+      expect(selectControls().text().indexOf('15') >= 0).toEqual(true);
+    });
+
+
+    function selectControls() {
+      return $(element).find('.widget sensor-controls').filter(function () {
+        return $(this).text().indexOf('Power') >= 0;
+      });
+    }
+  });
+
   describe('the binary switch controls', function() {
 
     it('exists when device.binarySwitch.power exists', function() {
