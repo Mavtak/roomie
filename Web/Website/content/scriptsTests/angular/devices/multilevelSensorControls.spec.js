@@ -2,7 +2,7 @@
 /// <reference path="../../../Scripts/Libraries/angular-1.3.13.min.js"/>
 /// <reference path="../angular-mocks.js"/>
 /// <reference path="../../../Scripts/angular/dependencies.js"/>
-/// <reference path="../../../Scripts/angular/devices/sensorControls.js"/>
+/// <reference path="../../../Scripts/angular/devices/multilevelSensorControls.js"/>
 
 describe('roomie.devices.multilevelSensorControls', function() {
   var $compile;

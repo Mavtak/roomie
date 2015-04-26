@@ -7,7 +7,7 @@
 /// <reference path="../../../Scripts/angular/devices/thermostatControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatModeControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/binarySwitchDeviceControls.js"/>
-/// <reference path="../../../Scripts/angular/devices/sensorControls.js"/>
+/// <reference path="../../../Scripts/angular/devices/multilevelSensorControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatSingleTemperatureControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatTemperatureControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/deviceWidget.js"/>
