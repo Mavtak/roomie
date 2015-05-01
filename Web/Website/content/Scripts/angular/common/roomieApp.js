@@ -7,14 +7,18 @@ module.directive('roomieApp', function() {
     link: link,
     template: '' +
       '<div id="page">' +
-        '<app-horizontal-section ' +
-          'row-id="headerRow" ' +
+        '<dock ' +
+          'area="top"' +
           '>' +
-          '<app-header ' +
-            'navigation-menu="navigationMenu" ' +
+          '<app-horizontal-section ' +
+            'row-id="headerRow" ' +
             '>' +
-          '</app-header>' +
-        '</app-horizontal-section>' +
+            '<app-header ' +
+              'navigation-menu="navigationMenu" ' +
+              '>' +
+            '</app-header>' +
+          '</app-horizontal-section>' +
+        '</dock>' +
         '<app-horizontal-section ' +
           'row-id="contentRow" ' +
           '>' +
@@ -29,14 +33,17 @@ module.directive('roomieApp', function() {
             '>' +
           '</app-content>' +
         '</app-horizontal-section>' +
-        '<app-horizontal-section ' +
-          'row-id="footerRow" ' +
+        '<dock ' +
+          'area="bottom"' +
           '>' +
-          '<app-footer' +
+          '<app-horizontal-section ' +
+            'row-id="footerRow" ' +
             '>' +
-          '</app-footer>' +
-        '</div>' +
-      '</app-horizontal-section>'
+            '<app-footer' +
+              '>' +
+            '</app-footer>' +
+          '</app-horizontal-section>' +
+        '</dock>'
   };
 
   function link(scope) {
