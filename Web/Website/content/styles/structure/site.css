@@ -46,6 +46,25 @@ form
     Level two -- three top, middle, and bottom blocks.
    ================================================== */
 
+.dock
+{
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+.dock.top
+{
+    top: 0;
+    z-index: 10;
+}
+
+.dock.bottom
+{
+    bottom: 0;
+    z-index: 9;
+}
+
 
 /* ==================================================
     Level three -- the content areas
