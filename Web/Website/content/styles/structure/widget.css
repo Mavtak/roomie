@@ -36,16 +36,20 @@
     padding: 0;
 }
 
-.widget .group button
+.widget .group :first-child
 {
     display: block;
     width: 100%;
+    padding: 5px;
+    border: none;
+}
+
+.widget .group button
+{
     text-align: inherit;
     background-color: transparent;
     cursor: pointer;
-    font-size: inherit;
-    padding: 5px;
-    border: none;
+    font-size: inherit;    
 }
 
 .widget
