@@ -15,17 +15,28 @@ namespace Roomie.Common.Triggers
 
         public void Add(ITriggerBundle triggerBundle)
         {
-            _bundles.Add(triggerBundle);
+            lock (this)
+            {
+                _bundles.Add(triggerBundle);
+            }
         }
 
         public void Remove(ITriggerBundle triggerBundle)
         {
-            _bundles.Remove(triggerBundle);
+            lock (this)
+            {
+                _bundles.Remove(triggerBundle);
+            }
         }
 
         public IEnumerable<ITriggerBundle> Check()
         {
             var results = _bundles.Where(bundle => bundle.Trigger.Check());
+
+            lock (this)
+            {
+                results = results.ToArray();
+            }
 
             return results;
         }
