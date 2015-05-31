@@ -1,6 +1,6 @@
 ﻿var module = angular.module('roomie.common');
 
-module.directive('roomieApp', function() {
+module.directive('roomieApp', ['$window', function($window) {
 
   return {
     restrict: 'E',
@@ -9,6 +9,7 @@ module.directive('roomieApp', function() {
       '<div id="page">' +
         '<dock ' +
           'area="top"' +
+          'pixel-height="heights.topDock" ' +
           '>' +
           '<app-horizontal-section ' +
             'row-id="headerRow" ' +
@@ -35,6 +36,7 @@ module.directive('roomieApp', function() {
         '</app-horizontal-section>' +
         '<dock ' +
           'area="bottom"' +
+          'pixel-height="heights.bottomDock" ' +
           '>' +
           '<app-horizontal-section ' +
             'row-id="footerRow" ' +
@@ -48,6 +50,11 @@ module.directive('roomieApp', function() {
 
   function link(scope) {
     scope.contentStyle = {};
+    scope.heights = {
+      app: 0,
+      bottomDock: 0,
+      topDock: 0
+    };
     scope.navigationMenu = {
       close: closeNavigationMenu,
       isOpen: false,
@@ -55,6 +62,21 @@ module.directive('roomieApp', function() {
     };
 
     scope.navigationMenuItemSelected = closeNavigationMenu;
+
+    scope.$watch(calculateHeight, updateHeight);
+    scope.$watch('heights', updateContentMinHeight, true);
+
+    angular.element($window).bind('resize', function() {
+      scope.$apply();
+    });
+
+    function calculateHeight() {
+      return $window.innerHeight;
+    }
+
+    function updateHeight(newValue) {
+      scope.heights.app = newValue;
+    }
 
     function openNavigationMenu() {
       scope.contentStyle.left = scope.navigationMenu.calculatedWidth;
@@ -65,6 +87,11 @@ module.directive('roomieApp', function() {
       delete scope.contentStyle.left;
       scope.navigationMenu.isOpen = false;
     };
+
+    function updateContentMinHeight() {
+      scope.contentStyle['box-sizing'] = 'border-box';
+      scope.contentStyle['min-height'] = (scope.heights.app - scope.heights.topDock - scope.heights.bottomDock) + 'px';
+    }
   }
 
-});
+}]);
