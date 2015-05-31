@@ -38,7 +38,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             get
             {
-                if (_device.Type == null || !_device.Type.Equals(DeviceType.MultilevelSensor))
+                if (_device.Type == null || !_device.Type.Equals(DeviceType.MultilevelSwitch))
                 {
                     return null;
                 }
