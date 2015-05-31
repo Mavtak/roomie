@@ -6,6 +6,7 @@
 /// <reference path="../../../Scripts/angular/common/widgetHeader.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/thermostatModeControls.js"/>
+/// <reference path="../../../Scripts/angular/devices/currentActionControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/binarySensorControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/binarySwitchDeviceControls.js"/>
 /// <reference path="../../../Scripts/angular/devices/multilevelSensorControls.js"/>
@@ -62,6 +63,41 @@ describe('roomie.devices.deviceWidget', function() {
 
     });
 
+  });
+
+  describe('the currentAction controls', function () {
+
+    it('exists when device.currentAction exists', function () {
+      $rootScope.device.currentAction = 'derp';
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('does not exist when device.currentAction does not exist', function () {
+      delete $rootScope.device.currentAction;
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('is bound to device.currentAction', function () {
+      $rootScope.device.currentAction = 'derp';
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('derp') >= 0).toEqual(true);
+
+      $rootScope.device.currentAction = 'herp';
+      $rootScope.$digest();
+
+      expect(selectControls().text().indexOf('derp') < 0).toEqual(true);
+      expect(selectControls().text().indexOf('herp') >= 0).toEqual(true);
+    });
+
+
+    function selectControls() {
+      return $(element).find('.widget current-action-controls');
+    }
   });
 
   describe('the binary sensor controls', function () {

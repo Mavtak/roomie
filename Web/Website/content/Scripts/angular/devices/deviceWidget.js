@@ -13,6 +13,11 @@ module.directive('deviceWidget', function() {
           'href="#/devices/{{device.id}}"' +
           '>' +
         '</widget-header>' +
+        '<current-action-controls ' +
+          'current-action="device.currentAction" ' +
+          'ng-if="!!device.currentAction"' +
+          '>' +
+        '</current-action-controls>' +
         '<multilevel-sensor-controls ' +
           'label="Temperature" ' +
           'ng-if="!!device.temperatureSensor.value && !device.hasThermostat()" ' +
