@@ -6,7 +6,8 @@ module.directive('dock', function() {
     transclude: true,
     restrict: 'E',
     scope: {
-      area: '@area'
+      area: '@area',
+      pixelHeight: '=?pixelHeight'
     },
     link: link,
     template: '' +
@@ -29,11 +30,12 @@ module.directive('dock', function() {
     scope.$watch(calculateHeight, updateHeight);
 
     function calculateHeight() {
-      return content.offsetHeight + 'px';
+      return content.offsetHeight;
     }
     
     function updateHeight(newValue) {
-      scope.fillerStyle.height = newValue;
+      scope.fillerStyle.height = newValue + 'px';
+      scope.pixelHeight = newValue;
     }
   }
 

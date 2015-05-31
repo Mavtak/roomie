@@ -15,6 +15,9 @@ describe('roomie.common.dock', function () {
     $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
     element = $compile('<dock area="blam"><div class="boop">beep</div></dock>')($rootScope);
+
+    attributes = {};
+    $rootScope.attributes = attributes;
     $rootScope.$digest();
   }));
 
@@ -45,7 +48,20 @@ describe('roomie.common.dock', function () {
     });
 
   });
-  
+
+  describe('pixel height binding', function() {
+
+    beforeEach(function() {
+      element = $compile('<dock area="blam" pixel-height="attributes.height"><div class="boop">beep</div></dock>')($rootScope);
+      $rootScope.$digest();
+    });
+
+    it('sets the pixel-height value', function() {
+      expect(attributes.pixelHeight).toMatch(/[0-9]+/);
+    });
+
+  });
+
   function selectDock() {
     return $(element).children().eq(0);
   }
