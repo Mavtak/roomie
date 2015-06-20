@@ -431,6 +431,29 @@ describe('roomie.devices.deviceWidget', function() {
     }
   });
 
+  describe('the color switch controls', function () {
+
+    it('exists when device.colorSwitch.value exists', function () {
+      $rootScope.device.colorSwitch = {
+        value: {}
+      };
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('does now exist when device.colorSwitch.value is undefined', function () {
+      $rootScope.device.colorSwitch = {};
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    function selectControls() {
+      return $(element).find('.widget color-switch-controls');
+    }
+  });
+
   describe('the thermostat controls', function() {
 
     it('exists when device.hasThermostat() returns true', function() {

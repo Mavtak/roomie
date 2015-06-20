@@ -57,6 +57,11 @@ module.directive('deviceWidget', function() {
           'ng-if="!!device.multilevelSwitch.power || device.multilevelSwitch.power === 0"' +
           '>' +
         '</multilevel-switch-controls>' +
+        '<color-switch-controls ' +
+          'color-switch="device.colorSwitch" ' +
+          'ng-if="!!device.colorSwitch.value"' +
+          '>' +
+        '</color-switch-controls>' +
         '<thermostat-controls ' +
           'ng-if="device.hasThermostat()" ' +
           'temperature-sensor="device.temperatureSensor" ' +
