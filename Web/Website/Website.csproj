@@ -156,6 +156,7 @@
     <Content Include="content\scriptsTests\angular\data\ManualUpdater.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\binarySensorControls.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\ColorSwitchButtonGenerator.spec.js" />
+    <Content Include="content\scriptsTests\angular\devices\colorSwitchControls.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\RainbowColorsGenerator.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\currentActionControls.spec.js" />
     <Content Include="content\scriptsTests\angular\devices\multilevelSensorControls.spec.js" />
@@ -189,6 +190,7 @@
     <Content Include="content\Scripts\angular\devices\binarySwitchControls.js" />
     <Content Include="content\Scripts\angular\devices\binarySensorControls.js" />
     <Content Include="content\Scripts\angular\devices\ColorSwitchButtonGenerator.js" />
+    <Content Include="content\Scripts\angular\devices\colorSwitchControls.js" />
     <Content Include="content\Scripts\angular\devices\RainbowColorsGenerator.js" />
     <Content Include="content\Scripts\angular\devices\currentActionControls.js" />
     <Content Include="content\Scripts\angular\devices\deviceList.js" />
