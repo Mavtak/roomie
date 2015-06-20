@@ -29,18 +29,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries
 
         protected OpenZWaveDeviceValue GetDataEntry()
         {
-            var result = Device.Values.FirstOrDefault(x => Matcher.Matches(x));
-
-            return result;
+            return Device.Values.Find(Matcher);
         }
 
         public bool HasValue()
         {
-            var dataEntry = GetDataEntry();
-
-            var result = dataEntry != null;
-
-            return result;
+            return Device.Values.Contains(Matcher);
         }
 
         public abstract T GetValue();

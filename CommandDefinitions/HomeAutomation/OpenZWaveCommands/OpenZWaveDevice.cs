@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
     public class OpenZWaveDevice : Device
     {
-        internal List<OpenZWaveDeviceValue> Values { get; private set; }
+        internal OpenZWaveDeviceValueCollection Values { get; private set; }
         internal ZWManager Manager { get; private set; }
         internal byte Id { get; private set; }
 
@@ -36,7 +36,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             Manager = manager;
             Id = id;
-            Values = new List<OpenZWaveDeviceValue>();
+            Values = new OpenZWaveDeviceValueCollection();
 
             Address = Id.ToString();
 
@@ -63,13 +63,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 Manager.HealNetworkNode(homeId, Id, returnRouteOptimization);
                 stateWatcher.ProcessChanges();
             }
-        }
-
-        internal void RemoveValue(OpenZWaveDeviceValue value)
-        {
-            var remove = Values.Match(value.DeviceId, value.CommandClass, value.Index);
-
-            Values.Remove(remove);
         }
 
         internal bool ProcessValueUpdate(OpenZWaveDeviceValue value, ValueUpdateType updateType)

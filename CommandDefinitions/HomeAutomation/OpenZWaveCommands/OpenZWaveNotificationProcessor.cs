@@ -127,7 +127,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     break;
 
                 case NotificationType.ValueRemoved:
-                    notification.Device.RemoveValue(notification.Value);
+                    notification.Device.Values.Remove(notification.Value);
                     HandleDeviceValueUpdated(notification.Device, notification.Value, ValueUpdateType.Remove);
                     break;
 
