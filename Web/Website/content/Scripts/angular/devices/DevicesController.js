@@ -74,6 +74,10 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
       $http.post('/api/device/' + device.id + '?action=Dim&power=' + power);
     };
 
+    device.colorSwitch.setValue = function (color) {
+      $http.post('/api/device/' + device.id + '?action=SetColor&color=' + encodeURIComponent(color));
+    };
+
     device.thermostat.setpoints.set = function (type, temperature) {
       $http.post('/api/device/' + device.id + '?action=SetThermostatSetpoint&type=' + type + '&temperature=' + temperature.value + ' ' + temperature.units);
     };
