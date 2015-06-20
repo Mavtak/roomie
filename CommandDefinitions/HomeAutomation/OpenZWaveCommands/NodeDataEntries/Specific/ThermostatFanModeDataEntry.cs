@@ -54,6 +54,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific
         public void SetValue(ThermostatFanMode value)
         {
             var dataEntry = GetDataEntry();
+
+            if (dataEntry == null)
+            {
+                throw new CannotSetValueException();
+            }
+
             var stringValue = value.ToString() + " Low"; //TODO: support high values?
 
             dataEntry.SetSelection(stringValue);

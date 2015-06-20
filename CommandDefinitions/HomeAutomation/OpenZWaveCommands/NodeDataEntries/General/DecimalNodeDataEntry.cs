@@ -25,6 +25,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
         {
             var dataEntry = GetDataEntry();
 
+            if (dataEntry == null)
+            {
+                throw new CannotSetValueException();
+            }
+
             dataEntry.SetValue(value);
         }
     }
