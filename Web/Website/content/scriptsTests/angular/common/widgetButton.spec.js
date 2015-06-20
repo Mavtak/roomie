@@ -91,4 +91,37 @@ describe('roomie.common.widgetButton', function() {
 
   });
 
+  describe('the coloring', function () {
+
+    it('works when not set', function () {
+      var element = $compile('<widget-button></widget-button>')($rootScope);
+
+      $rootScope.$digest();
+
+      expect($(element).find('.button .button').css('background-color')).toEqual('');
+    });
+
+    it('works when set', function () {
+      var element = $compile('<widget-button color="red"></widget-button>')($rootScope);
+
+      $rootScope.$digest();
+
+      expect($(element).find('.button .button').css('background-color')).toEqual('red');
+    });
+    
+    it('works when changed', function () {
+      $rootScope.color = 'red';
+      var element = $compile('<widget-button color="{{color}}"></widget-button>')($rootScope);
+
+      $rootScope.$digest();
+      expect($(element).find('.button .button').css('background-color')).toEqual('red');
+
+      $rootScope.color = 'blue';
+      $rootScope.$digest();
+
+      expect($(element).find('.button .button').css('background-color')).toEqual('blue');
+    });
+
+  });
+
 });
