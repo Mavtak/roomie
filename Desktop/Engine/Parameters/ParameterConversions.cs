@@ -9,12 +9,12 @@ namespace Roomie.Desktop.Engine.Parameters
     {
         public static bool ToBoolean(this IParameter parameter)
         {
-            return Convert.ToBoolean(parameter.Value);
+            return bool.Parse(parameter.Value);
         }
 
         public static byte ToByte(this IParameter parameter)
         {
-            return Convert.ToByte(parameter.Value);
+            return byte.Parse(parameter.Value);
         }
 
         public static IColor ToColor(this IParameter parameter)
@@ -29,7 +29,7 @@ namespace Roomie.Desktop.Engine.Parameters
 
         public static int ToInteger(this IParameter parameter)
         {
-            return Convert.ToInt32(parameter.Value);
+            return int.Parse(parameter.Value);
         }
 
         public static ITemperature ToTemperature(this IParameter parameter)

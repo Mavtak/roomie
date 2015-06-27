@@ -9,28 +9,18 @@ namespace Roomie.Desktop.Engine.Parameters
     {
         public static bool IsBoolean(this IParameter parameter)
         {
-            try
-            {
-                Convert.ToBoolean(parameter.Value);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            bool value;
+            var result = bool.TryParse(parameter.Value, out value);
+
+            return result;
         }
 
         public static bool IsByte(this IParameter parameter)
         {
-            try
-            {
-                Convert.ToByte(parameter.Value);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            byte value;
+            var result = byte.TryParse(parameter.Value, out value);
+
+            return result;
         }
 
         public static bool IsColor(this IParameter parameter)
@@ -45,34 +35,28 @@ namespace Roomie.Desktop.Engine.Parameters
 
         public static bool IsInteger(this IParameter parameter)
         {
-            try
-            {
-                Convert.ToInt64(parameter.Value);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            int value;
+            var result = int.TryParse(parameter.Value, out value);
+
+            return result;
         }
 
         public static bool IsInteger(this IParameter parameter, int? min, int? max)
         {
-            try
+            int value;
+            var result = int.TryParse(parameter.Value, out value);
+
+            if (!result)
             {
-                var number = Convert.ToInt64(parameter.Value);
-
-                if (number < min)
-                {
-                    return false;
-                }
-
-                if (number > max)
-                {
-                    return false;
-                }
+                return false;
             }
-            catch (Exception)
+
+            if (value < min)
+            {
+                return false;
+            }
+
+            if (value > max)
             {
                 return false;
             }
