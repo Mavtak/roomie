@@ -23,7 +23,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.DateTimeOperation
             DateTime result = dateTime.Add(timeSpan);
 
             if (scope.HigherScope.ContainsVariableInScope(resultName))
-                scope.HigherScope.ModifyVariableValue(resultName, TimeUtils.DateTimeToString(result));
+                scope.HigherScope.GetVariable(resultName).Update(TimeUtils.DateTimeToString(result));
             else
                 scope.HigherScope.DeclareVariable(resultName, TimeUtils.DateTimeToString(result));
         }

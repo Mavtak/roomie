@@ -69,21 +69,12 @@ namespace Roomie.Desktop.Engine
         {
             if (ContainsVariableInScope(name))
             {
-                ModifyVariableValue(name, value);
+                var variable = GetVariable(name);
+                variable.Update(value);
             }
             else
             {
                 DeclareVariable(name, value);
-            }
-        }
-
-        public void ModifyVariableValue(string name, string value)
-        {
-            lock (_variables)
-            {
-                var variable = GetVariable(name);
-            
-                variable.Update(value);
             }
         }
 

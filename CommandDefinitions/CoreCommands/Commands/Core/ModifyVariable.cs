@@ -28,9 +28,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             bool global = scope.ReadParameter("Global").ToBoolean();
 
             if (global)
-                globalScope.ModifyVariableValue(name, value);
+                globalScope.GetVariable(name).Update(value);
             else
-                scope.HigherScope.ModifyVariableValue(name, value);
+                scope.HigherScope.GetVariable(name).Update(value);
         }
     }
 }

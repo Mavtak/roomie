@@ -24,7 +24,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperation
             TimeSpan result = value1.Subtract(value2);
 
             if (scope.HigherScope.ContainsVariableInScope(resultName))
-                scope.HigherScope.ModifyVariableValue(resultName, TimeUtils.TimeSpanToString(result));
+                scope.HigherScope.GetVariable(resultName).Update(TimeUtils.TimeSpanToString(result));
             else
                 scope.HigherScope.DeclareVariable(resultName, TimeUtils.TimeSpanToString(result));
         }
