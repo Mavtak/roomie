@@ -21,17 +21,19 @@ namespace Roomie.Desktop.Engine
 
         public bool ContainsVariable(string name)
         {
-            if (Local.ContainsVariable(name))
+            var currentScope = this;
+
+            while (currentScope != null)
             {
-                return true;
+                if (currentScope.Local.ContainsVariable(name))
+                {
+                    return true;
+                }
+
+                currentScope = currentScope.Parent;
             }
 
-            if (Parent == null)
-            {
-                return false;
-            }
-
-            return Parent.ContainsVariable(name);
+            return false;
         }
 
         public void SetVariable(string name, string value)
@@ -55,19 +57,21 @@ namespace Roomie.Desktop.Engine
         {
             lock (this)
             {
-                var variable = Local.TryGetVariable(name);
+                var currentScope = this;
 
-                if (variable != null)
+                while (currentScope != null)
                 {
-                    return variable;
+                    var variable = currentScope.Local.TryGetVariable(name);
+
+                    if (variable != null)
+                    {
+                        return variable;
+                    }
+
+                    currentScope = currentScope.Parent;
                 }
 
-                if (Parent == null)
-                {
-                    return null;
-                }
-
-                return Parent.TryGetVariable(name);
+                return null;
             }
         }
 
