@@ -23,7 +23,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperation
 
             TimeSpan result = value1.Subtract(value2);
 
-            if (scope.Parent.ContainsVariableInScope(resultName))
+            if (scope.Parent.ContainsLocalVariable(resultName))
                 scope.Parent.GetVariable(resultName).Update(TimeUtils.TimeSpanToString(result));
             else
                 scope.Parent.DeclareLocalVariable(resultName, TimeUtils.TimeSpanToString(result));

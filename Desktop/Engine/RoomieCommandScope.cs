@@ -37,7 +37,7 @@ namespace Roomie.Desktop.Engine
             return new RoomieCommandScope(this);
         }
 
-        public bool ContainsVariableInScope(string name)
+        public bool ContainsLocalVariable(string name)
         {
             return _variables.ContainsKey(name);
         }
@@ -51,7 +51,7 @@ namespace Roomie.Desktop.Engine
 
             lock (_variables)
             {
-                if (ContainsVariableInScope(name))
+                if (ContainsLocalVariable(name))
                 {
                     throw new VariableException("Variable \"" + name + "\" already exists.");
                 }
