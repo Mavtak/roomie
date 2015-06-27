@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Parameters;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
@@ -17,9 +16,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public bool Validate(IParameter parameter)
         {
-            var result = ThermostatModeParser.IsValid(parameter.Value);
-
-            return result;
+            return parameter.IsThermostatMode();
         }
 
         public string ValidationMessage(string parameterName = null)

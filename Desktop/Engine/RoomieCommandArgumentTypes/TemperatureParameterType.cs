@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using Roomie.Common.Measurements.Temperature;
 using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
@@ -19,7 +18,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 
         public bool Validate(IParameter parameter)
         {
-            return TemperatureParser.IsTemperature(parameter.Value);
+            return parameter.IsTemperature();
         }
 
         public string ValidationMessage(string parameterName = null)

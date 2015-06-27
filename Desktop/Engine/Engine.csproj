@@ -92,6 +92,7 @@
     <Compile Include="Exceptions\VariableException.cs" />
     <Compile Include="Commands\ICommandSpecification.cs" />
     <Compile Include="Commands\NamespaceBasedCommandSpecification.cs" />
+    <Compile Include="Parameters\ParameterValidations.cs" />
     <Compile Include="Parameters\IParameter.cs" />
     <Compile Include="Parameters\Parameter.cs" />
     <Compile Include="Parameters\ParameterConversions.cs" />

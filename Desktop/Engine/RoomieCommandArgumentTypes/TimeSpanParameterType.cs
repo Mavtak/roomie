@@ -18,7 +18,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 
         public bool Validate(IParameter parameter)
         {
-            return TimeUtils.IsTimeSpan(parameter.Value);
+            return parameter.IsTimeSpan();
         }
 
         public string ValidationMessage(string parameterName = null)

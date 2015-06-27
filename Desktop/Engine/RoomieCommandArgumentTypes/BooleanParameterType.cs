@@ -18,15 +18,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 
         public bool Validate(IParameter parameter)
         {
-            try
-            {
-                Convert.ToBoolean(parameter.Value);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return parameter.IsBoolean();
         }
 
         public string ValidationMessage(string parameterName = null)

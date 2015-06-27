@@ -18,15 +18,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 
         public bool Validate(IParameter parameter)
         {
-            try
-            {
-                Convert.ToByte(parameter.Value);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return parameter.IsByte();
         }
 
         public string ValidationMessage(string parameterName = null)

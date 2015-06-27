@@ -18,15 +18,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 
         public bool Validate(IParameter parameter)
         {
-            try
-            {
-                Convert.ToInt64(parameter.Value);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return parameter.IsInteger();
         }
 
         public string ValidationMessage(string parameterName = null)

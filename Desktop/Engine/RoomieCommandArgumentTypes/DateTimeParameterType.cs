@@ -19,7 +19,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 
         public bool Validate(IParameter parameter)
         {
-            return TimeUtils.IsDateTime(parameter.Value);
+            return parameter.IsDateTime();
         }
 
         public string ValidationMessage(string parameterName = null)

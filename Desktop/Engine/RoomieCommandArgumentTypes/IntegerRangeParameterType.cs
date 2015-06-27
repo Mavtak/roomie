@@ -27,26 +27,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 
         public bool Validate(IParameter parameter)
         {
-            try
-            {
-                var number = Convert.ToInt64(parameter.Value);
-
-                if (number < _min)
-                {
-                    return false;
-                }
-
-                if (number > _max)
-                {
-                    return false;
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
+            return parameter.IsInteger(_min, _max);
         }
 
         public string ValidationMessage(string parameterName = null)

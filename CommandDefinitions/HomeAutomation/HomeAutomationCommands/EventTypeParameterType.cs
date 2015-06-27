@@ -17,9 +17,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
 
         public bool Validate(IParameter parameter)
         {
-            var result = EventTypeParser.IsValid(parameter.Value);
-
-            return result;
+            return parameter.IsEventType();
         }
 
         public string ValidationMessage(string parameterName = null)

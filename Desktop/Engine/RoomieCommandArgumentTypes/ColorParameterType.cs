@@ -18,7 +18,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 
         public bool Validate(IParameter parameter)
         {
-            return ColorParser.IsValid(parameter.Value);
+            return parameter.IsColor();
         }
 
         public string ValidationMessage(string parameterName = null)
