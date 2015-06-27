@@ -12,7 +12,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            interpreter.WriteEvent(scope.GetValue("Text").Value);
+            interpreter.WriteEvent(scope.ReadParameter("Text").Value);
         }
     }
 }

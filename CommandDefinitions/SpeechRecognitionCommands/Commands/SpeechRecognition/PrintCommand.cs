@@ -12,7 +12,7 @@ namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands.SpeechRec
         {
             var recognizer = context.SpeechRecognizer;
             var interpreter = context.Interpreter;
-            var phrase = context.Scope.GetValue(PhraseParameterAttribute.Key).Value;
+            var phrase = context.Scope.ReadParameter(PhraseParameterAttribute.Key).Value;
             var commands = recognizer.GetCommand(phrase);
             
             interpreter.WriteEvent(commands.OriginalText);

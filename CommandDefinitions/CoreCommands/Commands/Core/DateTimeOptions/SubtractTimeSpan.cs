@@ -16,9 +16,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.DateTimeOperation
         {
             var scope = context.Scope;
 
-            DateTime dateTime = scope.GetValue("DateTime").ToDateTime();
-            TimeSpan timeSpan = scope.GetValue("TimeSpan").ToTimeSpan();
-            string resultName = scope.GetValue("ResultName").Value;
+            DateTime dateTime = scope.ReadParameter("DateTime").ToDateTime();
+            TimeSpan timeSpan = scope.ReadParameter("TimeSpan").ToTimeSpan();
+            string resultName = scope.ReadParameter("ResultName").Value;
 
             DateTime result = dateTime.Subtract(timeSpan);
 

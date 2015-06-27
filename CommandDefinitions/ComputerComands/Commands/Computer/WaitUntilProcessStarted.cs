@@ -17,9 +17,9 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
         protected override void Execute_Definition(RoomieCommandContext context)
         {
             var scope = context.Scope;
-            var name = scope.GetValue("Name");
-            var expectedRunning = scope.GetValue("Running").ToBoolean();
-            var pollInterval = scope.GetValue("PollInterval").ToTimeSpan();
+            var name = scope.ReadParameter("Name");
+            var expectedRunning = scope.ReadParameter("Running").ToBoolean();
+            var pollInterval = scope.ReadParameter("PollInterval").ToTimeSpan();
 
             while (true)
             {

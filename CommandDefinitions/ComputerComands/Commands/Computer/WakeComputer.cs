@@ -15,7 +15,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
         {
             var scope = context.Scope;
 
-            var macAddress = scope.GetValue("MAC").Value;
+            var macAddress = scope.ReadParameter("MAC").Value;
             macAddress = macAddress.Replace("-", "");
 
             try

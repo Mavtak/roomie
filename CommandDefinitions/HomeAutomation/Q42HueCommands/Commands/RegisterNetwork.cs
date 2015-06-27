@@ -18,8 +18,8 @@ namespace Q42HueCommands.Commands
             var interpreter = context.Interpreter;
             var networks = context.Networks;
             var scope = context.Scope;
-            var ip = scope.GetValue("IP").Value;
-            var secret = scope.GetValue("Secret").Value;
+            var ip = scope.ReadParameter("IP").Value;
+            var secret = scope.ReadParameter("Secret").Value;
 
             if (string.IsNullOrEmpty(ip))
             {

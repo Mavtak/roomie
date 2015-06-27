@@ -15,9 +15,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.BooleanOperations
         {
             var scope = context.Scope;
 
-            bool value1 = scope.GetValue("Value1").ToBoolean();
-            bool value2 = scope.GetValue("Value2").ToBoolean();
-            string resultName = scope.GetValue("ResultName").Value;
+            bool value1 = scope.ReadParameter("Value1").ToBoolean();
+            bool value2 = scope.ReadParameter("Value2").ToBoolean();
+            string resultName = scope.ReadParameter("ResultName").Value;
 
             bool result = value1 && value2;
 

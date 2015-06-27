@@ -17,9 +17,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperation
         {
             var scope = context.Scope;
 
-            TimeSpan value1 = scope.GetValue("Value1").ToTimeSpan();
-            TimeSpan value2 = scope.GetValue("Value2").ToTimeSpan();
-            string resultName = scope.GetValue("ResultName").Value;
+            TimeSpan value1 = scope.ReadParameter("Value1").ToTimeSpan();
+            TimeSpan value2 = scope.ReadParameter("Value2").ToTimeSpan();
+            string resultName = scope.ReadParameter("ResultName").Value;
 
             TimeSpan result = value1.Subtract(value2);
 

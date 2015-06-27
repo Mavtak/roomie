@@ -12,7 +12,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var scope = context.Scope;
             var device = context.Device;
 
-            var power = scope.GetValue("Power").ToInteger();
+            var power = scope.ReadParameter("Power").ToInteger();
 
             device.MultilevelSwitch.SetPower(power);
         }

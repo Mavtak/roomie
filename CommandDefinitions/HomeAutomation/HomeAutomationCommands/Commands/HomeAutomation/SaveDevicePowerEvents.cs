@@ -17,8 +17,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var scope = context.Scope;
-            var filename = scope.GetValue("Filename").Value;
-            var includeHeaders = scope.GetValue("IncludeHeaders").ToBoolean();
+            var filename = scope.ReadParameter("Filename").Value;
+            var includeHeaders = scope.ReadParameter("IncludeHeaders").ToBoolean();
 
             var device = context.Device;
             var network = device.Network;

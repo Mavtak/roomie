@@ -16,8 +16,8 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
         {
             var device = context.Device as PiEngineeringDevice;
             var scope = context.Scope;
-            var bankString = scope.GetValue("Color").Value;
-            var power = scope.GetValue("Power").ToBoolean();
+            var bankString = scope.ReadParameter("Color").Value;
+            var power = scope.ReadParameter("Power").ToBoolean();
             
             Bank bank;
             if (!Enum.TryParse(bankString, out bank))

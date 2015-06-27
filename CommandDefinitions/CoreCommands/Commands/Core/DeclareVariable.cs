@@ -16,9 +16,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             var globalScope = context.GlobalScope;
             var scope = context.Scope;
 
-            string name = scope.GetValue("Name").Value;
-            string value = scope.GetValue("Value").Value;
-            bool global = scope.GetValue("Global").ToBoolean();
+            string name = scope.ReadParameter("Name").Value;
+            string value = scope.ReadParameter("Value").Value;
+            bool global = scope.ReadParameter("Global").ToBoolean();
 
             if (global)
                 globalScope.DeclareVariable(name, value);

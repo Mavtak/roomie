@@ -21,9 +21,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
             var originalCommand = context.OriginalCommand;
             var innerCommands = originalCommand.InnerCommands;
 
-            string where = scope.GetValue("Where").Value;
-            string threadName = scope.GetValue("NewThreadName").Value;
-            string path = scope.GetValue("Path").Value;
+            string where = scope.ReadParameter("Where").Value;
+            string threadName = scope.ReadParameter("NewThreadName").Value;
+            string path = scope.ReadParameter("Path").Value;
 
             IEnumerable<IScriptCommand> commandsToAdd;
 

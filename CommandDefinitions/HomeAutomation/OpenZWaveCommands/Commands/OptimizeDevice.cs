@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands
             var interpreter = context.Interpreter;
             var device = context.Device as OpenZWaveDevice;
             var scope = context.Scope;
-            var returnRoute = scope.GetValue(ReturnRouteKey).ToBoolean();
+            var returnRoute = scope.ReadParameter(ReturnRouteKey).ToBoolean();
 
             interpreter.WriteEvent("Optimizing " + device);
 

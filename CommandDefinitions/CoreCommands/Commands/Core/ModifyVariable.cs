@@ -17,15 +17,15 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            string name = scope.GetValue("Name").Value;
+            string name = scope.ReadParameter("Name").Value;
 
-            bool literal = scope.GetValue("Literal").ToBoolean();
+            bool literal = scope.ReadParameter("Literal").ToBoolean();
             string value;
             if(literal)
                 value = scope.GetLiteralValue("Value");
             else
-                value = scope.GetValue("Value").Value;
-            bool global = scope.GetValue("Global").ToBoolean();
+                value = scope.ReadParameter("Value").Value;
+            bool global = scope.ReadParameter("Global").ToBoolean();
 
             if (global)
                 globalScope.ModifyVariableValue(name, value);

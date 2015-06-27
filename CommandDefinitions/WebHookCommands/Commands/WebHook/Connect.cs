@@ -16,10 +16,10 @@ namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            string computerName = scope.GetValue("ComputerName").Value;
-            string communicationUrl = scope.GetValue("CommunicationURL").Value;
-            string accessKey = scope.GetValue("AccessKey").Value;
-            string encryptionKey = scope.GetValue("EncryptionKey").Value;
+            string computerName = scope.ReadParameter("ComputerName").Value;
+            string communicationUrl = scope.ReadParameter("CommunicationURL").Value;
+            string accessKey = scope.ReadParameter("AccessKey").Value;
+            string encryptionKey = scope.ReadParameter("EncryptionKey").Value;
 
             var webhookEngine = new WebHookEngine(engine, computerName, communicationUrl, accessKey, encryptionKey);
 

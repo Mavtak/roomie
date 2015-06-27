@@ -115,7 +115,7 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public IParameter GetValue(string name)
+        public IParameter ReadParameter(string name)
         {
             var value = ReplaceVariables(name, GetLiteralValue(name));
             var result = new ReadOnlyParameter(name, value);
@@ -162,11 +162,11 @@ namespace Roomie.Desktop.Engine
                     string replacement;
                     if (variableName != name)
                     {
-                        replacement = GetValue(variableName).Value;
+                        replacement = ReadParameter(variableName).Value;
                     }
                     else if (HigherScope != null)
                     {
-                        replacement = HigherScope.GetValue(variableName).Value;
+                        replacement = HigherScope.ReadParameter(variableName).Value;
                     }
                     else
                     {

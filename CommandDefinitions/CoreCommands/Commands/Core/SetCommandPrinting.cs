@@ -14,7 +14,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            bool value = scope.GetValue("Value").ToBoolean();
+            bool value = scope.ReadParameter("Value").ToBoolean();
 
             engine.PrintCommandCalls = value;
         }

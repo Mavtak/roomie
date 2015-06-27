@@ -33,9 +33,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
                 throw new RoomieRuntimeException("No subcommands specified");
             }
 
-            string group = scope.GetValue("Group").Value;
-            string name = scope.GetValue("Name").Value;
-            string description = scope.GetValue("Description").Value;
+            string group = scope.ReadParameter("Group").Value;
+            string name = scope.ReadParameter("Name").Value;
+            string description = scope.ReadParameter("Description").Value;
             if (String.IsNullOrWhiteSpace(description))
             {
                 description = null;

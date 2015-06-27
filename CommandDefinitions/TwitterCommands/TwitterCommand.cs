@@ -20,7 +20,7 @@ namespace Roomie.CommandDefinitions.TwitterCommands
             var greaterContext = new TwitterCommandContext(context);
             var users = greaterContext.TwitterUsers;
 
-            string username = scope.GetValue("Username").Value;
+            string username = scope.ReadParameter("Username").Value;
 
             if (!users.ContainsKey(username) && this.Name != "SignIn") //TODO: decouple this
             {

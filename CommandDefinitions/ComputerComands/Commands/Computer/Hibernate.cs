@@ -13,7 +13,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
         {
             var scope = context.Scope;
 
-            bool force = scope.GetValue("Force").ToBoolean();
+            bool force = scope.ReadParameter("Force").ToBoolean();
 
             Common.SuspendComputer(PowerState.Hibernate, force);
         }

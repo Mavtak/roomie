@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var network = context.Network;
             var scope = context.Scope;
 
-            var poll = scope.GetValue("Poll").ToBoolean();
+            var poll = scope.ReadParameter("Poll").ToBoolean();
 
             //TODO: list all devices on all networks.
             //TODO: add type

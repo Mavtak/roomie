@@ -13,7 +13,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands
             var interpreter = context.Interpreter;
             var networks = context.Networks;
             var scope = context.Scope;
-            var port = scope.GetValue("Port").Value;
+            var port = scope.ReadParameter("Port").Value;
 
             port = @"\\.\" + port;
 

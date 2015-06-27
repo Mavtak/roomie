@@ -15,7 +15,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
             var originalCommand = context.OriginalCommand;
             var innerCommands = originalCommand.InnerCommands;
 
-            int times = scope.GetValue("Times").ToInteger();
+            int times = scope.ReadParameter("Times").ToInteger();
 
             while (times != 0)
             {

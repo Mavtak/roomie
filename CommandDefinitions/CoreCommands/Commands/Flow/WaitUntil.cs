@@ -15,7 +15,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            DateTime target = scope.GetValue("Time").ToDateTime();
+            DateTime target = scope.ReadParameter("Time").ToDateTime();
 
             interpreter.WriteEvent("waiting for " + target);
             Common.WaitUntil(target);            

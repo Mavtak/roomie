@@ -9,7 +9,7 @@ namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands.SpeechRec
     {
         protected override void Execute_SpeechRecognitionDefinition(SpeechRecognitionCommandContext context)
         {
-            var phrase = context.Scope.GetValue(PhraseParameterAttribute.Key).Value;
+            var phrase = context.Scope.ReadParameter(PhraseParameterAttribute.Key).Value;
             var recognizer = context.SpeechRecognizer;
             var command = context.OriginalCommand.InnerCommands;
             

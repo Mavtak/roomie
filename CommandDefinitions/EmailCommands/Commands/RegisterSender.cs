@@ -19,13 +19,13 @@ namespace Roomie.CommandDefinitions.EmailCommands.Commands
             var scope = context.Scope;
 
             context.RegisterSender(
-                host: scope.GetValue("Host").Value,
-                port: scope.GetValue("Port").ToInteger(),
-                enableSsl: scope.GetValue("UseSSL").ToBoolean(),
-                username: scope.GetValue("Username").Value,
-                password: scope.GetValue("Password").Value,
-                senderAddress: scope.GetValue("Address").Value,
-                senderName: scope.GetValue("Name").Value
+                host: scope.ReadParameter("Host").Value,
+                port: scope.ReadParameter("Port").ToInteger(),
+                enableSsl: scope.ReadParameter("UseSSL").ToBoolean(),
+                username: scope.ReadParameter("Username").Value,
+                password: scope.ReadParameter("Password").Value,
+                senderAddress: scope.ReadParameter("Address").Value,
+                senderName: scope.ReadParameter("Name").Value
             );
         }
 

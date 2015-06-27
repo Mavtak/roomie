@@ -27,7 +27,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 throw new HomeAutomationException("No home automation networks registered");
             }
 
-            var networkName = scope.GetValue("Network").Value;
+            var networkName = scope.ReadParameter("Network").Value;
 
             Network network;
             if (networkName == "<default>")

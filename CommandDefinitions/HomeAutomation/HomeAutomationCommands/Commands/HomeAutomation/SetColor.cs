@@ -10,7 +10,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var scope = context.Scope;
             var device = context.Device;
-            var color = scope.GetValue("Color").ToColor();
+            var color = scope.ReadParameter("Color").ToColor();
 
             device.ColorSwitch.SetValue(color);
         }

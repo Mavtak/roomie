@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            var path = scope.GetValue("Path").Value;
+            var path = scope.ReadParameter("Path").Value;
 
             interpreter.WriteEvent("Writing...");
 

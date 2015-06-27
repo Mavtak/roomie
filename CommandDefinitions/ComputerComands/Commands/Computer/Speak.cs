@@ -22,8 +22,8 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
                 synthesizer = new SpeechSynthesizer();
             }
 
-            String text = scope.GetValue("Text").Value;
-            bool async = scope.GetValue("Async").ToBoolean();
+            String text = scope.ReadParameter("Text").Value;
+            bool async = scope.ReadParameter("Async").ToBoolean();
 
 
             if (async)

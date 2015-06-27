@@ -16,10 +16,10 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var scope = context.Scope;
             var device = context.Device;
 
-            var startPower = scope.GetValue("StartPower").ToInteger();
-            var endPower = scope.GetValue("EndPower").ToInteger();
+            var startPower = scope.ReadParameter("StartPower").ToInteger();
+            var endPower = scope.ReadParameter("EndPower").ToInteger();
 
-            TimeSpan duration = scope.GetValue("Duration").ToTimeSpan();
+            TimeSpan duration = scope.ReadParameter("Duration").ToTimeSpan();
 
             if (startPower == endPower)
             {

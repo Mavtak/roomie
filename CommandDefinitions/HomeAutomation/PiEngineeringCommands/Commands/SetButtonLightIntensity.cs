@@ -13,8 +13,8 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
         {
             var device = context.Device as PiEngineeringDevice;
             var scope = context.Scope;
-            var bluePower = scope.GetValue("BluePower").ToByte();
-            var redPower = scope.GetValue("RedPower").ToByte();
+            var bluePower = scope.ReadParameter("BluePower").ToByte();
+            var redPower = scope.ReadParameter("RedPower").ToByte();
 
             device.SetButtonLightIntensity(bluePower, redPower);
         }

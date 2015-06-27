@@ -16,10 +16,10 @@ namespace Roomie.CommandDefinitions.EmailCommands.Commands
                 host: "smtp.gmail.com",
                 port: 587,
                 enableSsl: true,
-                username: scope.GetValue("Address").Value,
-                password: scope.GetValue("Password").Value,
-                senderAddress: scope.GetValue("Address").Value,
-                senderName: scope.GetValue("DisplayName").Value
+                username: scope.ReadParameter("Address").Value,
+                password: scope.ReadParameter("Password").Value,
+                senderAddress: scope.ReadParameter("Address").Value,
+                senderName: scope.ReadParameter("DisplayName").Value
             );
         }
     }

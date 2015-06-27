@@ -16,7 +16,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var triggers = network.Context.Triggers;
             var history = network.Context.History;
             var threadPool = network.Context.ThreadPool;
-            var eventType = context.Scope.GetValue("EventType").ToEventType();
+            var eventType = context.Scope.ReadParameter("EventType").ToEventType();
 
             var trigger = new WhenDeviceEventHappensTrigger(device, eventType, history.DeviceEvents);
             var action = new RunScriptTriggerAction(threadPool, commands);
