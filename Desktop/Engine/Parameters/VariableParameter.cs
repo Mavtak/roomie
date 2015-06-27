@@ -36,5 +36,15 @@ namespace Roomie.Desktop.Engine.Parameters
         }
 
         #endregion
+
+        #region Object
+
+        public override string ToString()
+        {
+            return this.Format();
+        }
+
+        #endregion
     }
 }
+

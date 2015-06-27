@@ -1,4 +1,6 @@
 ﻿
+using System.Text;
+
 namespace Roomie.Desktop.Engine.Parameters
 {
     public class ReadOnlyParameter : IParameter
@@ -28,6 +30,15 @@ namespace Roomie.Desktop.Engine.Parameters
             {
                 return _value;
             }
+        }
+
+        #endregion
+
+        #region Object
+
+        public override string ToString()
+        {
+            return this.Format();
         }
 
         #endregion
