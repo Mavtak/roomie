@@ -43,7 +43,7 @@ namespace Roomie.Desktop.Engine
             {
                 if (!scope.VariableDefinedInThisScope(argument.Name))
                 {
-                    scope.DeclareVariable(argument.Name, argument.DefaultValue);
+                    scope.DeclareLocalVariable(argument.Name, argument.DefaultValue);
 
                     result.Add(new KeyValuePair<string, string>(argument.Name, argument.DefaultValue));
                 }

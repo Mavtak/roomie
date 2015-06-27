@@ -31,7 +31,7 @@ namespace Roomie.Desktop.Engine
 
             foreach (var parameter in context.OriginalCommand.Parameters)
             {
-                subInterpreter.Scope.DeclareVariable(parameter.Name, parameter.Value);
+                subInterpreter.Scope.DeclareLocalVariable(parameter.Name, parameter.Value);
             }
             subInterpreter.CommandQueue.Add(subcommands);
             subInterpreter.ProcessQueue();

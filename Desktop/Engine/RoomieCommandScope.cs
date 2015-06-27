@@ -42,7 +42,7 @@ namespace Roomie.Desktop.Engine
             return _variables.ContainsKey(name);
         }
 
-        public void DeclareVariable(string name, string value)
+        public void DeclareLocalVariable(string name, string value)
         {
             if (!IsValidVariableName(name))
             {
@@ -72,7 +72,7 @@ namespace Roomie.Desktop.Engine
                 }
                 else
                 {
-                    DeclareVariable(name, value);
+                    DeclareLocalVariable(name, value);
                 }
             }
         }

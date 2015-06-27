@@ -25,7 +25,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.DateTimeOperation
             if (scope.Parent.ContainsVariableInScope(resultName))
                 scope.Parent.GetVariable(resultName).Update(TimeUtils.DateTimeToString(result));
             else
-                scope.Parent.DeclareVariable(resultName, TimeUtils.DateTimeToString(result));
+                scope.Parent.DeclareLocalVariable(resultName, TimeUtils.DateTimeToString(result));
         }
     }
 }

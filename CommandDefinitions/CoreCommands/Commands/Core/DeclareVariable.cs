@@ -21,9 +21,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             bool global = scope.ReadParameter("Global").ToBoolean();
 
             if (global)
-                globalScope.DeclareVariable(name, value);
+                globalScope.DeclareLocalVariable(name, value);
             else
-                scope.Parent.DeclareVariable(name, value);
+                scope.Parent.DeclareLocalVariable(name, value);
         }
     }
 }

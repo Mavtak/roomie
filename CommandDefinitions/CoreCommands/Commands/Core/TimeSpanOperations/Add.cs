@@ -26,7 +26,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperation
             if (scope.Parent.ContainsVariableInScope(resultName))
                 scope.Parent.GetVariable(resultName).Update(TimeUtils.TimeSpanToString(result));
             else
-                scope.Parent.DeclareVariable(resultName, TimeUtils.TimeSpanToString(result));
+                scope.Parent.DeclareLocalVariable(resultName, TimeUtils.TimeSpanToString(result));
         }
     }
 }

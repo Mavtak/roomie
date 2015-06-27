@@ -76,7 +76,7 @@ namespace Roomie.Desktop.Engine
             // create a lower scope and populate it with the command arguments
             var commandScope = Scope.CreateLowerScope();
             foreach (var parameter in languageCommand.Parameters)
-                commandScope.DeclareVariable(parameter.Name, parameter.Value);
+                commandScope.DeclareLocalVariable(parameter.Name, parameter.Value);
 
             try
             {

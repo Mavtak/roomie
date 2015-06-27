@@ -23,7 +23,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.NumberOpersations
             if (scope.Parent.ContainsVariableInScope(resultName))
                 scope.Parent.GetVariable(resultName).Update(result.ToString());
             else
-                scope.Parent.DeclareVariable(resultName, result.ToString());
+                scope.Parent.DeclareLocalVariable(resultName, result.ToString());
         }
     }
 }
