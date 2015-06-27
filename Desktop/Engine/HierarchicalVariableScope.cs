@@ -19,6 +19,21 @@ namespace Roomie.Desktop.Engine
             return new HierarchicalVariableScope(this);
         }
 
+        public bool ContainsVariable(string name)
+        {
+            if (Local.ContainsVariable(name))
+            {
+                return true;
+            }
+
+            if (Parent == null)
+            {
+                return false;
+            }
+
+            return Parent.ContainsVariable(name);
+        }
+
         public void DeclareOrUpdateVariable(string name, string value)
         {
             lock (this)
@@ -74,21 +89,6 @@ namespace Roomie.Desktop.Engine
             var result = variable.Interpolate(this);
 
             return result;
-        }
-
-        public bool ContainsVariable(string name)
-        {
-            if (Local.ContainsVariable(name))
-            {
-                return true;
-            }
-
-            if (Parent == null)
-            {
-                return false;
-            }
-
-            return Parent.ContainsVariable(name);
         }
     }
 }
