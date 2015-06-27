@@ -60,16 +60,20 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public void ReplaceVariable(string name, string value)
+        public void DeclareOrUpdateVariable(string name, string value)
         {
-            if (ContainsVariableInScope(name))
+            lock (_variables)
             {
-                var variable = GetVariable(name);
-                variable.Update(value);
-            }
-            else
-            {
-                DeclareVariable(name, value);
+                var variable = TryGetVariable(name);
+
+                if (variable != null)
+                {
+                    variable.Update(value);
+                }
+                else
+                {
+                    DeclareVariable(name, value);
+                }
             }
         }
 

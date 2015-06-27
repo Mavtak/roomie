@@ -28,7 +28,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.Math
 
             int result = random.Next(min, max);
 
-            scope.HigherScope.ReplaceVariable(resultName, result.ToString());
+            scope.HigherScope.DeclareOrUpdateVariable(resultName, result.ToString());
         }
     }
 }
