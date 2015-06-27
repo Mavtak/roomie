@@ -30,7 +30,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             if (global)
                 globalScope.GetVariable(name).Update(value);
             else
-                scope.HigherScope.GetVariable(name).Update(value);
+                scope.Parent.GetVariable(name).Update(value);
         }
     }
 }

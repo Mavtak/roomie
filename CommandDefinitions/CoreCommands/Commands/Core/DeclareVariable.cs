@@ -23,7 +23,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             if (global)
                 globalScope.DeclareVariable(name, value);
             else
-                scope.HigherScope.DeclareVariable(name, value);
+                scope.Parent.DeclareVariable(name, value);
         }
     }
 }

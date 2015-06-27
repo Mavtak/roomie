@@ -29,7 +29,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
                         interpreter.WriteEvent(name + ": " + scope.ReadParameter(name));
                 }
                 interpreter.WriteEvent("---");
-                currentScope = currentScope.HigherScope;
+                currentScope = currentScope.Parent;
             }
         }
     }

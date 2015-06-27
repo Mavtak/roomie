@@ -12,11 +12,11 @@ namespace Roomie.Desktop.Engine
         public const string VariableFormatPattern = @"\$\{" + VariableNamePattern + @"\}";
 
         private readonly Dictionary<string, VariableParameter> _variables;
-        public RoomieCommandScope HigherScope { get; private set; }
+        public RoomieCommandScope Parent { get; private set; }
 
-        public RoomieCommandScope(RoomieCommandScope higherScope)
+        public RoomieCommandScope(RoomieCommandScope parent)
         {
-            HigherScope = higherScope;
+            Parent = parent;
             _variables = new Dictionary<string, VariableParameter>();
         }
         public RoomieCommandScope()
@@ -86,12 +86,12 @@ namespace Roomie.Desktop.Engine
                     return _variables[name];
                 }
 
-                if (HigherScope == null)
+                if (Parent == null)
                 {
                     return null;
                 }
 
-                return HigherScope.TryGetVariable(name);
+                return Parent.TryGetVariable(name);
             }
         }
 
@@ -142,12 +142,12 @@ namespace Roomie.Desktop.Engine
                 return true;
             }
 
-            if (HigherScope == null)
+            if (Parent == null)
             {
                 return false;
             }
 
-            return HigherScope.VariableIsDefined(name);
+            return Parent.VariableIsDefined(name);
         }
 
         public void ResetLocalScope()

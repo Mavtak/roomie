@@ -36,9 +36,9 @@ namespace Roomie.Desktop.Engine
 
                         replacement = matchedVariable.Interpolate(scope).Value;
                     }
-                    else if (scope.HigherScope != null)
+                    else if (scope.Parent != null)
                     {
-                        var parentScope = scope.HigherScope;
+                        var parentScope = scope.Parent;
                         var matchedVariable = parentScope.GetVariable(variableName);
 
                         replacement = matchedVariable.Interpolate(parentScope).Value;
