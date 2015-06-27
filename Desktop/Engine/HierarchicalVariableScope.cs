@@ -31,7 +31,7 @@ namespace Roomie.Desktop.Engine
                 }
                 else
                 {
-                    Local.DeclareLocalVariable(name, value);
+                    Local.DeclareVariable(name, value);
                 }
             }
         }
@@ -40,7 +40,7 @@ namespace Roomie.Desktop.Engine
         {
             lock (this)
             {
-                var variable = Local.TryGetLocalVariable(name);
+                var variable = Local.TryGetVariable(name);
 
                 if (variable != null)
                 {
@@ -78,7 +78,7 @@ namespace Roomie.Desktop.Engine
 
         public bool ContainsVariable(string name)
         {
-            if (Local.ContainsLocalVariable(name))
+            if (Local.ContainsVariable(name))
             {
                 return true;
             }

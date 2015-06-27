@@ -32,12 +32,12 @@ namespace Roomie.Desktop.Engine
             return pattern.IsMatch(name);
         }
 
-        public bool ContainsLocalVariable(string name)
+        public bool ContainsVariable(string name)
         {
             return _variables.ContainsKey(name);
         }
 
-        public void DeclareLocalVariable(string name, string value)
+        public void DeclareVariable(string name, string value)
         {
             if (!IsValidVariableName(name))
             {
@@ -46,7 +46,7 @@ namespace Roomie.Desktop.Engine
 
             lock (this)
             {
-                if (ContainsLocalVariable(name))
+                if (ContainsVariable(name))
                 {
                     throw new VariableException("Variable \"" + name + "\" already exists.");
                 }
@@ -55,7 +55,7 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public VariableParameter TryGetLocalVariable(string name)
+        public VariableParameter TryGetVariable(string name)
         {
             lock (this)
             {
@@ -68,7 +68,7 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public void ResetLocalScope()
+        public void Reset()
         {
             _variables.Clear();
         }

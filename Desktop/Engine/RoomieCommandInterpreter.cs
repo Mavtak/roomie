@@ -76,7 +76,7 @@ namespace Roomie.Desktop.Engine
             // create a lower scope and populate it with the command arguments
             var commandScope = Scope.CreateLowerScope();
             foreach (var parameter in languageCommand.Parameters)
-                commandScope.Local.DeclareLocalVariable(parameter.Name, parameter.Value);
+                commandScope.Local.DeclareVariable(parameter.Name, parameter.Value);
 
             try
             {
@@ -143,7 +143,7 @@ namespace Roomie.Desktop.Engine
 
         public void ResetLocalScope()
         {
-            Scope.Local.ResetLocalScope();
+            Scope.Local.Reset();
         }
 
         public RoomieCommandInterpreter GetSubinterpreter()

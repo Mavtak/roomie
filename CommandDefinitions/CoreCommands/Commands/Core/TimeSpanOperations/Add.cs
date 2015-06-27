@@ -23,10 +23,10 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperation
 
             TimeSpan result = value1.Add(value2);
 
-            if (scope.Parent.Local.ContainsLocalVariable(resultName))
+            if (scope.Parent.Local.ContainsVariable(resultName))
                 scope.Parent.GetVariable(resultName).Update(TimeUtils.TimeSpanToString(result));
             else
-                scope.Parent.Local.DeclareLocalVariable(resultName, TimeUtils.TimeSpanToString(result));
+                scope.Parent.Local.DeclareVariable(resultName, TimeUtils.TimeSpanToString(result));
         }
     }
 }

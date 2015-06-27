@@ -21,10 +21,10 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.BooleanOperations
 
             bool result = value1 && value2;
 
-            if (scope.Parent.Local.ContainsLocalVariable(resultName))
+            if (scope.Parent.Local.ContainsVariable(resultName))
                 scope.Parent.GetVariable(resultName).Update(result.ToString());
             else
-                scope.Parent.Local.DeclareLocalVariable(resultName, result.ToString());
+                scope.Parent.Local.DeclareVariable(resultName, result.ToString());
         } 
     }
 }

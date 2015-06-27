@@ -36,9 +36,9 @@ namespace Roomie.Desktop.Engine
                 Print("mmm, I'm in development now.  Be gentle. :'3");
             }
 
-            _engine.GlobalScope.Local.DeclareLocalVariable("Name", "Roomie");
-            _engine.GlobalScope.Local.DeclareLocalVariable("Version", Common.LibraryVersion.ToString());
-            _engine.GlobalScope.Local.DeclareLocalVariable("Started", DateTime.Now.ToString());
+            _engine.GlobalScope.Local.DeclareVariable("Name", "Roomie");
+            _engine.GlobalScope.Local.DeclareVariable("Version", Common.LibraryVersion.ToString());
+            _engine.GlobalScope.Local.DeclareVariable("Started", DateTime.Now.ToString());
         }
 
         private void LoadCommands()

@@ -14,7 +14,7 @@ namespace Roomie.Desktop.Engine
             var variables = scope.Names;
 
             var result = variables
-                .Select(scope.TryGetLocalVariable)
+                .Select(scope.TryGetVariable)
                 .ToArray();
 
             return result;
@@ -26,7 +26,7 @@ namespace Roomie.Desktop.Engine
 
             foreach (var argument in arguments)
             {
-                if (!argument.HasDefault & !scope.Local.ContainsLocalVariable(argument.Name))
+                if (!argument.HasDefault & !scope.Local.ContainsVariable(argument.Name))
                 {
                     result.Add(argument);
                 }
@@ -41,9 +41,9 @@ namespace Roomie.Desktop.Engine
 
             foreach (var argument in arguments)
             {
-                if (!scope.Local.ContainsLocalVariable(argument.Name))
+                if (!scope.Local.ContainsVariable(argument.Name))
                 {
-                    scope.Local.DeclareLocalVariable(argument.Name, argument.DefaultValue);
+                    scope.Local.DeclareVariable(argument.Name, argument.DefaultValue);
 
                     result.Add(new KeyValuePair<string, string>(argument.Name, argument.DefaultValue));
                 }
