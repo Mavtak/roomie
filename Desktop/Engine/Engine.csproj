@@ -97,7 +97,7 @@
     <Compile Include="Parameters\VariableParameter.cs" />
     <Compile Include="Parameters\ParameterValidations.cs" />
     <Compile Include="Parameters\IParameter.cs" />
-    <Compile Include="Parameters\Parameter.cs" />
+    <Compile Include="Parameters\ReadOnlyParameter.cs" />
     <Compile Include="Parameters\ParameterConversions.cs" />
     <Compile Include="RoomieCommand.cs" />
     <Compile Include="RoomieCommandArgument.cs" />
