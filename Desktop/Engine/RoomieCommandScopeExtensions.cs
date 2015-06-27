@@ -26,7 +26,7 @@ namespace Roomie.Desktop.Engine
 
             foreach (var argument in arguments)
             {
-                if (!argument.HasDefault & !scope.VariableDefinedInThisScope(argument.Name))
+                if (!argument.HasDefault & !scope.ContainsLocalVariable(argument.Name))
                 {
                     result.Add(argument);
                 }
@@ -41,7 +41,7 @@ namespace Roomie.Desktop.Engine
 
             foreach (var argument in arguments)
             {
-                if (!scope.VariableDefinedInThisScope(argument.Name))
+                if (!scope.ContainsLocalVariable(argument.Name))
                 {
                     scope.DeclareLocalVariable(argument.Name, argument.DefaultValue);
 

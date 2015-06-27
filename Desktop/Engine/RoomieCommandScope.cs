@@ -37,11 +37,6 @@ namespace Roomie.Desktop.Engine
             return new RoomieCommandScope(this);
         }
 
-        public bool ContainsLocalVariable(string name)
-        {
-            return _variables.ContainsKey(name);
-        }
-
         public void DeclareLocalVariable(string name, string value)
         {
             if (!IsValidVariableName(name))
@@ -130,14 +125,14 @@ namespace Roomie.Desktop.Engine
             return pattern.IsMatch(name);
         }
 
-        public bool VariableDefinedInThisScope(string name)
+        public bool ContainsLocalVariable(string name)
         {
             return _variables.ContainsKey(name);
         }
 
         public bool VariableIsDefined(string name)
         {
-            if (VariableDefinedInThisScope(name))
+            if (ContainsLocalVariable(name))
             {
                 return true;
             }

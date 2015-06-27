@@ -19,7 +19,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             var retries = scope.ReadParameter(RetriesParameterAttribute.Key).ToInteger();
 
             Device device = null;
-            if (scope.VariableDefinedInThisScope("Device"))
+            if (scope.ContainsLocalVariable("Device"))
             {
                 var allDevices = networks.SelectMany(x => x.Devices);
                 var address = scope.ReadParameter("Device").ToVirtualAddress();
