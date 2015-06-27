@@ -1,8 +1,6 @@
-﻿using Roomie.Common.ScriptingLanguage;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Roomie.Common.ScriptingLanguage;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {

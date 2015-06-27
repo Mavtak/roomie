@@ -1,12 +1,10 @@
 ﻿using System.Linq;
-using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Models;
-using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api
 {
-    [ApiRestrictedAccessAttribute]
+    [ApiRestrictedAccess]
     [AutoSave]
     public class ComputerController : RoomieBaseApiController
     {

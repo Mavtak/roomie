@@ -2,8 +2,6 @@
 using System.Web.Mvc;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace Roomie.Web.Website.Controllers
 {

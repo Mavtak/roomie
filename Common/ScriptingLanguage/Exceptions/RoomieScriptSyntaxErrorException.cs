@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-
 using Roomie.Common.Exceptions;
 
 namespace Roomie.Common.ScriptingLanguage.Exceptions

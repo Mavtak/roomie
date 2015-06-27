@@ -1,5 +1,4 @@
-﻿using System;
-using Roomie.Common;
+﻿using Roomie.Common;
 using Roomie.Common.Color;
 using Roomie.Common.Measurements.Temperature;
 

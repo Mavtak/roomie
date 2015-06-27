@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
-using System.Linq;
-using Microsoft.Ajax.Utilities;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website

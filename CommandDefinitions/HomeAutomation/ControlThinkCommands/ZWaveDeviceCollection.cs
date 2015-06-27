@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 
-
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {
     internal class ZWaveDeviceCollection : IEnumerable<ZWaveDevice>

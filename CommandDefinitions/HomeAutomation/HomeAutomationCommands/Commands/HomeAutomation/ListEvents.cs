@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
-using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.TextUtilities;
-using System;
-using System.Text;
 using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation

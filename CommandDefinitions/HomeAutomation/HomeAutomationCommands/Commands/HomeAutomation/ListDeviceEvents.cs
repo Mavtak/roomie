@@ -1,5 +1,4 @@
 ﻿using Roomie.Common.HomeAutomation.Events;
-using System.Text;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {

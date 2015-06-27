@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Roomie.Common.HomeAutomation;
-using Roomie.Common.HomeAutomation.Thermostats;
-using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Models;
 using WebCommunicator;
 
 namespace Roomie.Web.WebHook.ActionHandlers

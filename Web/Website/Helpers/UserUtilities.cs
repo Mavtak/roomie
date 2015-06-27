@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Web;
 using System.Web.Security;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
-
 
 namespace Roomie.Web.Website.Helpers
 {

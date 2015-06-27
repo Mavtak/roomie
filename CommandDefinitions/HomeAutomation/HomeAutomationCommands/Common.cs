@@ -1,7 +1,5 @@
 ﻿using System;
 
-
-
 //TODO: Generalize NodeId to NetworkAddress
 //TODO: Improve how devices are selected
 

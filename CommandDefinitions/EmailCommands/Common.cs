@@ -1,7 +1,5 @@
 ﻿using System;
 
-
-
 namespace Roomie.CommandDefinitions.EmailCommands
 {
     public static class Common

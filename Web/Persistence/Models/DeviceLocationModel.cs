@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Helpers;
 

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Speech.Recognition;
-using Roomie.Common.ScriptingLanguage;
-using Roomie.Desktop.Engine;
+﻿using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.SpeechRecognition
 {

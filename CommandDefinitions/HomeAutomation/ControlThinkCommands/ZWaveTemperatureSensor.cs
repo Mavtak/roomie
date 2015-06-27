@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.Measurements.Temperature;
 

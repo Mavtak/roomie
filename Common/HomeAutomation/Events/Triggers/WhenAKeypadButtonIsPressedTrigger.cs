@@ -1,6 +1,4 @@
-﻿
-using System.Linq;
-using Roomie.Common.HomeAutomation.Keypads;
+﻿using System.Linq;
 using Roomie.Common.HomeAutomation.Keypads.Buttons;
 
 namespace Roomie.Common.HomeAutomation.Events.Triggers

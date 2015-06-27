@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Roomie.Common.Color;
 
 namespace Roomie.Common.Tests.Color

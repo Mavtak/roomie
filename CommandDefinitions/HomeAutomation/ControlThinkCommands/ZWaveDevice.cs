@@ -1,5 +1,4 @@
-﻿using System;
-using Roomie.Common.HomeAutomation;
+﻿using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.Events;

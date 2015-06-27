@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Roomie.Common.HomeAutomation;
+﻿using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.ColorSwitch;
@@ -13,7 +11,6 @@ using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
-using Roomie.Common.ScriptingLanguage;
 using Roomie.Common.Triggers;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands

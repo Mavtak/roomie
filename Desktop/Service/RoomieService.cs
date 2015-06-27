@@ -1,5 +1,4 @@
 ﻿using System.ServiceProcess;
-
 using Roomie.Desktop.Engine;
 
 namespace Roomie.Desktop.Service

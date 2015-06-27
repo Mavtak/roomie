@@ -1,6 +1,5 @@
 ﻿using System.Web;
 using System.Web.Mvc;
-
 using Roomie.Web.WebHook;
 
 namespace Roomie.Web.Website.Helpers

@@ -1,5 +1,4 @@
-﻿using Roomie.Common.HomeAutomation.Events;
-using Roomie.Common.HomeAutomation.Events.Triggers;
+﻿using Roomie.Common.HomeAutomation.Events.Triggers;
 using Roomie.Common.Triggers;
 using Roomie.Desktop.Engine.Commands;
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using Roomie.Common.HomeAutomation;
-using Roomie.Common.HomeAutomation.BinarySwitches;
+﻿using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models

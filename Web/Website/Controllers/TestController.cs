@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories;

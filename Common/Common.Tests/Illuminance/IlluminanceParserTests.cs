@@ -1,7 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
 using Roomie.Common.Measurements.Illuminance;
-using Roomie.Common.Measurements.Power;
 
 namespace Roomie.Common.Tests.Illuminance
 {

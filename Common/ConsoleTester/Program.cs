@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Roomie.Common.TextUtilities;
 
 namespace Roomie.Common.ConsoleTester

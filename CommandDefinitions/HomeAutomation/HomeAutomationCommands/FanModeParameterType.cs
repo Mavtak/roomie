@@ -1,8 +1,7 @@
-﻿using Roomie.Common.HomeAutomation.Thermostats;
+﻿using System.Text;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Parameters;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
-using System.Text;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {

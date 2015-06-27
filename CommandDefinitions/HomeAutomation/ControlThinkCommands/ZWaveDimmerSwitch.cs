@@ -1,5 +1,4 @@
-﻿using System;
-using Roomie.Common.HomeAutomation;
+﻿using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.MultilevelSwitches;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands

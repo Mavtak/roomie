@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation;
-using Roomie.Common.HomeAutomation.BinarySwitches;
-using Roomie.Common.HomeAutomation.Thermostats;
-using Roomie.Common.HomeAutomation.Thermostats.Fans;
-using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;

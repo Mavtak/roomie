@@ -1,6 +1,5 @@
 ﻿using Roomie.CommandDefinitions.SpeechRecognition;
 using Roomie.CommandDefinitions.SpeechRecognitionCommands.Attributes;
-using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands.SpeechRecognition
 {

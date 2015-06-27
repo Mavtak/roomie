@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.WebHookCommands

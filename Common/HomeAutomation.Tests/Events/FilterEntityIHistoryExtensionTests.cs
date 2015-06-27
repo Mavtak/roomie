@@ -1,9 +1,8 @@
-﻿using Moq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Moq;
 using NUnit.Framework;
 using Roomie.Common.HomeAutomation.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Roomie.Common.HomeAutomation.Tests.Events
 {

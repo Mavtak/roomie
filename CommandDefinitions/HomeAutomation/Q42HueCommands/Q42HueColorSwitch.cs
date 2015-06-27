@@ -1,6 +1,4 @@
-﻿using System;
-using Q42.HueApi;
-using Roomie.Common.Color;
+﻿using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation.ColorSwitch;
 
 namespace Q42HueCommands

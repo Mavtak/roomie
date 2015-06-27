@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Linq;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories

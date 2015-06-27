@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Roomie.Common.Exceptions
 {
     [Serializable]

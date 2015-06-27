@@ -1,5 +1,4 @@
 ﻿using System;
-using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
 using Roomie.Common.Measurements.Power;

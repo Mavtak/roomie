@@ -1,7 +1,6 @@
 ﻿using System;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Common.Exceptions;
-using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
 using Roomie.Desktop.Engine.Parameters;
 

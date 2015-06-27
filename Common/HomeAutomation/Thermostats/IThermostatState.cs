@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Roomie.Common.HomeAutomation.Thermostats.Cores;
+﻿using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 

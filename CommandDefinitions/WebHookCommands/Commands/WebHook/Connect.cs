@@ -1,5 +1,4 @@
 ﻿using Roomie.Desktop.Engine.Commands;
-using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
 {

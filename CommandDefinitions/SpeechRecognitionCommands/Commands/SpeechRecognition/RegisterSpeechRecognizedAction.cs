@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Roomie.CommandDefinitions.SpeechRecognition;
-using Roomie.CommandDefinitions.SpeechRecognitionCommands.Attributes;
+﻿using Roomie.CommandDefinitions.SpeechRecognition;
 
 namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands.SpeechRecognition
 {

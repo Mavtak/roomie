@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation;
 using Roomie.Desktop.Engine;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands

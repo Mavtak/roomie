@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Roomie.Common;
-using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.Measurements;
-using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
 using Roomie.Desktop.Engine.Parameters;
 

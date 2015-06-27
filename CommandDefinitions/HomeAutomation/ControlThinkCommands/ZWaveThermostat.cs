@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ControlThink.ZWave.Devices.Specific;
+﻿using ControlThink.ZWave.Devices.Specific;
 using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Cores;

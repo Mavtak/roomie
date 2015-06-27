@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
-using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Persistence.Database

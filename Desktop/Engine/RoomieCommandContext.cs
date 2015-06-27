@@ -1,6 +1,5 @@
 ﻿using System;
 using Roomie.Common.ScriptingLanguage;
-using Roomie.Desktop.Engine.Exceptions;
 using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.Desktop.Engine

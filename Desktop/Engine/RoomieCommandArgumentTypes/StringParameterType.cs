@@ -1,5 +1,4 @@
-﻿
-using System.Text;
+﻿using System.Text;
 using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes

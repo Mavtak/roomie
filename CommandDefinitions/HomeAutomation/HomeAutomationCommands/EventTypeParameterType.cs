@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Roomie.Common.HomeAutomation.Events;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Parameters;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;

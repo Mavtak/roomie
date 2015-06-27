@@ -2,7 +2,6 @@
 using Roomie.Common.HomeAutomation;
 using WebCommunicator;
 
-
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
     public class SyncWithCloud : HomeAutomationNetworkCommand

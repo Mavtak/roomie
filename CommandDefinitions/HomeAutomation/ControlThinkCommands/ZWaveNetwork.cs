@@ -3,8 +3,6 @@ using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.CommandDefinitions.HomeAutomationCommands.Exceptions;
 using Roomie.Common.HomeAutomation.Exceptions;
 using Roomie.Desktop.Engine.WorkQueues;
-using Device = Roomie.CommandDefinitions.HomeAutomationCommands.Device;
-using Network = Roomie.CommandDefinitions.HomeAutomationCommands.Network;
 
 namespace Roomie.CommandDefinitions.ControlThinkCommands
 {

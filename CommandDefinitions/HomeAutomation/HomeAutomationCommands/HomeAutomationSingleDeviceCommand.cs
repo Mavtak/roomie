@@ -2,7 +2,6 @@
 using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Exceptions;
-using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands

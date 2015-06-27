@@ -1,7 +1,5 @@
 ﻿using System;
-
 using System.Text;
-
 
 namespace Roomie.Web.WebHook.ActionHandlers
 {

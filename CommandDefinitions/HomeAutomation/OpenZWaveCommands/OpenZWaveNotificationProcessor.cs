@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using OpenZWaveDotNet;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.Events;
 using NotificationType = OpenZWaveDotNet.ZWNotification.Type;

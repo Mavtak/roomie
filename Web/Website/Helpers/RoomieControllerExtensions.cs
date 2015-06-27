@@ -1,10 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Roomie.Web.Persistence.Helpers;
+﻿using System.Web;
 using Roomie.Web.Persistence.Models;
-using Roomie.Web.Website.Controllers;
 
 namespace Roomie.Web.Website.Helpers
 {

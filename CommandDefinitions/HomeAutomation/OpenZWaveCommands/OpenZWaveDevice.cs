@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using OpenZWaveDotNet;
+﻿using OpenZWaveDotNet;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;

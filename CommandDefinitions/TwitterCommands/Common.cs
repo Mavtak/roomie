@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace Roomie.CommandDefinitions.TwitterCommands
 {
     public static class Common

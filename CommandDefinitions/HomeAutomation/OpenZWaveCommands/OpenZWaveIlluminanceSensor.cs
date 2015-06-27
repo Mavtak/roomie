@@ -1,7 +1,6 @@
 ﻿using System;
 using Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.Specific;
 using Roomie.Common.HomeAutomation.MultilevelSensors;
-using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Illuminance;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands

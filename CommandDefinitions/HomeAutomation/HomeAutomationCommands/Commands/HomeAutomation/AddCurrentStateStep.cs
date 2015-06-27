@@ -1,5 +1,4 @@
 ﻿using Roomie.Common.Measurements.Power;
-using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
 using Roomie.Desktop.Engine.Parameters;
 

@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using Roomie.Web.Persistence.Models;
-
+﻿using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.WebHook.ActionHandlers
 {

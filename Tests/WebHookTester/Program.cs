@@ -1,5 +1,4 @@
 ﻿using System;
-
 using WebCommunicator;
 
 namespace Roomie.Tests.WebHookTester

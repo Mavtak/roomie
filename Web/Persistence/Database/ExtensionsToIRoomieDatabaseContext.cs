@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Roomie.Web.Persistence.Models;
-using Roomie.Web.Persistence.Repositories;
+﻿using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Database
 {

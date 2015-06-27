@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Roomie.Common.HomeAutomation.Keypads.Buttons
+﻿namespace Roomie.Common.HomeAutomation.Keypads.Buttons
 {
     public interface IKeypadButtonActions
     {

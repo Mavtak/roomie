@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Roomie.Web.Website.Controllers.Api
+﻿namespace Roomie.Web.Website.Controllers.Api
 {
     public class DeviceUpdateModel
     {

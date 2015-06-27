@@ -1,10 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.Web.Mvc;
-using Roomie.Web.Persistence.Helpers;
+﻿using System.Web.Mvc;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
-using Roomie.Web.Persistence.Database;
 
 namespace Roomie.Web.Website.Controllers
 {

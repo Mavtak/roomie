@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
+
 namespace Roomie.Web.Website.Helpers
 {
     public class ApiRestrictedAccessAttribute : ActionFilterAttribute

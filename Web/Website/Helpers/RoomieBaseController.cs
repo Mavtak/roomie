@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Web;
 using System.Web.Mvc;
 using Roomie.Desktop.Engine;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Controllers;
-using System.Web.Http;
 
 namespace Roomie.Web.Website.Helpers
 {

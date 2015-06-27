@@ -15,7 +15,7 @@ using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api
 {
-    [ApiRestrictedAccessAttribute]
+    [ApiRestrictedAccess]
     [AutoSave]
     public class DeviceController : RoomieBaseApiController
     {

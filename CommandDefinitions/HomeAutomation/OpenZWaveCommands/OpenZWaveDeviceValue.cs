@@ -1,5 +1,4 @@
 ﻿using OpenZWaveDotNet;
-using ValueType = OpenZWaveDotNet.ZWValueID.ValueType;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
@@ -38,7 +37,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
-        public ValueType Type
+        public ZWValueID.ValueType Type
         {
             get
             {
