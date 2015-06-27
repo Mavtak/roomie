@@ -60,11 +60,6 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public void DeclareVariable(string name)
-        {
-            DeclareVariable(name, null);
-        }
-
         public void ReplaceVariable(string name, string value)
         {
             if (ContainsVariableInScope(name))
