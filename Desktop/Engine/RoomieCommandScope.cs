@@ -130,7 +130,7 @@ namespace Roomie.Desktop.Engine
             return _variables.ContainsKey(name);
         }
 
-        public bool VariableIsDefined(string name)
+        public bool ContainsVariable(string name)
         {
             if (ContainsLocalVariable(name))
             {
@@ -142,7 +142,7 @@ namespace Roomie.Desktop.Engine
                 return false;
             }
 
-            return Parent.VariableIsDefined(name);
+            return Parent.ContainsVariable(name);
         }
 
         public void ResetLocalScope()
