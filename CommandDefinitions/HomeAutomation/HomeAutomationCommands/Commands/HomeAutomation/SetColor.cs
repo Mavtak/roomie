@@ -8,9 +8,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
-            var scope = context.Scope;
             var device = context.Device;
-            var color = scope.ReadParameter("Color").ToColor();
+            var color = context.ReadParameter("Color").ToColor();
 
             device.ColorSwitch.SetValue(color);
         }

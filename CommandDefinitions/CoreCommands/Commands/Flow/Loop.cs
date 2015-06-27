@@ -11,11 +11,10 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
         protected override void Execute_Definition(RoomieCommandContext context)
         {
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
             var originalCommand = context.OriginalCommand;
             var innerCommands = originalCommand.InnerCommands;
 
-            int times = scope.ReadParameter("Times").ToInteger();
+            int times = context.ReadParameter("Times").ToInteger();
 
             while (times != 0)
             {

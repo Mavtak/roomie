@@ -15,15 +15,13 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
         private SpeechSynthesizer synthesizer;
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var scope = context.Scope;
-
             if (synthesizer == null)
             {
                 synthesizer = new SpeechSynthesizer();
             }
 
-            String text = scope.ReadParameter("Text").Value;
-            bool async = scope.ReadParameter("Async").ToBoolean();
+            String text = context.ReadParameter("Text").Value;
+            bool async = context.ReadParameter("Async").ToBoolean();
 
 
             if (async)

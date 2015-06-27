@@ -14,7 +14,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             var interpreter = context.Interpreter;
             var scope = context.Scope;
 
-            bool literalValues = scope.ReadParameter("LiteralValues").ToBoolean();
+            bool literalValues = context.ReadParameter("LiteralValues").ToBoolean();
 
 
             HierarchicalVariableScope currentScope = scope;
@@ -26,7 +26,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
                     if(literalValues)
                         interpreter.WriteEvent(name + ": " + scope.GetVariable(name).Value);
                     else
-                        interpreter.WriteEvent(name + ": " + scope.ReadParameter(name));
+                        interpreter.WriteEvent(name + ": " + context.ReadParameter(name));
                 }
                 interpreter.WriteEvent("---");
                 currentScope = currentScope.Parent;

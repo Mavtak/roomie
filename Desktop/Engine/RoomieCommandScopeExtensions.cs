@@ -58,7 +58,8 @@ namespace Roomie.Desktop.Engine
 
             foreach (var argument in arguments)
             {
-                var value = scope.ReadParameter(argument.Name);
+                var variable = scope.GetVariable(argument.Name);
+                var value = variable.Interpolate(scope);
                 var type = argument.Type;
                 var isValid = type.Validate(value);
 

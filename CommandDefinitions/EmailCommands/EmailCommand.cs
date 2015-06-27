@@ -15,9 +15,8 @@ namespace Roomie.CommandDefinitions.EmailCommands
         protected override void Execute_Definition(RoomieCommandContext context)
         {
             var dataStore = context.DataStore;
-            var scope = context.Scope;
 
-            string senderAddress = scope.ReadParameter("Address").Value;
+            string senderAddress = context.ReadParameter("Address").Value;
 
             EmailCommandContext greaterContext = new EmailCommandContext(context);
 

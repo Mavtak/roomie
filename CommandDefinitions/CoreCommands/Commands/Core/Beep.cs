@@ -14,10 +14,8 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
     {
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var scope = context.Scope;
-
-            int frequency = scope.ReadParameter("Frequency").ToInteger();
-            TimeSpan duration = scope.ReadParameter("Duration").ToTimeSpan();
+            int frequency = context.ReadParameter("Frequency").ToInteger();
+            TimeSpan duration = context.ReadParameter("Duration").ToTimeSpan();
 
             double ms = duration.TotalMilliseconds;
 

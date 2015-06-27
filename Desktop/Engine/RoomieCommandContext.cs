@@ -1,5 +1,7 @@
 ﻿using System;
 using Roomie.Common.ScriptingLanguage;
+using Roomie.Desktop.Engine.Exceptions;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.Desktop.Engine
 {
@@ -64,6 +66,14 @@ namespace Roomie.Desktop.Engine
         protected RoomieCommandContext(RoomieCommandContext that)
             : this(that.Interpreter, that.Scope, that.OriginalCommand)
         {
+        }
+
+        public IParameter ReadParameter(string name)
+        {
+            var variable = Scope.GetVariable(name);
+            var result = variable.Interpolate(Scope);
+
+            return result;
         }
 
         public IScriptCommand GetBlankCommand(Type commandType)

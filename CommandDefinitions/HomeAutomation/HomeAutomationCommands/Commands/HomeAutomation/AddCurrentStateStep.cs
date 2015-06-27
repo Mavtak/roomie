@@ -11,9 +11,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
-            var scope = context.Scope;
-            var power = scope.ReadParameter("Power").ToInteger();
-            var name = scope.ReadParameter("Name").Value;
+            var power = context.ReadParameter("Power").ToInteger();
+            var name = context.ReadParameter("Name").Value;
             var device = context.Device;
 
             device.CurrentStateGenerator.AddStep(new WattsPower(power), name);

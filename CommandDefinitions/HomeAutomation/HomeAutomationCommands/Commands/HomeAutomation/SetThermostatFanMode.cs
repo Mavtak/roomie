@@ -9,8 +9,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var device = context.Device;
-            var scope = context.Scope;
-            var fanMode = scope.ReadParameter("FanMode").ToThermostatFanMode();
+            var fanMode = context.ReadParameter("FanMode").ToThermostatFanMode();
 
             device.Thermostat.Fan.SetMode(fanMode);
         }

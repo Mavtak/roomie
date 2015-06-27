@@ -16,11 +16,10 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
         {
             var commands = context.CommandLibrary;
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
 
             try
             {
-                string filename = scope.ReadParameter("Filename").Value;
+                string filename = context.ReadParameter("Filename").Value;
 
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Encoding = Encoding.UTF8;

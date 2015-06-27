@@ -13,9 +13,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
     {
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var scope = context.Scope;
-
-            bool force = scope.ReadParameter("Force").ToBoolean();
+            bool force = context.ReadParameter("Force").ToBoolean();
 
             Common.SuspendComputer(PowerState.Suspend, force);
         }

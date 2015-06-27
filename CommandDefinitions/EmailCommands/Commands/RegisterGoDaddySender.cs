@@ -10,16 +10,14 @@ namespace Roomie.CommandDefinitions.EmailCommands.Commands
     {
         protected override void Execute_EmailDefinition(EmailCommandContext context)
         {
-            var scope = context.Scope;
-
             context.RegisterSender(
                 host: "smtpout.secureserver.net",
                 port: 465,
                 enableSsl: true,
-                username: scope.ReadParameter("Address").Value,
-                password: scope.ReadParameter("Password").Value,
-                senderAddress: scope.ReadParameter("Address").Value,
-                senderName: scope.ReadParameter("DisplayName").Value
+                username: context.ReadParameter("Address").Value,
+                password: context.ReadParameter("Password").Value,
+                senderAddress: context.ReadParameter("Address").Value,
+                senderName: context.ReadParameter("DisplayName").Value
             );
         }
     }

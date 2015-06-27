@@ -16,16 +16,14 @@ namespace Roomie.CommandDefinitions.EmailCommands.Commands
     {
         protected override void Execute_EmailDefinition(EmailCommandContext context)
         {
-            var scope = context.Scope;
-
             context.RegisterSender(
-                host: scope.ReadParameter("Host").Value,
-                port: scope.ReadParameter("Port").ToInteger(),
-                enableSsl: scope.ReadParameter("UseSSL").ToBoolean(),
-                username: scope.ReadParameter("Username").Value,
-                password: scope.ReadParameter("Password").Value,
-                senderAddress: scope.ReadParameter("Address").Value,
-                senderName: scope.ReadParameter("Name").Value
+                host: context.ReadParameter("Host").Value,
+                port: context.ReadParameter("Port").ToInteger(),
+                enableSsl: context.ReadParameter("UseSSL").ToBoolean(),
+                username: context.ReadParameter("Username").Value,
+                password: context.ReadParameter("Password").Value,
+                senderAddress: context.ReadParameter("Address").Value,
+                senderName: context.ReadParameter("Name").Value
             );
         }
 

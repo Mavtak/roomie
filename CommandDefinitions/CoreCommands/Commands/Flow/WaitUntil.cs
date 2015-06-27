@@ -13,9 +13,8 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Flow
         protected override void Execute_Definition(RoomieCommandContext context)
         {
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
 
-            DateTime target = scope.ReadParameter("Time").ToDateTime();
+            DateTime target = context.ReadParameter("Time").ToDateTime();
 
             interpreter.WriteEvent("waiting for " + target);
             Common.WaitUntil(target);            

@@ -11,11 +11,10 @@ namespace Roomie.CommandDefinitions.TwitterCommands.Commands.Twitter
         protected override void Execute_TwitterDefinition(TwitterCommandContext context)
         {
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
             var users = context.TwitterUsers;
 
-            string username = scope.ReadParameter("Username").Value;
-            string password = scope.ReadParameter("Password").Value;
+            string username = context.ReadParameter("Username").Value;
+            string password = context.ReadParameter("Password").Value;
 
             foreach (string otherUsername in users.Keys)
             {

@@ -19,7 +19,6 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
             var commandLibrary = context.CommandLibrary;
             var interpreter = context.Interpreter;
             var parameterTypes = context.ArgumentTypes;
-            var scope = context.Scope;
             var originalCommand = context.OriginalCommand;
             var innerCommands = originalCommand.InnerCommands;
 
@@ -33,9 +32,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
                 throw new RoomieRuntimeException("No subcommands specified");
             }
 
-            string group = scope.ReadParameter("Group").Value;
-            string name = scope.ReadParameter("Name").Value;
-            string description = scope.ReadParameter("Description").Value;
+            string group = context.ReadParameter("Group").Value;
+            string name = context.ReadParameter("Name").Value;
+            string description = context.ReadParameter("Description").Value;
             if (String.IsNullOrWhiteSpace(description))
             {
                 description = null;

@@ -13,13 +13,12 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
-            var scope = context.Scope;
             var device = context.Device;
 
-            var startPower = scope.ReadParameter("StartPower").ToInteger();
-            var endPower = scope.ReadParameter("EndPower").ToInteger();
+            var startPower = context.ReadParameter("StartPower").ToInteger();
+            var endPower = context.ReadParameter("EndPower").ToInteger();
 
-            TimeSpan duration = scope.ReadParameter("Duration").ToTimeSpan();
+            TimeSpan duration = context.ReadParameter("Duration").ToTimeSpan();
 
             if (startPower == endPower)
             {

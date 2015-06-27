@@ -15,11 +15,10 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
             var device = context.Device;
 
-            TimeSpan pollInterval = scope.ReadParameter("PollInterval").ToTimeSpan();
-            int maxErrors = scope.ReadParameter("MaxErrors").ToInteger();
+            TimeSpan pollInterval = context.ReadParameter("PollInterval").ToTimeSpan();
+            int maxErrors = context.ReadParameter("MaxErrors").ToInteger();
 
             if (pollInterval.Seconds < 0)
                 throw new RoomieRuntimeException("PollInterval must be a positive (or 0) time interval.");

@@ -9,10 +9,9 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
-            var scope = context.Scope;
             var device = context.Device;
 
-            var power = scope.ReadParameter("Power").ToInteger();
+            var power = context.ReadParameter("Power").ToInteger();
 
             device.MultilevelSwitch.SetPower(power);
         }

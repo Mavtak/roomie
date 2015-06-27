@@ -16,9 +16,8 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Commands
             //TODO: make this more efficient
             var commands = context.CommandLibrary;
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
 
-            var group = scope.ReadParameter("Group").Value;
+            var group = context.ReadParameter("Group").Value;
 
             IEnumerable<RoomieCommand> subset;
 

@@ -16,13 +16,13 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             var interpreter = context.Interpreter;
             var scope = context.Scope;
             var networks = context.Networks;
-            var retries = scope.ReadParameter(RetriesParameterAttribute.Key).ToInteger();
+            var retries = context.ReadParameter(RetriesParameterAttribute.Key).ToInteger();
 
             Device device = null;
             if (scope.Local.ContainsVariable("Device"))
             {
                 var allDevices = networks.SelectMany(x => x.Devices);
-                var address = scope.ReadParameter("Device").ToVirtualAddress();
+                var address = context.ReadParameter("Device").ToVirtualAddress();
                 device = allDevices.GetDevice(address);
             }
 

@@ -9,8 +9,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
     {
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var scope = context.Scope;
-            var path = scope.ReadParameter("Path").Value;
+            var path = context.ReadParameter("Path").Value;
             var player = new SoundPlayer(path);
             player.Play();
         }

@@ -14,13 +14,12 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Threads
 
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var scope = context.Scope;
             var interpreter = context.Interpreter;
             var threads = context.Threads;
             var currentThread = interpreter.ParentThread;
 
-            var currentName = scope.ReadParameter("CurrentName").Value;
-            var newName = scope.ReadParameter("NewName").Value;
+            var currentName = context.ReadParameter("CurrentName").Value;
+            var newName = context.ReadParameter("NewName").Value;
 
             var thread = SelectThread(currentName, currentThread, threads);
 

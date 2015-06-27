@@ -18,7 +18,6 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         protected override void Execute_HomeAutomationDefinition(HomeAutomationCommandContext context)
         {
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
             var originalXml = context.OriginalCommand;
             var networks = context.Networks;
 
@@ -27,7 +26,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 throw new HomeAutomationException("No home automation networks registered");
             }
 
-            var networkName = scope.ReadParameter("Network").Value;
+            var networkName = context.ReadParameter("Network").Value;
 
             Network network;
             if (networkName == "<default>")

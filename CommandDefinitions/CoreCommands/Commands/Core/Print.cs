@@ -10,9 +10,8 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
         protected override void Execute_Definition(RoomieCommandContext context)
         {
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
 
-            interpreter.WriteEvent(scope.ReadParameter("Text").Value);
+            interpreter.WriteEvent(context.ReadParameter("Text").Value);
         }
     }
 }

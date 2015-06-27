@@ -14,9 +14,8 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var device = context.Device as PiEngineeringDevice;
-            var scope = context.Scope;
-            var ledString = scope.ReadParameter("LED").Value;
-            var statusString = scope.ReadParameter("Status").Value;
+            var ledString = context.ReadParameter("LED").Value;
+            var statusString = context.ReadParameter("Status").Value;
 
             Led led;
             if (!Enum.TryParse(ledString, out led))

@@ -13,9 +13,8 @@ namespace Roomie.CommandDefinitions.ControlThinkCommands.Commands
         {
             var device = context.Device as ZWaveDevice;
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
-            var parameterNumber = scope.ReadParameter("ParameterNumber").ToByte();
-            var value = scope.ReadParameter("Value").ToByte();
+            var parameterNumber = context.ReadParameter("ParameterNumber").ToByte();
+            var value = context.ReadParameter("Value").ToByte();
 
             var parameter = device.BackingObject.ConfigurationParameters[parameterNumber];
 

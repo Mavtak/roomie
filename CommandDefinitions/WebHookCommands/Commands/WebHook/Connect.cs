@@ -14,12 +14,11 @@ namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
         {
             var engine = context.Engine;
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
 
-            string computerName = scope.ReadParameter("ComputerName").Value;
-            string communicationUrl = scope.ReadParameter("CommunicationURL").Value;
-            string accessKey = scope.ReadParameter("AccessKey").Value;
-            string encryptionKey = scope.ReadParameter("EncryptionKey").Value;
+            string computerName = context.ReadParameter("ComputerName").Value;
+            string communicationUrl = context.ReadParameter("CommunicationURL").Value;
+            string accessKey = context.ReadParameter("AccessKey").Value;
+            string encryptionKey = context.ReadParameter("EncryptionKey").Value;
 
             var webhookEngine = new WebHookEngine(engine, computerName, communicationUrl, accessKey, encryptionKey);
 

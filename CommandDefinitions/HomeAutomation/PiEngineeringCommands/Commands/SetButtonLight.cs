@@ -15,10 +15,9 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var device = context.Device as PiEngineeringDevice;
-            var scope = context.Scope;
-            var bankString = scope.ReadParameter("Color").Value;
-            var button = scope.ReadParameter("Button").Value;
-            var statusString = scope.ReadParameter("Status").Value;
+            var bankString = context.ReadParameter("Color").Value;
+            var button = context.ReadParameter("Button").Value;
+            var statusString = context.ReadParameter("Status").Value;
 
             Bank bank;
             if (!Enum.TryParse(bankString, out bank))

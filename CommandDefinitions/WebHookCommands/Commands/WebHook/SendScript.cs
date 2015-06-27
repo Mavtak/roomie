@@ -11,13 +11,12 @@ namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
         protected override void Execute_WebHookCommand(WebhookCommandContext context)
         {
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
             var originalCommand = context.OriginalCommand;
             var innerCommands = originalCommand.InnerCommands;
 
             var webHookEngines = context.WebhookEngines;
 
-            var computerName = scope.ReadParameter("ComputerName").Value;
+            var computerName = context.ReadParameter("ComputerName").Value;
 
             var outMessage = new Message();
 

@@ -16,9 +16,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.Math
         {
             var scope = context.Scope;
 
-            int min = scope.ReadParameter("Min").ToInteger();
-            int max = scope.ReadParameter("Max").ToInteger();
-            string resultName = scope.ReadParameter("ResultName").Value;
+            int min = context.ReadParameter("Min").ToInteger();
+            int max = context.ReadParameter("Max").ToInteger();
+            string resultName = context.ReadParameter("ResultName").Value;
 
             if (min > max)
                 throw new RoomieRuntimeException("Min > Max");

@@ -15,10 +15,8 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
     {
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var scope = context.Scope;
-
-            string path = scope.ReadParameter("Path").Value;
-            bool abortOnError = scope.ReadParameter("AbortOnError").ToBoolean();
+            string path = context.ReadParameter("Path").Value;
+            bool abortOnError = context.ReadParameter("AbortOnError").ToBoolean();
 
             try
             {

@@ -11,9 +11,8 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var device = context.Device;
-            var scope = context.Scope;
-            var temperature = scope.ReadParameter("Temperature").ToTemperature();
-            var setpointType = scope.ReadParameter("Setpoint").ToThermostatSetpointType();
+            var temperature = context.ReadParameter("Temperature").ToTemperature();
+            var setpointType = context.ReadParameter("Setpoint").ToThermostatSetpointType();
 
             device.Thermostat.Setpoints.SetSetpoint(setpointType, temperature);
         }

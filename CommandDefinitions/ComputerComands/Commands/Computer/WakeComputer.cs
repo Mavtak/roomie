@@ -13,9 +13,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
     {
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var scope = context.Scope;
-
-            var macAddress = scope.ReadParameter("MAC").Value;
+            var macAddress = context.ReadParameter("MAC").Value;
             macAddress = macAddress.Replace("-", "");
 
             try

@@ -14,12 +14,11 @@ namespace Roomie.CommandDefinitions.EmailCommands.Commands
         protected override void Execute_EmailDefinition(EmailCommandContext context)
         {
             var interpreter = context.Interpreter;
-            var scope = context.Scope;
             var sender = context.Sender;
 
-            string to = scope.ReadParameter("To").Value;
-            string subject = scope.ReadParameter("Subject").Value;
-            string body = scope.ReadParameter("Body").Value;
+            string to = context.ReadParameter("To").Value;
+            string subject = context.ReadParameter("Subject").Value;
+            string body = context.ReadParameter("Body").Value;
 
             bool result = false;
             try

@@ -12,9 +12,8 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var device = context.Device as PiEngineeringDevice;
-            var scope = context.Scope;
-            var bluePower = scope.ReadParameter("BluePower").ToByte();
-            var redPower = scope.ReadParameter("RedPower").ToByte();
+            var bluePower = context.ReadParameter("BluePower").ToByte();
+            var redPower = context.ReadParameter("RedPower").ToByte();
 
             device.SetButtonLightIntensity(bluePower, redPower);
         }

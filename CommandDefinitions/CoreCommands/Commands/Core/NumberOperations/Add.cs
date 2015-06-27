@@ -14,9 +14,9 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.NumberOpersations
         {
             var scope = context.Scope;
 
-            int value1 = scope.ReadParameter("Value1").ToInteger();
-            int value2 = scope.ReadParameter("Value2").ToInteger();
-            string resultName = scope.ReadParameter("ResultName").Value;
+            int value1 = context.ReadParameter("Value1").ToInteger();
+            int value2 = context.ReadParameter("Value2").ToInteger();
+            string resultName = context.ReadParameter("ResultName").Value;
 
             int result = value1 + value2;
 

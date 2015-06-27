@@ -15,12 +15,10 @@ namespace Roomie.CommandDefinitions.TwitterCommands
 
         protected override void Execute_Definition(RoomieCommandContext context)
         {
-            var scope = context.Scope;
-
             var greaterContext = new TwitterCommandContext(context);
             var users = greaterContext.TwitterUsers;
 
-            string username = scope.ReadParameter("Username").Value;
+            string username = context.ReadParameter("Username").Value;
 
             if (!users.ContainsKey(username) && this.Name != "SignIn") //TODO: decouple this
             {

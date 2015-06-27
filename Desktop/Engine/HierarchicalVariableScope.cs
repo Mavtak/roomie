@@ -82,13 +82,5 @@ namespace Roomie.Desktop.Engine
 
             return result;
         }
-
-        public IParameter ReadParameter(string name)
-        {
-            var variable = GetVariable(name);
-            var result = variable.Interpolate(this);
-
-            return result;
-        }
     }
 }

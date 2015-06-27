@@ -10,10 +10,9 @@ namespace Roomie.CommandDefinitions.TwitterCommands.Commands.Twitter
     {
         protected override void Execute_TwitterDefinition(TwitterCommandContext context)
         {
-            var scope = context.Scope;
             var user = context.User;
 
-            string text = scope.ReadParameter("Text").Value;
+            string text = context.ReadParameter("Text").Value;
             try
             {
                 user.Status.Update(text);
