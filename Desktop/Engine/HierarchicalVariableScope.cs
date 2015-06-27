@@ -34,7 +34,7 @@ namespace Roomie.Desktop.Engine
             return Parent.ContainsVariable(name);
         }
 
-        public void DeclareOrUpdateVariable(string name, string value)
+        public void SetVariable(string name, string value)
         {
             lock (this)
             {
