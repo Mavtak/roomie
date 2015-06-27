@@ -68,6 +68,23 @@ namespace Roomie.Desktop.Engine
             }
         }
 
+        public void SetVariable(string name, string value)
+        {
+            lock (this)
+            {
+                var variable = TryGetVariable(name);
+
+                if (variable != null)
+                {
+                    variable.Update(value);
+                }
+                else
+                {
+                    DeclareVariable(name, value);
+                }
+            }
+        }
+
         public void Reset()
         {
             _variables.Clear();
