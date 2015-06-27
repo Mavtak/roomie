@@ -72,13 +72,28 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public VariableParameter TryGetVariable(string name)
+        public VariableParameter TryGetLocalVariable(string name)
         {
             lock (_variables)
             {
                 if (_variables.ContainsKey(name))
                 {
                     return _variables[name];
+                }
+
+                return null;
+            }
+        }
+
+        public VariableParameter TryGetVariable(string name)
+        {
+            lock (_variables)
+            {
+                var variable = TryGetLocalVariable(name);
+
+                if (variable != null)
+                {
+                    return variable;
                 }
 
                 if (Parent == null)
