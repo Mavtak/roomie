@@ -19,7 +19,7 @@ namespace Roomie.Common.Tests
         [TestCaseSource("ValidInputs")]
         public void ItDoesNotThrowAnExceptionWhenParsingValidInputs(string input)
         {
-            TimeUtils.StringToDateTime(input);
+            TimeUtils.ParseDateTime(input);
         }
     }
 }

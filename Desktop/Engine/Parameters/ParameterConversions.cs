@@ -24,7 +24,7 @@ namespace Roomie.Desktop.Engine.Parameters
 
         public static DateTime ToDateTime(this IParameter parameter)
         {
-            return TimeUtils.ToDateTime(parameter.Value);
+            return TimeUtils.ParseDateTime(parameter.Value);
         }
 
         public static int ToInteger(this IParameter parameter)
@@ -39,7 +39,7 @@ namespace Roomie.Desktop.Engine.Parameters
 
         public static TimeSpan ToTimeSpan(this IParameter parameter)
         {
-            return TimeUtils.ToTimeSpan(parameter.Value);
+            return TimeUtils.ParseTimeSpan(parameter.Value);
         }
     }
 }

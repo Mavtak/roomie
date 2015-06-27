@@ -45,7 +45,7 @@ namespace Roomie.Common
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static TimeSpan StringToTimeSpan(string input)
+        public static TimeSpan ParseTimeSpan(string input)
         {
             int days = 0;
             int hours = 0;
@@ -72,11 +72,6 @@ namespace Roomie.Common
                 milliseconds = Convert.ToInt32(match.Groups["milliseconds"].Value);
 
             return new TimeSpan(days, hours, minutes, seconds, milliseconds);
-        }
-
-        public static TimeSpan ToTimeSpan(this string input)
-        {
-            return StringToTimeSpan(input);
         }
 
         /// <summary>
@@ -156,7 +151,7 @@ namespace Roomie.Common
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static DateTime StringToDateTime(string input)
+        public static DateTime ParseDateTime(string input)
         {
             DateTime now = DateTime.Now;
 
@@ -263,11 +258,6 @@ namespace Roomie.Common
 
             return result;
 
-        }
-
-        public static DateTime ToDateTime(this string input)
-        {
-            return StringToDateTime(input);
         }
 
         private static bool DayOfWeekMatches(DayOfWeek dayOfWeek, string weekRelativeDay)
