@@ -73,7 +73,7 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public VariableParameter GetVariable(string name)
+        public VariableParameter TryGetVariable(string name)
         {
             lock (_variables)
             {
@@ -84,11 +84,23 @@ namespace Roomie.Desktop.Engine
 
                 if (HigherScope == null)
                 {
-                    throw new VariableException("Variable " + name + " not set");
+                    return null;
                 }
 
-                return HigherScope.GetVariable(name);
+                return HigherScope.TryGetVariable(name);
             }
+        }
+
+        public VariableParameter GetVariable(string name)
+        {
+            var result = TryGetVariable(name);
+
+            if(result == null)
+            {
+                throw new VariableException("Variable " + name + " not set");
+            }
+
+            return result;
         }
 
         public IParameter ReadParameter(string name)
