@@ -11,14 +11,14 @@ namespace Roomie.Desktop.Engine
     {
         public static IEnumerable<string> VariablesInString(string input)
         {
-            var pattern = new Regex(RoomieCommandScope.VariableFormatPattern);
+            var pattern = new Regex(LocalVariableScope.VariableFormatPattern);
             foreach (Match match in pattern.Matches(input))
             {
                 yield return match.Value;
             }
         }
 
-        public static ReadOnlyParameter Interpolate(this VariableParameter givenVariable, RoomieCommandScope scope)
+        public static ReadOnlyParameter Interpolate(this VariableParameter givenVariable, HierarchicalVariableScope scope)
         {
             var builder = new StringBuilder(givenVariable.Value);
 

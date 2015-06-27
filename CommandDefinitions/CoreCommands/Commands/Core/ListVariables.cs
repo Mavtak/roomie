@@ -17,11 +17,11 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             bool literalValues = scope.ReadParameter("LiteralValues").ToBoolean();
 
 
-            RoomieCommandScope currentScope = scope;
+            HierarchicalVariableScope currentScope = scope;
             interpreter.WriteEvent("---");
             while (currentScope != null)
             {
-                foreach (string name in currentScope.Names)
+                foreach (string name in currentScope.Local.Names)
                 {
                     if(literalValues)
                         interpreter.WriteEvent(name + ": " + scope.GetVariable(name).Value);

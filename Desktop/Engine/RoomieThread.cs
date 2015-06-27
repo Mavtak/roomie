@@ -13,7 +13,7 @@ namespace Roomie.Desktop.Engine
         private readonly RoomieCommandInterpreter _interpreter;
         private readonly ParallelWorkQueue _workQueue;
 
-        public RoomieThread(RoomieEngine engine, string name, RoomieCommandScope parentScope)
+        public RoomieThread(RoomieEngine engine, string name, HierarchicalVariableScope parentScope)
         {
             Engine = engine;
             Id = Guid.NewGuid().ToString();

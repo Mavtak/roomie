@@ -93,6 +93,7 @@
     <Compile Include="Commands\ICommandSpecification.cs" />
     <Compile Include="Commands\NamespaceBasedCommandSpecification.cs" />
     <Compile Include="Interpolation.cs" />
+    <Compile Include="LocalVariableScope.cs" />
     <Compile Include="Parameters\VariableParameter.cs" />
     <Compile Include="Parameters\ParameterValidations.cs" />
     <Compile Include="Parameters\IParameter.cs" />
@@ -117,7 +118,7 @@
     <Compile Include="InternalLibraryVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomieEngine.cs" />
-    <Compile Include="RoomieCommandScope.cs" />
+    <Compile Include="HierarchicalVariableScope.cs" />
     <Compile Include="IRoomieCommandArgumentType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\BooleanParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\ByteParameterType.cs" />

@@ -20,10 +20,10 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.NumberOpersations
 
             int result = value1 - value2;
 
-            if (scope.Parent.ContainsLocalVariable(resultName))
+            if (scope.Parent.Local.ContainsLocalVariable(resultName))
                 scope.Parent.GetVariable(resultName).Update(result.ToString());
             else
-                scope.Parent.DeclareLocalVariable(resultName, result.ToString());
+                scope.Parent.Local.DeclareLocalVariable(resultName, result.ToString());
         }
     }
 }

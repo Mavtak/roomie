@@ -7,7 +7,7 @@ namespace Roomie.Desktop.Engine
     public class RoomieEngine
     {
         //TODO: is the access level of GlobalScope appropriate?
-        public RoomieCommandScope GlobalScope { get; private set; }
+        public HierarchicalVariableScope GlobalScope { get; private set; }
         public bool PrintCommandCalls;
         public readonly RoomieCommandLibrary CommandLibrary;
         public readonly bool DevelopmentEnvironment;
@@ -25,7 +25,7 @@ namespace Roomie.Desktop.Engine
         public RoomieEngine()
         {
             _engineState = EngineState.New;
-            GlobalScope = new RoomieCommandScope();
+            GlobalScope = new HierarchicalVariableScope();
             DataStore = new DataStore();
             ThreadPools = new List<ThreadPool>();
             Threads = CreateThreadPool("Root Threads");

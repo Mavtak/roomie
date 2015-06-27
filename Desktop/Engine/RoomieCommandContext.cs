@@ -8,7 +8,7 @@ namespace Roomie.Desktop.Engine
         //TODO: Should Engine *not* be accessible through here?
 
         public RoomieCommandInterpreter Interpreter { get; private set; }
-        public RoomieCommandScope Scope { get; private set; }
+        public HierarchicalVariableScope Scope { get; private set; }
         public IScriptCommand OriginalCommand { get; private set; }
 
         public RoomieEngine Engine
@@ -32,7 +32,7 @@ namespace Roomie.Desktop.Engine
                 return Engine.DataStore;
             }
         }
-        public RoomieCommandScope GlobalScope
+        public HierarchicalVariableScope GlobalScope
         {
             get
             {
@@ -54,7 +54,7 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        internal RoomieCommandContext(RoomieCommandInterpreter interpreter, RoomieCommandScope scope, IScriptCommand originalCommand)
+        internal RoomieCommandContext(RoomieCommandInterpreter interpreter, HierarchicalVariableScope scope, IScriptCommand originalCommand)
         {
             Interpreter = interpreter;
             Scope = scope;

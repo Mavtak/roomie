@@ -22,10 +22,10 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.DateTimeOperation
 
             DateTime result = dateTime.Add(timeSpan);
 
-            if (scope.Parent.ContainsLocalVariable(resultName))
+            if (scope.Parent.Local.ContainsLocalVariable(resultName))
                 scope.Parent.GetVariable(resultName).Update(TimeUtils.DateTimeToString(result));
             else
-                scope.Parent.DeclareLocalVariable(resultName, TimeUtils.DateTimeToString(result));
+                scope.Parent.Local.DeclareLocalVariable(resultName, TimeUtils.DateTimeToString(result));
         }
     }
 }

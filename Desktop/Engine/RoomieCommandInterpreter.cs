@@ -9,12 +9,12 @@ namespace Roomie.Desktop.Engine
     public class RoomieCommandInterpreter
     {
         public readonly RoomieThread ParentThread;
-        public readonly RoomieCommandScope Scope;
+        public readonly HierarchicalVariableScope Scope;
         public readonly ScriptCommandList CommandQueue;
         //TODO: does naming command interpreters even make sense?
         public bool IsBusy { get; private set; }
 
-        internal RoomieCommandInterpreter(RoomieThread parentThread, RoomieCommandScope parentScope)
+        internal RoomieCommandInterpreter(RoomieThread parentThread, HierarchicalVariableScope parentScope)
         {
             ParentThread = parentThread;
             Scope = parentScope.CreateLowerScope();
@@ -76,7 +76,7 @@ namespace Roomie.Desktop.Engine
             // create a lower scope and populate it with the command arguments
             var commandScope = Scope.CreateLowerScope();
             foreach (var parameter in languageCommand.Parameters)
-                commandScope.DeclareLocalVariable(parameter.Name, parameter.Value);
+                commandScope.Local.DeclareLocalVariable(parameter.Name, parameter.Value);
 
             try
             {
@@ -143,7 +143,7 @@ namespace Roomie.Desktop.Engine
 
         public void ResetLocalScope()
         {
-            Scope.ResetLocalScope();
+            Scope.Local.ResetLocalScope();
         }
 
         public RoomieCommandInterpreter GetSubinterpreter()

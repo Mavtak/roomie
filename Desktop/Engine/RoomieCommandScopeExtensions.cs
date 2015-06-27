@@ -9,24 +9,24 @@ namespace Roomie.Desktop.Engine
 {
     public static class RoomieCommandScopeExtensions
     {
-        public static VariableParameter[] FindGivenValues(this RoomieCommandScope scope)
+        public static VariableParameter[] FindGivenValues(this LocalVariableScope scope)
         {
-            var variables = scope.VariableNames;
+            var variables = scope.Names;
 
             var result = variables
-                .Select(scope.GetVariable)
+                .Select(scope.TryGetLocalVariable)
                 .ToArray();
 
             return result;
         }
 
-        public static RoomieCommandArgument[] FindMissingArguments(this RoomieCommandScope scope, IEnumerable<RoomieCommandArgument> arguments)
+        public static RoomieCommandArgument[] FindMissingArguments(this HierarchicalVariableScope scope, IEnumerable<RoomieCommandArgument> arguments)
         {
             var result = new List<RoomieCommandArgument>();
 
             foreach (var argument in arguments)
             {
-                if (!argument.HasDefault & !scope.ContainsLocalVariable(argument.Name))
+                if (!argument.HasDefault & !scope.Local.ContainsLocalVariable(argument.Name))
                 {
                     result.Add(argument);
                 }
@@ -35,15 +35,15 @@ namespace Roomie.Desktop.Engine
             return result.ToArray();
         }
 
-        public static KeyValuePair<string, string>[] ApplyDefaults(this RoomieCommandScope scope, IEnumerable<RoomieCommandArgument> arguments)
+        public static KeyValuePair<string, string>[] ApplyDefaults(this HierarchicalVariableScope scope, IEnumerable<RoomieCommandArgument> arguments)
         {
             var result = new List<KeyValuePair<string, string>>();
 
             foreach (var argument in arguments)
             {
-                if (!scope.ContainsLocalVariable(argument.Name))
+                if (!scope.Local.ContainsLocalVariable(argument.Name))
                 {
-                    scope.DeclareLocalVariable(argument.Name, argument.DefaultValue);
+                    scope.Local.DeclareLocalVariable(argument.Name, argument.DefaultValue);
 
                     result.Add(new KeyValuePair<string, string>(argument.Name, argument.DefaultValue));
                 }
@@ -52,7 +52,7 @@ namespace Roomie.Desktop.Engine
             return result.ToArray();
         }
 
-        public static RoomieCommandArgument[] FindMistypedArguments(this RoomieCommandScope scope, IEnumerable<RoomieCommandArgument> arguments)
+        public static RoomieCommandArgument[] FindMistypedArguments(this HierarchicalVariableScope scope, IEnumerable<RoomieCommandArgument> arguments)
         {
             var result = new List<RoomieCommandArgument>();
 
@@ -71,9 +71,9 @@ namespace Roomie.Desktop.Engine
             return result.ToArray();
         }
 
-        public static void PrepareForCall(this RoomieCommandScope scope, ICommandSpecification command, RoomieCommandInterpreter interpreter)
+        public static void PrepareForCall(this HierarchicalVariableScope scope, ICommandSpecification command, RoomieCommandInterpreter interpreter)
         {
-            var givenValues = scope.FindGivenValues();
+            var givenValues = scope.Local.FindGivenValues();
             var missingArguments = scope.FindMissingArguments(command.Arguments);
 
             if (missingArguments.Length > 0)
