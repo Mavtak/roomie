@@ -24,7 +24,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
                 foreach (string name in currentScope.Names)
                 {
                     if(literalValues)
-                        interpreter.WriteEvent(name + ": " + scope.GetLiteralValue(name));
+                        interpreter.WriteEvent(name + ": " + scope.GetVariable(name).Value);
                     else
                         interpreter.WriteEvent(name + ": " + scope.ReadParameter(name));
                 }

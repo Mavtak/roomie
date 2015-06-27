@@ -3,17 +3,18 @@ using System.Linq;
 using System.Text;
 using Roomie.Desktop.Engine.Commands;
 using Roomie.Desktop.Engine.Exceptions;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.Desktop.Engine
 {
     public static class RoomieCommandScopeExtensions
     {
-        public static KeyValuePair<string, string>[] FindGivenValues(this RoomieCommandScope scope)
+        public static VariableParameter[] FindGivenValues(this RoomieCommandScope scope)
         {
-            var variables = scope.Variables;
+            var variables = scope.VariableNames;
 
             var result = variables
-                .Select(x => new KeyValuePair<string, string>(x, scope.GetLiteralValue(x)))
+                .Select(scope.GetVariable)
                 .ToArray();
 
             return result;
@@ -101,18 +102,18 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        private static string BuilCommandCall(string fullName, KeyValuePair<string, string>[] givenValues, KeyValuePair<string, string>[] defaultedValues)
+        private static string BuilCommandCall(string fullName, VariableParameter[] givenParameters, KeyValuePair<string, string>[] defaultedValues)
         {
             var result = new StringBuilder();
 
             result.Append(fullName);
 
-            foreach (var pair in givenValues)
+            foreach (var parameter in givenParameters)
             {
                 result.Append(" ");
-                result.Append(pair.Key);
+                result.Append(parameter.Name);
                 result.Append("=\"");
-                result.Append(pair.Value);
+                result.Append(parameter.Value);
                 result.Append("\"");
             }
 

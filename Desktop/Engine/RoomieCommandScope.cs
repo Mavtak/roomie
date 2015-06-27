@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using Roomie.Desktop.Engine.Exceptions;
 using Roomie.Desktop.Engine.Parameters;
@@ -13,13 +11,13 @@ namespace Roomie.Desktop.Engine
         public const string VariableNamePattern = "[A-Za-z0-9-_ ]+?";
         public const string VariableFormatPattern = @"\$\{" + VariableNamePattern + @"\}";
 
-        private readonly Dictionary<string, string> _variables;
+        private readonly Dictionary<string, VariableParameter> _variables;
         public RoomieCommandScope HigherScope { get; private set; }
 
         public RoomieCommandScope(RoomieCommandScope higherScope)
         {
             HigherScope = higherScope;
-            _variables = new Dictionary<string, string>();
+            _variables = new Dictionary<string, VariableParameter>();
         }
         public RoomieCommandScope()
             : this(null)
@@ -54,8 +52,11 @@ namespace Roomie.Desktop.Engine
             lock (_variables)
             {
                 if (ContainsVariableInScope(name))
+                {
                     throw new VariableException("Variable \"" + name + "\" already exists.");
-                _variables.Add(name, value);
+                }
+
+                _variables.Add(name, new VariableParameter(name, value));
             }
         }
 
@@ -76,28 +77,17 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-
         public void ModifyVariableValue(string name, string value)
         {
             lock (_variables)
             {
-                if (_variables.ContainsKey(name))
-                {
-                    _variables.Remove(name);
-                    _variables.Add(name, value);
-                    return;
-                }
-
-                if (HigherScope == null)
-                {
-                    throw new VariableException("Variable " + name + " doesn't exist");
-                }
-
-                HigherScope.ModifyVariableValue(name, value);
+                var variable = GetVariable(name);
+            
+                variable.Update(value);
             }
         }
 
-        public string GetLiteralValue(string name)
+        public VariableParameter GetVariable(string name)
         {
             lock (_variables)
             {
@@ -111,78 +101,31 @@ namespace Roomie.Desktop.Engine
                     throw new VariableException("Variable " + name + " not set");
                 }
 
-                return HigherScope.GetLiteralValue(name);
+                return HigherScope.GetVariable(name);
             }
         }
 
         public IParameter ReadParameter(string name)
         {
-            var value = ReplaceVariables(name, GetLiteralValue(name));
-            var result = new ReadOnlyParameter(name, value);
+            var variable = GetVariable(name);
+            var result = variable.Interpolate(this);
 
             return result;
         }
 
-        public List<string> Variables
+        public List<string> VariableNames
         {
             get
             {
                 return new List<string>(_variables.Keys);
             }
         }
-
       
         public bool IsValidVariableName(string name)
         {
             var pattern = new Regex(@"\A" + VariableNamePattern + @"\Z");
 
             return pattern.IsMatch(name);
-        }
-
-        public IEnumerable<string> VariablesInString(string input)
-        {
-            var pattern = new Regex(VariableFormatPattern);
-            foreach (Match match in pattern.Matches(input))
-            {
-                yield return match.Value;
-            }
-        }
-
-        public string ReplaceVariables(string name, string text)
-        {
-            var builder = new StringBuilder(text);
-
-            List<string> variables;
-            do
-            {
-                variables = VariablesInString(builder.ToString()).ToList();
-                foreach (string variable in variables)
-                {
-                    var variableName = variable.Replace("${", "").Replace("}", "");
-                    string replacement;
-                    if (variableName != name)
-                    {
-                        replacement = ReadParameter(variableName).Value;
-                    }
-                    else if (HigherScope != null)
-                    {
-                        replacement = HigherScope.ReadParameter(variableName).Value;
-                    }
-                    else
-                    {
-                        replacement = null;
-                    }
-
-                    if (replacement == null)
-                    {
-                        //TODO: make this an explicit exception type
-                        throw new VariableException("Variable \"" + variable + "\" not defined");
-                    }
-                    builder.Replace(variable, replacement);//TODO
-                }
-            } while (variables.Count != 0);
-
-            return builder.ToString();
         }
 
         public bool VariableDefinedInThisScope(string name)

@@ -22,7 +22,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             bool literal = scope.ReadParameter("Literal").ToBoolean();
             string value;
             if(literal)
-                value = scope.GetLiteralValue("Value");
+                value = scope.GetVariable("Value").Value;
             else
                 value = scope.ReadParameter("Value").Value;
             bool global = scope.ReadParameter("Global").ToBoolean();
