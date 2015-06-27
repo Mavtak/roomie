@@ -19,8 +19,8 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Threads
             var threads = context.Threads;
             var currentThread = interpreter.ParentThread;
 
-            var currentName = scope.GetValue("CurrentName");
-            var newName = scope.GetValue("NewName");
+            var currentName = scope.GetValue("CurrentName").Value;
+            var newName = scope.GetValue("NewName").Value;
 
             var thread = SelectThread(currentName, currentThread, threads);
 

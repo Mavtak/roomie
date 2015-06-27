@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Roomie.Common.HomeAutomation;
 using Roomie.Desktop.Engine;
+using Roomie.Desktop.Engine.Parameters;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
@@ -14,9 +15,9 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             get { return Key; }
         }
 
-        public bool Validate(string value)
+        public bool Validate(IParameter parameter)
         {
-            var result = VirtualAddress.IsValid(value);
+            var result = VirtualAddress.IsValid(parameter.Value);
 
             return result;
         }

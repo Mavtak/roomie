@@ -1,5 +1,6 @@
 ﻿using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.NumberOpersations
 {
@@ -15,7 +16,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.NumberOpersations
 
             int value1 = scope.GetValue("Value1").ToInteger();
             int value2 = scope.GetValue("Value2").ToInteger();
-            string resultName = scope.GetValue("ResultName");
+            string resultName = scope.GetValue("ResultName").Value;
 
             int result = value1 + value2;
 

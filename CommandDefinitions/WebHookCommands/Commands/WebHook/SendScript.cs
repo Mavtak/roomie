@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
 
             var webHookEngines = context.WebhookEngines;
 
-            var computerName = scope.GetValue("ComputerName");
+            var computerName = scope.GetValue("ComputerName").Value;
 
             var outMessage = new Message();
 

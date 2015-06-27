@@ -6,6 +6,7 @@ using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.Measurements;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
@@ -16,7 +17,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
             var scope = context.Scope;
-            var filename = scope.GetValue("Filename");
+            var filename = scope.GetValue("Filename").Value;
             var includeHeaders = scope.GetValue("IncludeHeaders").ToBoolean();
 
             var device = context.Device;

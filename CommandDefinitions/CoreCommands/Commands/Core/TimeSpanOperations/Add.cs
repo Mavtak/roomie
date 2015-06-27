@@ -2,6 +2,7 @@
 using Roomie.Common;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperations
@@ -18,7 +19,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.TimeSpanOperation
 
             TimeSpan value1 = scope.GetValue("Value1").ToTimeSpan();
             TimeSpan value2 = scope.GetValue("Value2").ToTimeSpan();
-            string resultName = scope.GetValue("ResultName");
+            string resultName = scope.GetValue("ResultName").Value;
 
             TimeSpan result = value1.Add(value2);
 

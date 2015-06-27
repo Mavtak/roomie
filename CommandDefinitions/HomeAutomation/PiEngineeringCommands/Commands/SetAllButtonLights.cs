@@ -3,6 +3,7 @@ using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
 {
@@ -15,7 +16,7 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
         {
             var device = context.Device as PiEngineeringDevice;
             var scope = context.Scope;
-            var bankString = scope.GetValue("Color");
+            var bankString = scope.GetValue("Color").Value;
             var power = scope.GetValue("Power").ToBoolean();
             
             Bank bank;

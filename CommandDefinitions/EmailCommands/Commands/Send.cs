@@ -17,9 +17,9 @@ namespace Roomie.CommandDefinitions.EmailCommands.Commands
             var scope = context.Scope;
             var sender = context.Sender;
 
-            string to = scope.GetValue("To");
-            string subject = scope.GetValue("Subject");
-            string body = scope.GetValue("Body");
+            string to = scope.GetValue("To").Value;
+            string subject = scope.GetValue("Subject").Value;
+            string body = scope.GetValue("Body").Value;
 
             bool result = false;
             try

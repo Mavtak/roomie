@@ -1,6 +1,6 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
-using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
 {

@@ -4,6 +4,7 @@ using System.Threading;
 using Roomie.Common;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
 {

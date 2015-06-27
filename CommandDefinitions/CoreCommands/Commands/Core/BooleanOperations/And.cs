@@ -1,5 +1,6 @@
 ﻿using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.BooleanOperations
@@ -16,7 +17,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core.BooleanOperations
 
             bool value1 = scope.GetValue("Value1").ToBoolean();
             bool value2 = scope.GetValue("Value2").ToBoolean();
-            string resultName = scope.GetValue("ResultName");
+            string resultName = scope.GetValue("ResultName").Value;
 
             bool result = value1 && value2;
 

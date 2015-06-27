@@ -2,6 +2,7 @@
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
@@ -16,7 +17,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
         {
             var scope = context.Scope;
 
-            string path = scope.GetValue("Path");
+            string path = scope.GetValue("Path").Value;
             bool abortOnError = scope.GetValue("AbortOnError").ToBoolean();
 
             try

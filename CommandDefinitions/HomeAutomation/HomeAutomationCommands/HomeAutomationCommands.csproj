@@ -98,6 +98,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="CurrentStateGenerator.cs" />
     <Compile Include="EventTypeParameterType.cs" />
+    <Compile Include="ParameterConversions.cs" />
     <Compile Include="RunScriptTriggerAction.cs" />
     <Compile Include="ThermostatModeParameterType.cs" />
     <Compile Include="FanModeParameterType.cs" />

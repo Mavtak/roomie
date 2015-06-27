@@ -20,7 +20,7 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
 
             try
             {
-                string filename = scope.GetValue("Filename");
+                string filename = scope.GetValue("Filename").Value;
 
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Encoding = Encoding.UTF8;

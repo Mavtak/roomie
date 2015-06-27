@@ -13,7 +13,7 @@ namespace Roomie.CommandDefinitions.TwitterCommands.Commands.Twitter
             var scope = context.Scope;
             var user = context.User;
 
-            string text = scope.GetValue("Text");
+            string text = scope.GetValue("Text").Value;
             try
             {
                 user.Status.Update(text);

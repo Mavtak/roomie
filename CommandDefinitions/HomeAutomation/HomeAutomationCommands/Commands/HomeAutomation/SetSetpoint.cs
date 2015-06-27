@@ -1,7 +1,6 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
-using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.Measurements.Temperature;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
@@ -14,7 +13,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
             var device = context.Device;
             var scope = context.Scope;
             var temperature = scope.GetValue("Temperature").ToTemperature();
-            var setpointType = scope.GetValue("Setpoint").ToSetpointType();
+            var setpointType = scope.GetValue("Setpoint").ToThermostatSetpointType();
 
             device.Thermostat.Setpoints.SetSetpoint(setpointType, temperature);
         }

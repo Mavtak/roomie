@@ -4,6 +4,7 @@ using Roomie.Common.HomeAutomation;
 using Roomie.Common.TextUtilities;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {

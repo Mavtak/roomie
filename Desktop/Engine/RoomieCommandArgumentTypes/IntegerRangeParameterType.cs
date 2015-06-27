@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 {
@@ -24,11 +25,11 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
             _max = max;
         }
 
-        public bool Validate(string value)
+        public bool Validate(IParameter parameter)
         {
             try
             {
-                var number = Convert.ToInt64(value);
+                var number = Convert.ToInt64(parameter.Value);
 
                 if (number < _min)
                 {

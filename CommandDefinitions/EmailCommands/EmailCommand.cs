@@ -17,7 +17,7 @@ namespace Roomie.CommandDefinitions.EmailCommands
             var dataStore = context.DataStore;
             var scope = context.Scope;
 
-            string senderAddress = scope.GetValue("Address");
+            string senderAddress = scope.GetValue("Address").Value;
 
             EmailCommandContext greaterContext = new EmailCommandContext(context);
 

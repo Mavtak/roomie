@@ -1,6 +1,7 @@
 ﻿using Roomie.Common.Measurements.Power;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {
@@ -12,7 +13,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
         {
             var scope = context.Scope;
             var power = scope.GetValue("Power").ToInteger();
-            var name = scope.GetValue("Name");
+            var name = scope.GetValue("Name").Value;
             var device = context.Device;
 
             device.CurrentStateGenerator.AddStep(new WattsPower(power), name);

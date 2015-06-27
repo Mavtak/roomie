@@ -9,7 +9,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
-            var currentAction = context.Scope.GetValue("CurrentAction");
+            var currentAction = context.Scope.GetValue("CurrentAction").Value;
             var originalCommand = context.OriginalCommand;
             var commands = originalCommand.InnerCommands;
             var device = context.Device;

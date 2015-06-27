@@ -1,5 +1,4 @@
 ﻿using Roomie.CommandDefinitions.HomeAutomationCommands.Attributes;
-using Roomie.Common.HomeAutomation.Thermostats;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {

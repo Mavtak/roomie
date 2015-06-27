@@ -15,8 +15,8 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands.Commands
         {
             var device = context.Device as PiEngineeringDevice;
             var scope = context.Scope;
-            var ledString = scope.GetValue("LED");
-            var statusString = scope.GetValue("Status");
+            var ledString = scope.GetValue("LED").Value;
+            var statusString = scope.GetValue("Status").Value;
 
             Led led;
             if (!Enum.TryParse(ledString, out led))

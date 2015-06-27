@@ -1,5 +1,6 @@
 ﻿using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
@@ -15,8 +16,8 @@ namespace Roomie.CommandDefinitions.CoreCommands.Commands.Core
             var globalScope = context.GlobalScope;
             var scope = context.Scope;
 
-            string name = scope.GetValue("Name");
-            string value = scope.GetValue("Value");
+            string name = scope.GetValue("Name").Value;
+            string value = scope.GetValue("Value").Value;
             bool global = scope.GetValue("Global").ToBoolean();
 
             if (global)

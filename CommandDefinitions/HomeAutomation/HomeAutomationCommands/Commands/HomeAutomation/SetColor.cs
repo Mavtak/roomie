@@ -1,5 +1,5 @@
-﻿using Roomie.Common.Color;
-using Roomie.Desktop.Engine.Commands;
+﻿using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {

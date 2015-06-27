@@ -16,10 +16,10 @@ namespace Roomie.CommandDefinitions.EmailCommands.Commands
                 host: "smtpout.secureserver.net",
                 port: 465,
                 enableSsl: true,
-                username: scope.GetValue("Address"),
-                password: scope.GetValue("Password"),
-                senderAddress: scope.GetValue("Address"),
-                senderName: scope.GetValue("DisplayName")
+                username: scope.GetValue("Address").Value,
+                password: scope.GetValue("Password").Value,
+                senderAddress: scope.GetValue("Address").Value,
+                senderName: scope.GetValue("DisplayName").Value
             );
         }
     }

@@ -1,5 +1,6 @@
 ﻿
 using System.Text;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 {
@@ -15,7 +16,7 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
             }
         }
 
-        public bool Validate(string value)
+        public bool Validate(IParameter parameter)
         {
             return true;
         }

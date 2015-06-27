@@ -92,6 +92,9 @@
     <Compile Include="Exceptions\VariableException.cs" />
     <Compile Include="Commands\ICommandSpecification.cs" />
     <Compile Include="Commands\NamespaceBasedCommandSpecification.cs" />
+    <Compile Include="Parameters\IParameter.cs" />
+    <Compile Include="Parameters\Parameter.cs" />
+    <Compile Include="Parameters\ParameterConversions.cs" />
     <Compile Include="RoomieCommand.cs" />
     <Compile Include="RoomieCommandArgument.cs" />
     <Compile Include="RoomieCommandScopeExtensions.cs" />
@@ -122,7 +125,6 @@
     <Compile Include="EngineStartup.cs" />
     <Compile Include="StartupCommand.cs" />
     <Compile Include="Delegates\TerminalOutputEventArgs.cs" />
-    <Compile Include="StringConversionExtensions.cs" />
     <Compile Include="ThreadPool.cs" />
     <Compile Include="WorkQueues\ParallelWorkQueue.cs" />
     <Compile Include="WorkQueues\WorkQueue.cs" />

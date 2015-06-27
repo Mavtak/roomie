@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Roomie.Common;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
 {
@@ -15,9 +16,9 @@ namespace Roomie.Desktop.Engine.RoomieCommandArgumentTypes
             }
         }
 
-        public bool Validate(string value)
+        public bool Validate(IParameter parameter)
         {
-            return TimeUtils.IsTimeSpan(value);
+            return TimeUtils.IsTimeSpan(parameter.Value);
         }
 
         public string ValidationMessage(string parameterName = null)

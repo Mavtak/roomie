@@ -10,7 +10,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
     {
         protected override void Execture_HomeAutomationSingleDeviceDefinition(HomeAutomationSingleDeviceContext context)
         {
-            var button = context.Scope.GetValue("Button");
+            var button = context.Scope.GetValue("Button").Value;
             var originalCommand = context.OriginalCommand;
             var commands = originalCommand.InnerCommands;
             var device = context.Device;

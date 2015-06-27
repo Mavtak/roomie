@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Roomie.Desktop.Engine.Exceptions;
+using Roomie.Desktop.Engine.Parameters;
 
 namespace Roomie.Desktop.Engine
 {
@@ -114,9 +115,12 @@ namespace Roomie.Desktop.Engine
             }
         }
 
-        public string GetValue(string name)
+        public IParameter GetValue(string name)
         {
-            return ReplaceVariables(name, GetLiteralValue(name));
+            var value = ReplaceVariables(name, GetLiteralValue(name));
+            var result = new ReadOnlyParameter(name, value);
+
+            return result;
         }
 
         public List<string> Variables
@@ -158,11 +162,11 @@ namespace Roomie.Desktop.Engine
                     string replacement;
                     if (variableName != name)
                     {
-                        replacement = GetValue(variableName);
+                        replacement = GetValue(variableName).Value;
                     }
                     else if (HigherScope != null)
                     {
-                        replacement = HigherScope.GetValue(variableName);
+                        replacement = HigherScope.GetValue(variableName).Value;
                     }
                     else
                     {

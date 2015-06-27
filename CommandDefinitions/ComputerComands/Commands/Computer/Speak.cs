@@ -2,6 +2,7 @@
 using System.Speech.Synthesis;
 using Roomie.Desktop.Engine;
 using Roomie.Desktop.Engine.Commands;
+using Roomie.Desktop.Engine.Parameters;
 using Roomie.Desktop.Engine.RoomieCommandArgumentTypes;
 
 namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
@@ -21,7 +22,7 @@ namespace Roomie.CommandDefinitions.ComputerCommands.Commands.Computer
                 synthesizer = new SpeechSynthesizer();
             }
 
-            String text = scope.GetValue("Text");
+            String text = scope.GetValue("Text").Value;
             bool async = scope.GetValue("Async").ToBoolean();
 
 
