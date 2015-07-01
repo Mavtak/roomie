@@ -49,6 +49,7 @@
     <Compile Include="Commands\OptimizeNetwork.cs" />
     <Compile Include="Commands\PrintData.cs" />
     <Compile Include="Commands\RegisterNetwork.cs" />
+    <Compile Include="Commands\ResetNetwork.cs" />
     <Compile Include="ControllerStateWatcher.cs" />
     <Compile Include="NodeDataEntries\CannotSetValueException.cs" />
     <Compile Include="OpenZWaveDeviceValueCollection.cs" />

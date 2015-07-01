@@ -163,6 +163,18 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
+        public void Reset()
+        {
+            //TODO: clear Roomie representation of devices
+
+            using (var stateWatcher = new ControllerStateWatcher(this))
+            {
+                Manager.ResetController(HomeId.Value);
+
+                stateWatcher.WaitUntilEventType(ZWNotification.Type.EssentialNodeQueriesComplete);
+            }
+        }
+
         private static bool optionsConfigured = false;
         private const string ConfigurationPath = "OpenZWaveConfiguration";
         private static void ConfigureOptions()
