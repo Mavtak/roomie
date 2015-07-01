@@ -57,7 +57,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             var network = ((OpenZWaveNetwork)Network);
             var homeId = network.HomeId.Value;
 
-            using (var stateWatcher = new ControllerStateWatcher(network))
+            using (var stateWatcher = new ControllerNotificationWatcher(network))
             {
                 Manager.HealNetworkNode(homeId, Id, returnRouteOptimization);
 

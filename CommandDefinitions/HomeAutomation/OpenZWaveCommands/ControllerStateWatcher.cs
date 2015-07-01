@@ -6,16 +6,16 @@ using OpenZWaveDotNet;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
 {
-    public class ControllerStateWatcher : IDisposable
+    public class ControllerNotificationWatcher : IDisposable
     {
         private readonly OpenZWaveNetwork _network;
-        private readonly Queue<OpenZWaveNotification> _states;
+        private readonly Queue<OpenZWaveNotification> _notification;
         private AutoResetEvent _event;
 
-        public ControllerStateWatcher(OpenZWaveNetwork network)
+        public ControllerNotificationWatcher(OpenZWaveNetwork network)
         {
             _network = network;
-            _states = new Queue<OpenZWaveNotification>();
+            _notification = new Queue<OpenZWaveNotification>();
             _event = new AutoResetEvent(false);
 
             _network.Manager.OnNotification += OnNotification;
@@ -25,41 +25,41 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             var notification2 = new OpenZWaveNotification(_network, notification);
 
-            EnqueueState(notification2);
+            EnqueueNotification(notification2);
         }
 
-        private void EnqueueState(OpenZWaveNotification state)
+        private void EnqueueNotification(OpenZWaveNotification notification)
         {
-            lock (_states)
+            lock (_notification)
             {
-                _states.Enqueue(state);
+                _notification.Enqueue(notification);
             }
 
             _event.Set();
         }
 
-        private OpenZWaveNotification TryDequeueState()
+        private OpenZWaveNotification TryDequeueNotification()
         {
-            lock (_states)
+            lock (_notification)
             {
-                if (_states.Any())
+                if (_notification.Any())
                 {
-                    return _states.Dequeue();
+                    return _notification.Dequeue();
                 }
             }
 
             return null;
         }
 
-        private OpenZWaveNotification DequeueState()
+        private OpenZWaveNotification DequeueNotification()
         {
             while (true)
             {
-                var state = TryDequeueState();
+                var notification = TryDequeueNotification();
 
-                if (state != null)
+                if (notification != null)
                 {
-                    return state;
+                    return notification;
                 }
 
                 _event.WaitOne();
@@ -70,9 +70,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             while (true)
             {
-                var state = DequeueState();
+                var notification = DequeueNotification();
 
-                var processAction = action(state);
+                var processAction = action(notification);
 
                 if (processAction == ProcessAction.Quit)
                 {
@@ -98,7 +98,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             ProcessChanges(notification =>
             {
-                _network.Log("controller state changed: " + notification.Type + ", " + notification.NodeId);
+                _network.Log("controller notification: " + notification.Type + ", " + notification.NodeId);
 
                 return ProcessAction.Continue;
             });

@@ -97,7 +97,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             OpenZWaveDevice device = null;
 
-            using (var watcher = new ControllerStateWatcher(this))
+            using (var watcher = new ControllerNotificationWatcher(this))
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveDevice, true, 0);
 
@@ -106,10 +106,10 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     if (notification.Type == ZWNotification.Type.NodeRemoved)
                     {
                         device = notification.Device;
-                        return ControllerStateWatcher.ProcessAction.Quit;
+                        return ControllerNotificationWatcher.ProcessAction.Quit;
                     }
 
-                    return ControllerStateWatcher.ProcessAction.Continue;
+                    return ControllerNotificationWatcher.ProcessAction.Continue;
                 });
             }
 
@@ -120,7 +120,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             var zWaveDevice = device as OpenZWaveDevice;
 
-            using (var watcher = new ControllerStateWatcher(this))
+            using (var watcher = new ControllerNotificationWatcher(this))
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveFailedNode, false, zWaveDevice.Id);
 
@@ -134,7 +134,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             OpenZWaveDevice device = null;
 
-            using (var watcher = new ControllerStateWatcher(this))
+            using (var watcher = new ControllerNotificationWatcher(this))
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.AddDevice, true, 0);
                 watcher.ProcessChanges(notification =>
@@ -142,10 +142,10 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     if (notification.Type == ZWNotification.Type.NodeAdded)
                     {
                         device = notification.Device;
-                        return ControllerStateWatcher.ProcessAction.Quit;
+                        return ControllerNotificationWatcher.ProcessAction.Quit;
                     }
 
-                    return ControllerStateWatcher.ProcessAction.Continue;
+                    return ControllerNotificationWatcher.ProcessAction.Continue;
                 });
             }
 
@@ -154,7 +154,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         public void OptimizePaths(bool returnRouteOptimization)
         {
-            using (var stateWatcher = new ControllerStateWatcher(this))
+            using (var stateWatcher = new ControllerNotificationWatcher(this))
             {
                 Manager.HealNetwork(HomeId.Value, returnRouteOptimization);
 
@@ -167,7 +167,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             //TODO: clear Roomie representation of devices
 
-            using (var stateWatcher = new ControllerStateWatcher(this))
+            using (var stateWatcher = new ControllerNotificationWatcher(this))
             {
                 Manager.ResetController(HomeId.Value);
 
