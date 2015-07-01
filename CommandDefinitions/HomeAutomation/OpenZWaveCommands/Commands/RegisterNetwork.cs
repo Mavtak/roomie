@@ -1,4 +1,5 @@
-﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
+﻿using System;
+using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands
@@ -14,7 +15,10 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands
             var networks = context.Networks;
             var port = context.ReadParameter("Port").Value;
 
-            port = @"\\.\" + port;
+            if (port.StartsWith("COM", StringComparison.InvariantCultureIgnoreCase))
+            {
+              port = @"\\.\" + port;
+            }
 
             interpreter.WriteEvent("Searching for Z-Wave network adapater...");
 
