@@ -9,27 +9,27 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
     public class ControllerStateWatcher : IDisposable
     {
         private readonly OpenZWaveNetwork _network;
-        private readonly Queue<ZWControllerState> _states;
+        private readonly Queue<OpenZWaveNotification> _states;
         private AutoResetEvent _event;
-        public ZWControllerState? LastState { get; private set; }
+        public OpenZWaveNotification LastState { get; private set; }
 
         public ControllerStateWatcher(OpenZWaveNetwork network)
         {
             _network = network;
-            _states = new Queue<ZWControllerState>();
+            _states = new Queue<OpenZWaveNotification>();
             _event = new AutoResetEvent(false);
 
-            _network.Manager.OnControllerStateChanged += OnControllerStateChanged;
+            _network.Manager.OnNotification += OnNotification;
         }
 
-        private void OnControllerStateChanged(ZWControllerState state)
+        private void OnNotification(ZWNotification notification)
         {
-            _network.Log("controller state changed: " + state);
+            var notification2 = new OpenZWaveNotification(_network, notification);
 
-            EnqueueState(state);
+            EnqueueState(notification2);
         }
 
-        private void EnqueueState(ZWControllerState state)
+        private void EnqueueState(OpenZWaveNotification state)
         {
             lock (_states)
             {
@@ -40,7 +40,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             _event.Set();
         }
 
-        private ZWControllerState? TryDequeueState()
+        private OpenZWaveNotification TryDequeueState()
         {
             lock (_states)
             {
@@ -53,7 +53,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             return null;
         }
 
-        private ZWControllerState DequeueState()
+        private OpenZWaveNotification DequeueState()
         {
             while (true)
             {
@@ -61,14 +61,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
                 if (state != null)
                 {
-                    return state.Value;
+                    return state;
                 }
 
                 _event.WaitOne();
             }
         }
 
-        public void ProcessChanges(Action<ZWControllerState> action = null)
+        public void ProcessChanges(Action<OpenZWaveNotification> action = null)
         {
             while (true)
             {
@@ -86,20 +86,16 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
-        private static bool FinalState(ZWControllerState state)
+        private static bool FinalState(OpenZWaveNotification state)
         {
-            var result = state == ZWControllerState.Completed ||
-                         state == ZWControllerState.Failed ||
-                         state == ZWControllerState.NodeOK ||
-                         state == ZWControllerState.NodeFailed;
-
-            return result;
+            //TODO: fix
+            return true;
         }
 
 
         public void Dispose()
         {
-            _network.Manager.OnControllerStateChanged -= OnControllerStateChanged;
+            _network.Manager.OnNotification -= OnNotification;
         }
     }
 }
