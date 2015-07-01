@@ -95,14 +95,25 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         public override Device RemoveDevice()
         {
+            OpenZWaveDevice device = null;
+
             using (var watcher = new ControllerStateWatcher(this))
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveDevice, true, 0);
 
-                watcher.WaitUntilEventType(ZWNotification.Type.NodeRemoved);
+                watcher.ProcessChanges(notification =>
+                {
+                    if (notification.Type == ZWNotification.Type.NodeRemoved)
+                    {
+                        device = notification.Device;
+                        return ControllerStateWatcher.ProcessAction.Quit;
+                    }
+
+                    return ControllerStateWatcher.ProcessAction.Continue;
+                });
             }
 
-            return null;
+            return device;
         }
 
         public override void RemoveDevice(Device device)
@@ -121,14 +132,24 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         public override Device AddDevice()
         {
+            OpenZWaveDevice device = null;
+
             using (var watcher = new ControllerStateWatcher(this))
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.AddDevice, true, 0);
+                watcher.ProcessChanges(notification =>
+                {
+                    if (notification.Type == ZWNotification.Type.NodeAdded)
+                    {
+                        device = notification.Device;
+                        return ControllerStateWatcher.ProcessAction.Quit;
+                    }
 
-                watcher.WaitUntilEventType(ZWNotification.Type.NodeAdded);
+                    return ControllerStateWatcher.ProcessAction.Continue;
+                });
             }
 
-            return null;
+            return device;
         }
 
         public void OptimizePaths(bool returnRouteOptimization)
