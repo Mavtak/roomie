@@ -97,8 +97,10 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         {
             using (var watcher = new ControllerStateWatcher(this))
             {
-                Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RequestNetworkUpdate, true, 0);
-                watcher.ProcessChanges();
+                Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveDevice, true, 0);
+
+                //TODO: figure out final state
+                watcher.LogChangesForever();
             }
 
             return null;
@@ -111,7 +113,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             using (var watcher = new ControllerStateWatcher(this))
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveFailedNode, false, zWaveDevice.Id);
-                watcher.ProcessChanges();
+
+                //TODO: figure out final state
+                watcher.LogChangesForever();
             }
 
             _devices.Remove(zWaveDevice);
@@ -122,7 +126,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             using (var watcher = new ControllerStateWatcher(this))
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.AddDevice, true, 0);
-                watcher.ProcessChanges();
+
+                //TODO: figure out final state
+                watcher.LogChangesForever();
             }
 
             return null;
@@ -133,7 +139,9 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             using (var stateWatcher = new ControllerStateWatcher(this))
             {
                 Manager.HealNetwork(HomeId.Value, returnRouteOptimization);
-                stateWatcher.ProcessChanges();
+
+                //TODO: figure out final state
+                stateWatcher.LogChangesForever();
             }
         }
 

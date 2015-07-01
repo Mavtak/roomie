@@ -66,34 +66,40 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
-        public void ProcessChanges(Action<OpenZWaveNotification> action = null)
+        public void ProcessChanges(Func<OpenZWaveNotification, ProcessAction> action)
         {
             while (true)
             {
                 var state = DequeueState();
 
-                if (action != null)
-                {
-                    action(state);
-                }
+                var processAction = action(state);
 
-                if (FinalState(state))
+                if (processAction == ProcessAction.Quit)
                 {
                     return;
                 }
             }
         }
 
-        private static bool FinalState(OpenZWaveNotification state)
+        public void LogChangesForever()
         {
-            //TODO: fix
-            return true;
-        }
+            ProcessChanges(notification =>
+            {
+                _network.Log("controller state changed: " + notification.Type + ", " + notification.NodeId);
 
+                return ProcessAction.Continue;
+            });
+        }
 
         public void Dispose()
         {
             _network.Manager.OnNotification -= OnNotification;
+        }
+
+        public enum ProcessAction
+        {
+            Continue,
+            Quit
         }
     }
 }

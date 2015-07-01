@@ -54,13 +54,15 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         public void OptimizePaths(bool returnRouteOptimization)
         {
             //TODO: remove the need for this cast
-            var network = ((OpenZWaveNetwork) Network);
+            var network = ((OpenZWaveNetwork)Network);
             var homeId = network.HomeId.Value;
 
             using (var stateWatcher = new ControllerStateWatcher(network))
             {
                 Manager.HealNetworkNode(homeId, Id, returnRouteOptimization);
-                stateWatcher.ProcessChanges();
+
+                //TODO: figure out final state
+                stateWatcher.LogChangesForever();
             }
         }
 
