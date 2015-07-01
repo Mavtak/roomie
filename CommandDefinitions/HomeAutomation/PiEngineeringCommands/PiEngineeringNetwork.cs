@@ -10,13 +10,13 @@ namespace Roomie.CommandDefinitions.PiEngineeringCommands
     {
         private List<PiEngineeringDevice> _devices; 
 
-        public PiEngineeringNetwork(HomeAutomationNetworkContext context)
+        public PiEngineeringNetwork(HomeAutomationNetworkContext context, string address)
             : base(context)
         {
             _devices = new List<PiEngineeringDevice>();
             base.Devices = _devices;
 
-            Address = "PiEngineeringDevices";
+            Address = address;
             Name = Address;
 
             Connect();
