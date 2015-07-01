@@ -81,6 +81,19 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             }
         }
 
+        public void WaitUntilEventType(params ZWNotification.Type[] finalTypes)
+        {
+            ProcessChanges(notification =>
+            {
+                if (finalTypes.Contains(notification.Type))
+                {
+                    return ProcessAction.Quit;
+                }
+
+                return ProcessAction.Continue;
+            });
+        }
+
         public void LogChangesForever()
         {
             ProcessChanges(notification =>

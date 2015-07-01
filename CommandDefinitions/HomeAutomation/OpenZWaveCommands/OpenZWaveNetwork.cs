@@ -99,8 +99,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveDevice, true, 0);
 
-                //TODO: figure out final state
-                watcher.LogChangesForever();
+                watcher.WaitUntilEventType(ZWNotification.Type.NodeRemoved);
             }
 
             return null;
@@ -114,8 +113,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.RemoveFailedNode, false, zWaveDevice.Id);
 
-                //TODO: figure out final state
-                watcher.LogChangesForever();
+                watcher.WaitUntilEventType(ZWNotification.Type.NodeRemoved);
             }
 
             _devices.Remove(zWaveDevice);
@@ -127,8 +125,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             {
                 Manager.BeginControllerCommand(HomeId.Value, ZWControllerCommand.AddDevice, true, 0);
 
-                //TODO: figure out final state
-                watcher.LogChangesForever();
+                watcher.WaitUntilEventType(ZWNotification.Type.NodeAdded);
             }
 
             return null;
