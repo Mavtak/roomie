@@ -11,7 +11,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly OpenZWaveNetwork _network;
         private readonly Queue<OpenZWaveNotification> _states;
         private AutoResetEvent _event;
-        public OpenZWaveNotification LastState { get; private set; }
 
         public ControllerStateWatcher(OpenZWaveNetwork network)
         {
@@ -34,7 +33,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             lock (_states)
             {
                 _states.Enqueue(state);
-                LastState = state;
             }
 
             _event.Set();
