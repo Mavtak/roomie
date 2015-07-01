@@ -20,7 +20,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.Commands
               port = @"\\.\" + port;
             }
 
-            interpreter.WriteEvent("Searching for Z-Wave network adapater...");
+            interpreter.WriteEvent("Searching for Z-Wave network adapater at " + port + "...");
 
             var network = new OpenZWaveNetwork(new HomeAutomationNetworkContext(context.Engine, context.ThreadPool), port);
             networks.Add(network);
