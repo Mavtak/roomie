@@ -18,7 +18,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands.NodeDataEntries.General
                 return null;
             }
 
-            var number = dataEntry.DecimalValue.Value;
+            var number = dataEntry.DecimalValue ?? 0;
             var units = dataEntry.Units;
 
             if (number == 0 && units == string.Empty)
