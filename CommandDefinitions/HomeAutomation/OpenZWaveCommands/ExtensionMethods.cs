@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 using OpenZWaveDotNet;
 
 namespace Roomie.CommandDefinitions.OpenZWaveCommands
@@ -70,7 +71,19 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                     return value.IntValue.ToString();
 
                 case ZWValueID.ValueType.List:
-                    return "{" + string.Join("/", (value.ListItemsValue ?? new string[0])) + "}";
+                    var selection = value.Selection;
+                    var list = (value.ListItemsValue ?? new string[0])
+                        .Select(x =>
+                        {
+                            if (string.Equals(x, selection))
+                            {
+                                return "*" + x + "*";
+                            }
+
+                            return x;
+                        });
+
+                    return "{" + string.Join("/", list) + "}";
 
                 case ZWValueID.ValueType.Schedule:
                     return "Schedule";
