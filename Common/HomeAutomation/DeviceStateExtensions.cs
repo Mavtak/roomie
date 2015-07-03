@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
@@ -14,76 +16,67 @@ namespace Roomie.Common.HomeAutomation
     {
         public static string Describe(this IDeviceState device)
         {
-            string result = null;
+            var parts = new List<string>();
 
-            if (device.Type == DeviceType.BinarySwitch)
+            if (device.Type == DeviceType.BinarySwitch ||
+                (device.BinarySwitchState != null && device.BinarySwitchState.Power != null))
             {
-                result = device.BinarySwitchState.Describe();
-            }
-            else if (device.Type == DeviceType.MultilevelSwitch)
-            {
-                result = device.MultilevelSwitchState.Describe();
-            }
-            else if (device.Type == DeviceType.BinarySensor)
-            {
-                result = device.BinarySensorState.Describe();
-            }
-            else if (device.Type == DeviceType.Thermostat)
-            {
-                result = device.ThermostatState.Describe();
-            }
-            else if (device.Type == DeviceType.Keypad)
-            {
-                result = device.KeypadState.Describe();
-            }
-            else if (device.Type == DeviceType.Unknown)
-            {
-                result = "?";
-            }
-            else
-            {
-                result = "n/a";
+                parts.Add(device.BinarySwitchState.Describe());
             }
 
-            if (device.IsConnected != true)
+            if (device.Type == DeviceType.MultilevelSwitch ||
+                (device.MultilevelSwitchState != null && device.MultilevelSwitchState.Power != null))
             {
-                result += "?";
+                parts.Add(device.MultilevelSwitchState.Describe());
+            }
+            
+            if (device.Type == DeviceType.Thermostat)
+            {
+                parts.Add(device.ThermostatState.Describe());
+            }
+            
+            if (device.Type == DeviceType.Keypad ||
+                (device.KeypadState != null && device.KeypadState.Buttons != null && device.KeypadState.Buttons.Any()))
+            {
+                parts.Add(device.KeypadState.Describe());
             }
 
             if (device.CurrentAction != null)
             {
-                result += ", Current Action = " + device.CurrentAction;
+                parts.Add("Current Action = " + device.CurrentAction);
             }
 
             if (device.ColorSwitchState != null && device.ColorSwitchState.Value != null)
             {
-                result += " " + device.ColorSwitchState.Describe();
+                parts.Add(device.ColorSwitchState.Describe());
             }
 
-            if (device.Type != DeviceType.BinarySensor && (device.BinarySensorState != null && device.BinarySensorState.Value != null))
+            if(device.BinarySensorState != null && device.BinarySensorState.Value != null)
             {
-                result = device.BinarySensorState.Describe();
+                parts.Add(device.BinarySensorState.Describe());
             }
 
             if (device.PowerSensorState != null && device.PowerSensorState.Value != null)
             {
-                result += " " + device.PowerSensorState.Describe();
+                parts.Add(device.PowerSensorState.Describe());
             }
 
             if (device.TemperatureSensorState != null && device.TemperatureSensorState.Value != null)
             {
-                result += " " + device.TemperatureSensorState.Describe();
+                parts.Add(device.TemperatureSensorState.Describe());
             }
 
             if (device.HumiditySensorState != null && device.HumiditySensorState.Value != null)
             {
-                result += " " + device.HumiditySensorState.Describe();
+                parts.Add(device.HumiditySensorState.Describe());
             }
 
             if (device.IlluminanceSensorState != null && device.IlluminanceSensorState.Value != null)
             {
-                result += " " + device.IlluminanceSensorState.Describe();
+                parts.Add(device.IlluminanceSensorState.Describe());
             }
+
+            var result = string.Join(", ", parts);
 
             return result;
         }
