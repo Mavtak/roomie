@@ -5,7 +5,10 @@ namespace Roomie.Common.Measurements.Temperature
 {
     public static class TemperatureParser
     {
-        private const string Pattern = @"^(?<value>\d+([.]\d+)?) [ ]* (?<type>(c|f|k|celsius|fahrenheit|kelvin))$";
+        //TODO: update other measurements to allow for scientific notation
+        private const string Pattern = @"^(?<value>\d+([.]\d+)?" + OptionalScientificNotationPattern + @") [ ]* (?<type>(c|f|k|celsius|fahrenheit|kelvin))$";
+        private const string OptionalScientificNotationPattern = @"(E[+-]\d+)?";
+
 
         private static readonly Regex PatternRegex = new Regex(Pattern, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 

@@ -6,8 +6,8 @@ namespace Roomie.Common.Tests.Temperature
 {
     public class TemperatureParserTests
     {
-        public readonly string[] ValidTemperatures = new[] {"0C", "0 C", "0  C", "0.1C", "0.1 C"};
-        public readonly string[] InvalidTemperatures = new[] {"", " ", "0", "kelvin", " 0C", "0\tC", "0.C", ".0C"};
+        public readonly string[] ValidTemperatures = new[] { "0C", "0 C", "0  C", "0.1C", "0.1 C", "1E-06C", "1.23E+04C" };
+        public readonly string[] InvalidTemperatures = new[] {"", " ", "0", "kelvin", " 0C", "0\tC", "0.C", ".0C", "1 E-06"};
 
         [TestCase("0C")]
         [TestCase("0 C")]
@@ -45,6 +45,8 @@ namespace Roomie.Common.Tests.Temperature
         [TestCase("10C", 10)]
         [TestCase("123123123C", 123123123)]
         [TestCase("123.456C", 123.456)]
+        [TestCase("1E-6C", 0.000001)]
+        [TestCase("1.23E+4C", 12300)]
         public void ItParsesTheValueProperly(string input, double expected)
         {
             var result = TemperatureParser.Parse(input);
@@ -53,7 +55,8 @@ namespace Roomie.Common.Tests.Temperature
         }
 
         [TestCase("0C", typeof (CelsiusTemperature))]
-        [TestCase("0c", typeof (CelsiusTemperature))]
+        [TestCase("0c", typeof(CelsiusTemperature))]
+        [TestCase("0E-06C", typeof(CelsiusTemperature))]
         [TestCase("0Celsius", typeof (CelsiusTemperature))]
         [TestCase("0celsius", typeof (CelsiusTemperature))]
         [TestCase("0F", typeof (FahrenheitTemperature))]
