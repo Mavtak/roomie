@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using Roomie.Common.ScriptingLanguage;
@@ -65,19 +67,26 @@ namespace Roomie.Desktop.Graphical
 
         void engine_ScriptMessageSent(object sender, RoomieThreadEventArgs e)
         {
-            var roomieEvent = new RoomieEvent
-            {
-                TimeStamp = DateTime.Now,
-                Thread = e.Thread.Name,
-                Message = e.Message
-            };
+            var lines = Regex.Split(e.Message, "\r\n|\r|\n");
+
+            var roomieEvents = lines.Select(x =>
+                new RoomieEvent
+                {
+                    TimeStamp = DateTime.Now,
+                    Thread = e.Thread.Name,
+                    Message = x
+                }
+            );
 
             Action call = () =>
             {
                 var nothingSelected = EventListing.SelectedIndex == -1;
                 var lastItemSelected = EventListing.SelectedIndex == EventListing.Items.Count - 1;
 
-                Events.Add(roomieEvent);
+                foreach(var roomieEvent in roomieEvents)
+                {
+                    Events.Add(roomieEvent);
+                }
 
                 if (nothingSelected || lastItemSelected)
                 {
