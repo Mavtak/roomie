@@ -49,10 +49,12 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
                 case NotificationType.ButtonOff:
                 case NotificationType.ButtonOn:
+                case NotificationType.ControllerCommand:
                 case NotificationType.CreateButton:
                 case NotificationType.DeleteButton:
                 case NotificationType.DriverFailed:
                 case NotificationType.DriverReady:
+                case NotificationType.DriverRemoved:
                 case NotificationType.DriverReset:
                 case NotificationType.EssentialNodeQueriesComplete:
                 case NotificationType.Group:
