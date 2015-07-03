@@ -11,12 +11,14 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly OpenZWaveNetwork _network;
         private readonly Queue<OpenZWaveNotification> _notification;
         private AutoResetEvent _event;
+        private bool _log;
 
-        public ControllerNotificationWatcher(OpenZWaveNetwork network)
+        public ControllerNotificationWatcher(OpenZWaveNetwork network, bool log = true)
         {
             _network = network;
             _notification = new Queue<OpenZWaveNotification>();
             _event = new AutoResetEvent(false);
+            _log = log;
 
             _network.Manager.OnNotification += OnNotification;
         }
@@ -24,6 +26,11 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private void OnNotification(ZWNotification notification)
         {
             var notification2 = new OpenZWaveNotification(_network, notification);
+
+            if (_log)
+            {
+                _network.Log("controller notification: " + notification2.Type + ", " + notification2.NodeId);
+            }
 
             EnqueueNotification(notification2);
         }
@@ -96,10 +103,10 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
 
         public void LogChangesForever()
         {
+            _log = true;
+
             ProcessChanges(notification =>
             {
-                _network.Log("controller notification: " + notification.Type + ", " + notification.NodeId);
-
                 return ProcessAction.Continue;
             });
         }
