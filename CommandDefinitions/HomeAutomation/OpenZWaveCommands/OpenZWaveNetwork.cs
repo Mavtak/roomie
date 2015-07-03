@@ -15,7 +15,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
         private readonly List<OpenZWaveDevice> _devices;
         private readonly string _serialPortName;
         public UInt32? HomeId { get; private set; }
-        private bool? _ready;
         private OpenZWaveNotificationProcessor _notificationProcessor;
 
         public OpenZWaveNetwork(HomeAutomationNetworkContext context, string serialPortName)
@@ -67,26 +66,13 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             return result;
         }
 
-        internal void SetReady()
-        {
-            _ready = true;
-        }
-
         public void Connect()
         {
-            if (_ready != null)
+            using (var watcher = new ControllerNotificationWatcher(this))
             {
-                return;
-            }
+                Manager.AddDriver(_serialPortName);
 
-            _ready = false;
-
-            Manager.AddDriver(_serialPortName);
-
-            //TODO: improve
-            while (_ready != true)
-            {
-                Thread.Sleep(250);
+                watcher.WaitUntilEventType(ZWNotification.Type.NodeQueriesComplete);
             }
 
             Load();

@@ -30,11 +30,6 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
                 throw new Exception("Unexpected Home ID");
             }
 
-            if (!_networkReady && notification.Type != NotificationType.DriverReady && notification.Type != NotificationType.NodeNew && notification.Type != NotificationType.NodeAdded)
-            {
-                _network.SetReady();
-            }
-
             Debug.WriteLine(notification.NodeId + "\t" + notification.Type + "\t" + notification.Event + "\t" + notification.Value.GetValue());
 
             //TODO: fill in other cases
