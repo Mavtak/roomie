@@ -31,11 +31,7 @@ namespace Roomie.Common.HomeAutomation
             }
             
             if (device.Type == DeviceType.Thermostat ||
-                (device.ThermostatState != null && (
-                  device.ThermostatState.CoreState != null && (device.ThermostatState.CoreState.CurrentAction != null || device.ThermostatState.CoreState.Mode != null || (device.ThermostatState.CoreState.SupportedModes != null && device.ThermostatState.CoreState.SupportedModes.Any())) ||
-                  device.ThermostatState.FanState != null && (device.ThermostatState.FanState.CurrentAction != null || device.ThermostatState.FanState.Mode != null || (device.ThermostatState.FanState.SupportedModes != null && device.ThermostatState.FanState.SupportedModes.Any())) ||
-                  device.ThermostatState.SetpointStates != null && (device.ThermostatState.SetpointStates.AvailableSetpoints != null && device.ThermostatState.SetpointStates.AvailableSetpoints.Any())
-                )))
+                (device.ThermostatState != null && device.ThermostatState.HasData()))
             {
                 parts.Add(device.ThermostatState.Describe());
             }

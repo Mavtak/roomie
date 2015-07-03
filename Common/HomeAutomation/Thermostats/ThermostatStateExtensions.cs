@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation.Thermostats.Cores;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
@@ -11,6 +12,17 @@ namespace Roomie.Common.HomeAutomation.Thermostats
         public static ReadOnlyThermostatState Copy(this IThermostatState state)
         {
             return ReadOnlyThermostatState.CopyFrom(state);
+        }
+
+        public static bool HasData(this IThermostatState state)
+        {
+            var result = 
+                (state.CoreState != null && state.CoreState.HasData()) ||
+                (state.FanState != null && state.FanState.HasData()) ||
+                (state.SetpointStates != null && state.SetpointStates.HasData())
+            ;
+
+            return result;
         }
 
         public static string Describe(this IThermostatState state)

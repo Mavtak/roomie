@@ -13,6 +13,13 @@ namespace Roomie.Common.HomeAutomation.Thermostats.SetpointCollections
             return ReadOnlyThermostatSetpointCollection.CopyFrom(source);
         }
 
+        public static bool HasData(this IThermostatSetpointCollectionState state)
+        {
+            var result = state.AvailableSetpoints != null && state.AvailableSetpoints.Any();
+
+            return result;
+        }
+
         public static string Describe(this IThermostatSetpointCollectionState state)
         {
             var result = new StringBuilder();

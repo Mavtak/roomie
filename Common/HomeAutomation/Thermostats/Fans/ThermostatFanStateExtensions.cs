@@ -11,6 +11,17 @@ namespace Roomie.Common.HomeAutomation.Thermostats.Fans
             return ReadOnlyThermostatFanState.CopyFrom(state);
         }
 
+        public static bool HasData(this IThermostatFanState state)
+        {
+            var result =
+                state.CurrentAction != null ||
+                state.Mode != null ||
+                (state.SupportedModes != null && state.SupportedModes.Any())
+            ;
+
+            return result;
+        }
+
         public static string Describe(this IThermostatFanState state)
         {
             var result = new StringBuilder();
