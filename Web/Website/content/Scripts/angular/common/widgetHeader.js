@@ -8,6 +8,21 @@ module.directive('widgetHeader', function() {
       subtitle: '@subtitle',
       href: '@href'
     },
-    template: '<a class="header" ng-href="{{href}}"><div class="location">{{subtitle}}</div><div class="name">{{title}}</div></a>'
+    template: '' +
+      '<a ' +
+        'class="header" ' +
+        'ng-href="{{href}}"' +
+        '>' +
+        '<div ' +
+          'class="location"' +
+          '>' +
+          '{{subtitle}}' +
+        '</div>' +
+        '<div ' +
+          'class="name"' +
+          '>' +
+          '{{title}}' +
+        '</div>' +
+      '</a>'
   };
 });
