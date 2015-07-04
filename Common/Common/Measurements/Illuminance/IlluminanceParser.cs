@@ -5,7 +5,8 @@ namespace Roomie.Common.Measurements.Illuminance
 {
     public static class IlluminanceParser
     {
-        private const string Pattern = @"^(?<value>\d+([.]\d+)?) [ ]* (?<type>(l|lux))$";
+        private const string Pattern = @"^(?<value>\d+([.]\d+)?" + OptionalScientificNotationPattern + @") [ ]* (?<type>(l|lux))$";
+        private const string OptionalScientificNotationPattern = MeasurementParser.OptionalScientificNotationPattern;
 
         private static readonly Regex PatternRegex = new Regex(Pattern, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 

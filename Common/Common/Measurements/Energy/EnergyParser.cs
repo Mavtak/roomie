@@ -5,7 +5,8 @@ namespace Roomie.Common.Measurements.Energy
 {
     public static class EnergyParser
     {
-        private const string Pattern = @"^(?<value>\d+([.]\d+)?) [ ]* (?<type>(j|joule|joules|kwh|kilowatt[ ]hour|kilowatt[ ]hours))$";
+        private const string Pattern = @"^(?<value>\d+([.]\d+)?" + OptionalScientificNotationPattern + @") [ ]* (?<type>(j|joule|joules|kwh|kilowatt[ ]hour|kilowatt[ ]hours))$";
+        private const string OptionalScientificNotationPattern = MeasurementParser.OptionalScientificNotationPattern;
 
         private static readonly Regex PatternRegex = new Regex(Pattern, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 

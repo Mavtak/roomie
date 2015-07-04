@@ -5,7 +5,8 @@ namespace Roomie.Common.Measurements.Ratio
 {
     public static class RatioParser
     {
-        private const string Pattern = @"^(?<value>\d+([.]\d+)?) [ ]* (?<type>(%|percent))$";
+        private const string Pattern = @"^(?<value>\d+([.]\d+)?" + OptionalScientificNotationPattern + @") [ ]* (?<type>(%|percent))$";
+        private const string OptionalScientificNotationPattern = MeasurementParser.OptionalScientificNotationPattern;
 
         private static readonly Regex PatternRegex = new Regex(Pattern, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 

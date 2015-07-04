@@ -5,7 +5,8 @@ namespace Roomie.Common.Measurements.Power
 {
     public static class PowerParser
     {
-        private const string Pattern = @"^(?<value>\d+([.]\d+)?) [ ]* (?<type>(%|w|watt|watts))$";
+        private const string Pattern = @"^(?<value>\d+([.]\d+)?" + OptionalScientificNotationPattern + @") [ ]* (?<type>(%|w|watt|watts))$";
+        private const string OptionalScientificNotationPattern = MeasurementParser.OptionalScientificNotationPattern;
 
         private static readonly Regex PatternRegex = new Regex(Pattern, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
