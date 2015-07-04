@@ -4,6 +4,7 @@ module.directive('widgetHeader', function() {
   return {
     restrict: 'E',
     scope: {
+      disconnected: '=disconnected',
       title: '@title',
       subtitle: '@subtitle',
       href: '@href'
@@ -18,6 +19,10 @@ module.directive('widgetHeader', function() {
           '>' +
           '{{subtitle}}' +
         '</div>' +
+        '<widget-disconnected-icon ' +
+          'ng-if="disconnected"' +
+          '>' +
+        '</widget-disconnected-icon>' +
         '<div ' +
           'class="name"' +
           '>' +
