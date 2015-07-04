@@ -48,7 +48,7 @@ namespace Roomie.Common.HomeAutomation.MultilevelSensors
 
             if (state.Value != null)
             {
-                result.Add(new XAttribute("Value", state.Value));
+                result.Add(new XAttribute("Value", state.Value.Format()));
             }
 
             if (state.TimeStamp != null)
