@@ -99,9 +99,7 @@ namespace Roomie.Desktop.Graphical
 
         private void ScrollToEnd()
         {
-            //http://stackoverflow.com/questions/1027051/how-to-autoscroll-on-wpf-datagrid
-            EventListing.SelectedIndex = EventListing.Items.Count - 1;
-            EventListing.ScrollIntoView(EventListing.SelectedItem);
+            EventListing.ScrollIntoView(EventListing.Items[EventListing.Items.Count -1]);
             EventListing.SelectedIndex = -1;
         }
 
