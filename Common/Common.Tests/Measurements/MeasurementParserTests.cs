@@ -64,5 +64,15 @@ namespace Roomie.Common.Tests.Measurements
             Assert.That(result.Value, Is.EqualTo(value));
             Assert.That(result.GetType(), Is.EqualTo(type));
         }
+
+        [TestCase("1E-04Unit", 0.0001, typeof(ReadOnlyMeasurement))]
+        [TestCase("1.23E+5Unit", 123000, typeof(ReadOnlyMeasurement))]
+        public void ItParsesScientificNotationCorrectly(string input, double value, Type type)
+        {
+            var result = MeasurementParser.Parse<IMeasurement>(input);
+
+            Assert.That(result.Value, Is.EqualTo(value));
+            Assert.That(result.GetType(), Is.EqualTo(type));
+        }
     }
 }

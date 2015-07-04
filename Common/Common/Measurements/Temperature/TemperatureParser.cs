@@ -7,8 +7,7 @@ namespace Roomie.Common.Measurements.Temperature
     {
         //TODO: update other measurements to allow for scientific notation
         private const string Pattern = @"^(?<value>\d+([.]\d+)?" + OptionalScientificNotationPattern + @") [ ]* (?<type>(c|f|k|celsius|fahrenheit|kelvin))$";
-        private const string OptionalScientificNotationPattern = @"(E[+-]\d+)?";
-
+        private const string OptionalScientificNotationPattern = MeasurementParser.OptionalScientificNotationPattern;
 
         private static readonly Regex PatternRegex = new Regex(Pattern, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 

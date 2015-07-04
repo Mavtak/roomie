@@ -11,7 +11,8 @@ namespace Roomie.Common.Measurements
 {
     public static class MeasurementParser
     {
-        private const string Pattern = @"^(?<value>\d+([.]\d+)?) [ ]* (?<type>(.+))$";
+        private const string Pattern = @"^(?<value>\d+([.]\d+)?" + OptionalScientificNotationPattern + ") [ ]* (?<type>(.+))$";
+        public const string OptionalScientificNotationPattern = @"(E[+-]\d+)?";
 
         private static readonly Regex PatternRegex = new Regex(Pattern,
                                                                RegexOptions.IgnoreCase |
