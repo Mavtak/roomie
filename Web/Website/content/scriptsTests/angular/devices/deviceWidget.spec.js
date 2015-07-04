@@ -32,35 +32,31 @@ describe('roomie.devices.deviceWidget', function() {
     element = $compile('<device-widget device="device"></device-widget>')($rootScope);
   });
 
-  describe('the structure', function() {
+  describe('the header', function() {
 
-    describe('the header', function() {
+    it('has one', function() {
+      expect($(element).find('.widget widget-header .header').length).toEqual(1);
+    });
 
-      it('has one', function() {
-        expect($(element).find('.widget widget-header .header').length).toEqual(1);
-      });
+    it('has a title that matches the device name', function() {
+      $rootScope.device.name = "Light Switch";
 
-      it('has a title that matches the device name', function() {
-        $rootScope.device.name = "Light Switch";
+      $rootScope.$digest();
 
-        $rootScope.$digest();
+      expect($(element).find('.widget widget-header .header .name').html()).toEqual("Light Switch");
+    });
 
-        expect($(element).find('.widget widget-header .header .name').html()).toEqual("Light Switch");
-      });
+    it('links to the detail', function () {
+      $rootScope.device.id = '123';
+      $rootScope.$digest();
 
-      it('links to the detail', function () {
-        $rootScope.device.id = '123';
-        $rootScope.$digest();
+      expect($(element).find('.widget widget-header .header').attr('href')).toEqual('#/devices/123');
+    });
 
-        expect($(element).find('.widget widget-header .header').attr('href')).toEqual('#/devices/123');
-      });
+    it('has no subtitle', function() {
+      $rootScope.$digest();
 
-      it('has no subtitle', function() {
-        $rootScope.$digest();
-
-        expect($(element).find('.widget widget-header .header .location').html()).toEqual('');
-      });
-
+      expect($(element).find('.widget widget-header .header .location').html()).toEqual('');
     });
 
   });
