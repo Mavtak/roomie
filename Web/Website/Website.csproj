@@ -184,6 +184,7 @@
     <Content Include="content\Scripts\angular\common\widgetButton.js" />
     <Content Include="content\Scripts\angular\common\widgetButtonGroup.js" />
     <Content Include="content\Scripts\angular\common\widgetDataSection.js" />
+    <Content Include="content\Scripts\angular\common\widgetDisconnectedIcon.js" />
     <Content Include="content\Scripts\angular\data\ManualPoller.js" />
     <Content Include="content\Scripts\angular\data\ManualPollingUpdater.js" />
     <Content Include="content\Scripts\angular\data\ManualUpdater.js" />
