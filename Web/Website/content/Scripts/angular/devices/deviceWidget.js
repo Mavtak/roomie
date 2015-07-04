@@ -9,6 +9,7 @@ module.directive('deviceWidget', function() {
     template: '' +
       '<widget>' +
         '<widget-header ' +
+          'disconnected="!device.isConnected" ' +
           'title="{{device.name}} "' +
           'href="#/devices/{{device.id}}"' +
           '>' +

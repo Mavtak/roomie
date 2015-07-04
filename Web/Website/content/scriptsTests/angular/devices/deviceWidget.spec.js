@@ -59,6 +59,18 @@ describe('roomie.devices.deviceWidget', function() {
       expect($(element).find('.widget widget-header .header .location').html()).toEqual('');
     });
 
+    it('sets the disconnected property', function() {
+      $rootScope.device.isConnected = false;
+      $rootScope.$digest();
+
+      expect($(element).find('.widget widget-header > .header widget-disconnected-icon').length).toEqual(1);
+
+      $rootScope.device.isConnected = true;
+      $rootScope.$digest();
+
+      expect($(element).find('.widget widget-header > .header widget-disconnected-icon').length).toEqual(0);
+    });
+
   });
 
   describe('the currentAction controls', function () {
