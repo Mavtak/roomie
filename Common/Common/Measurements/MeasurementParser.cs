@@ -19,16 +19,6 @@ namespace Roomie.Common.Measurements
                                                                RegexOptions.IgnorePatternWhitespace |
                                                                RegexOptions.Compiled);
 
-        public static bool IsEnergy(string input)
-        {
-            if (String.IsNullOrWhiteSpace(input))
-            {
-                return false;
-            }
-
-            return PatternRegex.IsMatch(input);
-        }
-
         public static TMeasurement Parse<TMeasurement>(string input)
             where TMeasurement : IMeasurement
         {
