@@ -72,7 +72,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             {
                 Manager.AddDriver(_serialPortName);
 
-                watcher.WaitUntilEventType(ZWNotification.Type.NodeQueriesComplete);
+                watcher.WaitUntilEventType(ZWNotification.Type.NodeQueriesComplete, ZWNotification.Type.EssentialNodeQueriesComplete);
             }
 
             Load();
@@ -158,7 +158,7 @@ namespace Roomie.CommandDefinitions.OpenZWaveCommands
             {
                 Manager.ResetController(HomeId.Value);
 
-                stateWatcher.WaitUntilEventType(ZWNotification.Type.EssentialNodeQueriesComplete);
+                stateWatcher.WaitUntilEventType(ZWNotification.Type.NodeQueriesComplete, ZWNotification.Type.EssentialNodeQueriesComplete);
             }
         }
 
