@@ -15,7 +15,8 @@ module.directive('sideMenuItem', function() {
       '<a ' +
         'class="item"' +
         'href="{{target}}"' +
-        'ng-click="selected()"' +
+        'ng-click="selected()" ' +
+        'style="padding-right: 20px"' + //TODO: compensate for scrollbar in a better way
         '>' +
         '{{calculateIndent()}}' +
         '<span ' +
