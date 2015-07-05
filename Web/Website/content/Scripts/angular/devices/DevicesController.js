@@ -1,6 +1,7 @@
 ﻿var module = angular.module('roomie.devices');
 
 module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', 'pageMenuItems', function ($http, $scope, AutomaticPollingUpdater, pageMenuItems) {
+  var locations;
 
   pageMenuItems.reset();
   initializeScope();
@@ -11,6 +12,18 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
       items: []
     };
     $scope.include = shouldShowDevice;
+  }
+
+  function calculateLocations() {
+    var result = _.map($scope.page.items, function(device) {
+      if (typeof device.location === 'object') {
+        return device.location.name;
+      }
+
+      return '';
+    });
+
+    return result;
   }
 
   function connectData() {
@@ -139,6 +152,7 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
   }
 
   function updateComplete() {
+    locations = calculateLocations();
   }
 
   function hasThermostat(device) {
