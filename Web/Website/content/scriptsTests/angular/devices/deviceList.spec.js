@@ -1,4 +1,5 @@
-﻿/// <reference path="../../../Scripts/Libraries/jquery-1.5.1.min.js"/>
+﻿/// <reference path="../../../Scripts/Libraries/lodash-3.4.0.min.js"/>
+/// <reference path="../../../Scripts/Libraries/jquery-1.5.1.min.js"/>
 /// <reference path="../../../Scripts/Libraries/angular-1.3.13.min.js"/>
 /// <reference path="../angular-mocks.js"/>
 /// <reference path="../../../Scripts/angular/dependencies.js"/>
@@ -98,6 +99,37 @@ describe('roomie.devices.deviceList', function() {
 
     expect(selectLocationHeaders(selectLocationHeaderBlock(2)).length).toEqual(1);
     expect(selectLocationHeader(selectLocationHeaderBlock(2), 0).text()).toEqual('d');
+  });
+
+  it('optionally filters items', function() {
+    element = $compile('<device-list devices="page.items", include="include"></device-list>')($rootScope);
+    $rootScope.$digest();
+
+    expect(selectDeviceWidgets().length).toEqual(0);
+
+    $rootScope.page.items.push({
+      name: 'device 1'
+    });
+    $rootScope.page.items.push({
+      name: 'device 2'
+    });
+    $rootScope.include = function(device) {
+      return device.name !== 'device 2';
+    };
+    $rootScope.$digest();
+
+    //TODO test locations also
+    expect(selectDeviceWidgets().length).toEqual(1);
+    expect(selectDeviceWidget(0).find('widget-header .header .name').html()).toEqual('device 1');
+
+    $rootScope.page.items.push({
+      name: 'device 3'
+    });
+    $rootScope.$digest();
+
+    expect(selectDeviceWidgets().length).toEqual(2);
+    expect(selectDeviceWidget(0).find('widget-header .header .name').html()).toEqual('device 1');
+    expect(selectDeviceWidget(1).find('widget-header .header .name').html()).toEqual('device 3');
   });
 
   function selectDeviceWidgets() {

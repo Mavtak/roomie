@@ -5,14 +5,16 @@ module.directive('deviceList', function() {
   return {
     restrict: 'E',
     scope: {
-      devices: '=devices'
+      devices: '=devices',
+      include: '=include'
     },
+    link: link,
     template: '' +
       '<div ' +
-        'ng-repeat="device in devices"' +
+        'ng-repeat="device in filteredDevices"' +
         '>' +
         '<location-header-group ' +
-          'previous-location="devices[$index - 1].location.name" ' +
+          'previous-location="filteredDevices[$index - 1].location.name" ' +
           'current-location="device.location.name"' +
           '>' +
         '</location-header-group>' +
@@ -22,5 +24,19 @@ module.directive('deviceList', function() {
         '</device-widget>' +
       '</div>'
   };
+
+  function link(scope) {
+    scope.$watch('devices', filterDevices, true);
+
+    filterDevices();
+
+    function filterDevices() {
+      if (typeof scope.include === 'undefined') {
+        return scope.filteredDevices = scope.devices;
+      }
+
+      scope.filteredDevices = _.filter(scope.devices, scope.include);
+    }
+  }
 
 });
