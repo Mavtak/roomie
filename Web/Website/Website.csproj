@@ -145,6 +145,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="content\scriptsTests\angular\angular-mocks.js" />
     <Content Include="content\scriptsTests\angular\common\dock.spec.js" />
+    <Content Include="content\scriptsTests\angular\common\sideMenuItem.spec.js" />
     <Content Include="content\scriptsTests\angular\common\siteMenu.spec.js" />
     <Content Include="content\scriptsTests\angular\common\widgetButton.spec.js" />
     <Content Include="content\scriptsTests\angular\common\widgetButtonGroup.spec.js" />
@@ -181,6 +182,7 @@
     <Content Include="content\Scripts\angular\common\sideMenu.js" />
     <Content Include="content\Scripts\angular\common\roomieApp.js" />
     <Content Include="content\Scripts\angular\common\sideMenuButton.js" />
+    <Content Include="content\Scripts\angular\common\sideMenuItem.js" />
     <Content Include="content\Scripts\angular\common\widgetButton.js" />
     <Content Include="content\Scripts\angular\common\widgetButtonGroup.js" />
     <Content Include="content\Scripts\angular\common\widgetDataSection.js" />
