@@ -6,6 +6,8 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
   pageMenuItems.reset();
   initializeScope();
   connectData();
+
+  $scope.$watchCollection(function () { return locations; }, updatePageMenuItems, true);
   
   function initializeScope() {
     $scope.page = {
@@ -216,5 +218,11 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     }
 
     return false;
+  }
+
+  function updatePageMenuItems() {
+    var items = calculatePageMenuItems();
+
+    pageMenuItems.set(items);
   }
 }]);
