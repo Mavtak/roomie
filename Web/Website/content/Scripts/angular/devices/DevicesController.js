@@ -18,7 +18,8 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
       url: '/api/device',
       originals: $scope.page.items,
       ammendOriginal: setFunctions,
-      processUpdate: processUpdate
+      processUpdate: processUpdate,
+      updateComplete: updateComplete
     };
 
     if (typeof $scope.$state.params.id === 'undefined') {
@@ -135,6 +136,9 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     }
 
     return true;
+  }
+
+  function updateComplete() {
   }
 
   function hasThermostat(device) {
