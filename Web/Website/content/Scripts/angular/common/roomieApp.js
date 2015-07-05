@@ -56,6 +56,9 @@ module.directive('roomieApp', ['$window', function($window) {
       bottomDock: 0,
       topDock: 0
     };
+    scope.widths = {
+      app: 0
+    };
     scope.navigationMenu = {
       close: closeNavigationMenu,
       isOpen: false,
