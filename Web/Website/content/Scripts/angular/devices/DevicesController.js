@@ -41,6 +41,7 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
 
     var result = _.map(locationData, function(item) {
       return {
+        indent: item.depth,
         label: item.label,
         target: '#/devices?location=' + item.location
       };
