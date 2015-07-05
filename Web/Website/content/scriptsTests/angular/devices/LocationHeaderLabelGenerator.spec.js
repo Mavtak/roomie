@@ -39,6 +39,17 @@ describe('roomie.devices.LocationHeaderLabelGenerator', function() {
         expect(parts[2].depth).toEqual(2);
       });
 
+      it('returns an array of parts with full locations', function() {
+        var generator = new LocationHeaderLabelGenerator(undefined, 'a/b/c');
+
+        var parts = generator.getParts();
+
+        expect(parts.length).toEqual(3);
+        expect(parts[0].location).toEqual('a');
+        expect(parts[1].location).toEqual('a/b');
+        expect(parts[2].location).toEqual('a/b/c');
+      });
+
     });
 
     describe('with a previous location that has a different root', function() {
@@ -65,6 +76,17 @@ describe('roomie.devices.LocationHeaderLabelGenerator', function() {
         expect(parts[2].depth).toEqual(2);
       });
 
+      it('returns an array of parts with full locations', function() {
+        var generator = new LocationHeaderLabelGenerator('z/b/c', 'a/b/c');
+
+        var parts = generator.getParts();
+
+        expect(parts.length).toEqual(3);
+        expect(parts[0].location).toEqual('a');
+        expect(parts[1].location).toEqual('a/b');
+        expect(parts[2].location).toEqual('a/b/c');
+      });
+
     });
 
     describe('with a previous location that has a common root', function() {
@@ -89,6 +111,17 @@ describe('roomie.devices.LocationHeaderLabelGenerator', function() {
         expect(parts[0].depth).toEqual(2);
         expect(parts[1].depth).toEqual(3);
         expect(parts[2].depth).toEqual(4);
+      });
+
+      it('returns an array of parts with full locations', function() {
+        var generator = new LocationHeaderLabelGenerator('a/b/z', 'a/b/c/d/e');
+
+        var parts = generator.getParts();
+
+        expect(parts.length).toEqual(3);
+        expect(parts[0].location).toEqual('a/b/c');
+        expect(parts[1].location).toEqual('a/b/c/d');
+        expect(parts[2].location).toEqual('a/b/c/d/e');
       });
 
     });

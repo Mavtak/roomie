@@ -7,14 +7,17 @@ module.factory('LocationHeaderLabelGenerator', function() {
       var previous = getParts(previousLocation);
       var current = getParts(currentLocation);
 
-      var depth = eatCommonBeginnings(previous, current);
+      var commonBeginnings = eatCommonBeginnings(previous, current);
 
       var result = [];
 
       for (var i = 0; i < current.length; i++) {
+        var location = commonBeginnings.concat(current.slice(0, i + 1)).join('/');
+
         result.push({
-          depth: depth + i,
-          label: current[i]
+          depth: commonBeginnings.length + i,
+          label: current[i],
+          location: location
         });
       }
 
@@ -35,15 +38,15 @@ module.factory('LocationHeaderLabelGenerator', function() {
   }
 
   function eatCommonBeginnings(previous, current) {
-    var depth = 0;
+    var common = [];
 
     while (previous[0] === current[0] && typeof previous[0] !== 'undefined') {
-      depth++;
+      common.push(previous[0]);
       previous.shift();
       current.shift();
     }
 
-    return depth;
+    return common;
   }
 
 });
