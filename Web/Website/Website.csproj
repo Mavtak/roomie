@@ -183,6 +183,7 @@
     <Content Include="content\Scripts\angular\common\roomieApp.js" />
     <Content Include="content\Scripts\angular\common\sideMenuButton.js" />
     <Content Include="content\Scripts\angular\common\sideMenuItem.js" />
+    <Content Include="content\Scripts\angular\common\siteMenuSet.js" />
     <Content Include="content\Scripts\angular\common\widgetButton.js" />
     <Content Include="content\Scripts\angular\common\widgetButtonGroup.js" />
     <Content Include="content\Scripts\angular\common\widgetDataSection.js" />
