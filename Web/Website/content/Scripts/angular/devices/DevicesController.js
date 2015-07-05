@@ -1,6 +1,6 @@
 ﻿var module = angular.module('roomie.devices');
 
-module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', 'pageMenuItems', function ($http, $scope, AutomaticPollingUpdater, pageMenuItems) {
+module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', 'LocationHeaderLabelGenerator', 'pageMenuItems', function ($http, $scope, AutomaticPollingUpdater, LocationHeaderLabelGenerator, pageMenuItems) {
   var locations;
 
   pageMenuItems.reset();
@@ -23,6 +23,27 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
       return '';
     });
 
+    return result;
+  }
+
+  function calculatePageMenuItems() {
+    var previous = '';
+    var locationData = _.map(locations, function(current) {
+      var generator = new LocationHeaderLabelGenerator(previous, current);
+      var parts = generator.getParts();
+      previous = current;
+
+      return parts;
+    });
+    locationData = _.flatten(locationData);
+
+    var result = _.map(locationData, function(item) {
+      return {
+        label: item.label,
+        target: '#/devices?location=' + item.location
+      };
+    });
+    
     return result;
   }
 
