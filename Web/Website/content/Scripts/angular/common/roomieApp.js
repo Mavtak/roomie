@@ -16,6 +16,7 @@ module.directive('roomieApp', ['$window', function($window) {
             '>' +
             '<app-header ' +
               'navigation-menu="navigationMenu" ' +
+              'page-menu="pageMenu" ' +
               '>' +
             '</app-header>' +
           '</app-horizontal-section>' +
@@ -35,6 +36,15 @@ module.directive('roomieApp', ['$window', function($window) {
               '>' +
               '<side-menu-item label="\'Devices\'" selected="navigationMenuItemSelected" target="\'#/devices\'"></side-menu-item>' +
               '<side-menu-item label="\'Tasks\'" selected="navigationMenuItemSelected" target="\'#/tasks\'"></side-menu-item>' +
+            '</side-menu>' +
+            '<side-menu ' +
+              'ng-show="pageMenu.isOpen" ' +
+              'calculated-width="pageMenu.calculatedWidth" ' +
+              'item-selected="pageMenuItemSelected()" ' +
+              'side="right" ' +
+              '>' +
+              '<side-menu-item label="\'Nothing Here\'" selected="pageMenuItemSelected"></side-menu-item>' +
+              '</side-menu-item>' +
             '</side-menu>' +
           '</side-menu-set>' +
           '<app-content ' +
@@ -71,8 +81,14 @@ module.directive('roomieApp', ['$window', function($window) {
       isOpen: false,
       open: openNavigationMenu
     };
+    scope.pageMenu = {
+      close: closePageMenu,
+      isOpen: false,
+      open: openPageMenu
+    };
 
     scope.navigationMenuItemSelected = closeNavigationMenu;
+    scope.pageMenuItemSelected = closePageMenu;
 
     scope.$watch(calculateHeight, updateHeight);
     scope.$watch('heights', updateContentMinHeight, true);
@@ -94,9 +110,19 @@ module.directive('roomieApp', ['$window', function($window) {
       scope.navigationMenu.isOpen = true;
     };
 
+    function openPageMenu() {
+      scope.contentStyle.right = scope.pageMenu.calculatedWidth;
+      scope.pageMenu.isOpen = true;
+    };
+
     function closeNavigationMenu() {
       delete scope.contentStyle.left;
       scope.navigationMenu.isOpen = false;
+    };
+
+    function closePageMenu() {
+      delete scope.contentStyle.right;
+      scope.pageMenu.isOpen = false;
     };
 
     function updateContentMinHeight() {

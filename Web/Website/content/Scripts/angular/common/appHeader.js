@@ -6,6 +6,7 @@ module.directive('appHeader', function () {
     restrict: 'E',
     scope: {
       navigationMenu: '=navigationMenu',
+      pageMenu: '=pageMenu',
     },
     template: '' +
       '<div id="header">' +
@@ -16,6 +17,13 @@ module.directive('appHeader', function () {
           '>' +
         '</side-menu-button>' +
         '<h1 id="title">Roomie</h1>' +
+        '<side-menu-button ' +
+          'close="pageMenu.close()"' +
+          'is-open="pageMenu.isOpen" ' +
+          'open="pageMenu.open()" ' +
+          'style="float: right;"' +
+          '>' +
+        '</side-menu-button>' +
       '</div>'
   };
 
