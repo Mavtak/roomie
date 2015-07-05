@@ -55,7 +55,6 @@ module.directive('sideMenu', ['$window', function($window) {
     
     function updateWidth(newValue) {
       scope.calculatedWidth = newValue;
-      console.log(newValue);
     }
   }
 
