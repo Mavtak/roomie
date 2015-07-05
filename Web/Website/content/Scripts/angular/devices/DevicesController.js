@@ -9,6 +9,7 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     $scope.page = {
       items: []
     };
+    $scope.include = shouldShowDevice;
   }
 
   function connectData() {
@@ -113,6 +114,26 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     device.powerSensor.poll = function() {
       $http.post('/api/device/' + device.id + '?action=PollPowerSensor');
     };
+  }
+
+  function shouldShowDevice(device) {
+    var location = $scope.$state.params.location;
+
+    if (typeof location !== 'undefined' && location !== '') {
+      if (typeof device.location === 'undefined') {
+        return false;
+      }
+      
+      if (typeof device.location.name !== 'string') {
+        return false;
+      }
+      
+      if (device.location.name.indexOf(location) !== 0 && location.indexOf(device.location.name) !== 0) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   function hasThermostat(device) {

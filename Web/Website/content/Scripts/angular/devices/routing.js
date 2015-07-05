@@ -2,11 +2,12 @@
 
 module.config(['$stateProvider', function ($stateProvider) {
   $stateProvider.state('devices', {
-    url: '/devices',
+    url: '/devices?location',
     controller: 'DevicesController',
     template: '' +
       '<device-list ' +
-        'devices="page.items"' +
+        'devices="page.items" ' +
+        'include="include"' +
         '>' +
       '</device-list>'
   });
