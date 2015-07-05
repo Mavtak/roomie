@@ -4,6 +4,7 @@ module.directive('sideMenu', ['$window', function($window) {
 
   return {
     restrict: 'E',
+    transclude: true,
     scope: {
       calculatedWidth: '=calculatedWidth',
       itemSelected: '&itemSelected'
@@ -12,10 +13,9 @@ module.directive('sideMenu', ['$window', function($window) {
     template: '' +
       '<div ' +
         'class="sideMenu" ' +
-        'ng-style="style"' +
+        'ng-style="style" ' +
+        'ng-transclude' +
         '>' +
-        '<a class="item" href="#devices" ng-click="itemSelected()"><span class="content">Devices</span></a>' +
-        '<a class="item" href="#tasks" ng-click="itemSelected()"><span class="content">Tasks</span></a>' +
       '</div>'
   };
   
