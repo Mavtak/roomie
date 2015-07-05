@@ -1,8 +1,8 @@
 ﻿var module = angular.module('roomie.tasks');
 
-module.controller('TasksController', ['$http', '$scope', 'ManualPollingUpdater', function($http, $scope, ManualPollingUpdater) {
+module.controller('TasksController', ['$http', '$scope', 'ManualPollingUpdater', 'pageMenuItems', function($http, $scope, ManualPollingUpdater, pageMenuItems) {
 
-
+  pageMenuItems.reset();
   initializeScope();
   connectData();
 
