@@ -1,6 +1,6 @@
 ﻿var module = angular.module('roomie.common');
 
-module.directive('roomieApp', ['$window', function($window) {
+module.directive('roomieApp', ['$window', 'pageMenuItems', function($window, pageMenuItems) {
 
   return {
     restrict: 'E',
@@ -43,7 +43,13 @@ module.directive('roomieApp', ['$window', function($window) {
               'item-selected="pageMenuItemSelected()" ' +
               'side="right" ' +
               '>' +
-              '<side-menu-item label="\'Nothing Here\'" selected="pageMenuItemSelected"></side-menu-item>' +
+              '<side-menu-item ' +
+                'ng-repeat="item in pageMenuItems.list()"' +
+                'indent="item.indent" ' +
+                'label="item.label" ' +
+                'selected="pageMenuItemSelected" ' +
+                'target="item.target" ' +
+                '>' +
               '</side-menu-item>' +
             '</side-menu>' +
           '</side-menu-set>' +
@@ -86,6 +92,7 @@ module.directive('roomieApp', ['$window', function($window) {
       isOpen: false,
       open: openPageMenu
     };
+    scope.pageMenuItems = pageMenuItems;
 
     scope.navigationMenuItemSelected = closeNavigationMenu;
     scope.pageMenuItemSelected = closePageMenu;
