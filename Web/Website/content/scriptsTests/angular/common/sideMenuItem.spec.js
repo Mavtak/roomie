@@ -82,4 +82,40 @@ describe('roomie.common.sideMenuItem', function() {
 
   });
 
+  describe('the indent attribute', function () {
+
+    it('works when not set', function () {
+      var element = $compile('<side-menu-item label="\'derp\'"></side-menu-item>')($rootScope);
+
+      $rootScope.$digest();
+
+      expect($(element).find('.item').text()).toEqual('derp');
+    });
+
+    it('works when set to 0', function () {
+      var element = $compile('<side-menu-item indent="\'0\'" label="\'derp\'"></side-menu-item>')($rootScope);
+
+      $rootScope.$digest();
+
+      expect($(element).find('.item').text()).toEqual('derp');
+    });
+    
+    it('works when set to 1', function () {
+      var element = $compile('<side-menu-item indent="\'1\'" label="\'derp\'"></side-menu-item>')($rootScope);
+
+      $rootScope.$digest();
+
+      expect($(element).find('.item').text()).toEqual('\xA0\xA0derp');
+    });
+    
+    it('works when set to 2', function () {
+      var element = $compile('<side-menu-item indent="\'2\'" label="\'derp\'"></side-menu-item>')($rootScope);
+
+      $rootScope.$digest();
+
+      expect($(element).find('.item').text()).toEqual('\xA0\xA0\xA0\xA0derp');
+    });
+    
+  });
+
 });
