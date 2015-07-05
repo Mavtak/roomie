@@ -1,7 +1,8 @@
 ﻿var module = angular.module('roomie.devices');
 
-module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', function ($http, $scope, AutomaticPollingUpdater) {
+module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', 'pageMenuItems', function ($http, $scope, AutomaticPollingUpdater, pageMenuItems) {
 
+  pageMenuItems.reset();
   initializeScope();
   connectData();
   
