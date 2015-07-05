@@ -6,6 +6,7 @@ module.factory('ManualUpdater', [function() {
     var originals = options.originals;
     var ammendOriginal = options.ammendOriginal;
     var processUpdate = options.processUpdate;
+    var updateComplete = options.updateComplete;
 
     this.run = function(updates) {
       for (var i = 0; i < updates.length; i++) {
@@ -22,6 +23,10 @@ module.factory('ManualUpdater', [function() {
         } else {
           applyUpdate(original, update);
         }
+      }
+
+      if (typeof updateComplete !== 'undefined') {
+        updateComplete();
       }
     };
 

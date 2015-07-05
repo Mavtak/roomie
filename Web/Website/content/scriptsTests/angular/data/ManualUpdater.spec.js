@@ -331,4 +331,21 @@ describe('roomie.data.ManualUpdater', function() {
 
   });
 
+  describe('when the update is complete', function() {
+
+    it('runs the optional updateComplete function', function () {
+      var counter = 0;
+      var manualUpdater = new ManualUpdater({
+        originals: items,
+        updateComplete: function () {
+          counter++;
+        }
+      });
+
+      manualUpdater.run([{ id: 'a' }, { id: 'b' }, { id: 'c' }]);
+
+      expect(counter).toEqual(1);
+    });
+  });
+
 });
