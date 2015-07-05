@@ -99,6 +99,12 @@ module.directive('roomieApp', ['$window', 'pageMenuItems', function($window, pag
 
     scope.$watch(calculateHeight, updateHeight);
     scope.$watch('heights', updateContentMinHeight, true);
+    scope.$watch('pageMenu.calculatedWidth', function () {
+      //TODO: fix it page menu width calculation so that this watch isn't necessary
+      if (scope.pageMenu.isOpen) {
+        openPageMenu();
+      }
+    });
 
     angular.element($window).bind('resize', function() {
       scope.$apply();
