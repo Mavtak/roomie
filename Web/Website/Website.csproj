@@ -179,6 +179,7 @@
     <Content Include="content\Scripts\angular\common\appContent.js" />
     <Content Include="content\Scripts\angular\common\app-horizontal-section.js" />
     <Content Include="content\Scripts\angular\common\dock.js" />
+    <Content Include="content\Scripts\angular\common\pageMenuItems.js" />
     <Content Include="content\Scripts\angular\common\sideMenu.js" />
     <Content Include="content\Scripts\angular\common\roomieApp.js" />
     <Content Include="content\Scripts\angular\common\sideMenuButton.js" />
