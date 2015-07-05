@@ -4,7 +4,7 @@
 /// <reference path="../../../Scripts/angular/dependencies.js"/>
 /// <reference path="../../../Scripts/angular/common/sideMenuItem.js"/>
 
-describe('roomie.common.wideMenuItem', function() {
+describe('roomie.common.sideMenuItem', function() {
   var $compile;
   var $rootScope;
 
