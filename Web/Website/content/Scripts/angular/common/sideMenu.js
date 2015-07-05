@@ -7,7 +7,8 @@ module.directive('sideMenu', ['$window', function($window) {
     transclude: true,
     scope: {
       calculatedWidth: '=calculatedWidth',
-      itemSelected: '&itemSelected'
+      itemSelected: '&itemSelected',
+      side: '@side'
     },
     link: link,
     template: '' +
@@ -26,6 +27,14 @@ module.directive('sideMenu', ['$window', function($window) {
       top: 0,
       bottom: 0
     };
+
+    if (attributes.side === 'left') {
+      scope.style.left = 0;
+    }
+    
+    if (attributes.side === 'right') {
+      scope.style.right = 0;
+    }
 
     if (attributes.hasOwnProperty('calculatedWidth')) {
       scope.$watch(calculateWidth, updateWidth);

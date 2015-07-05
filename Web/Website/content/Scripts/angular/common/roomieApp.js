@@ -31,6 +31,7 @@ module.directive('roomieApp', ['$window', function($window) {
             '<side-menu ' +
               'ng-show="navigationMenu.isOpen" ' +
               'calculated-width="navigationMenu.calculatedWidth" ' +
+              'side="left" ' +
               '>' +
               '<side-menu-item label="\'Devices\'" selected="navigationMenuItemSelected" target="\'#/devices\'"></side-menu-item>' +
               '<side-menu-item label="\'Tasks\'" selected="navigationMenuItemSelected" target="\'#/tasks\'"></side-menu-item>' +
