@@ -23,13 +23,19 @@ module.directive('roomieApp', ['$window', function($window) {
         '<app-horizontal-section ' +
           'row-id="contentRow" ' +
           '>' +
-          '<side-menu ' +
-            'ng-show="navigationMenu.isOpen" ' +
-            'calculated-width="navigationMenu.calculatedWidth" ' +
+          '<side-menu-set ' +
+            'top="heights.topDock" ' +
+            'bottom="heights.bottomDock" ' +
+            'width="widths.app" ' +
             '>' +
-            '<side-menu-item label="\'Devices\'" selected="navigationMenuItemSelected" target="\'#/devices\'"></side-menu-item>' +
-            '<side-menu-item label="\'Tasks\'" selected="navigationMenuItemSelected" target="\'#/tasks\'"></side-menu-item>' +
-          '</side-menu>' +
+            '<side-menu ' +
+              'ng-show="navigationMenu.isOpen" ' +
+              'calculated-width="navigationMenu.calculatedWidth" ' +
+              '>' +
+              '<side-menu-item label="\'Devices\'" selected="navigationMenuItemSelected" target="\'#/devices\'"></side-menu-item>' +
+              '<side-menu-item label="\'Tasks\'" selected="navigationMenuItemSelected" target="\'#/tasks\'"></side-menu-item>' +
+            '</side-menu>' +
+          '</side-menu-set>' +
           '<app-content ' +
             'ng-style="contentStyle" ' +
             '>' +
