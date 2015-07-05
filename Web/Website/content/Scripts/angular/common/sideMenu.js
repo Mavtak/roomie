@@ -21,7 +21,10 @@ module.directive('sideMenu', ['$window', function($window) {
   
   function link(scope, element, attributes) {
     scope.style = {
-      width: 'inherit'
+      width: 'inherit',
+      position: 'absolute',
+      top: 0,
+      bottom: 0
     };
 
     if (attributes.hasOwnProperty('calculatedWidth')) {
