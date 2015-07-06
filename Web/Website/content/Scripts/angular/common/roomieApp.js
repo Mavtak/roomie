@@ -34,8 +34,15 @@ module.directive('roomieApp', ['$window', 'pageMenuItems', function($window, pag
               'calculated-width="navigationMenu.calculatedWidth" ' +
               'side="left" ' +
               '>' +
+              '<side-menu-item label="\'Home\'" selected="navigationMenuItemSelected" target="\'/\'"></side-menu-item>' +
+              '<side-menu-item label="\'Networks\'" selected="navigationMenuItemSelected" target="\'/Networks\'"></side-menu-item>' +
               '<side-menu-item label="\'Devices\'" selected="navigationMenuItemSelected" target="\'#/devices\'"></side-menu-item>' +
+              '<side-menu-item label="\'Computers\'" selected="navigationMenuItemSelected" target="\'/Computers\'"></side-menu-item>' +
               '<side-menu-item label="\'Tasks\'" selected="navigationMenuItemSelected" target="\'#/tasks\'"></side-menu-item>' +
+              '<side-menu-item label="\'Help\'" selected="navigationMenuItemSelected" target="\'/Help\'"></side-menu-item>' +
+              '<side-menu-item label="\'Account\'" selected="navigationMenuItemSelected" target="\'/Account\'"></side-menu-item>' +
+              '<div class="divider"></div>' +
+              '<side-menu-item label="\'Sign Out\'" selected="navigationMenuItemSelected" target="\'/SignOut\'"></side-menu-item>' +
             '</side-menu>' +
             '<side-menu ' +
               'ng-show="pageMenu.isOpen" ' +
