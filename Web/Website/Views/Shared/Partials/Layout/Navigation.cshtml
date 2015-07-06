@@ -1,5 +1,20 @@
 ﻿@functions
 {
+    MvcHtmlString NavigationItemByUrl(string text, string path, bool selected = false, bool anonymous = true)
+    {
+        if (!anonymous && !selected)
+        {
+            if (ViewBag.User == null)
+            {
+                return null;
+            }
+        }
+
+        var @class = " class=\"item" + (selected ? " selected" : "") + "\"";
+        var href = " href=\"" + path + "\"";
+
+        return new MvcHtmlString("<a " + @class + href + "><span class=\"content\">" + text + "</span></a>");
+    }
     MvcHtmlString NavigationItem(string text, string controller, bool anonymous = true, string action = "Index")
     {
         object attributes = null;
@@ -7,19 +22,10 @@
         string selectedItem = ViewBag.NavigationItem??ViewContext.RouteData.Values["controller"];
 
         bool selected = selectedItem.Equals(controller, StringComparison.InvariantCultureIgnoreCase);
-        
-        if(!anonymous && !selected)
-        {
-            if (ViewBag.User == null)
-                return null;
-        }
 
         var path = Url.Action(action, controller);
 
-        var @class = " class=\"item" + (selected ? " selected" : "") + "\"";
-        var href = " href=\"" + path + "\"";
-        
-        return new MvcHtmlString("<a "+ @class + href + "><span class=\"content\">" + text + "</span></a>");
+      return NavigationItemByUrl(text, path, selected, anonymous);
     }
     MvcHtmlString NavigationItem(string text, bool anonymous = true)
     {
