@@ -152,11 +152,18 @@
 
         if (path.indexOf('/') == 0) {
             e.preventDefault();
-            navigate(path, true, function(callback) {
-                roomie.ui.navigationMenu.hide(callback);
-            }, function() {
-                roomie.ui.pageMenu.hideButtonForEmptyMenu();
-            });
+
+            if (path.indexOf('/angular#') == 0) {
+                roomie.ui.navigationMenu.hide(function () {
+                    window.location.href = path;
+                });
+            } else {
+                navigate(path, true, function(callback) {
+                    roomie.ui.navigationMenu.hide(callback);
+                }, function() {
+                    roomie.ui.pageMenu.hideButtonForEmptyMenu();
+                });
+            }
         }
     };
 
