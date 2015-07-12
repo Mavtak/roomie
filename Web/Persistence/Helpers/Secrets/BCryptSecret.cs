@@ -1,4 +1,6 @@
-﻿namespace Roomie.Web.Persistence.Helpers.Secrets
+﻿using DevOne.Security.Cryptography.BCrypt;
+
+namespace Roomie.Web.Persistence.Helpers.Secrets
 {
     public class BCryptSecret : ISecret
     {
@@ -29,14 +31,15 @@
 
         public bool Verify(string value)
         {
-            var result = BCrypt.Net.BCrypt.Verify(value, _hash);
+            var result = BCryptHelper.CheckPassword(value, _hash);
 
             return result;
         }
 
         public static BCryptSecret FromPassword(string password)
         {
-            var hash = BCrypt.Net.BCrypt.HashPassword(password);
+            var salt = BCryptHelper.GenerateSalt();
+            var hash = BCryptHelper.HashPassword(password, salt);
             var result = new BCryptSecret(hash);
 
             return result;
