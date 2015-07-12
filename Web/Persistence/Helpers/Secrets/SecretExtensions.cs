@@ -46,6 +46,10 @@ namespace Roomie.Web.Persistence.Helpers.Secrets
                     result = new PlainTextSecret(value);
                     break;
 
+                case BCryptSecret.Name:
+                    result = new BCryptSecret(value);
+                    break;
+
                 default:
                     result = null;
                     break;
