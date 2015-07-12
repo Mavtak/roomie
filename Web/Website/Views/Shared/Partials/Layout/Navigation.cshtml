@@ -46,7 +46,7 @@
     *@<div class="divider"></div>@*
     *@@if (ViewBag.User == null)
       {
-          @NavigationItem("Sign In", "User", true, "SignIn")
+          @NavigationItemByUrl("Sign In", "/angular#/sign-in", false, true)
       }
       else
       {
