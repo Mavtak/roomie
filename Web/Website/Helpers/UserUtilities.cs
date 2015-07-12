@@ -62,19 +62,30 @@ namespace Roomie.Web.Website.Helpers
                 database.SaveChanges();
             }
 
-            // create session
+            var session = CreateSession(database, user);
+            var cookie = CreateSessionCookie(session);
+            response.SetCookie(cookie);
+            database.SaveChanges();
+        }
+
+        public static UserSessionModel CreateSession(IRoomieDatabaseContext database, UserModel user)
+        {
             var userSession = new UserSessionModel
             {
                 User = user
             };
+
             database.Sessions.Add(userSession);
 
-            // set session cookie
+            return userSession;
+        }
+
+        public static HttpCookie CreateSessionCookie(UserSessionModel userSession)
+        {
             var cookie = new HttpCookie(sessionTokenName, userSession.Token);
             cookie.Expires = DateTime.UtcNow.AddYears(1);
-            response.SetCookie(cookie);
-            
-            database.SaveChanges();
+
+            return cookie;
         }
 
         public static void SignOff()
