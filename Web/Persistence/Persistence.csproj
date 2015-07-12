@@ -122,6 +122,7 @@
     <Compile Include="Repositories\ScriptRepositoryExtensions.cs" />
     <Compile Include="Repositories\SortDirection.cs" />
     <Compile Include="Repositories\TaskRepositoryExtensions.cs" />
+    <Compile Include="Repositories\UserRepositoryExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
