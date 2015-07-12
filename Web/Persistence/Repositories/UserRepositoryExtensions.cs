@@ -8,7 +8,7 @@ namespace Roomie.Web.Persistence.Repositories
         public static void Add(this IUserRepository repository, string username, string password)
         {
             var token = BuildInternalUserToken(username);
-            var secret = new PlainTextSecret(password);
+            var secret = BCryptSecret.FromPassword(password);
 
             var user = new UserModel
             {
