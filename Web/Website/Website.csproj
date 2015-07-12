@@ -236,6 +236,7 @@
     <Compile Include="Controllers\Api\DeviceActionOptions.cs" />
     <Compile Include="Controllers\Api\DeviceUpdateModel.cs" />
     <Compile Include="Controllers\Api\TaskController.cs" />
+    <Compile Include="Controllers\Api\UserController.cs" />
     <Compile Include="Controllers\Api\UserSessionController.cs" />
     <Compile Include="Controllers\Api\DeviceController.cs" />
     <Compile Include="Controllers\CommunicatorController.cs" />
