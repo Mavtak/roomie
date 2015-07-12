@@ -68,6 +68,7 @@
     <Compile Include="Helpers\LocationModelExtensions.cs" />
     <Compile Include="Helpers\DeviceSort.cs" />
     <Compile Include="Helpers\NetworkModelExtensions.cs" />
+    <Compile Include="Helpers\Secrets\BCryptSecret.cs" />
     <Compile Include="Helpers\Secrets\ISecret.cs" />
     <Compile Include="Helpers\Secrets\PlainTextSecret.cs" />
     <Compile Include="Helpers\Secrets\SecretExtensions.cs" />
