@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Roomie.Web.Persistence.Helpers;
+using Roomie.Web.Persistence.Helpers.Secrets;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -13,6 +14,7 @@ namespace Roomie.Web.Persistence.Models
         public string Token{ get; set; }
         public string Alias { get; set; }
         public string Email { get; set; }
+        public string Secret { get; set; }
         public DateTime? RegisteredTimestamp { get; set; }
 
         public virtual ICollection<ComputerModel> Computers { get; set; }
@@ -21,6 +23,12 @@ namespace Roomie.Web.Persistence.Models
         public virtual ICollection<SavedScriptModel> SavedScripts { get; set; }
         public virtual ICollection<DeviceLocationModel> DeviceLocations { get; set; }
 
+        public ISecret ParseSecret()
+        {
+            var result = SecretExtensions.Parse(Secret);
+
+            return result;
+        }
         public override string ToString()
         {
             var builder = new System.Text.StringBuilder();
