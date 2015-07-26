@@ -32,34 +32,7 @@ namespace Roomie.Web.Persistence.Models
         public string Address { get; set; }
         public virtual DeviceLocationModel Location { get; set; }
 
-        private string _notes;
-        private bool _deserializedFromDatabase;
-        public string Notes
-        {
-            get
-            {
-                return _notes;
-            }
-            set
-            {
-                if (!_deserializedFromDatabase && !string.Equals(_notes, value))
-                {
-                    var element = XElement.Parse(value);
-                    var state = element.ToDeviceState();
-
-                    Update(state, true);
-
-                    _deserializedFromDatabase = true;
-                }
-
-                _notes = value;
-            }
-        }
-
-        public void UpdateSerializedValue()
-        {
-            Notes = this.ToXElement().ToString();
-        }
+        public string Notes { get; set; }
 
         public void Poll()
         {

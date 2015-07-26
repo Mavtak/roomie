@@ -1,4 +1,5 @@
 ﻿using System;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories
@@ -68,6 +69,11 @@ namespace Roomie.Web.Persistence.Repositories
         public void Remove(DeviceModel device)
         {
             _devices.Remove(device);
+        }
+
+        public void Update(int id, IDeviceState state)
+        {
+            _devices.Update(id, state);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Xml.Linq;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
@@ -17,6 +19,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         public DeviceModel Get(int id)
         {
             var result = _devices.Find(id);
+
+            DeserializeDeviceState(result);
 
             return result;
         }
@@ -52,6 +56,11 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         {
             var result = _devices.Where(x => x.Network.Id == network.Id).ToArray();
 
+            foreach (var device in result)
+            {
+                DeserializeDeviceState(device);
+            }
+
             return result;
         }
 
@@ -63,6 +72,27 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         public void Remove(DeviceModel device)
         {
             _devices.Remove(device);
+        }
+
+        public void Update(int id, IDeviceState state)
+        {
+            var device = Get(id);
+
+            device.Update(state, false);
+            SerializeDeviceState(device);
+        }
+
+        private static void SerializeDeviceState(DeviceModel device)
+        {
+            device.Notes = device.ToXElement().ToString();
+        }
+
+        private static void DeserializeDeviceState(DeviceModel device)
+        {
+            var element = XElement.Parse(device.Notes);
+            var state = element.ToDeviceState();
+
+            device.Update(state, true);
         }
     }
 }

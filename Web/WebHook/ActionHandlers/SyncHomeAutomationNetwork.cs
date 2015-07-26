@@ -53,9 +53,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
             var registeredDevices = new List<DeviceModel>(network.Devices);
 
-            var newDevices = UpdateDevices(sentDevices, network);
-
-            AddNewDevices(newDevices, network, database);
+            UpdateDevices(sentDevices, network, database);
 
             var devicesToRemove = GetRemovedDevices(sentDevices, registeredDevices);
 
@@ -87,7 +85,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             return sentDevices;
         }
 
-        private static IEnumerable<DeviceModel> UpdateDevices(IEnumerable<IDeviceState> sentDevices, NetworkModel network)
+        private static void UpdateDevices(IEnumerable<IDeviceState> sentDevices, NetworkModel network, IRoomieDatabaseContext database)
         {
             // go through the devices from the client and update the entries in the database
             foreach (var sentDevice in sentDevices)
@@ -96,7 +94,6 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
                 if (registeredDevice == null)
                 {
-
                     var newDevice = new DeviceModel
                     {
                         Address = sentDevice.Address,
@@ -109,22 +106,12 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
                     newDevice.Update(sentDevice);
 
-                    yield return newDevice;
+                    database.Devices.Add(newDevice);
                 }
                 else
                 {
-                    registeredDevice.Update(sentDevice);
-                    registeredDevice.UpdateSerializedValue();
+                    database.Devices.Update(registeredDevice.Id, sentDevice);
                 }
-            }
-        }
-
-        private static void AddNewDevices(IEnumerable<DeviceModel> newDevices, NetworkModel network, IRoomieDatabaseContext database)
-        {
-            foreach (var device in newDevices)
-            {
-                network.Devices.Add(device);
-                database.Devices.Add(device);
             }
         }
 

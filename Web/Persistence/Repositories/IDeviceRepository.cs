@@ -1,4 +1,5 @@
-﻿using Roomie.Web.Persistence.Models;
+﻿using Roomie.Common.HomeAutomation;
+using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories
 {
@@ -9,5 +10,6 @@ namespace Roomie.Web.Persistence.Repositories
         DeviceModel[] Get(NetworkModel network);
         void Add(DeviceModel device);
         void Remove(DeviceModel device);
+        void Update(int id, IDeviceState state);
     }
 }
