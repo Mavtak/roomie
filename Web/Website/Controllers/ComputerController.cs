@@ -28,13 +28,13 @@ namespace Roomie.Web.Website.Controllers
         {
             var computer = this.SelectComputer(id);
 
-            var task = new TaskModel
+            var task = new EntityFrameworkTaskModel
             {
                 Origin = "Website",
                 Owner = User,
                 Target = computer,
                 Expiration = DateTime.UtcNow.AddMinutes(1),
-                Script = new ScriptModel
+                Script = new EntityFrameworkScriptModel
                 {
                     Text = script,
                     Mutable = false
@@ -88,7 +88,7 @@ namespace Roomie.Web.Website.Controllers
         } 
 
         [HttpPost]
-        public ActionResult Create(ComputerModel computer)
+        public ActionResult Create(EntityFrameworkComputerModel computer)
         {
             computer.Owner = User;
 

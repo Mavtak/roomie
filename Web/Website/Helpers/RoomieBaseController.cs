@@ -12,7 +12,7 @@ namespace Roomie.Web.Website.Helpers
     {
         public IRoomieDatabaseContext Database { get; set; }
         protected RoomieCommandLibrary Commands;
-        new public UserModel User { get; set; }
+        new public EntityFrameworkUserModel User { get; set; }
 
         private const string userKey = "_RoomieUser";
         private const string requestedControllerKey = "_RequestedController";

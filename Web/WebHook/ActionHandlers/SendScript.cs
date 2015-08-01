@@ -35,12 +35,12 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 return;
             }
 
-            var task = new TaskModel
+            var task = new EntityFrameworkTaskModel
             {
                 Owner = user,
                 Origin = "WebHook, " + computer.Name,
                 Target = targetComputer,
-                Script = new ScriptModel
+                Script = new EntityFrameworkScriptModel
                 {
                     Mutable = false,
                     Text = request.Values["ScriptText"]

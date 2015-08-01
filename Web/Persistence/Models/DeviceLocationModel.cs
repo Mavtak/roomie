@@ -10,7 +10,7 @@ namespace Roomie.Web.Persistence.Models
         [Key]
         public int Id { get; set; }
         
-        public UserModel Owner { get; set; }
+        public EntityFrameworkUserModel Owner { get; set; }
 
         public string Name
         {
@@ -24,7 +24,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public virtual ICollection<DeviceModel> Devices { get; set; }
+        public virtual ICollection<EntityFrameworkDeviceModel> Devices { get; set; }
 
         #region HasId implementation
 

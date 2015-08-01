@@ -7,7 +7,7 @@ namespace Roomie.Web.Persistence.Helpers
 {
     internal static class DeviceModelExtensions
     {
-        public static void DoCommand(this DeviceModel device, string name, params string[] additionalData)
+        public static void DoCommand(this EntityFrameworkDeviceModel device, string name, params string[] additionalData)
         {
             var command = BuildCommand(device, name, additionalData);
 
@@ -15,12 +15,12 @@ namespace Roomie.Web.Persistence.Helpers
             var user = network.Owner;
             var computer = network.AttatchedComputer;
 
-            var task = new TaskModel
+            var task = new EntityFrameworkTaskModel
             {
                 Owner = user,
                 Target = computer,
                 Origin = "Web Interface",
-                Script = new ScriptModel
+                Script = new EntityFrameworkScriptModel
                 {
                     Mutable = false,
                     Text = command
@@ -33,7 +33,7 @@ namespace Roomie.Web.Persistence.Helpers
             tasks.Add(task);
         }
 
-        public static string BuildCommand(this DeviceModel device, string name, params string[] additionalData)
+        public static string BuildCommand(this EntityFrameworkDeviceModel device, string name, params string[] additionalData)
         {
             var deviceAddress = device.BuildVirtualAddress(true, true);
             var commandData = new []{"Device", deviceAddress}.Concat(additionalData).ToArray();

@@ -8,7 +8,7 @@ namespace Roomie.Web.Website.Controllers.Api
     [AutoSave]
     public class ComputerController : RoomieBaseApiController
     {
-        public ComputerModel[] Get()
+        public EntityFrameworkComputerModel[] Get()
         {
             var computers = Database.Computers.Get(User);
             var result = computers.Select(GetSerializableVersion)
@@ -17,7 +17,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public ComputerModel Get(int id)
+        public EntityFrameworkComputerModel Get(int id)
         {
             var computer = this.SelectComputer(id);
             var result = GetSerializableVersion(computer);
@@ -25,25 +25,25 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public ComputerModel Get(string accessKey)
+        public EntityFrameworkComputerModel Get(string accessKey)
         {
             var computer = Database.Computers.Get(accessKey);
             var result = GetSerializableVersion(computer);
             return result;
         }
 
-        public void Post(ComputerModel model)
+        public void Post(EntityFrameworkComputerModel model)
         {
-            Database.Computers.Add(new ComputerModel
+            Database.Computers.Add(new EntityFrameworkComputerModel
             {
                 Owner = User,
                 Name = model.Name
             });
         }
 
-        private static ComputerModel GetSerializableVersion(ComputerModel device)
+        private static EntityFrameworkComputerModel GetSerializableVersion(EntityFrameworkComputerModel device)
         {
-            var result = new ComputerModel
+            var result = new EntityFrameworkComputerModel
             {
                 AccessKey = device.AccessKey,
                 Address = device.Address,
@@ -56,7 +56,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
             if (device.Owner != null)
             {
-                result.Owner = new UserModel
+                result.Owner = new EntityFrameworkUserModel
                 {
                     Id = device.Owner.Id
                 };

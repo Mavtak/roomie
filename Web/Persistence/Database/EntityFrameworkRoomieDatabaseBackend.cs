@@ -5,16 +5,16 @@ namespace Roomie.Web.Persistence.Database
 {
     public sealed class EntityFrameworkRoomieDatabaseBackend : DbContext
     {
-        public DbSet<UserModel> Users { get; set; }
-        public DbSet<UserSessionModel> UserSessions { get; set; }
-        public DbSet<ComputerModel> Computers { get; set; }
-        public DbSet<NetworkGuestModel> NetworkGuests { get; set; }
-        public DbSet<NetworkModel> Networks { get; set; }
-        public DbSet<DeviceModel> Devices { get; set; }
-        public DbSet<TaskModel> Tasks { get; set; }
-        public DbSet<ScriptModel> Scripts { get; set; }
-        public DbSet<SavedScriptModel> SavedScripts { get; set; }
-        public DbSet<WebHookSessionModel> WebHookSessions { get; set; }
+        public DbSet<EntityFrameworkUserModel> Users { get; set; }
+        public DbSet<EntityFrameworkUserSessionModel> UserSessions { get; set; }
+        public DbSet<EntityFrameworkComputerModel> Computers { get; set; }
+        public DbSet<EntityFrameworkNetworkGuestModel> NetworkGuests { get; set; }
+        public DbSet<EntityFrameworkNetworkModel> Networks { get; set; }
+        public DbSet<EntityFrameworkDeviceModel> Devices { get; set; }
+        public DbSet<EntityFrameworkTaskModel> Tasks { get; set; }
+        public DbSet<EntityFrameworkScriptModel> Scripts { get; set; }
+        public DbSet<EntityFrameworkSavedScriptModel> SavedScripts { get; set; }
+        public DbSet<EntityFrameworkWebHookSessionModel> WebHookSessions { get; set; }
         public DbSet<DeviceLocationModel> DeviceLocations { get; set; }
 
         public EntityFrameworkRoomieDatabaseBackend(string nameOrConnectionString)
@@ -26,7 +26,7 @@ namespace Roomie.Web.Persistence.Database
         {
             modelBuilder.Configurations.Add(new DeviceTypeMapping());
 
-            modelBuilder.Entity<DeviceModel>().Ignore(x => x.CurrentAction);
+            modelBuilder.Entity<EntityFrameworkDeviceModel>().Ignore(x => x.CurrentAction);
         }
 
         public void Reset()

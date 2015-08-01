@@ -5,13 +5,13 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public interface IComputerRepository
     {
-        ComputerModel Get(int id);
-        ComputerModel Get(UserModel user, int id);
-        ComputerModel Get(string accessKey);
-        ComputerModel Get(UserModel user, string name);
-        ComputerModel[] Get(ScriptModel script);
-        ComputerModel[] Get(UserModel user);
-        void Add(ComputerModel computer);
-        void Remove(ComputerModel computer);
+        EntityFrameworkComputerModel Get(int id);
+        EntityFrameworkComputerModel Get(EntityFrameworkUserModel user, int id);
+        EntityFrameworkComputerModel Get(string accessKey);
+        EntityFrameworkComputerModel Get(EntityFrameworkUserModel user, string name);
+        EntityFrameworkComputerModel[] Get(EntityFrameworkScriptModel script);
+        EntityFrameworkComputerModel[] Get(EntityFrameworkUserModel user);
+        void Add(EntityFrameworkComputerModel computer);
+        void Remove(EntityFrameworkComputerModel computer);
     }
 }

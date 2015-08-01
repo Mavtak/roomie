@@ -9,14 +9,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class DeviceRepository : IDeviceRepository
     {
-        private readonly DbSet<DeviceModel> _devices;
+        private readonly DbSet<EntityFrameworkDeviceModel> _devices;
 
-        public DeviceRepository(DbSet<DeviceModel> devices)
+        public DeviceRepository(DbSet<EntityFrameworkDeviceModel> devices)
         {
             _devices = devices;
         }
 
-        public DeviceModel Get(int id)
+        public EntityFrameworkDeviceModel Get(int id)
         {
             var result = _devices.Find(id);
 
@@ -25,7 +25,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public DeviceModel Get(UserModel user, int id)
+        public EntityFrameworkDeviceModel Get(EntityFrameworkUserModel user, int id)
         {
             var result = Get(id);
 
@@ -52,7 +52,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public DeviceModel[] Get(NetworkModel network)
+        public EntityFrameworkDeviceModel[] Get(EntityFrameworkNetworkModel network)
         {
             var result = _devices.Where(x => x.Network.Id == network.Id).ToArray();
 
@@ -64,12 +64,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public void Add(DeviceModel device)
+        public void Add(EntityFrameworkDeviceModel device)
         {
             _devices.Add(device);
         }
 
-        public void Remove(DeviceModel device)
+        public void Remove(EntityFrameworkDeviceModel device)
         {
             _devices.Remove(device);
         }
@@ -82,12 +82,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             SerializeDeviceState(device);
         }
 
-        private static void SerializeDeviceState(DeviceModel device)
+        private static void SerializeDeviceState(EntityFrameworkDeviceModel device)
         {
             device.Notes = device.ToXElement().ToString();
         }
 
-        private static void DeserializeDeviceState(DeviceModel device)
+        private static void DeserializeDeviceState(EntityFrameworkDeviceModel device)
         {
             var element = XElement.Parse(device.Notes);
             var state = element.ToDeviceState();

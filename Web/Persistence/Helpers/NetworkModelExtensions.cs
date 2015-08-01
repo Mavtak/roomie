@@ -5,7 +5,7 @@ namespace Roomie.Web.Persistence.Helpers
 {
     public static class NetworkModelExtensions
     {
-        public static void SortDevices(this NetworkModel network)
+        public static void SortDevices(this EntityFrameworkNetworkModel network)
         {
             var devices = network.Devices.ToList();
             devices.Sort(new DeviceSort());

@@ -6,14 +6,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class NetworkGuestRepository : INetworkGuestRepository
     {
-        private readonly DbSet<NetworkGuestModel> _entries;
+        private readonly DbSet<EntityFrameworkNetworkGuestModel> _entries;
 
-        public NetworkGuestRepository(DbSet<NetworkGuestModel> entries)
+        public NetworkGuestRepository(DbSet<EntityFrameworkNetworkGuestModel> entries)
         {
             _entries = entries;
         }
 
-        public NetworkModel[] Get(UserModel user)
+        public EntityFrameworkNetworkModel[] Get(EntityFrameworkUserModel user)
         {
             var matches = _entries.Where(x => x.User.Id == user.Id);
             var networks = matches.Select(x => x.Network);
@@ -22,7 +22,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public UserModel[] Get(NetworkModel network)
+        public EntityFrameworkUserModel[] Get(EntityFrameworkNetworkModel network)
         {
             var matches = _entries.Where(x => x.Network.Id == network.Id);
             var users = matches.Select(x => x.User);
@@ -31,9 +31,9 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public void Add(NetworkModel network, UserModel user)
+        public void Add(EntityFrameworkNetworkModel network, EntityFrameworkUserModel user)
         {
-            var entry = new NetworkGuestModel
+            var entry = new EntityFrameworkNetworkGuestModel
             {
                 Network = network,
                 User = user
@@ -42,14 +42,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             _entries.Add(entry);
         }
 
-        public void Remove(NetworkModel network, UserModel user)
+        public void Remove(EntityFrameworkNetworkModel network, EntityFrameworkUserModel user)
         {
             var entry = Get(network, user);
 
             _entries.Remove(entry);
         }
 
-        public bool Check(NetworkModel network, UserModel user)
+        public bool Check(EntityFrameworkNetworkModel network, EntityFrameworkUserModel user)
         {
             var entry = Get(network, user);
             var result = entry != null;
@@ -57,7 +57,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        private NetworkGuestModel Get(NetworkModel network, UserModel user)
+        private EntityFrameworkNetworkGuestModel Get(EntityFrameworkNetworkModel network, EntityFrameworkUserModel user)
         {
             var result = _entries.Where(x => x.User.Id == user.Id)
                                  .Where(x => x.Network.Id == network.Id)

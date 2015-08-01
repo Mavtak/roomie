@@ -6,14 +6,14 @@ using Roomie.Web.Persistence.Helpers;
 namespace Roomie.Web.Persistence.Models
 {
     [Table("ComputerModels")]
-    public class ComputerModel : IHasDivId
+    public class EntityFrameworkComputerModel : IHasDivId
     {
         [Key]
         public int Id { get; set; }
         
-        public virtual UserModel Owner { get; set; }
+        public virtual EntityFrameworkUserModel Owner { get; set; }
         public string Name { get; set; }
-        public virtual ScriptModel LastScript { get; set; }
+        public virtual EntityFrameworkScriptModel LastScript { get; set; }
 
         public string AccessKey { get; set; }
         public string EncryptionKey { get; set; }
@@ -79,7 +79,7 @@ namespace Roomie.Web.Persistence.Models
                 return false;
             }
 
-            var that = obj as ComputerModel;
+            var that = obj as EntityFrameworkComputerModel;
 
             if (obj == null)
             {
@@ -89,7 +89,7 @@ namespace Roomie.Web.Persistence.Models
             return this.Equals(that);
         }
 
-        public bool Equals(ComputerModel that)
+        public bool Equals(EntityFrameworkComputerModel that)
         {
             if (that == null)
             {

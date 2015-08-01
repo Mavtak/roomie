@@ -13,9 +13,9 @@ namespace Roomie.Web.Persistence.Models
         public ThermostatMode? Mode { get; set; }
         public ThermostatCurrentAction? CurrentAction { get; set; }
 
-        private DeviceModel _device;
+        private EntityFrameworkDeviceModel _device;
 
-        public ThermostatCoreModel(DeviceModel device)
+        public ThermostatCoreModel(EntityFrameworkDeviceModel device)
         {
             _device = device;
         }

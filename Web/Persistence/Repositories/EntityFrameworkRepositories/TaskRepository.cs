@@ -7,21 +7,21 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class TaskRepository : ITaskRepository
     {
-        private readonly DbSet<TaskModel> _tasks;
+        private readonly DbSet<EntityFrameworkTaskModel> _tasks;
 
-        public TaskRepository(DbSet<TaskModel> tasks)
+        public TaskRepository(DbSet<EntityFrameworkTaskModel> tasks)
         {
             _tasks = tasks;
         }
 
-        public TaskModel Get(int id)
+        public EntityFrameworkTaskModel Get(int id)
         {
             var result = _tasks.Find(id);
 
             return result;
         }
 
-        public TaskModel Get(UserModel user, int id)
+        public EntityFrameworkTaskModel Get(EntityFrameworkUserModel user, int id)
         {
             var result = Get(id);
 
@@ -43,7 +43,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public TaskModel[] Get(ScriptModel script)
+        public EntityFrameworkTaskModel[] Get(EntityFrameworkScriptModel script)
         {
             var result = _tasks
                 .Where(x => x.Script.Id == script.Id)
@@ -52,17 +52,17 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public void Add(TaskModel task)
+        public void Add(EntityFrameworkTaskModel task)
         {
             _tasks.Add(task);
         }
 
-        public void Remove(TaskModel task)
+        public void Remove(EntityFrameworkTaskModel task)
         {
             _tasks.Remove(task);
         }
 
-        public Page<TaskModel> List(UserModel user, ListFilter filter)
+        public Page<EntityFrameworkTaskModel> List(EntityFrameworkUserModel user, ListFilter filter)
         {
             var results = _tasks
                 .Where(x => x.Owner.Id == user.Id)
@@ -72,7 +72,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return results;
         }
 
-        public TaskModel[] ForComputer(ComputerModel computer, DateTime now)
+        public EntityFrameworkTaskModel[] ForComputer(EntityFrameworkComputerModel computer, DateTime now)
         {
             var results = (from t in _tasks
                           where t.Target.Id == computer.Id

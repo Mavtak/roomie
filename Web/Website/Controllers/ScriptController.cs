@@ -24,10 +24,10 @@ namespace Roomie.Web.Website.Controllers
 
         public ActionResult New()
         {
-            var model = new SavedScriptModel
+            var model = new EntityFrameworkSavedScriptModel
             {
                 Owner = User,
-                Script = new ScriptModel
+                Script = new EntityFrameworkScriptModel
                 {
                     
                 }
@@ -41,12 +41,12 @@ namespace Roomie.Web.Website.Controllers
         {
             var now = DateTime.UtcNow;
 
-            var savedScript = new SavedScriptModel
+            var savedScript = new EntityFrameworkSavedScriptModel
             {
                 ModificationTimestamp = null,
                 Name = name,
                 Owner = User,
-                Script = new ScriptModel
+                Script = new EntityFrameworkScriptModel
                 {
                     CreationTimestamp = now,
                     LastRunTimestamp = null,

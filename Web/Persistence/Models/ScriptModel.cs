@@ -6,7 +6,7 @@ using Roomie.Web.Persistence.Helpers;
 namespace Roomie.Web.Persistence.Models
 {
     [Table("ScriptModels")]
-    public class ScriptModel : IHasDivId
+    public class EntityFrameworkScriptModel : IHasDivId
     {
         [Key]
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace Roomie.Web.Persistence.Models
         public int? RunCount { get; set; }
         public DateTime? LastRunTimestamp { get; set; }
 
-        public ScriptModel()
+        public EntityFrameworkScriptModel()
         {
             CreationTimestamp = DateTime.UtcNow;
             RunCount = 0;

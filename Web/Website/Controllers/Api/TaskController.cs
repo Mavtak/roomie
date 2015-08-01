@@ -9,7 +9,7 @@ namespace Roomie.Web.Website.Controllers.Api
     [AutoSave]
     public class TaskController : RoomieBaseApiController
     {
-        public TaskModel Get(int id)
+        public EntityFrameworkTaskModel Get(int id)
         {
             var task = Database.Tasks.Get(id);
             var result = GetSerializableVersion(task);
@@ -17,7 +17,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public Page<TaskModel> Get([FromUri] ListFilter filter)
+        public Page<EntityFrameworkTaskModel> Get([FromUri] ListFilter filter)
         {
             var result = Database.Tasks.List(User, filter)
                 .Transform(GetSerializableVersion);
@@ -25,9 +25,9 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        private TaskModel GetSerializableVersion(TaskModel task)
+        private EntityFrameworkTaskModel GetSerializableVersion(EntityFrameworkTaskModel task)
         {
-            var result = new TaskModel
+            var result = new EntityFrameworkTaskModel
             {
                 Expiration = task.Expiration,
                 Id = task.Id,
@@ -38,7 +38,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
             if (task.Owner != null)
             {
-                result.Owner = new UserModel
+                result.Owner = new EntityFrameworkUserModel
                 {
                     Id = task.Owner.Id
                 };
@@ -46,7 +46,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
             if (task.Target != null)
             {
-                result.Target = new ComputerModel
+                result.Target = new EntityFrameworkComputerModel
                 {
                     Id = task.Target.Id,
                     Name = task.Target.Name

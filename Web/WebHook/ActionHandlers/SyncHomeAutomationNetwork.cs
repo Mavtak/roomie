@@ -35,7 +35,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             if (network == null)
             {
                 //responseText.Append("Adding network '" + networkAddress + "'");
-                network = new NetworkModel(networkAddress)
+                network = new EntityFrameworkNetworkModel(networkAddress)
                 {
                     Owner = user
                 };
@@ -51,7 +51,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
             var sentDevices = ProcessSentDevices(request, response, user, network, database).ToList();
 
-            var registeredDevices = new List<DeviceModel>(network.Devices);
+            var registeredDevices = new List<EntityFrameworkDeviceModel>(network.Devices);
 
             UpdateDevices(sentDevices, network, database);
 
@@ -66,7 +66,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             database.SaveChanges();
         }
 
-        private static IEnumerable<IDeviceState> ProcessSentDevices(Message request, Message response, UserModel user,  NetworkModel network, IRoomieDatabaseContext database)
+        private static IEnumerable<IDeviceState> ProcessSentDevices(Message request, Message response, EntityFrameworkUserModel user,  EntityFrameworkNetworkModel network, IRoomieDatabaseContext database)
         {
             var sentDevices = request.Payload.Select(x => x.ToDeviceState());
             sentDevices = sentDevices.Select(x => x.NewWithNetwork(network));
@@ -85,7 +85,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             return sentDevices;
         }
 
-        private static void UpdateDevices(IEnumerable<IDeviceState> sentDevices, NetworkModel network, IRoomieDatabaseContext database)
+        private static void UpdateDevices(IEnumerable<IDeviceState> sentDevices, EntityFrameworkNetworkModel network, IRoomieDatabaseContext database)
         {
             // go through the devices from the client and update the entries in the database
             foreach (var sentDevice in sentDevices)
@@ -94,12 +94,12 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
                 if (registeredDevice == null)
                 {
-                    var newDevice = new DeviceModel
+                    var newDevice = new EntityFrameworkDeviceModel
                     {
                         Address = sentDevice.Address,
                         IsConnected = sentDevice.IsConnected,
                         Name = sentDevice.Name,
-                        Network = sentDevice.NetworkState as NetworkModel,
+                        Network = sentDevice.NetworkState as EntityFrameworkNetworkModel,
                         Location = sentDevice.Location as DeviceLocationModel,
                         Type = sentDevice.Type
                     };
@@ -115,7 +115,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
         }
 
-        private static IEnumerable<DeviceModel> GetRemovedDevices(IEnumerable<IDeviceState> sentDevices, IEnumerable<DeviceModel> registeredDevices)
+        private static IEnumerable<EntityFrameworkDeviceModel> GetRemovedDevices(IEnumerable<IDeviceState> sentDevices, IEnumerable<EntityFrameworkDeviceModel> registeredDevices)
         {
             foreach (var registeredDevice in registeredDevices)
             {
@@ -126,7 +126,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
         }
 
-        private static void RemoveDevices(IEnumerable<DeviceModel> devicesToRemove, List<DeviceModel> registeredDevices, IRoomieDatabaseContext database)
+        private static void RemoveDevices(IEnumerable<EntityFrameworkDeviceModel> devicesToRemove, List<EntityFrameworkDeviceModel> registeredDevices, IRoomieDatabaseContext database)
         {
             foreach (var device in devicesToRemove.ToArray())
             {

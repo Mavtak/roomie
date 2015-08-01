@@ -1,5 +1,6 @@
 ﻿@model ComputerViewModel
-@helper ComputerUrl(ComputerModel computer){@*
+@helper ComputerUrl(EntityFrameworkComputerModel computer)
+{@*
     *@@Url.Action(
         actionName: "Details",
         controllerName: "Computer",

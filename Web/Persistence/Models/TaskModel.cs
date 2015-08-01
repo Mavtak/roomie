@@ -6,9 +6,9 @@ using Roomie.Web.Persistence.Helpers;
 namespace Roomie.Web.Persistence.Models
 {
     [Table("TaskModels")]
-    public class TaskModel : IHasDivId
+    public class EntityFrameworkTaskModel : IHasDivId
     {
-        public TaskModel()
+        public EntityFrameworkTaskModel()
         {
             Expiration = DateTime.UtcNow.AddSeconds(30);
         }
@@ -16,10 +16,10 @@ namespace Roomie.Web.Persistence.Models
         [Key]
         public int Id { get; set; }
 
-        public virtual UserModel Owner { get; set; }
-        public virtual ComputerModel Target { get; set; }
+        public virtual EntityFrameworkUserModel Owner { get; set; }
+        public virtual EntityFrameworkComputerModel Target { get; set; }
         public string Origin { get; set; }
-        public virtual ScriptModel Script { get; set; }
+        public virtual EntityFrameworkScriptModel Script { get; set; }
 
         public DateTime? Expiration { get; set; }
         public DateTime? ReceivedTimestamp { get; set; }

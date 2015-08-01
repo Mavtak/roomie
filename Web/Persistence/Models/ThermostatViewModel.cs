@@ -11,9 +11,9 @@ namespace Roomie.Web.Persistence.Models
         public ThermostatFanModel Fan { get; private set; }
         public ThermostatSetpointModel Setpoints { get; private set; }
 
-        private DeviceModel _device;
+        private EntityFrameworkDeviceModel _device;
 
-        public ThermostatModel(DeviceModel device)
+        public ThermostatModel(EntityFrameworkDeviceModel device)
         {
             _device = device;
 

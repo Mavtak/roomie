@@ -63,7 +63,7 @@ namespace Roomie.Web.Website.Controllers
         {
             var builder = new System.Text.StringBuilder();
             var writer = System.Xml.XmlWriter.Create(builder);            
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(UserModel));
+            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(EntityFrameworkUserModel));
             serializer.Serialize(writer, User);
 
             return View(builder.ToString());
@@ -110,7 +110,7 @@ namespace Roomie.Web.Website.Controllers
             {
                 //Database.Seed();
 
-                var computer = new ComputerModel
+                var computer = new EntityFrameworkComputerModel
                 {
                     Owner = Database.Users.Get(1),
                     Name = "Test Computer"

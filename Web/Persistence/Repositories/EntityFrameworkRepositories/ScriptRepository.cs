@@ -5,21 +5,21 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class ScriptRepository : IScriptRepository
     {
-        private readonly DbSet<ScriptModel> _scripts;
+        private readonly DbSet<EntityFrameworkScriptModel> _scripts;
 
-        public ScriptRepository(DbSet<ScriptModel> scripts)
+        public ScriptRepository(DbSet<EntityFrameworkScriptModel> scripts)
         {
             _scripts = scripts;
         }
 
-        public ScriptModel Get(int id)
+        public EntityFrameworkScriptModel Get(int id)
         {
             var result = _scripts.Find(id);
 
             return result;
         }
 
-        public Page<ScriptModel> List(ListFilter filter)
+        public Page<EntityFrameworkScriptModel> List(ListFilter filter)
         {
             var results = _scripts
                 .Page(filter, x => x.Id)
@@ -28,12 +28,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return results;
         }
 
-        public void Add(ScriptModel script)
+        public void Add(EntityFrameworkScriptModel script)
         {
             _scripts.Add(script);
         }
 
-        public void Remove(ScriptModel script)
+        public void Remove(EntityFrameworkScriptModel script)
         {
             _scripts.Remove(script);
         }

@@ -4,11 +4,11 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public interface INetworkRepository
     {
-        NetworkModel Get(int id);
-        NetworkModel Get(UserModel user, int id);
-        NetworkModel[] Get(UserModel user);
-        NetworkModel Get(UserModel user, string address);
-        void Add(NetworkModel network);
-        void Remove(NetworkModel network);
+        EntityFrameworkNetworkModel Get(int id);
+        EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, int id);
+        EntityFrameworkNetworkModel[] Get(EntityFrameworkUserModel user);
+        EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, string address);
+        void Add(EntityFrameworkNetworkModel network);
+        void Remove(EntityFrameworkNetworkModel network);
     }
 }

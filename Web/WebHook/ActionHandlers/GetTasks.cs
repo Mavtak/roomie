@@ -19,7 +19,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             // well, not as big as three minutes
             DateTime endTime = DateTime.Now.AddSeconds(90);
 
-            TaskModel[] tasks = null;
+            EntityFrameworkTaskModel[] tasks = null;
 
             //tasks = new List<TaskModel>
             //{

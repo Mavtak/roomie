@@ -1,4 +1,4 @@
-﻿@model Roomie.Web.Persistence.Models.NetworkModel
+﻿@model Roomie.Web.Persistence.Models.EntityFrameworkNetworkModel
 @{
     var status = WidgetData.ConnectedOrDisconnected(Model.IsAvailable);
     var target = Url.Action(
@@ -22,7 +22,7 @@
 }
 @*
 
-*@@helper ComputerLink(ComputerModel computer)
+*@@helper ComputerLink(EntityFrameworkComputerModel computer)
     {
         if (computer != null)
         {

@@ -8,7 +8,7 @@ using Roomie.Web.Persistence.Helpers.Secrets;
 namespace Roomie.Web.Persistence.Models
 {
     [Table("UserModels")]
-    public class UserModel : IHasDivId
+    public class EntityFrameworkUserModel : IHasDivId
     {
         [Key]
         public int Id { get; set; }
@@ -19,10 +19,10 @@ namespace Roomie.Web.Persistence.Models
         public string Secret { get; set; }
         public DateTime? RegisteredTimestamp { get; set; }
 
-        public virtual ICollection<ComputerModel> Computers { get; set; }
-        public virtual ICollection<NetworkModel> HomeAutomationNetworks { get; set; }
-        public virtual ICollection<TaskModel> Tasks { get; set; }
-        public virtual ICollection<SavedScriptModel> SavedScripts { get; set; }
+        public virtual ICollection<EntityFrameworkComputerModel> Computers { get; set; }
+        public virtual ICollection<EntityFrameworkNetworkModel> HomeAutomationNetworks { get; set; }
+        public virtual ICollection<EntityFrameworkTaskModel> Tasks { get; set; }
+        public virtual ICollection<EntityFrameworkSavedScriptModel> SavedScripts { get; set; }
         public virtual ICollection<DeviceLocationModel> DeviceLocations { get; set; }
 
         public ISecret ParseSecret()
@@ -50,10 +50,10 @@ namespace Roomie.Web.Persistence.Models
                 return false;
             }
 
-            return this.Equals((UserModel)obj);
+            return this.Equals((EntityFrameworkUserModel)obj);
         }
 
-        public bool Equals(UserModel that)
+        public bool Equals(EntityFrameworkUserModel that)
         {
             if (that == null)
             {
@@ -68,7 +68,7 @@ namespace Roomie.Web.Persistence.Models
             return true;
         }
 
-        public static bool Equals(UserModel user1, UserModel user2)
+        public static bool Equals(EntityFrameworkUserModel user1, EntityFrameworkUserModel user2)
         {
             if (user1 == null && user2 == null)
             {

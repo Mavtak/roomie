@@ -5,7 +5,7 @@ namespace Roomie.Web.Website.Helpers
 {
     public static class RoomieControllerExtensions
     {
-        public static DeviceModel SelectDevice(this IRoomieController controller, int id)
+        public static EntityFrameworkDeviceModel SelectDevice(this IRoomieController controller, int id)
         {
             var database = controller.Database;
             var user = controller.User;
@@ -20,7 +20,7 @@ namespace Roomie.Web.Website.Helpers
             return device;
         }
 
-        public static NetworkModel SelectNetwork(this IRoomieController controller, int id)
+        public static EntityFrameworkNetworkModel SelectNetwork(this IRoomieController controller, int id)
         {
             var database = controller.Database;
             var user = controller.User;
@@ -35,7 +35,7 @@ namespace Roomie.Web.Website.Helpers
             return network;
         }
 
-        public static SavedScriptModel SelectSavedScript(this IRoomieController controller, int id)
+        public static EntityFrameworkSavedScriptModel SelectSavedScript(this IRoomieController controller, int id)
         {
             var database = controller.Database;
             var user = controller.User;
@@ -50,7 +50,7 @@ namespace Roomie.Web.Website.Helpers
             return script;
         }
 
-        public static ComputerModel SelectComputer(this IRoomieController controller, int id)
+        public static EntityFrameworkComputerModel SelectComputer(this IRoomieController controller, int id)
         {
             var database = controller.Database;
             var user = controller.User;
@@ -65,7 +65,7 @@ namespace Roomie.Web.Website.Helpers
             return computer;
         }
 
-        public static TaskModel SelectTask(this IRoomieController controller, int id)
+        public static EntityFrameworkTaskModel SelectTask(this IRoomieController controller, int id)
         {
             var database = controller.Database;
             var user = controller.User;
@@ -80,17 +80,17 @@ namespace Roomie.Web.Website.Helpers
             return task;
         }
 
-        public static void AddTask(this IRoomieController controller, ComputerModel computer, string origin, string scriptText)
+        public static void AddTask(this IRoomieController controller, EntityFrameworkComputerModel computer, string origin, string scriptText)
         {
             var database = controller.Database;
             var user = controller.User;
 
-            var task = new TaskModel
+            var task = new EntityFrameworkTaskModel
             {
                 Owner = user,
                 Target = computer,
                 Origin = origin,
-                Script = new ScriptModel
+                Script = new EntityFrameworkScriptModel
                 {
                     Mutable = false,
                     Text = scriptText

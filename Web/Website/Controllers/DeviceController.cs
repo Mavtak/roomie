@@ -88,7 +88,7 @@ namespace Roomie.Web.Website.Controllers
             //TODO: improve this (smarter state?)
             foreach (var network in User.HomeAutomationNetworks)
             {
-                foreach (DeviceModel device in network.Devices)
+                foreach (EntityFrameworkDeviceModel device in network.Devices)
                 {
                     var viewModel = new DeviceViewModel(device, Url);
                     var html = RenderPartialViewToString("Partials/Device/Device", viewModel);

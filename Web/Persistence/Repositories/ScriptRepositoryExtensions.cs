@@ -20,7 +20,7 @@ namespace Roomie.Web.Persistence.Repositories
 
             var unusedScripts = allScripts.Where(x =>
                 {
-                    var getOwnersFunctions = new Func<ScriptModel, object[]>[]
+                    var getOwnersFunctions = new Func<EntityFrameworkScriptModel, object[]>[]
                         {
                             taskRepository.Get,
                             savedScriptRepository.Get,

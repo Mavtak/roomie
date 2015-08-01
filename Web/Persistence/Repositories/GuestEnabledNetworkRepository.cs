@@ -15,14 +15,14 @@ namespace Roomie.Web.Persistence.Repositories
             _guests = guests;
         }
 
-        public NetworkModel Get(int id)
+        public EntityFrameworkNetworkModel Get(int id)
         {
             var result = _networks.Get(id);
 
             return result;
         }
 
-        public NetworkModel Get(UserModel user, int id)
+        public EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, int id)
         {
             var result = Get(id);
 
@@ -49,7 +49,7 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public NetworkModel[] Get(UserModel user)
+        public EntityFrameworkNetworkModel[] Get(EntityFrameworkUserModel user)
         {
             var primaryNetworks = _networks.Get(user);
             var guestNetworks = _guests.Get(user);
@@ -58,7 +58,7 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public NetworkModel Get(UserModel user, string address)
+        public EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, string address)
         {
             var result = _networks.Get(user, address);
 
@@ -71,12 +71,12 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public void Add(NetworkModel network)
+        public void Add(EntityFrameworkNetworkModel network)
         {
             _networks.Add(network);
         }
 
-        public void Remove(NetworkModel network)
+        public void Remove(EntityFrameworkNetworkModel network)
         {
             //TODO: improve this method
             _networks.Remove(network);

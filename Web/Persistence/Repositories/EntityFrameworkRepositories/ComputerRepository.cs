@@ -7,21 +7,21 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class ComputerRepository : IComputerRepository
     {
-        private readonly DbSet<ComputerModel> _computers;
+        private readonly DbSet<EntityFrameworkComputerModel> _computers;
 
-        public ComputerRepository(DbSet<ComputerModel> computers)
+        public ComputerRepository(DbSet<EntityFrameworkComputerModel> computers)
         {
             _computers = computers;
         }
 
-        public ComputerModel Get(int id)
+        public EntityFrameworkComputerModel Get(int id)
         {
             var result = _computers.Find(id);
 
             return result;
         }
 
-        public ComputerModel Get(UserModel user, int id)
+        public EntityFrameworkComputerModel Get(EntityFrameworkUserModel user, int id)
         {
             var result = Get(id);
 
@@ -43,14 +43,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public ComputerModel Get(string accessKey)
+        public EntityFrameworkComputerModel Get(string accessKey)
         {
             var result = _computers.FirstOrDefault(x => x.AccessKey == accessKey);
 
             return result;
         }
 
-        public ComputerModel Get(UserModel user, string name)
+        public EntityFrameworkComputerModel Get(EntityFrameworkUserModel user, string name)
         {
             var result = _computers.Where(x => x.Owner.Id == user.Id)
                                    .Where(x => x.Name == name)
@@ -59,7 +59,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public ComputerModel[] Get(ScriptModel script)
+        public EntityFrameworkComputerModel[] Get(EntityFrameworkScriptModel script)
         {
             var result = _computers
                 .Where(x => x.LastScript.Id == script.Id)
@@ -68,19 +68,19 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public ComputerModel[] Get(UserModel user)
+        public EntityFrameworkComputerModel[] Get(EntityFrameworkUserModel user)
         {
             var result = _computers.Where(x => x.Owner.Id == user.Id).ToArray();
 
             return result;
         }
 
-        public void Add(ComputerModel computer)
+        public void Add(EntityFrameworkComputerModel computer)
         {
             _computers.Add(computer);
         }
 
-        public void Remove(ComputerModel computer)
+        public void Remove(EntityFrameworkComputerModel computer)
         {
             _computers.Remove(computer);
         }

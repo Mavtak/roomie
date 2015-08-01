@@ -19,7 +19,7 @@ using Roomie.Web.Persistence.Helpers;
 namespace Roomie.Web.Persistence.Models
 {
     [Table("DeviceModels")]
-    public class DeviceModel : IDevice, IHasDivId
+    public class EntityFrameworkDeviceModel : IDevice, IHasDivId
     {
         [Key]
         public int Id { get; set; }
@@ -29,7 +29,7 @@ namespace Roomie.Web.Persistence.Models
 
         public string CurrentAction { get; set; }
 
-        public virtual NetworkModel Network { get; set; }
+        public virtual EntityFrameworkNetworkModel Network { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public virtual DeviceLocationModel Location { get; set; }
@@ -172,7 +172,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public DeviceModel()
+        public EntityFrameworkDeviceModel()
         {
             _binarySwitch = new ToggleSwitchModel(this);
             _multilevelSwitch = new DimmerSwitchModel(this);
@@ -418,7 +418,7 @@ namespace Roomie.Web.Persistence.Models
                 return false;
             }
 
-            var that = obj as DeviceModel;
+            var that = obj as EntityFrameworkDeviceModel;
 
             if (obj == null)
             {
@@ -428,7 +428,7 @@ namespace Roomie.Web.Persistence.Models
             return this.Equals(that);
         }
 
-        public bool Equals(DeviceModel that)
+        public bool Equals(EntityFrameworkDeviceModel that)
         {
             if (that == null)
             {
@@ -440,7 +440,7 @@ namespace Roomie.Web.Persistence.Models
                 return false;
             }
 
-            if (!NetworkModel.Equals(this.Network, that.Network))
+            if (!EntityFrameworkNetworkModel.Equals(this.Network, that.Network))
             {
                 return false;
             }

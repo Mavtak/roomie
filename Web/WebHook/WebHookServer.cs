@@ -145,7 +145,7 @@ namespace Roomie.Web.WebHook
                 return;
             }
 
-            var session = new WebHookSessionModel
+            var session = new EntityFrameworkWebHookSessionModel
             {
                 Computer = context.Computer,
                 LastPing = DateTime.UtcNow,

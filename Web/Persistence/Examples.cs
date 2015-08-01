@@ -17,18 +17,18 @@ namespace Roomie.Web.Persistence
 {
     public static class Examples
     {
-        public static IEnumerable<DeviceModel> Devices
+        public static IEnumerable<EntityFrameworkDeviceModel> Devices
         {
             get
             {
-                var onToggleSwitch = new DeviceModel
+                var onToggleSwitch = new EntityFrameworkDeviceModel
                     {
                         Name = "A Toggle Switch that is on",
                         Type = DeviceType.BinarySwitch
                     };
                 onToggleSwitch.BinarySwitch.Power = BinarySwitchPower.On;
 
-                var offToggleSwitch = new DeviceModel
+                var offToggleSwitch = new EntityFrameworkDeviceModel
                     {
                         Name = "A Toggle Switch that is off",
                         Type = DeviceType.BinarySwitch,
@@ -36,7 +36,7 @@ namespace Roomie.Web.Persistence
                 offToggleSwitch.BinarySwitch.Power = BinarySwitchPower.Off;
                 offToggleSwitch.PowerSensor.Value = new WattsPower(0);
 
-                var idleDevice = new DeviceModel
+                var idleDevice = new EntityFrameworkDeviceModel
                     {
                         Name = "An appliance that is on, but idle",
                         Type = DeviceType.BinarySwitch,
@@ -45,7 +45,7 @@ namespace Roomie.Web.Persistence
                 idleDevice.PowerSensor.Value = new WattsPower(5);
                 idleDevice.CurrentAction = "Idle";
 
-                var runningDevice = new DeviceModel
+                var runningDevice = new EntityFrameworkDeviceModel
                     {
                         Name = "An appliance that is on and running",
                         Type = DeviceType.BinarySwitch,
@@ -55,7 +55,7 @@ namespace Roomie.Web.Persistence
                 runningDevice.CurrentAction = "Running";
 
 
-                var onDimmerSwitch = new DeviceModel
+                var onDimmerSwitch = new EntityFrameworkDeviceModel
                     {
                         Name = "A Dimmer Switch that is on",
                         Type = DeviceType.MultilevelSwitch
@@ -64,14 +64,14 @@ namespace Roomie.Web.Persistence
                 onDimmerSwitch.PowerSensor.Value = new WattsPower(25.2);
                 onDimmerSwitch.PowerSensor.TimeStamp = DateTime.UtcNow.AddSeconds(-5);
 
-                var offDimmerSwitch = new DeviceModel
+                var offDimmerSwitch = new EntityFrameworkDeviceModel
                     {
                         Name = "A Dimmer Switch that is off",
                         Type = DeviceType.MultilevelSwitch
                     };
                 offDimmerSwitch.MultilevelSwitch.Power = 0;
 
-                var dimmableColorChangingLight = new DeviceModel
+                var dimmableColorChangingLight = new EntityFrameworkDeviceModel
                     {
                         Name = "A dimmable, color-changing light",
                         Type = DeviceType.MultilevelSwitch
@@ -79,7 +79,7 @@ namespace Roomie.Web.Persistence
                 dimmableColorChangingLight.MultilevelSwitch.Power = 50;
                 dimmableColorChangingLight.ColorSwitch.Value = new NamedColor("Purple");
 
-                var openDoorSensor = new DeviceModel
+                var openDoorSensor = new EntityFrameworkDeviceModel
                 {
                     Name = "A Door Sensor that is open",
                     Type = DeviceType.BinarySensor
@@ -88,7 +88,7 @@ namespace Roomie.Web.Persistence
                 openDoorSensor.BinarySensor.Value = true;
                 openDoorSensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddSeconds(-24);
 
-                var stillMotionSensor = new DeviceModel
+                var stillMotionSensor = new EntityFrameworkDeviceModel
                 {
                     Name = "A Motion Sensor that is still",
                     Type = DeviceType.BinarySensor
@@ -96,7 +96,7 @@ namespace Roomie.Web.Persistence
                 stillMotionSensor.BinarySensor.Type = BinarySensorType.Motion;
                 stillMotionSensor.BinarySensor.Value = false;
 
-                var falseGenericBinarySensor = new DeviceModel
+                var falseGenericBinarySensor = new EntityFrameworkDeviceModel
                 {
                     Name = "A generic Binary Sensor that is false",
                     Type = DeviceType.BinarySensor
@@ -105,7 +105,7 @@ namespace Roomie.Web.Persistence
                 falseGenericBinarySensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddMinutes(-4);
 
 
-                var multisensor = new DeviceModel
+                var multisensor = new EntityFrameworkDeviceModel
                 {
                     Name = "A Multisensor",
                     Type = DeviceType.BinarySensor
@@ -120,7 +120,7 @@ namespace Roomie.Web.Persistence
                 multisensor.BinarySensor.Value = true;
                 multisensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddSeconds(-43);
 
-                var thermostat = new DeviceModel
+                var thermostat = new EntityFrameworkDeviceModel
                     {
                         Name = "A Thermostat with all data",
                         Type = DeviceType.Thermostat,
@@ -135,7 +135,7 @@ namespace Roomie.Web.Persistence
                 thermostat.Thermostat.Setpoints.Add(ThermostatSetpointType.Cool, new FahrenheitTemperature(74));
                 thermostat.Thermostat.Setpoints.Add(ThermostatSetpointType.Heat, new FahrenheitTemperature(70));
 
-                var noDataThermostat = new DeviceModel
+                var noDataThermostat = new EntityFrameworkDeviceModel
                     {
                         Name = "A Thermostat with no data",
                         Type = DeviceType.Thermostat
@@ -143,12 +143,12 @@ namespace Roomie.Web.Persistence
 
                 var devices = new[] { onToggleSwitch, offToggleSwitch, idleDevice, runningDevice, onDimmerSwitch, offDimmerSwitch, dimmableColorChangingLight, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, multisensor, thermostat, noDataThermostat };
 
-                var computer = new ComputerModel
+                var computer = new EntityFrameworkComputerModel
                     {
                         LastPing = DateTime.UtcNow
                     };
 
-                var network = new NetworkModel
+                var network = new EntityFrameworkNetworkModel
                     {
                         Name = "Example Network",
                         LastPing = DateTime.UtcNow,

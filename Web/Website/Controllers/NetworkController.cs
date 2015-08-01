@@ -10,7 +10,7 @@ namespace Roomie.Web.Website.Controllers
     [WebsiteRestrictedAccess]
     public class NetworkController : RoomieBaseController
     {
-        private NetworkModel GetNetwork(int id)
+        private EntityFrameworkNetworkModel GetNetwork(int id)
         {
             var network = this.SelectNetwork(id);
 
@@ -47,7 +47,7 @@ namespace Roomie.Web.Website.Controllers
             network.Name = name;
             if (delete == true)
             {
-                foreach (DeviceModel device in network.Devices.ToList())
+                foreach (EntityFrameworkDeviceModel device in network.Devices.ToList())
                 {
                     Database.Devices.Remove(device);
                 }

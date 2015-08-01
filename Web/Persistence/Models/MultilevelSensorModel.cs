@@ -12,9 +12,9 @@ namespace Roomie.Web.Persistence.Models
     public class MultilevelSensorModel<TMeasurement> : IMultilevelSensor<TMeasurement>
         where TMeasurement : IMeasurement
     {
-        private DeviceModel _device;
+        private EntityFrameworkDeviceModel _device;
 
-        public MultilevelSensorModel(DeviceModel device)
+        public MultilevelSensorModel(EntityFrameworkDeviceModel device)
         {
             _device = device;
         }

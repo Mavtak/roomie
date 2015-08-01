@@ -7,21 +7,21 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class SavedScriptRepository : ISavedScriptRepository
     {
-        private readonly DbSet<SavedScriptModel> _scripts;
+        private readonly DbSet<EntityFrameworkSavedScriptModel> _scripts;
 
-        public SavedScriptRepository(DbSet<SavedScriptModel> scripts)
+        public SavedScriptRepository(DbSet<EntityFrameworkSavedScriptModel> scripts)
         {
             _scripts = scripts;
         }
 
-        public SavedScriptModel Get(int id)
+        public EntityFrameworkSavedScriptModel Get(int id)
         {
             var result = _scripts.Find(id);
 
             return result;
         }
 
-        public SavedScriptModel Get(UserModel user, int id)
+        public EntityFrameworkSavedScriptModel Get(EntityFrameworkUserModel user, int id)
         {
             var result = Get(id);
 
@@ -43,7 +43,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public SavedScriptModel[] Get(ScriptModel script)
+        public EntityFrameworkSavedScriptModel[] Get(EntityFrameworkScriptModel script)
         {
             var result = _scripts
                 .Where(x => x.Script.Id == script.Id)
@@ -52,7 +52,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public SavedScriptModel[] List(UserModel user, int page, int count)
+        public EntityFrameworkSavedScriptModel[] List(EntityFrameworkUserModel user, int page, int count)
         {
             var results = (from t in _scripts
                            where t.Owner.Id == user.Id
@@ -63,12 +63,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return results;
         }
 
-        public void Add(SavedScriptModel script)
+        public void Add(EntityFrameworkSavedScriptModel script)
         {
             _scripts.Add(script);
         }
 
-        public void Remove(SavedScriptModel script)
+        public void Remove(EntityFrameworkSavedScriptModel script)
         {
             _scripts.Remove(script);
         }

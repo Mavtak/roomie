@@ -19,7 +19,7 @@ namespace Roomie.Web.Website.Controllers.Api
     [AutoSave]
     public class DeviceController : RoomieBaseApiController
     {
-        public IEnumerable<DeviceModel> Get()
+        public IEnumerable<EntityFrameworkDeviceModel> Get()
         {
             var devices = Database.GetDevicesForUser(User);
             var result = devices.Select(GetSerializableVersion);
@@ -27,7 +27,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public DeviceModel Get(int id)
+        public EntityFrameworkDeviceModel Get(int id)
         {
             var device = this.SelectDevice(id);
             var result = GetSerializableVersion(device);
@@ -139,9 +139,9 @@ namespace Roomie.Web.Website.Controllers.Api
             }
         }
 
-        private static DeviceModel GetSerializableVersion(DeviceModel device)
+        private static EntityFrameworkDeviceModel GetSerializableVersion(EntityFrameworkDeviceModel device)
         {
-            var result = new DeviceModel
+            var result = new EntityFrameworkDeviceModel
             {
                 Id = device.Id
             };

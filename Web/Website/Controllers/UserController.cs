@@ -92,7 +92,7 @@ namespace Roomie.Web.Website.Controllers
         
         [HttpPost]
         [WebsiteRestrictedAccess]
-        public ActionResult Edit(UserModel user)
+        public ActionResult Edit(EntityFrameworkUserModel user)
         {
             this.User.Alias = user.Alias;
             Database.SaveChanges();

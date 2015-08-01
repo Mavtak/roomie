@@ -5,9 +5,9 @@ namespace Roomie.Web.Persistence.Models
 {
     public class ToggleSwitchModel : IBinarySwitch
     {
-        private DeviceModel _device;
+        private EntityFrameworkDeviceModel _device;
 
-        public ToggleSwitchModel(DeviceModel device)
+        public ToggleSwitchModel(EntityFrameworkDeviceModel device)
         {
             _device = device;
         }

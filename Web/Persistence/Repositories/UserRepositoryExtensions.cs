@@ -10,7 +10,7 @@ namespace Roomie.Web.Persistence.Repositories
             var token = BuildInternalUserToken(username);
             var secret = BCryptSecret.FromPassword(password);
 
-            var user = new UserModel
+            var user = new EntityFrameworkUserModel
             {
                 Alias = username,
                 Secret = secret.Format(),
@@ -20,7 +20,7 @@ namespace Roomie.Web.Persistence.Repositories
             repository.Add(user);
         }
 
-        public static UserModel Get(this IUserRepository repository, string username, string password)
+        public static EntityFrameworkUserModel Get(this IUserRepository repository, string username, string password)
         {
             var token = BuildInternalUserToken(username);
             var result = repository.Get(token);

@@ -4,7 +4,7 @@ namespace Roomie.Web.Persistence.Database
 {
     public static class ExtensionsToIRoomieDatabaseContext
     {
-        public static DeviceLocationModel GetDeviceLocation(this IRoomieDatabaseContext database, UserModel user, string locationName)
+        public static DeviceLocationModel GetDeviceLocation(this IRoomieDatabaseContext database, EntityFrameworkUserModel user, string locationName)
         {
             //TODO: fix
 

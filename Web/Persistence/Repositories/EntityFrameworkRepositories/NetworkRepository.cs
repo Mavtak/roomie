@@ -7,21 +7,21 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class NetworkRepository : INetworkRepository
     {
-        private readonly DbSet<NetworkModel> _networks;
+        private readonly DbSet<EntityFrameworkNetworkModel> _networks;
 
-        public NetworkRepository(DbSet<NetworkModel> networks)
+        public NetworkRepository(DbSet<EntityFrameworkNetworkModel> networks)
         {
             _networks = networks;
         }
 
-        public NetworkModel Get(int id)
+        public EntityFrameworkNetworkModel Get(int id)
         {
             var result = _networks.Find(id);
 
             return result;
         }
 
-        public NetworkModel Get(UserModel user, int id)
+        public EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, int id)
         {
             var result = Get(id);
 
@@ -43,14 +43,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public NetworkModel[] Get(UserModel user)
+        public EntityFrameworkNetworkModel[] Get(EntityFrameworkUserModel user)
         {
             var results = _networks.Where(x => x.Owner.Id == user.Id).ToArray();
 
             return results;
         }
 
-        public NetworkModel Get(UserModel user, string address)
+        public EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, string address)
         {
             var result = _networks.Where(x => x.Owner.Id == user.Id)
                                   .Where(x => x.Address == address)
@@ -58,12 +58,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public void Add(NetworkModel network)
+        public void Add(EntityFrameworkNetworkModel network)
         {
             _networks.Add(network);
         }
 
-        public void Remove(NetworkModel network)
+        public void Remove(EntityFrameworkNetworkModel network)
         {
             _networks.Remove(network);
         }

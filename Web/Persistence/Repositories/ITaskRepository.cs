@@ -5,12 +5,12 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public interface ITaskRepository
     {
-        TaskModel Get(int id);
-        TaskModel Get(UserModel user, int id);
-        TaskModel[] Get(ScriptModel script);
-        void Add(TaskModel task);
-        void Remove(TaskModel task);
-        Page<TaskModel> List(UserModel user, ListFilter filter);
-        TaskModel[] ForComputer(ComputerModel computer, DateTime now);
+        EntityFrameworkTaskModel Get(int id);
+        EntityFrameworkTaskModel Get(EntityFrameworkUserModel user, int id);
+        EntityFrameworkTaskModel[] Get(EntityFrameworkScriptModel script);
+        void Add(EntityFrameworkTaskModel task);
+        void Remove(EntityFrameworkTaskModel task);
+        Page<EntityFrameworkTaskModel> List(EntityFrameworkUserModel user, ListFilter filter);
+        EntityFrameworkTaskModel[] ForComputer(EntityFrameworkComputerModel computer, DateTime now);
     }
 }

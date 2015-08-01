@@ -10,7 +10,7 @@ namespace Roomie.Web.Website.Helpers
     {
         private static string sessionTokenName = "roomie_session";
 
-        public static UserSessionModel GetCurrentUserSession(IRoomieDatabaseContext database)
+        public static EntityFrameworkUserSessionModel GetCurrentUserSession(IRoomieDatabaseContext database)
         {
             var request = HttpContext.Current.Request;
             if (request.Cookies[sessionTokenName] == null)
@@ -32,7 +32,7 @@ namespace Roomie.Web.Website.Helpers
             return session;
         }
 
-        public static UserModel GetCurrentUser(IRoomieDatabaseContext database)
+        public static EntityFrameworkUserModel GetCurrentUser(IRoomieDatabaseContext database)
         {
             var session = GetCurrentUserSession(database);
             if (session == null)
@@ -52,7 +52,7 @@ namespace Roomie.Web.Website.Helpers
             if (user == null)
             {
                 // add new user
-                user = new UserModel
+                user = new EntityFrameworkUserModel
                 {
                     RegisteredTimestamp = DateTime.UtcNow,
                     Token = token
@@ -68,9 +68,9 @@ namespace Roomie.Web.Website.Helpers
             database.SaveChanges();
         }
 
-        public static UserSessionModel CreateSession(IRoomieDatabaseContext database, UserModel user)
+        public static EntityFrameworkUserSessionModel CreateSession(IRoomieDatabaseContext database, EntityFrameworkUserModel user)
         {
-            var userSession = new UserSessionModel
+            var userSession = new EntityFrameworkUserSessionModel
             {
                 User = user
             };
@@ -80,7 +80,7 @@ namespace Roomie.Web.Website.Helpers
             return userSession;
         }
 
-        public static HttpCookie CreateSessionCookie(UserSessionModel userSession)
+        public static HttpCookie CreateSessionCookie(EntityFrameworkUserSessionModel userSession)
         {
             var cookie = new HttpCookie(sessionTokenName, userSession.Token);
             cookie.Expires = DateTime.UtcNow.AddYears(1);

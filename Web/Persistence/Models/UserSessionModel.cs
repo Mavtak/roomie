@@ -6,12 +6,12 @@ using Roomie.Web.Persistence.Helpers;
 namespace Roomie.Web.Persistence.Models
 {
     [Table("UserSessionModels")]
-    public class UserSessionModel : IHasDivId
+    public class EntityFrameworkUserSessionModel : IHasDivId
     {
         [Key]
         public int Id { get; set; }
         
-        public virtual UserModel User { get; set; }
+        public virtual EntityFrameworkUserModel User { get; set; }
         public DateTime CreationTimeStamp { get; set; }
         public DateTime LastContactTimeStamp { get; set; }
         public string Token { get; set; }
@@ -19,7 +19,7 @@ namespace Roomie.Web.Persistence.Models
         //public ICollection<StringStringPair> Data { get; set; }
         //TODO: add "Expires" and "IsExpired" properties
 
-        public UserSessionModel()
+        public EntityFrameworkUserSessionModel()
         {
             CreationTimeStamp = DateTime.UtcNow;
             LastContactTimeStamp = DateTime.UtcNow;

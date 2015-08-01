@@ -15,14 +15,14 @@ namespace Roomie.Web.Persistence.Repositories
             _guests = guests;
         }
 
-        public DeviceModel Get(int id)
+        public EntityFrameworkDeviceModel Get(int id)
         {
             var result = _devices.Get(id);
 
             return result;
         }
 
-        public DeviceModel Get(UserModel user, int id)
+        public EntityFrameworkDeviceModel Get(EntityFrameworkUserModel user, int id)
         {
             var result = Get(id);
 
@@ -54,19 +54,19 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public DeviceModel[] Get(NetworkModel network)
+        public EntityFrameworkDeviceModel[] Get(EntityFrameworkNetworkModel network)
         {
             var result = _devices.Get(network);
 
             return result;
         }
 
-        public void Add(DeviceModel device)
+        public void Add(EntityFrameworkDeviceModel device)
         {
             _devices.Add(device);
         }
 
-        public void Remove(DeviceModel device)
+        public void Remove(EntityFrameworkDeviceModel device)
         {
             _devices.Remove(device);
         }
