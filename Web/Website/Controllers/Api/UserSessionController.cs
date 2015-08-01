@@ -9,7 +9,7 @@ namespace Roomie.Web.Website.Controllers.Api
     [AutoSave]
     public class UserSessionController : RoomieBaseApiController
     {
-        public EntityFrameworkUserSessionModel Get(string token)
+        public UserSession Get(string token)
         {
             var result = Database.Sessions.GetUserSession(token);
 
@@ -25,7 +25,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        private static object Transform(EntityFrameworkUserSessionModel model)
+        private static object Transform(UserSession model)
         {
             var result = new
                 {

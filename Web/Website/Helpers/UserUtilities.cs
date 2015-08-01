@@ -10,7 +10,7 @@ namespace Roomie.Web.Website.Helpers
     {
         private static string sessionTokenName = "roomie_session";
 
-        public static EntityFrameworkUserSessionModel GetCurrentUserSession(IRoomieDatabaseContext database)
+        public static UserSession GetCurrentUserSession(IRoomieDatabaseContext database)
         {
             var request = HttpContext.Current.Request;
             if (request.Cookies[sessionTokenName] == null)
@@ -27,7 +27,7 @@ namespace Roomie.Web.Website.Helpers
                 return null;
             }
 
-            session.LastContactTimeStamp = DateTime.UtcNow;
+            session.UpdateLastContact();
 
             return session;
         }
@@ -68,19 +68,16 @@ namespace Roomie.Web.Website.Helpers
             database.SaveChanges();
         }
 
-        public static EntityFrameworkUserSessionModel CreateSession(IRoomieDatabaseContext database, EntityFrameworkUserModel user)
+        public static UserSession CreateSession(IRoomieDatabaseContext database, EntityFrameworkUserModel user)
         {
-            var userSession = new EntityFrameworkUserSessionModel
-            {
-                User = user
-            };
+            var userSession = UserSession.Create(user);
 
             database.Sessions.Add(userSession);
 
             return userSession;
         }
 
-        public static HttpCookie CreateSessionCookie(EntityFrameworkUserSessionModel userSession)
+        public static HttpCookie CreateSessionCookie(UserSession userSession)
         {
             var cookie = new HttpCookie(sessionTokenName, userSession.Token);
             cookie.Expires = DateTime.UtcNow.AddYears(1);
