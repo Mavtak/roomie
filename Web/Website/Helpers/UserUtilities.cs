@@ -28,6 +28,8 @@ namespace Roomie.Web.Website.Helpers
             }
 
             session.UpdateLastContact();
+            database.Sessions.Update(session);
+            database.SaveChanges();
 
             return session;
         }

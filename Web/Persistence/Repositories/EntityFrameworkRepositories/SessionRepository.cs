@@ -55,6 +55,13 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             _webHookSessions.Add(model);
         }
 
+        public void Update(UserSession session)
+        {
+            var model = _userSessions.Find(session.Id);
+
+            model.LastContactTimeStamp = session.LastContactTimeStamp;
+        }
+
         Page<UserSession> ISessionRepository.ListUserSessions(User user, ListFilter filter)
         {
             var results = (from x in _userSessions
