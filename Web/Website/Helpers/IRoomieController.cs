@@ -5,7 +5,8 @@ namespace Roomie.Web.Website.Helpers
 {
     public interface IRoomieController
     {
+        //TODO: change back to IRoomieDatabaseContext
         IRoomieDatabaseContext Database { get; set; }
-        EntityFrameworkUserModel User { get; set; }
+        User User { get; set; }
     }
 }

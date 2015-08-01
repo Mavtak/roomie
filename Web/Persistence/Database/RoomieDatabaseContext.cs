@@ -20,13 +20,21 @@ namespace Roomie.Web.Persistence.Database
 
         private readonly EntityFrameworkRoomieDatabaseBackend _database;
 
+        public EntityFrameworkRoomieDatabaseBackend Backend
+        {
+            get
+            {
+                return _database;
+            }
+        }
+
         public RoomieDatabaseContext()
         {
             _database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
             Computers = new ComputerRepository(_database.Computers);
 
-            NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests);
+            NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests, _database.Users);
 
             var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks);
             Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
@@ -44,7 +52,7 @@ namespace Roomie.Web.Persistence.Database
 
             Users = new UserRepository(_database.Users);
 
-            Sessions = new SessionRepository(_database.UserSessions, _database.WebHookSessions);
+            Sessions = new SessionRepository(_database.UserSessions, _database.WebHookSessions, _database.Users);
         }
 
         public void Reset()

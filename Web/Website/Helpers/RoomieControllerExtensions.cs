@@ -87,7 +87,7 @@ namespace Roomie.Web.Website.Helpers
 
             var task = new EntityFrameworkTaskModel
             {
-                Owner = user,
+                Owner = database.Backend.Users.Find(user.Id),
                 Target = computer,
                 Origin = origin,
                 Script = new EntityFrameworkScriptModel

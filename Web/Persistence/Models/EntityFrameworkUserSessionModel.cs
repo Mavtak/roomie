@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+
 namespace Roomie.Web.Persistence.Models
 {
     [Table("UserSessionModels")]
@@ -17,7 +19,7 @@ namespace Roomie.Web.Persistence.Models
 
         #region conversions
 
-        public static EntityFrameworkUserSessionModel FromRepositoryType(UserSession model)
+        public static EntityFrameworkUserSessionModel FromRepositoryType(UserSession model, DbSet<EntityFrameworkUserModel> users)
         {
             var result = new EntityFrameworkUserSessionModel
             {
@@ -25,7 +27,7 @@ namespace Roomie.Web.Persistence.Models
                 Id = model.Id,
                 LastContactTimeStamp = model.LastContactTimeStamp,
                 Token = model.Token,
-                User = model.User
+                User = users.Find(model.User.Id)
             };
 
             return result;
@@ -38,7 +40,7 @@ namespace Roomie.Web.Persistence.Models
                 id: Id,
                 lastContactTimeStamp: LastContactTimeStamp,
                 token: Token,
-                user: User
+                user: User.ToRepositoryType()
             );
 
             return result;

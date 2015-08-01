@@ -9,13 +9,13 @@ namespace Roomie.Web.Persistence.Models
         public int Id { get; set; }
         public DateTime LastContactTimeStamp { get; private set; }
         public string Token { get; private set; }
-        public virtual EntityFrameworkUserModel User { get; private set; }
+        public virtual User User { get; private set; }
 
         private UserSession()
         {
         }
 
-        public UserSession(DateTime creationTimeStamp, int id, DateTime lastContactTimeStamp, string token, EntityFrameworkUserModel user)
+        public UserSession(DateTime creationTimeStamp, int id, DateTime lastContactTimeStamp, string token, User user)
         {
             CreationTimeStamp = creationTimeStamp;
             Id = id;
@@ -24,7 +24,7 @@ namespace Roomie.Web.Persistence.Models
             User = user;
         }
 
-        public static UserSession Create(EntityFrameworkUserModel user)
+        public static UserSession Create(User user)
         {
             var result = new UserSession()
             {

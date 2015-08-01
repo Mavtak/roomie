@@ -31,7 +31,7 @@ namespace Roomie.Web.Website.Controllers
             var task = new EntityFrameworkTaskModel
             {
                 Origin = "Website",
-                Owner = User,
+                Owner = Database.Backend.Users.Find(User.Id),
                 Target = computer,
                 Expiration = DateTime.UtcNow.AddMinutes(1),
                 Script = new EntityFrameworkScriptModel
@@ -90,7 +90,7 @@ namespace Roomie.Web.Website.Controllers
         [HttpPost]
         public ActionResult Create(EntityFrameworkComputerModel computer)
         {
-            computer.Owner = User;
+            computer.Owner = Database.Backend.Users.Find(User.Id);
 
             if (ModelState.IsValid)
             {

@@ -9,7 +9,7 @@ namespace Roomie.Web.Persistence.Repositories
         WebHookSession GetWebHookSession(string token);
         void Add(UserSession session);
         void Add(WebHookSession session);
-        Page<UserSession> ListUserSessions(EntityFrameworkUserModel user, ListFilter filter);
-        Page<WebHookSession> ListWebhookSessions(EntityFrameworkUserModel user, ListFilter filter);
+        Page<UserSession> ListUserSessions(User user, ListFilter filter);
+        Page<WebHookSession> ListWebhookSessions(User user, ListFilter filter);
     }
 }

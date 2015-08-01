@@ -25,12 +25,41 @@ namespace Roomie.Web.Persistence.Models
         public virtual ICollection<EntityFrameworkSavedScriptModel> SavedScripts { get; set; }
         public virtual ICollection<DeviceLocationModel> DeviceLocations { get; set; }
 
-        public ISecret ParseSecret()
+        #region Conversions
+
+        public static EntityFrameworkUserModel FromRepositoryType(User model)
         {
-            var result = SecretExtensions.Parse(Secret);
+            var result = new EntityFrameworkUserModel
+            {
+                Alias = model.Alias,
+                Email = model.Email,
+                Id = model.Id,
+                RegisteredTimestamp = model.RegisteredTimestamp,
+                Secret = model.Secret,
+                Token = model.Token
+            };
 
             return result;
         }
+
+        public User ToRepositoryType()
+        {
+            var result = new User(
+                alias: Alias,
+                email: Email,
+                id: Id,
+                registeredTimestamp: RegisteredTimestamp,
+                secret: Secret,
+                token: Token
+            );
+
+            return result;
+        }
+
+        #endregion
+
+        #region Object overrides
+
         public override string ToString()
         {
             var builder = new System.Text.StringBuilder();
@@ -87,6 +116,8 @@ namespace Roomie.Web.Persistence.Models
         {
             return Id.GetHashCode();
         }
+
+        #endregion
 
         #region HasId implementation
 

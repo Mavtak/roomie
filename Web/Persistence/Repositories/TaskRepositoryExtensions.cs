@@ -5,7 +5,7 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public static class TaskRepositoryExtensions
     {
-        public static CleaningResult Clean(this ITaskRepository repository, EntityFrameworkUserModel user, ListFilter filter = null)
+        public static CleaningResult Clean(this ITaskRepository repository, User user, ListFilter filter = null)
         {
             if (filter == null)
             {

@@ -21,7 +21,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, int id)
+        public EntityFrameworkNetworkModel Get(User user, int id)
         {
             var result = Get(id);
 
@@ -43,14 +43,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkNetworkModel[] Get(EntityFrameworkUserModel user)
+        public EntityFrameworkNetworkModel[] Get(User user)
         {
             var results = _networks.Where(x => x.Owner.Id == user.Id).ToArray();
 
             return results;
         }
 
-        public EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, string address)
+        public EntityFrameworkNetworkModel Get(User user, string address)
         {
             var result = _networks.Where(x => x.Owner.Id == user.Id)
                                   .Where(x => x.Address == address)

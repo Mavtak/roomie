@@ -20,7 +20,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public DeviceLocationModel Get(EntityFrameworkUserModel user, string path)
+        public DeviceLocationModel Get(User user, string path)
         {
             var matches = _locations.Where(x => x.Owner.Id == user.Id)
                                     .Where(x => x.Name == path);

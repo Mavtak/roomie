@@ -13,23 +13,35 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             _users = users;
         }
 
-        public EntityFrameworkUserModel Get(int id)
+        public User Get(int id)
         {
-            var result = _users.Find(id);
+            var model = _users.Find(id);
 
-            return result;
+            if (model == null)
+            {
+                return null;
+            }
+
+            return model.ToRepositoryType();
         }
 
-        public EntityFrameworkUserModel Get(string token)
+        public User Get(string token)
         {
-            var result = _users.FirstOrDefault(x => x.Token == token);
+            var model = _users.FirstOrDefault(x => x.Token == token);
 
-            return result;
+            if (model == null)
+            {
+                return null;
+            }
+
+            return model.ToRepositoryType();
         }
 
-        public void Add(EntityFrameworkUserModel user)
+        public void Add(User user)
         {
-            _users.Add(user);
+            var model = EntityFrameworkUserModel.FromRepositoryType(user);
+
+            _users.Add(model);
         }
     }
 }

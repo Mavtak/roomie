@@ -22,7 +22,7 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, int id)
+        public EntityFrameworkNetworkModel Get(User user, int id)
         {
             var result = Get(id);
 
@@ -49,7 +49,7 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public EntityFrameworkNetworkModel[] Get(EntityFrameworkUserModel user)
+        public EntityFrameworkNetworkModel[] Get(User user)
         {
             var primaryNetworks = _networks.Get(user);
             var guestNetworks = _guests.Get(user);
@@ -58,7 +58,7 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public EntityFrameworkNetworkModel Get(EntityFrameworkUserModel user, string address)
+        public EntityFrameworkNetworkModel Get(User user, string address)
         {
             var result = _networks.Get(user, address);
 

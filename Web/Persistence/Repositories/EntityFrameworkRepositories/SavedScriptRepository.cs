@@ -21,7 +21,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkSavedScriptModel Get(EntityFrameworkUserModel user, int id)
+        public EntityFrameworkSavedScriptModel Get(User user, int id)
         {
             var result = Get(id);
 
@@ -52,7 +52,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkSavedScriptModel[] List(EntityFrameworkUserModel user, int page, int count)
+        public EntityFrameworkSavedScriptModel[] List(User user, int page, int count)
         {
             var results = (from t in _scripts
                            where t.Owner.Id == user.Id

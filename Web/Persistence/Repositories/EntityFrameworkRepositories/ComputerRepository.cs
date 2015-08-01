@@ -21,7 +21,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkComputerModel Get(EntityFrameworkUserModel user, int id)
+        public EntityFrameworkComputerModel Get(User user, int id)
         {
             var result = Get(id);
 
@@ -50,7 +50,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkComputerModel Get(EntityFrameworkUserModel user, string name)
+        public EntityFrameworkComputerModel Get(User user, string name)
         {
             var result = _computers.Where(x => x.Owner.Id == user.Id)
                                    .Where(x => x.Name == name)
@@ -68,7 +68,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkComputerModel[] Get(EntityFrameworkUserModel user)
+        public EntityFrameworkComputerModel[] Get(User user)
         {
             var result = _computers.Where(x => x.Owner.Id == user.Id).ToArray();
 

@@ -22,7 +22,7 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public EntityFrameworkDeviceModel Get(EntityFrameworkUserModel user, int id)
+        public EntityFrameworkDeviceModel Get(User user, int id)
         {
             var result = Get(id);
 

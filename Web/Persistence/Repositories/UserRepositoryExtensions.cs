@@ -1,5 +1,4 @@
-﻿using Roomie.Web.Persistence.Helpers.Secrets;
-using Roomie.Web.Persistence.Models;
+﻿using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories
 {
@@ -7,20 +6,12 @@ namespace Roomie.Web.Persistence.Repositories
     {
         public static void Add(this IUserRepository repository, string username, string password)
         {
-            var token = BuildInternalUserToken(username);
-            var secret = BCryptSecret.FromPassword(password);
-
-            var user = new EntityFrameworkUserModel
-            {
-                Alias = username,
-                Secret = secret.Format(),
-                Token = token
-            };
+            var user = User.CreateInternal(username, password);
 
             repository.Add(user);
         }
 
-        public static EntityFrameworkUserModel Get(this IUserRepository repository, string username, string password)
+        public static User Get(this IUserRepository repository, string username, string password)
         {
             var token = BuildInternalUserToken(username);
             var result = repository.Get(token);
@@ -47,7 +38,7 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        private static string BuildInternalUserToken(string username)
+        public static string BuildInternalUserToken(string username)
         {
             return "internal:" + username;
         }

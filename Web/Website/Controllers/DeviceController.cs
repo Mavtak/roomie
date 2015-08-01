@@ -86,9 +86,10 @@ namespace Roomie.Web.Website.Controllers
             var replacements = new List<object>();
             var devices = new List<object>();
             //TODO: improve this (smarter state?)
-            foreach (var network in User.HomeAutomationNetworks)
+
+            foreach (var network in Database.Networks.Get(User))
             {
-                foreach (EntityFrameworkDeviceModel device in network.Devices)
+                foreach (var device in Database.Devices.Get(network))
                 {
                     var viewModel = new DeviceViewModel(device, Url);
                     var html = RenderPartialViewToString("Partials/Device/Device", viewModel);

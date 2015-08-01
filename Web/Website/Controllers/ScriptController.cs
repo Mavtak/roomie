@@ -10,7 +10,7 @@ namespace Roomie.Web.Website.Controllers
     {
         public ActionResult Index()
         {
-            var scripts = User.SavedScripts;
+            var scripts = Database.SavedScripts.List(User, 1, 20);
 
             return View(scripts);
         }
@@ -26,7 +26,7 @@ namespace Roomie.Web.Website.Controllers
         {
             var model = new EntityFrameworkSavedScriptModel
             {
-                Owner = User,
+                Owner = Database.Backend.Users.Find(User.Id),
                 Script = new EntityFrameworkScriptModel
                 {
                     
@@ -45,7 +45,7 @@ namespace Roomie.Web.Website.Controllers
             {
                 ModificationTimestamp = null,
                 Name = name,
-                Owner = User,
+                Owner = Database.Backend.Users.Find(User.Id),
                 Script = new EntityFrameworkScriptModel
                 {
                     CreationTimestamp = now,

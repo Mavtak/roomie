@@ -30,7 +30,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
             var networkAddress = request.Values["NetworkAddress"];
 
-            var network = database.Networks.Get(user, networkAddress);
+            var network = database.Networks.Get(user.ToRepositoryType(), networkAddress);
 
             if (network == null)
             {
@@ -49,7 +49,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
             //responseText.Append("network: " + network);
 
-            var sentDevices = ProcessSentDevices(request, response, user, network, database).ToList();
+            var sentDevices = ProcessSentDevices(request, response, user.ToRepositoryType(), network, database).ToList();
 
             var registeredDevices = new List<EntityFrameworkDeviceModel>(network.Devices);
 
@@ -66,7 +66,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             database.SaveChanges();
         }
 
-        private static IEnumerable<IDeviceState> ProcessSentDevices(Message request, Message response, EntityFrameworkUserModel user,  EntityFrameworkNetworkModel network, IRoomieDatabaseContext database)
+        private static IEnumerable<IDeviceState> ProcessSentDevices(Message request, Message response, User user,  EntityFrameworkNetworkModel network, IRoomieDatabaseContext database)
         {
             var sentDevices = request.Payload.Select(x => x.ToDeviceState());
             sentDevices = sentDevices.Select(x => x.NewWithNetwork(network));

@@ -21,7 +21,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkTaskModel Get(EntityFrameworkUserModel user, int id)
+        public EntityFrameworkTaskModel Get(User user, int id)
         {
             var result = Get(id);
 
@@ -62,7 +62,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             _tasks.Remove(task);
         }
 
-        public Page<EntityFrameworkTaskModel> List(EntityFrameworkUserModel user, ListFilter filter)
+        public Page<EntityFrameworkTaskModel> List(User user, ListFilter filter)
         {
             var results = _tasks
                 .Where(x => x.Owner.Id == user.Id)

@@ -112,7 +112,7 @@ namespace Roomie.Web.Website.Controllers
 
                 var computer = new EntityFrameworkComputerModel
                 {
-                    Owner = Database.Users.Get(1),
+                    Owner = Database.Backend.Users.Find(1),
                     Name = "Test Computer"
                 };
                 Database.Computers.Add(computer);

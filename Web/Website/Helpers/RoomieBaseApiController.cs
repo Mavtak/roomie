@@ -8,7 +8,7 @@ namespace Roomie.Web.Website.Helpers
     public class RoomieBaseApiController : ApiController, IRoomieController
     {
         public IRoomieDatabaseContext Database { get; set; }
-        public new EntityFrameworkUserModel User { get; set; }
+        public new User User { get; set; }
 
         protected override void Initialize(HttpControllerContext controllerContext)
         {

@@ -32,7 +32,7 @@ namespace Roomie.Web.Website.Helpers
             return session;
         }
 
-        public static EntityFrameworkUserModel GetCurrentUser(IRoomieDatabaseContext database)
+        public static User GetCurrentUser(IRoomieDatabaseContext database)
         {
             var session = GetCurrentUserSession(database);
             if (session == null)
@@ -52,11 +52,7 @@ namespace Roomie.Web.Website.Helpers
             if (user == null)
             {
                 // add new user
-                user = new EntityFrameworkUserModel
-                {
-                    RegisteredTimestamp = DateTime.UtcNow,
-                    Token = token
-                };
+                user = User.Create(token);
 
                 database.Users.Add(user);
                 database.SaveChanges();
@@ -68,7 +64,7 @@ namespace Roomie.Web.Website.Helpers
             database.SaveChanges();
         }
 
-        public static UserSession CreateSession(IRoomieDatabaseContext database, EntityFrameworkUserModel user)
+        public static UserSession CreateSession(IRoomieDatabaseContext database, User user)
         {
             var userSession = UserSession.Create(user);
 

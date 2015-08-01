@@ -8,11 +8,13 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     {
         private readonly DbSet<EntityFrameworkUserSessionModel> _userSessions;
         private readonly DbSet<EntityFrameworkWebHookSessionModel> _webHookSessions;
+        private readonly DbSet<EntityFrameworkUserModel> _users;
 
-        public SessionRepository(DbSet<EntityFrameworkUserSessionModel> userSessions, DbSet<EntityFrameworkWebHookSessionModel> webHookSessions)
+        public SessionRepository(DbSet<EntityFrameworkUserSessionModel> userSessions, DbSet<EntityFrameworkWebHookSessionModel> webHookSessions, DbSet<EntityFrameworkUserModel> users)
         {
             _userSessions = userSessions;
             _webHookSessions = webHookSessions;
+            _users = users;
         }
 
         public UserSession GetUserSession(string token)
@@ -41,7 +43,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(UserSession session)
         {
-            var model = EntityFrameworkUserSessionModel.FromRepositoryType(session);
+            var model = EntityFrameworkUserSessionModel.FromRepositoryType(session, _users);
 
             _userSessions.Add(model);
         }
@@ -53,7 +55,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             _webHookSessions.Add(model);
         }
 
-        Page<UserSession> ISessionRepository.ListUserSessions(EntityFrameworkUserModel user, ListFilter filter)
+        Page<UserSession> ISessionRepository.ListUserSessions(User user, ListFilter filter)
         {
             var results = (from x in _userSessions
                            where x.User.Id == user.Id
@@ -63,7 +65,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return results;
         }
 
-        Page<WebHookSession> ISessionRepository.ListWebhookSessions(EntityFrameworkUserModel user, ListFilter filter)
+        Page<WebHookSession> ISessionRepository.ListWebhookSessions(User user, ListFilter filter)
         {
             var results = (from x in _webHookSessions
                            where x.Computer.Owner.Id == user.Id

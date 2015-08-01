@@ -4,8 +4,8 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public interface IUserRepository
     {
-        EntityFrameworkUserModel Get(int id);
-        EntityFrameworkUserModel Get(string token);
-        void Add(EntityFrameworkUserModel user);
+        User Get(int id);
+        User Get(string token);
+        void Add(User user);
     }
 }

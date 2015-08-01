@@ -27,7 +27,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 return;
             }
 
-            var targetComputer = database.Computers.Get(user, request.Values["TargetComputerName"]);
+            var targetComputer = database.Computers.Get(user.ToRepositoryType(), request.Values["TargetComputerName"]);
 
             if(targetComputer == null)
             {

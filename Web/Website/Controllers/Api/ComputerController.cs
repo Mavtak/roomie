@@ -36,7 +36,7 @@ namespace Roomie.Web.Website.Controllers.Api
         {
             Database.Computers.Add(new EntityFrameworkComputerModel
             {
-                Owner = User,
+                Owner = Database.Backend.Users.Find(User.Id),
                 Name = model.Name
             });
         }
