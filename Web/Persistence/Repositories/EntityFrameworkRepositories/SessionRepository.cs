@@ -38,9 +38,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
                 return null;
             }
 
-            var result = ToRepositoryType(model);
-
-            return result;
+            return model.ToRepositoryType();
         }
 
         public void Add(UserSession session)
@@ -52,7 +50,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(WebHookSession session)
         {
-            var model = ToEntityFrameworkType(session);
+            var model = EntityFrameworkWebHookSessionModel.FromRepositoryType(session);
 
             _webHookSessions.Add(model);
         }
@@ -71,7 +69,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         {
             var results = (from x in _webHookSessions
                            where x.Computer.Owner.Id == user.Id
-                           select ToRepositoryType(x)).Page(filter, x => x.Id)
+                           select x.ToRepositoryType()).Page(filter, x => x.Id)
                            ;
 
             return results;
@@ -91,19 +89,6 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkWebHookSessionModel ToEntityFrameworkType(WebHookSession model)
-        {
-            var result = new EntityFrameworkWebHookSessionModel
-            {
-                Computer = model.Computer,
-                Id = model.Id,
-                LastPing = model.LastPing,
-                Token = model.Token,
-            };
-
-            return result;
-        }
-
         private static UserSession ToRepositoryType(EntityFrameworkUserSessionModel model)
         {
             var result = new UserSession(
@@ -112,18 +97,6 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
                 lastContactTimeStamp: model.LastContactTimeStamp,
                 token: model.Token,
                 user: model.User
-            );
-
-            return result;
-        }
-
-        private static WebHookSession ToRepositoryType(EntityFrameworkWebHookSessionModel model)
-        {
-            var result = new WebHookSession(
-                computer: model.Computer,
-                id: model.Id,
-                lastPing: model.LastPing,
-                token: model.Token
             );
 
             return result;
