@@ -145,12 +145,7 @@ namespace Roomie.Web.WebHook
                 return;
             }
 
-            var session = new EntityFrameworkWebHookSessionModel
-            {
-                Computer = context.Computer,
-                LastPing = DateTime.UtcNow,
-                Token = Guid.NewGuid().ToString() //TODO: shorten
-            };
+            var session = WebHookSession.Create(context.Computer);
             context.Database.Sessions.Add(session);
             context.Database.SaveChanges();
 
