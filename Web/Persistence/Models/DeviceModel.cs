@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
@@ -17,6 +18,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
+    [Table("DeviceModels")]
     public class DeviceModel : IDevice, IHasDivId
     {
         [Key]

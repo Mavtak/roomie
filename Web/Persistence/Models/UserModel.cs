@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Helpers.Secrets;
 
 namespace Roomie.Web.Persistence.Models
 {
+    [Table("UserModels")]
     public class UserModel : IHasDivId
     {
         [Key]

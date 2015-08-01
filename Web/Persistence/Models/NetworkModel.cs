@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
+    [Table("NetworkModels")]
     public class NetworkModel : INetwork, IHasDivId
     {
         [Key]
