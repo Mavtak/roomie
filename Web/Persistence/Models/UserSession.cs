@@ -24,11 +24,6 @@ namespace Roomie.Web.Persistence.Models
             User = user;
         }
 
-        public void UpdateLastContact()
-        {
-            LastContactTimeStamp = DateTime.UtcNow;
-        }
-
         public static UserSession Create(EntityFrameworkUserModel user)
         {
             var result = new UserSession()
@@ -40,6 +35,11 @@ namespace Roomie.Web.Persistence.Models
             };
 
             return result;
+        }
+
+        public void UpdateLastContact()
+        {
+            LastContactTimeStamp = DateTime.UtcNow;
         }
 
         #region HasId implementation
