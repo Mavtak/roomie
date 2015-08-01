@@ -14,5 +14,36 @@ namespace Roomie.Web.Persistence.Models
         public DateTime LastContactTimeStamp { get; set; }
         public string Token { get; set; }
         public string Data { get; set; }
+
+        #region conversions
+
+        public static EntityFrameworkUserSessionModel FromRepositoryType(UserSession model)
+        {
+            var result = new EntityFrameworkUserSessionModel
+            {
+                CreationTimeStamp = model.CreationTimeStamp,
+                Id = model.Id,
+                LastContactTimeStamp = model.LastContactTimeStamp,
+                Token = model.Token,
+                User = model.User
+            };
+
+            return result;
+        }
+
+        public UserSession ToRepositoryType()
+        {
+            var result = new UserSession(
+                creationTimeStamp: CreationTimeStamp,
+                id: Id,
+                lastContactTimeStamp: LastContactTimeStamp,
+                token: Token,
+                user: User
+            );
+
+            return result;
+        }
+
+        #endregion
     }
 }

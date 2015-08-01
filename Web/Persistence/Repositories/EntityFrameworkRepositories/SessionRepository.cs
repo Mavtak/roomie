@@ -24,9 +24,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
                 return null;
             }
 
-            var result = ToRepositoryType(model);
-
-            return result;
+            return model.ToRepositoryType();
         }
 
         public WebHookSession GetWebHookSession(string token)
@@ -43,7 +41,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(UserSession session)
         {
-            var model = ToEntityFrameworkType(session);
+            var model = EntityFrameworkUserSessionModel.FromRepositoryType(session);
 
             _userSessions.Add(model);
         }
@@ -59,7 +57,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         {
             var results = (from x in _userSessions
                            where x.User.Id == user.Id
-                           select ToRepositoryType(x)).Page(filter, x => x.Id)
+                           select x.ToRepositoryType()).Page(filter, x => x.Id)
                            ;
 
             return results;
@@ -73,33 +71,6 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
                            ;
 
             return results;
-        }
-
-        private static EntityFrameworkUserSessionModel ToEntityFrameworkType(UserSession model)
-        {
-            var result = new EntityFrameworkUserSessionModel
-            {
-                CreationTimeStamp = model.CreationTimeStamp,
-                Id = model.Id,
-                LastContactTimeStamp = model.LastContactTimeStamp,
-                Token = model.Token,
-                User = model.User
-            };
-
-            return result;
-        }
-
-        private static UserSession ToRepositoryType(EntityFrameworkUserSessionModel model)
-        {
-            var result = new UserSession(
-                creationTimeStamp: model.CreationTimeStamp,
-                id: model.Id,
-                lastContactTimeStamp: model.LastContactTimeStamp,
-                token: model.Token,
-                user: model.User
-            );
-
-            return result;
         }
     }
 }
