@@ -19,7 +19,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             // well, not as big as three minutes
             DateTime endTime = DateTime.Now.AddSeconds(90);
 
-            EntityFrameworkTaskModel[] tasks = null;
+            Task[] tasks = null;
 
             //tasks = new List<TaskModel>
             //{
@@ -72,7 +72,8 @@ namespace Roomie.Web.WebHook.ActionHandlers
                             new XElement("Script",
                                 new XAttribute("Text", task.Script.Text)
                             ));
-                        task.ReceivedTimestamp = DateTime.UtcNow;
+                        task.MarkAsReceived();
+                        database.Tasks.Update(task);
                     }
                     catch
                     { }

@@ -32,6 +32,8 @@ namespace Roomie.Web.Persistence.Database
         {
             _database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
+            Tasks = new TaskRepository(_database.Tasks, _database.Users);
+
             Computers = new ComputerRepository(_database.Computers);
 
             NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests, _database.Users);
@@ -39,7 +41,7 @@ namespace Roomie.Web.Persistence.Database
             var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks);
             Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
 
-            var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices);
+            var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices, Tasks);
             Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
 
             DeviceLocations = new DeviceLocationRepository(_database.DeviceLocations);
@@ -48,7 +50,6 @@ namespace Roomie.Web.Persistence.Database
 
             Scripts = new ScriptRepository(_database.Scripts);
 
-            Tasks = new TaskRepository(_database.Tasks);
 
             Users = new UserRepository(_database.Users);
 

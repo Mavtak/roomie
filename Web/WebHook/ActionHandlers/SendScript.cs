@@ -35,17 +35,11 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 return;
             }
 
-            var task = new EntityFrameworkTaskModel
+            var task = Task.Create(user.ToRepositoryType(), "WebHook, " + computer.Name, targetComputer, new EntityFrameworkScriptModel
             {
-                Owner = user,
-                Origin = "WebHook, " + computer.Name,
-                Target = targetComputer,
-                Script = new EntityFrameworkScriptModel
-                {
-                    Mutable = false,
-                    Text = request.Values["ScriptText"]
-                }
-            };
+                Mutable = false,
+                Text = request.Values["ScriptText"]
+            });
 
             database.Tasks.Add(task);
             database.SaveChanges();

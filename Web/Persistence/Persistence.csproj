@@ -78,6 +78,7 @@
     <Compile Include="Models\ColorSwitchModel.cs" />
     <Compile Include="Models\MultilevelSensorModel.cs" />
     <Compile Include="Models\EntityFrameworkNetworkGuestModel.cs" />
+    <Compile Include="Models\Task.cs" />
     <Compile Include="Models\ThermostatCoreModel.cs" />
     <Compile Include="Models\DeviceLocationModel.cs" />
     <Compile Include="Models\EntityFrameworkComputerModel.cs" />

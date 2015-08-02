@@ -15,22 +15,13 @@ namespace Roomie.Web.Persistence.Helpers
             var user = network.Owner;
             var computer = network.AttatchedComputer;
 
-            var task = new EntityFrameworkTaskModel
+            var task = Task.Create(user.ToRepositoryType(), "Web Interface", computer, new EntityFrameworkScriptModel
             {
-                Owner = user,
-                Target = computer,
-                Origin = "Web Interface",
-                Script = new EntityFrameworkScriptModel
-                {
-                    Mutable = false,
-                    Text = command
-                }
-            };
+                Mutable = false,
+                Text = command
+            });
             
-            //TODO: does this get all of the tasks?  If so, find a better way!
-            var tasks = user.Tasks;
-
-            tasks.Add(task);
+            device.TaskRepository.Add(task);
         }
 
         public static string BuildCommand(this EntityFrameworkDeviceModel device, string name, params string[] additionalData)

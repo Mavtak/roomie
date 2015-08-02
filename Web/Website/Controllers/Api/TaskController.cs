@@ -9,7 +9,7 @@ namespace Roomie.Web.Website.Controllers.Api
     [AutoSave]
     public class TaskController : RoomieBaseApiController
     {
-        public EntityFrameworkTaskModel Get(int id)
+        public Task Get(int id)
         {
             var task = Database.Tasks.Get(id);
             var result = GetSerializableVersion(task);
@@ -17,7 +17,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public Page<EntityFrameworkTaskModel> Get([FromUri] ListFilter filter)
+        public Page<Task> Get([FromUri] ListFilter filter)
         {
             var result = Database.Tasks.List(User, filter)
                 .Transform(GetSerializableVersion);
@@ -25,33 +25,39 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        private EntityFrameworkTaskModel GetSerializableVersion(EntityFrameworkTaskModel task)
+        private Task GetSerializableVersion(Task task)
         {
-            var result = new EntityFrameworkTaskModel
-            {
-                Expiration = task.Expiration,
-                Id = task.Id,
-                Origin = task.Origin,
-                ReceivedTimestamp = task.ReceivedTimestamp,
-                Script = task.Script
-            };
-
+            User owner = null;
             if (task.Owner != null)
             {
-                result.Owner = new EntityFrameworkUserModel
+                owner = new User(
+                    alias: task.Owner.Alias,
+                    email: null,
+                    id: task.Owner.Id,
+                    registeredTimestamp: null,
+                    secret: null,
+                    token: null
+                );
+            }
+
+            EntityFrameworkComputerModel target = null;
+            if (task.Target != null)
+            {
+                target = new EntityFrameworkComputerModel
                 {
-                    Id = task.Owner.Id
+                    Id = task.Target.Id
                 };
             }
 
-            if (task.Target != null)
-            {
-                result.Target = new EntityFrameworkComputerModel
-                {
-                    Id = task.Target.Id,
-                    Name = task.Target.Name
-                };
-            }
+            var result = new Task(
+                expiration: task.Expiration,
+                id: task.Id,
+                origin: task.Origin,
+                owner: owner,
+                receivedTimestamp: task.ReceivedTimestamp,
+                script: task.Script,
+                target: target
+            );
 
             return result;
         }

@@ -458,7 +458,7 @@
     <Content Include="Views\Angular\App.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\Rackspace CloudSites Hosting.pubxml" />
+    <None Include="Properties\PublishProfiles\D Temp.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

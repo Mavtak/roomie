@@ -15,6 +15,7 @@ using Roomie.Common.Measurements.Illuminance;
 using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Helpers;
+using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -35,6 +36,8 @@ namespace Roomie.Web.Persistence.Models
         public virtual DeviceLocationModel Location { get; set; }
 
         public string Notes { get; set; }
+
+        public ITaskRepository TaskRepository { get; set; }
 
         public void Poll()
         {

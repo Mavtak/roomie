@@ -1,18 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Roomie.Web.Persistence.Helpers;
+using System.Data.Entity;
 
 namespace Roomie.Web.Persistence.Models
 {
     [Table("TaskModels")]
-    public class EntityFrameworkTaskModel : IHasDivId
+    public class EntityFrameworkTaskModel
     {
-        public EntityFrameworkTaskModel()
-        {
-            Expiration = DateTime.UtcNow.AddSeconds(30);
-        }
-
         [Key]
         public int Id { get; set; }
 
@@ -23,38 +18,38 @@ namespace Roomie.Web.Persistence.Models
 
         public DateTime? Expiration { get; set; }
         public DateTime? ReceivedTimestamp { get; set; }
-        public bool Received
+
+        #region Conversions
+
+        public static EntityFrameworkTaskModel FromRepositoryType(Task model, DbSet<EntityFrameworkUserModel> users)
         {
-            get
+            var result = new EntityFrameworkTaskModel
             {
-                return ReceivedTimestamp.HasValue;
-            }
-        }
-        public bool Waiting
-        {
-            get
-            {
-                return !Received
-                    && ( (Expiration >= DateTime.UtcNow)
-                        || !Expiration.HasValue);
-            }
-        }
-        public bool Expired
-        {
-            get
-            {
-                return !Received && (Expiration < DateTime.UtcNow);
-            }
+                Expiration = model.Expiration,
+                Id = model.Id,
+                Origin = model.Origin,
+                Owner = users.Find(model.Owner.Id),
+                ReceivedTimestamp = model.ReceivedTimestamp,
+                Script = model.Script,
+                Target = model.Target
+            };
+
+            return result;
         }
 
-        #region HasId implementation
-
-        public string DivId
+        public Task ToRepositoryType()
         {
-            get
-            {
-                return "task" + Id;
-            }
+            var result = new Task(
+                expiration: Expiration,
+                id: Id,
+                origin: Origin,
+                owner: Owner.ToRepositoryType(),
+                receivedTimestamp: ReceivedTimestamp,
+                script: Script,
+                target: Target
+            );
+
+            return result;
         }
 
         #endregion

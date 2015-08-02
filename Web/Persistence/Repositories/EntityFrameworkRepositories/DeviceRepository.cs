@@ -10,10 +10,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     public class DeviceRepository : IDeviceRepository
     {
         private readonly DbSet<EntityFrameworkDeviceModel> _devices;
+        private readonly ITaskRepository _tasks;
 
-        public DeviceRepository(DbSet<EntityFrameworkDeviceModel> devices)
+        public DeviceRepository(DbSet<EntityFrameworkDeviceModel> devices, ITaskRepository tasks)
         {
             _devices = devices;
+            _tasks = tasks;
         }
 
         public EntityFrameworkDeviceModel Get(int id)
@@ -21,6 +23,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var result = _devices.Find(id);
 
             DeserializeDeviceState(result);
+            result.TaskRepository = _tasks;
 
             return result;
         }
@@ -59,6 +62,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             foreach (var device in result)
             {
                 DeserializeDeviceState(device);
+                device.TaskRepository = _tasks;
             }
 
             return result;

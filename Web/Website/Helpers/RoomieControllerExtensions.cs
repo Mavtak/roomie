@@ -65,7 +65,7 @@ namespace Roomie.Web.Website.Helpers
             return computer;
         }
 
-        public static EntityFrameworkTaskModel SelectTask(this IRoomieController controller, int id)
+        public static Task SelectTask(this IRoomieController controller, int id)
         {
             var database = controller.Database;
             var user = controller.User;
@@ -85,17 +85,11 @@ namespace Roomie.Web.Website.Helpers
             var database = controller.Database;
             var user = controller.User;
 
-            var task = new EntityFrameworkTaskModel
+            var task = Task.Create(user, origin, computer, new EntityFrameworkScriptModel
             {
-                Owner = database.Backend.Users.Find(user.Id),
-                Target = computer,
-                Origin = origin,
-                Script = new EntityFrameworkScriptModel
-                {
-                    Mutable = false,
-                    Text = scriptText
-                }
-            };
+                Mutable = false,
+                Text = scriptText
+            });
 
             database.Tasks.Add(task);
         }

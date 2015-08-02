@@ -8,20 +8,27 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     public class TaskRepository : ITaskRepository
     {
         private readonly DbSet<EntityFrameworkTaskModel> _tasks;
+        private readonly DbSet<EntityFrameworkUserModel> _users;
 
-        public TaskRepository(DbSet<EntityFrameworkTaskModel> tasks)
+        public TaskRepository(DbSet<EntityFrameworkTaskModel> tasks, DbSet<EntityFrameworkUserModel> users)
         {
             _tasks = tasks;
+            _users = users;
         }
 
-        public EntityFrameworkTaskModel Get(int id)
+        public Task Get(int id)
         {
             var result = _tasks.Find(id);
 
-            return result;
+            if (result == null)
+            {
+                return null;
+            }
+
+            return result.ToRepositoryType();
         }
 
-        public EntityFrameworkTaskModel Get(User user, int id)
+        public Task Get(User user, int id)
         {
             var result = Get(id);
 
@@ -43,42 +50,55 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkTaskModel[] Get(EntityFrameworkScriptModel script)
+        public Task[] Get(EntityFrameworkScriptModel script)
         {
             var result = _tasks
                 .Where(x => x.Script.Id == script.Id)
+                .Select(x => x.ToRepositoryType())
                 .ToArray();
 
             return result;
         }
 
-        public void Add(EntityFrameworkTaskModel task)
+        public void Add(Task task)
         {
-            _tasks.Add(task);
+            var model = EntityFrameworkTaskModel.FromRepositoryType(task, _users);
+
+            _tasks.Add(model);
         }
 
-        public void Remove(EntityFrameworkTaskModel task)
+        public void Update(Task task)
         {
-            _tasks.Remove(task);
+            var model = _tasks.Find(task.Id);
+
+            model.ReceivedTimestamp = task.ReceivedTimestamp;
         }
 
-        public Page<EntityFrameworkTaskModel> List(User user, ListFilter filter)
+        public void Remove(Task task)
+        {
+            var model = EntityFrameworkTaskModel.FromRepositoryType(task, _users);
+
+            _tasks.Remove(model);
+        }
+
+        public Page<Task> List(User user, ListFilter filter)
         {
             var results = _tasks
                 .Where(x => x.Owner.Id == user.Id)
                 .Page(filter, x => x.Script.CreationTimestamp)
+                .Transform(x => x.ToRepositoryType())
                 ;
 
             return results;
         }
 
-        public EntityFrameworkTaskModel[] ForComputer(EntityFrameworkComputerModel computer, DateTime now)
+        public Task[] ForComputer(EntityFrameworkComputerModel computer, DateTime now)
         {
             var results = (from t in _tasks
                           where t.Target.Id == computer.Id
                                 && t.ReceivedTimestamp == null
                                 && t.Expiration.Value > now
-                          select t)
+                          select t.ToRepositoryType())
                               .ToArray();
 
             return results;

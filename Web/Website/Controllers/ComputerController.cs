@@ -28,18 +28,11 @@ namespace Roomie.Web.Website.Controllers
         {
             var computer = this.SelectComputer(id);
 
-            var task = new EntityFrameworkTaskModel
+            var task = Task.Create(User, "Website", computer, new EntityFrameworkScriptModel
             {
-                Origin = "Website",
-                Owner = Database.Backend.Users.Find(User.Id),
-                Target = computer,
-                Expiration = DateTime.UtcNow.AddMinutes(1),
-                Script = new EntityFrameworkScriptModel
-                {
-                    Text = script,
-                    Mutable = false
-                }
-            };
+                Text = script,
+                Mutable = false
+            });
 
             Database.Tasks.Add(task);
 
