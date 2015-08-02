@@ -21,14 +21,12 @@ namespace Roomie.Web.Persistence.Repositories
                 return null;
             }
 
-            var secret = result.ParseSecret();
-
-            if (secret == null)
+            if (result.Secret == null)
             {
                 return null;
             }
 
-            var verified = secret.Verify(password);
+            var verified = result.Secret.Verify(password);
 
             if (!verified)
             {

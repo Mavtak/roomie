@@ -10,14 +10,14 @@ namespace Roomie.Web.Persistence.Models
         public string Email { get; set; }
         public int Id { get; set; }
         public DateTime? RegisteredTimestamp { get; set; }
-        public string Secret { get; set; }
+        public ISecret Secret { get; set; }
         public string Token { get; set; }
 
         public User()
         {
         }
 
-        public User(string alias, string email, int id, DateTime? registeredTimestamp, string secret, string token)
+        public User(string alias, string email, int id, DateTime? registeredTimestamp, ISecret secret, string token)
         {
             Alias = alias;
             Email = email;
@@ -46,17 +46,9 @@ namespace Roomie.Web.Persistence.Models
             var result = new User
             {
                 Alias = username,
-                Secret = secret.Format(),
+                Secret = secret,
                 Token = token
             };
-
-            return result;
-        }
-
-        //TODO: integrate
-        public ISecret ParseSecret()
-        {
-            var result = SecretExtensions.Parse(Secret);
 
             return result;
         }

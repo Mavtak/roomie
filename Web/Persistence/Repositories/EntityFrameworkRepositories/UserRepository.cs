@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Linq;
+using Roomie.Web.Persistence.Helpers.Secrets;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
@@ -50,7 +51,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
             model.Alias = user.Alias;
             model.Email= user.Email;
-            model.Secret = user.Secret;
+            model.Secret = (user.Secret == null) ? null : user.Secret.Format();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Roomie.Web.Persistence.Models
                 Email = model.Email,
                 Id = model.Id,
                 RegisteredTimestamp = model.RegisteredTimestamp,
-                Secret = model.Secret,
+                Secret = (model.Secret == null) ? null : model.Secret.Format(),
                 Token = model.Token
             };
 
@@ -49,7 +49,7 @@ namespace Roomie.Web.Persistence.Models
                 email: Email,
                 id: Id,
                 registeredTimestamp: RegisteredTimestamp,
-                secret: Secret,
+                secret: SecretExtensions.Parse(Secret),
                 token: Token
             );
 
