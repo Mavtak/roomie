@@ -89,6 +89,11 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         private static void DeserializeDeviceState(EntityFrameworkDeviceModel device)
         {
+            if (string.IsNullOrEmpty(device.Notes))
+            {
+                return;
+            }
+
             var element = XElement.Parse(device.Notes);
             var state = element.ToDeviceState();
 
