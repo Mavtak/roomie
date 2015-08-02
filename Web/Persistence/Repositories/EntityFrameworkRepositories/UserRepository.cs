@@ -43,5 +43,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
             _users.Add(model);
         }
+
+        public void Update(User user)
+        {
+            var model = _users.Find(user.Id);
+
+            model.Alias = user.Alias;
+            model.Email= user.Email;
+            model.Secret = user.Secret;
+        }
     }
 }

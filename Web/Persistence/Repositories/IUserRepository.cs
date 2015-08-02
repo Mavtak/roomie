@@ -7,5 +7,6 @@ namespace Roomie.Web.Persistence.Repositories
         User Get(int id);
         User Get(string token);
         void Add(User user);
+        void Update(User user);
     }
 }
