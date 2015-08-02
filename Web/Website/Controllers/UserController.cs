@@ -95,6 +95,7 @@ namespace Roomie.Web.Website.Controllers
         public ActionResult Edit(EntityFrameworkUserModel user)
         {
             this.User.Alias = user.Alias;
+            Database.Users.Update(User);
             Database.SaveChanges();
 
             return View(User);
