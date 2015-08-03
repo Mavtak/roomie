@@ -98,7 +98,9 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
                           where t.Target.Id == computer.Id
                                 && t.ReceivedTimestamp == null
                                 && t.Expiration.Value > now
-                          select t.ToRepositoryType())
+                          select t)
+                          .ToArray()
+                          .Select(x => x.ToRepositoryType())
                               .ToArray();
 
             return results;
