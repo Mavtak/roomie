@@ -6,10 +6,10 @@ namespace Roomie.Web.Website.ViewModels
     public class ComputerViewModel
     {
         public WidgetData WidgetData { get; set; }
-        public EntityFrameworkComputerModel Computer { get; set; }
+        public Computer Computer { get; set; }
         public bool DisplayWebhookSettings { get; set; }
 
-        public ComputerViewModel(EntityFrameworkComputerModel computer, UrlHelper urlHelper)
+        public ComputerViewModel(Computer computer, UrlHelper urlHelper)
         {
             Computer = computer;
 

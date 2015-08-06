@@ -5,7 +5,7 @@ namespace Roomie.Web.Persistence.Models
 {
     public class WebHookSession : IHasDivId
     {
-        public virtual EntityFrameworkComputerModel Computer { get; private set; }
+        public virtual Computer Computer { get; private set; }
         public int Id { get; private set; }
         public DateTime? LastPing { get; private set; }
         public string Token { get; private set; }
@@ -14,7 +14,7 @@ namespace Roomie.Web.Persistence.Models
         {
         }
 
-        public WebHookSession(EntityFrameworkComputerModel computer, int id, DateTime? lastPing, string token)
+        public WebHookSession(Computer computer, int id, DateTime? lastPing, string token)
         {
             Computer = computer;
             Id = id;
@@ -22,7 +22,7 @@ namespace Roomie.Web.Persistence.Models
             Token = token;
         }
 
-        public static WebHookSession Create(EntityFrameworkComputerModel computer)
+        public static WebHookSession Create(Computer computer)
         {
             var result = new WebHookSession
             {

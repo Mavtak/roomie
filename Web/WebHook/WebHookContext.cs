@@ -6,9 +6,9 @@ namespace Roomie.Web.WebHook
 {
     internal class WebHookContext : TransmissionContext
     {
-        public EntityFrameworkComputerModel Computer { get; set; }
+        public Computer Computer { get; set; }
         public WebHookSession Session { get; set; }
-        public EntityFrameworkUserModel User
+        public User User
         {
             get
             {

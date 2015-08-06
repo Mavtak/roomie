@@ -12,6 +12,6 @@ namespace Roomie.Web.Persistence.Repositories
         void Update(Task task);
         void Remove(Task task);
         Page<Task> List(User user, ListFilter filter);
-        Task[] ForComputer(EntityFrameworkComputerModel computer, DateTime now);
+        Task[] ForComputer(Computer computer, DateTime now);
     }
 }

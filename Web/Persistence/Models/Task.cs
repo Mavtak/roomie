@@ -11,13 +11,13 @@ namespace Roomie.Web.Persistence.Models
         public virtual User Owner { get; private set; }
         public DateTime? ReceivedTimestamp { get; private set; }
         public virtual EntityFrameworkScriptModel Script { get; private set; }
-        public virtual EntityFrameworkComputerModel Target { get; private set; }
+        public virtual Computer Target { get; private set; }
 
         private Task()
         {
         }
 
-        public Task(DateTime? expiration, int id, string origin, User owner, DateTime? receivedTimestamp, EntityFrameworkScriptModel script, EntityFrameworkComputerModel target)
+        public Task(DateTime? expiration, int id, string origin, User owner, DateTime? receivedTimestamp, EntityFrameworkScriptModel script, Computer target)
         {
             Expiration = expiration;
             Id = id;
@@ -28,7 +28,7 @@ namespace Roomie.Web.Persistence.Models
             Target = target;
         }
 
-        public static Task Create(User owner, string origin, EntityFrameworkComputerModel target, EntityFrameworkScriptModel script)
+        public static Task Create(User owner, string origin, Computer target, EntityFrameworkScriptModel script)
         {
             var result = new Task
             {

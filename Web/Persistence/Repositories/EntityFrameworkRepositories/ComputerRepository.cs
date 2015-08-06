@@ -8,20 +8,27 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     public class ComputerRepository : IComputerRepository
     {
         private readonly DbSet<EntityFrameworkComputerModel> _computers;
+        private readonly DbSet<EntityFrameworkUserModel> _users;
 
-        public ComputerRepository(DbSet<EntityFrameworkComputerModel> computers)
+        public ComputerRepository(DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkUserModel> users)
         {
             _computers = computers;
+            _users = users;
         }
 
-        public EntityFrameworkComputerModel Get(int id)
+        public Computer Get(int id)
         {
-            var result = _computers.Find(id);
+            var model = _computers.Find(id);
 
-            return result;
+            if (model == null)
+            {
+                return null;
+            }
+
+            return model.ToRepositoryType();
         }
 
-        public EntityFrameworkComputerModel Get(User user, int id)
+        public Computer Get(User user, int id)
         {
             var result = Get(id);
 
@@ -43,46 +50,83 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkComputerModel Get(string accessKey)
+        public Computer Get(string accessKey)
         {
-            var result = _computers.FirstOrDefault(x => x.AccessKey == accessKey);
+            var model = _computers.FirstOrDefault(x => x.AccessKey == accessKey);
 
-            return result;
+            if (model == null)
+            {
+                return null;
+            }
+
+            return model.ToRepositoryType();
         }
 
-        public EntityFrameworkComputerModel Get(User user, string name)
+        public Computer Get(User user, string name)
         {
-            var result = _computers.Where(x => x.Owner.Id == user.Id)
+            var model = _computers.Where(x => x.Owner.Id == user.Id)
                                    .Where(x => x.Name == name)
                                    .FirstOrDefault();
 
-            return result;
+            if (model == null)
+            {
+                return null;
+            }
+
+            return model.ToRepositoryType();
         }
 
-        public EntityFrameworkComputerModel[] Get(EntityFrameworkScriptModel script)
+        public Computer[] Get(EntityFrameworkScriptModel script)
         {
             var result = _computers
                 .Where(x => x.LastScript.Id == script.Id)
+                .ToArray()
+                .Select(x => x.ToRepositoryType())
                 .ToArray();
 
             return result;
         }
 
-        public EntityFrameworkComputerModel[] Get(User user)
+        public Computer[] Get(User user)
         {
-            var result = _computers.Where(x => x.Owner.Id == user.Id).ToArray();
+            var result = _computers
+                .Where(x => x.Owner.Id == user.Id)
+                .ToArray()
+                .Select(x => x.ToRepositoryType())
+                .ToArray();
 
             return result;
         }
 
-        public void Add(EntityFrameworkComputerModel computer)
+        public void Add(Computer computer)
         {
-            _computers.Add(computer);
+            var model = EntityFrameworkComputerModel.FromRepositoryType(computer, _users);
+
+            _computers.Add(model);
         }
 
-        public void Remove(EntityFrameworkComputerModel computer)
+        public void Update(Computer computer)
         {
-            _computers.Remove(computer);
+            var model = _computers.Find(computer.Id);
+
+            model.AccessKey = computer.AccessKey;
+            model.Address = computer.Address;
+            model.EncryptionKey = computer.EncryptionKey;
+            model.LastPing = computer.LastPing;
+            model.LastScript = computer.LastScript;
+            model.Name = computer.Name;
+
+            if (computer.Owner != null)
+            {
+                model.Owner = _users.Find(computer.Owner.Id);
+            }
+        }
+
+        public void Remove(Computer computer)
+        {
+            var model = _computers.Find(computer.Id);
+
+            _computers.Remove(model);
         }
     }
 }

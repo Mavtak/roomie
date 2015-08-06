@@ -30,26 +30,26 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
             var networkAddress = request.Values["NetworkAddress"];
 
-            var network = database.Networks.Get(user.ToRepositoryType(), networkAddress);
+            var network = database.Networks.Get(user, networkAddress);
 
             if (network == null)
             {
                 //responseText.Append("Adding network '" + networkAddress + "'");
                 network = new EntityFrameworkNetworkModel(networkAddress)
                 {
-                    Owner = user
+                    Owner = database.Backend.Users.Find(user.Id)
                 };
                 database.Networks.Add(network);
             }
 
-            network.AttatchedComputer = computer;
+            network.AttatchedComputer = database.Backend.Computers.Find(computer.Id);
             computer.UpdatePing();
             network.UpdatePing();
             database.SaveChanges();
 
             //responseText.Append("network: " + network);
 
-            var sentDevices = ProcessSentDevices(request, response, user.ToRepositoryType(), network, database).ToList();
+            var sentDevices = ProcessSentDevices(request, response, user, network, database).ToList();
 
             var registeredDevices = new List<EntityFrameworkDeviceModel>(network.Devices);
 

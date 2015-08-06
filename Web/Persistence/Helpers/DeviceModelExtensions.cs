@@ -13,7 +13,7 @@ namespace Roomie.Web.Persistence.Helpers
 
             var network = device.Network;
             var user = network.Owner;
-            var computer = network.AttatchedComputer;
+            var computer = network.AttatchedComputer.ToRepositoryType();
 
             var task = Task.Create(user.ToRepositoryType(), "Web Interface", computer, new EntityFrameworkScriptModel
             {

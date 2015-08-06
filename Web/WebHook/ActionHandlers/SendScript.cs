@@ -27,7 +27,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 return;
             }
 
-            var targetComputer = database.Computers.Get(user.ToRepositoryType(), request.Values["TargetComputerName"]);
+            var targetComputer = database.Computers.Get(user, request.Values["TargetComputerName"]);
 
             if(targetComputer == null)
             {
@@ -35,7 +35,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 return;
             }
 
-            var task = Task.Create(user.ToRepositoryType(), "WebHook, " + computer.Name, targetComputer, new EntityFrameworkScriptModel
+            var task = Task.Create(user, "WebHook, " + computer.Name, targetComputer, new EntityFrameworkScriptModel
             {
                 Mutable = false,
                 Text = request.Values["ScriptText"]

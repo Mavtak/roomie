@@ -8,7 +8,7 @@ namespace Roomie.Web.Website.Controllers.Api
     [AutoSave]
     public class ComputerController : RoomieBaseApiController
     {
-        public EntityFrameworkComputerModel[] Get()
+        public Computer[] Get()
         {
             var computers = Database.Computers.Get(User);
             var result = computers.Select(GetSerializableVersion)
@@ -17,7 +17,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public EntityFrameworkComputerModel Get(int id)
+        public Computer Get(int id)
         {
             var computer = this.SelectComputer(id);
             var result = GetSerializableVersion(computer);
@@ -25,42 +25,44 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public EntityFrameworkComputerModel Get(string accessKey)
+        public Computer Get(string accessKey)
         {
             var computer = Database.Computers.Get(accessKey);
             var result = GetSerializableVersion(computer);
             return result;
         }
 
-        public void Post(EntityFrameworkComputerModel model)
+        public void Post(Computer model)
         {
-            Database.Computers.Add(new EntityFrameworkComputerModel
-            {
-                Owner = Database.Backend.Users.Find(User.Id),
-                Name = model.Name
-            });
+            var computer = Computer.Create(model.Name, User);
+            Database.Computers.Add(computer);
         }
 
-        private static EntityFrameworkComputerModel GetSerializableVersion(EntityFrameworkComputerModel device)
+        private static Computer GetSerializableVersion(Computer computer)
         {
-            var result = new EntityFrameworkComputerModel
+            User owner = null;
+            if (computer.Owner != null)
             {
-                AccessKey = device.AccessKey,
-                Address = device.Address,
-                EncryptionKey = device.EncryptionKey,
-                Id = device.Id,
-                LastPing = device.LastPing,
-                LastScript = device.LastScript,
-                Name = device.Name
-            };
-
-            if (device.Owner != null)
-            {
-                result.Owner = new EntityFrameworkUserModel
-                {
-                    Id = device.Owner.Id
-                };
+                owner = new User(
+                    alias: computer.Owner.Alias,
+                    email: null,
+                    id: computer.Owner.Id,
+                    registeredTimestamp: null,
+                    secret: null,
+                    token: null
+                );
             }
+
+            var result = new Computer(
+                accessKey: computer.AccessKey,
+                address: computer.Address,
+                encryptionKey: computer.EncryptionKey,
+                id: computer.Id,
+                lastPing: computer.LastPing,
+                lastScript: computer.LastScript,
+                name: computer.Name,
+                owner: owner
+            );
 
             return result;
         }

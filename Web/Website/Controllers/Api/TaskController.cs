@@ -40,13 +40,19 @@ namespace Roomie.Web.Website.Controllers.Api
                 );
             }
 
-            EntityFrameworkComputerModel target = null;
+            Computer target = null;
             if (task.Target != null)
             {
-                target = new EntityFrameworkComputerModel
-                {
-                    Id = task.Target.Id
-                };
+                target = new Computer(
+                    accessKey: null,
+                    address: null,
+                    encryptionKey: null,
+                    id: task.Target.Id,
+                    lastPing: null,
+                    lastScript: null,
+                    name: target.Name,
+                    owner: null
+                );
             }
 
             var result = new Task(

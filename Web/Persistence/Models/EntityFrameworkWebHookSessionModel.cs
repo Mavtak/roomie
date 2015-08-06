@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -18,11 +19,11 @@ namespace Roomie.Web.Persistence.Models
 
         #region Conversions
 
-        public static EntityFrameworkWebHookSessionModel FromRepositoryType(WebHookSession model)
+        public static EntityFrameworkWebHookSessionModel FromRepositoryType(WebHookSession model, DbSet<EntityFrameworkComputerModel> computers)
         {
             var result = new EntityFrameworkWebHookSessionModel
             {
-                Computer = model.Computer,
+                Computer = computers.Find(model.Computer.Id),
                 Id = model.Id,
                 LastPing = model.LastPing,
                 Token = model.Token,
@@ -34,7 +35,7 @@ namespace Roomie.Web.Persistence.Models
         public WebHookSession ToRepositoryType()
         {
             var result = new WebHookSession(
-                computer: Computer,
+                computer: Computer.ToRepositoryType(),
                 id: Id,
                 lastPing: LastPing,
                 token: Token

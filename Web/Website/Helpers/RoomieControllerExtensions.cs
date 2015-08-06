@@ -50,7 +50,7 @@ namespace Roomie.Web.Website.Helpers
             return script;
         }
 
-        public static EntityFrameworkComputerModel SelectComputer(this IRoomieController controller, int id)
+        public static Computer SelectComputer(this IRoomieController controller, int id)
         {
             var database = controller.Database;
             var user = controller.User;
@@ -80,7 +80,7 @@ namespace Roomie.Web.Website.Helpers
             return task;
         }
 
-        public static void AddTask(this IRoomieController controller, EntityFrameworkComputerModel computer, string origin, string scriptText)
+        public static void AddTask(this IRoomieController controller, Computer computer, string origin, string scriptText)
         {
             var database = controller.Database;
             var user = controller.User;

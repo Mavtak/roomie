@@ -1,12 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Roomie.Web.Persistence.Helpers;
+using System.Data.Entity;
 
 namespace Roomie.Web.Persistence.Models
 {
     [Table("ComputerModels")]
-    public class EntityFrameworkComputerModel : IHasDivId
+    public class EntityFrameworkComputerModel
     {
         [Key]
         public int Id { get; set; }
@@ -20,55 +20,44 @@ namespace Roomie.Web.Persistence.Models
 
         public string Address { get; set; }
 
-        #region LastPing
-
         public DateTime? LastPing { get; set; }
 
-        public TimeSpan? TimeSinceLastPing
+        #region Conversions
+
+        public static EntityFrameworkComputerModel FromRepositoryType(Computer model, DbSet<EntityFrameworkUserModel> users)
         {
-            get
+            var result = new EntityFrameworkComputerModel
             {
-                if (LastPing == null)
-                    return null;
-                return DateTime.UtcNow.Subtract(LastPing.Value);
-            }
+                AccessKey = model.AccessKey,
+                Address = model.Address,
+                EncryptionKey = model.EncryptionKey,
+                Id = model.Id,
+                LastPing = model.LastPing,
+                LastScript = model.LastScript,
+                Name = model.Name,
+                Owner = users.Find(model.Owner.Id)
+            };
+
+            return result;
         }
 
-        public bool IsConnected
+        public Computer ToRepositoryType()
         {
-            get
-            {
-                TimeSpan? temp = TimeSinceLastPing;
-                if (TimeSinceLastPing == null)
-                    return false;
+            var result = new Computer(
+                accessKey: AccessKey,
+                address: Address,
+                encryptionKey: EncryptionKey,
+                id: Id,
+                lastPing: LastPing,
+                lastScript: LastScript,
+                name: Name,
+                owner: Owner.ToRepositoryType()
+            );
 
-                return temp.Value.TotalSeconds <= 5;
-            }
-        }
-
-        public void UpdatePing()
-        {
-            LastPing = DateTime.UtcNow;
+            return result;
         }
 
         #endregion
-
-        private static string generateKey()
-        {
-            return Guid.NewGuid().ToString().Replace("-", "").Substring(0, 16);
-        }
-
-        public void RenewWebhookKeys()
-        {
-            AccessKey = generateKey();
-            EncryptionKey = generateKey();
-        }
-
-        public void DisableWebhook()
-        {
-            AccessKey = null;
-            EncryptionKey = null;
-        }
 
         #region Object overrides
 
@@ -115,25 +104,11 @@ namespace Roomie.Web.Persistence.Models
 
             builder.Append("Computer{Name='");
             builder.Append(Name ?? "(null)");
-            builder.Append("', TimeSinceLastPing='");
-            builder.Append(TimeSinceLastPing);
             builder.Append("', Owner='");
             builder.Append((Owner != null) ? Owner.ToString() : "(null)");
             builder.Append("'}");
 
             return builder.ToString();
-        }
-
-        #endregion
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "computer" + Id;
-            }
         }
 
         #endregion

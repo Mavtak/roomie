@@ -8,12 +8,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     {
         private readonly DbSet<EntityFrameworkUserSessionModel> _userSessions;
         private readonly DbSet<EntityFrameworkWebHookSessionModel> _webHookSessions;
+        private readonly DbSet<EntityFrameworkComputerModel> _computers;
         private readonly DbSet<EntityFrameworkUserModel> _users;
 
-        public SessionRepository(DbSet<EntityFrameworkUserSessionModel> userSessions, DbSet<EntityFrameworkWebHookSessionModel> webHookSessions, DbSet<EntityFrameworkUserModel> users)
+        public SessionRepository(DbSet<EntityFrameworkUserSessionModel> userSessions, DbSet<EntityFrameworkWebHookSessionModel> webHookSessions, DbSet<EntityFrameworkComputerModel>  computers, DbSet<EntityFrameworkUserModel> users)
         {
             _userSessions = userSessions;
             _webHookSessions = webHookSessions;
+            _computers = computers;
             _users = users;
         }
 
@@ -50,7 +52,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(WebHookSession session)
         {
-            var model = EntityFrameworkWebHookSessionModel.FromRepositoryType(session);
+            var model = EntityFrameworkWebHookSessionModel.FromRepositoryType(session, _computers);
 
             _webHookSessions.Add(model);
         }

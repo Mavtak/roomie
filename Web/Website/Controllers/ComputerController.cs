@@ -36,7 +36,8 @@ namespace Roomie.Web.Website.Controllers
 
             Database.Tasks.Add(task);
 
-            computer.LastScript = task.Script;
+            computer.UpdateLastScript(task.Script);
+            Database.Computers.Update(computer);
 
             Database.SaveChanges();
 
@@ -52,6 +53,7 @@ namespace Roomie.Web.Website.Controllers
             var computer = this.SelectComputer(id);
 
             computer.RenewWebhookKeys();
+            Database.Computers.Update(computer);
             Database.SaveChanges();
 
             return Json(new
@@ -66,6 +68,7 @@ namespace Roomie.Web.Website.Controllers
             var computer = this.SelectComputer(id);
 
             computer.DisableWebhook();
+            Database.Computers.Update(computer);
             Database.SaveChanges();
 
             return Json(new
@@ -81,21 +84,16 @@ namespace Roomie.Web.Website.Controllers
         } 
 
         [HttpPost]
-        public ActionResult Create(EntityFrameworkComputerModel computer)
+        public ActionResult Create(string name)
         {
-            computer.Owner = Database.Backend.Users.Find(User.Id);
+            var computer = Computer.Create(name, User);
 
             if (ModelState.IsValid)
             {
                 Database.Computers.Add(computer);
                 Database.SaveChanges();
                 return RedirectToAction(
-                    actionName: "Details",
-                    routeValues: new
-                    {
-                        id = computer.Id,
-                        name = computer.Name
-                    }
+                    actionName: "Index"
                 );  
             }
 

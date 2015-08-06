@@ -32,9 +32,9 @@ namespace Roomie.Web.Persistence.Database
         {
             _database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
-            Tasks = new TaskRepository(_database.Tasks, _database.Users);
+            Tasks = new TaskRepository(_database.Tasks, _database.Computers, _database.Users);
 
-            Computers = new ComputerRepository(_database.Computers);
+            Computers = new ComputerRepository(_database.Computers, _database.Users);
 
             NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests, _database.Users);
 
@@ -53,7 +53,7 @@ namespace Roomie.Web.Persistence.Database
 
             Users = new UserRepository(_database.Users);
 
-            Sessions = new SessionRepository(_database.UserSessions, _database.WebHookSessions, _database.Users);
+            Sessions = new SessionRepository(_database.UserSessions, _database.WebHookSessions, _database.Computers, _database.Users);
         }
 
         public void Reset()

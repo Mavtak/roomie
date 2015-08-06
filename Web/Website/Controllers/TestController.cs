@@ -109,12 +109,8 @@ namespace Roomie.Web.Website.Controllers
             try
             {
                 //Database.Seed();
-
-                var computer = new EntityFrameworkComputerModel
-                {
-                    Owner = Database.Backend.Users.Find(1),
-                    Name = "Test Computer"
-                };
+                var user = Database.Users.Get(1);
+                var computer = Computer.Create("Test Computer", user);
                 Database.Computers.Add(computer);
                 message += "\n" + computer;
 

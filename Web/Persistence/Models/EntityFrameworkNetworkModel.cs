@@ -71,7 +71,7 @@ namespace Roomie.Web.Persistence.Models
             get
             { //TODO: IsConnected (but not by LastPing
                 return (AttatchedComputer != null)
-                    && (AttatchedComputer.IsConnected == true);
+                    && (AttatchedComputer.ToRepositoryType().IsConnected == true);
             }
         }
         

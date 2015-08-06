@@ -8,11 +8,13 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     public class TaskRepository : ITaskRepository
     {
         private readonly DbSet<EntityFrameworkTaskModel> _tasks;
+        private readonly DbSet<EntityFrameworkComputerModel> _computers;
         private readonly DbSet<EntityFrameworkUserModel> _users;
 
-        public TaskRepository(DbSet<EntityFrameworkTaskModel> tasks, DbSet<EntityFrameworkUserModel> users)
+        public TaskRepository(DbSet<EntityFrameworkTaskModel> tasks, DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkUserModel> users)
         {
             _tasks = tasks;
+            _computers = computers;
             _users = users;
         }
 
@@ -62,7 +64,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(Task task)
         {
-            var model = EntityFrameworkTaskModel.FromRepositoryType(task, _users);
+            var model = EntityFrameworkTaskModel.FromRepositoryType(task, _computers, _users);
 
             _tasks.Add(model);
         }
@@ -76,7 +78,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Remove(Task task)
         {
-            var model = EntityFrameworkTaskModel.FromRepositoryType(task, _users);
+            var model = _tasks.Find(task.Id);
 
             _tasks.Remove(model);
         }
@@ -92,7 +94,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return results;
         }
 
-        public Task[] ForComputer(EntityFrameworkComputerModel computer, DateTime now)
+        public Task[] ForComputer(Computer computer, DateTime now)
         {
             var results = (from t in _tasks
                           where t.Target.Id == computer.Id

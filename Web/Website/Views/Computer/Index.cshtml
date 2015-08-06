@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Roomie.Web.Persistence.Models.EntityFrameworkComputerModel>
+﻿@model IEnumerable<Roomie.Web.Persistence.Models.Computer>
 @{
     ViewBag.Title = "Computers";
 }@*
@@ -18,5 +18,5 @@ else
 
 *@@Html.Partial(
     partialViewName: "Partials/Computer/Create",
-    model: new EntityFrameworkComputerModel() //would rather null, but I'll //TODO: fix that later
+    model: new Computer() //would rather null, but I'll //TODO: fix that later
 )

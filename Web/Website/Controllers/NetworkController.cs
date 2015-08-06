@@ -91,7 +91,7 @@ namespace Roomie.Web.Website.Controllers
             string text = String.Format("<HomeAutomation.{0} Network=\"{1}\" />\n<HomeAutomation.SyncWithCloud />", actionName, network.Address);
 
             this.AddTask(
-                computer: network.AttatchedComputer,
+                computer: network.AttatchedComputer.ToRepositoryType(),
                 origin: "RoomieBot",
                 scriptText: text
                 );

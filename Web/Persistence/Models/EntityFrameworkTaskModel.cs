@@ -21,7 +21,7 @@ namespace Roomie.Web.Persistence.Models
 
         #region Conversions
 
-        public static EntityFrameworkTaskModel FromRepositoryType(Task model, DbSet<EntityFrameworkUserModel> users)
+        public static EntityFrameworkTaskModel FromRepositoryType(Task model, DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkUserModel> users)
         {
             var result = new EntityFrameworkTaskModel
             {
@@ -31,7 +31,7 @@ namespace Roomie.Web.Persistence.Models
                 Owner = users.Find(model.Owner.Id),
                 ReceivedTimestamp = model.ReceivedTimestamp,
                 Script = model.Script,
-                Target = model.Target
+                Target = computers.Find(model.Target.Id)
             };
 
             return result;
@@ -46,7 +46,7 @@ namespace Roomie.Web.Persistence.Models
                 owner: Owner.ToRepositoryType(),
                 receivedTimestamp: ReceivedTimestamp,
                 script: Script,
-                target: Target
+                target: Target.ToRepositoryType()
             );
 
             return result;
