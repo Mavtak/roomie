@@ -250,7 +250,6 @@
     <Compile Include="Controllers\CommunicatorController.cs" />
     <Compile Include="Controllers\ComputerController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
-    <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\DeviceController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
@@ -328,7 +327,6 @@
   <ItemGroup>
     <Content Include="Views\Computer\Details.cshtml" />
     <Content Include="Views\Computer\Index.cshtml" />
-    <Content Include="Views\ControlPanel\Index.cshtml" />
     <Content Include="Views\Device\Details.cshtml" />
     <Content Include="Views\Device\Index.cshtml" />
     <Content Include="Views\Error\Http404.cshtml" />
