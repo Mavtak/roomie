@@ -13,7 +13,6 @@ namespace Roomie.Web.Persistence.Database
         public DbSet<EntityFrameworkDeviceModel> Devices { get; set; }
         public DbSet<EntityFrameworkTaskModel> Tasks { get; set; }
         public DbSet<EntityFrameworkScriptModel> Scripts { get; set; }
-        public DbSet<EntityFrameworkSavedScriptModel> SavedScripts { get; set; }
         public DbSet<EntityFrameworkWebHookSessionModel> WebHookSessions { get; set; }
         public DbSet<DeviceLocationModel> DeviceLocations { get; set; }
 

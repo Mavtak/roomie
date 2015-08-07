@@ -10,7 +10,6 @@ namespace Roomie.Web.Persistence.Database
         public IDeviceLocationRepository DeviceLocations { get; set; }
         public INetworkGuestRepository NetworkGuests { get; set; }
         public INetworkRepository Networks { get; set; }
-        public ISavedScriptRepository SavedScripts { get; set; }
         public IScriptRepository Scripts { get; set; }
         public ITaskRepository Tasks { get; set; }
         public IUserRepository Users { get; set; }
@@ -45,8 +44,6 @@ namespace Roomie.Web.Persistence.Database
             Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
 
             DeviceLocations = new DeviceLocationRepository(_database.DeviceLocations);
-
-            SavedScripts = new SavedScriptRepository(_database.SavedScripts);
 
             Scripts = new ScriptRepository(_database.Scripts);
 

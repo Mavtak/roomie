@@ -13,7 +13,6 @@ namespace Roomie.Web.Persistence.Database
         IDeviceLocationRepository DeviceLocations { get; }
         INetworkGuestRepository NetworkGuests { get; }
         INetworkRepository Networks { get; }
-        ISavedScriptRepository SavedScripts { get; }
         IScriptRepository Scripts { get; }
         ITaskRepository Tasks { get; }
         IUserRepository Users { get; }

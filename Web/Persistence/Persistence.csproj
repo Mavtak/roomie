@@ -97,7 +97,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Database\RoomieDatabaseContext.cs" />
     <Compile Include="Database\RoomieDatabaseInitializer.cs" />
-    <Compile Include="Models\EntityFrameworkSavedScriptModel.cs" />
     <Compile Include="Models\EntityFrameworkScriptModel.cs" />
     <Compile Include="Models\EntityFrameworkTaskModel.cs" />
     <Compile Include="Models\EntityFrameworkUserModel.cs" />
@@ -108,7 +107,6 @@
     <Compile Include="Repositories\EntityFrameworkRepositories\Helpers.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\ScriptRepository.cs" />
     <Compile Include="Repositories\IScriptRepository.cs" />
-    <Compile Include="Repositories\EntityFrameworkRepositories\SavedScriptRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\DeviceLocationRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\SessionRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\ComputerRepository.cs" />
@@ -124,7 +122,6 @@
     <Compile Include="Repositories\IDeviceRepository.cs" />
     <Compile Include="Repositories\INetworkGuestRepository.cs" />
     <Compile Include="Repositories\INetworkRepository.cs" />
-    <Compile Include="Repositories\ISavedScriptRepository.cs" />
     <Compile Include="Repositories\ISessionRepository.cs" />
     <Compile Include="Repositories\ITaskRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />

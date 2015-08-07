@@ -35,21 +35,6 @@ namespace Roomie.Web.Website.Helpers
             return network;
         }
 
-        public static EntityFrameworkSavedScriptModel SelectSavedScript(this IRoomieController controller, int id)
-        {
-            var database = controller.Database;
-            var user = controller.User;
-
-            var script = database.SavedScripts.Get(user, id);
-
-            if (script == null)
-            {
-                throw new HttpException(404, "Script not found");
-            }
-
-            return script;
-        }
-
         public static Computer SelectComputer(this IRoomieController controller, int id)
         {
             var database = controller.Database;

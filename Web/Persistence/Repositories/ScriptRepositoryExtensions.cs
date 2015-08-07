@@ -6,7 +6,7 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public static class ScriptRepositoryExtensions
     {
-        public static CleaningResult Clean(this IScriptRepository repository, ITaskRepository taskRepository, ISavedScriptRepository savedScriptRepository, IComputerRepository computerRepository, ListFilter filter = null)
+        public static CleaningResult Clean(this IScriptRepository repository, ITaskRepository taskRepository, IComputerRepository computerRepository, ListFilter filter = null)
         {
             if (filter == null)
             {
@@ -23,7 +23,6 @@ namespace Roomie.Web.Persistence.Repositories
                     var getOwnersFunctions = new Func<EntityFrameworkScriptModel, object[]>[]
                         {
                             taskRepository.Get,
-                            savedScriptRepository.Get,
                             computerRepository.Get
                         };
 

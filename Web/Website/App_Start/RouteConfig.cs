@@ -68,7 +68,7 @@ namespace Roomie.Web.Website
                 },
                 constraints: new
                 {
-                    controller = "(Network|Device|Computer|Script|Task|ControlPanel)"
+                    controller = "(Network|Device|Computer|Task|ControlPanel)"
                 }
             );
 
