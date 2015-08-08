@@ -216,7 +216,7 @@ namespace Roomie.Web.Persistence.Models
             {
                 return (IsConnected == true)
                     && (Network != null)
-                    && (Network.IsAvailable == true);
+                    && (Network.ToRepositoryType().IsAvailable == true);
             }
         }
 
@@ -226,7 +226,7 @@ namespace Roomie.Web.Persistence.Models
         {
             get
             {
-                return Network;
+                return Network.ToRepositoryType();
             }
         }
 
@@ -319,7 +319,7 @@ namespace Roomie.Web.Persistence.Models
         {
             get
             {
-                return Network;
+                return Network.ToRepositoryType();
             }
         }
 

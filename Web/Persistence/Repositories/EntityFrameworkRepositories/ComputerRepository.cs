@@ -115,13 +115,9 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             model.Address = computer.Address;
             model.EncryptionKey = computer.EncryptionKey;
             model.LastPing = computer.LastPing;
-            model.LastScript = _scripts.Find(computer.LastScript.Id);
+            model.LastScript = (computer.LastScript == null) ? null : _scripts.Find(computer.LastScript.Id);
             model.Name = computer.Name;
-
-            if (computer.Owner != null)
-            {
-                model.Owner = _users.Find(computer.Owner.Id);
-            }
+            model.Owner = (computer.Owner == null) ? null : _users.Find(computer.Owner.Id);
         }
 
         public void Remove(Computer computer)

@@ -20,7 +20,7 @@ namespace Roomie.Web.Website.Helpers
             return device;
         }
 
-        public static EntityFrameworkNetworkModel SelectNetwork(this IRoomieController controller, int id)
+        public static Network SelectNetwork(this IRoomieController controller, int id)
         {
             var database = controller.Database;
             var user = controller.User;

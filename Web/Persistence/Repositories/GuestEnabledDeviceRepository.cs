@@ -43,7 +43,7 @@ namespace Roomie.Web.Persistence.Repositories
 
             if (result.Network.Owner.Id != user.Id)
             {
-                var guest = _guests.Check(result.Network, user);
+                var guest = _guests.Check(result.Network.ToRepositoryType(), user);
                 
                 if (!guest)
                 {
@@ -54,7 +54,7 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public EntityFrameworkDeviceModel[] Get(EntityFrameworkNetworkModel network)
+        public EntityFrameworkDeviceModel[] Get(Network network)
         {
             var result = _devices.Get(network);
 

@@ -1,4 +1,4 @@
-﻿@model Roomie.Web.Persistence.Models.EntityFrameworkNetworkModel
+﻿@model Roomie.Web.Persistence.Models.Network
 @{
     var status = WidgetData.ConnectedOrDisconnected(Model.IsAvailable);
     var target = Url.Action(
@@ -22,7 +22,7 @@
 }
 @*
 
-*@@helper ComputerLink(EntityFrameworkComputerModel computer)
+*@@helper ComputerLink(Computer computer)
     {
         if (computer != null)
         {
@@ -47,7 +47,7 @@
   *@<div class="data">@*
     *@<div class="item">@*
     *@<div class="key">Devices:</div>@*
-    *@<div class="value">@Model.Devices.Count</div>@*
+    *@<div class="value">@Model.Devices.Count()</div>@*
   *@</div>@*
     *@<div class="item">@*
     *@<div class="key">Last Ping:</div>@*

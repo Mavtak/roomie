@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Roomie.Common.HomeAutomation;
-using Roomie.Web.Persistence.Helpers;
+using System.Data.Entity;
 
 namespace Roomie.Web.Persistence.Models
 {
     [Table("NetworkModels")]
-    public class EntityFrameworkNetworkModel : INetwork, IHasDivId
+    public class EntityFrameworkNetworkModel
     {
         [Key]
         public int Id { get; set; }
@@ -16,8 +15,6 @@ namespace Roomie.Web.Persistence.Models
         public string Address { get; set; }
         
         public virtual EntityFrameworkUserModel Owner { get; set; }
-        //public string Address { get; set; }
-        //public string Name { get; set; }
 
         public virtual EntityFrameworkComputerModel AttatchedComputer { get; set; }
 
@@ -27,56 +24,45 @@ namespace Roomie.Web.Persistence.Models
 
         }
 
-        public EntityFrameworkNetworkModel(string address)
-            : this()
-        {
-            Address = address;
-        }
-
-        #region LastPing
-
         public DateTime? LastPing { get; set; }
+        
+        public virtual ICollection<EntityFrameworkDeviceModel> Devices { get; set; }
 
-        public TimeSpan? TimeSinceLastPing
+
+        #region Conversions
+
+        public static EntityFrameworkNetworkModel FromRepositoryType(Network network, DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkUserModel> users)
         {
-            get
+            var result = new EntityFrameworkNetworkModel
             {
-                if (LastPing == null)
-                    return null;
-                return DateTime.UtcNow.Subtract(LastPing.Value);
-            }
+                Address = network.Address,
+                AttatchedComputer = computers.Find(network.AttatchedComputer.Id),
+                //TODO: include devices?,
+                Id = network.Id,
+                LastPing = network.LastPing,
+                Name = network.Name,
+                Owner = users.Find(network.Owner.Id)
+            };
+
+            return result;
         }
 
-        public bool IsConnected
+        public Network ToRepositoryType()
         {
-            get
-            {
-                TimeSpan? temp = TimeSinceLastPing;
-                if (TimeSinceLastPing == null)
-                    return false;
+            var result = new Network(
+                address: Address,
+                attatchedComputer: AttatchedComputer.ToRepositoryType(),
+                devices: Devices,
+                id: Id,
+                lastPing: LastPing,
+                name: Name,
+                owner: Owner.ToRepositoryType()
+            );
 
-                return temp.Value.TotalSeconds < 10;
-            }
-        }
-
-        public void UpdatePing()
-        {
-            LastPing = DateTime.UtcNow;
+            return result;
         }
 
         #endregion
-
-        public bool? IsAvailable
-        {
-            get
-            { //TODO: IsConnected (but not by LastPing
-                return (AttatchedComputer != null)
-                    && (AttatchedComputer.ToRepositoryType().IsConnected == true);
-            }
-        }
-        
-        
-        public virtual ICollection<EntityFrameworkDeviceModel> Devices { get; set; }
 
         #region Object overrides
 
@@ -149,54 +135,5 @@ namespace Roomie.Web.Persistence.Models
         }
 
         #endregion
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "network" + Id;
-            }
-        }
-
-        #endregion
-
-        #region INetworkDevice
-
-        IEnumerable<IDevice> INetwork.Devices
-        {
-            get
-            {
-                return Devices;
-            }
-        }
-
-        #endregion
-
-        #region INetworkState
-
-        IEnumerable<IDeviceState> INetworkState.DeviceStates
-        {
-            get
-            {
-                return Devices;
-            }
-        }
-
-        #endregion
-
-        #region INetworkDeviceActions
-
-        public IEnumerable<IDeviceActions> DeviceActions
-        {
-            get
-            {
-                return Devices;
-            }
-        }
-
-        #endregion
-
     }
 }

@@ -8,20 +8,29 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     public class NetworkRepository : INetworkRepository
     {
         private readonly DbSet<EntityFrameworkNetworkModel> _networks;
+        private readonly DbSet<EntityFrameworkComputerModel> _computers;
+        private readonly DbSet<EntityFrameworkUserModel> _users;
 
-        public NetworkRepository(DbSet<EntityFrameworkNetworkModel> networks)
+        public NetworkRepository(DbSet<EntityFrameworkNetworkModel> networks, DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkUserModel> users)
         {
             _networks = networks;
+            _computers = computers;
+            _users = users;
         }
 
-        public EntityFrameworkNetworkModel Get(int id)
+        public Network Get(int id)
         {
             var result = _networks.Find(id);
 
-            return result;
+            if (result == null)
+            {
+                return null;
+            }
+
+            return result.ToRepositoryType();
         }
 
-        public EntityFrameworkNetworkModel Get(User user, int id)
+        public Network Get(User user, int id)
         {
             var result = Get(id);
 
@@ -43,29 +52,53 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkNetworkModel[] Get(User user)
+        public Network[] Get(User user)
         {
-            var results = _networks.Where(x => x.Owner.Id == user.Id).ToArray();
+            var results = _networks
+                .Where(x => x.Owner.Id == user.Id)
+                .ToArray()
+                .Select(x => x.ToRepositoryType())
+                .ToArray();
 
             return results;
         }
 
-        public EntityFrameworkNetworkModel Get(User user, string address)
+        public Network Get(User user, string address)
         {
             var result = _networks.Where(x => x.Owner.Id == user.Id)
                                   .Where(x => x.Address == address)
                                   .FirstOrDefault();
-            return result;
+
+            if (result == null)
+            {
+                return null;
+            }
+
+            return result.ToRepositoryType();
         }
 
-        public void Add(EntityFrameworkNetworkModel network)
+        public void Add(Network network)
         {
-            _networks.Add(network);
+            var model = EntityFrameworkNetworkModel.FromRepositoryType(network, _computers, _users);
+
+            _networks.Add(model);
         }
 
-        public void Remove(EntityFrameworkNetworkModel network)
+        public void Update(Network network)
         {
-            _networks.Remove(network);
+            var model = _networks.Find(network.Id);
+
+            model.Address = network.Address;
+            model.AttatchedComputer = _computers.Find(network.AttatchedComputer.Id);
+            model.LastPing = network.LastPing;
+            model.Name = network.Name;
+        }
+
+        public void Remove(Network network)
+        {
+            var model = _networks.Find(network.Id);
+
+            _networks.Remove(model);
         }
     }
 }

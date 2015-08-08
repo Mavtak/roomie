@@ -37,9 +37,9 @@ namespace Roomie.Web.Persistence.Database
 
             Computers = new ComputerRepository(_database.Computers, _database.Scripts, _database.Users);
 
-            NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests, _database.Users);
+            NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests, _database.Networks, _database.Users);
 
-            var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks);
+            var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks, _database.Computers, _database.Users);
             Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
 
             var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices, Scripts, Tasks);

@@ -58,7 +58,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkDeviceModel[] Get(EntityFrameworkNetworkModel network)
+        public EntityFrameworkDeviceModel[] Get(Network network)
         {
             var result = _devices.Where(x => x.Network.Id == network.Id).ToArray();
 

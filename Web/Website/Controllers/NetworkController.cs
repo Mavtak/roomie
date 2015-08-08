@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
-using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 
@@ -10,21 +8,9 @@ namespace Roomie.Web.Website.Controllers
     [WebsiteRestrictedAccess]
     public class NetworkController : RoomieBaseController
     {
-        private EntityFrameworkNetworkModel GetNetwork(int id)
-        {
-            var network = this.SelectNetwork(id);
-
-            return network;
-        }
-
         public ActionResult Index()
         {
             var networks = Database.Networks.Get(User);
-
-            foreach (var network in networks)
-            {
-                network.SortDevices();
-            }
 
             return View(networks);
         }
@@ -34,8 +20,6 @@ namespace Roomie.Web.Website.Controllers
             //TODO: Verify User
             var network = this.SelectNetwork(id);
 
-            network.SortDevices();
-
             return View(network);
         }
 
@@ -44,15 +28,20 @@ namespace Roomie.Web.Website.Controllers
         {
             var network = this.SelectNetwork(id);
 
-            network.Name = name;
             if (delete == true)
             {
-                foreach (EntityFrameworkDeviceModel device in network.Devices.ToList())
+                foreach (EntityFrameworkDeviceModel device in Database.Devices.Get(network))
                 {
                     Database.Devices.Remove(device);
                 }
                 Database.Networks.Remove(network);
             }
+            else
+            {
+                network.UpdateName(name);
+                Database.Networks.Update(network);
+            }
+            
             Database.SaveChanges();
 
             if (String.IsNullOrEmpty(returnUrl) && HttpContext.Request.UrlReferrer != null)
@@ -91,7 +80,7 @@ namespace Roomie.Web.Website.Controllers
             string text = String.Format("<HomeAutomation.{0} Network=\"{1}\" />\n<HomeAutomation.SyncWithCloud />", actionName, network.Address);
 
             this.AddTask(
-                computer: network.AttatchedComputer.ToRepositoryType(),
+                computer: network.AttatchedComputer,
                 origin: "RoomieBot",
                 scriptText: text
                 );

@@ -69,7 +69,6 @@
     <Compile Include="Helpers\DeviceModelExtensions.cs" />
     <Compile Include="Helpers\LocationModelExtensions.cs" />
     <Compile Include="Helpers\DeviceSort.cs" />
-    <Compile Include="Helpers\NetworkModelExtensions.cs" />
     <Compile Include="Helpers\Secrets\BCryptSecret.cs" />
     <Compile Include="Helpers\Secrets\ISecret.cs" />
     <Compile Include="Helpers\Secrets\PlainTextSecret.cs" />
@@ -79,6 +78,7 @@
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\MultilevelSensorModel.cs" />
     <Compile Include="Models\EntityFrameworkNetworkGuestModel.cs" />
+    <Compile Include="Models\Network.cs" />
     <Compile Include="Models\Script.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\ThermostatCoreModel.cs" />

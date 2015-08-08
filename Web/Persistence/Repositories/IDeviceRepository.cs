@@ -7,7 +7,7 @@ namespace Roomie.Web.Persistence.Repositories
     {
         EntityFrameworkDeviceModel Get(int id);
         EntityFrameworkDeviceModel Get(User user, int id);
-        EntityFrameworkDeviceModel[] Get(EntityFrameworkNetworkModel network);
+        EntityFrameworkDeviceModel[] Get(Network network);
         void Add(EntityFrameworkDeviceModel device);
         void Remove(EntityFrameworkDeviceModel device);
         void Update(int id, IDeviceState state);
