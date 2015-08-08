@@ -37,6 +37,7 @@ namespace Roomie.Web.Persistence.Models
 
         public string Notes { get; set; }
 
+        public IScriptRepository ScriptRepository { get; set; }
         public ITaskRepository TaskRepository { get; set; }
 
         public void Poll()

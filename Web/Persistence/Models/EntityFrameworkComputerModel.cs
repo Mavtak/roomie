@@ -24,7 +24,7 @@ namespace Roomie.Web.Persistence.Models
 
         #region Conversions
 
-        public static EntityFrameworkComputerModel FromRepositoryType(Computer model, DbSet<EntityFrameworkUserModel> users)
+        public static EntityFrameworkComputerModel FromRepositoryType(Computer model, DbSet<EntityFrameworkScriptModel> scripts, DbSet<EntityFrameworkUserModel> users)
         {
             var result = new EntityFrameworkComputerModel
             {
@@ -33,7 +33,7 @@ namespace Roomie.Web.Persistence.Models
                 EncryptionKey = model.EncryptionKey,
                 Id = model.Id,
                 LastPing = model.LastPing,
-                LastScript = model.LastScript,
+                LastScript = scripts.Find(model.LastScript.Id),
                 Name = model.Name,
                 Owner = users.Find(model.Owner.Id)
             };
@@ -49,7 +49,7 @@ namespace Roomie.Web.Persistence.Models
                 encryptionKey: EncryptionKey,
                 id: Id,
                 lastPing: LastPing,
-                lastScript: LastScript,
+                lastScript: (LastScript == null) ? null : LastScript.ToRepositoryType(),
                 name: Name,
                 owner: Owner.ToRepositoryType()
             );

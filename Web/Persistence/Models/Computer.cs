@@ -10,7 +10,7 @@ namespace Roomie.Web.Persistence.Models
         public string EncryptionKey {get; private set; }
         public int Id {get; private set; }
         public DateTime? LastPing {get; private set; }
-        public EntityFrameworkScriptModel LastScript {get; private set; }
+        public Script LastScript {get; private set; }
         public string Name {get; private set; }
         public User Owner {get; private set; }
 
@@ -40,7 +40,7 @@ namespace Roomie.Web.Persistence.Models
         {
         }
 
-        public Computer(string accessKey, string address, string encryptionKey, int id, DateTime? lastPing, EntityFrameworkScriptModel lastScript, string name, User owner)
+        public Computer(string accessKey, string address, string encryptionKey, int id, DateTime? lastPing, Script lastScript, string name, User owner)
         {
             AccessKey = accessKey;
             Address = address;
@@ -63,7 +63,7 @@ namespace Roomie.Web.Persistence.Models
             return result;
         }
 
-        public void UpdateLastScript(EntityFrameworkScriptModel lastScript)
+        public void UpdateLastScript(Script lastScript)
         {
             LastScript = lastScript;
         }

@@ -8,11 +8,13 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     public class ComputerRepository : IComputerRepository
     {
         private readonly DbSet<EntityFrameworkComputerModel> _computers;
+        private readonly DbSet<EntityFrameworkScriptModel> _scripts;
         private readonly DbSet<EntityFrameworkUserModel> _users;
 
-        public ComputerRepository(DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkUserModel> users)
+        public ComputerRepository(DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkScriptModel> scripts, DbSet<EntityFrameworkUserModel> users)
         {
             _computers = computers;
+            _scripts = scripts;
             _users = users;
         }
 
@@ -76,7 +78,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return model.ToRepositoryType();
         }
 
-        public Computer[] Get(EntityFrameworkScriptModel script)
+        public Computer[] Get(Script script)
         {
             var result = _computers
                 .Where(x => x.LastScript.Id == script.Id)
@@ -100,7 +102,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(Computer computer)
         {
-            var model = EntityFrameworkComputerModel.FromRepositoryType(computer, _users);
+            var model = EntityFrameworkComputerModel.FromRepositoryType(computer, _scripts, _users);
 
             _computers.Add(model);
         }
@@ -113,7 +115,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             model.Address = computer.Address;
             model.EncryptionKey = computer.EncryptionKey;
             model.LastPing = computer.LastPing;
-            model.LastScript = computer.LastScript;
+            model.LastScript = _scripts.Find(computer.LastScript.Id);
             model.Name = computer.Name;
 
             if (computer.Owner != null)

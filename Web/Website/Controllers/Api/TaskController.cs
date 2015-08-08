@@ -50,7 +50,7 @@ namespace Roomie.Web.Website.Controllers.Api
                     id: task.Target.Id,
                     lastPing: null,
                     lastScript: null,
-                    name: target.Name,
+                    name: task.Target.Name,
                     owner: null
                 );
             }

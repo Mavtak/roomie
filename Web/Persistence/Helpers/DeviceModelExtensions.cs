@@ -15,11 +15,10 @@ namespace Roomie.Web.Persistence.Helpers
             var user = network.Owner;
             var computer = network.AttatchedComputer.ToRepositoryType();
 
-            var task = Task.Create(user.ToRepositoryType(), "Web Interface", computer, new EntityFrameworkScriptModel
-            {
-                Mutable = false,
-                Text = command
-            });
+            var script = Script.Create(false, command);
+            device.ScriptRepository.Add(script);
+
+            var task = Task.Create(user.ToRepositoryType(), "Web Interface", computer, script);
             
             device.TaskRepository.Add(task);
         }

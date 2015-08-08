@@ -1,12 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
     [Table("ScriptModels")]
-    public class EntityFrameworkScriptModel : IHasDivId
+    public class EntityFrameworkScriptModel
     {
         [Key]
         public int Id { get; set; }
@@ -17,20 +16,35 @@ namespace Roomie.Web.Persistence.Models
         public int? RunCount { get; set; }
         public DateTime? LastRunTimestamp { get; set; }
 
-        public EntityFrameworkScriptModel()
+        #region Convertions
+
+        public static EntityFrameworkScriptModel FromRepositoryType(Script model)
         {
-            CreationTimestamp = DateTime.UtcNow;
-            RunCount = 0;
+            var result = new EntityFrameworkScriptModel
+            {
+                CreationTimestamp = model.CreationTimestamp,
+                Id = model.Id,
+                LastRunTimestamp = model.LastRunTimestamp,
+                Mutable = model.Mutable,
+                RunCount = model.RunCount,
+                Text = model.Text
+            };
+
+            return result;
         }
 
-        #region HasId implementation
-
-        public string DivId
+        public Script ToRepositoryType()
         {
-            get
-            {
-                return "script" + Id;
-            }
+            var result = new Script(
+                creationTimestamp: CreationTimestamp,
+                id: Id,
+                lastRunTimestamp: LastRunTimestamp,
+                mutable: Mutable,
+                runCount: RunCount,
+                text: Text
+            );
+
+            return result;
         }
 
         #endregion

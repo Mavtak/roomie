@@ -70,11 +70,10 @@ namespace Roomie.Web.Website.Helpers
             var database = controller.Database;
             var user = controller.User;
 
-            var task = Task.Create(user, origin, computer, new EntityFrameworkScriptModel
-            {
-                Mutable = false,
-                Text = scriptText
-            });
+            var script = Script.Create(false, scriptText);
+            database.Scripts.Add(script);
+
+            var task = Task.Create(user, origin, computer, script);
 
             database.Tasks.Add(task);
         }

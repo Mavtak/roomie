@@ -9,7 +9,7 @@ namespace Roomie.Web.Persistence.Repositories
         Computer Get(User user, int id);
         Computer Get(string accessKey);
         Computer Get(User user, string name);
-        Computer[] Get(EntityFrameworkScriptModel script);
+        Computer[] Get(Script script);
         Computer[] Get(User user);
         void Add(Computer computer);
         void Update(Computer computer);

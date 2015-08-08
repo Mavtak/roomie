@@ -79,6 +79,7 @@
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\MultilevelSensorModel.cs" />
     <Compile Include="Models\EntityFrameworkNetworkGuestModel.cs" />
+    <Compile Include="Models\Script.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\ThermostatCoreModel.cs" />
     <Compile Include="Models\DeviceLocationModel.cs" />

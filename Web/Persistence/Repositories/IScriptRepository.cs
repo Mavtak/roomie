@@ -4,9 +4,9 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public interface IScriptRepository
     {
-        EntityFrameworkScriptModel Get(int id);
-        Page<EntityFrameworkScriptModel> List(ListFilter filter);
-        void Add(EntityFrameworkScriptModel script);
-        void Remove(EntityFrameworkScriptModel script);
+        Script Get(int id);
+        Page<Script> List(ListFilter filter);
+        void Add(Script script);
+        void Remove(Script script);
     }
 }

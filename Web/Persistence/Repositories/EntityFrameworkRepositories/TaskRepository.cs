@@ -9,12 +9,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     {
         private readonly DbSet<EntityFrameworkTaskModel> _tasks;
         private readonly DbSet<EntityFrameworkComputerModel> _computers;
+        private readonly DbSet<EntityFrameworkScriptModel> _scripts;
         private readonly DbSet<EntityFrameworkUserModel> _users;
 
-        public TaskRepository(DbSet<EntityFrameworkTaskModel> tasks, DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkUserModel> users)
+        public TaskRepository(DbSet<EntityFrameworkTaskModel> tasks, DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkScriptModel> scripts, DbSet<EntityFrameworkUserModel> users)
         {
             _tasks = tasks;
             _computers = computers;
+            _scripts = scripts;
             _users = users;
         }
 
@@ -52,7 +54,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public Task[] Get(EntityFrameworkScriptModel script)
+        public Task[] Get(Script script)
         {
             var result = _tasks
                 .Where(x => x.Script.Id == script.Id)
@@ -64,7 +66,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(Task task)
         {
-            var model = EntityFrameworkTaskModel.FromRepositoryType(task, _computers, _users);
+            var model = EntityFrameworkTaskModel.FromRepositoryType(task, _computers, _scripts, _users);
 
             _tasks.Add(model);
         }

@@ -31,22 +31,21 @@ namespace Roomie.Web.Persistence.Database
         {
             _database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
-            Tasks = new TaskRepository(_database.Tasks, _database.Computers, _database.Users);
+            Tasks = new TaskRepository(_database.Tasks, _database.Computers, _database.Scripts, _database.Users);
 
-            Computers = new ComputerRepository(_database.Computers, _database.Users);
+            Scripts = new ScriptRepository(_database.Scripts, () => SaveChanges());
+
+            Computers = new ComputerRepository(_database.Computers, _database.Scripts, _database.Users);
 
             NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests, _database.Users);
 
             var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks);
             Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
 
-            var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices, Tasks);
+            var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices, Scripts, Tasks);
             Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
 
             DeviceLocations = new DeviceLocationRepository(_database.DeviceLocations);
-
-            Scripts = new ScriptRepository(_database.Scripts);
-
 
             Users = new UserRepository(_database.Users);
 

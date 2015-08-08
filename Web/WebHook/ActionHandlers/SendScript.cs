@@ -35,11 +35,10 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 return;
             }
 
-            var task = Task.Create(user, "WebHook, " + computer.Name, targetComputer, new EntityFrameworkScriptModel
-            {
-                Mutable = false,
-                Text = request.Values["ScriptText"]
-            });
+            var script = Script.Create(false, request.Values["ScriptText"]);
+            database.Scripts.Add(script);
+
+            var task = Task.Create(user, "WebHook, " + computer.Name, targetComputer, script);
 
             database.Tasks.Add(task);
             database.SaveChanges();
