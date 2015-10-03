@@ -6,9 +6,9 @@ namespace Roomie.Web.Persistence.Models
 {
     public class BinarySensorModel : IBinarySensor
     {
-        private EntityFrameworkDeviceModel _device;
+        private Device _device;
 
-        public BinarySensorModel(EntityFrameworkDeviceModel device)
+        public BinarySensorModel(Device device)
         {
             _device = device;
         }

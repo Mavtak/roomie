@@ -5,7 +5,7 @@ namespace Roomie.Web.Website.Helpers
 {
     public static class RoomieControllerExtensions
     {
-        public static EntityFrameworkDeviceModel SelectDevice(this IRoomieController controller, int id)
+        public static Device SelectDevice(this IRoomieController controller, int id)
         {
             var database = controller.Database;
             var user = controller.User;
@@ -31,6 +31,8 @@ namespace Roomie.Web.Website.Helpers
             {
                 throw new HttpException(404, "Network not found");
             }
+
+            network.LoadDevices(database.Devices);
 
             return network;
         }

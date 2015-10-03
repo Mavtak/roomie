@@ -12,6 +12,11 @@ namespace Roomie.Web.Website.Controllers
         {
             var networks = Database.Networks.Get(User);
 
+            foreach (var network in networks)
+            {
+                network.LoadDevices(Database.Devices);
+            }
+
             return View(networks);
         }
 
@@ -30,7 +35,7 @@ namespace Roomie.Web.Website.Controllers
 
             if (delete == true)
             {
-                foreach (EntityFrameworkDeviceModel device in Database.Devices.Get(network))
+                foreach (var device in Database.Devices.Get(network))
                 {
                     Database.Devices.Remove(device);
                 }

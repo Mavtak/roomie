@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Helpers;
+using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -12,7 +13,7 @@ namespace Roomie.Web.Persistence.Models
 
         public string Address { get; private set; }
         public virtual Computer AttatchedComputer { get; private set; }
-        public virtual IEnumerable<EntityFrameworkDeviceModel> Devices { get; private set; }
+        public virtual IEnumerable<Device> Devices { get; private set; }
         public int Id { get; private set; }
         public DateTime? LastPing { get; private set; }
         public string Name { get; private set; }
@@ -58,26 +59,40 @@ namespace Roomie.Web.Persistence.Models
         {
         }
 
-        public Network(string address, Computer attatchedComputer, IEnumerable<EntityFrameworkDeviceModel> devices, int id, DateTime? lastPing, string name, User owner)
+        public Network(string address, Computer attatchedComputer, IEnumerable<Device> devices, int id, DateTime? lastPing, string name, User owner)
         {
             Address = address;
             AttatchedComputer = attatchedComputer;
-            Devices = SortDevices(devices);
+
+            if (Devices != null)
+            {
+                Devices = SortDevices(devices);
+            }
+            
             Id = id;
             LastPing = lastPing;
             Name = name;
             Owner = owner;
         }
 
-        public static Network Create(string address, User owner)
+        public static Network Create(string address, User owner, string name, DateTime? lastPing = null, Computer attachedComputer = null, IEnumerable<Device> devices = null)
         {
             var result = new Network
             {
                 Address = address,
+                AttatchedComputer = attachedComputer,
+                Devices = (devices == null) ? null : devices.ToArray(),
+                LastPing = lastPing,
+                Name = name,
                 Owner = owner
             };
 
             return result;
+        }
+
+        public void LoadDevices(IDeviceRepository devices)
+        {
+            Devices = devices.Get(this);
         }
 
         public void UpdatePing(Computer computer)
@@ -91,7 +106,7 @@ namespace Roomie.Web.Persistence.Models
             Name = name;
         }
 
-        private static EntityFrameworkDeviceModel[] SortDevices(IEnumerable<EntityFrameworkDeviceModel> devices)
+        private static Device[] SortDevices(IEnumerable<Device> devices)
         {
             var result = devices.ToList();
             result.Sort(new DeviceSort());

@@ -6,11 +6,11 @@ namespace Roomie.Web.Website.ViewModels
     public class DeviceViewModel
     {
         public WidgetData WidgetData { get; set; }
-        public EntityFrameworkDeviceModel Device { get; set; }
+        public Device Device { get; set; }
         public bool DisplayEditor { get; set; }
         public bool DisplayButtons { get; set; }
 
-        public DeviceViewModel(EntityFrameworkDeviceModel device, UrlHelper urlHelper)
+        public DeviceViewModel(Device device, UrlHelper urlHelper)
         {
             Device = device;
 

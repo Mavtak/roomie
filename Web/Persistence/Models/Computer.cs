@@ -52,11 +52,12 @@ namespace Roomie.Web.Persistence.Models
             Owner = owner;
         }
 
-        public static Computer Create(string name, User owner)
+        public static Computer Create(string name, User owner, DateTime? lastPing = null)
         {
             var result = new Computer
             {
                 Name = name,
+                LastPing = lastPing,
                 Owner = owner
             };
 

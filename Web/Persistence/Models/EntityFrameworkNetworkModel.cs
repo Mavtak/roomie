@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Roomie.Web.Persistence.Models
 {
@@ -36,7 +37,7 @@ namespace Roomie.Web.Persistence.Models
             var result = new EntityFrameworkNetworkModel
             {
                 Address = network.Address,
-                AttatchedComputer = computers.Find(network.AttatchedComputer.Id),
+                AttatchedComputer = network.AttatchedComputer == null ? null : computers.Find(network.AttatchedComputer.Id),
                 //TODO: include devices?,
                 Id = network.Id,
                 LastPing = network.LastPing,
@@ -52,7 +53,7 @@ namespace Roomie.Web.Persistence.Models
             var result = new Network(
                 address: Address,
                 attatchedComputer: AttatchedComputer.ToRepositoryType(),
-                devices: Devices,
+                devices: null, //TODO: remove this property completely
                 id: Id,
                 lastPing: LastPing,
                 name: Name,

@@ -15,14 +15,14 @@ namespace Roomie.Web.Persistence.Repositories
             _guests = guests;
         }
 
-        public EntityFrameworkDeviceModel Get(int id)
+        public Device Get(int id)
         {
             var result = _devices.Get(id);
 
             return result;
         }
 
-        public EntityFrameworkDeviceModel Get(User user, int id)
+        public Device Get(User user, int id)
         {
             var result = Get(id);
 
@@ -43,7 +43,7 @@ namespace Roomie.Web.Persistence.Repositories
 
             if (result.Network.Owner.Id != user.Id)
             {
-                var guest = _guests.Check(result.Network.ToRepositoryType(), user);
+                var guest = _guests.Check(result.Network, user);
                 
                 if (!guest)
                 {
@@ -54,21 +54,26 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public EntityFrameworkDeviceModel[] Get(Network network)
+        public Device[] Get(Network network)
         {
             var result = _devices.Get(network);
 
             return result;
         }
 
-        public void Add(EntityFrameworkDeviceModel device)
+        public void Add(Device device)
         {
             _devices.Add(device);
         }
 
-        public void Remove(EntityFrameworkDeviceModel device)
+        public void Remove(Device device)
         {
             _devices.Remove(device);
+        }
+
+        public void Update(Device device)
+        {
+            _devices.Update(device);
         }
 
         public void Update(int id, IDeviceState state)

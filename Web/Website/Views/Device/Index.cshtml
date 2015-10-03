@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Roomie.Web.Persistence.Models.EntityFrameworkDeviceModel>
+﻿@model IEnumerable<Roomie.Web.Persistence.Models.Device>
 @{
     ViewBag.Title = "Devices";
 }@*
@@ -24,7 +24,7 @@ else
         @headerPrinter.PrintHeader();
         headers.AddRange(headerPrinter.GetHeaders());
         var deviceViewModel = new DeviceViewModel(device, Url);
-        
+
         @Html.Partial(
                 partialViewName: "Partials/Device/Device",
                  model: deviceViewModel

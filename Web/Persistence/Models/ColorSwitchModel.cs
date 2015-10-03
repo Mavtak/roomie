@@ -7,9 +7,9 @@ namespace Roomie.Web.Persistence.Models
 {
     public class ColorSwitchModel : IColorSwitch
     {
-        private readonly EntityFrameworkDeviceModel _device;
+        private readonly Device _device;
 
-        public ColorSwitchModel(EntityFrameworkDeviceModel deviceModel)
+        public ColorSwitchModel(Device deviceModel)
         {
             _device = deviceModel;
         }

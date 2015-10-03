@@ -33,7 +33,7 @@ namespace Roomie.Web.Persistence.Models
                 EncryptionKey = model.EncryptionKey,
                 Id = model.Id,
                 LastPing = model.LastPing,
-                LastScript = scripts.Find(model.LastScript.Id),
+                LastScript = model.LastScript == null ? null : scripts.Find(model.LastScript.Id),
                 Name = model.Name,
                 Owner = users.Find(model.Owner.Id)
             };

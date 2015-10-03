@@ -10,28 +10,33 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     public class DeviceRepository : IDeviceRepository
     {
         private readonly DbSet<EntityFrameworkDeviceModel> _devices;
+        private readonly DbSet<EntityFrameworkNetworkModel> _networks;
         private readonly IScriptRepository _scripts;
         private readonly ITaskRepository _tasks;
 
-        public DeviceRepository(DbSet<EntityFrameworkDeviceModel> devices, IScriptRepository scripts, ITaskRepository tasks)
+        public DeviceRepository(DbSet<EntityFrameworkDeviceModel> devices, DbSet<EntityFrameworkNetworkModel> networks, IScriptRepository scripts, ITaskRepository tasks)
         {
             _devices = devices;
+            _networks = networks;
             _scripts = scripts;
             _tasks = tasks;
         }
 
-        public EntityFrameworkDeviceModel Get(int id)
+        public Device Get(int id)
         {
-            var result = _devices.Find(id);
+            var model = _devices.Find(id);
 
-            DeserializeDeviceState(result);
-            result.ScriptRepository = _scripts;
-            result.TaskRepository = _tasks;
+            if(model == null)
+            {
+                return null;
+            }
+
+            var result = model.ToRepositoryType(_scripts, _tasks);
 
             return result;
         }
 
-        public EntityFrameworkDeviceModel Get(User user, int id)
+        public Device Get(User user, int id)
         {
             var result = Get(id);
 
@@ -58,54 +63,52 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public EntityFrameworkDeviceModel[] Get(Network network)
+        public Device[] Get(Network network)
         {
-            var result = _devices.Where(x => x.Network.Id == network.Id).ToArray();
-
-            foreach (var device in result)
+            var models = _devices.Where(x => x.Network.Id == network.Id).ToArray();
+            var results = models.Select(x =>
             {
-                DeserializeDeviceState(device);
-                device.ScriptRepository = _scripts;
-                device.TaskRepository = _tasks;
-            }
+                var result = x.ToRepositoryType(_scripts, _tasks);
 
-            return result;
+                return result;
+            }).ToArray();
+
+            return results;
         }
 
-        public void Add(EntityFrameworkDeviceModel device)
+        public void Add(Device device)
         {
-            _devices.Add(device);
+            var model = EntityFrameworkDeviceModel.FromRepositoryType(device, _networks);
+
+            _devices.Add(model);
         }
 
-        public void Remove(EntityFrameworkDeviceModel device)
+        public void Remove(Device device)
         {
-            _devices.Remove(device);
+            var model = _devices.Find(device.Id);
+
+            _devices.Remove(model);
+        }
+
+        public void Update(Device device)
+        {
+            var model = _devices.Find(device.Id);
+
+            model.Name = device.Name;
+            model.Type = device.Type;
+            model.Location = device.Location;
+            model.Notes = EntityFrameworkDeviceModel.FromRepositoryType(device, _networks).Notes;
         }
 
         public void Update(int id, IDeviceState state)
         {
+            //TODO: improve this
             var device = Get(id);
 
             device.Update(state, false);
-            SerializeDeviceState(device);
-        }
 
-        private static void SerializeDeviceState(EntityFrameworkDeviceModel device)
-        {
-            device.Notes = device.ToXElement().ToString();
-        }
-
-        private static void DeserializeDeviceState(EntityFrameworkDeviceModel device)
-        {
-            if (string.IsNullOrEmpty(device.Notes))
-            {
-                return;
-            }
-
-            var element = XElement.Parse(device.Notes);
-            var state = element.ToDeviceState();
-
-            device.Update(state, true);
+            var model = _devices.Find(id);
+            model.Notes = EntityFrameworkDeviceModel.FromRepositoryType(device, _networks).Notes;
         }
     }
 }

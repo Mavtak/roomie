@@ -19,7 +19,7 @@ namespace Roomie.Web.Website.Controllers.Api
     [AutoSave]
     public class DeviceController : RoomieBaseApiController
     {
-        public IEnumerable<EntityFrameworkDeviceModel> Get()
+        public IEnumerable<Device> Get()
         {
             var devices = Database.GetDevicesForUser(User);
             var result = devices.Select(GetSerializableVersion);
@@ -27,7 +27,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public EntityFrameworkDeviceModel Get(int id)
+        public Device Get(int id)
         {
             var device = this.SelectDevice(id);
             var result = GetSerializableVersion(device);
@@ -57,7 +57,7 @@ namespace Roomie.Web.Website.Controllers.Api
             }
 
             this.AddTask(
-                computer: device.Network.AttatchedComputer.ToRepositoryType(),
+                computer: device.Network.AttatchedComputer,
                 origin: "RoomieBot",
                 scriptText: "HomeAutomation.SyncWithCloud Network=\"" + device.Network.Address + "\""
             );
@@ -139,9 +139,9 @@ namespace Roomie.Web.Website.Controllers.Api
             }
         }
 
-        private static EntityFrameworkDeviceModel GetSerializableVersion(EntityFrameworkDeviceModel device)
+        private static Device GetSerializableVersion(Device device)
         {
-            var result = new EntityFrameworkDeviceModel
+            var result = new Device
             {
                 Id = device.Id
             };

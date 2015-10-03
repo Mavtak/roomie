@@ -7,23 +7,23 @@ namespace Roomie.Web.Persistence.Helpers
 {
     internal static class DeviceModelExtensions
     {
-        public static void DoCommand(this EntityFrameworkDeviceModel device, string name, params string[] additionalData)
+        public static void DoCommand(this Device device, string name, params string[] additionalData)
         {
             var command = BuildCommand(device, name, additionalData);
 
             var network = device.Network;
             var user = network.Owner;
-            var computer = network.AttatchedComputer.ToRepositoryType();
+            var computer = network.AttatchedComputer;
 
             var script = Script.Create(false, command);
             device.ScriptRepository.Add(script);
 
-            var task = Task.Create(user.ToRepositoryType(), "Web Interface", computer, script);
+            var task = Task.Create(user, "Web Interface", computer, script);
             
             device.TaskRepository.Add(task);
         }
 
-        public static string BuildCommand(this EntityFrameworkDeviceModel device, string name, params string[] additionalData)
+        public static string BuildCommand(this Device device, string name, params string[] additionalData)
         {
             var deviceAddress = device.BuildVirtualAddress(true, true);
             var commandData = new []{"Device", deviceAddress}.Concat(additionalData).ToArray();

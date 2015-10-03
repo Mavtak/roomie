@@ -76,6 +76,7 @@
     <Compile Include="Models\BinarySensorModel.cs" />
     <Compile Include="Models\ColorSwitchModel.cs" />
     <Compile Include="Models\Computer.cs" />
+    <Compile Include="Models\Device.cs" />
     <Compile Include="Models\MultilevelSensorModel.cs" />
     <Compile Include="Models\EntityFrameworkNetworkGuestModel.cs" />
     <Compile Include="Models\Network.cs" />

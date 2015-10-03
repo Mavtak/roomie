@@ -4,9 +4,9 @@ using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Helpers
 {
-    public sealed class DeviceSort : IComparer<EntityFrameworkDeviceModel>
+    public sealed class DeviceSort : IComparer<Device>
     {
-        int IComparer<EntityFrameworkDeviceModel>.Compare(EntityFrameworkDeviceModel x, EntityFrameworkDeviceModel y)
+        int IComparer<Device>.Compare(Device x, Device y)
         {
             int result = x.Location.CompareByParts(y.Location);
             if (result != 0)

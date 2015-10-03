@@ -17,27 +17,27 @@ namespace Roomie.Web.Persistence
 {
     public static class Examples
     {
-        public static IEnumerable<EntityFrameworkDeviceModel> Devices
+        public static IEnumerable<Device> Devices
         {
             get
             {
-                var onToggleSwitch = new EntityFrameworkDeviceModel
-                    {
+                var onToggleSwitch = new Device
+                {
                         Name = "A Toggle Switch that is on",
                         Type = DeviceType.BinarySwitch
                     };
                 onToggleSwitch.BinarySwitch.Power = BinarySwitchPower.On;
 
-                var offToggleSwitch = new EntityFrameworkDeviceModel
-                    {
+                var offToggleSwitch = new Device
+                {
                         Name = "A Toggle Switch that is off",
                         Type = DeviceType.BinarySwitch,
                     };
                 offToggleSwitch.BinarySwitch.Power = BinarySwitchPower.Off;
                 offToggleSwitch.PowerSensor.Value = new WattsPower(0);
 
-                var idleDevice = new EntityFrameworkDeviceModel
-                    {
+                var idleDevice = new Device
+                {
                         Name = "An appliance that is on, but idle",
                         Type = DeviceType.BinarySwitch,
                     };
@@ -45,8 +45,8 @@ namespace Roomie.Web.Persistence
                 idleDevice.PowerSensor.Value = new WattsPower(5);
                 idleDevice.CurrentAction = "Idle";
 
-                var runningDevice = new EntityFrameworkDeviceModel
-                    {
+                var runningDevice = new Device
+                {
                         Name = "An appliance that is on and running",
                         Type = DeviceType.BinarySwitch,
                     };
@@ -55,8 +55,8 @@ namespace Roomie.Web.Persistence
                 runningDevice.CurrentAction = "Running";
 
 
-                var onDimmerSwitch = new EntityFrameworkDeviceModel
-                    {
+                var onDimmerSwitch = new Device
+                {
                         Name = "A Dimmer Switch that is on",
                         Type = DeviceType.MultilevelSwitch
                     };
@@ -64,22 +64,22 @@ namespace Roomie.Web.Persistence
                 onDimmerSwitch.PowerSensor.Value = new WattsPower(25.2);
                 onDimmerSwitch.PowerSensor.TimeStamp = DateTime.UtcNow.AddSeconds(-5);
 
-                var offDimmerSwitch = new EntityFrameworkDeviceModel
-                    {
+                var offDimmerSwitch = new Device
+                {
                         Name = "A Dimmer Switch that is off",
                         Type = DeviceType.MultilevelSwitch
                     };
                 offDimmerSwitch.MultilevelSwitch.Power = 0;
 
-                var dimmableColorChangingLight = new EntityFrameworkDeviceModel
-                    {
+                var dimmableColorChangingLight = new Device
+                {
                         Name = "A dimmable, color-changing light",
                         Type = DeviceType.MultilevelSwitch
                     };
                 dimmableColorChangingLight.MultilevelSwitch.Power = 50;
                 dimmableColorChangingLight.ColorSwitch.Value = new NamedColor("Purple");
 
-                var openDoorSensor = new EntityFrameworkDeviceModel
+                var openDoorSensor = new Device
                 {
                     Name = "A Door Sensor that is open",
                     Type = DeviceType.BinarySensor
@@ -88,7 +88,7 @@ namespace Roomie.Web.Persistence
                 openDoorSensor.BinarySensor.Value = true;
                 openDoorSensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddSeconds(-24);
 
-                var stillMotionSensor = new EntityFrameworkDeviceModel
+                var stillMotionSensor = new Device
                 {
                     Name = "A Motion Sensor that is still",
                     Type = DeviceType.BinarySensor
@@ -96,7 +96,7 @@ namespace Roomie.Web.Persistence
                 stillMotionSensor.BinarySensor.Type = BinarySensorType.Motion;
                 stillMotionSensor.BinarySensor.Value = false;
 
-                var falseGenericBinarySensor = new EntityFrameworkDeviceModel
+                var falseGenericBinarySensor = new Device
                 {
                     Name = "A generic Binary Sensor that is false",
                     Type = DeviceType.BinarySensor
@@ -105,7 +105,7 @@ namespace Roomie.Web.Persistence
                 falseGenericBinarySensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddMinutes(-4);
 
 
-                var multisensor = new EntityFrameworkDeviceModel
+                var multisensor = new Device
                 {
                     Name = "A Multisensor",
                     Type = DeviceType.BinarySensor
@@ -120,8 +120,8 @@ namespace Roomie.Web.Persistence
                 multisensor.BinarySensor.Value = true;
                 multisensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddSeconds(-43);
 
-                var thermostat = new EntityFrameworkDeviceModel
-                    {
+                var thermostat = new Device
+                {
                         Name = "A Thermostat with all data",
                         Type = DeviceType.Thermostat,
                     };
@@ -135,27 +135,17 @@ namespace Roomie.Web.Persistence
                 thermostat.Thermostat.Setpoints.Add(ThermostatSetpointType.Cool, new FahrenheitTemperature(74));
                 thermostat.Thermostat.Setpoints.Add(ThermostatSetpointType.Heat, new FahrenheitTemperature(70));
 
-                var noDataThermostat = new EntityFrameworkDeviceModel
-                    {
+                var noDataThermostat = new Device
+                {
                         Name = "A Thermostat with no data",
                         Type = DeviceType.Thermostat
                     };
 
                 var devices = new[] { onToggleSwitch, offToggleSwitch, idleDevice, runningDevice, onDimmerSwitch, offDimmerSwitch, dimmableColorChangingLight, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, multisensor, thermostat, noDataThermostat };
 
-                var computer = new EntityFrameworkComputerModel
-                    {
-                        LastPing = DateTime.UtcNow
-                    };
+                var computer = Computer.Create("Example Computer", null, DateTime.UtcNow);
 
-                var network = new EntityFrameworkNetworkModel
-                    {
-                        Name = "Example Network",
-                        LastPing = DateTime.UtcNow,
-                        AttatchedComputer = computer
-                    };
-
-                network.Devices = devices;
+                var network = Network.Create("Example Network", null, "Example Network", DateTime.UtcNow, computer, devices);
 
                 foreach (var device in devices)
                 {

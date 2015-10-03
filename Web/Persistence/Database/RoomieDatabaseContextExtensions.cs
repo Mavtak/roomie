@@ -6,7 +6,7 @@ namespace Roomie.Web.Persistence.Database
 {
     public static class RoomieDatabaseContextExtensions
     {
-        public static EntityFrameworkDeviceModel[] GetDevicesForUser(this IRoomieDatabaseContext database, User user)
+        public static Device[] GetDevicesForUser(this IRoomieDatabaseContext database, User user)
         {
             var networks = database.Networks.Get(user);
             var devices = networks.SelectMany(database.Devices.Get).ToList();

@@ -35,7 +35,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             if (network == null)
             {
                 //responseText.Append("Adding network '" + networkAddress + "'");
-                network = Network.Create(networkAddress, user);
+                network = Network.Create(networkAddress, user, networkAddress);
                 database.Networks.Add(network);
             }
 
@@ -85,7 +85,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             return sentDevices;
         }
 
-        private static void UpdateDevices(IEnumerable<IDeviceState> sentDevices, IEnumerable<EntityFrameworkDeviceModel> registeredDevices, Network network, IRoomieDatabaseContext database)
+        private static void UpdateDevices(IEnumerable<IDeviceState> sentDevices, IEnumerable<Device> registeredDevices, Network network, IRoomieDatabaseContext database)
         {
             // go through the devices from the client and update the entries in the database
             foreach (var sentDevice in sentDevices)
@@ -94,12 +94,12 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
                 if (registeredDevice == null)
                 {
-                    var newDevice = new EntityFrameworkDeviceModel
+                    var newDevice = new Device
                     {
                         Address = sentDevice.Address,
                         IsConnected = sentDevice.IsConnected,
                         Name = sentDevice.Name,
-                        Network = database.Backend.Networks.Find(network.Id),
+                        Network = network,
                         Location = sentDevice.Location as DeviceLocationModel,
                         Type = sentDevice.Type
                     };
@@ -115,7 +115,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
         }
 
-        private static IEnumerable<EntityFrameworkDeviceModel> GetRemovedDevices(IEnumerable<IDeviceState> sentDevices, IEnumerable<EntityFrameworkDeviceModel> registeredDevices)
+        private static IEnumerable<Device> GetRemovedDevices(IEnumerable<IDeviceState> sentDevices, IEnumerable<Device> registeredDevices)
         {
             foreach (var registeredDevice in registeredDevices)
             {
@@ -126,7 +126,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
         }
 
-        private static void RemoveDevices(IEnumerable<EntityFrameworkDeviceModel> devicesToRemove, IRoomieDatabaseContext database)
+        private static void RemoveDevices(IEnumerable<Device> devicesToRemove, IRoomieDatabaseContext database)
         {
             foreach (var device in devicesToRemove.ToArray())
             {

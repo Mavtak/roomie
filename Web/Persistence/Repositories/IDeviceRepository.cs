@@ -5,11 +5,12 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public interface IDeviceRepository
     {
-        EntityFrameworkDeviceModel Get(int id);
-        EntityFrameworkDeviceModel Get(User user, int id);
-        EntityFrameworkDeviceModel[] Get(Network network);
-        void Add(EntityFrameworkDeviceModel device);
-        void Remove(EntityFrameworkDeviceModel device);
+        Device Get(int id);
+        Device Get(User user, int id);
+        Device[] Get(Network network);
+        void Add(Device device);
+        void Remove(Device device);
+        void Update(Device device);
         void Update(int id, IDeviceState state);
     }
 }

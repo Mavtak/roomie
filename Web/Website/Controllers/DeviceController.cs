@@ -63,10 +63,12 @@ namespace Roomie.Web.Website.Controllers
             }
 
             this.AddTask(
-                computer: device.Network.AttatchedComputer.ToRepositoryType(),
+                computer: device.Network.AttatchedComputer,
                 origin: "RoomieBot",
                 scriptText: "HomeAutomation.SyncWithCloud Network=\"" + device.Network.Address + "\""
             );
+
+            Database.Devices.Update(device);
 
             Database.SaveChanges();
 

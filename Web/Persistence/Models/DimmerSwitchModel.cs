@@ -5,9 +5,9 @@ namespace Roomie.Web.Persistence.Models
 {
     public class DimmerSwitchModel : IMultilevelSwitch
     {
-        private EntityFrameworkDeviceModel _device;
+        private Device _device;
 
-        public DimmerSwitchModel(EntityFrameworkDeviceModel device)
+        public DimmerSwitchModel(Device device)
         {
             _device = device;
         }

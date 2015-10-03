@@ -9,7 +9,7 @@ namespace Roomie.Web.Persistence.Models
 {
     public class ThermostatSetpointModel : Dictionary<ThermostatSetpointType, ITemperature>, IThermostatSetpointCollection
     {
-        private EntityFrameworkDeviceModel _device;
+        private Device _device;
 
         public IEnumerable<ThermostatSetpointType> AvailableSetpoints
         {
@@ -19,7 +19,7 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
-        public ThermostatSetpointModel(EntityFrameworkDeviceModel device)
+        public ThermostatSetpointModel(Device device)
         {
             _device = device;
         }
