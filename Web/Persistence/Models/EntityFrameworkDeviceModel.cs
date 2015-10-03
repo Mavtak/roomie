@@ -34,7 +34,7 @@ namespace Roomie.Web.Persistence.Models
         public virtual EntityFrameworkNetworkModel Network { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public virtual DeviceLocationModel Location { get; set; }
+        public virtual EntityFrameworkDeviceLocationModel Location { get; set; }
 
         public string Notes { get; set; }
 

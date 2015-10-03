@@ -5,9 +5,9 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public interface IDeviceLocationRepository
     {
-        DeviceLocationModel Get(int id);
-        DeviceLocationModel Get(User user, string path);
-        void Add(DeviceLocationModel location);
-        void Remove(DeviceLocationModel location);
+        EntityFrameworkDeviceLocationModel Get(int id);
+        EntityFrameworkDeviceLocationModel Get(User user, string path);
+        void Add(EntityFrameworkDeviceLocationModel location);
+        void Remove(EntityFrameworkDeviceLocationModel location);
     }
 }

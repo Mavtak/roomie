@@ -100,7 +100,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                         IsConnected = sentDevice.IsConnected,
                         Name = sentDevice.Name,
                         Network = network,
-                        Location = sentDevice.Location as DeviceLocationModel,
+                        Location = sentDevice.Location as EntityFrameworkDeviceLocationModel,
                         Type = sentDevice.Type
                     };
 

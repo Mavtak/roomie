@@ -7,7 +7,7 @@ namespace Roomie.Web.Persistence.Helpers
 {
     public static class LocationModelExtensions
     {
-        public static string[] GetParts(this DeviceLocationModel location)
+        public static string[] GetParts(this EntityFrameworkDeviceLocationModel location)
         {
             if (location == null)
             {

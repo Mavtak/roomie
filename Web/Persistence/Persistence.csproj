@@ -83,7 +83,7 @@
     <Compile Include="Models\Script.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\ThermostatCoreModel.cs" />
-    <Compile Include="Models\DeviceLocationModel.cs" />
+    <Compile Include="Models\EntityFrameworkDeviceLocationModel.cs" />
     <Compile Include="Models\EntityFrameworkComputerModel.cs" />
     <Compile Include="Helpers\IHasDivId.cs" />
     <Compile Include="Models\DimmerSwitchModel.cs" />

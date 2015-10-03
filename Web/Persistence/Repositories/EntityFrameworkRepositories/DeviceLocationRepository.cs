@@ -6,21 +6,21 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class DeviceLocationRepository : IDeviceLocationRepository
     {
-        private readonly DbSet<DeviceLocationModel> _locations;
+        private readonly DbSet<EntityFrameworkDeviceLocationModel> _locations;
 
-        public DeviceLocationRepository(DbSet<DeviceLocationModel> locations)
+        public DeviceLocationRepository(DbSet<EntityFrameworkDeviceLocationModel> locations)
         {
             _locations = locations;
         }
 
-        public DeviceLocationModel Get(int id)
+        public EntityFrameworkDeviceLocationModel Get(int id)
         {
             var result = _locations.Find(id);
 
             return result;
         }
 
-        public DeviceLocationModel Get(User user, string path)
+        public EntityFrameworkDeviceLocationModel Get(User user, string path)
         {
             var matches = _locations.Where(x => x.Owner.Id == user.Id)
                                     .Where(x => x.Name == path);
@@ -29,12 +29,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        public void Add(DeviceLocationModel location)
+        public void Add(EntityFrameworkDeviceLocationModel location)
         {
             _locations.Add(location);
         }
 
-        public void Remove(DeviceLocationModel location)
+        public void Remove(EntityFrameworkDeviceLocationModel location)
         {
             _locations.Remove(location);
         }

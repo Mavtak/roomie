@@ -5,7 +5,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class DeviceLocationModel : Location, IHasDivId
+    public class EntityFrameworkDeviceLocationModel : Location, IHasDivId
     {
         [Key]
         public int Id { get; set; }
