@@ -62,7 +62,6 @@
     <Compile Include="Database\DatabaseUtilities.cs" />
     <Compile Include="Database\DeviceTypeMapping.cs" />
     <Compile Include="Database\EntityFrameworkRoomieDatabaseBackend.cs" />
-    <Compile Include="Database\ExtensionsToIRoomieDatabaseContext.cs" />
     <Compile Include="Database\IRoomieDatabaseContext.cs" />
     <Compile Include="Database\RoomieDatabaseContextExtensions.cs" />
     <Compile Include="Examples.cs" />
@@ -109,7 +108,6 @@
     <Compile Include="Repositories\EntityFrameworkRepositories\Helpers.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\ScriptRepository.cs" />
     <Compile Include="Repositories\IScriptRepository.cs" />
-    <Compile Include="Repositories\EntityFrameworkRepositories\DeviceLocationRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\SessionRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\ComputerRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\DeviceRepository.cs" />
@@ -120,7 +118,6 @@
     <Compile Include="Repositories\GuestEnabledDeviceRepository.cs" />
     <Compile Include="Repositories\GuestEnabledNetworkRepository.cs" />
     <Compile Include="Repositories\IComputerRepository.cs" />
-    <Compile Include="Repositories\IDeviceLocationRepository.cs" />
     <Compile Include="Repositories\IDeviceRepository.cs" />
     <Compile Include="Repositories\INetworkGuestRepository.cs" />
     <Compile Include="Repositories\INetworkRepository.cs" />

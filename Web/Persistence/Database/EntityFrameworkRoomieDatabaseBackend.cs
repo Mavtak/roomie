@@ -14,7 +14,6 @@ namespace Roomie.Web.Persistence.Database
         public DbSet<EntityFrameworkTaskModel> Tasks { get; set; }
         public DbSet<EntityFrameworkScriptModel> Scripts { get; set; }
         public DbSet<EntityFrameworkWebHookSessionModel> WebHookSessions { get; set; }
-        public DbSet<EntityFrameworkDeviceLocationModel> DeviceLocations { get; set; }
 
         public EntityFrameworkRoomieDatabaseBackend(string nameOrConnectionString)
             : base(nameOrConnectionString)

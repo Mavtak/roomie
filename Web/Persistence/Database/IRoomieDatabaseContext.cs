@@ -10,7 +10,6 @@ namespace Roomie.Web.Persistence.Database
 
         IComputerRepository Computers { get; }
         IDeviceRepository Devices { get; }
-        IDeviceLocationRepository DeviceLocations { get; }
         INetworkGuestRepository NetworkGuests { get; }
         INetworkRepository Networks { get; }
         IScriptRepository Scripts { get; }

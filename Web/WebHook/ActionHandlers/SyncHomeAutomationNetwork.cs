@@ -70,17 +70,6 @@ namespace Roomie.Web.WebHook.ActionHandlers
         {
             var sentDevices = request.Payload.Select(x => x.ToDeviceState());
             sentDevices = sentDevices.Select(x => x.NewWithNetwork(network));
-            sentDevices = sentDevices.Select(x =>
-                {
-                    if (x.Location == null)
-                    {
-                        return x;
-                    }
-
-                    var existingLocationModel = database.GetDeviceLocation(user, x.Location.Format());
-
-                    return x.NewWithLocation(existingLocationModel);
-                });
 
             return sentDevices;
         }
@@ -100,7 +89,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                         IsConnected = sentDevice.IsConnected,
                         Name = sentDevice.Name,
                         Network = network,
-                        Location = sentDevice.Location as EntityFrameworkDeviceLocationModel,
+                        Location = sentDevice.Location,
                         Type = sentDevice.Type
                     };
 

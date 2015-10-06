@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Website.ViewModels
@@ -14,7 +15,7 @@ namespace Roomie.Web.Website.ViewModels
         {
             Device = device;
 
-            var location = (Device.Location == null) ? (null) : (Device.Location.Name);
+            var location = (Device.Location == null) ? (null) : (Device.Location.Format());
             var status = WidgetData.ConnectedOrDisconnected(Device.IsAvailable);
             var target = urlHelper.Action(
                 actionName: "Details",

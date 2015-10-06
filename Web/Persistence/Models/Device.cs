@@ -23,7 +23,7 @@ namespace Roomie.Web.Persistence.Models
         public int Id { get; set; }
         public bool? IsConnected { get; set; }
         public DateTime? LastPing { get; set; }
-        public virtual EntityFrameworkDeviceLocationModel Location { get; set; }
+        public virtual ILocation Location { get; set; }
         public string Name { get; set; }
         public virtual Network Network { get; set; }
         public DeviceType Type { get; set; }
@@ -174,15 +174,9 @@ namespace Roomie.Web.Persistence.Models
                 {
                     Type = state.Type;
                 }
-
-                if (Location == null && state.Location != null && state.Location.IsSet)
-                {
-                    Location = new EntityFrameworkDeviceLocationModel
-                    {
-                        Name = string.Join("/", state.Location.GetParts())
-                    };
-                }
             }
+
+            Location = (state.Location == null) ? null : new Location(state.Location.GetParts());
 
             IsConnected = state.IsConnected;
             CurrentAction = state.CurrentAction;

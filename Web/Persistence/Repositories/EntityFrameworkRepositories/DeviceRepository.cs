@@ -96,7 +96,6 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
             model.Name = device.Name;
             model.Type = device.Type;
-            model.Location = device.Location;
             model.Notes = EntityFrameworkDeviceModel.FromRepositoryType(device, _networks).Notes;
         }
 

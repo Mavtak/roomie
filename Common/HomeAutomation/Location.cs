@@ -7,6 +7,14 @@ namespace Roomie.Common.HomeAutomation
     {
         private string[] _parts;
 
+        public string Name
+        {
+            get
+            {
+                return this.Format();
+            }
+        }
+
         public Location()
         {
         }

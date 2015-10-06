@@ -7,23 +7,6 @@ namespace Roomie.Web.Persistence.Helpers
 {
     public static class LocationModelExtensions
     {
-        public static string[] GetParts(this EntityFrameworkDeviceLocationModel location)
-        {
-            if (location == null)
-            {
-                return new string[0];
-            }
-
-            if (location.Name == null)
-            {
-                return new string[0];
-            }
-
-            var parts = location.Name.Split('/');
-
-            return parts;
-        }
-
         public static int CompareByParts(this ILocation location1, ILocation location2)
         {
             var location1Parts = (location1 == null) ? (new string[0]) : (location1.GetParts().ToArray());

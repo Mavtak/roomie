@@ -54,7 +54,7 @@ namespace Roomie.Web.Website.Controllers
 
             if (location != null)
             {
-                device.Location = Database.GetDeviceLocation(User, location);
+                device.Location = new Location(location);
             }
 
             if (type != null)

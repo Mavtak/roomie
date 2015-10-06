@@ -34,7 +34,7 @@ namespace Roomie.Web.Persistence.Models
         public virtual EntityFrameworkNetworkModel Network { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public virtual EntityFrameworkDeviceLocationModel Location { get; set; }
+        protected virtual EntityFrameworkDeviceLocationModel Location { get; set; } //TODO: remove completely
 
         public string Notes { get; set; }
 
@@ -51,7 +51,6 @@ namespace Roomie.Web.Persistence.Models
                 Id = model.Id,
                 IsConnected = model.IsConnected,
                 LastPing = model.LastPing,
-                Location = model.Location,
                 Name = model.Name,
                 Network = (model.Network == null) ? null : networks.Find(model.Network.Id),
                 Notes = model.ToXElement().ToString(),
@@ -70,7 +69,6 @@ namespace Roomie.Web.Persistence.Models
                 Id = Id,
                 IsConnected = IsConnected,
                 LastPing = LastPing,
-                Location = Location,
                 Name = Name,                
                 Network = Network.ToRepositoryType(),
                 ScriptRepository = scripts,

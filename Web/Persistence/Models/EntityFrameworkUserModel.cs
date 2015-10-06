@@ -22,7 +22,6 @@ namespace Roomie.Web.Persistence.Models
         public virtual ICollection<EntityFrameworkComputerModel> Computers { get; set; }
         public virtual ICollection<EntityFrameworkNetworkModel> HomeAutomationNetworks { get; set; }
         public virtual ICollection<EntityFrameworkTaskModel> Tasks { get; set; }
-        public virtual ICollection<EntityFrameworkDeviceLocationModel> DeviceLocations { get; set; }
 
         #region Conversions
 

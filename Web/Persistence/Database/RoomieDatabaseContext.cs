@@ -7,7 +7,6 @@ namespace Roomie.Web.Persistence.Database
     {
         public IComputerRepository Computers { get; set; }
         public IDeviceRepository Devices { get; set; }
-        public IDeviceLocationRepository DeviceLocations { get; set; }
         public INetworkGuestRepository NetworkGuests { get; set; }
         public INetworkRepository Networks { get; set; }
         public IScriptRepository Scripts { get; set; }
@@ -44,8 +43,6 @@ namespace Roomie.Web.Persistence.Database
 
             var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices, _database.Networks, Scripts, Tasks);
             Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
-
-            DeviceLocations = new DeviceLocationRepository(_database.DeviceLocations);
 
             Users = new UserRepository(_database.Users);
 
