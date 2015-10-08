@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Models;
+using Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models;
 
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {

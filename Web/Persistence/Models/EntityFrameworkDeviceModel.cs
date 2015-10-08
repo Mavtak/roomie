@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Xml.Linq;
 using Roomie.Common.HomeAutomation;
-using Roomie.Web.Persistence.Repositories;
+using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Models
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("DeviceModels")]
     public class EntityFrameworkDeviceModel

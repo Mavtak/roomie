@@ -2,8 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Models
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("UserSessionModels")]
     public class EntityFrameworkUserSessionModel

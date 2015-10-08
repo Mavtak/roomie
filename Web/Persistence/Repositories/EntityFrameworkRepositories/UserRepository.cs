@@ -2,6 +2,7 @@
 using System.Linq;
 using Roomie.Web.Persistence.Helpers.Secrets;
 using Roomie.Web.Persistence.Models;
+using Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models;
 
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {

@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Helpers.Secrets;
+using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Persistence.Models
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("UserModels")]
     public class EntityFrameworkUserModel : IHasDivId

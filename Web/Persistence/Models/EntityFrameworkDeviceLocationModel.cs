@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Helpers;
 
-namespace Roomie.Web.Persistence.Models
+namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     public class EntityFrameworkDeviceLocationModel : Location, IHasDivId
     {
