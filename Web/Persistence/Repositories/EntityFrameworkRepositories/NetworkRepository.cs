@@ -66,9 +66,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public Network Get(User user, string address)
         {
-            var result = _networks.Where(x => x.Owner.Id == user.Id)
-                                  .Where(x => x.Address == address)
-                                  .FirstOrDefault();
+            var result = _networks
+                .Where(x => x.Owner.Id == user.Id)
+                .Where(x => x.Address == address)
+                .FirstOrDefault();
 
             if (result == null)
             {

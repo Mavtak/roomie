@@ -91,8 +91,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var results = _tasks
                 .Where(x => x.Owner.Id == user.Id)
                 .Page(filter, x => x.Script.CreationTimestamp)
-                .Transform(x => x.ToRepositoryType())
-                ;
+                .Transform(x => x.ToRepositoryType());
 
             return results;
         }

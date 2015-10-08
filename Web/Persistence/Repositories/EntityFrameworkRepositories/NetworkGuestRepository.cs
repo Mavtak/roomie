@@ -20,9 +20,9 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public Network[] Get(User user)
         {
-            var matches = _entries.Where(x => x.User.Id == user.Id);
-            var networks = matches.Select(x => x.Network);
-            var result = networks
+            var result = _entries
+                .Where(x => x.User.Id == user.Id)
+                .Select(x => x.Network)
                 .ToArray()
                 .Select(x => x.ToRepositoryType())
                 .ToArray();
@@ -32,9 +32,11 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public User[] Get(Network network)
         {
-            var matches = _entries.Where(x => x.Network.Id == network.Id);
-            var users = matches.Select(x => x.User).Select(x => x.ToRepositoryType());
-            var result = users.ToArray();
+            var result = _entries
+                .Where(x => x.Network.Id == network.Id)
+                .Select(x => x.User)
+                .Select(x => x.ToRepositoryType())
+                .ToArray();
 
             return result;
         }
@@ -44,7 +46,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var entry = new NetworkGuestModel
             {
                 Network = _networks.Find(network.Id),
-                User = _users.Find(user.Id)
+                User = _users.Find(user.Id),
             };
 
             _entries.Add(entry);
@@ -67,9 +69,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         private NetworkGuestModel Get(Network network, User user)
         {
-            var result = _entries.Where(x => x.User.Id == user.Id)
-                                 .Where(x => x.Network.Id == network.Id)
-                                 .FirstOrDefault();
+            var result = _entries
+                .Where(x => x.User.Id == user.Id)
+                .Where(x => x.Network.Id == network.Id)
+                .FirstOrDefault();
 
             return result;
         }

@@ -67,9 +67,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public Computer Get(User user, string name)
         {
-            var model = _computers.Where(x => x.Owner.Id == user.Id)
-                                   .Where(x => x.Name == name)
-                                   .FirstOrDefault();
+            var model = _computers
+                .Where(x => x.Owner.Id == user.Id)
+                .Where(x => x.Name == name)
+                .FirstOrDefault();
 
             if (model == null)
             {

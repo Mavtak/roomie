@@ -32,9 +32,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
                 return null;
             }
 
-            var result = model.ToRepositoryType(_scripts, _tasks);
-
-            return result;
+            return model.ToRepositoryType(_scripts, _tasks);
         }
 
         public Device Get(User user, int id)
@@ -66,15 +64,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public Device[] Get(Network network)
         {
-            var models = _devices.Where(x => x.Network.Id == network.Id).ToArray();
-            var results = models.Select(x =>
-            {
-                var result = x.ToRepositoryType(_scripts, _tasks);
+            var models = _devices
+                .Where(x => x.Network.Id == network.Id)
+                .ToArray();
+            var result = models
+                .Select(x => x.ToRepositoryType(_scripts, _tasks))
+                .ToArray();
 
-                return result;
-            }).ToArray();
-
-            return results;
+            return result;
         }
 
         public void Add(Device device)

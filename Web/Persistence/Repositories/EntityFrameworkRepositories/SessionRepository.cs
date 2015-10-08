@@ -67,22 +67,22 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         Page<UserSession> ISessionRepository.ListUserSessions(User user, ListFilter filter)
         {
-            var results = (from x in _userSessions
-                           where x.User.Id == user.Id
-                           select x.ToRepositoryType()).Page(filter, x => x.Id)
-                           ;
+            var result = _userSessions
+                .Where(x => x.User.Id == user.Id)
+                .Page(filter, x => x.Id)
+                .Transform(x => x.ToRepositoryType());
 
-            return results;
+            return result;
         }
 
         Page<WebHookSession> ISessionRepository.ListWebhookSessions(User user, ListFilter filter)
         {
-            var results = (from x in _webHookSessions
-                           where x.Computer.Owner.Id == user.Id
-                           select x.ToRepositoryType()).Page(filter, x => x.Id)
-                           ;
+            var result = _webHookSessions
+                .Where(x => x.Computer.Owner.Id == user.Id)
+                .Page(filter, x => x.Id)
+                .Transform(x => x.ToRepositoryType());
 
-            return results;
+            return result;
         }
     }
 }

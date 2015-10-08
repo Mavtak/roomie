@@ -32,8 +32,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         {
             var results = _scripts
                 .Page(filter, x => x.Id)
-                .Transform(x => x.ToRepositoryType())
-                ;
+                .Transform(x => x.ToRepositoryType());
 
             return results;
         }

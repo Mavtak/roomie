@@ -33,13 +33,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
                     throw new Exception("Unknown SortDirection " + filter.SortDirection + ".");
             }
 
-            var pagedList = wholeList.Skip(offset);
-            pagedList = pagedList.Take(count);
-            var resultItems = pagedList.ToArray();
+            var itemsOnPage = wholeList
+                .Skip(offset)
+                .Take(count)
+                .ToArray();
 
             var result = new Page<T>
             {
-                Items = resultItems,
+                Items = itemsOnPage,
                 Start = filter.Start,
                 Count = filter.Count,
                 Sort = filter.SortDirection,
