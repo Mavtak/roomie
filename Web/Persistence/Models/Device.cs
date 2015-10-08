@@ -1,4 +1,5 @@
-﻿using Roomie.Common.HomeAutomation;
+﻿using System;
+using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySensors;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.Common.HomeAutomation.ColorSwitch;
@@ -12,7 +13,6 @@ using Roomie.Common.Measurements.Power;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Persistence.Repositories;
-using System;
 
 namespace Roomie.Web.Persistence.Models
 {
