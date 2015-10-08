@@ -7,12 +7,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class SessionRepository : ISessionRepository
     {
-        private readonly DbSet<EntityFrameworkUserSessionModel> _userSessions;
-        private readonly DbSet<EntityFrameworkWebHookSessionModel> _webHookSessions;
-        private readonly DbSet<EntityFrameworkComputerModel> _computers;
-        private readonly DbSet<EntityFrameworkUserModel> _users;
+        private readonly DbSet<UserSessionModel> _userSessions;
+        private readonly DbSet<WebHookSessionModel> _webHookSessions;
+        private readonly DbSet<ComputerModel> _computers;
+        private readonly DbSet<UserModel> _users;
 
-        public SessionRepository(DbSet<EntityFrameworkUserSessionModel> userSessions, DbSet<EntityFrameworkWebHookSessionModel> webHookSessions, DbSet<EntityFrameworkComputerModel>  computers, DbSet<EntityFrameworkUserModel> users)
+        public SessionRepository(DbSet<UserSessionModel> userSessions, DbSet<WebHookSessionModel> webHookSessions, DbSet<ComputerModel>  computers, DbSet<UserModel> users)
         {
             _userSessions = userSessions;
             _webHookSessions = webHookSessions;
@@ -46,14 +46,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(UserSession session)
         {
-            var model = EntityFrameworkUserSessionModel.FromRepositoryType(session, _users);
+            var model = UserSessionModel.FromRepositoryType(session, _users);
 
             _userSessions.Add(model);
         }
 
         public void Add(WebHookSession session)
         {
-            var model = EntityFrameworkWebHookSessionModel.FromRepositoryType(session, _computers);
+            var model = WebHookSessionModel.FromRepositoryType(session, _computers);
 
             _webHookSessions.Add(model);
         }

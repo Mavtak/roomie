@@ -7,10 +7,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class ScriptRepository : IScriptRepository
     {
-        private readonly DbSet<EntityFrameworkScriptModel> _scripts;
+        private readonly DbSet<ScriptModel> _scripts;
         private readonly Action _save;
 
-        public ScriptRepository(DbSet<EntityFrameworkScriptModel> scripts, Action save)
+        public ScriptRepository(DbSet<ScriptModel> scripts, Action save)
         {
             _scripts = scripts;
             _save = save;
@@ -40,7 +40,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(Script script)
         {
-            var model = EntityFrameworkScriptModel.FromRepositoryType(script);
+            var model = ScriptModel.FromRepositoryType(script);
 
             _scripts.Add(model);
 

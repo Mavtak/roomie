@@ -9,7 +9,7 @@ using Roomie.Web.Persistence.Models;
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("DeviceModels")]
-    public class EntityFrameworkDeviceModel
+    public class DeviceModel
     {
         [Key]
         public int Id { get; set; }
@@ -19,10 +19,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 
         public string CurrentAction { get; set; }
 
-        public virtual EntityFrameworkNetworkModel Network { get; set; }
+        public virtual NetworkModel Network { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        protected virtual EntityFrameworkDeviceLocationModel Location { get; set; } //TODO: remove completely
+        protected virtual DeviceLocationModel Location { get; set; } //TODO: remove completely
 
         public string Notes { get; set; }
 
@@ -30,9 +30,9 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 
         #region conversions
 
-        public static EntityFrameworkDeviceModel FromRepositoryType(Device model, DbSet<EntityFrameworkNetworkModel> networks)
+        public static DeviceModel FromRepositoryType(Device model, DbSet<NetworkModel> networks)
         {
-            var result = new EntityFrameworkDeviceModel
+            var result = new DeviceModel
             {
                 Address = model.Address,
                 CurrentAction = model.CurrentAction,
@@ -88,7 +88,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
                 return false;
             }
 
-            var that = obj as EntityFrameworkDeviceModel;
+            var that = obj as DeviceModel;
 
             if (obj == null)
             {
@@ -98,7 +98,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
             return this.Equals(that);
         }
 
-        public bool Equals(EntityFrameworkDeviceModel that)
+        public bool Equals(DeviceModel that)
         {
             if (that == null)
             {
@@ -110,7 +110,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
                 return false;
             }
 
-            if (!EntityFrameworkNetworkModel.Equals(this.Network, that.Network))
+            if (!NetworkModel.Equals(this.Network, that.Network))
             {
                 return false;
             }

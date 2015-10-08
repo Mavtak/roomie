@@ -8,9 +8,9 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DbSet<EntityFrameworkUserModel> _users;
+        private readonly DbSet<UserModel> _users;
 
-        public UserRepository(DbSet<EntityFrameworkUserModel> users)
+        public UserRepository(DbSet<UserModel> users)
         {
             _users = users;
         }
@@ -41,7 +41,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(User user)
         {
-            var model = EntityFrameworkUserModel.FromRepositoryType(user);
+            var model = UserModel.FromRepositoryType(user);
 
             _users.Add(model);
         }

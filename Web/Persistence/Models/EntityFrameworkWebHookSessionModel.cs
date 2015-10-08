@@ -8,21 +8,21 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("WebHookSessionModels")]
     //TODO: integrate with UserSessionModel
-    public class EntityFrameworkWebHookSessionModel
+    public class WebHookSessionModel
     {
         [Key]
         public int Id { get; set; }
 
-        public virtual EntityFrameworkComputerModel Computer { get; set; }
+        public virtual ComputerModel Computer { get; set; }
         public string Token { get; set; }
 
         public DateTime? LastPing { get; set; }
 
         #region Conversions
 
-        public static EntityFrameworkWebHookSessionModel FromRepositoryType(WebHookSession model, DbSet<EntityFrameworkComputerModel> computers)
+        public static WebHookSessionModel FromRepositoryType(WebHookSession model, DbSet<ComputerModel> computers)
         {
-            var result = new EntityFrameworkWebHookSessionModel
+            var result = new WebHookSessionModel
             {
                 Computer = computers.Find(model.Computer.Id),
                 Id = model.Id,

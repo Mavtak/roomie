@@ -7,14 +7,14 @@ using Roomie.Web.Persistence.Models;
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("ComputerModels")]
-    public class EntityFrameworkComputerModel
+    public class ComputerModel
     {
         [Key]
         public int Id { get; set; }
         
-        public virtual EntityFrameworkUserModel Owner { get; set; }
+        public virtual UserModel Owner { get; set; }
         public string Name { get; set; }
-        public virtual EntityFrameworkScriptModel LastScript { get; set; }
+        public virtual ScriptModel LastScript { get; set; }
 
         public string AccessKey { get; set; }
         public string EncryptionKey { get; set; }
@@ -25,9 +25,9 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 
         #region Conversions
 
-        public static EntityFrameworkComputerModel FromRepositoryType(Computer model, DbSet<EntityFrameworkScriptModel> scripts, DbSet<EntityFrameworkUserModel> users)
+        public static ComputerModel FromRepositoryType(Computer model, DbSet<ScriptModel> scripts, DbSet<UserModel> users)
         {
-            var result = new EntityFrameworkComputerModel
+            var result = new ComputerModel
             {
                 AccessKey = model.AccessKey,
                 Address = model.Address,
@@ -69,7 +69,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
                 return false;
             }
 
-            var that = obj as EntityFrameworkComputerModel;
+            var that = obj as ComputerModel;
 
             if (obj == null)
             {
@@ -79,7 +79,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
             return this.Equals(that);
         }
 
-        public bool Equals(EntityFrameworkComputerModel that)
+        public bool Equals(ComputerModel that)
         {
             if (that == null)
             {

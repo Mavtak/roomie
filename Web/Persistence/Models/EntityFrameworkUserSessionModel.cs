@@ -7,12 +7,12 @@ using Roomie.Web.Persistence.Models;
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("UserSessionModels")]
-    public class EntityFrameworkUserSessionModel
+    public class UserSessionModel
     {
         [Key]
         public int Id { get; set; }
         
-        public virtual EntityFrameworkUserModel User { get; set; }
+        public virtual UserModel User { get; set; }
         public DateTime CreationTimeStamp { get; set; }
         public DateTime LastContactTimeStamp { get; set; }
         public string Token { get; set; }
@@ -20,9 +20,9 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 
         #region conversions
 
-        public static EntityFrameworkUserSessionModel FromRepositoryType(UserSession model, DbSet<EntityFrameworkUserModel> users)
+        public static UserSessionModel FromRepositoryType(UserSession model, DbSet<UserModel> users)
         {
-            var result = new EntityFrameworkUserSessionModel
+            var result = new UserSessionModel
             {
                 CreationTimeStamp = model.CreationTimeStamp,
                 Id = model.Id,

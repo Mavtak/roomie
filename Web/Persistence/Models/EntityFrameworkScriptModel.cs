@@ -6,7 +6,7 @@ using Roomie.Web.Persistence.Models;
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("ScriptModels")]
-    public class EntityFrameworkScriptModel
+    public class ScriptModel
     {
         [Key]
         public int Id { get; set; }
@@ -19,9 +19,9 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 
         #region Convertions
 
-        public static EntityFrameworkScriptModel FromRepositoryType(Script model)
+        public static ScriptModel FromRepositoryType(Script model)
         {
-            var result = new EntityFrameworkScriptModel
+            var result = new ScriptModel
             {
                 CreationTimestamp = model.CreationTimestamp,
                 Id = model.Id,

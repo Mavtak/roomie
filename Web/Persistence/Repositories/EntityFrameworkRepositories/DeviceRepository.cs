@@ -10,12 +10,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class DeviceRepository : IDeviceRepository
     {
-        private readonly DbSet<EntityFrameworkDeviceModel> _devices;
-        private readonly DbSet<EntityFrameworkNetworkModel> _networks;
+        private readonly DbSet<DeviceModel> _devices;
+        private readonly DbSet<NetworkModel> _networks;
         private readonly IScriptRepository _scripts;
         private readonly ITaskRepository _tasks;
 
-        public DeviceRepository(DbSet<EntityFrameworkDeviceModel> devices, DbSet<EntityFrameworkNetworkModel> networks, IScriptRepository scripts, ITaskRepository tasks)
+        public DeviceRepository(DbSet<DeviceModel> devices, DbSet<NetworkModel> networks, IScriptRepository scripts, ITaskRepository tasks)
         {
             _devices = devices;
             _networks = networks;
@@ -79,7 +79,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(Device device)
         {
-            var model = EntityFrameworkDeviceModel.FromRepositoryType(device, _networks);
+            var model = DeviceModel.FromRepositoryType(device, _networks);
 
             _devices.Add(model);
         }
@@ -97,7 +97,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
             model.Name = device.Name;
             model.Type = device.Type;
-            model.Notes = EntityFrameworkDeviceModel.FromRepositoryType(device, _networks).Notes;
+            model.Notes = DeviceModel.FromRepositoryType(device, _networks).Notes;
         }
 
         public void Update(int id, IDeviceState state)
@@ -108,7 +108,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             device.Update(state, false);
 
             var model = _devices.Find(id);
-            model.Notes = EntityFrameworkDeviceModel.FromRepositoryType(device, _networks).Notes;
+            model.Notes = DeviceModel.FromRepositoryType(device, _networks).Notes;
         }
     }
 }

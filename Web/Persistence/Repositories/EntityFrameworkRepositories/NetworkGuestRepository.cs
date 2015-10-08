@@ -7,11 +7,11 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class NetworkGuestRepository : INetworkGuestRepository
     {
-        private readonly DbSet<EntityFrameworkNetworkGuestModel> _entries;
-        private readonly DbSet<EntityFrameworkNetworkModel> _networks;
-        private readonly DbSet<EntityFrameworkUserModel> _users;
+        private readonly DbSet<NetworkGuestModel> _entries;
+        private readonly DbSet<NetworkModel> _networks;
+        private readonly DbSet<UserModel> _users;
 
-        public NetworkGuestRepository(DbSet<EntityFrameworkNetworkGuestModel> entries, DbSet<EntityFrameworkNetworkModel> networks, DbSet<EntityFrameworkUserModel> users)
+        public NetworkGuestRepository(DbSet<NetworkGuestModel> entries, DbSet<NetworkModel> networks, DbSet<UserModel> users)
         {
             _entries = entries;
             _networks = networks;
@@ -41,7 +41,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(Network network, User user)
         {
-            var entry = new EntityFrameworkNetworkGuestModel
+            var entry = new NetworkGuestModel
             {
                 Network = _networks.Find(network.Id),
                 User = _users.Find(user.Id)
@@ -65,7 +65,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             return result;
         }
 
-        private EntityFrameworkNetworkGuestModel Get(Network network, User user)
+        private NetworkGuestModel Get(Network network, User user)
         {
             var result = _entries.Where(x => x.User.Id == user.Id)
                                  .Where(x => x.Network.Id == network.Id)

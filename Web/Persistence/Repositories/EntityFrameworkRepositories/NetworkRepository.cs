@@ -8,11 +8,11 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class NetworkRepository : INetworkRepository
     {
-        private readonly DbSet<EntityFrameworkNetworkModel> _networks;
-        private readonly DbSet<EntityFrameworkComputerModel> _computers;
-        private readonly DbSet<EntityFrameworkUserModel> _users;
+        private readonly DbSet<NetworkModel> _networks;
+        private readonly DbSet<ComputerModel> _computers;
+        private readonly DbSet<UserModel> _users;
 
-        public NetworkRepository(DbSet<EntityFrameworkNetworkModel> networks, DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkUserModel> users)
+        public NetworkRepository(DbSet<NetworkModel> networks, DbSet<ComputerModel> computers, DbSet<UserModel> users)
         {
             _networks = networks;
             _computers = computers;
@@ -80,7 +80,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(Network network)
         {
-            var model = EntityFrameworkNetworkModel.FromRepositoryType(network, _computers, _users);
+            var model = NetworkModel.FromRepositoryType(network, _computers, _users);
 
             _networks.Add(model);
         }

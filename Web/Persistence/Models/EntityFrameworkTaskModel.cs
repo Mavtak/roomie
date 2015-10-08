@@ -7,24 +7,24 @@ using Roomie.Web.Persistence.Models;
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("TaskModels")]
-    public class EntityFrameworkTaskModel
+    public class TaskModel
     {
         [Key]
         public int Id { get; set; }
 
-        public virtual EntityFrameworkUserModel Owner { get; set; }
-        public virtual EntityFrameworkComputerModel Target { get; set; }
+        public virtual UserModel Owner { get; set; }
+        public virtual ComputerModel Target { get; set; }
         public string Origin { get; set; }
-        public virtual EntityFrameworkScriptModel Script { get; set; }
+        public virtual ScriptModel Script { get; set; }
 
         public DateTime? Expiration { get; set; }
         public DateTime? ReceivedTimestamp { get; set; }
 
         #region Conversions
 
-        public static EntityFrameworkTaskModel FromRepositoryType(Task model, DbSet<EntityFrameworkComputerModel> computers,DbSet<EntityFrameworkScriptModel> scripts, DbSet<EntityFrameworkUserModel> users)
+        public static TaskModel FromRepositoryType(Task model, DbSet<ComputerModel> computers,DbSet<ScriptModel> scripts, DbSet<UserModel> users)
         {
-            var result = new EntityFrameworkTaskModel
+            var result = new TaskModel
             {
                 Expiration = model.Expiration,
                 Id = model.Id,

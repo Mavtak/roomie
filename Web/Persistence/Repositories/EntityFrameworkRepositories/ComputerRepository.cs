@@ -8,11 +8,11 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class ComputerRepository : IComputerRepository
     {
-        private readonly DbSet<EntityFrameworkComputerModel> _computers;
-        private readonly DbSet<EntityFrameworkScriptModel> _scripts;
-        private readonly DbSet<EntityFrameworkUserModel> _users;
+        private readonly DbSet<ComputerModel> _computers;
+        private readonly DbSet<ScriptModel> _scripts;
+        private readonly DbSet<UserModel> _users;
 
-        public ComputerRepository(DbSet<EntityFrameworkComputerModel> computers, DbSet<EntityFrameworkScriptModel> scripts, DbSet<EntityFrameworkUserModel> users)
+        public ComputerRepository(DbSet<ComputerModel> computers, DbSet<ScriptModel> scripts, DbSet<UserModel> users)
         {
             _computers = computers;
             _scripts = scripts;
@@ -103,7 +103,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
         public void Add(Computer computer)
         {
-            var model = EntityFrameworkComputerModel.FromRepositoryType(computer, _scripts, _users);
+            var model = ComputerModel.FromRepositoryType(computer, _scripts, _users);
 
             _computers.Add(model);
         }

@@ -5,12 +5,12 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
-    public class EntityFrameworkDeviceLocationModel : Location, IHasDivId
+    public class DeviceLocationModel : Location, IHasDivId
     {
         [Key]
         public int Id { get; set; }
         
-        public EntityFrameworkUserModel Owner { get; set; }
+        public UserModel Owner { get; set; }
 
         public string Name
         {
@@ -24,7 +24,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
             }
         }
 
-        public virtual ICollection<EntityFrameworkDeviceModel> Devices { get; set; }
+        public virtual ICollection<DeviceModel> Devices { get; set; }
 
         #region HasId implementation
 
