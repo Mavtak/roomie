@@ -6,7 +6,6 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api
 {
     [ApiRestrictedAccess]
-    [AutoSave]
     public class TaskController : RoomieBaseApiController
     {
         public Task Get(int id)

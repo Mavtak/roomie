@@ -61,8 +61,6 @@ namespace Roomie.Web.Website.Controllers
 
             Database.Devices.Update(device);
 
-            Database.SaveChanges();
-
             return Json(new
             {
                 id = device.Id,

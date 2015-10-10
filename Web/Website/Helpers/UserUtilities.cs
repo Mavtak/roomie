@@ -29,7 +29,6 @@ namespace Roomie.Web.Website.Helpers
 
             session.UpdateLastContact();
             database.Sessions.Update(session);
-            database.SaveChanges();
 
             return session;
         }
@@ -57,13 +56,11 @@ namespace Roomie.Web.Website.Helpers
                 user = User.Create(token);
 
                 database.Users.Add(user);
-                database.SaveChanges();
             }
 
             var session = CreateSession(database, user);
             var cookie = CreateSessionCookie(session);
             response.SetCookie(cookie);
-            database.SaveChanges();
         }
 
         public static UserSession CreateSession(IRoomieDatabaseContext database, User user)

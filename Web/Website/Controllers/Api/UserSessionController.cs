@@ -6,7 +6,6 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api
 {
     [ApiRestrictedAccess]
-    [AutoSave]
     public class UserSessionController : RoomieBaseApiController
     {
         public UserSession Get(string token)

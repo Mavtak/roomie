@@ -38,8 +38,6 @@ namespace Roomie.Web.Website.Controllers
             computer.UpdateLastScript(task.Script);
             Database.Computers.Update(computer);
 
-            Database.SaveChanges();
-
             return Json(new
             {
                 success = true
@@ -53,7 +51,6 @@ namespace Roomie.Web.Website.Controllers
 
             computer.RenewWebhookKeys();
             Database.Computers.Update(computer);
-            Database.SaveChanges();
 
             return Json(new
             {
@@ -68,7 +65,6 @@ namespace Roomie.Web.Website.Controllers
 
             computer.DisableWebhook();
             Database.Computers.Update(computer);
-            Database.SaveChanges();
 
             return Json(new
             {
@@ -90,7 +86,7 @@ namespace Roomie.Web.Website.Controllers
             if (ModelState.IsValid)
             {
                 Database.Computers.Add(computer);
-                Database.SaveChanges();
+
                 return RedirectToAction(
                     actionName: "Index"
                 );  

@@ -46,8 +46,6 @@ namespace Roomie.Web.Website.Controllers
                 network.UpdateName(name);
                 Database.Networks.Update(network);
             }
-            
-            Database.SaveChanges();
 
             if (String.IsNullOrEmpty(returnUrl) && HttpContext.Request.UrlReferrer != null)
             {
@@ -89,8 +87,6 @@ namespace Roomie.Web.Website.Controllers
                 origin: "RoomieBot",
                 scriptText: text
                 );
-
-            Database.SaveChanges();
 
             return AjaxSuccess();
         }

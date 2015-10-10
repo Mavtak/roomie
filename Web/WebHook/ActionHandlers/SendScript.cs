@@ -41,7 +41,6 @@ namespace Roomie.Web.WebHook.ActionHandlers
             var task = Task.Create(user, "WebHook, " + computer.Name, targetComputer, script);
 
             database.Tasks.Add(task);
-            database.SaveChanges();
 
             response.Values.Add("Response", "Script queued for delivery to " + targetComputer.Name);
 

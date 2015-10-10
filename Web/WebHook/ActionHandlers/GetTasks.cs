@@ -36,7 +36,6 @@ namespace Roomie.Web.WebHook.ActionHandlers
             {
                 computer.UpdatePing();
                 database.Computers.Update(computer);
-                database.SaveChanges();
 
                 var now = DateTime.UtcNow;
                 try
@@ -82,8 +81,6 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
                 response.Values.Add("Response", "added " + tasks.Length + " task(s)");
             }
-
-            database.SaveChanges();
         }
 
     }

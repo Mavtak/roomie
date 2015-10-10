@@ -54,7 +54,7 @@ namespace Roomie.Web.Persistence.Database
             DatabaseUtilities.Reset(_database);
         }
 
-        public void SaveChanges()
+        private void SaveChanges()
         {
             _database.SaveChanges();
         }

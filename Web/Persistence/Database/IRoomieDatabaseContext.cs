@@ -5,7 +5,6 @@ namespace Roomie.Web.Persistence.Database
 {
     public interface IRoomieDatabaseContext : IDisposable
     {
-        void SaveChanges();
         void Reset();
 
         IComputerRepository Computers { get; }

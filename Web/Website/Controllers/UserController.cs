@@ -96,7 +96,6 @@ namespace Roomie.Web.Website.Controllers
         {
             this.User.Alias = user.Alias;
             Database.Users.Update(User);
-            Database.SaveChanges();
 
             return View(User);
         }

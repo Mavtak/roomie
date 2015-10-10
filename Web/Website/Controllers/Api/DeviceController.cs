@@ -16,7 +16,6 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api
 {
     [ApiRestrictedAccess]
-    [AutoSave]
     public class DeviceController : RoomieBaseApiController
     {
         public IEnumerable<Device> Get()

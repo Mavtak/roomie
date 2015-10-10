@@ -5,7 +5,6 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api
 {
     [ApiRestrictedAccess]
-    [AutoSave]
     public class ComputerController : RoomieBaseApiController
     {
         public Computer[] Get()

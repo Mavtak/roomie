@@ -8,7 +8,6 @@ using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api
 {
-    [AutoSave]
     public class UserAuthenticationController : RoomieBaseApiController
     {
         public HttpResponseMessage Post(string username, string password)

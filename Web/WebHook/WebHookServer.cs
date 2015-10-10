@@ -147,7 +147,6 @@ namespace Roomie.Web.WebHook
 
             var session = WebHookSession.Create(context.Computer);
             context.Database.Sessions.Add(session);
-            context.Database.SaveChanges();
 
             eventArgs.Context.Session = session;
             eventArgs.NewSessionKey = session.Token; //TODO: is this necessary?

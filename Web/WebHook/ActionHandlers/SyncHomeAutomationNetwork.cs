@@ -45,8 +45,6 @@ namespace Roomie.Web.WebHook.ActionHandlers
             network.UpdatePing(computer);
             database.Networks.Update(network);
 
-            database.SaveChanges();
-
             //responseText.Append("network: " + network);
 
             var sentDevices = ProcessSentDevices(request, response, user, network, database).ToList();
@@ -62,8 +60,6 @@ namespace Roomie.Web.WebHook.ActionHandlers
             AddDevicesToResponse(response, existingDevices);
             
             response.Values.Add("Response", responseText.ToString());
-
-            database.SaveChanges();
         }
 
         private static IEnumerable<IDeviceState> ProcessSentDevices(Message request, Message response, User user,  Network network, IRoomieDatabaseContext database)

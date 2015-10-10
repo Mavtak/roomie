@@ -91,7 +91,6 @@ namespace Roomie.Web.Website.Controllers
             DoWork.UntilTimeout(timeout ?? 5, () =>
                 {
                     var result = Database.Scripts.Clean(Database.Tasks, Database.Computers, filter);
-                    Database.SaveChanges();
 
                     deleted += result.Deleted;
                     skipped += result.Skipped;
