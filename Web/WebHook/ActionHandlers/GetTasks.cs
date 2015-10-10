@@ -35,6 +35,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             while ((tasks == null || tasks.Length == 0) && DateTime.Now <= endTime)
             {
                 computer.UpdatePing();
+                database.Computers.Update(computer);
                 database.SaveChanges();
 
                 var now = DateTime.UtcNow;
