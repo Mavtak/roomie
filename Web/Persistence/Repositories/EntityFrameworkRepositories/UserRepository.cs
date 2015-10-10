@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using Roomie.Web.Persistence.Helpers.Secrets;
 using Roomie.Web.Persistence.Models;
@@ -8,10 +9,12 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 {
     public class UserRepository : IUserRepository
     {
+        private readonly Action _save;
         private readonly DbSet<UserModel> _users;
 
-        public UserRepository(DbSet<UserModel> users)
+        public UserRepository(Action save, DbSet<UserModel> users)
         {
+            _save = save;
             _users = users;
         }
 
@@ -44,6 +47,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var model = UserModel.FromRepositoryType(user);
 
             _users.Add(model);
+
+            _save();
+
+            user.SetId(model.Id);
         }
 
         public void Update(User user)
@@ -53,6 +60,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             model.Alias = user.Alias;
             model.Email= user.Email;
             model.Secret = (user.Secret == null) ? null : user.Secret.Format();
+
+            _save();
         }
     }
 }

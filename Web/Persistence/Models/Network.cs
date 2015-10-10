@@ -105,6 +105,16 @@ namespace Roomie.Web.Persistence.Models
             Name = name;
         }
 
+        public void SetId(int id)
+        {
+            if (Id != 0)
+            {
+                throw new ArgumentException("Id is already set");
+            }
+
+            Id = id;
+        }
+
         private static Device[] SortDevices(IEnumerable<Device> devices)
         {
             var result = devices.ToList();

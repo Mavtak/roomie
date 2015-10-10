@@ -9,12 +9,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     public class ComputerRepository : IComputerRepository
     {
         private readonly DbSet<ComputerModel> _computers;
+        private readonly Action _save;
         private readonly DbSet<ScriptModel> _scripts;
         private readonly DbSet<UserModel> _users;
 
-        public ComputerRepository(DbSet<ComputerModel> computers, DbSet<ScriptModel> scripts, DbSet<UserModel> users)
+        public ComputerRepository(DbSet<ComputerModel> computers, Action save, DbSet<ScriptModel> scripts, DbSet<UserModel> users)
         {
             _computers = computers;
+            _save = save;
             _scripts = scripts;
             _users = users;
         }
@@ -107,6 +109,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var model = ComputerModel.FromRepositoryType(computer, _scripts, _users);
 
             _computers.Add(model);
+
+            _save();
+
+            computer.SetId(model.Id);
         }
 
         public void Update(Computer computer)
@@ -120,6 +126,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             model.LastScript = (computer.LastScript == null) ? null : _scripts.Find(computer.LastScript.Id);
             model.Name = computer.Name;
             model.Owner = (computer.Owner == null) ? null : _users.Find(computer.Owner.Id);
+
+            _save();
         }
 
         public void Remove(Computer computer)

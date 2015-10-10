@@ -10,12 +10,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     {
         private readonly DbSet<NetworkModel> _networks;
         private readonly DbSet<ComputerModel> _computers;
+        private readonly Action _save;
         private readonly DbSet<UserModel> _users;
 
-        public NetworkRepository(DbSet<NetworkModel> networks, DbSet<ComputerModel> computers, DbSet<UserModel> users)
+        public NetworkRepository(DbSet<NetworkModel> networks, DbSet<ComputerModel> computers, Action save, DbSet<UserModel> users)
         {
             _networks = networks;
             _computers = computers;
+            _save = save;
             _users = users;
         }
 
@@ -84,6 +86,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var model = NetworkModel.FromRepositoryType(network, _computers, _users);
 
             _networks.Add(model);
+
+            _save();
+
+            network.SetId(model.Id);
         }
 
         public void Update(Network network)
@@ -94,6 +100,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             model.AttatchedComputer = _computers.Find(network.AttatchedComputer.Id);
             model.LastPing = network.LastPing;
             model.Name = network.Name;
+
+            _save();
         }
 
         public void Remove(Network network)
@@ -101,6 +109,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var model = _networks.Find(network.Id);
 
             _networks.Remove(model);
+
+            _save();
         }
     }
 }

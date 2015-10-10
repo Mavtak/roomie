@@ -12,13 +12,15 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     {
         private readonly DbSet<DeviceModel> _devices;
         private readonly DbSet<NetworkModel> _networks;
+        private readonly Action _save;
         private readonly IScriptRepository _scripts;
         private readonly ITaskRepository _tasks;
 
-        public DeviceRepository(DbSet<DeviceModel> devices, DbSet<NetworkModel> networks, IScriptRepository scripts, ITaskRepository tasks)
+        public DeviceRepository(DbSet<DeviceModel> devices, DbSet<NetworkModel> networks, Action save, IScriptRepository scripts, ITaskRepository tasks)
         {
             _devices = devices;
             _networks = networks;
+            _save = save;
             _scripts = scripts;
             _tasks = tasks;
         }
@@ -79,6 +81,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var model = DeviceModel.FromRepositoryType(device, _networks);
 
             _devices.Add(model);
+
+            _save();
+
+            device.SetId(model.Id);
         }
 
         public void Remove(Device device)
@@ -86,6 +92,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var model = _devices.Find(device.Id);
 
             _devices.Remove(model);
+
+            _save();
         }
 
         public void Update(Device device)
@@ -95,6 +103,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             model.Name = device.Name;
             model.Type = device.Type;
             model.Notes = DeviceModel.FromRepositoryType(device, _networks).Notes;
+
+            _save();
         }
 
         public void Update(int id, IDeviceState state)
@@ -106,6 +116,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
 
             var model = _devices.Find(id);
             model.Notes = DeviceModel.FromRepositoryType(device, _networks).Notes;
+
+            _save();
         }
     }
 }

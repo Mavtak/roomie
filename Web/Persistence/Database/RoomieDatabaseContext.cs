@@ -30,23 +30,23 @@ namespace Roomie.Web.Persistence.Database
         {
             _database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
 
-            Tasks = new TaskRepository(_database.Tasks, _database.Computers, _database.Scripts, _database.Users);
+            Tasks = new TaskRepository(_database.Tasks, _database.Computers, SaveChanges,  _database.Scripts, _database.Users);
 
-            Scripts = new ScriptRepository(_database.Scripts, () => SaveChanges());
+            Scripts = new ScriptRepository(_database.Scripts, SaveChanges);
 
-            Computers = new ComputerRepository(_database.Computers, _database.Scripts, _database.Users);
+            Computers = new ComputerRepository(_database.Computers, SaveChanges, _database.Scripts, _database.Users);
 
-            NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests, _database.Networks, _database.Users);
+            NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests, _database.Networks, SaveChanges, _database.Users);
 
-            var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks, _database.Computers, _database.Users);
+            var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks, _database.Computers, SaveChanges, _database.Users);
             Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
 
-            var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices, _database.Networks, Scripts, Tasks);
+            var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices, _database.Networks, SaveChanges, Scripts, Tasks);
             Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
 
-            Users = new UserRepository(_database.Users);
+            Users = new UserRepository(SaveChanges, _database.Users);
 
-            Sessions = new SessionRepository(_database.UserSessions, _database.WebHookSessions, _database.Computers, _database.Users);
+            Sessions = new SessionRepository(_database.UserSessions, _database.WebHookSessions, _database.Computers, SaveChanges, _database.Users);
         }
 
         public void Reset()
@@ -54,9 +54,9 @@ namespace Roomie.Web.Persistence.Database
             DatabaseUtilities.Reset(_database);
         }
 
-        public int SaveChanges()
+        public void SaveChanges()
         {
-            return _database.SaveChanges();
+            _database.SaveChanges();
         }
 
         public void Dispose()

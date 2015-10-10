@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models;
@@ -9,12 +10,14 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     {
         private readonly DbSet<NetworkGuestModel> _entries;
         private readonly DbSet<NetworkModel> _networks;
+        private readonly Action _save;
         private readonly DbSet<UserModel> _users;
 
-        public NetworkGuestRepository(DbSet<NetworkGuestModel> entries, DbSet<NetworkModel> networks, DbSet<UserModel> users)
+        public NetworkGuestRepository(DbSet<NetworkGuestModel> entries, DbSet<NetworkModel> networks, Action save, DbSet<UserModel> users)
         {
             _entries = entries;
             _networks = networks;
+            _save = save;
             _users = users;
         }
 
@@ -50,6 +53,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             };
 
             _entries.Add(entry);
+
+            _save();
         }
 
         public void Remove(Network network, User user)
@@ -57,6 +62,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var entry = Get(network, user);
 
             _entries.Remove(entry);
+
+            _save();
         }
 
         public bool Check(Network network, User user)

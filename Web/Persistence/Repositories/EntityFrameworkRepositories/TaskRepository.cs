@@ -10,13 +10,15 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     {
         private readonly DbSet<TaskModel> _tasks;
         private readonly DbSet<ComputerModel> _computers;
+        private readonly Action _save;
         private readonly DbSet<ScriptModel> _scripts;
         private readonly DbSet<UserModel> _users;
 
-        public TaskRepository(DbSet<TaskModel> tasks, DbSet<ComputerModel> computers, DbSet<ScriptModel> scripts, DbSet<UserModel> users)
+        public TaskRepository(DbSet<TaskModel> tasks, DbSet<ComputerModel> computers, Action save, DbSet<ScriptModel> scripts, DbSet<UserModel> users)
         {
             _tasks = tasks;
             _computers = computers;
+            _save = save;
             _scripts = scripts;
             _users = users;
         }
@@ -70,6 +72,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var model = TaskModel.FromRepositoryType(task, _computers, _scripts, _users);
 
             _tasks.Add(model);
+
+            _save();
+
+            task.SetId(model.Id);
         }
 
         public void Update(Task task)
@@ -77,6 +83,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var model = _tasks.Find(task.Id);
 
             model.ReceivedTimestamp = task.ReceivedTimestamp;
+
+            _save();
         }
 
         public void Remove(Task task)
@@ -84,6 +92,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var model = _tasks.Find(task.Id);
 
             _tasks.Remove(model);
+
+            _save();
         }
 
         public Page<Task> List(User user, ListFilter filter)

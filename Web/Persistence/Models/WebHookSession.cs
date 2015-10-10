@@ -56,6 +56,16 @@ namespace Roomie.Web.Persistence.Models
             }
         }
 
+        public void SetId(int id)
+        {
+            if (Id != 0)
+            {
+                throw new ArgumentException("Id is already set");
+            }
+
+            Id = id;
+        }
+
         public void UpdatePing()
         {
             LastPing = DateTime.UtcNow;

@@ -72,6 +72,16 @@ namespace Roomie.Web.Persistence.Models
             ReceivedTimestamp = DateTime.UtcNow;
         }
 
+        public void SetId(int id)
+        {
+            if (Id != 0)
+            {
+                throw new ArgumentException("Id is already set");
+            }
+
+            Id = id;
+        }
+
         #region HasId implementation
 
         public string DivId
