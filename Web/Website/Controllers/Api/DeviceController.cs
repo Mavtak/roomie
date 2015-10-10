@@ -41,20 +41,11 @@ namespace Roomie.Web.Website.Controllers.Api
 
             var device = this.SelectDevice(id);
 
-            if (update.Name != null)
-            {
-                device.Name = update.Name;
-            }
-
-            if (update.Location != null)
-            {
-                device.Location = new Location(update.Location);
-            }
-
-            if (update.Type != null)
-            {
-                device.Type = update.Type;
-            }
+            device.Update(
+                location: (update.Location == null) ? device.Location : new Location(update.Location),
+                name: update.Name ?? device.Name,
+                type: update.Type ?? device.Type
+            );
 
             this.AddTask(
                 computer: device.Network.AttatchedComputer,
@@ -141,14 +132,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
         private static Device GetSerializableVersion(Device device)
         {
-            var result = new Device
-            {
-                Id = device.Id
-            };
-
-            result.Update(device);
-
-            return result;
+            return Device.Create(device.Id, device);
         }
     }
 }

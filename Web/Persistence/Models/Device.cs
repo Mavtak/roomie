@@ -18,18 +18,18 @@ namespace Roomie.Web.Persistence.Models
 {
     public class Device : IDevice, IHasDivId
     {
-        public string Address { get; set; }
-        public string CurrentAction { get; set; }
-        public int Id { get; set; }
-        public bool? IsConnected { get; set; }
-        public DateTime? LastPing { get; set; }
-        public virtual ILocation Location { get; set; }
-        public string Name { get; set; }
-        public virtual Network Network { get; set; }
-        public DeviceType Type { get; set; }
+        public string Address { get; private set; }
+        public string CurrentAction { get; private set; }
+        public int Id { get; private set; }
+        public bool? IsConnected { get; private set; }
+        public DateTime? LastPing { get; private set; }
+        public virtual ILocation Location { get; private set; }
+        public string Name { get; private set; }
+        public virtual Network Network { get; private set; }
+        public DeviceType Type { get; private set; }
 
-        public IScriptRepository ScriptRepository { get; set; }
-        public ITaskRepository TaskRepository { get; set; }
+        public IScriptRepository ScriptRepository { get; private set; }
+        public ITaskRepository TaskRepository { get; private set; }
 
         private readonly ToggleSwitchModel _binarySwitch;
         private readonly DimmerSwitchModel _multilevelSwitch;
@@ -159,6 +159,60 @@ namespace Roomie.Web.Persistence.Models
             _illuminanceSensor = new MultilevelSensorModel<IIlluminance>(this);
         }
 
+        public Device(string address, DateTime? lastPing, int id, string name, Network network, IScriptRepository scripts, IDeviceState state, ITaskRepository tasks, DeviceType type)
+            : this()
+        {
+            Address = address;
+            LastPing = lastPing;
+            Id = id;
+            Name = name;
+            Network = network;
+            ScriptRepository = scripts;
+            TaskRepository = tasks;
+            Type = type;
+
+            if (state != null)
+            {
+                Update(state, false);
+            }
+        }
+
+        public static Device Create(string address, bool? isConnected, string name, Network network, ILocation location, DeviceType type, string currentAction = null)
+        {
+            var result = new Device(
+                address: address,
+                lastPing: null,
+                id: 0,
+                name: name,
+                network: network,
+                scripts: null,
+                state: null,
+                tasks: null,
+                type: type
+                );
+
+            result.CurrentAction = currentAction;
+
+            return result;
+        }
+
+        public static Device Create(int id, IDeviceState state)
+        {
+            var result = new Device(
+                address: null,
+                lastPing: null,
+                id: id,
+                name: null,
+                network: null,
+                scripts: null,
+                state: state,
+                tasks: null,
+                type: null
+                );
+
+            return result;
+        }
+
         public void Update(IDeviceState state, bool fromDatabase = false)
         {
             //TODO: update more properties?
@@ -190,6 +244,13 @@ namespace Roomie.Web.Persistence.Models
             HumiditySensor.Update(state.HumiditySensorState ?? ReadOnlyMultilevelSensorState<IHumidity>.Blank());
             IlluminanceSensor.Update(state.IlluminanceSensorState ?? ReadOnlyMultilevelSensorState<IIlluminance>.Blank());
             Thermostat.Update(state.ThermostatState ?? ReadOnlyThermostatState.Blank());
+        }
+
+        public void Update(ILocation location, string name, string type)
+        {
+            Location = location;
+            Name = name;
+            Type = type;
         }
 
         public void UpdatePing()

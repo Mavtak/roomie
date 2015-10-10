@@ -21,95 +21,53 @@ namespace Roomie.Web.Persistence
         {
             get
             {
-                var onToggleSwitch = new Device
-                {
-                        Name = "A Toggle Switch that is on",
-                        Type = DeviceType.BinarySwitch
-                    };
+                var computer = Computer.Create("Example Computer", null, DateTime.UtcNow);
+
+                var network = Network.Create("Example Network", null, "Example Network", DateTime.UtcNow, computer);
+
+                var onToggleSwitch = Device.Create(null, true, "A Toggle Switch that is on", network, null, DeviceType.BinarySwitch);
                 onToggleSwitch.BinarySwitch.Power = BinarySwitchPower.On;
 
-                var offToggleSwitch = new Device
-                {
-                        Name = "A Toggle Switch that is off",
-                        Type = DeviceType.BinarySwitch,
-                    };
+                var offToggleSwitch = Device.Create(null, true, "A Toggle Switch that is off", network, null, DeviceType.BinarySwitch);
                 offToggleSwitch.BinarySwitch.Power = BinarySwitchPower.Off;
                 offToggleSwitch.PowerSensor.Value = new WattsPower(0);
 
-                var idleDevice = new Device
-                {
-                        Name = "An appliance that is on, but idle",
-                        Type = DeviceType.BinarySwitch,
-                    };
+                var idleDevice = Device.Create(null, true, "An appliance that is on, but idle", network, null, DeviceType.BinarySwitch, "Idle");
                 idleDevice.BinarySwitch.Power = BinarySwitchPower.On;
                 idleDevice.PowerSensor.Value = new WattsPower(5);
-                idleDevice.CurrentAction = "Idle";
 
-                var runningDevice = new Device
-                {
-                        Name = "An appliance that is on and running",
-                        Type = DeviceType.BinarySwitch,
-                    };
+                var runningDevice = Device.Create(null, true, "An appliance that is on and running", network, null, DeviceType.BinarySwitch, "Running");
                 runningDevice.BinarySwitch.Power = BinarySwitchPower.On;
                 runningDevice.PowerSensor.Value = new WattsPower(50);
-                runningDevice.CurrentAction = "Running";
 
 
-                var onDimmerSwitch = new Device
-                {
-                        Name = "A Dimmer Switch that is on",
-                        Type = DeviceType.MultilevelSwitch
-                    };
+                var onDimmerSwitch = Device.Create(null, true, "A Dimmer Switch that is on", network, null, DeviceType.MultilevelSwitch);
                 onDimmerSwitch.MultilevelSwitch.Power = 75;
                 onDimmerSwitch.PowerSensor.Value = new WattsPower(25.2);
                 onDimmerSwitch.PowerSensor.TimeStamp = DateTime.UtcNow.AddSeconds(-5);
 
-                var offDimmerSwitch = new Device
-                {
-                        Name = "A Dimmer Switch that is off",
-                        Type = DeviceType.MultilevelSwitch
-                    };
+                var offDimmerSwitch = Device.Create(null, true, "A Dimmer Switch that is off", network, null, DeviceType.MultilevelSwitch);
                 offDimmerSwitch.MultilevelSwitch.Power = 0;
 
-                var dimmableColorChangingLight = new Device
-                {
-                        Name = "A dimmable, color-changing light",
-                        Type = DeviceType.MultilevelSwitch
-                    };
+                var dimmableColorChangingLight = Device.Create(null, true, "A dimmable, color-changing light", network, null, DeviceType.MultilevelSwitch);
                 dimmableColorChangingLight.MultilevelSwitch.Power = 50;
                 dimmableColorChangingLight.ColorSwitch.Value = new NamedColor("Purple");
 
-                var openDoorSensor = new Device
-                {
-                    Name = "A Door Sensor that is open",
-                    Type = DeviceType.BinarySensor
-                };
+                var openDoorSensor = Device.Create(null, true, "A Door Sensor that is open", network, null, DeviceType.BinarySensor);
                 openDoorSensor.BinarySensor.Type = BinarySensorType.Door;
                 openDoorSensor.BinarySensor.Value = true;
                 openDoorSensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddSeconds(-24);
 
-                var stillMotionSensor = new Device
-                {
-                    Name = "A Motion Sensor that is still",
-                    Type = DeviceType.BinarySensor
-                };
+                var stillMotionSensor = Device.Create(null, true, "A Motion Sensor that is still", network, null, DeviceType.BinarySensor);
                 stillMotionSensor.BinarySensor.Type = BinarySensorType.Motion;
                 stillMotionSensor.BinarySensor.Value = false;
 
-                var falseGenericBinarySensor = new Device
-                {
-                    Name = "A generic Binary Sensor that is false",
-                    Type = DeviceType.BinarySensor
-                };
+                var falseGenericBinarySensor = Device.Create(null, true, "A generic Binary Sensor that is false", network, null, DeviceType.BinarySensor);
                 falseGenericBinarySensor.BinarySensor.Value = false;
                 falseGenericBinarySensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddMinutes(-4);
 
 
-                var multisensor = new Device
-                {
-                    Name = "A Multisensor",
-                    Type = DeviceType.BinarySensor
-                };
+                var multisensor = Device.Create(null, true, "A Multisensor", network, null, DeviceType.BinarySensor);
                 multisensor.TemperatureSensor.Value = new CelsiusTemperature(25);
                 multisensor.TemperatureSensor.TimeStamp = DateTime.UtcNow.AddSeconds(-45);
                 multisensor.HumiditySensor.Value = new RelativeHumidity(35);
@@ -120,11 +78,7 @@ namespace Roomie.Web.Persistence
                 multisensor.BinarySensor.Value = true;
                 multisensor.BinarySensor.TimeStamp = DateTime.UtcNow.AddSeconds(-43);
 
-                var thermostat = new Device
-                {
-                        Name = "A Thermostat with all data",
-                        Type = DeviceType.Thermostat,
-                    };
+                var thermostat = Device.Create(null, true, "A Thermostat with all data", network, null, DeviceType.Thermostat);
                 thermostat.TemperatureSensor.Value = new FahrenheitTemperature(75);
                 thermostat.Thermostat.Core.Mode = ThermostatMode.Auto;
                 thermostat.Thermostat.Core.SupportedModes = new[] { ThermostatMode.Heat, ThermostatMode.Cool, ThermostatMode.Auto, ThermostatMode.FanOnly, ThermostatMode.Off };
@@ -135,23 +89,9 @@ namespace Roomie.Web.Persistence
                 thermostat.Thermostat.Setpoints.Add(ThermostatSetpointType.Cool, new FahrenheitTemperature(74));
                 thermostat.Thermostat.Setpoints.Add(ThermostatSetpointType.Heat, new FahrenheitTemperature(70));
 
-                var noDataThermostat = new Device
-                {
-                        Name = "A Thermostat with no data",
-                        Type = DeviceType.Thermostat
-                    };
+                var noDataThermostat = Device.Create(null, true, "A Thermostat with no data", network, null, DeviceType.Thermostat);
 
                 var devices = new[] { onToggleSwitch, offToggleSwitch, idleDevice, runningDevice, onDimmerSwitch, offDimmerSwitch, dimmableColorChangingLight, openDoorSensor, stillMotionSensor, falseGenericBinarySensor, multisensor, thermostat, noDataThermostat };
-
-                var computer = Computer.Create("Example Computer", null, DateTime.UtcNow);
-
-                var network = Network.Create("Example Network", null, "Example Network", DateTime.UtcNow, computer, devices);
-
-                foreach (var device in devices)
-                {
-                    device.IsConnected = true;
-                    device.Network = network;
-                }
 
                 return devices;
             }

@@ -47,20 +47,11 @@ namespace Roomie.Web.Website.Controllers
         {
             var device = this.SelectDevice(id);
 
-            if (name != null)
-            {
-                device.Name = name;
-            }
-
-            if (location != null)
-            {
-                device.Location = new Location(location);
-            }
-
-            if (type != null)
-            {
-                device.Type = type;
-            }
+            device.Update(
+                location: (location == null) ? device.Location : new Location(location),
+                name: name ?? device.Name,
+                type: type ?? device.Type
+            );
 
             this.AddTask(
                 computer: device.Network.AttatchedComputer,

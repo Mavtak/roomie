@@ -50,29 +50,25 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 
         public Device ToRepositoryType(IScriptRepository scripts, ITaskRepository tasks)
         {
-            var result = new Device
-            { 
-                Address = Address,
-                CurrentAction = CurrentAction,
-                Id = Id,
-                IsConnected = IsConnected,
-                LastPing = LastPing,
-                Name = Name,                
-                Network = Network.ToRepositoryType(),
-                ScriptRepository = scripts,
-                TaskRepository = tasks,
-                Type = Type
-            };
+            IDeviceState state = null;
 
-            if (string.IsNullOrEmpty(Notes))
+            if (!string.IsNullOrEmpty(Notes))
             {
-                return result;
+                var element = XElement.Parse(Notes);
+                state = element.ToDeviceState();
             }
 
-            var element = XElement.Parse(Notes);
-            var state = element.ToDeviceState();
-
-            result.Update(state, false);
+            var result = new Device(
+                address: Address,
+                lastPing: LastPing,
+                id: Id,
+                name: Name,
+                network: Network.ToRepositoryType(),
+                scripts: scripts,
+                state: state,
+                tasks: tasks,
+                type: Type
+                );
 
             return result;
         }

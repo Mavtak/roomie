@@ -83,15 +83,14 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
                 if (registeredDevice == null)
                 {
-                    var newDevice = new Device
-                    {
-                        Address = sentDevice.Address,
-                        IsConnected = sentDevice.IsConnected,
-                        Name = sentDevice.Name,
-                        Network = network,
-                        Location = sentDevice.Location,
-                        Type = sentDevice.Type
-                    };
+                    var newDevice = Device.Create(
+                        address: sentDevice.Address,
+                        isConnected: sentDevice.IsConnected,
+                        name: sentDevice.Name,
+                        network: network,
+                        location: sentDevice.Location,
+                        type: sentDevice.Type
+                    );
 
                     newDevice.Update(sentDevice);
 
