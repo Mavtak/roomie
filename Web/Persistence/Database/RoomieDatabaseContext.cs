@@ -27,8 +27,13 @@ namespace Roomie.Web.Persistence.Database
         }
 
         public RoomieDatabaseContext()
+            : this(new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext"))
         {
-            _database = new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext");
+        }
+
+        public RoomieDatabaseContext(EntityFrameworkRoomieDatabaseBackend database)
+        {
+            _database = database;
 
             Tasks = new TaskRepository(_database.Tasks, _database.Computers, SaveChanges,  _database.Scripts, _database.Users);
 
