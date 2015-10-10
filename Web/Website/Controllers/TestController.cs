@@ -77,56 +77,6 @@ namespace Roomie.Web.Website.Controllers
             return View(viewName: "PlainText", model: schema); 
         }
 
-        public ActionResult ResetDatabase()
-        {
-            throw new HttpException(404, "Not Found");
-
-            string message = "working...";
-
-            try
-            {
-                Database.Reset();
-                Database.Dispose();
-                Database = new RoomieDatabaseContext();
-                Database.Seed();
-                Database.SaveChanges();
-                message += "\nsuccess!";
-            }
-            catch (Exception exception)
-            {
-                message += "\n" + exception.ToString();
-            }
-
-            return View(viewName: "PlainText", model: message);
-        }
-
-        public ActionResult SeedDatabase()
-        {
-            throw new HttpException(404, "Not Found");
-
-            string message = "working...";
-
-            try
-            {
-                //Database.Seed();
-                var user = Database.Users.Get(1);
-                var computer = Computer.Create("Test Computer", user);
-                Database.Computers.Add(computer);
-                message += "\n" + computer;
-
-                Database.SaveChanges();
-
-                message += "\n" + computer;
-                message += "\nsuccess!";
-            }
-            catch (Exception exception)
-            {
-                message += "\n" + exception.ToString();
-            }
-
-            return View(viewName: "PlainText", model: message);
-        }
-
         public ActionResult CleanUpScripts(int? timeout)
         {
             if (timeout < 1)
