@@ -18,7 +18,6 @@ namespace Roomie.Web.Website
 
         protected void Application_Start()
         {
-            Database.SetInitializer<EntityFrameworkRoomieDatabaseBackend>(new RoomieDatabaseInitializer());
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.ConfigureSerialization(GlobalConfiguration.Configuration);
@@ -28,10 +27,6 @@ namespace Roomie.Web.Website
             BundleConfig.RegisterBundes(BundleTable.Bundles);
             DatabaseConfig.RegisterConnectionStrings();
             DependencyResolver.SetResolver(DependencyResolverConfig.CreateDependencyResolver());
-            //var database = new RoomieDatabaseContext();
-            //database.CreateTables();
-            //database.Seed();
-            //database.SaveChanges();
 
             WebhookUtilities.StartServer();
         }
