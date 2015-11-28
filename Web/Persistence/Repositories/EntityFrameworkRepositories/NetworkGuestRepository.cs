@@ -38,6 +38,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             var result = _entries
                 .Where(x => x.Network.Id == network.Id)
                 .Select(x => x.User)
+                .ToArray()
                 .Select(x => x.ToRepositoryType())
                 .ToArray();
 
