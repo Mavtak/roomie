@@ -98,7 +98,7 @@ describe('roomie.common.sideMenuItem', function() {
 
       expect($(element).find('.item').text()).toEqual('derp');
     });
-    
+
     it('works when set to 1', function () {
       var element = $compile('<side-menu-item indent="\'1\'" label="\'derp\'"></side-menu-item>')($rootScope);
 
@@ -106,7 +106,7 @@ describe('roomie.common.sideMenuItem', function() {
 
       expect($(element).find('.item').text()).toEqual('\xA0\xA0derp');
     });
-    
+
     it('works when set to 2', function () {
       var element = $compile('<side-menu-item indent="\'2\'" label="\'derp\'"></side-menu-item>')($rootScope);
 
@@ -114,7 +114,7 @@ describe('roomie.common.sideMenuItem', function() {
 
       expect($(element).find('.item').text()).toEqual('\xA0\xA0\xA0\xA0derp');
     });
-    
+
   });
 
 });

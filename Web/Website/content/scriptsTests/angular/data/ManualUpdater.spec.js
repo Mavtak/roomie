@@ -72,7 +72,7 @@ describe('roomie.data.ManualUpdater', function() {
 
       expect(items).toEqual([{ id: 'a', customThingy: 0 }, { id: 'b', customThingy: 1 }, { id: 'c', customThingy: 2 }]);
     });
-    
+
     it('runs the optional ammendOriginal function on new items', function () {
       var counter = 0;
       var manualUpdater = new ManualUpdater({
@@ -108,7 +108,7 @@ describe('roomie.data.ManualUpdater', function() {
           directObject: {
             indirectLiteral2: 'second value',
             nestedObject: {
-              
+
             }
           },
           aFunction: function() {
@@ -128,7 +128,7 @@ describe('roomie.data.ManualUpdater', function() {
             }
           },
           directObject2: {
-            
+
           }
         };
 
@@ -281,7 +281,7 @@ describe('roomie.data.ManualUpdater', function() {
       });
 
     });
-    
+
     it('runs the optional processUpdate function on updated items', function () {
       var counter = 0;
       var manualUpdater = new ManualUpdater({
@@ -297,7 +297,7 @@ describe('roomie.data.ManualUpdater', function() {
 
       expect(items).toEqual([{ id: 'a', customThingy: 3 }, { id: 'b', customThingy: 4 }, { id: 'c', customThingy: 5 }]);
     });
-    
+
     it('does not run the optional ammendOriginal function on updated items', function () {
       var counter = 0;
       var manualUpdater = new ManualUpdater({

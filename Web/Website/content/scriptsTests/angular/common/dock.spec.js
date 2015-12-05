@@ -30,7 +30,7 @@ describe('roomie.common.dock', function () {
     it('has a "dock" class', function () {
       expect(selectDock().hasClass('dock')).toEqual(true);
     });
-    
+
     it('has a class that matches the "area" attribute', function () {
       expect(selectDock().hasClass('blam')).toEqual(true);
     });
@@ -65,7 +65,7 @@ describe('roomie.common.dock', function () {
   function selectDock() {
     return $(element).children().eq(0);
   }
-  
+
   function selectFiller() {
     return $(element).children().eq(1);
   }

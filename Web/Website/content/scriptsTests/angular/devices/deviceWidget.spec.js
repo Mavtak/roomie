@@ -162,7 +162,7 @@ describe('roomie.devices.deviceWidget', function() {
 
       expect(selectControls().length).toEqual(1);
     });
-    
+
     it('does not exist when device.temperatureSensor.value exists and device.hasThermostat() returns true', function () {
       $rootScope.device.temperatureSensor = {
         value: {}
@@ -174,7 +174,7 @@ describe('roomie.devices.deviceWidget', function() {
 
       expect(selectControls().length).toEqual(0);
     });
-    
+
     it('does not exist when device.temperatureSensor.value does not exist and device.hasThermostat() returns true', function () {
       $rootScope.device.temperatureSensor = {};
       $rootScope.device.hasThermostat = function () {
@@ -184,7 +184,7 @@ describe('roomie.devices.deviceWidget', function() {
 
       expect(selectControls().length).toEqual(0);
     });
-    
+
     it('does not exist when device.temperatureSensor.value does not exist and device.hasThermostat() returns false', function () {
       $rootScope.device.temperatureSensor = {};
       $rootScope.device.hasThermostat = function () {

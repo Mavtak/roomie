@@ -94,7 +94,7 @@ describe('roomie.devices.colorSwitchControls', function() {
       }, {
         color: 'purple'
       }];
-      
+
       $rootScope.$digest();
 
       expect(selectButton(0).css('background-color')).toEqual('orange');

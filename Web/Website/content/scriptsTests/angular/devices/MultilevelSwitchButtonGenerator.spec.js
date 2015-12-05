@@ -39,7 +39,7 @@ describe('roomie.devices.MultilevelSwitchButtonGenerator', function() {
         expect(result[3].power).toEqual(9);
         expect(result[4].power).toEqual(12);
       });
-      
+
       it('works for 0 to 10, 4 buttons (with rounding)', function () {
         var generator = new MultilevelSwitchButtonGenerator({
           min: 0,

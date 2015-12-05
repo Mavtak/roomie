@@ -17,7 +17,7 @@ describe('roomie.devices.ColorSwitchButtonGenerator', function () {
   beforeEach(angular.mock.inject(function ($injector) {
     ColorSwitchButtonGenerator = $injector.get('ColorSwitchButtonGenerator');
   }));
-  
+
   beforeEach(function () {
     colors = ['red', 'yellow', 'blue'];
   });
@@ -75,7 +75,7 @@ describe('roomie.devices.ColorSwitchButtonGenerator', function () {
     });
 
   });
-  
+
   function MockRainbowColorsGenerator() {
 
     this.generate = function () {

@@ -6,7 +6,7 @@
 
 describe('roomie.task.received', function() {
   var filter;
-  
+
   beforeEach(angular.mock.module('roomie.tasks'));
 
   beforeEach(inject(function($filter) {

@@ -108,7 +108,7 @@ describe('roomie.common.widgetButton', function() {
 
       expect($(element).find('.button .button').css('background-color')).toEqual('red');
     });
-    
+
     it('works when changed', function () {
       $rootScope.color = 'red';
       var element = $compile('<widget-button color="{{color}}"></widget-button>')($rootScope);

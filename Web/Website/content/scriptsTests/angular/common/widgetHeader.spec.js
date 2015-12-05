@@ -28,7 +28,7 @@ describe('roomie.common.widgetHeader', function () {
     expect($(element).find('.header .name').html()).toEqual('herp');
     expect($(element).find('.header .location').html()).toEqual('');
   });
-  
+
   it('works given a title and subtitle', function () {
     var element = $compile('<widget-header title="herp" subtitle="derp"></widget-header>')($rootScope);
     $rootScope.$digest();
@@ -38,7 +38,7 @@ describe('roomie.common.widgetHeader', function () {
     expect($(element).find('.header .name').html()).toEqual('herp');
     expect($(element).find('.header .location').html()).toEqual('derp');
   });
-  
+
   it('works given a title and subtitle and href', function () {
     var element = $compile('<widget-header title="herp" subtitle="derp" href="http://localhost/bam"></widget-header>')($rootScope);
     $rootScope.$digest();
@@ -48,7 +48,7 @@ describe('roomie.common.widgetHeader', function () {
     expect($(element).find('.header .name').html()).toEqual('herp');
     expect($(element).find('.header .location').html()).toEqual('derp');
   });
-  
+
   it('works given a title and href', function () {
     var element = $compile('<widget-header title="herp" href="http://localhost/bam"></widget-header>')($rootScope);
     $rootScope.$digest();
