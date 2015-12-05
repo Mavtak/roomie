@@ -1,0 +1,38 @@
+{
+  "name": "kabrich",
+  "version": "1.0.0",
+  "description": "the angular part of the Roomie website.",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mavtak/roomie.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "^1.4.5",
+    "angular-mocks": "^1.4.5",
+    "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.7.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-karma": "^0.0.4",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.5",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-ng-html2js-preprocessor": "^0.1.2",
+    "karma-spec-reporter": "^0.0.20"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "David McGrath",
+    "email": "roomie@davidmcgrath.com.com",
+    "url": "http://davidmcgrath.com/"
+  },
+  "license": "ISC"
+}
