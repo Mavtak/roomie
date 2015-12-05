@@ -62,7 +62,7 @@ describe('roomie.common.sideMenuItem', function() {
     });
 
     it('works when set up correctly', function() {
-      var element = $compile('<side-menu-item selected="thingy"></side-menu-item>')($rootScope);
+      var element = $compile('<side-menu-item selected="thingy" target="\'javascript:void(0)\'"></side-menu-item>')($rootScope);
 
       var worked = false;
 
