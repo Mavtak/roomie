@@ -100,8 +100,6 @@ describe('roomie.devices.colorSwitchControls', function() {
       expect(selectButton(0).css('background-color')).toEqual('orange');
       expect(selectButton(1).css('background-color')).toEqual('green');
       expect(selectButton(2).css('background-color')).toEqual('purple');
-
-      console.log(element.html());
     });
 
     it('pulls target color from the button generator', function() {

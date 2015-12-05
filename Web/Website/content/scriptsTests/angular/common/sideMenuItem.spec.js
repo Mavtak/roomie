@@ -67,7 +67,6 @@ describe('roomie.common.sideMenuItem', function() {
       var worked = false;
 
       $rootScope.thingy = function () {
-        console.log('clicked');
         worked = true;
       };
 
