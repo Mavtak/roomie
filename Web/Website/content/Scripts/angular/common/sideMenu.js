@@ -19,7 +19,7 @@ module.directive('sideMenu', ['$window', function($window) {
         '>' +
       '</div>'
   };
-  
+
   function link(scope, element, attributes) {
     scope.style = {
       width: 'inherit',
@@ -31,7 +31,7 @@ module.directive('sideMenu', ['$window', function($window) {
     if (attributes.side === 'left') {
       scope.style.left = 0;
     }
-    
+
     if (attributes.side === 'right') {
       scope.style.right = 0;
     }
@@ -52,7 +52,7 @@ module.directive('sideMenu', ['$window', function($window) {
 
       return result;
     }
-    
+
     function updateWidth(newValue) {
       scope.calculatedWidth = newValue;
     }

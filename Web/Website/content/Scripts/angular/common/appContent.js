@@ -20,7 +20,7 @@ module.directive('appContent', function () {
     function calculateWidth() {
       var siblings = element.parent().children();
       var content = siblings[siblings.length - 1];
-      
+
       return content.offsetWidth;
     }
 

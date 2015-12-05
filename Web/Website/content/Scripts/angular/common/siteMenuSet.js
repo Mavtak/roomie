@@ -18,7 +18,7 @@ module.directive('sideMenuSet', function() {
         '>' +
       '</div>'
   };
-  
+
   function link(scope) {
     scope.style = {
       position: 'fixed'
@@ -29,7 +29,7 @@ module.directive('sideMenuSet', function() {
     scope.$watch('width', updateStyle);
 
     updateStyle();
-    
+
     function updateStyle() {
       scope.style.top = scope.top;
       scope.style.bottom = scope.bottom;

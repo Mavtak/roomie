@@ -18,14 +18,14 @@ module.directive('multilevelSwitchControls', ['MultilevelSwitchButtonGenerator',
           '</widget-button>' +
       '</widget-button-group>'
     };
-  
+
   function link(scope) {
     var buttonGenerator = new MultilevelSwitchButtonGenerator(scope.multilevelSwitch);
 
     updateButtons();
 
     scope.$watch('multilevelSwitch.power', updateButtons);
-    
+
     function updateButtons() {
       scope.buttons = buttonGenerator.generate(11);
     }

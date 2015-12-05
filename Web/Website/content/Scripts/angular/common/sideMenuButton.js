@@ -20,11 +20,11 @@ module.directive('sideMenuButton', function() {
         '<div class="bar"></div>' +
       '</div>'
   };
-  
+
   function link(scope) {
     scope.isOpen = false;
     scope.toggle = toggle;
-    
+
     function toggle() {
       var action = scope.isOpen ? scope.close : scope.open;
       scope.isOpen = !scope.isOpen;

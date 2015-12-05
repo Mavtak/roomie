@@ -8,7 +8,7 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
   connectData();
 
   $scope.$watchCollection(function () { return locations; }, updatePageMenuItems, true);
-  
+
   function initializeScope() {
     $scope.page = {
       items: []
@@ -46,7 +46,7 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
         target: '#/devices?location=' + item.location
       };
     });
-    
+
     return result;
   }
 
@@ -100,7 +100,7 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
   function selectItemsFromList(items) {
     return items;
   }
-  
+
   function selectItemFromDetail(item) {
     return [item];
   }
@@ -125,7 +125,7 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     device.thermostat.core.set = function (mode) {
       $http.post('/api/device/' + device.id + '?action=SetThermostatMode&mode=' + mode);
     };
-    
+
     device.thermostat.fan.set = function (mode) {
       $http.post('/api/device/' + device.id + '?action=SetThermostatFanMode&mode=' + mode);
     };
@@ -141,7 +141,7 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
     device.temperatureSensor.poll = function() {
       $http.post('/api/device/' + device.id + '?action=PollTemperatureSensor');
     };
-    
+
     device.humiditySensor.poll = function() {
       $http.post('/api/device/' + device.id + '?action=PollHumiditySensor');
     };
@@ -162,11 +162,11 @@ module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpda
       if (typeof device.location === 'undefined') {
         return false;
       }
-      
+
       if (typeof device.location.name !== 'string') {
         return false;
       }
-      
+
       if (device.location.name.indexOf(location) !== 0 && location.indexOf(device.location.name) !== 0) {
         return false;
       }

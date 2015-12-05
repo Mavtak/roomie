@@ -25,7 +25,7 @@ module.directive('widgetButton', function() {
 
   function link(scope) {
     scope.style = {};
-    
+
     updateColor();
 
     scope.$watch('color', updateColor);

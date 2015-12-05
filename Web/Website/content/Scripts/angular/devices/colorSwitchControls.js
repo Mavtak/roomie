@@ -19,14 +19,14 @@ module.directive('colorSwitchControls', ['ColorSwitchButtonGenerator', function 
           '</widget-button>' +
       '</widget-button-group>'
     };
-  
+
   function link(scope) {
     var buttonGenerator = new ColorSwitchButtonGenerator(scope.colorSwitch);
 
     updateButtons();
 
     scope.$watch('colorSwitch.color.value', updateButtons);
-    
+
     function updateButtons() {
       scope.buttons = buttonGenerator.generate();
     }

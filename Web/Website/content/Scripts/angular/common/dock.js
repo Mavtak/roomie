@@ -21,10 +21,10 @@ module.directive('dock', function() {
         '>' +
       '</div>'
   };
-  
+
   function link(scope, element) {
     var content = element.contents()[0];
-    
+
     scope.fillerStyle = {};
 
     scope.$watch(calculateHeight, updateHeight);
@@ -32,7 +32,7 @@ module.directive('dock', function() {
     function calculateHeight() {
       return content.offsetHeight;
     }
-    
+
     function updateHeight(newValue) {
       scope.fillerStyle.height = newValue + 'px';
       scope.pixelHeight = newValue;
