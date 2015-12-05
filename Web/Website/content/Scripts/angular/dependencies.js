@@ -12,13 +12,16 @@ angular.module('roomie.data', [
 ]);
 
 angular.module('roomie.devices', [
+  'ui.router',
   'roomie.common',
   'roomie.data'
 ]);
 
 angular.module('roomie.tasks', [
+  'ui.router',
   'roomie.common'
 ]);
 
 angular.module('roomie.users', [
+  'ui.router'
 ]);
