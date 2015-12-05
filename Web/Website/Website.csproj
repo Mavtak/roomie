@@ -29,6 +29,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -153,88 +154,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="content\scriptsTests\angular\angular-mocks.js" />
-    <Content Include="content\scriptsTests\angular\common\dock.spec.js" />
-    <Content Include="content\scriptsTests\angular\common\sideMenuItem.spec.js" />
-    <Content Include="content\scriptsTests\angular\common\siteMenu.spec.js" />
-    <Content Include="content\scriptsTests\angular\common\widgetButton.spec.js" />
-    <Content Include="content\scriptsTests\angular\common\widgetButtonGroup.spec.js" />
-    <Content Include="content\scriptsTests\angular\common\widgetDataSection.spec.js" />
-    <Content Include="content\scriptsTests\angular\common\widget.spec.js" />
-    <Content Include="content\scriptsTests\angular\common\widgetHeader.spec.js" />
-    <Content Include="content\scriptsTests\angular\common\keyValue.spec.js" />
-    <Content Include="content\scriptsTests\angular\data\ManualPoller.spec.js" />
-    <Content Include="content\scriptsTests\angular\data\ManualUpdater.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\binarySensorControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\ColorSwitchButtonGenerator.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\colorSwitchControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\RainbowColorsGenerator.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\currentActionControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\multilevelSensorControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\thermostatControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\thermostatModeControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\thermostatSingleTemperatureControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\binarySwitchControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\deviceList.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\deviceWidget.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\locationHeaderGroup.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\LocationHeaderLabelGenerator.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\MultilevelSwitchButtonGenerator.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\multilevelSwitchControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\devices\thermostatTemperatureControls.spec.js" />
-    <Content Include="content\scriptsTests\angular\tasks\received.spec.js" />
-    <Content Include="content\scriptsTests\angular\tasks\taskWidget.spec.js" />
-    <Content Include="content\Scripts\angular\common\appFooter.js" />
-    <Content Include="content\Scripts\angular\common\appHeader.js" />
-    <Content Include="content\Scripts\angular\common\appContent.js" />
-    <Content Include="content\Scripts\angular\common\app-horizontal-section.js" />
-    <Content Include="content\Scripts\angular\common\dock.js" />
-    <Content Include="content\Scripts\angular\common\pageMenuItems.js" />
-    <Content Include="content\Scripts\angular\common\sideMenu.js" />
-    <Content Include="content\Scripts\angular\common\roomieApp.js" />
-    <Content Include="content\Scripts\angular\common\sideMenuButton.js" />
-    <Content Include="content\Scripts\angular\common\sideMenuItem.js" />
-    <Content Include="content\Scripts\angular\common\siteMenuSet.js" />
-    <Content Include="content\Scripts\angular\common\widgetButton.js" />
-    <Content Include="content\Scripts\angular\common\widgetButtonGroup.js" />
-    <Content Include="content\Scripts\angular\common\widgetDataSection.js" />
-    <Content Include="content\Scripts\angular\common\widgetDisconnectedIcon.js" />
-    <Content Include="content\Scripts\angular\data\ManualPoller.js" />
-    <Content Include="content\Scripts\angular\data\ManualPollingUpdater.js" />
-    <Content Include="content\Scripts\angular\data\ManualUpdater.js" />
-    <Content Include="content\Scripts\angular\devices\binarySwitchControls.js" />
-    <Content Include="content\Scripts\angular\devices\binarySensorControls.js" />
-    <Content Include="content\Scripts\angular\devices\ColorSwitchButtonGenerator.js" />
-    <Content Include="content\Scripts\angular\devices\colorSwitchControls.js" />
-    <Content Include="content\Scripts\angular\devices\RainbowColorsGenerator.js" />
-    <Content Include="content\Scripts\angular\devices\currentActionControls.js" />
-    <Content Include="content\Scripts\angular\devices\deviceList.js" />
-    <Content Include="content\Scripts\angular\devices\DevicesController.js" />
-    <Content Include="content\Scripts\angular\devices\deviceWidget.js" />
-    <Content Include="content\Scripts\angular\data\AutomaticPollingUpdater.js" />
-    <Content Include="content\Scripts\angular\devices\locationHeaderGroup.js" />
-    <Content Include="content\Scripts\angular\devices\LocationHeaderLabelGenerator.js" />
-    <Content Include="content\Scripts\angular\devices\MultilevelSwitchButtonGenerator.js" />
-    <Content Include="content\Scripts\angular\devices\multilevelSwitchControls.js" />
-    <Content Include="content\Scripts\angular\devices\routing.js" />
-    <Content Include="content\Scripts\angular\devices\multilevelSensorControls.js" />
-    <Content Include="content\Scripts\angular\devices\thermostatControls.js" />
-    <Content Include="content\Scripts\angular\devices\thermostatModeControls.js" />
-    <Content Include="content\Scripts\angular\devices\thermostatSingleTemperatureControls.js" />
-    <Content Include="content\Scripts\angular\devices\thermostatTemperatureControls.js" />
-    <Content Include="content\Scripts\angular\routing.js" />
-    <Content Include="content\Scripts\angular\tasks\routing.js" />
-    <Content Include="content\Scripts\angular\User\routing.js" />
-    <Content Include="content\Scripts\angular\User\SignInController.js" />
-    <Content Include="content\Scripts\angular\User\signInForm.js" />
     <Content Include="content\Scripts\Libraries\angular-1.3.13.min.js" />
-    <Content Include="content\Scripts\angular\common\keyValue.js" />
-    <Content Include="content\Scripts\angular\common\widget.js" />
-    <Content Include="content\Scripts\angular\common\widgetHeader.js" />
-    <Content Include="content\Scripts\angular\dependencies.js" />
-    <Content Include="content\Scripts\angular\tasks\received.js" />
-    <Content Include="content\Scripts\angular\tasks\TasksController.js" />
-    <Content Include="content\Scripts\angular\tasks\taskWidget.js" />
     <Content Include="content\Scripts\DeviceIndex.js" />
     <Content Include="content\Scripts\CreateNamespace.js" />
     <Content Include="content\Scripts\Libraries\angular-ui-router-0.2.13.min.js" />
