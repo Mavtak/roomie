@@ -75,7 +75,6 @@ namespace Roomie.Web.Website
             var scriptDirectory = "~/content/Scripts/";
             
             var bundle = new ScriptBundle(AngularScriptBundlePath)
-                .Include(scriptDirectory + "angular/dependencies.js")
                 .IncludeDirectory(scriptDirectory + "angular", "*.js", true)
                 ;
 

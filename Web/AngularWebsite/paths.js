@@ -2,7 +2,7 @@ var paths = module.exports = {};
 
 var roots = {};
 roots.in = 'src/';
-roots.out = 'app/';
+roots.out = '../Website/content/Scripts/angular';
 
 paths.angularTemplates = {};
 paths.angularTemplates.in = [
