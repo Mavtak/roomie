@@ -22,7 +22,7 @@ describe('roomie.common.keyValue', function () {
     expect($(element).find('.item')[0]).toBeDefined();
     expect($(element).find('.item .key').html()).toEqual('herp:');
     expect($(element).find('.item .value').html()).toEqual('derp');
-    expect($(element).find('.item .value').attr('href')).toEqual(null);
+    expect($(element).find('.item .value').attr('href')).toEqual(undefined);
   });
 
   it('works given a key and value and href', function () {

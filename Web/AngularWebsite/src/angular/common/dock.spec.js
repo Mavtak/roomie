@@ -57,7 +57,7 @@ describe('roomie.common.dock', function () {
     });
 
     it('sets the pixel-height value', function() {
-      expect(attributes.pixelHeight).toMatch(/[0-9]+/);
+      expect(attributes.height).toMatch(/[0-9]+/);
     });
 
   });
