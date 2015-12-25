@@ -164,7 +164,6 @@
     <Content Include="content\Scripts\SoftNavigate.js" />
     <Content Include="content\styles\color\icons.css" />
     <Content Include="content\styles\structure\icons.css" />
-    <Compile Include="Controllers\AngularController.cs" />
     <Compile Include="Controllers\Api\ComputerController.cs" />
     <Compile Include="Controllers\Api\DeviceActionOptions.cs" />
     <Compile Include="Controllers\Api\DeviceUpdateModel.cs" />
@@ -372,9 +371,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Partials\Device\ColorSwitchButtons.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Angular\App.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\D Temp.pubxml" />
