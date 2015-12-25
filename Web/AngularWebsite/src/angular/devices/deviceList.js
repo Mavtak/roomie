@@ -32,7 +32,9 @@ module.directive('deviceList', function() {
 
     function filterDevices() {
       if (typeof scope.include === 'undefined') {
-        return scope.filteredDevices = scope.devices;
+        scope.filteredDevices = scope.devices;
+
+        return;
       }
 
       scope.filteredDevices = _.filter(scope.devices, scope.include);

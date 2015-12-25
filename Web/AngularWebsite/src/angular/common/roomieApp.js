@@ -128,22 +128,22 @@ module.directive('roomieApp', ['$window', 'pageMenuItems', function($window, pag
     function openNavigationMenu() {
       scope.contentStyle.left = scope.navigationMenu.calculatedWidth;
       scope.navigationMenu.isOpen = true;
-    };
+    }
 
     function openPageMenu() {
       scope.contentStyle.right = scope.pageMenu.calculatedWidth;
       scope.pageMenu.isOpen = true;
-    };
+    }
 
     function closeNavigationMenu() {
       delete scope.contentStyle.left;
       scope.navigationMenu.isOpen = false;
-    };
+    }
 
     function closePageMenu() {
       delete scope.contentStyle.right;
       scope.pageMenu.isOpen = false;
-    };
+    }
 
     function updateContentMinHeight() {
       scope.contentStyle['box-sizing'] = 'border-box';

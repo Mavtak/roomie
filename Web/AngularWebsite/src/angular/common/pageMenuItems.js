@@ -25,5 +25,5 @@ module.factory('pageMenuItems', function () {
 
       _items = items;
     };
-  };
+  }
 });

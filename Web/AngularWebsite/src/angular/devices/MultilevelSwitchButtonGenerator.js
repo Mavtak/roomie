@@ -19,7 +19,7 @@ module.factory('MultilevelSwitchButtonGenerator', function () {
         var upperBound = (getPower(min, max, i + 1, count) + power) / 2;
         var activated = false;
 
-        if (i == 0) {
+        if (i === 0) {
           label = 'Off';
           lowerBound = 0;
 

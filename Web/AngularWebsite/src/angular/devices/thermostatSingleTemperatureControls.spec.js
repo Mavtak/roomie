@@ -116,7 +116,7 @@ describe('roomie.devices.thermostatSingleTemperatureControls', function() {
     it('formats the temperature', function() {
       var display = selectDisplay();
 
-      expect(display.text()).toEqual('12.55°M')
+      expect(display.text()).toEqual('12.55°M');
     });
 
     function selectDisplay() {
