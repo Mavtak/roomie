@@ -22,28 +22,6 @@ describe('roomie.common.sideMenu', function() {
     $rootScope.$digest();
   });
 
-  describe('the items', function() {
-
-    it('there are two', function() {
-      expect(selectItems().length).toEqual(2);
-    });
-
-    it('the first one is devices', function() {
-      var item = selectItem(0);
-
-      expect(item.attr('href')).toEqual('#devices');
-      expect(item.find('.content').text()).toEqual('Devices');
-    });
-
-    it('the second one is tasks', function() {
-      var item = selectItem(1);
-
-      expect(item.attr('href')).toEqual('#tasks');
-      expect(item.find('.content').text()).toEqual('Tasks');
-    });
-
-  });
-
   describe('the calculated-width attribute', function() {
 
     it('is set automatically', function() {
