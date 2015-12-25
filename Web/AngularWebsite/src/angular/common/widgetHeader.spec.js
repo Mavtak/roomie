@@ -24,7 +24,7 @@ describe('roomie.common.widgetHeader', function () {
     $rootScope.$digest();
 
     expect($(element).find('.header')[0]).toBeDefined();
-    expect($(element).find('.header').attr('href')).toEqual(null);
+    expect($(element).find('.header').attr('href')).toEqual(undefined);
     expect($(element).find('.header .name').html()).toEqual('herp');
     expect($(element).find('.header .location').html()).toEqual('');
   });
@@ -34,7 +34,7 @@ describe('roomie.common.widgetHeader', function () {
     $rootScope.$digest();
 
     expect($(element).find('.header')[0]).toBeDefined();
-    expect($(element).find('.header').attr('href')).toEqual(null);
+    expect($(element).find('.header').attr('href')).toEqual(undefined);
     expect($(element).find('.header .name').html()).toEqual('herp');
     expect($(element).find('.header .location').html()).toEqual('derp');
   });

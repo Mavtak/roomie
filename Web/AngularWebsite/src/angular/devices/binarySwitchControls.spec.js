@@ -91,11 +91,11 @@ describe('roomie.devices.binarySwitchControls', function() {
           $rootScope.binarySwitch.setPower = jasmine.createSpy('setPower');
           $rootScope.$digest();
 
-          expect($rootScope.binarySwitch.setPower.callCount).toEqual(0);
+          expect($rootScope.binarySwitch.setPower.calls.count()).toEqual(0);
 
           selectButton(0).click();
 
-          expect($rootScope.binarySwitch.setPower.callCount).toEqual(1);
+          expect($rootScope.binarySwitch.setPower.calls.count()).toEqual(1);
         });
 
         it('if fine if binarySwitch.setPower does not exist when clicked', function() {
@@ -160,11 +160,11 @@ describe('roomie.devices.binarySwitchControls', function() {
           $rootScope.binarySwitch.setPower = jasmine.createSpy('setPower');
           $rootScope.$digest();
 
-          expect($rootScope.binarySwitch.setPower.callCount).toEqual(0);
+          expect($rootScope.binarySwitch.setPower.calls.count()).toEqual(0);
 
           selectButton(1).click();
 
-          expect($rootScope.binarySwitch.setPower.callCount).toEqual(1);
+          expect($rootScope.binarySwitch.setPower.calls.count()).toEqual(1);
         });
 
         it('if fine if binarySwitch.setPower does not exist when clicked', function() {

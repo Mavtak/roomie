@@ -72,7 +72,7 @@ describe('roomie.devices.thermostatTemperatureControls', function() {
 
           expect(attributes.setpoints.set).toHaveBeenCalled();
 
-          var args = attributes.setpoints.set.mostRecentCall.args;
+          var args = attributes.setpoints.set.calls.mostRecent().args;
 
           expect(args[0]).toEqual('heat');
           expect(args[1]).toEqual({
@@ -94,7 +94,7 @@ describe('roomie.devices.thermostatTemperatureControls', function() {
 
           expect(attributes.setpoints.set).toHaveBeenCalled();
 
-          var args = attributes.setpoints.set.mostRecentCall.args;
+          var args = attributes.setpoints.set.calls.mostRecent().args;
 
           expect(args[0]).toEqual('heat');
           expect(args[1]).toEqual({
@@ -158,7 +158,7 @@ describe('roomie.devices.thermostatTemperatureControls', function() {
 
           expect(attributes.setpoints.set).toHaveBeenCalled();
 
-          var args = attributes.setpoints.set.mostRecentCall.args;
+          var args = attributes.setpoints.set.calls.mostRecent().args;
 
           expect(args[0]).toEqual('cool');
           expect(args[1]).toEqual({
@@ -180,7 +180,7 @@ describe('roomie.devices.thermostatTemperatureControls', function() {
 
           expect(attributes.setpoints.set).toHaveBeenCalled();
 
-          var args = attributes.setpoints.set.mostRecentCall.args;
+          var args = attributes.setpoints.set.calls.mostRecent().args;
 
           expect(args[0]).toEqual('cool');
           expect(args[1]).toEqual({
