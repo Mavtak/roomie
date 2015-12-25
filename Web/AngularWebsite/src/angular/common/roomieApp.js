@@ -47,7 +47,6 @@ module.directive('roomieApp', ['$window', 'pageMenuItems', function($window, pag
             '<side-menu ' +
               'ng-show="pageMenu.isOpen" ' +
               'calculated-width="pageMenu.calculatedWidth" ' +
-              'item-selected="pageMenuItemSelected()" ' +
               'side="right" ' +
               '>' +
               '<side-menu-item ' +

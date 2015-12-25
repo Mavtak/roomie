@@ -17,7 +17,7 @@ describe('roomie.common.sideMenu', function() {
   }));
 
   beforeEach(function() {
-    element = $compile('<side-menu calculated-width="width" item-selected="callback()"></side-menu>')($rootScope);
+    element = $compile('<side-menu calculated-width="width"></side-menu>')($rootScope);
 
     $rootScope.$digest();
   });
@@ -42,41 +42,6 @@ describe('roomie.common.sideMenu', function() {
       expect(item.find('.content').text()).toEqual('Tasks');
     });
 
-  });
-
-  describe('the itemSelected function', function() {
-    var callback;
-
-    beforeEach(function() {
-      callback = jasmine.createSpy();
-      $rootScope.callback = callback;
-
-      $rootScope.$digest();
-    });
-
-    it('is not called when the no item is clicked', function() {
-      expect(callback).not.toHaveBeenCalled();
-    });
-
-    it('is called when the first item is clicked', function() {
-      clickItem(0);
-
-      expect(callback).toHaveBeenCalled();
-    });
-
-    it('is called when any item is clicked', function() {
-      for (var i = 0; i < 2; i++) {
-        clickItem(i);
-      }
-
-      window.callback = callback;
-
-      expect(callback.calls.length).toEqual(2);
-    });
-
-    function clickItem(index) {
-      angular.element(selectItem(index)).triggerHandler('click');
-    }
   });
 
   describe('the calculated-width attribute', function() {

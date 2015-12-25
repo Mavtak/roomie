@@ -7,7 +7,6 @@ module.directive('sideMenu', ['$window', function($window) {
     transclude: true,
     scope: {
       calculatedWidth: '=calculatedWidth',
-      itemSelected: '&itemSelected',
       side: '@side'
     },
     link: link,
