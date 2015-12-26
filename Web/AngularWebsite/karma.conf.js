@@ -22,7 +22,7 @@ module.exports = function (config) {
     singleRun: false,
     ngHtml2JsPreprocessor: {
       stripPrefix: 'src/angular/',
-      moduleName: 'kabrich.templates',
+      moduleName: 'roomie.templates',
       cacheIdFromPath: function(filepath) {
         return filepath.replace(/^src\/angular\//g, '');
       },

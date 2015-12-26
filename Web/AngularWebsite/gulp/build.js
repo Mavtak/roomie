@@ -19,7 +19,7 @@ gulp.task('build-angular-templates', function () {
       empty: true
     }))
     .pipe(angularTemplateCache({
-      module: 'kabrich.templates',
+      module: 'roomie.templates',
       standalone: true,
       templateBody: '  $templateCache.put("<%= url %>","<%= contents %>");',
       templateFooter: '\n});',
