@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var gulp = require('gulp');
 var minifyHtml = require('gulp-minify-html');
 var paths = require('../paths');
+var rev = require('gulp-rev-easy');
 
 gulp.task('build', [
   'build-angular-templates',
@@ -32,8 +33,16 @@ gulp.task('build-images', function () {
     .pipe(gulp.dest(paths.images.out));
 });
 
-gulp.task('build-markup', function () {
+gulp.task('build-markup', [
+  'build-angular-templates',
+  'build-images',
+  'build-scripts',
+  'build-styles',
+], function () {
   return gulp.src(paths.markup.in)
+    .pipe(rev({
+      base: paths.markup.out + '/..',
+    }))
     .pipe(minifyHtml())
     .pipe(gulp.dest(paths.markup.out));
 });
