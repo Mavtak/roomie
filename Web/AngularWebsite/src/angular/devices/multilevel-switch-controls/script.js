@@ -7,16 +7,7 @@ module.directive('multilevelSwitchControls', ['MultilevelSwitchButtonGenerator',
       multilevelSwitch: '=multilevelSwitch'
     },
     link: link,
-    template: '' +
-      '<widget-button-group>' +
-        '<widget-button ' +
-          'ng-repeat="button in buttons" ' +
-          'label="{{button.label}}" ' +
-          'activate="multilevelSwitch.setPower(button.power)" ' +
-          'activated="button.activated" ' +
-          '>' +
-          '</widget-button>' +
-      '</widget-button-group>'
+    templateUrl: 'devices/multilevel-switch-controls/template.html',
     };
 
   function link(scope) {

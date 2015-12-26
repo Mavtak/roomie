@@ -4,6 +4,6 @@ module.directive('widget', function() {
   return {
     restrict: 'E',
     transclude: true,
-    template: '<div class="widget"><div class="content" ng-transclude></div></div>'
+    templateUrl: 'common/widget/template.html',
   };
 });

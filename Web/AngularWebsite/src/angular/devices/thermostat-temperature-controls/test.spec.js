@@ -197,7 +197,7 @@
 
   function selectSetpointButton(index, label) {
     return selectTemperatureDisplay(index).find('.setpoint-button').filter(function() {
-      return $(this).text() === label;
+      return $(this).text().trim() === label;
     });
   }
 });

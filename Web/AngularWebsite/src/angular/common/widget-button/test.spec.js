@@ -16,7 +16,7 @@
 
       $rootScope.$digest();
 
-      expect($(element).find('.button .button').html()).toEqual('');
+      expect($(element).find('.button .button').html().trim()).toEqual('');
     });
 
     it('works when set', function() {
@@ -24,7 +24,7 @@
 
       $rootScope.$digest();
 
-      expect($(element).find('.button .button').html()).toEqual('derp');
+      expect($(element).find('.button .button').html().trim()).toEqual('derp');
     });
 
   });

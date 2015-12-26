@@ -9,28 +9,7 @@ module.directive('thermostatTemperatureControls', function() {
       'setpoints': '=setpoints'
     },
     link: link,
-    template: '' +
-      '<div ' +
-        'class="thermostat-controls" ' +
-        '>' +
-        '<thermostat-single-temperature-controls ' +
-          'label="Heat" ' +
-          'set="setHeat" ' +
-          'temperature="setpoints.heat"' +
-          '>' +
-        '</thermostat-single-temperature-controls>' +
-        '<thermostat-single-temperature-controls ' +
-          'label="Current" ' +
-          'temperature="temperature"' +
-          '>' +
-        '</thermostat-single-temperature-controls>' +
-        '<thermostat-single-temperature-controls ' +
-          'label="Cool" ' +
-          'set="setCool" ' +
-          'temperature="setpoints.cool"' +
-          '>' +
-        '</thermostat-single-temperature-controls>' +
-      '</div>'
+    templateUrl: 'devices/thermostat-temperature-controls/template.html',
   };
 
   function link(scope) {

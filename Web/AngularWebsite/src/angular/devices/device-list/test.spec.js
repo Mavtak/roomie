@@ -32,8 +32,8 @@
     $rootScope.$digest();
 
     expect(selectDeviceWidgets().length).toEqual(2);
-    expect(selectDeviceWidget(0).find('widget-header .header .name').html()).toEqual('device 1');
-    expect(selectDeviceWidget(1).find('widget-header .header .name').html()).toEqual('device 2');
+    expect(selectDeviceWidget(0).find('widget-header .header .name').html().trim()).toEqual('device 1');
+    expect(selectDeviceWidget(1).find('widget-header .header .name').html().trim()).toEqual('device 2');
 
     $rootScope.page.items.push({
       name: 'device 3'
@@ -41,9 +41,9 @@
     $rootScope.$digest();
 
     expect(selectDeviceWidgets().length).toEqual(3);
-    expect(selectDeviceWidget(0).find('widget-header .header .name').html()).toEqual('device 1');
-    expect(selectDeviceWidget(1).find('widget-header .header .name').html()).toEqual('device 2');
-    expect(selectDeviceWidget(2).find('widget-header .header .name').html()).toEqual('device 3');
+    expect(selectDeviceWidget(0).find('widget-header .header .name').html().trim()).toEqual('device 1');
+    expect(selectDeviceWidget(1).find('widget-header .header .name').html().trim()).toEqual('device 2');
+    expect(selectDeviceWidget(2).find('widget-header .header .name').html().trim()).toEqual('device 3');
   });
 
   it('includes locations', function() {
@@ -109,7 +109,7 @@
 
     //TODO test locations also
     expect(selectDeviceWidgets().length).toEqual(1);
-    expect(selectDeviceWidget(0).find('widget-header .header .name').html()).toEqual('device 1');
+    expect(selectDeviceWidget(0).find('widget-header .header .name').html().trim()).toEqual('device 1');
 
     $rootScope.page.items.push({
       name: 'device 3'
@@ -117,8 +117,8 @@
     $rootScope.$digest();
 
     expect(selectDeviceWidgets().length).toEqual(2);
-    expect(selectDeviceWidget(0).find('widget-header .header .name').html()).toEqual('device 1');
-    expect(selectDeviceWidget(1).find('widget-header .header .name').html()).toEqual('device 3');
+    expect(selectDeviceWidget(0).find('widget-header .header .name').html().trim()).toEqual('device 1');
+    expect(selectDeviceWidget(1).find('widget-header .header .name').html().trim()).toEqual('device 3');
   });
 
   function selectDeviceWidgets() {

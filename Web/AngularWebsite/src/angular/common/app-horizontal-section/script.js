@@ -8,17 +8,7 @@ module.directive('appHorizontalSection', function () {
     scope: {
       rowId: '@rowId'
     },
-    template: '' +
-      '<div ' +
-        'id="{{rowId}}" ' +
-        'class="horizontalCrossSection"' +
-        '>' +
-        '<div ' +
-          'class="mainColumn"' +
-          'ng-transclude' +
-          '>' +
-        '</div>' +
-      '</div>'
+    templateUrl: 'common/app-horizontal-section/template.html',
   };
 
 });

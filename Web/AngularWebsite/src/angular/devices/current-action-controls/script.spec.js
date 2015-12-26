@@ -37,7 +37,7 @@
 
     function readText() {
       $rootScope.$digest();
-      text = $(element).find('.group').text();
+      text = $(element).find('.group').text().trim();
     }
   });
 

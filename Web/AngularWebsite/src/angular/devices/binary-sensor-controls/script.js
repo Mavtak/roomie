@@ -9,16 +9,7 @@ module.directive('binarySensorControls', function () {
       sensor: '=sensor'
     },
     link: link,
-    template: '' +
-      '<div ' +
-        'class="group" ' +
-        '>' +
-        '<button ' +
-          'ng-click="sensor.poll()"' +
-          '>' +
-          '{{translateLabel(sensor)}}: {{translateValue(sensor)}} (at {{sensor.timeStamp.toLocaleString()}})' +
-        '</button>' +
-      '</div>'
+    templateUrl: 'devices/binary-sensor-controls/template.html',
   };
 
   function link(scope) {

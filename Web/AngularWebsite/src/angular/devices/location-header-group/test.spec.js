@@ -27,7 +27,8 @@
     $rootScope.current = { name: 'derp' };
 
     $compile('<location-header-group previous-location="previous" current-location="current"></location-header-group>')($rootScope);
-
+    $rootScope.$digest();
+    
     expect(givenPreviousLocation).toBe($rootScope.previous);
     expect(givenCurrentLocation).toBe($rootScope.current);
   });

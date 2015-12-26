@@ -29,6 +29,7 @@
   });
 
   it('gives the multilevelSwitch to the MultilevelSwitchButtonGenerator', function () {
+    $rootScope.$digest();
     expect(givenMultilevelSwitch).toBe($rootScope.multilevelSwitch);
   });
 
@@ -57,9 +58,9 @@
 
       $rootScope.$digest();
 
-      expect(selectButton(0).text()).toEqual('herp');
-      expect(selectButton(1).text()).toEqual('derp');
-      expect(selectButton(2).text()).toEqual('');
+      expect(selectButton(0).text().trim()).toEqual('herp');
+      expect(selectButton(1).text().trim()).toEqual('derp');
+      expect(selectButton(2).text().trim()).toEqual('');
     });
 
     it('pulls activated from the button generator', function() {

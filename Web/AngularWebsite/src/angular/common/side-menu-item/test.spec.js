@@ -16,7 +16,7 @@
 
       $rootScope.$digest();
 
-      expect($(element).find('.item .content').text()).toEqual('');
+      expect($(element).find('.item .content').text().trim()).toEqual('');
     });
 
     it('works when set', function() {
@@ -24,7 +24,7 @@
 
       $rootScope.$digest();
 
-      expect($(element).find('.item .content').text()).toEqual('derp');
+      expect($(element).find('.item .content').text().trim()).toEqual('derp');
     });
   });
 
@@ -83,7 +83,7 @@
 
       $rootScope.$digest();
 
-      expect($(element).find('.item').text()).toEqual('derp');
+      expect($(element).find('.item').text().trim()).toEqual('derp');
     });
 
     it('works when set to 0', function () {
@@ -91,7 +91,7 @@
 
       $rootScope.$digest();
 
-      expect($(element).find('.item').text()).toEqual('derp');
+      expect($(element).find('.item').text().replace(/[\r\n ]/g, '')).toEqual('derp');
     });
 
     it('works when set to 1', function () {
@@ -99,7 +99,7 @@
 
       $rootScope.$digest();
 
-      expect($(element).find('.item').text()).toEqual('\xA0\xA0derp');
+      expect($(element).find('.item').text().replace(/[\r\n ]/g, '')).toEqual('\xA0\xA0derp');
     });
 
     it('works when set to 2', function () {
@@ -107,7 +107,7 @@
 
       $rootScope.$digest();
 
-      expect($(element).find('.item').text()).toEqual('\xA0\xA0\xA0\xA0derp');
+      expect($(element).find('.item').text().replace(/[\r\n ]/g, '')).toEqual('\xA0\xA0\xA0\xA0derp');
     });
 
   });

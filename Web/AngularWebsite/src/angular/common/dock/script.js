@@ -10,16 +10,7 @@ module.directive('dock', function() {
       pixelHeight: '=?pixelHeight'
     },
     link: link,
-    template: '' +
-      '<div ' +
-        'class="dock {{area}}" ' +
-        'ng-transclude ' +
-        '>' +
-      '</div>' +
-      '<div ' +
-        'ng-style="fillerStyle" ' +
-        '>' +
-      '</div>'
+    templateUrl: 'common/dock/template.html',
   };
 
   function link(scope, element) {

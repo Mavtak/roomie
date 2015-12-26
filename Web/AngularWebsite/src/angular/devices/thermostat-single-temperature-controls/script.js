@@ -10,35 +10,7 @@ module.directive('thermostatSingleTemperatureControls', function() {
       'temperature': '=temperature'
     },
     link: link,
-    template: '' +
-      '<div ' +
-        'class="temperature"' +
-        '>' +
-        '<button ' +
-          'class="button setpoint-button"' +
-          'ng-click="colder()" ' +
-          'ng-if="canSet()" ' +
-          '>' +
-          '-' +
-        '</button>' +
-        '<div ' +
-          'class="value"' +
-          '>' +
-          '{{format(temperature)}}' +
-        '</div>' +
-        '<button ' +
-          'class="button setpoint-button"' +
-          'ng-click="hotter()" ' +
-          'ng-if="canSet()" ' +
-          '>' +
-          '+' +
-        '</button>' +
-        '<div ' +
-          'class="description"' +
-          '>' +
-          '{{label}}' +
-        '</div>' +
-      '</div>'
+    templateUrl: 'devices/thermostat-single-temperature-controls/template.html',
   };
 
   function link(scope) {

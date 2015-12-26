@@ -5,77 +5,7 @@ module.directive('roomieApp', ['$window', 'pageMenuItems', function($window, pag
   return {
     restrict: 'E',
     link: link,
-    template: '' +
-      '<div id="page">' +
-        '<dock ' +
-          'area="top"' +
-          'pixel-height="heights.topDock" ' +
-          '>' +
-          '<app-horizontal-section ' +
-            'row-id="headerRow" ' +
-            '>' +
-            '<app-header ' +
-              'navigation-menu="navigationMenu" ' +
-              'page-menu="pageMenu" ' +
-              '>' +
-            '</app-header>' +
-          '</app-horizontal-section>' +
-        '</dock>' +
-        '<app-horizontal-section ' +
-          'row-id="contentRow" ' +
-          '>' +
-          '<side-menu-set ' +
-            'top="heights.topDock" ' +
-            'bottom="heights.bottomDock" ' +
-            'width="widths.app" ' +
-            '>' +
-            '<side-menu ' +
-              'ng-show="navigationMenu.isOpen" ' +
-              'calculated-width="navigationMenu.calculatedWidth" ' +
-              'side="left" ' +
-              '>' +
-              '<side-menu-item label="\'Home\'" selected="navigationMenuItemSelected" target="\'/\'"></side-menu-item>' +
-              '<side-menu-item label="\'Networks\'" selected="navigationMenuItemSelected" target="\'/Networks\'"></side-menu-item>' +
-              '<side-menu-item label="\'Devices\'" selected="navigationMenuItemSelected" target="\'#/devices\'"></side-menu-item>' +
-              '<side-menu-item label="\'Computers\'" selected="navigationMenuItemSelected" target="\'/Computers\'"></side-menu-item>' +
-              '<side-menu-item label="\'Tasks\'" selected="navigationMenuItemSelected" target="\'#/tasks\'"></side-menu-item>' +
-              '<side-menu-item label="\'Help\'" selected="navigationMenuItemSelected" target="\'/Help\'"></side-menu-item>' +
-              '<side-menu-item label="\'Account\'" selected="navigationMenuItemSelected" target="\'/Account\'"></side-menu-item>' +
-              '<div class="divider"></div>' +
-              '<side-menu-item label="\'Sign Out\'" selected="navigationMenuItemSelected" target="\'/SignOut\'"></side-menu-item>' +
-            '</side-menu>' +
-            '<side-menu ' +
-              'ng-show="pageMenu.isOpen" ' +
-              'calculated-width="pageMenu.calculatedWidth" ' +
-              'side="right" ' +
-              '>' +
-              '<side-menu-item ' +
-                'ng-repeat="item in pageMenuItems.list()"' +
-                'indent="item.indent" ' +
-                'label="item.label" ' +
-                'selected="pageMenuItemSelected" ' +
-                'target="item.target" ' +
-                '>' +
-              '</side-menu-item>' +
-            '</side-menu>' +
-          '</side-menu-set>' +
-          '<app-content ' +
-            'ng-style="contentStyle" ' +
-            '>' +
-          '</app-content>' +
-        '</app-horizontal-section>' +
-        '<dock ' +
-          'area="bottom"' +
-          'pixel-height="heights.bottomDock" ' +
-          '>' +
-          '<app-horizontal-section ' +
-            'row-id="footerRow" ' +
-            '>' +
-            '<app-footer' +
-              '>' +
-            '</app-footer>' +
-          '</app-horizontal-section>' +
-        '</dock>'
+    templateUrl: 'common/roomie-app/template.html',
   };
 
   function link(scope) {

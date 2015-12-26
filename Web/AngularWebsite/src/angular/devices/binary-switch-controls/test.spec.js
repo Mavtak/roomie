@@ -35,7 +35,7 @@
       it('is the first button (identified by the label)', function() {
         $rootScope.$digest();
 
-        expect(selectButton(0).html()).toEqual('Off');
+        expect(selectButton(0).html().trim()).toEqual('Off');
       });
 
       describe('activation styling', function() {
@@ -104,7 +104,7 @@
       it('is the second button (identified by the label)', function() {
         $rootScope.$digest();
 
-        expect(selectButton(1).html()).toEqual('On');
+        expect(selectButton(1).html().trim()).toEqual('On');
       });
 
       describe('activation styling', function() {

@@ -10,13 +10,7 @@ module.directive('sideMenu', ['$window', function($window) {
       side: '@side'
     },
     link: link,
-    template: '' +
-      '<div ' +
-        'class="sideMenu" ' +
-        'ng-style="style" ' +
-        'ng-transclude' +
-        '>' +
-      '</div>'
+    templateUrl: 'common/side-menu/template.html',
   };
 
   function link(scope, element, attributes) {

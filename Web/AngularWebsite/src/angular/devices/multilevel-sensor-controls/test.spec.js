@@ -34,7 +34,7 @@ describe('roomie.devices.multilevelSensorControls', function() {
     var text;
 
     beforeEach(function() {
-      text = $(element).text();
+      text = $(element).text().trim();
       parts = text.split(' ');
     });
 

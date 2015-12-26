@@ -10,15 +10,7 @@ module.directive('sideMenuButton', function() {
       'open': '&open'
     },
     link: link,
-    template: '' +
-      '<div ' +
-        'class="menuButton" ' +
-        'ng-click="toggle()"' +
-        '>' +
-        '<div class="bar"></div>' +
-        '<div class="bar"></div>' +
-        '<div class="bar"></div>' +
-      '</div>'
+    templateUrl: 'common/side-menu-button/template.html',
   };
 
   function link(scope) {

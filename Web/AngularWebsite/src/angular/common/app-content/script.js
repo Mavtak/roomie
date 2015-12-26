@@ -6,12 +6,7 @@ module.directive('appContent', function () {
     restrict: 'E',
     replace: true,
     link: link,
-    template: '' +
-      '<div ' +
-        'id="content" ' +
-        'ui-view' +
-        '>' +
-      '</div>'
+    templateUrl: 'common/app-content/template.html',
   };
 
   function link(scope, element) {

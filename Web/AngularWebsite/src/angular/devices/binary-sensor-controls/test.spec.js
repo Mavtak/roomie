@@ -77,7 +77,7 @@
 
     function readText() {
       $rootScope.$digest();
-      text = $(element).text();
+      text = $(element).text().trim();
       parts = text.split(' ');
     }
   });

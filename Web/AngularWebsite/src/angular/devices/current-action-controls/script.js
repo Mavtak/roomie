@@ -7,15 +7,7 @@ module.directive('currentActionControls', function() {
     scope: {
       currentAction: '=currentAction'
     },
-    template: '' +
-      '<div ' +
-        'class="group" ' +
-        '>' +
-        '<div ' +
-          '>' +
-          '{{currentAction}}' +
-        '</div>' +
-      '</div>'
+    templateUrl: 'devices/current-action-controls/template.html',
   };
 
 });

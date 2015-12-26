@@ -8,6 +8,6 @@ module.directive('keyValue', function() {
       value: '@value',
       href: '@href'
     },
-    template: '<div class="item"><div class="key">{{key}}:</div><a ng-href="{{href}}" class="value">{{value}}</a></div>'
+    templateUrl: 'common/key-value/template.html',
   };
 });

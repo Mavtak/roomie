@@ -9,20 +9,7 @@ module.directive('deviceList', function() {
       include: '=include'
     },
     link: link,
-    template: '' +
-      '<div ' +
-        'ng-repeat="device in filteredDevices"' +
-        '>' +
-        '<location-header-group ' +
-          'previous-location="filteredDevices[$index - 1].location.name" ' +
-          'current-location="device.location.name"' +
-          '>' +
-        '</location-header-group>' +
-        '<device-widget ' +
-          'device="device" ' +
-          '>' +
-        '</device-widget>' +
-      '</div>'
+    templateUrl: 'devices/device-list/template.html',
   };
 
   function link(scope) {

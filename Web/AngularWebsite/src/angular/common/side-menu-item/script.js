@@ -11,20 +11,7 @@ module.directive('sideMenuItem', function() {
       target: '=target'
     },
     link: link,
-    template: '' +
-      '<a ' +
-        'class="item"' +
-        'href="{{target}}"' +
-        'ng-click="selected()" ' +
-        'style="padding-right: 20px"' + //TODO: compensate for scrollbar in a better way
-        '>' +
-        '{{calculateIndent()}}' +
-        '<span ' +
-          'class="content"' +
-          '>' +
-          '{{label}}' +
-        '</span>' +
-      '</a>'
+    templateUrl: 'common/side-menu-item/template.html',
   };
 
   function link(scope) {

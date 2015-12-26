@@ -11,12 +11,7 @@ module.directive('sideMenuSet', function() {
       width: '=width'
     },
     link: link,
-    template: '' +
-      '<div ' +
-        'ng-style="style" ' +
-        'ng-transclude' +
-        '>' +
-      '</div>'
+    templateUrl: 'common/side-menu-set/template.html',
   };
 
   function link(scope) {

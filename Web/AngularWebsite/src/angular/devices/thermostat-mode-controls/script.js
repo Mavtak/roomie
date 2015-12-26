@@ -9,28 +9,7 @@ module.directive('thermostatModeControls', function() {
       'modes': '=modes'
     },
     link: link,
-    template: '' +
-      '<div ' +
-        'class="header" ' +
-        '>' +
-        '<div ' +
-          'class="secondary" ' +
-          '>' +
-          '{{formatCurrentAction()}}' +
-        '</div>' +
-        '{{label}}' +
-      '</div>' +
-      '<widget-button-group ' +
-        'ng-if="modes.supportedModes.length > 0"' +
-        '>' +
-        '<widget-button ' +
-          'ng-repeat="mode in modes.supportedModes" ' +
-          'label="{{capitalizeFirstLetter(mode)}}" ' +
-          'activate="modes.set(mode)" ' +
-          'activated="mode === modes.mode" ' +
-          '>' +
-        '</widget-button>' +
-      '</widget-button-group>'
+    templateUrl: 'devices/thermostat-mode-controls/template.html',
   };
 
   function link(scope) {

@@ -9,25 +9,6 @@ module.directive('widgetHeader', function() {
       subtitle: '@subtitle',
       href: '@href'
     },
-    template: '' +
-      '<a ' +
-        'class="header" ' +
-        'ng-href="{{href}}"' +
-        '>' +
-        '<div ' +
-          'class="location"' +
-          '>' +
-          '{{subtitle}}' +
-        '</div>' +
-        '<widget-disconnected-icon ' +
-          'ng-if="disconnected"' +
-          '>' +
-        '</widget-disconnected-icon>' +
-        '<div ' +
-          'class="name"' +
-          '>' +
-          '{{title}}' +
-        '</div>' +
-      '</a>'
+    templateUrl: 'common/widget-header/template.html',
   };
 });

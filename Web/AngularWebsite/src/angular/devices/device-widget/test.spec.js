@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.deviceWidget', function() {
+describe('roomie.devices.deviceWidget', function() {
   var $compile;
   var $rootScope;
   var element;
@@ -14,6 +14,7 @@
     $rootScope.device = {};
 
     element = $compile('<device-widget device="device"></device-widget>')($rootScope);
+    $rootScope.$digest();
   });
 
   describe('the header', function() {
@@ -27,7 +28,7 @@
 
       $rootScope.$digest();
 
-      expect($(element).find('.widget widget-header .header .name').html()).toEqual("Light Switch");
+      expect($(element).find('.widget widget-header .header .name').html().trim()).toEqual("Light Switch");
     });
 
     it('links to the detail', function () {
@@ -40,7 +41,7 @@
     it('has no subtitle', function() {
       $rootScope.$digest();
 
-      expect($(element).find('.widget widget-header .header .location').html()).toEqual('');
+      expect($(element).find('.widget widget-header .header .location').html().trim()).toEqual('');
     });
 
     it('sets the disconnected property', function() {

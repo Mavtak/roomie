@@ -7,18 +7,8 @@ module.directive('colorSwitchControls', ['ColorSwitchButtonGenerator', function 
       colorSwitch: '=colorSwitch'
     },
     link: link,
-    template: '' +
-      '<widget-button-group>' +
-        '<widget-button ' +
-          'ng-repeat="button in buttons" ' +
-          'label="{{button.label}}" ' +
-          'activate="colorSwitch.setValue(button.color)" ' +
-          'activated="button.activated" ' +
-          'color="{{button.color}}"' +
-          '>' +
-          '</widget-button>' +
-      '</widget-button-group>'
-    };
+    templateUrl: 'devices/color-switch-controls/template.html',
+  };
 
   function link(scope) {
     var buttonGenerator = new ColorSwitchButtonGenerator(scope.colorSwitch);

@@ -1,4 +1,4 @@
-﻿describe('roomie.task.taskWidget', function() {
+describe('roomie.task.taskWidget', function() {
   var $compile;
   var $rootScope;
   var element;
@@ -21,13 +21,15 @@
     describe('the header', function() {
 
       it('has one', function() {
+        $rootScope.$digest();
+
         expect($(element).find('.widget widget-header .header').length).toEqual(1);
       });
 
       it('has a title of "Task"', function() {
         $rootScope.$digest();
 
-        expect($(element).find('.widget widget-header .header .name').html()).toEqual('Task');
+        expect($(element).find('.widget widget-header .header .name').html().trim()).toEqual('Task');
       });
 
       it('does not link to anywhere', function() {
@@ -39,7 +41,7 @@
       it('has no subtitle', function() {
         $rootScope.$digest();
 
-        expect($(element).find('.widget widget-header .header .location').html()).toEqual('');
+        expect($(element).find('.widget widget-header .header .location').html().trim()).toEqual('');
       });
 
     });
@@ -47,6 +49,8 @@
     describe('the key-value entries', function() {
 
       it('has 4', function() {
+        $rootScope.$digest();
+
         expect($(element).find('.widget widget-data-section').find('key-value').length).toEqual(4);
       });
 
@@ -102,6 +106,8 @@
     describe('the script block', function() {
 
       it('has one', function() {
+        $rootScope.$digest();
+
         expect($(element).find('.widget textarea.code').length).toEqual(1);
       });
 

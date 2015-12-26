@@ -19,8 +19,8 @@
 
     expect($(element).find('.header')[0]).toBeDefined();
     expect($(element).find('.header').attr('href')).toEqual(undefined);
-    expect($(element).find('.header .name').html()).toEqual('herp');
-    expect($(element).find('.header .location').html()).toEqual('');
+    expect($(element).find('.header .name').html().trim()).toEqual('herp');
+    expect($(element).find('.header .location').html().trim()).toEqual('');
   });
 
   it('works given a title and subtitle', function () {
@@ -29,8 +29,8 @@
 
     expect($(element).find('.header')[0]).toBeDefined();
     expect($(element).find('.header').attr('href')).toEqual(undefined);
-    expect($(element).find('.header .name').html()).toEqual('herp');
-    expect($(element).find('.header .location').html()).toEqual('derp');
+    expect($(element).find('.header .name').html().trim()).toEqual('herp');
+    expect($(element).find('.header .location').html().trim()).toEqual('derp');
   });
 
   it('works given a title and subtitle and href', function () {
@@ -39,8 +39,8 @@
 
     expect($(element).find('.header')[0]).toBeDefined();
     expect($(element).find('.header').attr('href')).toEqual('http://localhost/bam');
-    expect($(element).find('.header .name').html()).toEqual('herp');
-    expect($(element).find('.header .location').html()).toEqual('derp');
+    expect($(element).find('.header .name').html().trim()).toEqual('herp');
+    expect($(element).find('.header .location').html().trim()).toEqual('derp');
   });
 
   it('works given a title and href', function () {
@@ -49,8 +49,8 @@
 
     expect($(element).find('.header')[0]).toBeDefined();
     expect($(element).find('.header').attr('href')).toEqual('http://localhost/bam');
-    expect($(element).find('.header .name').html()).toEqual('herp');
-    expect($(element).find('.header .location').html()).toEqual('');
+    expect($(element).find('.header .name').html().trim()).toEqual('herp');
+    expect($(element).find('.header .location').html().trim()).toEqual('');
   });
 
   describe('the disconnected attribute', function() {

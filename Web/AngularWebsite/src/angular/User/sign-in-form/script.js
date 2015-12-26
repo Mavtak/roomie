@@ -9,12 +9,7 @@ module.directive('signInForm', function() {
       username: '=username',
       submit: '=submit'
     },
-    template: '' +
-      '<div>' +
-        '<div>username: <input type="text" ng-model="username"></div>' +
-        '<div>password: <input type="password" ng-model="password"></div>' +
-        '<button ng-click="submit()">Submit</button>' +
-      '</div>'
+    templateUrl: 'User/sign-in-form/template.html',
   };
 
 });

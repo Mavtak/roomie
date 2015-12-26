@@ -47,7 +47,7 @@
       it('is the label attribute', function() {
         var text = header.clone()
           .children().remove().end()
-          .text();
+          .text().trim();
 
         expect(text).toEqual('The Things');
       });
@@ -57,14 +57,14 @@
     describe('the secondary text', function() {
 
       it('is the formatted current action', function() {
-        expect(header.find('.secondary').text()).toEqual('Currently Derping');
+        expect(header.find('.secondary').text().trim()).toEqual('Currently Derping');
       });
 
       it('is nothing if the current action is not a string', function() {
         attributes.modes.currentAction = {};
         $rootScope.$digest();
 
-        expect(header.find('.secondary').text()).toEqual('');
+        expect(header.find('.secondary').text().trim()).toEqual('');
       });
 
     });
@@ -110,9 +110,9 @@
     });
 
     it('labels each button', function() {
-      expect(selectButton(0).text()).toEqual('Herp');
-      expect(selectButton(1).text()).toEqual('Derp');
-      expect(selectButton(2).text()).toEqual('Berp');
+      expect(selectButton(0).text().trim()).toEqual('Herp');
+      expect(selectButton(1).text().trim()).toEqual('Derp');
+      expect(selectButton(2).text().trim()).toEqual('Berp');
     });
 
     it('sets activation based on the current mode', function() {

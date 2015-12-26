@@ -1,0 +1,9 @@
+<div
+  class="group"
+  >
+  <button
+    ng-click="sensor.poll()"
+    >
+    {{translateLabel(sensor)}}: {{translateValue(sensor)}} (at {{sensor.timeStamp.toLocaleString()}})
+  </button>
+</div>

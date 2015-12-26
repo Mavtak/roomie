@@ -10,17 +10,7 @@ module.directive('widgetButton', function() {
       color: "@color"
     },
     link: link,
-    template: '' +
-      '<div class="button">' +
-        '<button ' +
-          'class="button" ' +
-          'ng-click="activate()" ' +
-          'ng-class="{activated: activated}" ' +
-          'ng-style="style"' +
-          '>' +
-          '{{label}}' +
-        '</button>' +
-      '</div>'
+    templateUrl: 'common/widget-button/template.html',
   };
 
   function link(scope) {

@@ -92,7 +92,7 @@
       $rootScope.$digest();
 
       return $(element).find('.temperature .button.setpoint-button').filter(function() {
-        return $(this).text() === '-';
+        return $(this).text().trim() === '-';
       });
     }
 
@@ -109,7 +109,7 @@
     it('formats the temperature', function() {
       var display = selectDisplay();
 
-      expect(display.text()).toEqual('12.55°M');
+      expect(display.text().trim()).toEqual('12.55°M');
     });
 
     function selectDisplay() {
@@ -182,7 +182,7 @@
       $rootScope.$digest();
 
       return $(element).find('.temperature .button.setpoint-button').filter(function() {
-        return $(this).text() === '+';
+        return $(this).text().trim() === '+';
       });
     }
 
@@ -191,7 +191,7 @@
   describe('the label', function() {
 
     it('exists', function() {
-      var actual = $(element).find('.temperature .description').text();
+      var actual = $(element).find('.temperature .description').text().trim();
 
       expect(actual).toEqual('thingy');
     });

@@ -1,0 +1,9 @@
+<widget-button-group>
+  <widget-button
+    ng-repeat="button in buttons"
+    label="{{button.label}}"
+    activate="multilevelSwitch.setPower(button.power)"
+    activated="button.activated"
+    >
+    </widget-button>
+</widget-button-group>
