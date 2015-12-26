@@ -19,6 +19,7 @@
     "gulp-karma": "^0.0.4",
     "gulp-minify-html": "^1.0.4",
     "gulp-rev-easy": "^1.1.2",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.5",
     "jasmine-core": "^2.3.4",

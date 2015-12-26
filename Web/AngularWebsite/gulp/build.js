@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var minifyHtml = require('gulp-minify-html');
 var paths = require('../paths');
 var rev = require('gulp-rev-easy');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('build', [
   'build-angular-templates',
@@ -49,7 +50,9 @@ gulp.task('build-markup', [
 
 gulp.task('build-scripts', function () {
   return gulp.src(paths.scripts.in)
+    .pipe(sourcemaps.init())
     .pipe(concat('script.js'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.scripts.out));
 });
 
