@@ -1,4 +1,6 @@
-﻿angular.module('roomie.common').directive('appHeader', ['pageMenuItems', function (pageMenuItems) {
+﻿angular.module('roomie.common').directive('appHeader', function (
+  pageMenuItems
+  ) {
 
   return {
     restrict: 'E',
@@ -13,4 +15,4 @@
   function link(scope) {
     scope.pageMenuItems = pageMenuItems;
   }
-}]);
+});

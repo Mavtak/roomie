@@ -1,4 +1,4 @@
-angular.module('roomie.common').directive('widgetDisconnectedIcon', function() {
+angular.module('roomie.common').directive('widgetDisconnectedIcon', function () {
 
   return {
     restrict: 'E',

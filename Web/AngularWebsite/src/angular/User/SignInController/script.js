@@ -1,4 +1,9 @@
-﻿angular.module('roomie.users').controller('SignInController', ['$http', '$scope', '$state', 'wholePageStatus', function ($http, $scope, $state, wholePageStatus) {
+﻿angular.module('roomie.users').controller('SignInController', function (
+  $http,
+  $scope,
+  $state,
+  wholePageStatus
+  ) {
   $scope.username = '';
   $scope.password = '';
   $scope.submit = submit;
@@ -12,4 +17,4 @@
       $state.go('devices');
     });
   }
-}]);
+});

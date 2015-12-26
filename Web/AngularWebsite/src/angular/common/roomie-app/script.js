@@ -1,4 +1,7 @@
-﻿angular.module('roomie.common').directive('roomieApp', ['$window', 'pageMenuItems', function ($window, pageMenuItems) {
+﻿angular.module('roomie.common').directive('roomieApp', function (
+  $window,
+  pageMenuItems
+  ) {
 
   return {
     restrict: 'E',
@@ -78,4 +81,4 @@
     }
   }
 
-}]);
+});

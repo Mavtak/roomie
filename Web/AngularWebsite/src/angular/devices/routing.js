@@ -1,4 +1,6 @@
-﻿angular.module('roomie.devices').config(['$stateProvider', function ($stateProvider) {
+﻿angular.module('roomie.devices').config(function (
+  $stateProvider
+  ) {
   $stateProvider.state('devices', {
     url: '/devices?location',
     controller: 'DevicesController',
@@ -20,4 +22,4 @@
         '>' +
       '</device-widget>'
   });
-}]);
+});

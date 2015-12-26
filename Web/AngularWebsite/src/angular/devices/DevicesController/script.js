@@ -1,4 +1,11 @@
-﻿angular.module('roomie.devices').controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', 'LocationHeaderLabelGenerator', 'pageMenuItems', 'wholePageStatus', function ($http, $scope, AutomaticPollingUpdater, LocationHeaderLabelGenerator, pageMenuItems, wholePageStatus) {
+﻿angular.module('roomie.devices').controller('DevicesController', function (
+  $http,
+  $scope,
+  AutomaticPollingUpdater,
+  LocationHeaderLabelGenerator,
+  pageMenuItems,
+  wholePageStatus
+  ) {
   var locations;
 
   wholePageStatus.set('loading');
@@ -227,4 +234,4 @@
 
     pageMenuItems.set(items);
   }
-}]);
+});

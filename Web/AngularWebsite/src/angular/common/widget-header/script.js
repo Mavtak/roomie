@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('widgetHeader', function() {
+﻿angular.module('roomie.common').directive('widgetHeader', function () {
   return {
     restrict: 'E',
     scope: {

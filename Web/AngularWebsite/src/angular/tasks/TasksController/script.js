@@ -1,4 +1,10 @@
-﻿angular.module('roomie.tasks').controller('TasksController', ['$http', '$scope', 'ManualPollingUpdater', 'pageMenuItems', 'wholePageStatus', function ($http, $scope, ManualPollingUpdater, pageMenuItems, wholePageStatus) {
+﻿angular.module('roomie.tasks').controller('TasksController', function (
+  $http,
+  $scope,
+  ManualPollingUpdater,
+  pageMenuItems,
+  wholePageStatus
+  ) {
 
   wholePageStatus.set('loading');
   pageMenuItems.reset();
@@ -50,4 +56,4 @@
       }
     }
   }
-}]);
+});

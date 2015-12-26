@@ -1,4 +1,6 @@
-﻿angular.module('roomie.devices').directive('multilevelSwitchControls', ['MultilevelSwitchButtonGenerator', function (MultilevelSwitchButtonGenerator) {
+﻿angular.module('roomie.devices').directive('multilevelSwitchControls', function (
+  MultilevelSwitchButtonGenerator
+  ) {
   return {
     restrict: 'E',
     scope: {
@@ -19,4 +21,4 @@
       scope.buttons = buttonGenerator.generate(11);
     }
   }
-}]);
+});

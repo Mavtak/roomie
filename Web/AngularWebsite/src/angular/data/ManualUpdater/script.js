@@ -1,4 +1,4 @@
-﻿angular.module('roomie.data').factory('ManualUpdater', [function () {
+﻿angular.module('roomie.data').factory('ManualUpdater', function () {
 
   return function ManualUpdater(options) {
     var originals = options.originals;
@@ -48,4 +48,4 @@
     }
   };
 
-}]);
+});

@@ -1,4 +1,7 @@
-﻿angular.module('roomie.data').factory('AutomaticPollingUpdater', ['$timeout', 'ManualPollingUpdater', function ($timeout, ManualPollingUpdater) {
+﻿angular.module('roomie.data').factory('AutomaticPollingUpdater', function (
+  $timeout,
+  ManualPollingUpdater
+  ) {
 
   return function AutomaticPollingUpdater(options) {
     var pollingUpdater = new ManualPollingUpdater(options);
@@ -44,4 +47,4 @@
     }
   };
 
-}]);
+});

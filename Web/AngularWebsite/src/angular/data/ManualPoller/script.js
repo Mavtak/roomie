@@ -1,4 +1,6 @@
-﻿angular.module('roomie.data').factory('ManualPoller', ['$http', function ($http) {
+﻿angular.module('roomie.data').factory('ManualPoller', function (
+  $http
+  ) {
 
   return function ManualPoller(options) {
     var url = options.url;
@@ -20,4 +22,4 @@
     }
   };
 
-}]);
+});

@@ -1,4 +1,6 @@
-angular.module('roomie.common').directive('appContentLoadingIndicator', function (wholePageStatus) {
+angular.module('roomie.common').directive('appContentLoadingIndicator', function (
+  wholePageStatus
+  ) {
 
   return {
     restrict: 'E',
@@ -8,5 +10,5 @@ angular.module('roomie.common').directive('appContentLoadingIndicator', function
 
   function link(scope) {
     scope.wholePageStatus = wholePageStatus;
-  }  
+  }
 });
