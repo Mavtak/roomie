@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.common');
-
-module.factory('pageMenuItems', function () {
+﻿angular.module('roomie.common').factory('pageMenuItems', function () {
   return new PageMenuItems();
 
   function PageMenuItems() {

@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.common');
-
-module.directive('keyValue', function() {
+﻿angular.module('roomie.common').directive('keyValue', function () {
   return {
     restrict: 'E',
     scope: {

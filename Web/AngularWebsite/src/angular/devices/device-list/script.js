@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.directive('deviceList', function() {
+﻿angular.module('roomie.devices').directive('deviceList', function () {
 
   return {
     restrict: 'E',

@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.common');
-
-module.directive('appHorizontalSection', function () {
+﻿angular.module('roomie.common').directive('appHorizontalSection', function () {
 
   return {
     restrict: 'E',

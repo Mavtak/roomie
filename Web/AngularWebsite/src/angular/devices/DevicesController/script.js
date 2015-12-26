@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', 'LocationHeaderLabelGenerator', 'pageMenuItems', function ($http, $scope, AutomaticPollingUpdater, LocationHeaderLabelGenerator, pageMenuItems) {
+﻿angular.module('roomie.devices').controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', 'LocationHeaderLabelGenerator', 'pageMenuItems', function ($http, $scope, AutomaticPollingUpdater, LocationHeaderLabelGenerator, pageMenuItems) {
   var locations;
 
   pageMenuItems.reset();

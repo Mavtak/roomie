@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.common');
-
-module.directive('sideMenuItem', function() {
+﻿angular.module('roomie.common').directive('sideMenuItem', function () {
 
   return {
     restrict: 'E',

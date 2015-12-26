@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.common');
-
-module.directive('appFooter', function () {
+﻿angular.module('roomie.common').directive('appFooter', function () {
 
   return {
     restrict: 'E',

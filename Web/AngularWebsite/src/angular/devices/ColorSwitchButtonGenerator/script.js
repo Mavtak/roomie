@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.factory('ColorSwitchButtonGenerator', ["RainbowColorsGenerator", function (RainbowColorsGenerator) {
+﻿angular.module('roomie.devices').factory('ColorSwitchButtonGenerator', ["RainbowColorsGenerator", function (RainbowColorsGenerator) {
 
   return function ColorSwitchButtonGenerator() {
     var rainbowColorsGenerator = new RainbowColorsGenerator();

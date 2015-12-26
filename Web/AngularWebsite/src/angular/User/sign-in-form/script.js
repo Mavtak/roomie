@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.users');
-
-module.directive('signInForm', function() {
+﻿angular.module('roomie.users').directive('signInForm', function () {
 
   return {
     restrict: 'E',

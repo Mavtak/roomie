@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.users');
-
-module.config(['$stateProvider', function($stateProvider) {
+﻿angular.module('roomie.users').config(['$stateProvider', function ($stateProvider) {
   $stateProvider.state('sign-in', {
     url: '/sign-in',
     controller: 'SignInController',

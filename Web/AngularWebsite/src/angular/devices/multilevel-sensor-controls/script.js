@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.directive('multilevelSensorControls', function() {
+﻿angular.module('roomie.devices').directive('multilevelSensorControls', function () {
 
   return {
     restrict: 'E',

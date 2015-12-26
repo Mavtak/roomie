@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.common');
-
-module.directive('appHeader', ['pageMenuItems', function (pageMenuItems) {
+﻿angular.module('roomie.common').directive('appHeader', ['pageMenuItems', function (pageMenuItems) {
 
   return {
     restrict: 'E',

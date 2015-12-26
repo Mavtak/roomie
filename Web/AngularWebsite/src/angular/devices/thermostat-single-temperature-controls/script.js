@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.directive('thermostatSingleTemperatureControls', function() {
+﻿angular.module('roomie.devices').directive('thermostatSingleTemperatureControls', function () {
 
   return {
     restrict: 'E',

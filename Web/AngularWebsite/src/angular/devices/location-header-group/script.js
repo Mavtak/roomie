@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.directive('locationHeaderGroup', ['LocationHeaderLabelGenerator', function(LocationHeaderLabelGenerator) {
+﻿angular.module('roomie.devices').directive('locationHeaderGroup', ['LocationHeaderLabelGenerator', function (LocationHeaderLabelGenerator) {
 
   return {
     restrict: 'E',

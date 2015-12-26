@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.factory('LocationHeaderLabelGenerator', function() {
+﻿angular.module('roomie.devices').factory('LocationHeaderLabelGenerator', function () {
 
   return function LocationHeaderLabelGenerator(previousLocation, currentLocation) {
     this.getParts = function() {

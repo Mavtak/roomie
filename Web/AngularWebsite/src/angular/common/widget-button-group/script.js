@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.common');
-
-module.directive('widgetButtonGroup', function() {
+﻿angular.module('roomie.common').directive('widgetButtonGroup', function() {
   return {
     restrict: 'E',
     transclude: true,

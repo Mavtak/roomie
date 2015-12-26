@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.common');
-
-module.directive('widgetButton', function() {
+﻿angular.module('roomie.common').directive('widgetButton', function() {
   return {
     restrict: 'E',
     scope: {

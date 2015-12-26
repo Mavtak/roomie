@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.users');
-
-module.controller('SignInController', ['$http', '$scope', '$state', function($http, $scope, $state) {
+﻿angular.module('roomie.users').controller('SignInController', ['$http', '$scope', '$state', function ($http, $scope, $state) {
   $scope.username = '';
   $scope.password = '';
   $scope.submit = submit;

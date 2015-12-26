@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.config(['$stateProvider', function ($stateProvider) {
+﻿angular.module('roomie.devices').config(['$stateProvider', function ($stateProvider) {
   $stateProvider.state('devices', {
     url: '/devices?location',
     controller: 'DevicesController',

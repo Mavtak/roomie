@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.common');
-
-module.directive('dock', function() {
+﻿angular.module('roomie.common').directive('dock', function () {
 
   return {
     transclude: true,

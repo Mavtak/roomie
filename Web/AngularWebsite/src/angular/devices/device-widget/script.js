@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.directive('deviceWidget', function() {
+﻿angular.module('roomie.devices').directive('deviceWidget', function () {
   return {
     restrict: 'E',
     scope: {

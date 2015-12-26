@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.data');
-
-module.factory('ManualUpdater', [function() {
+﻿angular.module('roomie.data').factory('ManualUpdater', [function () {
 
   return function ManualUpdater(options) {
     var originals = options.originals;

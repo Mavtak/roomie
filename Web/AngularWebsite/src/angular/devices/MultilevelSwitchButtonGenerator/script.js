@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.factory('MultilevelSwitchButtonGenerator', function () {
+﻿angular.module('roomie.devices').factory('MultilevelSwitchButtonGenerator', function () {
 
   return function MultilevelSwitchButtonGenerator(multilevelSwitch) {
     this.multilevelSwitch = multilevelSwitch;

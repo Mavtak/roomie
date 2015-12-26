@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.directive('currentActionControls', function() {
+﻿angular.module('roomie.devices').directive('currentActionControls', function () {
 
   return {
     restrict: 'E',

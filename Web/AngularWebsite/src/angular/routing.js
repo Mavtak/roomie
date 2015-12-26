@@ -1,5 +1,3 @@
-﻿var module = angular.module('roomie.app');
-
-module.run(['$rootScope', '$state', function ($rootScope, $state) {
+﻿angular.module('roomie.app').run(['$rootScope', '$state', function ($rootScope, $state) {
   $rootScope.$state = $state;
 }]);

@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.factory('RainbowColorsGenerator', function () {
+﻿angular.module('roomie.devices').factory('RainbowColorsGenerator', function () {
 
   return function RainbowColorsGenerator() {
 

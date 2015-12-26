@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.devices');
-
-module.directive('colorSwitchControls', ['ColorSwitchButtonGenerator', function (ColorSwitchButtonGenerator) {
+﻿angular.module('roomie.devices').directive('colorSwitchControls', ['ColorSwitchButtonGenerator', function (ColorSwitchButtonGenerator) {
   return {
     restrict: 'E',
     scope: {

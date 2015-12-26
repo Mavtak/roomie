@@ -1,6 +1,4 @@
-var module = angular.module('roomie.tasks');
-
-module.directive('taskWidget', function () {
+angular.module('roomie.tasks').directive('taskWidget', function () {
   return {
     restrict: 'E',
     scope: {

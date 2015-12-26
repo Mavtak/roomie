@@ -1,6 +1,4 @@
-﻿var module = angular.module('roomie.data');
-
-module.factory('ManualPollingUpdater', ['ManualPoller', 'ManualUpdater', function(ManualPoller, ManualUpdater) {
+﻿angular.module('roomie.data').factory('ManualPollingUpdater', ['ManualPoller', 'ManualUpdater', function (ManualPoller, ManualUpdater) {
 
   return function ManualPollingUpdater(options) {
     var poller = new ManualPoller(options);
