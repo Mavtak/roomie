@@ -1,5 +1,6 @@
-﻿angular.module('roomie.tasks').controller('TasksController', ['$http', '$scope', 'ManualPollingUpdater', 'pageMenuItems', function ($http, $scope, ManualPollingUpdater, pageMenuItems) {
+﻿angular.module('roomie.tasks').controller('TasksController', ['$http', '$scope', 'ManualPollingUpdater', 'pageMenuItems', 'wholePageStatus', function ($http, $scope, ManualPollingUpdater, pageMenuItems, wholePageStatus) {
 
+  wholePageStatus.set('loading');
   pageMenuItems.reset();
   initializeScope();
   connectData();
@@ -33,6 +34,8 @@
   }
 
   function processTask(task) {
+    wholePageStatus.set('ready');
+
     if (task.expiration) {
       task.expiration = new Date(task.expiration);
     }

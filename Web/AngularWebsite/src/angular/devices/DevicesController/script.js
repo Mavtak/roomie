@@ -1,6 +1,7 @@
-﻿angular.module('roomie.devices').controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', 'LocationHeaderLabelGenerator', 'pageMenuItems', function ($http, $scope, AutomaticPollingUpdater, LocationHeaderLabelGenerator, pageMenuItems) {
+﻿angular.module('roomie.devices').controller('DevicesController', ['$http', '$scope', 'AutomaticPollingUpdater', 'LocationHeaderLabelGenerator', 'pageMenuItems', 'wholePageStatus', function ($http, $scope, AutomaticPollingUpdater, LocationHeaderLabelGenerator, pageMenuItems, wholePageStatus) {
   var locations;
 
+  wholePageStatus.set('loading');
   pageMenuItems.reset();
   initializeScope();
   connectData();
@@ -104,6 +105,8 @@
   }
 
   function setFunctions(device) {
+    wholePageStatus.set('ready');
+
     device.binarySwitch.setPower = function (power) {
       $http.post('/api/device/' + device.id + '?action=Power' + power);
     };
