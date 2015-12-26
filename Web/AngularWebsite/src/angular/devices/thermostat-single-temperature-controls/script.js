@@ -61,7 +61,7 @@ module.directive('thermostatSingleTemperatureControls', function() {
     var result = temperature.value;
 
     if (typeof temperature.units === 'string') {
-      result += '°' + temperature.units.substr(0, 1);
+      result += '\u00B0' + temperature.units.substr(0, 1);
     }
 
     return result;
