@@ -6,6 +6,7 @@
 ]);
 
 angular.module('roomie.common', [
+   'roomie.templates'
 ]);
 
 angular.module('roomie.data', [
@@ -14,14 +15,17 @@ angular.module('roomie.data', [
 angular.module('roomie.devices', [
   'ui.router',
   'roomie.common',
-  'roomie.data'
+  'roomie.data',
+  'roomie.templates'
 ]);
 
 angular.module('roomie.tasks', [
   'ui.router',
-  'roomie.common'
+  'roomie.common',
+  'roomie.templates'
 ]);
 
 angular.module('roomie.users', [
-  'ui.router'
+  'ui.router',
+  'roomie.templates'
 ]);
