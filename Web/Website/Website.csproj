@@ -154,6 +154,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="angular\index.html" />
+    <Content Include="angular\script.js" />
+    <Content Include="angular\templates.js" />
     <Content Include="content\Scripts\Libraries\angular-1.3.13.min.js" />
     <Content Include="content\Scripts\DeviceIndex.js" />
     <Content Include="content\Scripts\CreateNamespace.js" />
