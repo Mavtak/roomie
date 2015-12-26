@@ -1,13 +1,4 @@
-﻿/// <reference path="../../../Scripts/Libraries/jquery-1.5.1.min.js"/>
-/// <reference path="../../../Scripts/Libraries/angular-1.3.13.min.js"/>
-/// <reference path="../angular-mocks.js"/>
-/// <reference path="../../../Scripts/angular/dependencies.js"/>
-/// <reference path="../../../Scripts/angular/common/widget.js"/>
-/// <reference path="../../../Scripts/angular/common/widgetButton.js"/>
-/// <reference path="../../../Scripts/angular/common/widgetButtonGroup.js"/>
-/// <reference path="../../../Scripts/angular/devices/multilevelSwitchControls.js"/>
-
-describe('roomie.devices.multilevelSwitchControls', function() {
+﻿describe('roomie.devices.multilevelSwitchControls', function() {
   var $compile;
   var $rootScope;
   var element;

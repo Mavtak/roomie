@@ -1,11 +1,4 @@
-﻿/// <reference path="../../../Scripts/Libraries/jquery-1.5.1.min.js"/>
-/// <reference path="../../../Scripts/Libraries/angular-1.3.13.min.js"/>
-/// <reference path="../angular-mocks.js"/>
-/// <reference path="../../../Scripts/angular/dependencies.js"/>
-/// <reference path="../../../Scripts/angular/common/widgetButton.js"/>
-/// <reference path="../../../Scripts/angular/devices/thermostatSingleTemperatureControls.js"/>
-
-describe('roomie.devices.thermostatSingleTemperatureControls', function() {
+﻿describe('roomie.devices.thermostatSingleTemperatureControls', function() {
   var $compile;
   var $rootScope;
   var attributes;

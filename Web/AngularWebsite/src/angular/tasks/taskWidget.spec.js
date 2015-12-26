@@ -1,15 +1,4 @@
-﻿/// <reference path="../../../Scripts/Libraries/jquery-1.5.1.min.js"/>
-/// <reference path="../../../Scripts/Libraries/angular-1.3.13.min.js"/>
-/// <reference path="../angular-mocks.js"/>
-/// <reference path="../../../Scripts/angular/dependencies.js"/>
-/// <reference path="../../../Scripts/angular/common/widget.js"/>
-/// <reference path="../../../Scripts/angular/common/widgetHeader.js"/>
-/// <reference path="../../../Scripts/angular/common/widgetDataSection.js"/>
-/// <reference path="../../../Scripts/angular/common/keyValue.js"/>
-/// <reference path="../../../Scripts/angular/tasks/received.js"/>
-/// <reference path="../../../Scripts/angular/tasks/taskWidget.js"/>
-
-describe('roomie.task.taskWidget', function() {
+﻿describe('roomie.task.taskWidget', function() {
   var $compile;
   var $rootScope;
   var element;

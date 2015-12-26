@@ -1,15 +1,4 @@
-﻿/// <reference path="../../../Scripts/Libraries/lodash-3.4.0.min.js"/>
-/// <reference path="../../../Scripts/Libraries/jquery-1.5.1.min.js"/>
-/// <reference path="../../../Scripts/Libraries/angular-1.3.13.min.js"/>
-/// <reference path="../angular-mocks.js"/>
-/// <reference path="../../../Scripts/angular/dependencies.js"/>
-/// <reference path="../../../Scripts/angular/common/widgetHeader.js"/>
-/// <reference path="../../../Scripts/angular/devices/deviceWidget.js"/>
-/// <reference path="../../../Scripts/angular/devices/locationHeaderGroup.js"/>
-/// <reference path="../../../Scripts/angular/devices/LocationHeaderLabelGenerator.js"/>
-/// <reference path="../../../Scripts/angular/devices/deviceList.js"/>
-
-describe('roomie.devices.deviceList', function() {
+﻿describe('roomie.devices.deviceList', function() {
   var $compile;
   var $rootScope;
   var element;

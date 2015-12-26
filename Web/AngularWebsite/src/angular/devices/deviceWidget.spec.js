@@ -1,20 +1,4 @@
-﻿/// <reference path="../../../Scripts/Libraries/jquery-1.5.1.min.js"/>
-/// <reference path="../../../Scripts/Libraries/angular-1.3.13.min.js"/>
-/// <reference path="../angular-mocks.js"/>
-/// <reference path="../../../Scripts/angular/dependencies.js"/>
-/// <reference path="../../../Scripts/angular/common/widget.js"/>
-/// <reference path="../../../Scripts/angular/common/widgetHeader.js"/>
-/// <reference path="../../../Scripts/angular/devices/thermostatControls.js"/>
-/// <reference path="../../../Scripts/angular/devices/thermostatModeControls.js"/>
-/// <reference path="../../../Scripts/angular/devices/currentActionControls.js"/>
-/// <reference path="../../../Scripts/angular/devices/binarySensorControls.js"/>
-/// <reference path="../../../Scripts/angular/devices/binarySwitchDeviceControls.js"/>
-/// <reference path="../../../Scripts/angular/devices/multilevelSensorControls.js"/>
-/// <reference path="../../../Scripts/angular/devices/thermostatSingleTemperatureControls.js"/>
-/// <reference path="../../../Scripts/angular/devices/thermostatTemperatureControls.js"/>
-/// <reference path="../../../Scripts/angular/devices/deviceWidget.js"/>
-
-describe('roomie.devices.deviceWidget', function() {
+﻿describe('roomie.devices.deviceWidget', function() {
   var $compile;
   var $rootScope;
   var element;

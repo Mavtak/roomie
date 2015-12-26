@@ -1,10 +1,4 @@
-﻿/// <reference path="../../../Scripts/Libraries/jquery-1.5.1.min.js"/>
-/// <reference path="../../../Scripts/Libraries/angular-1.3.13.min.js"/>
-/// <reference path="../angular-mocks.js"/>
-/// <reference path="../../../Scripts/angular/dependencies.js"/>
-/// <reference path="../../../Scripts/angular/common/widgetButton.js"/>
-
-describe('roomie.common.widgetButton', function() {
+﻿describe('roomie.common.widgetButton', function() {
   var $compile;
   var $rootScope;
 
