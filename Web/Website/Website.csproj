@@ -375,6 +375,7 @@
     <Content Include="Views\Shared\Partials\Device\ColorSwitchButtons.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="angular\script.js.map" />
     <None Include="Properties\PublishProfiles\D Temp.pubxml" />
   </ItemGroup>
   <PropertyGroup>
