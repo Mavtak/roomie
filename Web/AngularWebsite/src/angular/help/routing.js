@@ -10,4 +10,9 @@ angular.module('roomie.help').config(function (
     url: '/help/about',
     templateUrl: 'help/pages/about.html'
   });
+
+  $stateProvider.state('help/hardware', {
+    url: '/help/hardware',
+    templateUrl: 'help/pages/hardware.html'
+  });
 });

@@ -5,12 +5,6 @@ namespace Roomie.Web.Website.Controllers
 {
     public class HelpController : RoomieBaseController
     {
-
-        public ActionResult Hardware()
-        {
-            return View();
-        }
-
         public ActionResult RoomieScript()
         {
             return View();
