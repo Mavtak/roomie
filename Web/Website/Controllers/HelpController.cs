@@ -5,13 +5,6 @@ namespace Roomie.Web.Website.Controllers
 {
     public class HelpController : RoomieBaseController
     {
-        //
-        // GET: /Help/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult Hardware()
         {
