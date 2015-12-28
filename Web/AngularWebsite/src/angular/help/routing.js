@@ -11,6 +11,11 @@ angular.module('roomie.help').config(function (
     templateUrl: 'help/pages/about.html'
   });
 
+  $stateProvider.state('help/device-addresses', {
+    url: '/help/device-addresses',
+    templateUrl: 'help/pages/device-addresses.html'
+  });
+
   $stateProvider.state('help/hardware', {
     url: '/help/hardware',
     templateUrl: 'help/pages/hardware.html'

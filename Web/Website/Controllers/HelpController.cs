@@ -18,11 +18,5 @@ namespace Roomie.Web.Website.Controllers
 
             return View(commands);
         }
-
-        public ActionResult DeviceAddresses()
-        {
-            return View();
-        }
-
     }
 }
