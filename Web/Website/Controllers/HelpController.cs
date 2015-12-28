@@ -5,11 +5,6 @@ namespace Roomie.Web.Website.Controllers
 {
     public class HelpController : RoomieBaseController
     {
-        public ActionResult RoomieScript()
-        {
-            return View();
-        }
-
         public ActionResult Commands()
         {
             base.Commands = UpdateCommands();

@@ -261,7 +261,6 @@
     <Content Include="Views\Error\UnknownError.cshtml" />
     <Content Include="Views\Help\Commands.cshtml" />
     <Content Include="Views\Help\Hardware.cshtml" />
-    <Content Include="Views\Help\RoomieScript.cshtml" />
     <Content Include="Views\Network\Details.cshtml" />
     <Content Include="Views\Network\Index.cshtml" />
     <Content Include="Views\Shared\Partials\BotMessage\BaseBotMessage.cshtml" />
