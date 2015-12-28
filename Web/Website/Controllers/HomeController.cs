@@ -7,7 +7,12 @@ namespace Roomie.Web.Website.Controllers
     {
         public ActionResult Index()
         {
-            return Redirect("/angular#/help/about");
+            if(User == null)
+            {
+                return Redirect("/angular#/help/about");
+            }
+
+            return Redirect("/angular#/devices");
         }
 
         public ActionResult Source()
