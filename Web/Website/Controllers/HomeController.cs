@@ -7,7 +7,7 @@ namespace Roomie.Web.Website.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/angular#/help/about");
         }
 
         public ActionResult Source()
