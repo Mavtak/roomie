@@ -74,9 +74,11 @@
     <Compile Include="Helpers\Secrets\SecretExtensions.cs" />
     <Compile Include="Models\BinarySensorModel.cs" />
     <Compile Include="Models\ColorSwitchModel.cs" />
+    <Compile Include="Models\Command.cs" />
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\MultilevelSensorModel.cs" />
+    <Compile Include="Repositories\ICommandDocumentationRepository.cs" />
     <Compile Include="Repositories\NetworkGuestRepositoryExtensions.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\Models\NetworkGuestModel.cs" />
     <Compile Include="Models\Network.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\ListFilter.cs" />
     <Compile Include="Repositories\Page.cs" />
+    <Compile Include="Repositories\StaticRepositories\CommandDocumentationRepository.cs" />
     <Compile Include="Repositories\ScriptRepositoryExtensions.cs" />
     <Compile Include="Repositories\SortDirection.cs" />
     <Compile Include="Repositories\TaskRepositoryExtensions.cs" />
@@ -142,6 +145,10 @@
     <ProjectReference Include="..\..\Common\HomeAutomation\HomeAutomation.csproj">
       <Project>{F0B023B4-CCA4-419F-8963-862D3377A2F8}</Project>
       <Name>HomeAutomation %28Common\HomeAutomation%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Desktop\Engine\Engine.csproj">
+      <Project>{91e5d2c3-d269-4ff9-8ab6-36926441f6b2}</Project>
+      <Name>Engine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
