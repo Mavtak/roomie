@@ -17,6 +17,8 @@ namespace Roomie.Web.Persistence.Repositories.StaticRepositories
         {
             var result = _library
                 .Select(Translate)
+                .OrderBy(x => x.Name)
+                .OrderBy(x => x.Group)
                 .ToArray();
 
             return result;
