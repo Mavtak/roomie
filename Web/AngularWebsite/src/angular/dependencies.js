@@ -21,6 +21,7 @@ angular.module('roomie.devices', [
 ]);
 
 angular.module('roomie.help', [
+  'roomie.common',
   'roomie.templates'
 ]);
 

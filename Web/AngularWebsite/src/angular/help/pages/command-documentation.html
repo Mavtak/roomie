@@ -1,0 +1,22 @@
+<widget
+  ng-repeat="command in ctrl.commands"
+  >
+  <widget-header
+    title="{{command.name}}"
+    subtitle="{{command.group}}"
+    >
+  </widget-header>
+  <widget-data-section>
+    <div class="command-description" ng-if="command.description">{{command.description}}</div>
+    <div class="command-description empty" ng-if="!command.description">no description</div>
+    <div class="item wide command-argument" ng-repeat="argument in command.arguments">
+      <div class="key name">{{argument.name}}</div>
+      <div class="value">
+        <div class="type" title="{{argument.type.description}}">{{argument.type.name}}</div>
+        <div class="required" ng-if="!argument.hasDefaultValue">Required</div>
+        <div class="optional" ng-if="argument.hasDefaultValue">Optional</div>
+        <div class="default" title="Default value" ng-if="argument.defaultValue">{{argument.defaultValue}}</div>
+      </div>
+    </div>
+  </widget-data-section>
+</widget>

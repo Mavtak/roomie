@@ -255,34 +255,39 @@
 .widget.command .type,
 .widget.command .optional,
 .widget.command .required,
-.widget.command .default
+.widget.command .default,
+.widget .data .item.command-argument .type,
+.widget .data .item.command-argument .optional,
+.widget .data .item.command-argument .required,
+.widget .data .item.command-argument .default
 {
     display: inline;
     margin-right: 5px;
 }
 
-.widget.command .type
+.widget.command .type,
+.widget .data .item.command-argument .type
 {
     font-family: Monospace;
 }
 
 .widget.command .optional,
-.widget.command .required
+.widget.command .required,
+.widget .data .item.command-argument .optional,
+.widget .data .item.command-argument .required
 {
     float: left;
 }
 
-.widget.command .default
+.widget.command .default,
+.widget .data .item.command-argument .default
 {
     text-decoration: underline;
     margin-right: 5px;
 }
 
-.widget.command .description
-{
-}
-
-.widget.command .description.empty
+.widget.command .description.empty,
+.widget .command-description.empty
 {
     font-style: italic;
 }
