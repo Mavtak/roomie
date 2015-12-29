@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using Roomie.Desktop.Engine;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Controllers;
@@ -11,7 +10,6 @@ namespace Roomie.Web.Website.Helpers
     public class RoomieBaseController : System.Web.Mvc.Controller, IRoomieController
     {
         public IRoomieDatabaseContext Database { get; set; }
-        protected RoomieCommandLibrary Commands;
         new public User User { get; set; }
 
         private const string userKey = "_RoomieUser";
@@ -68,14 +66,6 @@ namespace Roomie.Web.Website.Helpers
                     success = true
                 }
             );
-        }
-
-        protected RoomieCommandLibrary UpdateCommands()
-        {
-            var binDirectory = System.Web.Hosting.HostingEnvironment.MapPath("~/bin");
-            var commands = new RoomieCommandLibrary();
-            commands.AddCommandsFromPluginFolder(binDirectory);
-            return commands;
         }
 
         /// <summary>
