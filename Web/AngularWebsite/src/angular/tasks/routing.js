@@ -2,6 +2,6 @@
   $stateProvider.state('tasks', {
     url: '/tasks?start&count',
     controller: 'TasksController',
-    template: '<task-widget task="task" ng-repeat="task in page.items"></task-widget>'
+    templateUrl: 'tasks/pages/index.html',
   });
 }]);
