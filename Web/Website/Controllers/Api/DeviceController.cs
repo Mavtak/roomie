@@ -46,6 +46,8 @@ namespace Roomie.Web.Website.Controllers.Api
                 type: update.Type ?? device.Type
             );
 
+            Database.Devices.Update(device);
+
             this.AddTask(
                 computer: device.Network.AttatchedComputer,
                 origin: "RoomieBot",
