@@ -13,7 +13,7 @@ describe('roomie.devices.deviceWidget', function() {
   beforeEach(function() {
     $rootScope.device = {};
 
-    element = $compile('<device-widget device="device"></device-widget>')($rootScope);
+    element = $compile('<device-widget device="device" show-edit="showEdit"></device-widget>')($rootScope);
     $rootScope.$digest();
   });
 
@@ -520,6 +520,45 @@ describe('roomie.devices.deviceWidget', function() {
 
     function selectControls() {
       return $(element).find('.widget thermostat-controls');
+    }
+  });
+
+  describe('the edit controls', function () {
+
+    it('shows them when can-edit is set to true', function () {
+      $rootScope.showEdit = true;
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(1);
+    });
+
+    it('hides them when can-edit is set to false', function () {
+      $rootScope.showEdit = false;
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('hides them when can-edit is not set', function () {
+      element = $compile('<device-widget device="device"></device-widget>')($rootScope);
+      $rootScope.$digest();
+
+      expect(selectControls().length).toEqual(0);
+    });
+
+    it('displays the state of the device', function () {
+      $rootScope.device.name = 'Lamp or Something';
+      element = $compile('<device-widget device="device" show-edit="true"></device-widget>')($rootScope);
+      $rootScope.$digest();
+
+      var match = selectControls().find('*').filter(function () {
+        return $(this).val() === 'Lamp or Something';
+      });
+
+      expect(match.length).toEqual(1);
+    });
+
+    function selectControls() {
+      return $(element).find('.widget device-edit-controls');
     }
   });
 

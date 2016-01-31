@@ -2,7 +2,8 @@
   return {
     restrict: 'E',
     scope: {
-      device: '=device'
+      device: '=device',
+      showEdit: '=showEdit'
     },
     templateUrl: 'devices/device-widget/template.html',
   };
