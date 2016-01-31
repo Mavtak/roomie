@@ -57,8 +57,14 @@
   }
 
   function connectData() {
+    var path = '/api/device';
+
+    if ($scope.$state.params.examples) {
+      path += "?examples=true";
+    }
+
     var options = {
-      url: '/api/device',
+      url: path,
       originals: $scope.page.items,
       ammendOriginal: setFunctions,
       processUpdate: processUpdate,

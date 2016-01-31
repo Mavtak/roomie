@@ -2,7 +2,7 @@
   $stateProvider
   ) {
   $stateProvider.state('devices', {
-    url: '/devices?location',
+    url: '/devices?examples&location',
     controller: 'DevicesController',
     templateUrl: 'devices/pages/index.html'
   });
