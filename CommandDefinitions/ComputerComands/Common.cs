@@ -56,6 +56,10 @@ namespace Roomie.CommandDefinitions.ComputerCommands
         {
             System.Diagnostics.Process.Start("shutdown", "/r /t 0");
         }
+        internal static void ShutDownComputer()
+        {
+            System.Diagnostics.Process.Start("shutdown", "/s /t 0");
+        }
 
         internal static void SuspendComputer(PowerState state, bool force)
         {
