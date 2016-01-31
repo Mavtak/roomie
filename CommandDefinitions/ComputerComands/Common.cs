@@ -52,6 +52,11 @@ namespace Roomie.CommandDefinitions.ComputerCommands
             int reterned_value = client.Send(bytes, 1024);
         }
 
+        internal static void RestartComputer()
+        {
+            System.Diagnostics.Process.Start("shutdown", "/r /t 0");
+        }
+
         internal static void SuspendComputer(PowerState state, bool force)
         {
             string action;
