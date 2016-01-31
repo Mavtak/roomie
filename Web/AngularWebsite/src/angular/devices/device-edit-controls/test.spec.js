@@ -60,6 +60,10 @@ describe('roomie.devices.deviceEditControls', function () {
           expect(selectInput(0).length).toEqual(1);
         });
 
+        it('is in the shared form', function () {
+          expect($(selectInput(0)).parents('form').length).toEqual(1);
+        });
+
         it('is bound to the value', function () {
           expect(selectInput(0).val()).toEqual('Lamp Or Something');
         });
@@ -91,6 +95,10 @@ describe('roomie.devices.deviceEditControls', function () {
           expect(selectInput(1).length).toEqual(1);
         });
 
+        it('is in the shared form', function () {
+          expect($(selectInput(1)).parents('form').length).toEqual(1);
+        });
+
         it('is bound to the value', function () {
           expect(selectInput(1).val()).toEqual('some/place');
         });
@@ -120,6 +128,10 @@ describe('roomie.devices.deviceEditControls', function () {
 
         it('exists', function () {
           expect(selectInput(2).length).toEqual(1);
+        });
+
+        it('is in the shared form', function () {
+          expect($(selectInput(2)).parents('form').length).toEqual(1);
         });
 
         it('lists options from the deviceType data', function () {
@@ -164,6 +176,10 @@ describe('roomie.devices.deviceEditControls', function () {
 
         it('exists', function () {
           expect(selectInput(3).length).toEqual(1);
+        });
+
+        it('is in the shared form', function () {
+          expect($(selectInput(3)).parents('form').length).toEqual(1);
         });
 
         it('has text that says "Save"', function () {
@@ -283,4 +299,11 @@ describe('roomie.devices.deviceEditControls', function () {
     }
   });
 
+  describe('the shared form', function () {
+
+    it('exists', function () {
+      expect($(element).find('form').length).toEqual(1);
+    });
+
+  });
 });
