@@ -18,9 +18,9 @@ namespace Roomie.Web.Website.Controllers.Api
     [ApiRestrictedAccess]
     public class DeviceController : RoomieBaseApiController
     {
-        public IEnumerable<Device> Get()
+        public IEnumerable<Device> Get(bool examples = false)
         {
-            var devices = Database.GetDevicesForUser(User);
+            var devices = examples ? Persistence.Examples.Devices : Database.GetDevicesForUser(User);
             var result = devices.Select(GetSerializableVersion);
 
             return result;
