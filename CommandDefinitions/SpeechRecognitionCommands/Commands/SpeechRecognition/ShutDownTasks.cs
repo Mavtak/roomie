@@ -1,5 +1,8 @@
-﻿namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands.SpeechRecognition
+﻿using Roomie.Desktop.Engine.Commands;
+
+namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands
 {
+    [Group("SpeechRecognition")]
     public class ShutDownTasks : SpeechRecognitionCommand
     {
         protected override void Execute_SpeechRecognitionDefinition(SpeechRecognitionCommandContext context)

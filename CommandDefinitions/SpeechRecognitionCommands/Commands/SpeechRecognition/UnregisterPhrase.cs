@@ -1,7 +1,9 @@
 ﻿using Roomie.CommandDefinitions.SpeechRecognitionCommands.Attributes;
+using Roomie.Desktop.Engine.Commands;
 
-namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands.SpeechRecognition
+namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands
 {
+    [Group("SpeechRecognition")]
     [PhraseParameter]
     public class UnregisterPhrase : SpeechRecognitionCommand
     {
