@@ -42,14 +42,14 @@
   <ItemGroup>
     <Compile Include="Attributes\PhraseParameterAttribute.cs" />
     <Compile Include="AutomaticallyResettingSwitch.cs" />
-    <Compile Include="Commands\SpeechRecognition\PrintCommand.cs" />
-    <Compile Include="Commands\SpeechRecognition\ListRegisteredPhrases.cs" />
-    <Compile Include="Commands\SpeechRecognition\RegisterSpeechRecognizedAction.cs" />
-    <Compile Include="Commands\SpeechRecognition\ShutDownTasks.cs" />
-    <Compile Include="Commands\SpeechRecognition\StopListening.cs" />
-    <Compile Include="Commands\SpeechRecognition\RegisterPhrase.cs" />
-    <Compile Include="Commands\SpeechRecognition\StartListening.cs" />
-    <Compile Include="Commands\SpeechRecognition\UnregisterPhrase.cs" />
+    <Compile Include="Commands\PrintCommand.cs" />
+    <Compile Include="Commands\ListRegisteredPhrases.cs" />
+    <Compile Include="Commands\RegisterSpeechRecognizedAction.cs" />
+    <Compile Include="Commands\ShutDownTasks.cs" />
+    <Compile Include="Commands\StopListening.cs" />
+    <Compile Include="Commands\RegisterPhrase.cs" />
+    <Compile Include="Commands\StartListening.cs" />
+    <Compile Include="Commands\UnregisterPhrase.cs" />
     <Compile Include="NamedSpeechRecognizer.cs" />
     <Compile Include="NamedSpeechRecognizerResponse.cs" />
     <Compile Include="PhraseBasedSpeechRecognizer.cs" />
