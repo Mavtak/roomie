@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\PhraseParameterAttribute.cs" />
+    <Compile Include="AutomaticallyResettingSwitch.cs" />
     <Compile Include="Commands\SpeechRecognition\PrintCommand.cs" />
     <Compile Include="Commands\SpeechRecognition\ListRegisteredPhrases.cs" />
     <Compile Include="Commands\SpeechRecognition\RegisterSpeechRecognizedAction.cs" />
