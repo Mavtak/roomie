@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Speech.Recognition;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine;
@@ -10,18 +10,16 @@ namespace Roomie.CommandDefinitions.SpeechRecognition
     public class SpeechResponder
     {
         private Dictionary<string, ScriptCommandList> RegisteredCommands { get; set; }
-        private SpeechRecognitionEngine SpeechRecognizer { get; set; }
         private ThreadPool ThreadPool { get; set; }
+        private NamedSpeechRecognizer _speechRecognizer { get; set; }
         private Thread _recognitionThread;
         private ScriptCommandList _speechRecognizedAction;
 
         public SpeechResponder(RoomieEngine engine)
         {
             RegisteredCommands = new Dictionary<string, ScriptCommandList>();
-            SpeechRecognizer = new SpeechRecognitionEngine();
+            _speechRecognizer = new NamedSpeechRecognizer(TimeSpan.FromSeconds(10), "Roomie");
             ThreadPool = engine.CreateThreadPool("Speech Recognizer");
-
-            SpeechRecognizer.SetInputToDefaultAudioDevice();
         }
 
         public void StartListening()
@@ -41,20 +39,9 @@ namespace Roomie.CommandDefinitions.SpeechRecognition
 
             while (true)
             {
-                var result = SpeechRecognizer.Recognize();
+                var input = _speechRecognizer.Recognize(0.8);
 
-                if (result == null)
-                {
-                    //TODO: logic to ignore babble
-                    ThreadPool.Print("heard something that I didn't recognize...");
-                    Thread.Sleep(500);
-                }
-                else
-                {
-                    var phrase = result.Text;
-
-                    ProcessPhrase(phrase);
-                }
+                ProcessInput(input);
             }
         }
 
@@ -73,29 +60,39 @@ namespace Roomie.CommandDefinitions.SpeechRecognition
         public void RegisterPhrase(string phrase, ScriptCommandList command)
         {
             RegisteredCommands.Add(phrase, command);
-
-            var grammarBuilder = new GrammarBuilder();
-            grammarBuilder.Append(phrase);
-
-            var grammar = new Grammar(grammarBuilder);
-
-            SpeechRecognizer.LoadGrammar(grammar);
+            _speechRecognizer.RegisterPhrase(phrase);
+            
         }
 
         public void UnregisterPhrase(string phrase)
         {
+            _speechRecognizer.UnregisterPhrase(phrase);
             RegisteredCommands.Remove(phrase);
         }
 
-        public void ProcessPhrase(string phrase)
+        public void ProcessInput(NamedSpeechRecognizerResponse input)
         {
-            if (_speechRecognizedAction != null)
+            switch (input.Status)
             {
-                ThreadPool.AddCommands(_speechRecognizedAction);
-            }
-            var command = GetCommand(phrase);
+                case NamedSpeechRecognizerResponse.StatusProperty.NameRecognized:
+                    ThreadPool.AddCommands(new TextScriptCommand("Computer.Speak Text=\"I'm ready.\""));
+                    break;
 
-            ThreadPool.AddCommands(command);
+                case NamedSpeechRecognizerResponse.StatusProperty.NameRequired:
+                    ThreadPool.AddCommands(new TextScriptCommand("Computer.Speak Text=\"What was that?\""));
+                    break;
+
+                case NamedSpeechRecognizerResponse.StatusProperty.PhraseRecognized:
+                    if (_speechRecognizedAction != null)
+                    {
+                        ThreadPool.AddCommands(_speechRecognizedAction);
+                    }
+                    var command = GetCommand(input.Phrase);
+
+                    ThreadPool.AddCommands(command);
+                    break;
+            }
+            
         }
 
         public IEnumerable<string> Phrases
@@ -109,16 +106,6 @@ namespace Roomie.CommandDefinitions.SpeechRecognition
         public ScriptCommandList GetCommand(string phrase)
         {
             return RegisteredCommands[phrase];
-        }
-
-        public void EmulateRecognize(string phrase)
-        {
-            SpeechRecognizer.EmulateRecognize(phrase);
-        }
-
-        public void RemovePhrase(string phrase)
-        {
-            RegisteredCommands.Remove(phrase);
         }
 
         public void RegisterSpeechRecognizedAction(ScriptCommandList commands)
