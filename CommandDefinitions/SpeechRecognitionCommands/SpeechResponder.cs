@@ -5,7 +5,7 @@ using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine;
 using ThreadPool = Roomie.Desktop.Engine.ThreadPool;
 
-namespace Roomie.CommandDefinitions.SpeechRecognition
+namespace Roomie.CommandDefinitions.SpeechRecognitionCommands
 {
     public class SpeechResponder
     {

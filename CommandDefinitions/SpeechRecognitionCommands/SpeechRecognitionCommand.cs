@@ -1,6 +1,6 @@
 ﻿using Roomie.Desktop.Engine;
 
-namespace Roomie.CommandDefinitions.SpeechRecognition
+namespace Roomie.CommandDefinitions.SpeechRecognitionCommands
 {
     public abstract class SpeechRecognitionCommand : RoomieCommand
     {

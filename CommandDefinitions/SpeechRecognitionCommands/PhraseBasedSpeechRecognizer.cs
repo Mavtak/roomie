@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Speech.Recognition;
 
-namespace Roomie.CommandDefinitions.SpeechRecognition
+namespace Roomie.CommandDefinitions.SpeechRecognitionCommands
 {
     public class PhraseBasedSpeechRecognizer
     {

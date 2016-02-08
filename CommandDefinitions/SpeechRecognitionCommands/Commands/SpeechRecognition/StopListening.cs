@@ -1,6 +1,4 @@
-﻿using Roomie.CommandDefinitions.SpeechRecognition;
-
-namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands.SpeechRecognition
+﻿namespace Roomie.CommandDefinitions.SpeechRecognitionCommands.Commands.SpeechRecognition
 {
     public class StopListening : SpeechRecognitionCommand
     {

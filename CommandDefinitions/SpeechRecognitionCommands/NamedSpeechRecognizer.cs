@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Roomie.CommandDefinitions.SpeechRecognition
+namespace Roomie.CommandDefinitions.SpeechRecognitionCommands
 {
     public class NamedSpeechRecognizer
     {
