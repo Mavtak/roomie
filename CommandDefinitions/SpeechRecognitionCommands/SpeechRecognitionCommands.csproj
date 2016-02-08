@@ -49,6 +49,7 @@
     <Compile Include="Commands\SpeechRecognition\RegisterPhrase.cs" />
     <Compile Include="Commands\SpeechRecognition\StartListening.cs" />
     <Compile Include="Commands\SpeechRecognition\UnregisterPhrase.cs" />
+    <Compile Include="PhraseBasedSpeechRecognizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpeechRecognitionCommand.cs" />
     <Compile Include="SpeechRecognitionCommandContext.cs" />
