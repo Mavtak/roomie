@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\Sklose\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\HomeAutomation\HomeAutomation.csproj">
@@ -56,6 +63,76 @@
       <Project>{48e1a8a5-7204-4c21-a914-510933db87ea}</Project>
       <Name>HomeAutomationCommands</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\Sklose\BasicService.wsdl" />
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.ChangeFriendlyNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.ChangeFriendlyNameResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetBinaryStateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetBinaryStateResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetFriendlyNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetFriendlyNameResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetHomeIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetHomeIdResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetIconURLResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetIconURLResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetLogFileURLResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetLogFileURLResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetSignalStrengthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.GetSignalStrengthResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.SetBinaryStateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.SetBinaryStateResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Sklose\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sklose\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sklose\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sklose\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
