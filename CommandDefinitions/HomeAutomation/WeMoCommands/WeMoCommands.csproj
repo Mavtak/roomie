@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ConnectDevice.cs" />
+    <Compile Include="Commands\RegisterNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\Sklose\Reference.cs">
       <AutoGen>True</AutoGen>
