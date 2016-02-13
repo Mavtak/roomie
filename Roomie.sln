@@ -107,6 +107,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenZWaveCommands", "Comman
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Q42HueCommands", "CommandDefinitions\HomeAutomation\Q42HueCommands\Q42HueCommands.csproj", "{9B945F89-B6B3-4E7E-B670-B9DB24AD00DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeMoCommands", "CommandDefinitions\HomeAutomation\WeMoCommands\WeMoCommands.csproj", "{FEE36987-142C-4930-BA5F-A2C1EEF219AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Roomie.Mvc3|Any CPU = Debug Roomie.Mvc3|Any CPU
@@ -660,6 +662,24 @@ Global
 		{9B945F89-B6B3-4E7E-B670-B9DB24AD00DF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9B945F89-B6B3-4E7E-B670-B9DB24AD00DF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9B945F89-B6B3-4E7E-B670-B9DB24AD00DF}.Release|x86.ActiveCfg = Release|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug Roomie.Mvc3|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug Roomie.Mvc3|Any CPU.Build.0 = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug Roomie.Mvc3|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug Roomie.Mvc3|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug Roomie.Mvc3|x86.ActiveCfg = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug Roomie.Mvc3|x86.Build.0 = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Debug|x86.Build.0 = Debug|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Release|x86.ActiveCfg = Release|Any CPU
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -702,6 +722,7 @@ Global
 		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614} = {41DFF33E-037B-45F4-9B2A-E07068610978}
 		{8A4DE8BD-5073-464F-BF77-71EFA6E07FD0} = {41DFF33E-037B-45F4-9B2A-E07068610978}
 		{9B945F89-B6B3-4E7E-B670-B9DB24AD00DF} = {41DFF33E-037B-45F4-9B2A-E07068610978}
+		{FEE36987-142C-4930-BA5F-A2C1EEF219AB} = {41DFF33E-037B-45F4-9B2A-E07068610978}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Roomie1.vsmdi
