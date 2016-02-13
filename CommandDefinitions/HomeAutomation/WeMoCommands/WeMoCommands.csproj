@@ -68,7 +68,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Service References\Sklose\BasicService.wsdl" />
     <None Include="Service References\Sklose\Roomie.CommandDefinitions.WeMoCommands.Sklose.ChangeFriendlyNameResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
