@@ -311,6 +311,10 @@
       <Project>{48E1A8A5-7204-4C21-A914-510933DB87EA}</Project>
       <Name>HomeAutomationCommands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\HomeAutomation\WeMoCommands\WeMoCommands.csproj">
+      <Project>{fee36987-142c-4930-ba5f-a2c1eef219ab}</Project>
+      <Name>WeMoCommands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CommandDefinitions\SpeechRecognitionCommands\SpeechRecognitionCommands.csproj">
       <Project>{52838530-5174-47d2-a029-2ddb7918c776}</Project>
       <Name>SpeechRecognitionCommands</Name>

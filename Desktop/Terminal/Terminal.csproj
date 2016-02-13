@@ -83,6 +83,10 @@
       <Project>{8a4de8bd-5073-464f-bf77-71efa6e07fd0}</Project>
       <Name>OpenZWaveCommands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\HomeAutomation\WeMoCommands\WeMoCommands.csproj">
+      <Project>{fee36987-142c-4930-ba5f-a2c1eef219ab}</Project>
+      <Name>WeMoCommands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ScriptingLanguage\ScriptingLanguage.csproj">
       <Project>{B8225CD9-0CDA-4022-BC70-DA6D0CF7E097}</Project>
       <Name>ScriptingLanguage</Name>
