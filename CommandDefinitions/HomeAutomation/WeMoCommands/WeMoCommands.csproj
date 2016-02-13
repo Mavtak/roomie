@@ -43,6 +43,20 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\HomeAutomation\HomeAutomation.csproj">
+      <Project>{f0b023b4-cca4-419f-8963-862d3377a2f8}</Project>
+      <Name>HomeAutomation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Desktop\Engine\Engine.csproj">
+      <Project>{91e5d2c3-d269-4ff9-8ab6-36926441f6b2}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HomeAutomationCommands\HomeAutomationCommands.csproj">
+      <Project>{48e1a8a5-7204-4c21-a914-510933db87ea}</Project>
+      <Name>HomeAutomationCommands</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
