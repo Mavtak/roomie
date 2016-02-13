@@ -49,6 +49,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="WeMoBinarySwitch.cs" />
+    <Compile Include="WeMoDevice.cs" />
+    <Compile Include="WeMoNetwork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\HomeAutomation\HomeAutomation.csproj">
