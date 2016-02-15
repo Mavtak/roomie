@@ -1,4 +1,4 @@
-describe('roomie.task.taskWidget', function() {
+describe('angular roomie.task task-widget (directive)', function() {
   var $compile;
   var $rootScope;
   var element;

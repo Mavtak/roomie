@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.deviceList', function() {
+﻿describe('angular roomie.devices device-list (directive)', function() {
   var $compile;
   var $rootScope;
   var element;

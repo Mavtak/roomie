@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.LocationHeaderLabelGenerator', function() {
+﻿describe('angular roomie.devices LocationHeaderLabelGenerator (factory)', function() {
   var LocationHeaderLabelGenerator;
 
   beforeEach(angular.mock.module('roomie.devices'));

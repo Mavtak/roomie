@@ -1,4 +1,4 @@
-﻿describe('roomie.common.dock', function () {
+﻿describe('angular roomie.common dock (directive)', function () {
   var $compile;
   var $rootScope;
   var element;

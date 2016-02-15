@@ -1,4 +1,4 @@
-﻿describe('roomie.common.widgetDataSection', function () {
+﻿describe('angular roomie.common widget-data-section (directive)', function () {
   var $compile;
   var $rootScope;
 

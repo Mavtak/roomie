@@ -1,4 +1,4 @@
-describe('roomie.devices.multilevelSensorControls', function() {
+describe('angular roomie.devices multilevel-sensor-controls (directive)', function() {
   var $compile;
   var $rootScope;
   var attributes;

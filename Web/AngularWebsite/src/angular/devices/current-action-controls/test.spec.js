@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.currentActionControls', function() {
+﻿describe('angular roomie.devices current-action-controls (directive)', function() {
   var $compile;
   var $rootScope;
   var attributes;

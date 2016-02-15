@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.colorSwitchControls', function() {
+﻿describe('angular roomie.devices color-switch-controls (directive)', function() {
   var $compile;
   var $rootScope;
   var element;

@@ -1,4 +1,4 @@
-﻿describe('roomie.task.received', function() {
+﻿describe('angular roomie.task received (filter)', function() {
   var filter;
 
   beforeEach(angular.mock.module('roomie.tasks'));

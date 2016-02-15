@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.multilevelSwitchControls', function() {
+﻿describe('angular roomie.devices multilevel-switch-controls (directive)', function() {
   var $compile;
   var $rootScope;
   var element;

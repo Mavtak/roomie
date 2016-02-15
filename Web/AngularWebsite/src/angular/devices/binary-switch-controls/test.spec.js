@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.binarySwitchControls', function() {
+﻿describe('angular roomie.devices binary-switch-controls (directive)', function() {
   var $compile;
   var $rootScope;
   var element;

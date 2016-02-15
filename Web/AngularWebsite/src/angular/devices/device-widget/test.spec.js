@@ -1,4 +1,4 @@
-describe('roomie.devices.deviceWidget', function() {
+describe('angular roomie.devices device-widget (directive)', function() {
   var $compile;
   var $rootScope;
   var element;

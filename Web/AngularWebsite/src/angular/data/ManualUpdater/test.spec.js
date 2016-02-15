@@ -1,4 +1,4 @@
-﻿describe('roomie.data.ManualUpdater', function() {
+﻿describe('angular roomie.data ManualUpdater (factory)', function() {
 
   var ManualUpdater;
   var items;

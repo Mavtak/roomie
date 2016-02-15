@@ -1,4 +1,4 @@
-﻿describe('roomie.common.keyValue', function () {
+﻿describe('angular roomie.common key-value (directive)', function () {
   var $compile;
   var $rootScope;
 

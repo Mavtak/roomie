@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.RainbowColorsGenerator', function () {
+﻿describe('angular roomie.devices RainbowColorsGenerator (factory)', function () {
   var RainbowColorsGenerator;
 
   beforeEach(angular.mock.module('roomie.devices'));

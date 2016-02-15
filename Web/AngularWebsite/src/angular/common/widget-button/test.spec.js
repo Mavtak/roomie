@@ -1,4 +1,4 @@
-﻿describe('roomie.common.widgetButton', function() {
+﻿describe('angular roomie.common widget-button (directive)', function() {
   var $compile;
   var $rootScope;
 

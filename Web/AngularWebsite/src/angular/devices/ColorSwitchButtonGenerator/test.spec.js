@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.ColorSwitchButtonGenerator', function () {
+﻿describe('angular roomie.devices ColorSwitchButtonGenerator (factory)', function () {
   var ColorSwitchButtonGenerator;
   var colors;
 

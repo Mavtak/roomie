@@ -1,4 +1,4 @@
-﻿describe('roomie.data.ManualPoller', function() {
+﻿describe('angular roomie.data ManualPoller (factory)', function() {
 
   var $httpBackend;
   var ManualPoller;

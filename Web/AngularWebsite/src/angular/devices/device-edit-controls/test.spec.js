@@ -1,4 +1,4 @@
-describe('roomie.devices.deviceEditControls', function () {
+describe('angular roomie.devices device-edit-controls (directive)', function () {
   var $compile;
   var $httpBackend;
   var $rootScope;

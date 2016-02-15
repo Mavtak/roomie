@@ -1,4 +1,4 @@
-﻿describe('roomie.common.sideMenuItem', function() {
+﻿describe('angular roomie.common side-menu-item (directive)', function() {
   var $compile;
   var $rootScope;
 

@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.thermostatControls', function () {
+﻿describe('angular roomie.devices thermostat-controls (directive)', function () {
   var $compile;
   var $rootScope;
   var attributes;

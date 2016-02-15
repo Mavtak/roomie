@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.MultilevelSwitchButtonGenerator', function() {
+﻿describe('angular roomie.devices MultilevelSwitchButtonGenerator (directive)', function() {
   var MultilevelSwitchButtonGenerator;
 
   beforeEach(angular.mock.module('roomie.devices'));

@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.locationHeaderGroup', function() {
+﻿describe('angular roomie.devices location-header-group (directive)', function() {
   var $compile;
   var $rootScope;
   var givenCurrentLocation;
@@ -28,7 +28,7 @@
 
     $compile('<location-header-group previous-location="previous" current-location="current"></location-header-group>')($rootScope);
     $rootScope.$digest();
-    
+
     expect(givenPreviousLocation).toBe($rootScope.previous);
     expect(givenCurrentLocation).toBe($rootScope.current);
   });

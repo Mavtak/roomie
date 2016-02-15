@@ -1,4 +1,4 @@
-﻿describe('roomie.devices.binarySensorControls', function() {
+﻿describe('angular roomie.devices binary-sensor-controls (directive)', function() {
   var $compile;
   var $rootScope;
   var attributes;
