@@ -4,15 +4,15 @@
   $state,
   wholePageStatus
   ) {
-  $scope.username = '';
-  $scope.password = '';
-  $scope.submit = submit;
+  this.username = '';
+  this.password = '';
+  this.submit = submit;
   wholePageStatus.set('ready');
 
   function submit() {
     wholePageStatus.set('loading');
 
-    var path = '/api/UserAuthentication?username=' + encodeURIComponent($scope.username) + '&password=' + encodeURIComponent($scope.password);
+    var path = '/api/UserAuthentication?username=' + encodeURIComponent(this.username) + '&password=' + encodeURIComponent(this.password);
     $http.post(path).then(function() {
       $state.go('devices');
     });
