@@ -7,7 +7,7 @@
       username: '=username',
       submit: '=submit'
     },
-    templateUrl: 'User/sign-in-form/template.html',
+    templateUrl: 'user/sign-in-form/template.html',
   };
 
 });

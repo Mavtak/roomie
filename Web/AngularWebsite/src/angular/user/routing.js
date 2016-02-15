@@ -4,6 +4,6 @@
   $stateProvider.state('sign-in', {
     url: '/sign-in',
     controller: 'SignInController',
-    templateUrl: 'User/pages/sign-in.html'
+    templateUrl: 'user/pages/sign-in.html'
   });
 });
