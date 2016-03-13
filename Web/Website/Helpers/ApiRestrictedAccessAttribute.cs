@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
+using Roomie.Web.Website.Controllers.Api;
 
 namespace Roomie.Web.Website.Helpers
 {
@@ -18,12 +19,12 @@ namespace Roomie.Web.Website.Helpers
 
             if (controller.User == null)
             {
-                //TODO: define and use static "error" object type
-                var errorObject = new
+                var errorObject = new[]
                 {
-                    Error = new
+                    new Error
                     {
-                        Message = "Access denied.  Please sign in."
+                        FriendlyMessage = "Access denied.  Please sign in.",
+                        Type = "must-sign-in",
                     }
                 };
 
