@@ -72,6 +72,13 @@
           >
         </div>
         <side-menu-item
+          label="'Sign In'"
+          ng-if="signInState === 'unknown' || signInState === 'signed-out'"
+          selected="navigationMenuItemSelected"
+          target="'#/sign-in'"
+          >
+        </side-menu-item>
+        <side-menu-item
           label="'Sign Out'"
           ng-if="signInState === 'unknown' || signInState === 'signed-in'"
           selected="navigationMenuItemSelected"
