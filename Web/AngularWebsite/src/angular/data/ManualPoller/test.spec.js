@@ -1,4 +1,4 @@
-﻿describe('angular roomie.data ManualPoller (factory)', function() {
+﻿describe('angular roomie.data ManualPoller (factory)', function () {
 
   var $httpBackend;
   var ManualPoller;
@@ -11,11 +11,11 @@
     ManualPoller = $injector.get('ManualPoller');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     items = [];
   });
 
-  it('GETs the provided URL', function() {
+  it('GETs the provided URL', function () {
     var manualPoller = new ManualPoller({
       url: '/herp/derp.json'
     });
@@ -31,9 +31,9 @@
 
   });
 
-  describe('item selection', function() {
+  describe('item selection', function () {
 
-    it('selects the items property by default.', function() {
+    it('selects the items property by default.', function () {
       var actual;
       var manualPoller = new ManualPoller({
         url: '/herp/derp.json'
@@ -44,7 +44,7 @@
           items: [{ id: 'a' }, { id: 'b' }]
         });
 
-      manualPoller.run().then(function(x) {
+      manualPoller.run().then(function (x) {
         actual = x;
       });
 
@@ -54,11 +54,11 @@
 
     });
 
-    it('selects the items property with an optional override when provided.', function() {
+    it('selects the items property with an optional override when provided.', function () {
       var actual;
       var manualPoller = new ManualPoller({
         url: '/herp/derp.json',
-        itemSelector: function(response) {
+        itemSelector: function (response) {
           return response;
         }
       });
@@ -66,7 +66,7 @@
       $httpBackend.when('GET', '/herp/derp.json')
         .respond([{ id: 'a' }, { id: 'b' }]);
 
-      manualPoller.run().then(function(x) {
+      manualPoller.run().then(function (x) {
         actual = x;
       });
 

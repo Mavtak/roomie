@@ -1,4 +1,4 @@
-﻿describe('angular roomie.data ManualUpdater (factory)', function() {
+﻿describe('angular roomie.data ManualUpdater (factory)', function () {
 
   var ManualUpdater;
   var items;
@@ -9,13 +9,13 @@
     ManualUpdater = $injector.get('ManualUpdater');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     items = [];
   });
 
-  describe('adding new entries', function() {
+  describe('adding new entries', function () {
 
-    it('adds new items when originals is empty', function() {
+    it('adds new items when originals is empty', function () {
       var manualUpdater = new ManualUpdater({
         originals: items
       });
@@ -25,7 +25,7 @@
       expect(items).toEqual([{ id: 'a' }, { id: 'b' }, { id: 'c' }]);
     });
 
-    it('adds new items to existing items', function() {
+    it('adds new items to existing items', function () {
       var manualUpdater = new ManualUpdater({
         originals: items
       });
@@ -36,7 +36,7 @@
       expect(items).toEqual([{ id: 'a' }, { id: 'b' }, { id: 'c' }, { id: 'd' }, { id: 'e' }, { id: 'f' }]);
     });
 
-    it('uses the input object instances as the results', function() {
+    it('uses the input object instances as the results', function () {
       var manualUpdater = new ManualUpdater({
         originals: items
       });
@@ -83,9 +83,9 @@
 
   });
 
-  describe('updating existing entries', function() {
+  describe('updating existing entries', function () {
 
-    describe('adding new properties', function() {
+    describe('adding new properties', function () {
 
       var original;
       var update;
@@ -93,7 +93,7 @@
       var newDirectObject;
       var newNestedObject;
 
-      beforeEach(function() {
+      beforeEach(function () {
 
         original = {
           id: 'abc-123',
@@ -104,7 +104,7 @@
 
             }
           },
-          aFunction: function() {
+          aFunction: function () {
           }
         };
 
@@ -137,32 +137,32 @@
         result = items[0];
       });
 
-      it('maintains the original object instance', function() {
+      it('maintains the original object instance', function () {
         expect(result).toBe(original);
       });
 
-      it('adds new literal properties on the base object', function() {
+      it('adds new literal properties on the base object', function () {
         expect(result.directLiteral2).toEqual('second value, added');
       });
 
-      it('copies added object property instances on the base object', function() {
+      it('copies added object property instances on the base object', function () {
         expect(result.directObject2).not.toBe(newDirectObject);
       });
 
-      it('updates literal properties on direct child objects', function() {
+      it('updates literal properties on direct child objects', function () {
         expect(result.directObject.indirectLiteral1).toEqual('first value, added');
       });
 
-      it('copies added nested object instances', function() {
+      it('copies added nested object instances', function () {
         expect(result.directObject.nestedObject.superNestedObject).not.toBe(newNestedObject);
       });
 
-      it('updates literal properties on nested objects', function() {
+      it('updates literal properties on nested objects', function () {
         expect(result.directObject.nestedObject.nestedLiteral1).toEqual('first value, added');
       });
     });
 
-    describe('updating existing properties', function() {
+    describe('updating existing properties', function () {
 
       var original;
       var update;
@@ -170,7 +170,7 @@
       var originalDirectObject;
       var originalNestedObject;
 
-      beforeEach(function() {
+      beforeEach(function () {
 
         original = {
           id: 'abc-123',
@@ -183,7 +183,7 @@
               nestedLiteral1: 'fist value'
             }
           },
-          aFunction: function() {
+          aFunction: function () {
           }
         };
 
@@ -210,35 +210,35 @@
         result = items[0];
       });
 
-      it('maintains the original object instance', function() {
+      it('maintains the original object instance', function () {
         expect(result).toBe(original);
       });
 
-      it('updates literal properties on the base object', function() {
+      it('updates literal properties on the base object', function () {
         expect(result.directLiteral2).toEqual('second value, updated');
       });
 
-      it('maintains object property instances on the base object', function() {
+      it('maintains object property instances on the base object', function () {
         expect(result.directObject).toBe(originalDirectObject);
       });
 
-      it('updates literal properties on direct child objects', function() {
+      it('updates literal properties on direct child objects', function () {
         expect(result.directObject.indirectLiteral1).toEqual('first value, updated');
       });
 
-      it('maintains added nested object instances', function() {
+      it('maintains added nested object instances', function () {
         expect(result.directObject.nestedObject).toBe(originalNestedObject);
       });
 
-      it('updates literal properties on nested objects', function() {
+      it('updates literal properties on nested objects', function () {
         expect(result.directObject.nestedObject.nestedLiteral1).toEqual('first value, updated');
       });
 
     });
 
-    describe('removing properties', function() {
+    describe('removing properties', function () {
 
-      it('does not remove properties', function() {
+      it('does not remove properties', function () {
         var manualUpdater = new ManualUpdater({
           originals: items
         });
@@ -309,9 +309,9 @@
 
   });
 
-  describe('removing entries', function() {
+  describe('removing entries', function () {
 
-    it('does not remove entries', function() {
+    it('does not remove entries', function () {
       var manualUpdater = new ManualUpdater({
         originals: items
       });
@@ -324,7 +324,7 @@
 
   });
 
-  describe('when the update is complete', function() {
+  describe('when the update is complete', function () {
 
     it('runs the optional updateComplete function', function () {
       var counter = 0;
@@ -339,6 +339,7 @@
 
       expect(counter).toEqual(1);
     });
+
   });
 
 });
