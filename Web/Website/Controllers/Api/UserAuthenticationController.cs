@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Roomie.Web.Persistence.Repositories;
+using Roomie.Web.Website.Helpers;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using Roomie.Web.Persistence.Repositories;
-using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api
 {
