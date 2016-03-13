@@ -42,27 +42,6 @@ namespace Roomie.Web.Website.Helpers
             return session.User;
         }
 
-        public static void SignIn(IRoomieDatabaseContext database, DotNetOpenAuth.OpenId.Identifier identifier)
-        {
-            var response = HttpContext.Current.Response;
-
-            var token = "openid:" + identifier;
-
-            var user = database.Users.Get(token);
-
-            if (user == null)
-            {
-                // add new user
-                user = User.Create(token);
-
-                database.Users.Add(user);
-            }
-
-            var session = CreateSession(database, user);
-            var cookie = CreateSessionCookie(session);
-            response.SetCookie(cookie);
-        }
-
         public static UserSession CreateSession(IRoomieDatabaseContext database, User user)
         {
             var userSession = UserSession.Create(user);
@@ -86,18 +65,6 @@ namespace Roomie.Web.Website.Helpers
             cookie.Expires = DateTime.UtcNow.AddYears(-10);
 
             return cookie;
-        }
-
-        public static void SignOff()
-        {
-            var response = HttpContext.Current.Response;
-
-            // remove session cookie
-            var cookie = ExpireSessionCookie();
-
-            response.SetCookie(cookie);
-            FormsAuthentication.SignOut();
-            
         }
     }
 }
