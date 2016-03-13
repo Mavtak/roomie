@@ -1,6 +1,6 @@
 ﻿using System;
-using Roomie.Common.HomeAutomation.BinarySwitches;
 using Roomie.CommandDefinitions.WeMoCommands.Sklose;
+using Roomie.Common.HomeAutomation.BinarySwitches;
 
 namespace Roomie.CommandDefinitions.WeMoCommands
 {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Roomie.Common.HomeAutomation;
-using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Persistence.Helpers
 {

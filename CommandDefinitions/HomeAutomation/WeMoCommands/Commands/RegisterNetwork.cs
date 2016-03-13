@@ -1,5 +1,4 @@
-﻿using System;
-using Roomie.CommandDefinitions.HomeAutomationCommands;
+﻿using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.Desktop.Engine.Commands;
 
 namespace Roomie.CommandDefinitions.WeMoCommands.Commands

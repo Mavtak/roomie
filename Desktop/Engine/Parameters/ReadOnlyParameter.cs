@@ -1,6 +1,4 @@
 ﻿
-using System.Text;
-
 namespace Roomie.Desktop.Engine.Parameters
 {
     public class ReadOnlyParameter : IParameter

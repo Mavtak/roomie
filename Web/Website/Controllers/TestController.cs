@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using System.Web.Mvc;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;

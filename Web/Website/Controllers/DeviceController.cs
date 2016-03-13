@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Mvc;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Database;
-using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 using Roomie.Web.Website.ViewModels;
 

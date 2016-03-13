@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
 using Roomie.CommandDefinitions.WeMoCommands.Sklose;
-using System.Collections.Generic;
 
 namespace Roomie.CommandDefinitions.WeMoCommands
 {

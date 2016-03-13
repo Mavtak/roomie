@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net.Http.Headers;
 using System.Web;
-using System.Web.Security;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
 
