@@ -80,15 +80,22 @@ namespace Roomie.Web.Website.Helpers
             return cookie;
         }
 
+        public static HttpCookie ExpireSessionCookie()
+        {
+            var cookie = new HttpCookie(sessionTokenName, "expired");
+            cookie.Expires = DateTime.UtcNow.AddYears(-10);
+
+            return cookie;
+        }
+
         public static void SignOff()
         {
             var response = HttpContext.Current.Response;
 
             // remove session cookie
-            var cookie = new HttpCookie(sessionTokenName, "expired");
-            cookie.Expires = DateTime.UtcNow.AddYears(-10);
-            response.SetCookie(cookie);
+            var cookie = ExpireSessionCookie();
 
+            response.SetCookie(cookie);
             FormsAuthentication.SignOut();
             
         }
