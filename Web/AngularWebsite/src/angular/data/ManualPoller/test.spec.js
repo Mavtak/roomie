@@ -78,4 +78,52 @@
 
   });
 
+  describe('error handling', function () {
+    var theError;
+
+    beforeEach(function () {
+      $httpBackend.when('GET', '/herp/derp.json')
+        .respond(500, {
+          something: 'a message maybe'
+        });
+    });
+
+    describe('when the processErrors option is not set', function () {
+
+      it('does not break', function () {
+          var manualPoller = new ManualPoller({
+            url: '/herp/derp.json'
+          });
+
+          manualPoller.run();
+
+          $httpBackend.flush();
+      });
+
+    });
+
+    describe('when the processErrors option is set', function () {
+
+      it('calls it with the error data', function () {
+        var processErrors = jasmine.createSpy('processErrors');
+
+        var manualPoller = new ManualPoller({
+          url: '/herp/derp.json',
+          processErrors: processErrors
+        });
+
+        manualPoller.run();
+
+        $httpBackend.flush();
+
+        expect(processErrors.calls.count()).toEqual(1);
+        expect(processErrors.calls.mostRecent().args[0]).toEqual({
+          something: 'a message maybe'
+        });
+      });
+
+    });
+
+  });
+
 });

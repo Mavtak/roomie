@@ -4,13 +4,21 @@
 
   return function ManualPoller(options) {
     var url = options.url;
+    var processErrors = options.processErrors;
     var selectItems = options.itemSelector || defaultItemSelector;
 
     this.run = function () {
-      //TODO: handle failures
-      return $http.get(url)
+      var result = $http.get(url);
+
+      if (processErrors) {
+        result = result.error(processErrors);
+      }
+
+      result = result
         .then(selectHttpBody)
         .then(selectItems);
+
+      return result;
     };
 
     function selectHttpBody(response) {
