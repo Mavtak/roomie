@@ -5,6 +5,6 @@
     url: '/sign-in',
     controller: 'SignInController',
     controllerAs: 'controller',
-    templateUrl: 'user/pages/sign-in.html'
+    templateUrl: 'users/pages/sign-in.html'
   });
 });
