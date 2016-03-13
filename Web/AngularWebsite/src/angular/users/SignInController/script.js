@@ -2,6 +2,7 @@
   $http,
   $scope,
   $state,
+  signInState,
   wholePageStatus
   ) {
   var self = this;
@@ -12,6 +13,7 @@
   resetError();
 
   function handleSuccessResponse() {
+    signInState.set('signed-in');
     $state.go('devices');
   }
 
