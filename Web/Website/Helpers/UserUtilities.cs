@@ -52,24 +52,24 @@ namespace Roomie.Web.Website.Helpers
             return userSession;
         }
 
-        public static CookieHeaderValue CreateSessionCookie(UserSession userSession)
+        private static CookieHeaderValue CreateSessionCookie(string token, DateTime expires)
         {
-            return new CookieHeaderValue(sessionTokenName, userSession.Token)
+            return new CookieHeaderValue(sessionTokenName, token)
             {
-                Expires = DateTime.UtcNow.AddYears(1),
+                Expires = expires,
                 HttpOnly = true,
                 Path = "/"
             };
         }
 
+        public static CookieHeaderValue CreateSessionCookie(UserSession userSession)
+        {
+            return CreateSessionCookie(userSession.Token, DateTime.UtcNow.AddYears(1));
+        }
+
         public static CookieHeaderValue ExpireSessionCookie()
         {
-            return new CookieHeaderValue(sessionTokenName, "expired")
-            {
-                Expires = DateTime.UtcNow.AddYears(-10),
-                HttpOnly = true,
-                Path = "/"
-            };
+            return CreateSessionCookie("expired", DateTime.UtcNow.AddYears(-10));
         }
     }
 }
