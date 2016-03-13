@@ -36,6 +36,16 @@ namespace Roomie.Web.Website.Controllers.Api
             return response;
         }
 
+        public HttpResponseMessage Delete()
+        {
+            var cookie = UserUtilities.ExpireSessionCookie();
+
+            var response = new HttpResponseMessage();
+            SetCookie(response, cookie.Name, cookie.Value, cookie.Expires);
+
+            return response;
+        }
+
         private static void SetCookie(HttpResponseMessage response, string name, string value, DateTime expires)
         {
             response.Headers.AddCookies(new[]
