@@ -7,4 +7,11 @@
     controllerAs: 'controller',
     templateUrl: 'users/pages/sign-in.html'
   });
+
+  $stateProvider.state('sign-out', {
+    url: '/sign-out',
+    controller: 'SignOutController',
+    controllerAs: 'controller',
+    templateUrl: 'users/pages/sign-out.html'
+  });
 });
