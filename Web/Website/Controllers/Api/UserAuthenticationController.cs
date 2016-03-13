@@ -29,7 +29,7 @@ namespace Roomie.Web.Website.Controllers.Api
             var cookie = UserUtilities.CreateSessionCookie(session);
 
             var response = new HttpResponseMessage();
-            SetCookie(response, cookie.Name, cookie.Value, cookie.Expires);
+            response.Headers.AddCookies(new[] {cookie});
 
             return response;
         }
@@ -39,22 +39,9 @@ namespace Roomie.Web.Website.Controllers.Api
             var cookie = UserUtilities.ExpireSessionCookie();
 
             var response = new HttpResponseMessage();
-            SetCookie(response, cookie.Name, cookie.Value, cookie.Expires);
+            response.Headers.AddCookies(new[] {cookie});
 
             return response;
-        }
-
-        private static void SetCookie(HttpResponseMessage response, string name, string value, DateTime expires)
-        {
-            response.Headers.AddCookies(new[]
-            {
-                new CookieHeaderValue(name, value)
-                {
-                    Expires = expires,
-                    HttpOnly = true,
-                    Path = "/"
-                }
-            });
         }
     }
 }

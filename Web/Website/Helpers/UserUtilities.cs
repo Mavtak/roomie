@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Security;
 using Roomie.Web.Persistence.Database;
@@ -51,20 +52,24 @@ namespace Roomie.Web.Website.Helpers
             return userSession;
         }
 
-        public static HttpCookie CreateSessionCookie(UserSession userSession)
+        public static CookieHeaderValue CreateSessionCookie(UserSession userSession)
         {
-            var cookie = new HttpCookie(sessionTokenName, userSession.Token);
-            cookie.Expires = DateTime.UtcNow.AddYears(1);
-
-            return cookie;
+            return new CookieHeaderValue(sessionTokenName, userSession.Token)
+            {
+                Expires = DateTime.UtcNow.AddYears(1),
+                HttpOnly = true,
+                Path = "/"
+            };
         }
 
-        public static HttpCookie ExpireSessionCookie()
+        public static CookieHeaderValue ExpireSessionCookie()
         {
-            var cookie = new HttpCookie(sessionTokenName, "expired");
-            cookie.Expires = DateTime.UtcNow.AddYears(-10);
-
-            return cookie;
+            return new CookieHeaderValue(sessionTokenName, "expired")
+            {
+                Expires = DateTime.UtcNow.AddYears(-10),
+                HttpOnly = true,
+                Path = "/"
+            };
         }
     }
 }
