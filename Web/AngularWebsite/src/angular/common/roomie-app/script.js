@@ -1,5 +1,6 @@
 ﻿angular.module('roomie.common').directive('roomieApp', function (
   $window,
+  signInState,
   pageMenuItems
   ) {
 
@@ -40,6 +41,12 @@
       //TODO: fix it page menu width calculation so that this watch isn't necessary
       if (scope.pageMenu.isOpen) {
         openPageMenu();
+      }
+    });
+
+    Object.defineProperty(scope, 'signInState', {
+      get: function () {
+        return signInState.get();
       }
     });
 
