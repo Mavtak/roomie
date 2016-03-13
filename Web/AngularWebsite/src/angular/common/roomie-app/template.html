@@ -28,24 +28,28 @@
         >
         <side-menu-item
           label="'Networks'"
+          ng-if="signInState === 'unknown' || signInState === 'signed-in'"
           selected="navigationMenuItemSelected"
           target="'/Networks'"
           >
         </side-menu-item>
         <side-menu-item
           label="'Devices'"
+          ng-if="signInState === 'unknown' || signInState === 'signed-in'"
           selected="navigationMenuItemSelected"
           target="'#/devices'"
           >
         </side-menu-item>
         <side-menu-item
           label="'Computers'"
+          ng-if="signInState === 'unknown' || signInState === 'signed-in'"
           selected="navigationMenuItemSelected"
           target="'/Computers'"
           >
         </side-menu-item>
         <side-menu-item
           label="'Tasks'"
+          ng-if="signInState === 'unknown' || signInState === 'signed-in'"
           selected="navigationMenuItemSelected"
           target="'#/tasks'"
           >
@@ -58,6 +62,7 @@
         </side-menu-item>
         <side-menu-item
           label="'Account'"
+          ng-if="signInState === 'unknown' || signInState === 'signed-in'"
           selected="navigationMenuItemSelected"
           target="'/Account'"
           >
@@ -68,6 +73,7 @@
         </div>
         <side-menu-item
           label="'Sign Out'"
+          ng-if="signInState === 'unknown' || signInState === 'signed-in'"
           selected="navigationMenuItemSelected"
           target="'/SignOut'"
           >
