@@ -4,6 +4,7 @@
   AutomaticPollingUpdater,
   LocationHeaderLabelGenerator,
   pageMenuItems,
+  signInState,
   wholePageStatus
   ) {
   var locations;
@@ -67,6 +68,7 @@
       url: path,
       originals: $scope.page.items,
       ammendOriginal: setFunctions,
+      processErrors: processErrors,
       processUpdate: processUpdate,
       updateComplete: updateComplete
     };
@@ -85,6 +87,20 @@
     $scope.$on('$destroy', function() {
       data.stop();
     });
+  }
+
+  function processErrors(errors) {
+    wholePageStatus.set('ready');
+
+    var signInError = _.isArray(errors) && _.some(errors, {
+      type: 'must-sign-in'
+    });
+
+    if (signInError) {
+      signInState.set('signed-out');
+    }
+
+    //TODO: handle other errors
   }
 
   function processUpdate(device) {
@@ -119,6 +135,7 @@
 
   function setFunctions(device) {
     wholePageStatus.set('ready');
+    signInState.set('signed-in');
 
     device.binarySwitch.setPower = function (power) {
       $http.post('/api/device/' + device.id + '?action=Power' + power);
