@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
@@ -12,16 +13,24 @@ namespace Roomie.Web.Website.Controllers.Api
     {
         public HttpResponseMessage Post(string username, string password)
         {
-            var response = new HttpResponseMessage();
             var user = Database.Users.Get(username, password);
 
             if (user == null)
             {
-                throw new Exception();
+                return Request.CreateResponse(HttpStatusCode.NotFound, new[]
+                {
+                    new Error
+                    {
+                        FriendlyMessage = "User not found",
+                        Type = "not-found",
+                    }
+                });
             }
 
             var session = UserUtilities.CreateSession(Database, user);
             var cookie = UserUtilities.CreateSessionCookie(session);
+
+            var response = new HttpResponseMessage();
             SetCookie(response, cookie.Name, cookie.Value, cookie.Expires);
 
             return response;

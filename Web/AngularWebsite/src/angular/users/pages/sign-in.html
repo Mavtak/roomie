@@ -4,3 +4,9 @@
   submit="controller.submit"
   >
 </sign-in-form>
+
+<p
+  ng-repeat="error in controller.errors"
+  >
+  {{error}}
+</p>

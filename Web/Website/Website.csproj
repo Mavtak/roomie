@@ -171,6 +171,7 @@
     <Compile Include="Controllers\Api\ComputerController.cs" />
     <Compile Include="Controllers\Api\DeviceActionOptions.cs" />
     <Compile Include="Controllers\Api\DeviceUpdateModel.cs" />
+    <Compile Include="Controllers\Api\Error.cs" />
     <Compile Include="Controllers\Api\TaskController.cs" />
     <Compile Include="Controllers\Api\UserAuthenticationController.cs" />
     <Compile Include="Controllers\Api\UserController.cs" />
