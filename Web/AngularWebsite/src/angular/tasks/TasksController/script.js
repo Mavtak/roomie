@@ -3,6 +3,7 @@
   $scope,
   ManualPollingUpdater,
   pageMenuItems,
+  signInState,
   wholePageStatus
   ) {
 
@@ -33,14 +34,30 @@
     var data = new ManualPollingUpdater({
       url: '/api/task?start=' + start + '&count=' + count,
       originals: $scope.page.items,
-      ammendOriginal: processTask
+      ammendOriginal: processTask,
+      processErrors: processErrors
     });
 
     data.run();
   }
 
+  function processErrors(errors) {
+    wholePageStatus.set('ready');
+
+    var signInError = _.isArray(errors) && _.some(errors, {
+      type: 'must-sign-in'
+    });
+
+    if (signInError) {
+      signInState.set('signed-out');
+    }
+
+    //TODO: handle other errors
+  }
+
   function processTask(task) {
     wholePageStatus.set('ready');
+    signInState.set('signed-in');
 
     if (task.expiration) {
       task.expiration = new Date(task.expiration);
