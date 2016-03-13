@@ -62,12 +62,12 @@ namespace Roomie.Web.Website.Helpers
             };
         }
 
-        public static CookieHeaderValue CreateSessionCookie(UserSession userSession)
+        public static CookieHeaderValue CreateNewSessionCookie(UserSession userSession)
         {
             return CreateSessionCookie(userSession.Token, DateTime.UtcNow.AddYears(1));
         }
 
-        public static CookieHeaderValue ExpireSessionCookie()
+        public static CookieHeaderValue CreateExpiredSessionCookie()
         {
             return CreateSessionCookie("expired", DateTime.UtcNow.AddYears(-10));
         }

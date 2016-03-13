@@ -26,7 +26,7 @@ namespace Roomie.Web.Website.Controllers.Api
             }
 
             var session = UserUtilities.CreateSession(Database, user);
-            var cookie = UserUtilities.CreateSessionCookie(session);
+            var cookie = UserUtilities.CreateNewSessionCookie(session);
 
             var response = new HttpResponseMessage();
             response.Headers.AddCookies(new[] {cookie});
@@ -36,7 +36,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
         public HttpResponseMessage Delete()
         {
-            var cookie = UserUtilities.ExpireSessionCookie();
+            var cookie = UserUtilities.CreateExpiredSessionCookie();
 
             var response = new HttpResponseMessage();
             response.Headers.AddCookies(new[] {cookie});
