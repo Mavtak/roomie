@@ -6,7 +6,8 @@
   pageMenuItems,
   signInState,
   wholePageStatus
-  ) {
+) {
+
   var locations;
 
   wholePageStatus.set('loading');
@@ -257,4 +258,5 @@
 
     pageMenuItems.set(items);
   }
+
 });

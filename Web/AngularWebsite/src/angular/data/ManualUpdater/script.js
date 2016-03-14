@@ -1,6 +1,8 @@
 ﻿angular.module('roomie.data').factory('ManualUpdater', function () {
 
-  return function ManualUpdater(options) {
+  return ManualUpdater;
+
+  function ManualUpdater(options) {
     var originals = options.originals;
     var ammendOriginal = options.ammendOriginal;
     var processUpdate = options.processUpdate;
@@ -46,6 +48,6 @@
 
       _.merge(original, update);
     }
-  };
+  }
 
 });

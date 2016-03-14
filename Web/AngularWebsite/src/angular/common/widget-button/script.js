@@ -1,4 +1,5 @@
 ﻿angular.module('roomie.common').directive('widgetButton', function () {
+
   return {
     restrict: 'E',
     scope: {
@@ -22,4 +23,5 @@
       scope.style['background-color'] = scope.color;
     }
   }
+
 });

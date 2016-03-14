@@ -2,7 +2,7 @@
   $window,
   signInState,
   pageMenuItems
-  ) {
+) {
 
   return {
     restrict: 'E',

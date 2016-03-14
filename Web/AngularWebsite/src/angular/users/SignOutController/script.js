@@ -4,6 +4,7 @@ angular.module('roomie.users').controller('SignOutController', function (
   signInState,
   wholePageStatus
 ) {
+
   wholePageStatus.set('loading');
 
   submit();
@@ -23,4 +24,5 @@ angular.module('roomie.users').controller('SignOutController', function (
     var path = '/api/UserAuthentication';
     $http.delete(path).then(handleSuccessResponse, handleErrorResponse);
   }
+
 });

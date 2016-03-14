@@ -1,8 +1,10 @@
 ﻿angular.module('roomie.data').factory('ManualPoller', function (
   $http
-  ) {
+) {
 
-  return function ManualPoller(options) {
+  return ManualPoller;
+
+  function ManualPoller(options) {
     var url = options.url;
     var processErrors = options.processErrors;
     var selectItems = options.itemSelector || defaultItemSelector;
@@ -28,6 +30,6 @@
     function defaultItemSelector(page) {
       return page.items;
     }
-  };
+  }
 
 });

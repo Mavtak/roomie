@@ -2,6 +2,7 @@ angular.module('roomie.devices').directive('deviceEditControls', function (
   $http,
   deviceTypes
 ) {
+
   return {
     restrict: 'E',
     scope: {
@@ -30,4 +31,5 @@ angular.module('roomie.devices').directive('deviceEditControls', function (
       $http.put('/api/device/' + scope.device.id, scope.model);
     };
   }
+
 });

@@ -1,7 +1,8 @@
 ﻿angular.module('roomie.devices').factory('RainbowColorsGenerator', function () {
 
-  return function RainbowColorsGenerator() {
+  return RainbowColorsGenerator;
 
+  function RainbowColorsGenerator() {
     this.generate = function() {
       var result = [
         '#FF0000',
@@ -32,6 +33,6 @@
 
       return result;
     };
-  };
+  }
 
 });

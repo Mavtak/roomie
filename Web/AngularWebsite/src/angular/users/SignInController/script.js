@@ -4,7 +4,8 @@
   $state,
   signInState,
   wholePageStatus
-  ) {
+) {
+
   var self = this;
   this.username = '';
   this.password = '';
@@ -35,4 +36,5 @@
     var path = '/api/UserAuthentication?username=' + encodeURIComponent(this.username) + '&password=' + encodeURIComponent(this.password);
     $http.post(path).then(handleSuccessResponse, handleErrorResponse);
   }
+
 });

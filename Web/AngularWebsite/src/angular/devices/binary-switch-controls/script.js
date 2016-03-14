@@ -1,4 +1,5 @@
 ﻿angular.module('roomie.devices').directive('binarySwitchControls', function () {
+
   return {
     restrict: 'E',
     scope: {
@@ -6,4 +7,5 @@
     },
     templateUrl: 'devices/binary-switch-controls/template.html',
   };
+
 });

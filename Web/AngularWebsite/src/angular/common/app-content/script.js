@@ -22,4 +22,5 @@ angular.module('roomie.common').directive('appContent', function () {
       scope.widths.app = newValue;
     }
   }
+
 });

@@ -1,6 +1,7 @@
 angular.module('roomie.help').config(function (
   $stateProvider
   ) {
+
   $stateProvider.state('help', {
     url: '/help',
     templateUrl: 'help/pages/index.html'
@@ -27,4 +28,5 @@ angular.module('roomie.help').config(function (
     url: '/help/hardware',
     templateUrl: 'help/pages/hardware.html'
   });
+
 });

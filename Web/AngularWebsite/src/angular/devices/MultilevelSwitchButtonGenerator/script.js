@@ -1,6 +1,8 @@
 ﻿angular.module('roomie.devices').factory('MultilevelSwitchButtonGenerator', function () {
 
-  return function MultilevelSwitchButtonGenerator(multilevelSwitch) {
+  return MultilevelSwitchButtonGenerator;
+
+  function MultilevelSwitchButtonGenerator(multilevelSwitch) {
     this.multilevelSwitch = multilevelSwitch;
 
     this.generate = function(count) {
@@ -48,6 +50,6 @@
     function getPower(min, max, i, count) {
       return min + (i / (count - 1)) * (max - min);
     }
-  };
+  }
 
 });

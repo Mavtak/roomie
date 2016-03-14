@@ -1,6 +1,6 @@
 ﻿angular.module('roomie.common').directive('sideMenu', function (
   $window
-  ) {
+) {
 
   return {
     restrict: 'E',

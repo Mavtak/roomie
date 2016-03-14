@@ -1,4 +1,5 @@
 ﻿angular.module('roomie.common').factory('pageMenuItems', function () {
+
   return new PageMenuItems();
 
   function PageMenuItems() {
@@ -24,4 +25,5 @@
       _items = items;
     };
   }
+
 });

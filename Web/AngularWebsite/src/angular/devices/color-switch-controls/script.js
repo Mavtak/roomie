@@ -1,6 +1,7 @@
 ﻿angular.module('roomie.devices').directive('colorSwitchControls', function (
   ColorSwitchButtonGenerator
-  ) {
+) {
+
   return {
     restrict: 'E',
     scope: {
@@ -21,4 +22,5 @@
       scope.buttons = buttonGenerator.generate();
     }
   }
+
 });

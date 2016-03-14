@@ -20,4 +20,5 @@ angular.module('roomie.common').factory('signInState', function () {
       _state = state;
     }
   }
+
 });

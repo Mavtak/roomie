@@ -2,6 +2,7 @@ angular.module('roomie.help').controller('CommandDocumentationController', funct
   $http,
   wholePageStatus
 ) {
+
   var self = this;
   wholePageStatus.set('loading');
 
@@ -12,4 +13,5 @@ angular.module('roomie.help').controller('CommandDocumentationController', funct
 
       wholePageStatus.set('ready');
     });
+
 });

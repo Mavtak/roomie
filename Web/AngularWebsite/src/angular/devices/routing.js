@@ -1,6 +1,7 @@
 ﻿angular.module('roomie.devices').config(function (
   $stateProvider
-  ) {
+) {
+
   $stateProvider.state('devices', {
     url: '/devices?examples&location',
     controller: 'DevicesController',
@@ -12,4 +13,5 @@
     controller: 'DevicesController',
     templateUrl: 'devices/pages/detail.html'
   });
+
 });

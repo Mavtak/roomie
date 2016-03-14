@@ -1,4 +1,5 @@
 ﻿angular.module('roomie.common').directive('keyValue', function () {
+
   return {
     restrict: 'E',
     scope: {
@@ -8,4 +9,5 @@
     },
     templateUrl: 'common/key-value/template.html',
   };
+
 });

@@ -18,4 +18,5 @@ angular.module('roomie.common').factory('wholePageStatus', function () {
       currentStatus = status;
     };
   }
+
 });

@@ -1,6 +1,6 @@
 ﻿angular.module('roomie.devices').directive('locationHeaderGroup', function (
   LocationHeaderLabelGenerator
-  ) {
+) {
 
   return {
     restrict: 'E',
@@ -16,4 +16,5 @@
     var labelGenerator = new LocationHeaderLabelGenerator(scope.previousLocation, scope.currentLocation);
     scope.parts = labelGenerator.getParts();
   }
+
 });

@@ -1,4 +1,5 @@
 ﻿angular.module('roomie.common').directive('widgetHeader', function () {
+
   return {
     restrict: 'E',
     scope: {
@@ -9,4 +10,5 @@
     },
     templateUrl: 'common/widget-header/template.html',
   };
+
 });
