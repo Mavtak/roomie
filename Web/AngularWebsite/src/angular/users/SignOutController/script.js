@@ -11,12 +11,12 @@ angular.module('roomie.users').controller('SignOutController', function (
   function handleSuccessResponse() {
     wholePageStatus.set('ready');
     signInState.set('signed-out');
-    $state.go('help');
+    $state.go('help/about');
   }
 
   function handleErrorResponse(response) {
     wholePageStatus.set('ready');
-    $state.go('help');
+    $state.go('help/about');
   }
 
   function submit() {
