@@ -7,13 +7,6 @@ namespace Roomie.Web.Website.Controllers
     [WebsiteRestrictedAccess]
     public class TaskController : RoomieBaseController
     {
-        public ActionResult Index(ListFilter filter)
-        {
-            var tasks = Database.Tasks.List(User, filter);
-
-            return View(tasks.Items);
-        }
-
         public ActionResult Clean(int? timeout)
         {
             if (timeout < 1)

@@ -266,12 +266,10 @@
     <Content Include="Views\Shared\Partials\Layout\Navigation.cshtml" />
     <Content Include="Views\Shared\Partials\Network\Editor.cshtml" />
     <Content Include="Views\Shared\Partials\Network\Network.cshtml" />
-    <Content Include="Views\Shared\Partials\Task\Task.cshtml" />
     <Content Include="Views\Shared\Partials\User\SignInForm.cshtml" />
     <Content Include="Views\Shared\Partials\WidgetEnd.cshtml" />
     <Content Include="Views\Shared\Partials\WidgetStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Task\Index.cshtml" />
     <Content Include="Views\Test\DisplayMessage.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\MarkupTest.cshtml" />
