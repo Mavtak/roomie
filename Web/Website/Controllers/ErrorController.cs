@@ -51,8 +51,14 @@ namespace Roomie.Web.Website.Controllers
 
         public ActionResult Http404(HttpException exception)
         {
-            Response.StatusCode = 404;
-            return View("Http404");
+            var path = "/angular/#" + Request.Path;
+
+            if (Request.QueryString.Count > 0)
+            {
+                path += "?" + Request.QueryString;
+            }
+
+            return Redirect(path);
         }
 
         public ActionResult Http403(HttpException exception)

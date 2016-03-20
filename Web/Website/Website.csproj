@@ -248,7 +248,6 @@
     <Content Include="Views\Computer\Index.cshtml" />
     <Content Include="Views\Device\Details.cshtml" />
     <Content Include="Views\Device\Index.cshtml" />
-    <Content Include="Views\Error\Http404.cshtml" />
     <Content Include="Views\Error\UnhandledException.cshtml" />
     <Content Include="Views\Error\UnknownError.cshtml" />
     <Content Include="Views\Network\Details.cshtml" />
