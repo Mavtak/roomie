@@ -66,7 +66,7 @@
       };
 
       $rootScope.$digest();
-      window.element = element;
+
       expect(worked).toEqual(false);
 
       $(element).find('.item')[0].click();
