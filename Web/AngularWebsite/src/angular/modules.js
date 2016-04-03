@@ -1,5 +1,4 @@
 ﻿angular.module('roomie.app', [
-  'ui.router',
   'roomie.devices',
   'roomie.help',
   'roomie.tasks',

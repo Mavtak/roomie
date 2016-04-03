@@ -1,6 +1,7 @@
 ﻿angular.module('roomie.tasks').controller('TasksController', function (
   $http,
   $scope,
+  $state,
   ManualPollingUpdater,
   pageMenuItems,
   signInState,
@@ -23,12 +24,12 @@
     var start = 0;
     var count = 10;
 
-    if (typeof $scope.$state.params.start !== 'undefined') {
-      start = $scope.$state.params.start;
+    if (typeof $state.params.start !== 'undefined') {
+      start = $state.params.start;
     }
 
-    if (typeof $scope.$state.params.count !== "undefined") {
-      count = $scope.$state.params.count;
+    if (typeof $state.params.count !== "undefined") {
+      count = $state.params.count;
     }
 
     var data = new ManualPollingUpdater({

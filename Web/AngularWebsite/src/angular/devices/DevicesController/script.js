@@ -1,6 +1,7 @@
 ﻿angular.module('roomie.devices').controller('DevicesController', function (
   $http,
   $scope,
+  $state,
   AutomaticPollingUpdater,
   LocationHeaderLabelGenerator,
   pageMenuItems,
@@ -61,7 +62,7 @@
   function connectData() {
     var path = '/api/device';
 
-    if ($scope.$state.params.examples) {
+    if ($state.params.examples) {
       path += "?examples=true";
     }
 
@@ -74,10 +75,10 @@
       updateComplete: updateComplete
     };
 
-    if (typeof $scope.$state.params.id === 'undefined') {
+    if (typeof $state.params.id === 'undefined') {
       options.itemSelector = selectItemsFromList;
     } else {
-      options.url += '/' + $scope.$state.params.id;
+      options.url += '/' + $state.params.id;
       options.itemSelector = selectItemFromDetail;
     }
 
@@ -188,7 +189,7 @@
   }
 
   function shouldShowDevice(device) {
-    var location = $scope.$state.params.location;
+    var location = $state.params.location;
 
     if (typeof location !== 'undefined' && location !== '') {
       if (typeof device.location === 'undefined') {
