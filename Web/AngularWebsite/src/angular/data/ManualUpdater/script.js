@@ -8,7 +8,7 @@
     var processUpdate = options.processUpdate;
     var updateComplete = options.updateComplete;
 
-    this.run = function(updates) {
+    this.run = function (updates) {
       for (var i = 0; i < updates.length; i++) {
         var update = updates[i];
 

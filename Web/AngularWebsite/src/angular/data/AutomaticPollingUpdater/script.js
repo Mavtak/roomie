@@ -27,7 +27,7 @@
       });
     };
 
-    this.stop = function() {
+    this.stop = function () {
       if (!running) {
         throw {
           message: "this instance of AutomaticPollingUpdater is already stopped."
@@ -38,13 +38,13 @@
     };
 
     function forever(promiseFactory) {
-      return promiseFactory().then(function() {
+      return promiseFactory().then(function () {
         return forever(promiseFactory);
       });
     }
 
     function wait() {
-      return $timeout(function() {
+      return $timeout(function () {
       }, 500);
     }
   }

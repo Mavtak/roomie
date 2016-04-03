@@ -5,19 +5,19 @@
   function PageMenuItems() {
     var _items = [];
 
-    this.any = function() {
+    this.any = function () {
       return _items.length > 0;
     };
 
-    this.list = function() {
+    this.list = function () {
       return _items;
     };
 
-    this.reset = function() {
+    this.reset = function () {
       this.set([]);
     };
 
-    this.set = function(items) {
+    this.set = function (items) {
       if (!_.isArray(items)) {
         throw new Error('items must be array');
       }

@@ -25,7 +25,7 @@
   }
 
   function calculateLocations() {
-    var result = _.map($scope.page.items, function(device) {
+    var result = _.map($scope.page.items, function (device) {
       if (typeof device.location === 'object') {
         return device.location.name;
       }
@@ -38,7 +38,7 @@
 
   function calculatePageMenuItems() {
     var previous = '';
-    var locationData = _.map(locations, function(current) {
+    var locationData = _.map(locations, function (current) {
       var generator = new LocationHeaderLabelGenerator(previous, current);
       var parts = generator.getParts();
       previous = current;
@@ -47,7 +47,7 @@
     });
     locationData = _.flatten(locationData);
 
-    var result = _.map(locationData, function(item) {
+    var result = _.map(locationData, function (item) {
       return {
         indent: item.depth,
         label: item.label,
@@ -85,7 +85,7 @@
 
     data.run();
 
-    $scope.$on('$destroy', function() {
+    $scope.$on('$destroy', function () {
       data.stop();
     });
   }
@@ -162,7 +162,7 @@
       $http.post('/api/device/' + device.id + '?action=SetThermostatFanMode&mode=' + mode);
     };
 
-    device.hasThermostat = function() {
+    device.hasThermostat = function () {
       return hasThermostat(device);
     };
 
@@ -170,19 +170,19 @@
       $http.post('/api/device/' + device.id + '?action=PollBinarySensor');
     };
 
-    device.temperatureSensor.poll = function() {
+    device.temperatureSensor.poll = function () {
       $http.post('/api/device/' + device.id + '?action=PollTemperatureSensor');
     };
 
-    device.humiditySensor.poll = function() {
+    device.humiditySensor.poll = function () {
       $http.post('/api/device/' + device.id + '?action=PollHumiditySensor');
     };
 
-    device.illuminanceSensor.poll = function() {
+    device.illuminanceSensor.poll = function () {
       $http.post('/api/device/' + device.id + '?action=PollIlluminanceSensor');
     };
 
-    device.powerSensor.poll = function() {
+    device.powerSensor.poll = function () {
       $http.post('/api/device/' + device.id + '?action=PollPowerSensor');
     };
   }

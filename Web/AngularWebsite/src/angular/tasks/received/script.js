@@ -1,6 +1,6 @@
 ﻿angular.module('roomie.tasks').filter('received', function () {
 
-  return function(task) {
+  return function (task) {
     if (task.receivedTimestamp) {
       return task.receivedTimestamp.toLocaleString();
     }

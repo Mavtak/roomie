@@ -5,7 +5,7 @@
   function MultilevelSwitchButtonGenerator(multilevelSwitch) {
     this.multilevelSwitch = multilevelSwitch;
 
-    this.generate = function(count) {
+    this.generate = function (count) {
       var result = [];
 
       var actualPower = this.multilevelSwitch.power;

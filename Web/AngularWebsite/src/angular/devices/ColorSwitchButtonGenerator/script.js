@@ -7,7 +7,7 @@
   function ColorSwitchButtonGenerator() {
     var rainbowColorsGenerator = new RainbowColorsGenerator();
 
-    this.generate = function() {
+    this.generate = function () {
       var result = [];
       var colors = rainbowColorsGenerator.generate();
 

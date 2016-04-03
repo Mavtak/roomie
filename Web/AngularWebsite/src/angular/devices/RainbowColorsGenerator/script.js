@@ -3,7 +3,7 @@
   return RainbowColorsGenerator;
 
   function RainbowColorsGenerator() {
-    this.generate = function() {
+    this.generate = function () {
       var result = [
         '#FF0000',
         '#FF2900',

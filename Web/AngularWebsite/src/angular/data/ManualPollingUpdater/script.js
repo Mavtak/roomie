@@ -9,7 +9,7 @@
     var poller = new ManualPoller(options);
     var updater = new ManualUpdater(options);
 
-    this.run = function() {
+    this.run = function () {
       return poller.run()
         .then(updater.run);
     };

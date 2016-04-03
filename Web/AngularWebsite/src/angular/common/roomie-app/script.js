@@ -50,7 +50,7 @@
       }
     });
 
-    angular.element($window).bind('resize', function() {
+    angular.element($window).bind('resize', function () {
       scope.$apply();
     });
 
