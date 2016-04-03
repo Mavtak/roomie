@@ -8,7 +8,6 @@ angular.module('roomie.help').controller('CommandDocumentationController', funct
 
   $http.get('/api/commandDocumentation')
     .then(function (response) {
-      console.log('derp');
       self.commands = response.data;
 
       wholePageStatus.set('ready');
