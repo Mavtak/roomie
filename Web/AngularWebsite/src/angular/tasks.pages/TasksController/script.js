@@ -1,6 +1,5 @@
 ﻿angular.module('roomie.tasks.pages').controller('TasksController', function (
   $http,
-  $scope,
   $state,
   ManualPollingUpdater,
   pageMenuItems,
@@ -8,13 +7,15 @@
   wholePageStatus
   ) {
 
+  var controller = this;
+
   wholePageStatus.set('loading');
   pageMenuItems.reset();
   initializeScope();
   connectData();
 
   function initializeScope() {
-    $scope.page = {
+    controller.page = {
       items: []
     };
   }
@@ -34,7 +35,7 @@
 
     var data = new ManualPollingUpdater({
       url: '/api/task?start=' + start + '&count=' + count,
-      originals: $scope.page.items,
+      originals: controller.page.items,
       ammendOriginal: processTask,
       processErrors: processErrors
     });

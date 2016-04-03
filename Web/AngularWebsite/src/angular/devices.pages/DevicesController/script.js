@@ -9,6 +9,7 @@
   wholePageStatus
 ) {
 
+  var controller = this;
   var locations;
 
   wholePageStatus.set('loading');
@@ -19,14 +20,14 @@
   $scope.$watchCollection(function () { return locations; }, updatePageMenuItems, true);
 
   function initializeScope() {
-    $scope.page = {
+    controller.page = {
       items: []
     };
-    $scope.include = shouldShowDevice;
+    controller.include = shouldShowDevice;
   }
 
   function calculateLocations() {
-    var result = _.map($scope.page.items, function (device) {
+    var result = _.map(controller.page.items, function (device) {
       if (typeof device.location === 'object') {
         return device.location.name;
       }
@@ -68,7 +69,7 @@
 
     var options = {
       url: path,
-      originals: $scope.page.items,
+      originals: controller.page.items,
       ammendOriginal: setFunctions,
       processErrors: processErrors,
       processUpdate: processUpdate,

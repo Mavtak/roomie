@@ -3,12 +3,13 @@ angular.module('roomie.help.pages').controller('CommandDocumentationController',
   wholePageStatus
 ) {
 
-  var self = this;
+  var controller = this;
+
   wholePageStatus.set('loading');
 
   $http.get('/api/commandDocumentation')
     .then(function (response) {
-      self.commands = response.data;
+      controller.commands = response.data;
 
       wholePageStatus.set('ready');
     });

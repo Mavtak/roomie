@@ -15,7 +15,7 @@ angular.module('roomie.help.pages').config(function (
   $stateProvider.state('/help/command-documentation', {
     url: '/help/command-documentation',
     controller: 'CommandDocumentationController',
-    controllerAs: 'ctrl',
+    controllerAs: 'controller',
     templateUrl: 'help.pages/command-documentation.html'
   });
 

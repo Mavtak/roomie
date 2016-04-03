@@ -6,10 +6,11 @@
   wholePageStatus
 ) {
 
-  var self = this;
-  this.username = '';
-  this.password = '';
-  this.submit = submit;
+  var controller = this;
+
+  controller.username = '';
+  controller.password = '';
+  controller.submit = submit;
   wholePageStatus.set('ready');
   resetError();
 
@@ -19,14 +20,14 @@
   }
 
   function handleErrorResponse(response) {
-    self.errors = _.map(response.data, function (x) {
+    controller.errors = _.map(response.data, function (x) {
       return x.friendlyMessage;
     });
     wholePageStatus.set('ready');
   }
 
   function resetError() {
-    self.errors = [];
+    controller.errors = [];
   }
 
   function submit() {
