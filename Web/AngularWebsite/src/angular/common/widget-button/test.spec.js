@@ -1,4 +1,4 @@
-﻿describe('angular roomie.common widget-button (directive)', function() {
+﻿describe('angular roomie.common widget-button (directive)', function () {
   var $compile;
   var $rootScope;
 
@@ -9,7 +9,7 @@
     $rootScope = $injector.get('$rootScope');
   }));
 
-  describe('the label', function() {
+  describe('the label', function () {
 
     it('works when not set', function () {
       var element = $compile('<widget-button></widget-button>')($rootScope);
@@ -19,7 +19,7 @@
       expect($(element).find('.button .button').html().trim()).toEqual('');
     });
 
-    it('works when set', function() {
+    it('works when set', function () {
       var element = $compile('<widget-button label="derp"></widget-button>')($rootScope);
 
       $rootScope.$digest();
@@ -29,14 +29,14 @@
 
   });
 
-  describe('the activation event', function() {
+  describe('the activation event', function () {
 
-    it('works when set up correctly', function() {
+    it('works when set up correctly', function () {
       var element = $compile('<widget-button activate="thingy()"></widget-button>')($rootScope);
 
       var worked = false;
 
-      $rootScope.thingy = function() {
+      $rootScope.thingy = function () {
         worked = true;
       };
 
@@ -49,7 +49,7 @@
       expect(worked).toEqual(true);
     });
 
-    it('works when not set up', function() {
+    it('works when not set up', function () {
       var element = $compile('<widget-button"></widget-button>')($rootScope);
 
       $(element).find('.button .button').click();
@@ -57,9 +57,9 @@
 
   });
 
-  describe('the activated styling', function() {
+  describe('the activated styling', function () {
 
-    it('works when not set', function() {
+    it('works when not set', function () {
       var element = $compile('<widget-button></widget-button>')($rootScope);
 
       $rootScope.$digest();
@@ -67,7 +67,7 @@
       expect($(element).find('.button .button.activated').length).toEqual(0);
     });
 
-    it('works when set to false', function() {
+    it('works when set to false', function () {
       var element = $compile('<widget-button activated="false"></widget-button>')($rootScope);
 
       $rootScope.$digest();
@@ -75,7 +75,7 @@
       expect($(element).find('.button .button.activated').length).toEqual(0);
     });
 
-    it('works when set to true', function() {
+    it('works when set to true', function () {
       var element = $compile('<widget-button activated="true"></widget-button>')($rootScope);
 
       $rootScope.$digest();

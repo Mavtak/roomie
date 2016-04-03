@@ -1,4 +1,4 @@
-﻿describe('angular roomie.devices multilevel-switch-controls (directive)', function() {
+﻿describe('angular roomie.devices multilevel-switch-controls (directive)', function () {
   var $compile;
   var $rootScope;
   var element;
@@ -6,8 +6,8 @@
   var givenMultilevelSwitch;
   var requestedCount;
 
-  beforeEach(angular.mock.module('roomie.devices', function($provide) {
-    $provide.factory('MultilevelSwitchButtonGenerator', function() {
+  beforeEach(angular.mock.module('roomie.devices', function ($provide) {
+    $provide.factory('MultilevelSwitchButtonGenerator', function () {
       return MockMultilevelSwitchButtonGenerator;
     });
   }));
@@ -17,7 +17,7 @@
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     buttons = null;
     givenMultilevelSwitch = null;
     requestedCount = null;
@@ -33,21 +33,21 @@
     expect(givenMultilevelSwitch).toBe($rootScope.multilevelSwitch);
   });
 
-  describe('the button group', function() {
+  describe('the button group', function () {
 
-    it('has one', function() {
+    it('has one', function () {
       $rootScope.$digest();
 
       expect($(element).find('.buttonGroup').length).toEqual(1);
     });
 
-    it('has 11 buttons', function() {
+    it('has 11 buttons', function () {
       $rootScope.$digest();
 
       expect(requestedCount).toEqual(11);
     });
 
-    it('pulls labels from the button generator', function() {
+    it('pulls labels from the button generator', function () {
       buttons = [{
           label: 'herp'
         }, {
@@ -63,7 +63,7 @@
       expect(selectButton(2).text().trim()).toEqual('');
     });
 
-    it('pulls activated from the button generator', function() {
+    it('pulls activated from the button generator', function () {
       buttons = [{
           activated: true
         }, {
@@ -79,7 +79,7 @@
       expect(selectButton(2).hasClass('activated')).toEqual(true);
     });
 
-    it('pulls target power from the button generator', function() {
+    it('pulls target power from the button generator', function () {
       buttons = [{
           power: 12
         }, {
@@ -106,14 +106,16 @@
     function selectButton(index) {
       return selectButtons().eq(index).find('.button');
     }
+
   });
 
   function MockMultilevelSwitchButtonGenerator(multilevelSwitch) {
     givenMultilevelSwitch = multilevelSwitch;
 
-    this.generate = function(count) {
+    this.generate = function (count) {
       requestedCount = count;
       return buttons;
     };
   }
+
 });

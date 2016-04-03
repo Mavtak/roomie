@@ -1,4 +1,4 @@
-﻿describe('angular roomie.devices device-list (directive)', function() {
+﻿describe('angular roomie.devices device-list (directive)', function () {
   var $compile;
   var $rootScope;
   var element;
@@ -10,7 +10,7 @@
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     element = $compile('<device-list devices="page.items"></device-list>')($rootScope);
 
     $rootScope.page = {
@@ -18,7 +18,7 @@
     };
   });
 
-  it('lists out the items', function() {
+  it('lists out the items', function () {
     $rootScope.$digest();
 
     expect(selectDeviceWidgets().length).toEqual(0);
@@ -46,7 +46,7 @@
     expect(selectDeviceWidget(2).find('widget-header .header .name').html().trim()).toEqual('device 3');
   });
 
-  it('includes locations', function() {
+  it('includes locations', function () {
     $rootScope.$digest();
 
     expect(selectDeviceWidgets().length).toEqual(0);
@@ -90,7 +90,7 @@
     expect(selectLocationHeader(selectLocationHeaderBlock(2), 0).text()).toEqual('d');
   });
 
-  it('optionally filters items', function() {
+  it('optionally filters items', function () {
     element = $compile('<device-list devices="page.items", include="include"></device-list>')($rootScope);
     $rootScope.$digest();
 
@@ -102,7 +102,7 @@
     $rootScope.page.items.push({
       name: 'device 2'
     });
-    $rootScope.include = function(device) {
+    $rootScope.include = function (device) {
       return device.name !== 'device 2';
     };
     $rootScope.$digest();
@@ -144,4 +144,5 @@
   function selectLocationHeader(locationHeaderBlock, index) {
     return selectLocationHeaders(locationHeaderBlock).eq(index).children();
   }
+
 });

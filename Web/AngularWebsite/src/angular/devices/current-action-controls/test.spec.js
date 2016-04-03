@@ -1,4 +1,4 @@
-﻿describe('angular roomie.devices current-action-controls (directive)', function() {
+﻿describe('angular roomie.devices current-action-controls (directive)', function () {
   var $compile;
   var $rootScope;
   var attributes;
@@ -6,12 +6,12 @@
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function($injector) {
+  beforeEach(angular.mock.inject(function ($injector) {
     $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     element = $compile('<current-action-controls current-action="attributes.currentAction"></current-action-controls>')($rootScope);
 
     attributes = {
@@ -22,12 +22,12 @@
     $rootScope.$digest();
   });
 
-  describe('the text', function() {
+  describe('the text', function () {
     var text;
 
     beforeEach(readText);
 
-    it('is bound to the current-action attribute', function() {
+    it('is bound to the current-action attribute', function () {
       expect(text).toEqual('idle or something');
 
       attributes.currentAction = 'running or whatever else';
@@ -39,6 +39,7 @@
       $rootScope.$digest();
       text = $(element).find('.group').text().trim();
     }
+
   });
 
 });

@@ -1,4 +1,4 @@
-describe('angular roomie.devices device-widget (directive)', function() {
+describe('angular roomie.devices device-widget (directive)', function () {
   var $compile;
   var $rootScope;
   var element;
@@ -10,20 +10,20 @@ describe('angular roomie.devices device-widget (directive)', function() {
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     $rootScope.device = {};
 
     element = $compile('<device-widget device="device" show-edit="showEdit"></device-widget>')($rootScope);
     $rootScope.$digest();
   });
 
-  describe('the header', function() {
+  describe('the header', function () {
 
-    it('has one', function() {
+    it('has one', function () {
       expect($(element).find('.widget widget-header .header').length).toEqual(1);
     });
 
-    it('has a title that matches the device name', function() {
+    it('has a title that matches the device name', function () {
       $rootScope.device.name = "Light Switch";
 
       $rootScope.$digest();
@@ -38,13 +38,13 @@ describe('angular roomie.devices device-widget (directive)', function() {
       expect($(element).find('.widget widget-header .header').attr('href')).toEqual('#/devices/123');
     });
 
-    it('has no subtitle', function() {
+    it('has no subtitle', function () {
       $rootScope.$digest();
 
       expect($(element).find('.widget widget-header .header .location').html().trim()).toEqual('');
     });
 
-    it('sets the disconnected property', function() {
+    it('sets the disconnected property', function () {
       $rootScope.device.isConnected = false;
       $rootScope.$digest();
 
@@ -91,6 +91,7 @@ describe('angular roomie.devices device-widget (directive)', function() {
     function selectControls() {
       return $(element).find('.widget current-action-controls');
     }
+
   });
 
   describe('the binary sensor controls', function () {
@@ -132,15 +133,16 @@ describe('angular roomie.devices device-widget (directive)', function() {
     function selectControls() {
       return $(element).find('.widget binary-sensor-controls');
     }
+
   });
 
-  describe('the temperature sensor controls', function() {
+  describe('the temperature sensor controls', function () {
 
     it('exists when device.temperatureSensor.value exists and device.hasThermostat() returns false', function () {
       $rootScope.device.temperatureSensor = {
         value: {}
       };
-      $rootScope.hasThermostat = function() {
+      $rootScope.hasThermostat = function () {
         return false;
       };
       $rootScope.$digest();
@@ -180,7 +182,7 @@ describe('angular roomie.devices device-widget (directive)', function() {
       expect(selectControls().length).toEqual(0);
     });
 
-    it('is bound to device.temperatureSensor', function() {
+    it('is bound to device.temperatureSensor', function () {
       $rootScope.device.temperatureSensor = {
         value: {
           value: 10
@@ -203,10 +205,11 @@ describe('angular roomie.devices device-widget (directive)', function() {
 
 
     function selectControls() {
-      return $(element).find('.widget multilevel-sensor-controls').filter(function() {
+      return $(element).find('.widget multilevel-sensor-controls').filter(function () {
         return $(this).text().indexOf('Temperature') >= 0;
       });
     }
+
   });
 
   describe('the humidity sensor controls', function () {
@@ -295,6 +298,7 @@ describe('angular roomie.devices device-widget (directive)', function() {
         return $(this).text().indexOf('Illuminance') >= 0;
       });
     }
+
   });
 
   describe('the power sensor controls', function () {
@@ -339,11 +343,12 @@ describe('angular roomie.devices device-widget (directive)', function() {
         return $(this).text().indexOf('Power') >= 0;
       });
     }
+
   });
 
-  describe('the binary switch controls', function() {
+  describe('the binary switch controls', function () {
 
-    it('exists when device.binarySwitch.power exists', function() {
+    it('exists when device.binarySwitch.power exists', function () {
       $rootScope.device.binarySwitch = {
         power: "any value. not picky about value at this level of abstraction"
       };
@@ -352,14 +357,14 @@ describe('angular roomie.devices device-widget (directive)', function() {
       expect(selectControls().length).toEqual(1);
     });
 
-    it('does now exist when device.binarySwitch.power is undefined', function() {
+    it('does now exist when device.binarySwitch.power is undefined', function () {
       $rootScope.device.binarySwitch = {};
       $rootScope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
-    it('is bound to device.binarySwitch', function() {
+    it('is bound to device.binarySwitch', function () {
       $rootScope.device.binarySwitch = {
         power: "a value that should result in no activated buttons"
       };
@@ -376,11 +381,12 @@ describe('angular roomie.devices device-widget (directive)', function() {
     function selectControls() {
       return $(element).find('.widget binary-switch-controls');
     }
+
   });
 
-  describe('the multilevel switch controls', function() {
+  describe('the multilevel switch controls', function () {
 
-    it('exists when device.multilevelSwitch.power exists', function() {
+    it('exists when device.multilevelSwitch.power exists', function () {
       $rootScope.device.multilevelSwitch = {
         power: 'any value. not picky about value at this level of abstraction'
       };
@@ -389,7 +395,7 @@ describe('angular roomie.devices device-widget (directive)', function() {
       expect(selectControls().length).toEqual(1);
     });
 
-    it('exists when device.multilevelSwitch.power = 0 (special case)', function() {
+    it('exists when device.multilevelSwitch.power = 0 (special case)', function () {
       $rootScope.device.multilevelSwitch = {
         power: 0
       };
@@ -398,14 +404,14 @@ describe('angular roomie.devices device-widget (directive)', function() {
       expect(selectControls().length).toEqual(1);
     });
 
-    it('does now exist when device.multilevelSwitch.power is undefined', function() {
+    it('does now exist when device.multilevelSwitch.power is undefined', function () {
       $rootScope.device.multilevelSwitch = {};
       $rootScope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
-    it('is bound to device.multilevelSwitch', function() {
+    it('is bound to device.multilevelSwitch', function () {
       $rootScope.device.multilevelSwitch = {
         power: -1
       };
@@ -422,6 +428,7 @@ describe('angular roomie.devices device-widget (directive)', function() {
     function selectControls() {
       return $(element).find('.widget multilevel-switch-controls');
     }
+
   });
 
   describe('the color switch controls', function () {
@@ -447,10 +454,10 @@ describe('angular roomie.devices device-widget (directive)', function() {
     }
   });
 
-  describe('the thermostat controls', function() {
+  describe('the thermostat controls', function () {
 
-    it('exists when device.hasThermostat() returns true', function() {
-      $rootScope.device.hasThermostat = function() {
+    it('exists when device.hasThermostat() returns true', function () {
+      $rootScope.device.hasThermostat = function () {
         return true;
       };
       $rootScope.$digest();
@@ -458,8 +465,8 @@ describe('angular roomie.devices device-widget (directive)', function() {
       expect(selectControls().length).toEqual(1);
     });
 
-    it('does not exist when device.hasThermostat() returns false', function() {
-      $rootScope.device.hasThermostat = function() {
+    it('does not exist when device.hasThermostat() returns false', function () {
+      $rootScope.device.hasThermostat = function () {
         return false;
       };
       $rootScope.$digest();
@@ -467,8 +474,8 @@ describe('angular roomie.devices device-widget (directive)', function() {
       expect(selectControls().length).toEqual(0);
     });
 
-    it('is bound to device.thermostat', function() {
-      $rootScope.device.hasThermostat = function() {
+    it('is bound to device.thermostat', function () {
+      $rootScope.device.hasThermostat = function () {
         return true;
       };
       $rootScope.device.thermostat = {
@@ -493,8 +500,8 @@ describe('angular roomie.devices device-widget (directive)', function() {
 
     });
 
-    it('is bound to device.temperatureSensor', function() {
-      $rootScope.device.hasThermostat = function() {
+    it('is bound to device.temperatureSensor', function () {
+      $rootScope.device.hasThermostat = function () {
         return true;
       };
       $rootScope.device.temperatureSensor = {
@@ -560,6 +567,7 @@ describe('angular roomie.devices device-widget (directive)', function() {
     function selectControls() {
       return $(element).find('.widget device-edit-controls');
     }
+
   });
 
 });

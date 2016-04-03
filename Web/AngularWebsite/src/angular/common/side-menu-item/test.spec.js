@@ -1,17 +1,17 @@
-﻿describe('angular roomie.common side-menu-item (directive)', function() {
+﻿describe('angular roomie.common side-menu-item (directive)', function () {
   var $compile;
   var $rootScope;
 
   beforeEach(angular.mock.module('roomie.common'));
 
-  beforeEach(angular.mock.inject(function($injector) {
+  beforeEach(angular.mock.inject(function ($injector) {
     $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
   }));
 
-  describe('the label attribute', function() {
+  describe('the label attribute', function () {
 
-    it('works when not set', function() {
+    it('works when not set', function () {
       var element = $compile('<side-menu-item></side-menu-item>')($rootScope);
 
       $rootScope.$digest();
@@ -19,7 +19,7 @@
       expect($(element).find('.item .content').text().trim()).toEqual('');
     });
 
-    it('works when set', function() {
+    it('works when set', function () {
       var element = $compile('<side-menu-item label="\'derp\'"></side-menu-item>')($rootScope);
 
       $rootScope.$digest();
@@ -28,9 +28,9 @@
     });
   });
 
-  describe('the target attribute', function() {
+  describe('the target attribute', function () {
 
-    it('works when not set', function() {
+    it('works when not set', function () {
       var element = $compile('<side-menu-item></side-menu-item>')($rootScope);
 
       $rootScope.$digest();
@@ -38,7 +38,7 @@
       expect($(element).find('.item').attr('href')).toEqual('');
     });
 
-    it('works when set', function() {
+    it('works when set', function () {
       var element = $compile('<side-menu-item target="\'derp\'"></side-menu-item>')($rootScope);
 
       $rootScope.$digest();
@@ -47,16 +47,16 @@
     });
   });
 
-  describe('the selected attribute', function() {
+  describe('the selected attribute', function () {
 
-    it('works when not set up', function() {
+    it('works when not set up', function () {
       var element = $compile('<side-menu-item></side-menu-item>')($rootScope);
 
       $(element).find('.item').click();
     });
 
     //TODO: this test causes a reload, preventing other tests from running.  Maybe update the siteMenuItem template to use a button instead of a link.
-    xit('works when set up correctly', function() {
+    xit('works when set up correctly', function () {
       var element = $compile('<side-menu-item selected="thingy" target="\'javascript:void(0)\'"></side-menu-item>')($rootScope);
 
       var worked = false;

@@ -16,7 +16,7 @@
     colors = ['red', 'yellow', 'blue'];
   });
 
-  describe('generate', function() {
+  describe('generate', function () {
 
     it('returns a button for each color from the rainbow generator', function () {
       var generator = new ColorSwitchButtonGenerator({});
@@ -26,9 +26,9 @@
       expect(result.length).toEqual(3);
     });
 
-    describe('color values for each button', function() {
+    describe('color values for each button', function () {
 
-      it('corrosponds to each color from the rainbow generator', function() {
+      it('corrosponds to each color from the rainbow generator', function () {
         var generator = new ColorSwitchButtonGenerator({});
 
         var result = generator.generate();
@@ -40,9 +40,9 @@
 
     });
 
-    describe('label values for each button', function() {
+    describe('label values for each button', function () {
 
-      it('are nonbreaking spaces', function() {
+      it('are nonbreaking spaces', function () {
         var generator = new ColorSwitchButtonGenerator({});
 
         var result = generator.generate();
@@ -54,7 +54,7 @@
 
     });
 
-    describe('activated values for each button', function() {
+    describe('activated values for each button', function () {
 
       it('are always false', function () {
         var generator = new ColorSwitchButtonGenerator({});
@@ -71,7 +71,6 @@
   });
 
   function MockRainbowColorsGenerator() {
-
     this.generate = function () {
       return colors;
     };

@@ -1,4 +1,4 @@
-﻿describe('angular roomie.devices MultilevelSwitchButtonGenerator (directive)', function() {
+﻿describe('angular roomie.devices MultilevelSwitchButtonGenerator (directive)', function () {
   var MultilevelSwitchButtonGenerator;
 
   beforeEach(angular.mock.module('roomie.devices'));
@@ -7,9 +7,9 @@
     MultilevelSwitchButtonGenerator = $injector.get('MultilevelSwitchButtonGenerator');
   }));
 
-  describe('generate', function() {
+  describe('generate', function () {
 
-    it('returns an array of {count} items', function() {
+    it('returns an array of {count} items', function () {
       var generator = new MultilevelSwitchButtonGenerator({});
 
       var result = generator.generate(17);
@@ -17,9 +17,9 @@
       expect(result.length).toEqual(17);
     });
 
-    describe('power values for each button', function() {
+    describe('power values for each button', function () {
 
-      it('works for 0 to 12, 5 buttons', function() {
+      it('works for 0 to 12, 5 buttons', function () {
         var generator = new MultilevelSwitchButtonGenerator({
           min: 0,
           max: 12
@@ -48,7 +48,7 @@
         expect(result[3].power).toEqual(10);
       });
 
-      it('works for 100 to 199, 4 buttons', function() {
+      it('works for 100 to 199, 4 buttons', function () {
         var generator = new MultilevelSwitchButtonGenerator({
           min: 100,
           max: 199
@@ -64,9 +64,9 @@
 
     });
 
-    describe('label values for each button', function() {
+    describe('label values for each button', function () {
 
-      it('works for 0 to 12, 5 buttons', function() {
+      it('works for 0 to 12, 5 buttons', function () {
         var generator = new MultilevelSwitchButtonGenerator({
           min: 0,
           max: 12
@@ -83,9 +83,9 @@
 
     });
 
-    describe('activated values for each button', function() {
+    describe('activated values for each button', function () {
 
-      it('selects the nearest value', function() {
+      it('selects the nearest value', function () {
         var multilevelSwitch = {
           min: 0,
           max: 12
@@ -121,7 +121,7 @@
         expect(result[4].activated).toEqual(false);
       });
 
-      it('selects the first button power is min', function() {
+      it('selects the first button power is min', function () {
         var multilevelSwitch = {
           min: 0,
           max: 12,
@@ -138,7 +138,7 @@
         expect(result[4].activated).toEqual(false);
       });
 
-      it('selects the last button power is max', function() {
+      it('selects the last button power is max', function () {
         var multilevelSwitch = {
           min: 0,
           max: 12,
@@ -155,7 +155,7 @@
         expect(result[4].activated).toEqual(true);
       });
 
-      it('selects no value when power is undefined', function() {
+      it('selects no value when power is undefined', function () {
         var multilevelSwitch = {
           min: 0,
           max: 12
@@ -171,7 +171,7 @@
         expect(result[4].activated).toEqual(false);
       });
 
-      it('selects no value when power is too lower', function() {
+      it('selects no value when power is too lower', function () {
         var multilevelSwitch = {
           min: 0,
           max: 12,
@@ -188,7 +188,7 @@
         expect(result[4].activated).toEqual(false);
       });
 
-      it('selects no value when power is too high', function() {
+      it('selects no value when power is too high', function () {
         var multilevelSwitch = {
           min: 0,
           max: 12,

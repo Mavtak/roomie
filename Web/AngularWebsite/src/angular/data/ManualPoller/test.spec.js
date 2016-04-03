@@ -28,7 +28,6 @@
     manualPoller.run();
 
     $httpBackend.flush();
-
   });
 
   describe('item selection', function () {
@@ -51,7 +50,6 @@
       $httpBackend.flush();
 
       expect(actual).toEqual([{ id: 'a' }, { id: 'b' }]);
-
     });
 
     it('selects the items property with an optional override when provided.', function () {
@@ -73,7 +71,6 @@
       $httpBackend.flush();
 
       expect(actual).toEqual([{ id: 'a' }, { id: 'b' }]);
-
     });
 
   });

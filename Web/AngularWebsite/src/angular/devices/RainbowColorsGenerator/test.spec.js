@@ -7,9 +7,9 @@
     RainbowColorsGenerator = $injector.get('RainbowColorsGenerator');
   }));
 
-  describe('generate', function() {
+  describe('generate', function () {
 
-    it('returns a specific array of hex colors', function() {
+    it('returns a specific array of hex colors', function () {
       var generator = new RainbowColorsGenerator({});
 
       var result = generator.generate();

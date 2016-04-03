@@ -1,4 +1,4 @@
-﻿describe('angular roomie.devices thermostat-mode-controls (directive)', function() {
+﻿describe('angular roomie.devices thermostat-mode-controls (directive)', function () {
   var $compile;
   var $rootScope;
   var attributes;
@@ -6,12 +6,12 @@
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function($injector) {
+  beforeEach(angular.mock.inject(function ($injector) {
     $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     element = $compile('<thermostat-mode-controls label="The Things" modes="attributes.modes"></thermostat-mode-controls>')($rootScope);
 
     attributes = {
@@ -31,20 +31,20 @@
     $rootScope.$digest();
   });
 
-  describe('the header', function() {
+  describe('the header', function () {
     var header;
 
-    beforeEach(function() {
+    beforeEach(function () {
       header = $(element).find('.header');
     });
 
-    it('exists', function() {
+    it('exists', function () {
       expect(header.length).toEqual(1);
     });
 
-    describe('the primary text', function() {
+    describe('the primary text', function () {
 
-      it('is the label attribute', function() {
+      it('is the label attribute', function () {
         var text = header.clone()
           .children().remove().end()
           .text().trim();
@@ -54,13 +54,13 @@
 
     });
 
-    describe('the secondary text', function() {
+    describe('the secondary text', function () {
 
-      it('is the formatted current action', function() {
+      it('is the formatted current action', function () {
         expect(header.find('.secondary').text().trim()).toEqual('Currently Derping');
       });
 
-      it('is nothing if the current action is not a string', function() {
+      it('is nothing if the current action is not a string', function () {
         attributes.modes.currentAction = {};
         $rootScope.$digest();
 
@@ -71,11 +71,11 @@
 
   });
 
-  describe('the buttons', function() {
+  describe('the buttons', function () {
 
-    describe('existence criteria', function() {
+    describe('existence criteria', function () {
 
-      it('the "modes" attribute has a "supportedModes" property that is an array with entries', function() {
+      it('the "modes" attribute has a "supportedModes" property that is an array with entries', function () {
         var buttonGroup = selectButtonGroup();
 
         expect(buttonGroup.length).toEqual(1);
@@ -83,9 +83,9 @@
 
     });
 
-    describe('nonexistence criteria', function() {
+    describe('nonexistence criteria', function () {
 
-      it('the "modes" attribute has a "supportedModes" property that is an empty array', function() {
+      it('the "modes" attribute has a "supportedModes" property that is an empty array', function () {
         attributes.modes.supportedModes = [];
         $rootScope.$digest();
         var buttonGroup = selectButtonGroup();
@@ -93,7 +93,7 @@
         expect(buttonGroup.length).toEqual(0);
       });
 
-      it('the "modes" attribute does not have a "supportedModes" property', function() {
+      it('the "modes" attribute does not have a "supportedModes" property', function () {
         delete attributes.modes.supportedModes;
         $rootScope.$digest();
         var buttonGroup = selectButtonGroup();
@@ -103,25 +103,25 @@
 
     });
 
-    it('has as many as there are supported modes', function() {
+    it('has as many as there are supported modes', function () {
       var buttons = selectButtons();
 
       expect(buttons.length).toEqual(3);
     });
 
-    it('labels each button', function() {
+    it('labels each button', function () {
       expect(selectButton(0).text().trim()).toEqual('Herp');
       expect(selectButton(1).text().trim()).toEqual('Derp');
       expect(selectButton(2).text().trim()).toEqual('Berp');
     });
 
-    it('sets activation based on the current mode', function() {
+    it('sets activation based on the current mode', function () {
       expect(selectButton(0).hasClass('activated')).toEqual(false);
       expect(selectButton(1).hasClass('activated')).toEqual(true);
       expect(selectButton(2).hasClass('activated')).toEqual(false);
     });
 
-    it('supports clicking', function() {
+    it('supports clicking', function () {
       var button = selectButton(2);
 
       expect(attributes.modes.set).not.toHaveBeenCalled();
@@ -142,6 +142,7 @@
     function selectButton(index) {
       return selectButtons().eq(index);
     }
+
   });
 
 });

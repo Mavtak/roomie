@@ -1,4 +1,4 @@
-﻿describe('angular roomie.devices binary-sensor-controls (directive)', function() {
+﻿describe('angular roomie.devices binary-sensor-controls (directive)', function () {
   var $compile;
   var $rootScope;
   var attributes;
@@ -6,12 +6,12 @@
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function($injector) {
+  beforeEach(angular.mock.inject(function ($injector) {
     $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     element = $compile('<binary-sensor-controls sensor="attributes.sensor"></binary-sensor-controls>')($rootScope);
 
     attributes = {
@@ -26,15 +26,15 @@
     $rootScope.$digest();
   });
 
-  describe('the text', function() {
+  describe('the text', function () {
     var parts;
     var text;
 
     beforeEach(readText);
 
-    describe('the label', function() {
+    describe('the label', function () {
 
-      it('is "Binary Sensor" when sensor.type is undefined', function() {
+      it('is "Binary Sensor" when sensor.type is undefined', function () {
         expect(text).toMatch(/^Binary Sensor: /);
       });
 
@@ -42,16 +42,16 @@
 
     });
 
-    describe('the measurement', function() {
+    describe('the measurement', function () {
 
-      it('is "Unknown" when device.value is undefined', function() {
+      it('is "Unknown" when device.value is undefined', function () {
         delete attributes.sensor.value;
         readText();
 
         expect(text).toMatch(/: Unknown \(at/);
       });
 
-      it('is "True" when device.value == true', function() {
+      it('is "True" when device.value == true', function () {
         attributes.sensor.value = true;
         readText();
 
@@ -59,19 +59,18 @@
 
       });
 
-      it('is "False" when device.value == false', function() {
+      it('is "False" when device.value == false', function () {
         attributes.sensor.value = false;
         readText();
 
         expect(text).toMatch(/: False \(at/);
       });
 
-
       //TODO: account for different values of sensor.type
 
     });
 
-    it('has the timestamp last', function() {
+    it('has the timestamp last', function () {
       expect(text).toMatch(/\(at 4\/26\/2015, 1:47:23 PM\)$/);
     });
 
@@ -80,28 +79,28 @@
       text = $(element).text().trim();
       parts = text.split(' ');
     }
+
   });
 
-  describe('the button', function() {
+  describe('the button', function () {
     var button;
 
-    beforeEach(function() {
+    beforeEach(function () {
       button = $(element).find('button');
     });
 
-    it('exists', function() {
+    it('exists', function () {
       expect(button.length).toEqual(1);
     });
 
-    describe('clicking', function() {
+    describe('clicking', function () {
 
-      it('calls the sensor.poll()', function() {
+      it('calls the sensor.poll()', function () {
         expect(attributes.sensor.poll).not.toHaveBeenCalled();
 
         button.click();
 
         expect(attributes.sensor.poll).toHaveBeenCalled();
-
       });
 
     });

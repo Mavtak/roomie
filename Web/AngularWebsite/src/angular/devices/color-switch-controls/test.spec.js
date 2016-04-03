@@ -1,12 +1,12 @@
-﻿describe('angular roomie.devices color-switch-controls (directive)', function() {
+﻿describe('angular roomie.devices color-switch-controls (directive)', function () {
   var $compile;
   var $rootScope;
   var element;
   var buttons;
   var givenColorSwitch;
 
-  beforeEach(angular.mock.module('roomie.devices', function($provide) {
-    $provide.factory('ColorSwitchButtonGenerator', function() {
+  beforeEach(angular.mock.module('roomie.devices', function ($provide) {
+    $provide.factory('ColorSwitchButtonGenerator', function () {
       return MockColorSwitchButtonGenerator;
     });
   }));
@@ -16,7 +16,7 @@
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     buttons = null;
     givenColorSwitch = null;
   });
@@ -31,9 +31,9 @@
     expect(givenColorSwitch).toBe($rootScope.colorSwitch);
   });
 
-  describe('the button group', function() {
+  describe('the button group', function () {
 
-    it('has one', function() {
+    it('has one', function () {
       $rootScope.$digest();
 
       expect($(element).find('.buttonGroup').length).toEqual(1);
@@ -46,7 +46,7 @@
       expect(selectButtons().length).toEqual(5);
     });
 
-    it('pulls labels from the button generator', function() {
+    it('pulls labels from the button generator', function () {
       buttons = [{
           label: 'herp'
         }, {
@@ -62,7 +62,7 @@
       expect(selectButton(2).text().trim()).toEqual('');
     });
 
-    it('pulls activated from the button generator', function() {
+    it('pulls activated from the button generator', function () {
       buttons = [{
           activated: true
         }, {
@@ -94,7 +94,7 @@
       expect(selectButton(2).css('background-color')).toEqual('purple');
     });
 
-    it('pulls target color from the button generator', function() {
+    it('pulls target color from the button generator', function () {
       buttons = [{
           color: 'orange'
         }, {
@@ -121,13 +121,15 @@
     function selectButton(index) {
       return selectButtons().eq(index).find('.button');
     }
+
   });
 
   function MockColorSwitchButtonGenerator(colorSwitch) {
     givenColorSwitch = colorSwitch;
 
-    this.generate = function() {
+    this.generate = function () {
       return buttons;
     };
   }
+
 });

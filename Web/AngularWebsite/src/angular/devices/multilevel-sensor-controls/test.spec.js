@@ -1,4 +1,4 @@
-describe('angular roomie.devices multilevel-sensor-controls (directive)', function() {
+describe('angular roomie.devices multilevel-sensor-controls (directive)', function () {
   var $compile;
   var $rootScope;
   var attributes;
@@ -6,12 +6,12 @@ describe('angular roomie.devices multilevel-sensor-controls (directive)', functi
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function($injector) {
+  beforeEach(angular.mock.inject(function ($injector) {
     $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     element = $compile('<multilevel-sensor-controls label="derp!" sensor="attributes.sensor"></multilevel-sensor-controls>')($rootScope);
 
     attributes = {
@@ -29,28 +29,28 @@ describe('angular roomie.devices multilevel-sensor-controls (directive)', functi
     $rootScope.$digest();
   });
 
-  describe('the text', function() {
+  describe('the text', function () {
     var parts;
     var text;
 
-    beforeEach(function() {
+    beforeEach(function () {
       text = $(element).text().trim();
       parts = text.split(' ');
     });
 
-    it('has the label first', function() {
+    it('has the label first', function () {
       expect(parts[0]).toEqual('derp!:');
     });
 
-    it('has the measurement value second', function() {
+    it('has the measurement value second', function () {
       expect(parts[1]).toEqual('123');
     });
 
-    it('has the measurement units third', function() {
+    it('has the measurement units third', function () {
       expect(parts[2]).toEqual('McDerps');
     });
 
-    it('has the timestamp last', function() {
+    it('has the timestamp last', function () {
       expect(parts[3]).toEqual('(at');
       expect(parts[4]).toEqual('5/22/2015,');
       expect(parts[5]).toEqual('10:28:17');
@@ -59,20 +59,20 @@ describe('angular roomie.devices multilevel-sensor-controls (directive)', functi
 
   });
 
-  describe('the button', function() {
+  describe('the button', function () {
     var button;
 
-    beforeEach(function() {
+    beforeEach(function () {
       button = $(element).find('button');
     });
 
-    it('exists', function() {
+    it('exists', function () {
       expect(button.length).toEqual(1);
     });
 
-    describe('clicking', function() {
+    describe('clicking', function () {
 
-      it('calls the sensor.poll()', function() {
+      it('calls the sensor.poll()', function () {
         expect(attributes.sensor.poll).not.toHaveBeenCalled();
 
         button.click();

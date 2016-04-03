@@ -9,11 +9,11 @@
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     $rootScope.attributes = {};
   });
 
-  it('works given a title', function() {
+  it('works given a title', function () {
     var element = $compile('<widget-header title="herp"></widget-header>')($rootScope);
     $rootScope.$digest();
 
@@ -53,11 +53,11 @@
     expect($(element).find('.header .location').html().trim()).toEqual('');
   });
 
-  describe('the disconnected attribute', function() {
+  describe('the disconnected attribute', function () {
 
-    describe('when not specified', function() {
+    describe('when not specified', function () {
 
-      it('does not display the disctonnected icon', function() {
+      it('does not display the disctonnected icon', function () {
 
         var element = $compile('<widget-header></widget-header>')($rootScope);
         $rootScope.$digest();
@@ -67,9 +67,9 @@
 
     });
 
-    describe('when set to false', function() {
+    describe('when set to false', function () {
 
-      it('does not display the disctonnected icon', function() {
+      it('does not display the disctonnected icon', function () {
 
         var element = $compile('<widget-header disconnected="false"></widget-header>')($rootScope);
         $rootScope.$digest();
@@ -79,9 +79,9 @@
 
     });
 
-    describe('when set to true', function() {
+    describe('when set to true', function () {
 
-      it('displays the disctonnected icon', function() {
+      it('displays the disctonnected icon', function () {
 
         var element = $compile('<widget-header disconnected="true"></widget-header>')($rootScope);
         $rootScope.$digest();
@@ -91,9 +91,9 @@
 
     });
 
-    describe('when set to a scope variable that is not defined', function() {
+    describe('when set to a scope variable that is not defined', function () {
 
-      it('does not display the disctonnected icon', function() {
+      it('does not display the disctonnected icon', function () {
 
         var element = $compile('<widget-header disconnected="attributes.thing"></widget-header>')($rootScope);
         $rootScope.$digest();
@@ -103,9 +103,9 @@
 
     });
 
-    describe('when set to a scope variable that is set to false', function() {
+    describe('when set to a scope variable that is set to false', function () {
 
-      it('does not display the disctonnected icon', function() {
+      it('does not display the disctonnected icon', function () {
 
         var element = $compile('<widget-header disconnected="attributes.thing"></widget-header>')($rootScope);
         $rootScope.attributes.thing = false;
@@ -116,9 +116,9 @@
 
     });
 
-    describe('when set to a scope variable that is set to true', function() {
+    describe('when set to a scope variable that is set to true', function () {
 
-      it('displays the disctonnected icon', function() {
+      it('displays the disctonnected icon', function () {
 
         var element = $compile('<widget-header disconnected="attributes.thing"></widget-header>')($rootScope);
         $rootScope.attributes.thing = true;

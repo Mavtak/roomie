@@ -1,4 +1,4 @@
-﻿describe('angular roomie.devices thermostat-temperature-controls (directive)', function() {
+﻿describe('angular roomie.devices thermostat-temperature-controls (directive)', function () {
   var $compile;
   var $rootScope;
   var attributes;
@@ -6,12 +6,12 @@
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function($injector) {
+  beforeEach(angular.mock.inject(function ($injector) {
     $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     element = $compile('<thermostat-temperature-controls setpoints="attributes.setpoints" temperature="attributes.temperature" ></thermostat-temperature-controls>')($rootScope);
 
     attributes = {
@@ -36,26 +36,26 @@
     $rootScope.$digest();
   });
 
-  describe('the temperature displays', function() {
+  describe('the temperature displays', function () {
 
-    it('has 3', function() {
+    it('has 3', function () {
       var displays = selectTemperatureDisplays();
 
       expect(displays.length).toEqual(3);
     });
 
-    describe('the first one', function() {
+    describe('the first one', function () {
 
-      it('is the heat setpoint', function() {
+      it('is the heat setpoint', function () {
         var display = selectTemperatureDisplay(0);
 
         expect(display.find('.value').text()).toContain('25');
         expect(display.find('.description').text()).toContain('Heat');
       });
 
-      describe('the cooler button', function() {
+      describe('the cooler button', function () {
 
-        it('sets the heat setpoint to cooler', function() {
+        it('sets the heat setpoint to cooler', function () {
           var button = selectSetpointButton(0, '-');
 
           expect(attributes.setpoints.set).not.toHaveBeenCalled();
@@ -75,9 +75,9 @@
 
       });
 
-      describe('the hotter button', function() {
+      describe('the hotter button', function () {
 
-        it('sets the heat setpoint to hotter', function() {
+        it('sets the heat setpoint to hotter', function () {
           var button = selectSetpointButton(0, '+');
 
           expect(attributes.setpoints.set).not.toHaveBeenCalled();
@@ -99,18 +99,18 @@
 
     });
 
-    describe('the second one', function() {
+    describe('the second one', function () {
 
-      it('is the current temperature', function() {
+      it('is the current temperature', function () {
         var display = selectTemperatureDisplay(1);
 
         expect(display.find('.value').text()).toContain('30');
         expect(display.find('.description').text()).toContain('Current');
       });
 
-      describe('the cooler button', function() {
+      describe('the cooler button', function () {
 
-        it('does not exist', function() {
+        it('does not exist', function () {
           var button = selectSetpointButton(1, '-');
 
           expect(button.length).toEqual(0);
@@ -118,9 +118,9 @@
 
       });
 
-      describe('the hotter button', function() {
+      describe('the hotter button', function () {
 
-        it('does not exist', function() {
+        it('does not exist', function () {
           var button = selectSetpointButton(1, '+');
 
           expect(button.length).toEqual(0);
@@ -130,18 +130,18 @@
 
     });
 
-    describe('the third one', function() {
+    describe('the third one', function () {
 
-      it('is the cool setpoint', function() {
+      it('is the cool setpoint', function () {
         var display = selectTemperatureDisplay(2);
 
         expect(display.find('.value').text()).toContain('50');
         expect(display.find('.description').text()).toContain('Cool');
       });
 
-      describe('the cooler button', function() {
+      describe('the cooler button', function () {
 
-        it('sets the heat setpoint to cooler', function() {
+        it('sets the heat setpoint to cooler', function () {
           var button = selectSetpointButton(2, '-');
 
           expect(attributes.setpoints.set).not.toHaveBeenCalled();
@@ -161,9 +161,9 @@
 
       });
 
-      describe('the hotter button', function() {
+      describe('the hotter button', function () {
 
-        it('sets the heat setpoint to hotter', function() {
+        it('sets the heat setpoint to hotter', function () {
           var button = selectSetpointButton(2, '+');
 
           expect(attributes.setpoints.set).not.toHaveBeenCalled();
@@ -196,8 +196,9 @@
   }
 
   function selectSetpointButton(index, label) {
-    return selectTemperatureDisplay(index).find('.setpoint-button').filter(function() {
+    return selectTemperatureDisplay(index).find('.setpoint-button').filter(function () {
       return $(this).text().trim() === label;
     });
   }
+
 });

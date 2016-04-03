@@ -1,31 +1,31 @@
-﻿describe('angular roomie.common side-menu (directive)', function() {
+﻿describe('angular roomie.common side-menu (directive)', function () {
   var $compile;
   var $rootScope;
   var element;
 
   beforeEach(angular.mock.module('roomie.common'));
 
-  beforeEach(angular.mock.inject(function($injector) {
+  beforeEach(angular.mock.inject(function ($injector) {
     $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
   }));
 
-  beforeEach(function() {
+  beforeEach(function () {
     element = $compile('<side-menu calculated-width="width"></side-menu>')($rootScope);
 
     $rootScope.$digest();
   });
 
-  describe('the calculated-width attribute', function() {
+  describe('the calculated-width attribute', function () {
 
-    it('is set automatically', function() {
+    it('is set automatically', function () {
       expect($rootScope.width).toEqual(jasmine.any(String));
       expect($rootScope.width).toMatch(/^[0-9]*px$/);
     });
 
   });
 
-  function selectItems() {
+  function selectItems () {
     return $(element).find('.sideMenu .item');
   }
 

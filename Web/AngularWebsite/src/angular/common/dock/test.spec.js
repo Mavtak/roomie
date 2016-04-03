@@ -15,9 +15,9 @@
     $rootScope.$digest();
   }));
 
-  describe('dock styling', function() {
+  describe('dock styling', function () {
 
-    it('exists', function() {
+    it('exists', function () {
       expect(selectDock().length).toEqual(1);
     });
 
@@ -37,20 +37,20 @@
       expect(selectFiller().length).toEqual(1);
     });
 
-    it('has a custom style that matches its height to the dock height', function() {
+    it('has a custom style that matches its height to the dock height', function () {
       expect(selectFiller().attr('style')).toMatch(/height\: [0-9]+px/);
     });
 
   });
 
-  describe('pixel height binding', function() {
+  describe('pixel height binding', function () {
 
-    beforeEach(function() {
+    beforeEach(function () {
       element = $compile('<dock area="blam" pixel-height="attributes.height"><div class="boop">beep</div></dock>')($rootScope);
       $rootScope.$digest();
     });
 
-    it('sets the pixel-height value', function() {
+    it('sets the pixel-height value', function () {
       expect(attributes.height).toMatch(/[0-9]+/);
     });
 

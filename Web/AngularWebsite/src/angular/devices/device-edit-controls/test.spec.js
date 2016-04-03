@@ -136,7 +136,7 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
 
         it('lists options from the deviceType data', function () {
           var values = [];
-          selectInput(2).find('option').each(function() {
+          selectInput(2).find('option').each(function () {
             values.push($(this).text());
           });
 
@@ -297,6 +297,7 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
     function selectRows() {
       return $(element).find('.data .item');
     }
+
   });
 
   describe('the shared form', function () {
@@ -306,4 +307,5 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
     });
 
   });
+
 });

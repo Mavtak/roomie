@@ -3,7 +3,7 @@ describe('angular roomie.common signInState (factory)', function () {
 
   beforeEach(angular.mock.module('roomie.common'));
 
-  beforeEach(angular.mock.inject(function($injector) {
+  beforeEach(angular.mock.inject(function ($injector) {
     instance = $injector.get('signInState');
   }));
 
