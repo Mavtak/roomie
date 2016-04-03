@@ -1,4 +1,4 @@
-﻿angular.module('roomie.users').config(function (
+﻿angular.module('roomie.users.pages').config(function (
   $stateProvider
 ) {
 
@@ -6,14 +6,13 @@
     url: '/sign-in',
     controller: 'SignInController',
     controllerAs: 'controller',
-    templateUrl: 'users/pages/sign-in.html'
+    templateUrl: 'users.pages/sign-in.html'
   });
 
   $stateProvider.state('sign-out', {
     url: '/sign-out',
     controller: 'SignOutController',
-    controllerAs: 'controller',
-    templateUrl: 'users/pages/sign-out.html'
+    templateUrl: 'users.pages/sign-out.html'
   });
 
 });

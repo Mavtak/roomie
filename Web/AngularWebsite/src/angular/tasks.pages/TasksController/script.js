@@ -1,4 +1,4 @@
-﻿angular.module('roomie.tasks').controller('TasksController', function (
+﻿angular.module('roomie.tasks.pages').controller('TasksController', function (
   $http,
   $scope,
   $state,

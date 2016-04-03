@@ -1,4 +1,4 @@
-angular.module('roomie.users').controller('SignOutController', function (
+angular.module('roomie.users.pages').controller('SignOutController', function (
   $http,
   $state,
   signInState,

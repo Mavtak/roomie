@@ -1,4 +1,4 @@
-angular.module('roomie.help').controller('CommandDocumentationController', function (
+angular.module('roomie.help.pages').controller('CommandDocumentationController', function (
   $http,
   wholePageStatus
 ) {

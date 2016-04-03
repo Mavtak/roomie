@@ -1,4 +1,4 @@
-﻿angular.module('roomie.users').controller('SignInController', function (
+﻿angular.module('roomie.users.pages').controller('SignInController', function (
   $http,
   $scope,
   $state,

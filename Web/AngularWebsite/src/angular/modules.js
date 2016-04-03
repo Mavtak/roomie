@@ -1,8 +1,11 @@
 ﻿angular.module('roomie.app', [
   'roomie.devices',
-  'roomie.help',
+  'roomie.devices.pages',
+  'roomie.help.pages',
   'roomie.tasks',
+  'roomie.tasks.pages',
   'roomie.users',
+  'roomie.users.pages',
 ]);
 
 angular.module('roomie.common', [
@@ -19,18 +22,29 @@ angular.module('roomie.devices', [
   'roomie.templates',
 ]);
 
-angular.module('roomie.help', [
+angular.module('roomie.devices.pages', [
+  'ui.router',
+]);
+
+angular.module('roomie.help.pages', [
   'roomie.common',
   'roomie.templates',
 ]);
 
 angular.module('roomie.tasks', [
-  'ui.router',
   'roomie.common',
   'roomie.templates',
 ]);
 
-angular.module('roomie.users', [
+angular.module('roomie.tasks.pages', [
   'ui.router',
+]);
+
+angular.module('roomie.users', [
   'roomie.templates',
 ]);
+
+angular.module('roomie.users.pages', [
+  'ui.router',
+  'roomie.templates',
+])

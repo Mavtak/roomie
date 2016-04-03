@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').controller('DevicesController', function (
+﻿angular.module('roomie.devices.pages').controller('DevicesController', function (
   $http,
   $scope,
   $state,
