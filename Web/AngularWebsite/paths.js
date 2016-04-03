@@ -35,7 +35,6 @@ paths.markup.out = roots.out;
 
 paths.scripts = {};
 paths.scripts.in = [
-  roots.in + 'angular/modules.js',
   roots.in + '**/*.js',
   '!' + roots.in + '**/*.spec.js',
 ];
