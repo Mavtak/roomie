@@ -1,4 +1,4 @@
-﻿angular.module('roomie.tasks').config(['$stateProvider', function (
+﻿angular.module('roomie.tasks').config(function (
   $stateProvider
 ) {
 
@@ -8,4 +8,4 @@
     templateUrl: 'tasks/pages/index.html',
   });
 
-}]);
+});
