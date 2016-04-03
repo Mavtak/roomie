@@ -3,11 +3,11 @@
   'roomie.devices',
   'roomie.help',
   'roomie.tasks',
-  'roomie.users'
+  'roomie.users',
 ]);
 
 angular.module('roomie.common', [
-   'roomie.templates'
+   'roomie.templates',
 ]);
 
 angular.module('roomie.data', [
@@ -17,21 +17,21 @@ angular.module('roomie.devices', [
   'ui.router',
   'roomie.common',
   'roomie.data',
-  'roomie.templates'
+  'roomie.templates',
 ]);
 
 angular.module('roomie.help', [
   'roomie.common',
-  'roomie.templates'
+  'roomie.templates',
 ]);
 
 angular.module('roomie.tasks', [
   'ui.router',
   'roomie.common',
-  'roomie.templates'
+  'roomie.templates',
 ]);
 
 angular.module('roomie.users', [
   'ui.router',
-  'roomie.templates'
+  'roomie.templates',
 ]);

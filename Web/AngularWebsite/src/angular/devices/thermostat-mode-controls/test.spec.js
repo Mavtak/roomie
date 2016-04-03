@@ -22,7 +22,7 @@
         supportedModes: [
           'herp',
           'derp',
-          'berp'
+          'berp',
         ]
       }
     };
