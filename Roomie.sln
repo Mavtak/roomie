@@ -93,7 +93,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptingLanguage.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Tests", "Common\Common.Tests\Common.Tests.csproj", "{C37F4C26-67AD-401C-8EEB-FEB17918E9AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Tests", "Roomie.Desktop.Engine.Tests\Engine.Tests.csproj", "{CA3D65A9-07C0-4453-8D4E-CCC9B39B22D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Tests", "Desktop\Engine.Tests\Engine.Tests.csproj", "{CA3D65A9-07C0-4453-8D4E-CCC9B39B22D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triggers", "Common\Triggers\Triggers.csproj", "{5F72C80F-4C92-46EE-931B-7676DD2824E9}"
 EndProject

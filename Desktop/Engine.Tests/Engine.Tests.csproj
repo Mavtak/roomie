@@ -58,7 +58,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Desktop\Engine\Engine.csproj">
+    <ProjectReference Include="..\Engine\Engine.csproj">
       <Project>{91e5d2c3-d269-4ff9-8ab6-36926441f6b2}</Project>
       <Name>Engine</Name>
     </ProjectReference>
