@@ -8,5 +8,13 @@ namespace Roomie.Common.Measurements.Humidity
             : base(value)
         {
         }
+
+        public RelativeHumidity Relative
+        {
+            get
+            {
+                return this;
+            }
+        }
     }
 }
