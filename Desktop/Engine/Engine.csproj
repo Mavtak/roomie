@@ -62,6 +62,7 @@
     <Compile Include="Commands\ColorParameterAttribute.cs" />
     <Compile Include="Commands\CommandSpecificationExtensions.cs" />
     <Compile Include="Commands\GroupAttribute.cs" />
+    <Compile Include="Commands\HumidityParameterAttribute.cs" />
     <Compile Include="Commands\IntegerParameterAttribute.cs" />
     <Compile Include="Commands\IntegerRangeParameterAttribute.cs" />
     <Compile Include="Commands\ReadOnlyCommandSpecification.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Parameters\ParameterConversions.cs" />
     <Compile Include="RoomieCommand.cs" />
     <Compile Include="RoomieCommandArgument.cs" />
+    <Compile Include="RoomieCommandArgumentTypes\HumidityParameterType.cs" />
     <Compile Include="RoomieCommandScopeExtensions.cs" />
     <Compile Include="RoomieCommandArgumentTypes\ColorParameterType.cs" />
     <Compile Include="RoomieCommandArgumentTypes\TemperatureParameterType.cs" />

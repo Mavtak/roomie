@@ -1,6 +1,7 @@
 ﻿using System;
 using Roomie.Common;
 using Roomie.Common.Color;
+using Roomie.Common.Measurements.Humidity;
 using Roomie.Common.Measurements.Temperature;
 
 namespace Roomie.Desktop.Engine.Parameters
@@ -25,6 +26,11 @@ namespace Roomie.Desktop.Engine.Parameters
         public static DateTime ToDateTime(this IParameter parameter)
         {
             return TimeUtils.ParseDateTime(parameter.Value);
+        }
+
+        public static IHumidity ToHumidity(this IParameter parameter)
+        {
+            return parameter.Value.ToHumidity();
         }
 
         public static int ToInteger(this IParameter parameter)
