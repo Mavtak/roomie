@@ -1,70 +1,25 @@
-﻿using System.Linq;
-using Roomie.Common.HomeAutomation.Keypads.Buttons;
+﻿using Roomie.Common.HomeAutomation.Keypads.Buttons;
 
 namespace Roomie.Common.HomeAutomation.Events.Triggers
 {
-    public class WhenAKeypadButtonIsPressedTrigger : WhenDeviceEventHappensTrigger
+    public class WhenAKeypadButtonIsPressedTrigger : DeviceStateChangedTriggerBase<IKeypadButtonState>
     {
-        private string _buttonId;
+        private readonly string _buttonId;
 
         public WhenAKeypadButtonIsPressedTrigger(IDevice device, string buttonId, IDeviceHistory history)
-            : base(device, new DeviceStateChanged(), history)
+            : base(device, history)
         {
             _buttonId = buttonId;
         }
 
-        protected override System.Collections.Generic.IEnumerable<IDeviceEvent> GetMatches(IDeviceHistory history, IDevice device, IEventType eventType, System.DateTime since)
+        protected override IKeypadButtonState GetMeasurement(IDeviceState state)
         {
-            var matches = base.GetMatches(history, device, eventType, since);
-
-            matches = matches.Where(x => IsAMatch(history, x));
-
-            return matches;
+            return state?.KeypadState?.Buttons?.Get(_buttonId);
         }
 
-        private bool IsAMatch(IDeviceHistory history, IDeviceEvent candidate)
+        protected override bool IsAMatch(IKeypadButtonState previousValue, IKeypadButtonState currentValue)
         {
-            var previous = GetEventBefore(history, candidate);
-            IKeypadButtonState previousState = null;
-            if (previous != null)
-            {
-                previousState = previous.State.KeypadState.Buttons.Get(_buttonId);
-            }
-            else
-            {
-                previousState = new ReadOnlyKeypadButtonState(_buttonId, null);
-            }
-
-            var currentState = candidate.State.KeypadState.Buttons.Get(_buttonId);
-
-            if (currentState.Pressed != true)
-            {
-                return false;
-            }
-
-            var result = currentState.Changed(previousState);
-
-            return result;
-        }
-
-        private static IDeviceEvent GetEventBefore(IDeviceHistory history, IDeviceEvent target)
-        {
-            IDeviceEvent lastMatch = null;
-
-            foreach (var @event in history)
-            {
-                if (@event == target)
-                {
-                    return lastMatch;
-                }
-
-                if (@event.Device == target.Device && @event.Type.Matches(target.Type))
-                {
-                    lastMatch = @event;
-                }
-            }
-
-            return null;
+            return currentValue.Changed(previousValue);
         }
     }
 }

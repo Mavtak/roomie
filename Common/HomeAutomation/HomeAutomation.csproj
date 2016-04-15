@@ -62,6 +62,7 @@
     <Compile Include="Events\DevicePowerSensorValueChanged.cs" />
     <Compile Include="Events\CurrentActionChanged.cs" />
     <Compile Include="Events\EventTypeParser.cs" />
+    <Compile Include="Events\Triggers\DeviceStateChangedTriggerBase.cs" />
     <Compile Include="Events\Triggers\WhenTheCurrentActionChangesTrigger.cs" />
     <Compile Include="MultilevelSensors\IMultilevelSensor.cs" />
     <Compile Include="MultilevelSensors\IMultilevelSensorActions.cs" />

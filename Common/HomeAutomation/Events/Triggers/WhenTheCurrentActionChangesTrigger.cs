@@ -1,24 +1,28 @@
-﻿using System.Linq;
+﻿using System;
 
 namespace Roomie.Common.HomeAutomation.Events.Triggers
 {
-    public class WhenTheCurrentActionChangesTrigger : WhenDeviceEventHappensTrigger
+    public class WhenTheCurrentActionChangesTrigger : DeviceStateChangedTriggerBase<string>
     {
-        private readonly string _desiredCurrentAction;
+        private readonly string _target;
 
-        public WhenTheCurrentActionChangesTrigger(IDevice device, string currentAction, IDeviceHistory history)
-            : base(device, new CurrentActionChanged(), history)
+        public WhenTheCurrentActionChangesTrigger(IDevice device, string target, IDeviceHistory history)
+            : base(device, history)
         {
-            _desiredCurrentAction = currentAction;
+            _target = target;
         }
 
-        protected override System.Collections.Generic.IEnumerable<IDeviceEvent> GetMatches(IDeviceHistory history, IDevice device, IEventType eventType, System.DateTime since)
+        protected override string GetMeasurement(IDeviceState state)
         {
-            var matches = base.GetMatches(history, device, eventType, since);
+            return state?.CurrentAction;
+        }
 
-            matches = matches.Where(x => string.Equals(x.State.CurrentAction, _desiredCurrentAction));
+        protected override bool IsAMatch(string previousValue, string currentValue)
+        {
+            var changed = !string.Equals(currentValue, previousValue);
+            var isTarget = string.Equals(currentValue, _target, StringComparison.InvariantCulture);
 
-            return matches;
+            return changed && isTarget;
         }
     }
 }
