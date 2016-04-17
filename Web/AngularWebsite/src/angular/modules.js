@@ -47,4 +47,4 @@ angular.module('roomie.users', [
 angular.module('roomie.users.pages', [
   'ui.router',
   'roomie.templates',
-])
+]);
