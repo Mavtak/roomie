@@ -47,8 +47,7 @@
       $(element).find('.item').click();
     });
 
-    //TODO: this test causes a reload, preventing other tests from running.  Maybe update the siteMenuItem template to use a button instead of a link.
-    xit('works when set up correctly', function () {
+    it('works when set up correctly', function () {
       var element = compileDirective('<side-menu-item selected="thingy" target="\'javascript:void(0)\'"></side-menu-item>');
 
       var worked = false;
@@ -58,6 +57,8 @@
       };
 
       $scope.$digest();
+
+      $(element).find('a').removeAttr('href');
 
       expect(worked).toEqual(false);
 
