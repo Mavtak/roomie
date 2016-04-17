@@ -1,19 +1,17 @@
 ﻿describe('angular roomie.devices binary-sensor-controls (directive)', function () {
-  var $compile;
-  var $rootScope;
+  var $injector;
+  var $scope;
   var attributes;
   var element;
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    element = $compile('<binary-sensor-controls sensor="attributes.sensor"></binary-sensor-controls>')($rootScope);
-
     attributes = {
       sensor: {
         poll: jasmine.createSpy(),
@@ -22,8 +20,9 @@
       }
     };
 
-    $rootScope.attributes = attributes;
-    $rootScope.$digest();
+    $scope.attributes = attributes;
+
+    element = compileDirective('<binary-sensor-controls sensor="attributes.sensor"></binary-sensor-controls>');
   });
 
   describe('the text', function () {
@@ -75,7 +74,7 @@
     });
 
     function readText() {
-      $rootScope.$digest();
+      $scope.$digest();
       text = $(element).text().trim();
       parts = text.split(' ');
     }
@@ -106,5 +105,13 @@
     });
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
 });

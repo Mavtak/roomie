@@ -1,21 +1,20 @@
 ﻿describe('angular roomie.common dock (directive)', function () {
-  var $compile;
-  var $rootScope;
-  var element;
+  var $injector;
+  var $scope;
 
   beforeEach(angular.mock.module('roomie.common'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
-    element = $compile('<dock area="blam"><div class="boop">beep</div></dock>')($rootScope);
-
-    attributes = {};
-    $rootScope.attributes = attributes;
-    $rootScope.$digest();
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   describe('dock styling', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<dock area="blam"><div class="boop">beep</div></dock>');
+    });
 
     it('exists', function () {
       expect(selectDock().length).toEqual(1);
@@ -29,9 +28,18 @@
       expect(selectDock().hasClass('blam')).toEqual(true);
     });
 
+    function selectDock() {
+      return $(element).children().eq(0);
+    }
+
   });
 
   describe('the filler', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<dock area="blam"><div class="boop">beep</div></dock>');
+    });
 
     it('exists', function () {
       expect(selectFiller().length).toEqual(1);
@@ -41,27 +49,31 @@
       expect(selectFiller().attr('style')).toMatch(/height\: [0-9]+px/);
     });
 
+    function selectFiller() {
+      return $(element).children().eq(1);
+    }
+
   });
 
   describe('pixel height binding', function () {
+    var element;
 
     beforeEach(function () {
-      element = $compile('<dock area="blam" pixel-height="attributes.height"><div class="boop">beep</div></dock>')($rootScope);
-      $rootScope.$digest();
+      element = compileDirective('<dock area="blam" pixel-height="attributes.height"><div class="boop">beep</div></dock>');
     });
 
     it('sets the pixel-height value', function () {
-      expect(attributes.height).toMatch(/[0-9]+/);
+      expect($scope.attributes.height).toMatch(/[0-9]+/);
     });
 
   });
 
-  function selectDock() {
-    return $(element).children().eq(0);
-  }
+  function compileDirective(html) {
+      var $compile = $injector.get('$compile');
+      var element = $compile(html)($scope);
+      $scope.$digest();
 
-  function selectFiller() {
-    return $(element).children().eq(1);
+      return element;
   }
 
 });

@@ -1,7 +1,7 @@
 describe('angular roomie.devices device-edit-controls (directive)', function () {
-  var $compile;
+  var $injector;
   var $httpBackend;
-  var $rootScope;
+  var $scope;
   var element;
 
   beforeEach(angular.mock.module('roomie.devices', function ($provide) {
@@ -12,14 +12,14 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
     ]);
   }));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
     $httpBackend = $injector.get('$httpBackend');
-    $rootScope = $injector.get('$rootScope');
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    $rootScope.attributes = {
+    $scope.attributes = {
       device: {
         location: {
           name: 'some/place',
@@ -34,8 +34,7 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
   });
 
   beforeEach(function () {
-    element = $compile('<device-edit-controls device="attributes.device"></device-edit-controls>')($rootScope);
-    $rootScope.$digest();
+    element = compileDirective('<device-edit-controls device="attributes.device"></device-edit-controls>');
   });
 
   describe('the rows', function () {
@@ -69,8 +68,8 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
         });
 
         it('does not update if the source device\'s name changes', function () {
-          $rootScope.attributes.device.name = 'herp';
-          $rootScope.$digest();
+          $scope.attributes.device.name = 'herp';
+          $scope.$digest();
 
           expect(selectInput(0).val()).toEqual('Lamp Or Something');
         });
@@ -104,8 +103,8 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
         });
 
         it('does not update if the source device\'s name changes', function () {
-          $rootScope.attributes.device.location.name = 'herp';
-          $rootScope.$digest();
+          $scope.attributes.device.location.name = 'herp';
+          $scope.$digest();
 
           expect(selectInput(1).val()).toEqual('some/place');
         });
@@ -152,8 +151,8 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
         });
 
         it('does not update if the source device\'s name changes', function () {
-          $rootScope.attributes.device.type.name = 'herp';
-          $rootScope.$digest();
+          $scope.attributes.device.type.name = 'herp';
+          $scope.$digest();
 
           expect(selectInput(2).find('option:selected').text()).toEqual('Kinda Cool');
         });
@@ -307,5 +306,13 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
     });
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
 });

@@ -1,57 +1,55 @@
 describe('angular roomie.devices device-widget (directive)', function () {
-  var $compile;
-  var $rootScope;
-  var element;
+  var $injector;
+  var $scope;
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    $rootScope.device = {};
-
-    element = $compile('<device-widget device="device" show-edit="showEdit"></device-widget>')($rootScope);
-    $rootScope.$digest();
+    $scope.device = {};
   });
 
   describe('the header', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('has one', function () {
       expect($(element).find('.widget widget-header .header').length).toEqual(1);
     });
 
     it('has a title that matches the device name', function () {
-      $rootScope.device.name = "Light Switch";
-
-      $rootScope.$digest();
+      $scope.device.name = "Light Switch";
+      $scope.$digest();
 
       expect($(element).find('.widget widget-header .header .name').html().trim()).toEqual("Light Switch");
     });
 
     it('links to the detail', function () {
-      $rootScope.device.id = '123';
-      $rootScope.$digest();
+      $scope.device.id = '123';
+      $scope.$digest();
 
       expect($(element).find('.widget widget-header .header').attr('href')).toEqual('#/devices/123');
     });
 
     it('has no subtitle', function () {
-      $rootScope.$digest();
-
       expect($(element).find('.widget widget-header .header .location').html().trim()).toEqual('');
     });
 
     it('sets the disconnected property', function () {
-      $rootScope.device.isConnected = false;
-      $rootScope.$digest();
+      $scope.device.isConnected = false;
+      $scope.$digest();
 
       expect($(element).find('.widget widget-header > .header widget-disconnected-icon').length).toEqual(1);
 
-      $rootScope.device.isConnected = true;
-      $rootScope.$digest();
+      $scope.device.isConnected = true;
+      $scope.$digest();
 
       expect($(element).find('.widget widget-header > .header widget-disconnected-icon').length).toEqual(0);
     });
@@ -59,29 +57,34 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the currentAction controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.currentAction exists', function () {
-      $rootScope.device.currentAction = 'derp';
-      $rootScope.$digest();
+      $scope.device.currentAction = 'derp';
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does not exist when device.currentAction does not exist', function () {
-      delete $rootScope.device.currentAction;
-      $rootScope.$digest();
+      delete $scope.device.currentAction;
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('is bound to device.currentAction', function () {
-      $rootScope.device.currentAction = 'derp';
-      $rootScope.$digest();
+      $scope.device.currentAction = 'derp';
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('derp') >= 0).toEqual(true);
 
-      $rootScope.device.currentAction = 'herp';
-      $rootScope.$digest();
+      $scope.device.currentAction = 'herp';
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('derp') < 0).toEqual(true);
       expect(selectControls().text().indexOf('herp') >= 0).toEqual(true);
@@ -95,35 +98,40 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the binary sensor controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.binarySensor.timeStamp exists', function () {
-      $rootScope.device.binarySensor = {
+      $scope.device.binarySensor = {
         timeStamp: {}
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does not exist when device.binarySensor.timeStamp does not exist', function () {
-      $rootScope.device.binarySensor = {};
-      $rootScope.$digest();
+      $scope.device.binarySensor = {};
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('is bound to device.binarySensor', function () {
-      $rootScope.device.binarySensor = {
+      $scope.device.binarySensor = {
         value: true,
         timeStamp: {}
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('True') >= 0).toEqual(true);
       expect(selectControls().text().indexOf('False') < 0).toEqual(true);
 
-      $rootScope.device.binarySensor.value = false;
-      $rootScope.$digest();
+      $scope.device.binarySensor.value = false;
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('True') < 0).toEqual(true);
       expect(selectControls().text().indexOf('False') >= 0).toEqual(true);
@@ -137,67 +145,72 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the temperature sensor controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.temperatureSensor.value exists and device.hasThermostat() returns false', function () {
-      $rootScope.device.temperatureSensor = {
+      $scope.device.temperatureSensor = {
         value: {}
       };
-      $rootScope.hasThermostat = function () {
+      $scope.hasThermostat = function () {
         return false;
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does not exist when device.temperatureSensor.value exists and device.hasThermostat() returns true', function () {
-      $rootScope.device.temperatureSensor = {
+      $scope.device.temperatureSensor = {
         value: {}
       };
-      $rootScope.device.hasThermostat = function () {
+      $scope.device.hasThermostat = function () {
         return true;
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('does not exist when device.temperatureSensor.value does not exist and device.hasThermostat() returns true', function () {
-      $rootScope.device.temperatureSensor = {};
-      $rootScope.device.hasThermostat = function () {
+      $scope.device.temperatureSensor = {};
+      $scope.device.hasThermostat = function () {
         return true;
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('does not exist when device.temperatureSensor.value does not exist and device.hasThermostat() returns false', function () {
-      $rootScope.device.temperatureSensor = {};
-      $rootScope.device.hasThermostat = function () {
+      $scope.device.temperatureSensor = {};
+      $scope.device.hasThermostat = function () {
         return false;
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('is bound to device.temperatureSensor', function () {
-      $rootScope.device.temperatureSensor = {
+      $scope.device.temperatureSensor = {
         value: {
           value: 10
         }
       };
-      $rootScope.device.hasThermostat = function () {
+      $scope.device.hasThermostat = function () {
         return false;
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('10') >= 0).toEqual(true);
       expect(selectControls().text().indexOf('15') < 0).toEqual(true);
 
-      $rootScope.device.temperatureSensor.value.value = 15;
-      $rootScope.$digest();
+      $scope.device.temperatureSensor.value.value = 15;
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('10') < 0).toEqual(true);
       expect(selectControls().text().indexOf('15') >= 0).toEqual(true);
@@ -213,36 +226,41 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the humidity sensor controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.temperatureSensor.value exists', function () {
-      $rootScope.device.humiditySensor = {
+      $scope.device.humiditySensor = {
         value: {}
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does not exist when device.humiditySensor.value does not exist', function () {
-      $rootScope.device.temperatureSensor = {};
-      $rootScope.$digest();
+      $scope.device.temperatureSensor = {};
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('is bound to device.humiditySensor', function () {
-      $rootScope.device.humiditySensor = {
+      $scope.device.humiditySensor = {
         value: {
           value: 10
         }
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('10') >= 0).toEqual(true);
       expect(selectControls().text().indexOf('15') < 0).toEqual(true);
 
-      $rootScope.device.humiditySensor.value.value = 15;
-      $rootScope.$digest();
+      $scope.device.humiditySensor.value.value = 15;
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('10') < 0).toEqual(true);
       expect(selectControls().text().indexOf('15') >= 0).toEqual(true);
@@ -257,36 +275,41 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the illuminance sensor controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.illuminanceSensor.value exists', function () {
-      $rootScope.device.illuminanceSensor = {
+      $scope.device.illuminanceSensor = {
         value: {}
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does not exist when device.illuminanceSensor.value does not exist', function () {
-      $rootScope.device.illuminanceSensor = {};
-      $rootScope.$digest();
+      $scope.device.illuminanceSensor = {};
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('is bound to device.illuminanceSensor', function () {
-      $rootScope.device.illuminanceSensor = {
+      $scope.device.illuminanceSensor = {
         value: {
           value: 10
         }
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('10') >= 0).toEqual(true);
       expect(selectControls().text().indexOf('15') < 0).toEqual(true);
 
-      $rootScope.device.illuminanceSensor.value.value = 15;
-      $rootScope.$digest();
+      $scope.device.illuminanceSensor.value.value = 15;
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('10') < 0).toEqual(true);
       expect(selectControls().text().indexOf('15') >= 0).toEqual(true);
@@ -302,36 +325,41 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the power sensor controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.powerSensor.value exists', function () {
-      $rootScope.device.powerSensor = {
+      $scope.device.powerSensor = {
         value: {}
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does not exist when device.powerSensor.value does not exist', function () {
-      $rootScope.device.powerSensor = {};
-      $rootScope.$digest();
+      $scope.device.powerSensor = {};
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('is bound to device.powerSensor', function () {
-      $rootScope.device.powerSensor = {
+      $scope.device.powerSensor = {
         value: {
           value: 10
         }
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('10') >= 0).toEqual(true);
       expect(selectControls().text().indexOf('15') < 0).toEqual(true);
 
-      $rootScope.device.powerSensor.value.value = 15;
-      $rootScope.$digest();
+      $scope.device.powerSensor.value.value = 15;
+      $scope.$digest();
 
       expect(selectControls().text().indexOf('10') < 0).toEqual(true);
       expect(selectControls().text().indexOf('15') >= 0).toEqual(true);
@@ -347,33 +375,38 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the binary switch controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.binarySwitch.power exists', function () {
-      $rootScope.device.binarySwitch = {
+      $scope.device.binarySwitch = {
         power: "any value. not picky about value at this level of abstraction"
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does now exist when device.binarySwitch.power is undefined', function () {
-      $rootScope.device.binarySwitch = {};
-      $rootScope.$digest();
+      $scope.device.binarySwitch = {};
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('is bound to device.binarySwitch', function () {
-      $rootScope.device.binarySwitch = {
+      $scope.device.binarySwitch = {
         power: "a value that should result in no activated buttons"
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().find('.button.activated')).length = 0;
 
-      $rootScope.device.binarySwitch.power = "on";
-      $rootScope.$digest();
+      $scope.device.binarySwitch.power = "on";
+      $scope.$digest();
 
       expect(selectControls().find('.button.activated')).length = 1;
     });
@@ -385,42 +418,47 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the multilevel switch controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.multilevelSwitch.power exists', function () {
-      $rootScope.device.multilevelSwitch = {
+      $scope.device.multilevelSwitch = {
         power: 'any value. not picky about value at this level of abstraction'
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('exists when device.multilevelSwitch.power = 0 (special case)', function () {
-      $rootScope.device.multilevelSwitch = {
+      $scope.device.multilevelSwitch = {
         power: 0
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does now exist when device.multilevelSwitch.power is undefined', function () {
-      $rootScope.device.multilevelSwitch = {};
-      $rootScope.$digest();
+      $scope.device.multilevelSwitch = {};
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('is bound to device.multilevelSwitch', function () {
-      $rootScope.device.multilevelSwitch = {
+      $scope.device.multilevelSwitch = {
         power: -1
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().find('.button.activated')).length = 0;
 
-      $rootScope.device.multilevelSwitch.power = 1;
-      $rootScope.$digest();
+      $scope.device.multilevelSwitch.power = 1;
+      $scope.$digest();
 
       expect(selectControls().find('.button.activated')).length = 1;
     });
@@ -432,19 +470,24 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the color switch controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.colorSwitch.value exists', function () {
-      $rootScope.device.colorSwitch = {
+      $scope.device.colorSwitch = {
         value: {}
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does now exist when device.colorSwitch.value is undefined', function () {
-      $rootScope.device.colorSwitch = {};
-      $rootScope.$digest();
+      $scope.device.colorSwitch = {};
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
@@ -455,45 +498,50 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the thermostat controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device"></device-widget>');
+    });
 
     it('exists when device.hasThermostat() returns true', function () {
-      $rootScope.device.hasThermostat = function () {
+      $scope.device.hasThermostat = function () {
         return true;
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('does not exist when device.hasThermostat() returns false', function () {
-      $rootScope.device.hasThermostat = function () {
+      $scope.device.hasThermostat = function () {
         return false;
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('is bound to device.thermostat', function () {
-      $rootScope.device.hasThermostat = function () {
+      $scope.device.hasThermostat = function () {
         return true;
       };
-      $rootScope.device.thermostat = {
+      $scope.device.thermostat = {
         core: {
           currentAction: 'derping'
         }
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect($(element).text()).toContain('Derping');
       expect($(element).text()).not.toContain('Herping');
 
-      $rootScope.device.thermostat = {
+      $scope.device.thermostat = {
         core: {
           currentAction: 'herping'
         }
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect($(element).text()).not.toContain('Derping');
       expect($(element).text()).toContain('Herping');
@@ -501,25 +549,25 @@ describe('angular roomie.devices device-widget (directive)', function () {
     });
 
     it('is bound to device.temperatureSensor', function () {
-      $rootScope.device.hasThermostat = function () {
+      $scope.device.hasThermostat = function () {
         return true;
       };
-      $rootScope.device.temperatureSensor = {
+      $scope.device.temperatureSensor = {
         value: {
           value: 10
         }
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect($(element).text()).toContain('10');
       expect($(element).text()).not.toContain('20');
 
-      $rootScope.device.temperatureSensor = {
+      $scope.device.temperatureSensor = {
         value: {
           value: 20
         }
       };
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect($(element).text()).not.toContain('10');
       expect($(element).text()).toContain('20');
@@ -531,31 +579,35 @@ describe('angular roomie.devices device-widget (directive)', function () {
   });
 
   describe('the edit controls', function () {
+    var element;
+
+    beforeEach(function () {
+      element = compileDirective('<device-widget device="device" show-edit="showEdit"></device-widget>');
+    });
 
     it('shows them when can-edit is set to true', function () {
-      $rootScope.showEdit = true;
-      $rootScope.$digest();
+      $scope.showEdit = true;
+      $scope.$digest();
 
       expect(selectControls().length).toEqual(1);
     });
 
     it('hides them when can-edit is set to false', function () {
-      $rootScope.showEdit = false;
+      $scope.showEdit = false;
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('hides them when can-edit is not set', function () {
-      element = $compile('<device-widget device="device"></device-widget>')($rootScope);
-      $rootScope.$digest();
+      element = compileDirective('<device-widget device="device"></device-widget>');
 
       expect(selectControls().length).toEqual(0);
     });
 
     it('displays the state of the device', function () {
-      $rootScope.device.name = 'Lamp or Something';
-      element = $compile('<device-widget device="device" show-edit="true"></device-widget>')($rootScope);
-      $rootScope.$digest();
+      $scope.device.name = 'Lamp or Something';
+      $scope.showEdit = true;
+      $scope.$digest();
 
       var match = selectControls().find('*').filter(function () {
         return $(this).val() === 'Lamp or Something';
@@ -569,5 +621,13 @@ describe('angular roomie.devices device-widget (directive)', function () {
     }
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
 });

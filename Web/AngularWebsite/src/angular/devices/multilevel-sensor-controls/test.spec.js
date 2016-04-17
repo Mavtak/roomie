@@ -1,19 +1,17 @@
 describe('angular roomie.devices multilevel-sensor-controls (directive)', function () {
-  var $compile;
-  var $rootScope;
+  var $injector;
+  var $scope;
   var attributes;
   var element;
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    element = $compile('<multilevel-sensor-controls label="derp!" sensor="attributes.sensor"></multilevel-sensor-controls>')($rootScope);
-
     attributes = {
       sensor: {
         poll: jasmine.createSpy(),
@@ -25,8 +23,9 @@ describe('angular roomie.devices multilevel-sensor-controls (directive)', functi
       }
     };
 
-    $rootScope.attributes = attributes;
-    $rootScope.$digest();
+    $scope.attributes = attributes;
+
+    element = compileDirective('<multilevel-sensor-controls label="derp!" sensor="attributes.sensor"></multilevel-sensor-controls>');
   });
 
   describe('the text', function () {
@@ -84,5 +83,13 @@ describe('angular roomie.devices multilevel-sensor-controls (directive)', functi
     });
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
 });

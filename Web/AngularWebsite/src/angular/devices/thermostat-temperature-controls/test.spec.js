@@ -1,18 +1,17 @@
 ﻿describe('angular roomie.devices thermostat-temperature-controls (directive)', function () {
-  var $compile;
-  var $rootScope;
+  var $injector;
+  var $scope;
   var attributes;
   var element;
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    element = $compile('<thermostat-temperature-controls setpoints="attributes.setpoints" temperature="attributes.temperature" ></thermostat-temperature-controls>')($rootScope);
 
     attributes = {
       setpoints: {
@@ -32,8 +31,9 @@
       }
     };
 
-    $rootScope.attributes = attributes;
-    $rootScope.$digest();
+    $scope.attributes = attributes;
+
+    element = compileDirective('<thermostat-temperature-controls setpoints="attributes.setpoints" temperature="attributes.temperature" ></thermostat-temperature-controls>');
   });
 
   describe('the temperature displays', function () {
@@ -186,6 +186,14 @@
     });
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
   function selectTemperatureDisplays() {
     return $(element).find('.thermostat-controls thermostat-single-temperature-controls');

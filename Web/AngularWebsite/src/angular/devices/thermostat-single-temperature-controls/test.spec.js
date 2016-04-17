@@ -1,19 +1,17 @@
 ﻿describe('angular roomie.devices thermostat-single-temperature-controls (directive)', function () {
-  var $compile;
-  var $rootScope;
+  var $injector;
+  var $scope;
   var attributes;
   var element;
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    element = $compile('<thermostat-single-temperature-controls label="thingy" set="attributes.set" temperature="attributes.temperature"></thermostat-single-temperature-controls>')($rootScope);
-
     attributes = {
       set: jasmine.createSpy(),
       temperature: {
@@ -22,9 +20,9 @@
       }
     };
 
-    $rootScope.attributes = attributes;
+    $scope.attributes = attributes;
 
-    $rootScope.$digest();
+    element = compileDirective('<thermostat-single-temperature-controls label="thingy" set="attributes.set" temperature="attributes.temperature"></thermostat-single-temperature-controls>');
   });
 
   describe('the cooler button', function () {
@@ -89,7 +87,7 @@
     });
 
     function selectButton() {
-      $rootScope.$digest();
+      $scope.$digest();
 
       return $(element).find('.temperature .button.setpoint-button').filter(function () {
         return $(this).text().trim() === '-';
@@ -180,7 +178,7 @@
     });
 
     function selectButton() {
-      $rootScope.$digest();
+      $scope.$digest();
 
       return $(element).find('.temperature .button.setpoint-button').filter(function () {
         return $(this).text().trim() === '+';
@@ -198,5 +196,13 @@
     });
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
 });

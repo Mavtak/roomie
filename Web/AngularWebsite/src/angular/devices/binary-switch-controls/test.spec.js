@@ -1,31 +1,31 @@
 ﻿describe('angular roomie.devices binary-switch-controls (directive)', function () {
-  var $compile;
-  var $rootScope;
+  var $injector;
+  var $scope;
   var element;
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    element = $compile('<binary-switch-controls binary-switch="binarySwitch"></binary-switch-controls>')($rootScope);
+    $scope.binarySwitch = {};
 
-    $rootScope.binarySwitch = {};
+    element = compileDirective('<binary-switch-controls binary-switch="binarySwitch"></binary-switch-controls>');
   });
 
   describe('the button group', function () {
 
     it('has one', function () {
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect($(element).find('.buttonGroup').length).toEqual(1);
     });
 
     it('has two buttons', function () {
-      $rootScope.$digest();
+      $scope.$digest();
 
       expect(selectButtons().length).toEqual(2);
     });
@@ -33,7 +33,7 @@
     describe('the off button', function () {
 
       it('is the first button (identified by the label)', function () {
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectButton(0).html().trim()).toEqual('Off');
       });
@@ -41,35 +41,35 @@
       describe('activation styling', function () {
 
         it('yes when binarySwitch.power is off', function () {
-          $rootScope.binarySwitch.power = "off";
-          $rootScope.$digest();
+          $scope.binarySwitch.power = "off";
+          $scope.$digest();
 
           expect(selectButton(0).hasClass('activated')).toEqual(true);
         });
 
         it('no when binarySwitch.power is on', function () {
-          $rootScope.binarySwitch.power = "on";
-          $rootScope.$digest();
+          $scope.binarySwitch.power = "on";
+          $scope.$digest();
 
           expect(selectButton(0).hasClass('activated')).toEqual(false);
         });
 
         it('no when binarySwitch.power is Off (upper case)', function () {
-          $rootScope.binarySwitch.power = "Off";
-          $rootScope.$digest();
+          $scope.binarySwitch.power = "Off";
+          $scope.$digest();
 
           expect(selectButton(0).hasClass('activated')).toEqual(false);
         });
 
         it('no when binarySwitch.power is something unexpected', function () {
-          $rootScope.binarySwitch.power = "blam";
-          $rootScope.$digest();
+          $scope.binarySwitch.power = "blam";
+          $scope.$digest();
 
           expect(selectButton(0).hasClass('activated')).toEqual(false);
         });
 
         it('no when binarySwitch.power is undefined', function () {
-          $rootScope.$digest();
+          $scope.$digest();
 
           expect(selectButton(1).hasClass('activated')).toEqual(false);
         });
@@ -79,18 +79,18 @@
       describe('clicking', function () {
 
         it('calls binarySwitch.setPower("On") when clicked', function () {
-          $rootScope.binarySwitch.setPower = jasmine.createSpy('setPower');
-          $rootScope.$digest();
+          $scope.binarySwitch.setPower = jasmine.createSpy('setPower');
+          $scope.$digest();
 
-          expect($rootScope.binarySwitch.setPower.calls.count()).toEqual(0);
+          expect($scope.binarySwitch.setPower.calls.count()).toEqual(0);
 
           selectButton(0).click();
 
-          expect($rootScope.binarySwitch.setPower.calls.count()).toEqual(1);
+          expect($scope.binarySwitch.setPower.calls.count()).toEqual(1);
         });
 
         it('if fine if binarySwitch.setPower does not exist when clicked', function () {
-          $rootScope.$digest();
+          $scope.$digest();
 
           selectButton(0).click();
         });
@@ -102,7 +102,7 @@
     describe('the on button', function () {
 
       it('is the second button (identified by the label)', function () {
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectButton(1).html().trim()).toEqual('On');
       });
@@ -110,35 +110,35 @@
       describe('activation styling', function () {
 
         it('yes when binarySwitch.power is on', function () {
-          $rootScope.binarySwitch.power = "on";
-          $rootScope.$digest();
+          $scope.binarySwitch.power = "on";
+          $scope.$digest();
 
           expect(selectButton(1).hasClass('activated')).toEqual(true);
         });
 
         it('no when binarySwitch.power is off', function () {
-          $rootScope.binarySwitch.power = "off";
-          $rootScope.$digest();
+          $scope.binarySwitch.power = "off";
+          $scope.$digest();
 
           expect(selectButton(1).hasClass('activated')).toEqual(false);
         });
 
         it('no when binarySwitch.power is On (upper case)', function () {
-          $rootScope.binarySwitch.power = "On";
-          $rootScope.$digest();
+          $scope.binarySwitch.power = "On";
+          $scope.$digest();
 
           expect(selectButton(1).hasClass('activated')).toEqual(false);
         });
 
         it('no when binarySwitch.power is something unexpected', function () {
-          $rootScope.binarySwitch.power = "blam";
-          $rootScope.$digest();
+          $scope.binarySwitch.power = "blam";
+          $scope.$digest();
 
           expect(selectButton(1).hasClass('activated')).toEqual(false);
         });
 
         it('no when binarySwitch.power is undefined', function () {
-          $rootScope.$digest();
+          $scope.$digest();
 
           expect(selectButton(1).hasClass('activated')).toEqual(false);
         });
@@ -148,18 +148,18 @@
       describe('clicking', function () {
 
         it('calls binarySwitch.setPower("On") when clicked', function () {
-          $rootScope.binarySwitch.setPower = jasmine.createSpy('setPower');
-          $rootScope.$digest();
+          $scope.binarySwitch.setPower = jasmine.createSpy('setPower');
+          $scope.$digest();
 
-          expect($rootScope.binarySwitch.setPower.calls.count()).toEqual(0);
+          expect($scope.binarySwitch.setPower.calls.count()).toEqual(0);
 
           selectButton(1).click();
 
-          expect($rootScope.binarySwitch.setPower.calls.count()).toEqual(1);
+          expect($scope.binarySwitch.setPower.calls.count()).toEqual(1);
         });
 
         it('if fine if binarySwitch.setPower does not exist when clicked', function () {
-          $rootScope.$digest();
+          $scope.$digest();
 
           selectButton(1).click();
         });
@@ -177,5 +177,13 @@
     }
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
 });

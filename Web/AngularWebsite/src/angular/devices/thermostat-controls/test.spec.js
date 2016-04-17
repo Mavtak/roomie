@@ -1,19 +1,17 @@
 ﻿describe('angular roomie.devices thermostat-controls (directive)', function () {
-  var $compile;
-  var $rootScope;
+  var $injector;
+  var $scope;
   var attributes;
   var element;
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    element = $compile('<thermostat-controls temperature-sensor="attributes.temperatureSensor" thermostat="attributes.thermostat"></thermostat-controls>')($rootScope);
-
     attributes = {
       thermostat: {
         core: {},
@@ -21,8 +19,9 @@
       }
     };
 
-    $rootScope.attributes = attributes;
-    $rootScope.$digest();
+    $scope.attributes = attributes;
+
+    element = compileDirective('<thermostat-controls temperature-sensor="attributes.temperatureSensor" thermostat="attributes.thermostat"></thermostat-controls>');
   });
 
   describe('the thermostat-temperature-controls element', function () {
@@ -35,7 +34,7 @@
             cool: {}
           }
         };
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect($(element).find('thermostat-temperature-controls').length).toEqual(1);
       });
@@ -46,7 +45,7 @@
             heat: {}
           }
         };
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect($(element).find('thermostat-temperature-controls').length).toEqual(1);
       });
@@ -55,7 +54,7 @@
         attributes.temperatureSensor = {
           value: {}
         };
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect($(element).find('thermostat-temperature-controls').length).toEqual(1);
       });
@@ -78,21 +77,21 @@
 
       it('the "thermostat" attribute has a "core.currentAction" property', function () {
         attributes.thermostat.core.currentAction = 'derp';
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectModeControls('System Mode').length).toEqual(1);
       });
 
       it('the "thermostat" attribute has a "core.mode" property', function () {
         attributes.thermostat.core.mode = 'derping';
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectModeControls('System Mode').length).toEqual(1);
       });
 
       it('the "thermostat" attribute has a "core.supportedModes" property that is an array with more than one item', function () {
         attributes.thermostat.core.supportedModes = ['derp'];
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectModeControls('System Mode').length).toEqual(1);
       });
@@ -107,7 +106,7 @@
 
       it('none of the existance criteria are met, and the "thermostat" attribute has a "core.supportedModes" property is an empty array', function () {
         attributes.thermostat.core.supportedModes = [];
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectModeControls('System Mode').length).toEqual(0);
       });
@@ -122,21 +121,21 @@
 
       it('the "thermostat" attribute has a "fan.currentAction" property', function () {
         attributes.thermostat.fan.currentAction = 'derp';
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectModeControls('Fan Mode').length).toEqual(1);
       });
 
       it('the "thermostat" attribute has a "fan.mode" property', function () {
         attributes.thermostat.fan.mode = 'derping';
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectModeControls('Fan Mode').length).toEqual(1);
       });
 
       it('the "thermostat" attribute has a "fan.supportedModes" property that is an array with more than one item', function () {
         attributes.thermostat.fan.supportedModes = ['derp'];
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectModeControls('Fan Mode').length).toEqual(1);
       });
@@ -151,7 +150,7 @@
 
       it('none of the existance criteria are met, and the "thermostat" attribute has a "fan.supportedModes" property is an empty array', function () {
         attributes.thermostat.fan.supportedModes = [];
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(selectModeControls('Fan Mode').length).toEqual(0);
       });
@@ -159,6 +158,14 @@
     });
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
   function selectModeControls(name) {
     return $(element).find('thermostat-mode-controls').filter(function () {

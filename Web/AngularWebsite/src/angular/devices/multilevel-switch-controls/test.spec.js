@@ -1,20 +1,17 @@
 ﻿describe('angular roomie.devices multilevel-switch-controls (directive)', function () {
-  var $compile;
-  var $rootScope;
-  var element;
+  var $injector;
+  var $scope;
   var buttons;
   var givenMultilevelSwitch;
   var requestedCount;
 
   beforeEach(angular.mock.module('roomie.devices', function ($provide) {
-    $provide.factory('MultilevelSwitchButtonGenerator', function () {
-      return MockMultilevelSwitchButtonGenerator;
-    });
+    $provide.value('MultilevelSwitchButtonGenerator', MockMultilevelSwitchButtonGenerator);
   }));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
@@ -24,25 +21,25 @@
   });
 
   beforeEach(function () {
-    $rootScope.multilevelSwitch = {};
-    element = $compile('<multilevel-switch-controls multilevel-switch="multilevelSwitch"></multilevel-switch-controls>')($rootScope);
+    $scope.multilevelSwitch = {};
   });
 
   it('gives the multilevelSwitch to the MultilevelSwitchButtonGenerator', function () {
-    $rootScope.$digest();
-    expect(givenMultilevelSwitch).toBe($rootScope.multilevelSwitch);
+    compileDirective();
+
+    expect(givenMultilevelSwitch).toBe($scope.multilevelSwitch);
   });
 
   describe('the button group', function () {
 
     it('has one', function () {
-      $rootScope.$digest();
+      var element = compileDirective();
 
       expect($(element).find('.buttonGroup').length).toEqual(1);
     });
 
     it('has 11 buttons', function () {
-      $rootScope.$digest();
+      var element = compileDirective();
 
       expect(requestedCount).toEqual(11);
     });
@@ -56,11 +53,11 @@
           label: ''
         }];
 
-      $rootScope.$digest();
+      var element = compileDirective();
 
-      expect(selectButton(0).text().trim()).toEqual('herp');
-      expect(selectButton(1).text().trim()).toEqual('derp');
-      expect(selectButton(2).text().trim()).toEqual('');
+      expect(selectButton(element, 0).text().trim()).toEqual('herp');
+      expect(selectButton(element, 1).text().trim()).toEqual('derp');
+      expect(selectButton(element, 2).text().trim()).toEqual('');
     });
 
     it('pulls activated from the button generator', function () {
@@ -72,11 +69,11 @@
           activated: true
         }];
 
-      $rootScope.$digest();
+      var element = compileDirective();
 
-      expect(selectButton(0).hasClass('activated')).toEqual(true);
-      expect(selectButton(1).hasClass('activated')).toEqual(false);
-      expect(selectButton(2).hasClass('activated')).toEqual(true);
+      expect(selectButton(element, 0).hasClass('activated')).toEqual(true);
+      expect(selectButton(element, 1).hasClass('activated')).toEqual(false);
+      expect(selectButton(element, 2).hasClass('activated')).toEqual(true);
     });
 
     it('pulls target power from the button generator', function () {
@@ -88,26 +85,35 @@
           power: 37
         }];
 
-      $rootScope.multilevelSwitch.setPower = jasmine.createSpy('setPower');
+      $scope.multilevelSwitch.setPower = jasmine.createSpy('setPower');
 
-      $rootScope.$digest();
+      var element = compileDirective();
 
-      expect($rootScope.multilevelSwitch.setPower).not.toHaveBeenCalled();
+      expect($scope.multilevelSwitch.setPower).not.toHaveBeenCalled();
 
-      selectButton(1).click();
+      selectButton(element, 1).click();
 
-      expect($rootScope.multilevelSwitch.setPower).toHaveBeenCalledWith(34);
+      expect($scope.multilevelSwitch.setPower).toHaveBeenCalledWith(34);
     });
 
-    function selectButtons() {
+    function selectButtons(element) {
       return $(element).find('.buttonGroup .button').filter(':not(.button .button)');
     }
 
-    function selectButton(index) {
-      return selectButtons().eq(index).find('.button');
+    function selectButton(element, index) {
+      return selectButtons(element).eq(index).find('.button');
     }
 
   });
+
+  function compileDirective(html) {
+    html = html || '<multilevel-switch-controls multilevel-switch="multilevelSwitch"></multilevel-switch-controls>';
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
   function MockMultilevelSwitchButtonGenerator(multilevelSwitch) {
     givenMultilevelSwitch = multilevelSwitch;

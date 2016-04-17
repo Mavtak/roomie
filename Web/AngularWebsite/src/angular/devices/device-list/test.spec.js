@@ -1,140 +1,144 @@
 ﻿describe('angular roomie.devices device-list (directive)', function () {
-  var $compile;
-  var $rootScope;
-  var element;
+  var $injector;
+  var $scope;
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    element = $compile('<device-list devices="page.items"></device-list>')($rootScope);
-
-    $rootScope.page = {
+    $scope.page = {
       items: []
     };
   });
 
   it('lists out the items', function () {
-    $rootScope.$digest();
+    var element = compileDirective('<device-list devices="page.items"></device-list>');
 
-    expect(selectDeviceWidgets().length).toEqual(0);
+    expect(selectDeviceWidgets(element).length).toEqual(0);
 
-    $rootScope.page.items.push({
+    $scope.page.items.push({
       name: 'device 1'
     });
-    $rootScope.page.items.push({
+    $scope.page.items.push({
       name: 'device 2'
     });
-    $rootScope.$digest();
+    $scope.$digest();
 
-    expect(selectDeviceWidgets().length).toEqual(2);
-    expect(selectDeviceWidget(0).find('widget-header .header .name').html().trim()).toEqual('device 1');
-    expect(selectDeviceWidget(1).find('widget-header .header .name').html().trim()).toEqual('device 2');
+    expect(selectDeviceWidgets(element).length).toEqual(2);
+    expect(selectDeviceWidget(element, 0).find('widget-header .header .name').html().trim()).toEqual('device 1');
+    expect(selectDeviceWidget(element, 1).find('widget-header .header .name').html().trim()).toEqual('device 2');
 
-    $rootScope.page.items.push({
+    $scope.page.items.push({
       name: 'device 3'
     });
-    $rootScope.$digest();
+    $scope.$digest();
 
-    expect(selectDeviceWidgets().length).toEqual(3);
-    expect(selectDeviceWidget(0).find('widget-header .header .name').html().trim()).toEqual('device 1');
-    expect(selectDeviceWidget(1).find('widget-header .header .name').html().trim()).toEqual('device 2');
-    expect(selectDeviceWidget(2).find('widget-header .header .name').html().trim()).toEqual('device 3');
+    expect(selectDeviceWidgets(element).length).toEqual(3);
+    expect(selectDeviceWidget(element, 0).find('widget-header .header .name').html().trim()).toEqual('device 1');
+    expect(selectDeviceWidget(element, 1).find('widget-header .header .name').html().trim()).toEqual('device 2');
+    expect(selectDeviceWidget(element, 2).find('widget-header .header .name').html().trim()).toEqual('device 3');
   });
 
   it('includes locations', function () {
-    $rootScope.$digest();
+    var element = compileDirective('<device-list devices="page.items"></device-list>');
 
     expect(selectDeviceWidgets().length).toEqual(0);
 
-    $rootScope.page.items.push({
+    $scope.page.items.push({
       name: 'device 1',
       location: {
         name: 'a'
       }
     });
 
-    $rootScope.page.items.push({
+    $scope.page.items.push({
       name: 'device 2',
       location: {
         name: 'b/c'
       }
     });
 
-    $rootScope.page.items.push({
+    $scope.page.items.push({
       name: 'device 3',
       location: {
         name: 'b/c/d'
       }
     });
 
-    $rootScope.$digest();
+    $scope.$digest();
 
-    expect(selectDeviceWidgets().length).toEqual(3);
-    expect(selectLocationHeaderBlocks().length).toEqual(3);
+    expect(selectDeviceWidgets(element).length).toEqual(3);
+    expect(selectLocationHeaderBlocks(element).length).toEqual(3);
 
-    window.block = selectLocationHeaderBlock(0);
+    window.block = selectLocationHeaderBlock(element, 0);
 
-    expect(selectLocationHeaders(selectLocationHeaderBlock(0)).length).toEqual(1);
-    expect(selectLocationHeader(selectLocationHeaderBlock(0), 0).text()).toEqual('a');
+    expect(selectLocationHeaders(selectLocationHeaderBlock(element, 0)).length).toEqual(1);
+    expect(selectLocationHeader(selectLocationHeaderBlock(element, 0), 0).text()).toEqual('a');
 
-    expect(selectLocationHeaders(selectLocationHeaderBlock(1)).length).toEqual(2);
-    expect(selectLocationHeader(selectLocationHeaderBlock(1), 0).text()).toEqual('b');
-    expect(selectLocationHeader(selectLocationHeaderBlock(1), 1).text()).toEqual('c');
+    expect(selectLocationHeaders(selectLocationHeaderBlock(element, 1)).length).toEqual(2);
+    expect(selectLocationHeader(selectLocationHeaderBlock(element, 1), 0).text()).toEqual('b');
+    expect(selectLocationHeader(selectLocationHeaderBlock(element, 1), 1).text()).toEqual('c');
 
-    expect(selectLocationHeaders(selectLocationHeaderBlock(2)).length).toEqual(1);
-    expect(selectLocationHeader(selectLocationHeaderBlock(2), 0).text()).toEqual('d');
+    expect(selectLocationHeaders(selectLocationHeaderBlock(element, 2)).length).toEqual(1);
+    expect(selectLocationHeader(selectLocationHeaderBlock(element, 2), 0).text()).toEqual('d');
   });
 
   it('optionally filters items', function () {
-    element = $compile('<device-list devices="page.items", include="include"></device-list>')($rootScope);
-    $rootScope.$digest();
+    var element = compileDirective('<device-list devices="page.items", include="include"></device-list>');
 
-    expect(selectDeviceWidgets().length).toEqual(0);
+    expect(selectDeviceWidgets(element).length).toEqual(0);
 
-    $rootScope.page.items.push({
+    $scope.page.items.push({
       name: 'device 1'
     });
-    $rootScope.page.items.push({
+    $scope.page.items.push({
       name: 'device 2'
     });
-    $rootScope.include = function (device) {
+    $scope.include = function (device) {
       return device.name !== 'device 2';
     };
-    $rootScope.$digest();
+    $scope.$digest();
 
     //TODO test locations also
-    expect(selectDeviceWidgets().length).toEqual(1);
-    expect(selectDeviceWidget(0).find('widget-header .header .name').html().trim()).toEqual('device 1');
+    expect(selectDeviceWidgets(element).length).toEqual(1);
+    expect(selectDeviceWidget(element, 0).find('widget-header .header .name').html().trim()).toEqual('device 1');
 
-    $rootScope.page.items.push({
+    $scope.page.items.push({
       name: 'device 3'
     });
-    $rootScope.$digest();
+    $scope.$digest();
 
-    expect(selectDeviceWidgets().length).toEqual(2);
-    expect(selectDeviceWidget(0).find('widget-header .header .name').html().trim()).toEqual('device 1');
-    expect(selectDeviceWidget(1).find('widget-header .header .name').html().trim()).toEqual('device 3');
+    expect(selectDeviceWidgets(element).length).toEqual(2);
+    expect(selectDeviceWidget(element, 0).find('widget-header .header .name').html().trim()).toEqual('device 1');
+    expect(selectDeviceWidget(element, 1).find('widget-header .header .name').html().trim()).toEqual('device 3');
   });
 
-  function selectDeviceWidgets() {
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
+
+  function selectDeviceWidgets(element) {
     return $(element).find('device-widget');
   }
 
-  function selectDeviceWidget(index) {
-    return selectDeviceWidgets().eq(index);
+  function selectDeviceWidget(element, index) {
+    return selectDeviceWidgets(element, index).eq(index);
   }
 
-  function selectLocationHeaderBlocks() {
+  function selectLocationHeaderBlocks(element) {
     return $(element).find('location-header-group');
   }
 
-  function selectLocationHeaderBlock(index) {
-    return selectLocationHeaderBlocks().eq(index);
+  function selectLocationHeaderBlock(element, index) {
+    return selectLocationHeaderBlocks(element).eq(index);
   }
 
   function selectLocationHeaders(locationHeaderBlock) {

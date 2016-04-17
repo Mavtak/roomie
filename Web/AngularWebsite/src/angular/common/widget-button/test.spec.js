@@ -1,28 +1,24 @@
 ﻿describe('angular roomie.common widget-button (directive)', function () {
-  var $compile;
-  var $rootScope;
+  var $injector;
+  var $scope;
 
   beforeEach(angular.mock.module('roomie.common'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   describe('the label', function () {
 
     it('works when not set', function () {
-      var element = $compile('<widget-button></widget-button>')($rootScope);
-
-      $rootScope.$digest();
+      var element = compileDirective('<widget-button></widget-button>');
 
       expect($(element).find('.button .button').html().trim()).toEqual('');
     });
 
     it('works when set', function () {
-      var element = $compile('<widget-button label="derp"></widget-button>')($rootScope);
-
-      $rootScope.$digest();
+      var element = compileDirective('<widget-button label="derp"></widget-button>');
 
       expect($(element).find('.button .button').html().trim()).toEqual('derp');
     });
@@ -32,15 +28,13 @@
   describe('the activation event', function () {
 
     it('works when set up correctly', function () {
-      var element = $compile('<widget-button activate="thingy()"></widget-button>')($rootScope);
-
       var worked = false;
 
-      $rootScope.thingy = function () {
+      $scope.thingy = function () {
         worked = true;
       };
 
-      $rootScope.$digest();
+      var element = compileDirective('<widget-button activate="thingy()"></widget-button>');
 
       expect(worked).toEqual(false);
 
@@ -50,7 +44,7 @@
     });
 
     it('works when not set up', function () {
-      var element = $compile('<widget-button"></widget-button>')($rootScope);
+      var element = compileDirective('<widget-button"></widget-button>');
 
       $(element).find('.button .button').click();
     });
@@ -60,25 +54,19 @@
   describe('the activated styling', function () {
 
     it('works when not set', function () {
-      var element = $compile('<widget-button></widget-button>')($rootScope);
-
-      $rootScope.$digest();
+      var element = compileDirective('<widget-button></widget-button>');
 
       expect($(element).find('.button .button.activated').length).toEqual(0);
     });
 
     it('works when set to false', function () {
-      var element = $compile('<widget-button activated="false"></widget-button>')($rootScope);
-
-      $rootScope.$digest();
+      var element = compileDirective('<widget-button activated="false"></widget-button>');
 
       expect($(element).find('.button .button.activated').length).toEqual(0);
     });
 
     it('works when set to true', function () {
-      var element = $compile('<widget-button activated="true"></widget-button>')($rootScope);
-
-      $rootScope.$digest();
+      var element = compileDirective('<widget-button activated="true"></widget-button>');
 
       expect($(element).find('.button .button.activated').length).toEqual(1);
     });
@@ -88,34 +76,37 @@
   describe('the coloring', function () {
 
     it('works when not set', function () {
-      var element = $compile('<widget-button></widget-button>')($rootScope);
-
-      $rootScope.$digest();
+      var element = compileDirective('<widget-button></widget-button>');
 
       expect($(element).find('.button .button').css('background-color')).toEqual('');
     });
 
     it('works when set', function () {
-      var element = $compile('<widget-button color="red"></widget-button>')($rootScope);
-
-      $rootScope.$digest();
+      var element = compileDirective('<widget-button color="red"></widget-button>');
 
       expect($(element).find('.button .button').css('background-color')).toEqual('red');
     });
 
     it('works when changed', function () {
-      $rootScope.color = 'red';
-      var element = $compile('<widget-button color="{{color}}"></widget-button>')($rootScope);
+      $scope.color = 'red';
+      var element = compileDirective('<widget-button color="{{color}}"></widget-button>');
 
-      $rootScope.$digest();
       expect($(element).find('.button .button').css('background-color')).toEqual('red');
 
-      $rootScope.color = 'blue';
-      $rootScope.$digest();
+      $scope.color = 'blue';
+      $scope.$digest();
 
       expect($(element).find('.button .button').css('background-color')).toEqual('blue');
     });
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
 });

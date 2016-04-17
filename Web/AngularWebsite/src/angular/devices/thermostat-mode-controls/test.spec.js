@@ -1,19 +1,17 @@
 ﻿describe('angular roomie.devices thermostat-mode-controls (directive)', function () {
-  var $compile;
-  var $rootScope;
+  var $injector;
+  var $scope;
   var attributes;
   var element;
 
   beforeEach(angular.mock.module('roomie.devices'));
 
-  beforeEach(angular.mock.inject(function ($injector) {
-    $compile = $injector.get('$compile');
-    $rootScope = $injector.get('$rootScope');
+  beforeEach(angular.mock.inject(function (_$injector_) {
+    $injector = _$injector_;
+    $scope = $injector.get('$rootScope').$new();
   }));
 
   beforeEach(function () {
-    element = $compile('<thermostat-mode-controls label="The Things" modes="attributes.modes"></thermostat-mode-controls>')($rootScope);
-
     attributes = {
       modes: {
         currentAction: 'derping',
@@ -27,8 +25,9 @@
       }
     };
 
-    $rootScope.attributes = attributes;
-    $rootScope.$digest();
+    $scope.attributes = attributes;
+
+    element = compileDirective('<thermostat-mode-controls label="The Things" modes="attributes.modes"></thermostat-mode-controls>');
   });
 
   describe('the header', function () {
@@ -62,7 +61,7 @@
 
       it('is nothing if the current action is not a string', function () {
         attributes.modes.currentAction = {};
-        $rootScope.$digest();
+        $scope.$digest();
 
         expect(header.find('.secondary').text().trim()).toEqual('');
       });
@@ -87,7 +86,7 @@
 
       it('the "modes" attribute has a "supportedModes" property that is an empty array', function () {
         attributes.modes.supportedModes = [];
-        $rootScope.$digest();
+        $scope.$digest();
         var buttonGroup = selectButtonGroup();
 
         expect(buttonGroup.length).toEqual(0);
@@ -95,7 +94,7 @@
 
       it('the "modes" attribute does not have a "supportedModes" property', function () {
         delete attributes.modes.supportedModes;
-        $rootScope.$digest();
+        $scope.$digest();
         var buttonGroup = selectButtonGroup();
 
         expect(buttonGroup.length).toEqual(0);
@@ -144,5 +143,13 @@
     }
 
   });
+
+  function compileDirective(html) {
+    var $compile = $injector.get('$compile');
+    var element = $compile(html)($scope);
+    $scope.$digest();
+
+    return element;
+  }
 
 });
