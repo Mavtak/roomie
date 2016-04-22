@@ -24,6 +24,7 @@ angular.module('roomie.devices', [
 
 angular.module('roomie.devices.pages', [
   'ui.router',
+  'roomie.devices',
 ]);
 
 angular.module('roomie.help.pages', [
@@ -38,6 +39,7 @@ angular.module('roomie.tasks', [
 
 angular.module('roomie.tasks.pages', [
   'ui.router',
+  'roomie.tasks',
 ]);
 
 angular.module('roomie.users', [
