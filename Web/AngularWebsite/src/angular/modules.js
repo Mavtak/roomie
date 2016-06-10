@@ -22,9 +22,15 @@ angular.module('roomie.devices', [
   'roomie.templates',
 ]);
 
+angular.module('roomie.devices.data', [
+  'roomie.data',
+  'roomie.devices',
+]);
+
 angular.module('roomie.devices.pages', [
   'ui.router',
   'roomie.devices',
+  'roomie.devices.data',
 ]);
 
 angular.module('roomie.help.pages', [
