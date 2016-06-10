@@ -38,8 +38,16 @@
     };
 
     function forever(promiseFactory) {
-      return promiseFactory().then(function () {
-        return forever(promiseFactory);
+      var promise = promiseFactory();
+
+      if (typeof promise === 'undefined') {
+        return;
+      }
+
+      return promise.then(function () {
+          return forever(promiseFactory);
+      }, function () {
+          return forever(promiseFactory);
       });
     }
 
