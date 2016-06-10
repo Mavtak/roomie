@@ -5,15 +5,66 @@
     <meta name="theme-color" content="#4d007f">
     <meta name="msapplication-navbutton-color" content="#4d007f">
     <meta name="apple-mobile-web-app-status-bar-style" content="#4d007f">
-    <link rel="stylesheet" href="/content/styles.css?v=manual-cache-busting-strings-are-great" />
+    <style type="text/css">
+      html
+      {
+        font-family: Sans-Serif;
+        overflow-y: scroll;
+      }
+
+      body
+      {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
     <roomie-app>
-      <div style="text-align: center;">
-        <div style="display: inline-block; vertical-align: middle; height: 100%;"></div>
-        <h1 style="display: inline-block; vertical-align: middle; color: white;">loading</h1>
+      <div id="loading-screen">
+        <div class="vertical-support"></div>
+        <h1 class="text">loading</h1>
+        <style type="text/css">
+          #loading-screen
+          {
+            text-align: center;
+            font-family: sans-serif;
+            background-color: #4d007f;
+          }
+
+          #loading-screen > *
+          {
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          #loading-screen > .vertical-support
+          {
+            height: 100%;
+          }
+
+          #loading-screen > .text
+          {
+            color: white;
+          }
+
+          #loading-screen > style
+          {
+            display: none
+          }
+        </style>
       </div>
     </roomie-app>
+
+    <script type="text/javascript">
+      (function () {
+        var element = document.createElement('link');
+        element.setAttribute('rel', 'stylesheet');
+        element.setAttribute('href', '/content/styles.css?v=manual-cache-busting-strings-are-great');
+
+        document.head.appendChild(element);
+      })();
+    </script>
     <script type="text/javascript" src="/content/scripts/libraries/lodash-3.4.0.min.js"></script>
     <script type="text/javascript" src="/content/scripts/libraries/angular-1.3.13.min.js"></script>
     <script type="text/javascript" src="/content/scripts/libraries/angular-ui-router-0.2.13.min.js"></script>
