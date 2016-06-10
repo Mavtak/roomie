@@ -178,10 +178,6 @@
       <Project>{a7cca3b4-f50b-43f0-9250-673c1d6ac351}</Project>
       <Name>WebCommunicator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Web\WebHook\WebHook.csproj">
-      <Project>{f1c594d7-933b-4e72-ae4a-cc47b82f0f3c}</Project>
-      <Name>WebHook</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
