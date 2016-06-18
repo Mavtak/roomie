@@ -15,9 +15,13 @@ angular.module('roomie.devices.data').factory('AutomaticPollingDeviceListing', f
       items: []
     };
     var _locations;
+    var _ready = false;
 
     Object.defineProperty(this, 'page', {
       get: function () { return _page; }
+    });
+    Object.defineProperty(this, 'ready', {
+      get: function () { return _ready; }
     });
 
     this.run = function () { _data.run(); };
@@ -55,17 +59,13 @@ angular.module('roomie.devices.data').factory('AutomaticPollingDeviceListing', f
           deviceUtilities.parseTimestamps(x);
         },
         updateComplete: function () {
-          wholePageStatus.set('ready');
           signInState.set('signed-in');
+
+          _ready = true;
         }
       };
 
-      if (typeof _options.id === 'undefined') {
-        options.itemSelector = function (x) { return x; };
-      } else {
-        options.url += '/' + _options.id;
-        options.itemSelector = function (x) { return [x]; };
-      }
+      options.itemSelector = function (x) { return x; };
 
       return options;
     }
