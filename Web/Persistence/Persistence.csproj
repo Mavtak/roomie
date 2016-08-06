@@ -78,6 +78,7 @@
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\MultilevelSensorModel.cs" />
+    <Compile Include="Repositories\Helpers.cs" />
     <Compile Include="Repositories\ICommandDocumentationRepository.cs" />
     <Compile Include="Repositories\NetworkGuestRepositoryExtensions.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\Models\NetworkGuestModel.cs" />
