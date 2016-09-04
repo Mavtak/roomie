@@ -29,7 +29,8 @@ namespace Q42HueCommands.Commands
                 interpreter.WriteEvent("Found " + ip);
             }
 
-            var network = new Q42HueNetwork(new HomeAutomationNetworkContext(context.Engine, context.ThreadPool), ip, appData, () => interpreter.WriteEvent("Press the link button on the Hue bridge."));
+            var networkContext = new HomeAutomationNetworkContext(context.Engine, context.ThreadPool);
+            var network = new Q42HueNetwork(networkContext, ip, appData, () => interpreter.WriteEvent("Press the link button on the Hue bridge."));
             networks.Add(network);
 
             appDataRepository.Save(appData);
