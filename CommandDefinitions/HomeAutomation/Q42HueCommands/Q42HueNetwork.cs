@@ -14,20 +14,21 @@ namespace Q42HueCommands
         private readonly ILocalHueClient _client;
         private readonly List<Q42HueDevice> _devices; 
 
-        public Q42HueNetwork(HomeAutomationNetworkContext context, string ip, IAppData appData) : base(context)
+        public Q42HueNetwork(HomeAutomationNetworkContext context, string ip, IAppData appData, Action notifyPressLinkButton) : base(context)
         {
             _devices = new List<Q42HueDevice>();
             Devices = _devices;
 
             _client = new LocalHueClient(ip);
 
-            Connect(appData);
+            Connect(appData, notifyPressLinkButton);
         }
 
-        internal void Connect(IAppData appData)
+        internal void Connect(IAppData appData, Action notifyPressLinkButton)
         {
             if (appData.AppKey == null)
             {
+                notifyPressLinkButton();
                 Register(appData).Wait();                
             }
             else
