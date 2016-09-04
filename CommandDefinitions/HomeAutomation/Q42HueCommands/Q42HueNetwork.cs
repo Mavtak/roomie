@@ -28,7 +28,7 @@ namespace Q42HueCommands
         {
             if (appData.AppKey == null)
             {
-                appData.AppKey = _client.RegisterAsync(appData.AppName, appData.DeviceName).Result;
+                Register(appData).Wait();                
             }
             else
             {
@@ -43,6 +43,30 @@ namespace Q42HueCommands
             UpdateList(bridge);
             Load();
             Connected();
+        }
+
+        private async Task Register(IAppData appData)
+        {
+            var timeout = DateTime.Now.AddMinutes(1);
+            var pollingInterval = TimeSpan.FromSeconds(1);
+
+            while (DateTime.Now < timeout)
+            {
+                try
+                {
+                    appData.AppKey = await _client.RegisterAsync(appData.AppName, appData.DeviceName);
+                    return;
+                }
+                catch (Exception exception)
+                {
+                    if (exception.Message != "Link button not pressed")
+                    {
+                        throw;
+                    }
+
+                    await Task.Delay(pollingInterval);
+                }                
+            }
         }
 
         internal IEnumerable<Q42HueDevice> UpdateList(Bridge bridge)
