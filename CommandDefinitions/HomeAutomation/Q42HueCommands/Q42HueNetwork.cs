@@ -11,30 +11,28 @@ namespace Q42HueCommands
 {
     public class Q42HueNetwork : Network
     {
-        private readonly IAppData _appData;
         private readonly ILocalHueClient _client;
         private readonly List<Q42HueDevice> _devices; 
 
         public Q42HueNetwork(HomeAutomationNetworkContext context, string ip, IAppData appData) : base(context)
         {
-            _appData = appData;
             _devices = new List<Q42HueDevice>();
             Devices = _devices;
 
             _client = new LocalHueClient(ip);
 
-            Connect();
+            Connect(appData);
         }
 
-        internal void Connect()
+        internal void Connect(IAppData appData)
         {
-            if (_appData.AppKey == null)
+            if (appData.AppKey == null)
             {
-                _appData.AppKey = _client.RegisterAsync(_appData.AppName, _appData.DeviceName).Result;
+                appData.AppKey = _client.RegisterAsync(appData.AppName, appData.DeviceName).Result;
             }
             else
             {
-                _client.Initialize(_appData.AppKey);
+                _client.Initialize(appData.AppKey);
             }
             
             var bridge = _client.GetBridgeAsync().Result;
