@@ -26,7 +26,7 @@ namespace Q42HueCommands
 
         public void SetValue(IColor color)
         {
-            var command = Helpers.CreateCommand(color);
+            var command = Helpers.CreateCommand(color, _light.BackingObject);
 
             _light.SendCommand(command);
         }

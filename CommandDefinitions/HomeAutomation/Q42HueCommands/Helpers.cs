@@ -28,7 +28,7 @@ namespace Q42HueCommands
 
         public static IColor CalculateColor(Light light)
         {
-            var hexColor = "#" + light.State.ToHex();
+            var hexColor = "#" + light.ToHex();
             var result = hexColor.ToColor();
 
             return result;
@@ -75,12 +75,12 @@ namespace Q42HueCommands
             return result;
         }
 
-        public static LightCommand CreateCommand(IColor color)
+        public static LightCommand CreateCommand(IColor color, Light light)
         {
             var rgb = color.RedGreenBlue;
 
             var result = new LightCommand()
-                .SetColor(new RGBColor(rgb.Red, rgb.Green, rgb.Blue));
+                .SetColor(new RGBColor(rgb.Red, rgb.Green, rgb.Blue), light.ModelId);
 
             return result;
         }
