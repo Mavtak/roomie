@@ -8,7 +8,6 @@ using Roomie.Desktop.Engine.Commands;
 namespace Q42HueCommands.Commands
 {
     [StringParameter("IP", "")]
-    [StringParameter("Secret")]
     [Description("This command attempts to connect to a USB Z-Wave adapater.")]
     [Group("Q42Hue")]
     public class RegisterNetwork : HomeAutomationCommand
@@ -18,7 +17,9 @@ namespace Q42HueCommands.Commands
             var interpreter = context.Interpreter;
             var networks = context.Networks;
             var ip = context.ReadParameter("IP").Value;
-            var secret = context.ReadParameter("Secret").Value;
+
+            var appDataRepository = new AppDataRepository();
+            var appData = appDataRepository.Load();
 
             if (string.IsNullOrEmpty(ip))
             {
@@ -28,8 +29,10 @@ namespace Q42HueCommands.Commands
                 interpreter.WriteEvent("Found " + ip);
             }
 
-            var network = new Q42HueNetwork(new HomeAutomationNetworkContext(context.Engine, context.ThreadPool), ip, secret);
+            var network = new Q42HueNetwork(new HomeAutomationNetworkContext(context.Engine, context.ThreadPool), ip, appData);
             networks.Add(network);
+
+            appDataRepository.Save(appData);
 
             interpreter.WriteEvent("Done.");
         }

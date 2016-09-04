@@ -2,34 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Q42.HueApi;
 using Roomie.CommandDefinitions.HomeAutomationCommands;
+using Q42.HueApi.Interfaces;
 
 namespace Q42HueCommands
 {
     public class Q42HueNetwork : Network
     {
-        private const string AppName = "Roomie + Q42.HueApi";
-
-        private readonly HueClient _client;
-        private readonly string _appKey;
+        private readonly IAppData _appData;
+        private readonly ILocalHueClient _client;
         private readonly List<Q42HueDevice> _devices; 
 
-        public Q42HueNetwork(HomeAutomationNetworkContext context, string ip, string appKey) : base(context)
+        public Q42HueNetwork(HomeAutomationNetworkContext context, string ip, IAppData appData) : base(context)
         {
-            _appKey = appKey;
+            _appData = appData;
             _devices = new List<Q42HueDevice>();
             Devices = _devices;
 
-            _client = new HueClient(ip);
+            _client = new LocalHueClient(ip);
 
             Connect();
         }
 
         internal void Connect()
         {
-            _client.RegisterAsync(AppName, _appKey).Wait();
-            _client.Initialize(_appKey);
+            if (_appData.AppKey == null)
+            {
+                _appData.AppKey = _client.RegisterAsync(_appData.AppName, _appData.DeviceName).Result;
+            }
+            else
+            {
+                _client.Initialize(_appData.AppKey);
+            }
+            
             var bridge = _client.GetBridgeAsync().Result;
 
             Address = "Hue-" + bridge.Config.MacAddress.Replace(":", "");

@@ -1,5 +1,7 @@
 ﻿using System;
 using Q42.HueApi;
+using Q42.HueApi.ColorConverters;
+using Q42.HueApi.ColorConverters.OriginalWithModel;
 using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation.BinarySwitches;
 using Utilities = Roomie.Common.HomeAutomation.Utilities;
@@ -78,7 +80,7 @@ namespace Q42HueCommands
             var rgb = color.RedGreenBlue;
 
             var result = new LightCommand()
-                .SetColor(rgb.Red, rgb.Green, rgb.Blue);
+                .SetColor(new RGBColor(rgb.Red, rgb.Green, rgb.Blue));
 
             return result;
         }

@@ -61,7 +61,7 @@ namespace Q42HueCommands
 
             if (oldBackingObject.State.IsReachable != newBackingObject.State.IsReachable)
             {
-                AddEvent(newBackingObject.State.IsReachable ? DeviceEvent.Found(this, null) : DeviceEvent.Lost(this, null));
+                AddEvent(newBackingObject.State.IsReachable == true ? DeviceEvent.Found(this, null) : DeviceEvent.Lost(this, null));
             }
 
             if (Helpers.CalculatePower(oldBackingObject) != Helpers.CalculatePower(newBackingObject))
