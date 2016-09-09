@@ -53,23 +53,33 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
         public void Save()
         {
             var filename = CalculateSavedFilename();
-            var writer = XmlWriter.Create(filename);
-            writer.WriteStartDocument();
-            this.ToXElement().WriteTo(writer);
-            writer.WriteEndDocument();
-            writer.Close();
+            var elements = this.ToXElement();
+
+            using (var stream = Context.StreamStore.OpenWrite(filename))
+            {
+                var writer = XmlWriter.Create(stream);
+                writer.WriteStartDocument();
+                elements.WriteTo(writer);
+                writer.WriteEndDocument();
+                writer.Close();
+            }
         }
 
         public void Load()
         {
             var filename = CalculateSavedFilename();
+            XElement element;
 
-            if (!System.IO.File.Exists(filename))
+            using (var stream = Context.StreamStore.OpenRead(filename))
             {
-                return;
+                if (stream == null)
+                {
+                    return;
+                }
+
+                element = XElement.Load(stream);
             }
 
-            var element = XElement.Load(filename);
             var networkState = element.ToNetworkState();
 
             foreach (var deviceState in networkState.DeviceStates)

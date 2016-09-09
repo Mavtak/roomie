@@ -3,6 +3,7 @@ using Roomie.Common.HomeAutomation.Events;
 using Roomie.Common.ScriptingLanguage;
 using Roomie.Common.Triggers;
 using Roomie.Desktop.Engine;
+using Roomie.Desktop.Engine.StreamStorage;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {
@@ -10,6 +11,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
     {
         public ThreadPool ThreadPool { get; private set; }
         public IMasterHistory History { get; private set; }
+        public IStreamStore StreamStore => _engine.StreamStore;
         public ITriggerCollection Triggers { get; private set; }
         private readonly RoomieEngine _engine;
 
