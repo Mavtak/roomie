@@ -1,6 +1,7 @@
 ﻿using System;
 using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine.Parameters;
+using Roomie.Desktop.Engine.StreamStorage;
 
 namespace Roomie.Desktop.Engine
 {
@@ -31,6 +32,13 @@ namespace Roomie.Desktop.Engine
             get
             {
                 return Engine.DataStore;
+            }
+        }
+        public IStreamStore StreamStore
+        {
+            get
+            {
+                return Engine.StreamStore;
             }
         }
         public HierarchicalVariableScope GlobalScope

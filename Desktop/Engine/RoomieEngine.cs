@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Roomie.Desktop.Engine.Delegates;
+using Roomie.Desktop.Engine.StreamStorage;
 
 namespace Roomie.Desktop.Engine
 {
@@ -12,6 +13,7 @@ namespace Roomie.Desktop.Engine
         public readonly RoomieCommandLibrary CommandLibrary;
         public readonly bool DevelopmentEnvironment;
         public readonly DataStore DataStore;
+        public readonly IStreamStore StreamStore;
         public readonly ArgumentTypeCollection ArgumentTypes;
         private EngineState _engineState;
 
@@ -27,6 +29,7 @@ namespace Roomie.Desktop.Engine
             _engineState = EngineState.New;
             GlobalScope = new HierarchicalVariableScope();
             DataStore = new DataStore();
+            StreamStore = new BasicStreamStore();
             ThreadPools = new List<ThreadPool>();
             Threads = CreateThreadPool("Root Threads");
             CommandLibrary = new RoomieCommandLibrary();

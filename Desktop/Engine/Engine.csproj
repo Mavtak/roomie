@@ -132,6 +132,8 @@
     <Compile Include="EngineStartup.cs" />
     <Compile Include="StartupCommand.cs" />
     <Compile Include="Delegates\TerminalOutputEventArgs.cs" />
+    <Compile Include="StreamStorage\IStreamStore.cs" />
+    <Compile Include="StreamStorage\BasicStreamStore.cs" />
     <Compile Include="ThreadPool.cs" />
     <Compile Include="WorkQueues\ParallelWorkQueue.cs" />
     <Compile Include="WorkQueues\WorkQueue.cs" />
