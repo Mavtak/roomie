@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
+using Roomie.Desktop.Engine.StreamStorage;
 
 namespace Q42HueCommands
 {
@@ -8,40 +9,55 @@ namespace Q42HueCommands
     {
         private const string Filename = "Q42HueAppSettings.json";
 
+        private IStreamStore _streamStore;
+
+        public AppDataRepository(IStreamStore streamStore)
+        {
+            _streamStore = streamStore;
+        }
+
         public IAppData Load()
         {
-            try
-            {
-                return LoadFromFile();
-            }
-            catch(FileNotFoundException)
-            {
-                var result = CreateNew();
-                Save(result);
+            var result = LoadFromFile();
 
-                return result;
+            if (result == null)
+            {
+                result = CreateNew();
+                Save(result);
             }
+
+            return result;
+
         }
 
         public void Save(IAppData appData)
         {
             var serializer = new JsonSerializer();
 
-            using (var streamWriter = new StreamWriter(Filename))
+            using (var stream = _streamStore.OpenWrite(Filename))
+            using (var streamWriter = new StreamWriter(stream))
             using (var jsonTextWriter = new JsonTextWriter(streamWriter))
             {
                 serializer.Serialize(jsonTextWriter, appData);
             }
         }
 
-        private static AppData LoadFromFile()
+        private AppData LoadFromFile()
         {
             var serializer = new JsonSerializer();
 
-            using (var streamReader = new StreamReader(Filename))
-            using (var jsonTextReader = new JsonTextReader(streamReader))
+            using (var stream = _streamStore.OpenRead(Filename))
             {
-                return serializer.Deserialize<AppData>(jsonTextReader);
+                if (stream == null)
+                {
+                    return null;
+                }
+
+                using (var streamReader = new StreamReader(stream))
+                using (var jsonTextReader = new JsonTextReader(streamReader))
+                {
+                    return serializer.Deserialize<AppData>(jsonTextReader);
+                }
             }
         }
 

@@ -16,9 +16,10 @@ namespace Q42HueCommands.Commands
         {
             var interpreter = context.Interpreter;
             var networks = context.Networks;
+            var streamStore = context.StreamStore;
             var ip = context.ReadParameter("IP").Value;
 
-            var appDataRepository = new AppDataRepository();
+            var appDataRepository = new AppDataRepository(streamStore);
             var appData = appDataRepository.Load();
 
             if (string.IsNullOrEmpty(ip))
