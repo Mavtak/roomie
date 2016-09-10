@@ -39,5 +39,33 @@ namespace Roomie.Desktop.Engine.StreamStorage
 
             return File.Open(path, FileMode.Create);
         }
+
+        public void Rename(string oldName, string newName)
+        {
+            var oldPath = Path.Combine(StorageFolder, oldName);
+            var newPath = Path.Combine(StorageFolder, newName);
+
+            try
+            {
+                File.Move(oldPath, newPath);
+            }
+            catch (IOException exception)
+            {
+                if (exception is FileNotFoundException)
+                {
+                    throw;
+                }
+
+                if (File.Exists(newPath))
+                {
+                    File.Delete(newPath);
+                    File.Move(oldPath, newPath);
+
+                    return;
+                }
+
+                throw;
+            }
+        }
     }
 }

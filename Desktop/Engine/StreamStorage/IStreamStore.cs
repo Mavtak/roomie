@@ -6,5 +6,6 @@ namespace Roomie.Desktop.Engine.StreamStorage
     {
         Stream OpenRead(string name);
         Stream OpenWrite(string name);
+        void Rename(string oldName, string newName);
     }
 }
