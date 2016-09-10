@@ -29,7 +29,7 @@ namespace Roomie.Desktop.Engine
             _engineState = EngineState.New;
             GlobalScope = new HierarchicalVariableScope();
             DataStore = new DataStore();
-            StreamStore = new BasicStreamStore();
+            StreamStore = new SafeWritingStreamStore(new BasicStreamStore());
             ThreadPools = new List<ThreadPool>();
             Threads = CreateThreadPool("Root Threads");
             CommandLibrary = new RoomieCommandLibrary();
