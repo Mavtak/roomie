@@ -6,6 +6,13 @@ namespace Roomie.Desktop.Engine.StreamStorage
     {
         private const string StorageFolder = "saved data";
 
+        public void Delete(string name)
+        {
+            var path = Path.Combine(StorageFolder, name);
+
+            File.Delete(path);
+        }
+
         public Stream OpenRead(string name)
         {
             var path = Path.Combine(StorageFolder, name);

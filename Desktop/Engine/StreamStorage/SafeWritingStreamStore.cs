@@ -12,6 +12,11 @@ namespace Roomie.Desktop.Engine.StreamStorage
             _streamStore = streamStore;
         }
 
+        public void Delete(string name)
+        {
+            _streamStore.Delete(name);
+        }
+
         public Stream OpenRead(string name)
         {
             return _streamStore.OpenRead(name);
