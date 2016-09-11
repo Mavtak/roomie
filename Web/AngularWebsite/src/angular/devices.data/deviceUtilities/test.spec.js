@@ -1,4 +1,4 @@
-fdescribe('angular roomie.devices.data deviceUtilities (factory)', function () {
+describe('angular roomie.devices.data deviceUtilities (factory)', function () {
   var $http;
   var subject;
 
