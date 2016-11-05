@@ -1,4 +1,4 @@
-fdescribe('angular roomie.devices getNewModeToToggleSetpoint (factory)', function () {
+describe('angular roomie.devices getNewModeToToggleSetpoint (factory)', function () {
 
   var $injector;
 
