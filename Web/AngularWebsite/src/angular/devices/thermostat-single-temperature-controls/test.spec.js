@@ -1,4 +1,4 @@
-﻿describe('angular roomie.devices thermostat-single-temperature-controls (directive)', function () {
+﻿fdescribe('angular roomie.devices thermostat-single-temperature-controls (directive)', function () {
   var $injector;
   var $scope;
   var attributes;
@@ -17,12 +17,13 @@
       temperature: {
         value: 12.55,
         units: 'McDerps'
-      }
+      },
+      toggle: jasmine.createSpy('toggle')
     };
 
     $scope.attributes = attributes;
 
-    element = compileDirective('<thermostat-single-temperature-controls label="thingy" set="attributes.set" temperature="attributes.temperature"></thermostat-single-temperature-controls>');
+    element = compileDirective('<thermostat-single-temperature-controls label="thingy" set="attributes.set" temperature="attributes.temperature" toggle="attributes.toggle" active="attributes.active"></thermostat-single-temperature-controls>');
   });
 
   describe('the cooler button', function () {
@@ -96,22 +97,99 @@
 
   });
 
-  describe('the temperature display', function () {
+  describe('the main display', function () {
 
     it('exists', function () {
-      var display = selectDisplay();
-
-      expect(display.length).toEqual(1);
+      expect(selectDisplay().length).toEqual(1);
     });
 
-    it('formats the temperature', function () {
-      var display = selectDisplay();
+    describe('the temperature', function () {
 
-      expect(display.text().trim()).toEqual('12.55°M');
+      it('exists', function () {
+        expect(selectDisplay().find('.value').length).toEqual(1);
+      });
+
+      it('formats the temperature', function () {
+        expect(selectDisplay().find('.value').text().trim()).toEqual('12.55°M');
+      });
+
+    });
+
+    describe('the label', function () {
+
+      it('exists', function () {
+        expect(selectDisplay().find('.description').length).toEqual(1);
+      });
+
+      it('includes the passed label', function () {
+        expect(selectDisplay().find('.description').text().trim()).toEqual('thingy');
+      });
+
+    });
+
+    describe('the button', function () {
+
+      describe('when toggle function is not supplied', function () {
+
+        beforeEach(function () {
+          delete attributes.toggle;
+
+          $scope.$digest();
+        });
+
+        it('does not have a button class', function () {
+          expect(selectDisplay().children().hasClass('button')).toEqual(false);
+        });
+
+        it('does not have a toggle class', function () {
+          expect(selectDisplay().children().hasClass('toggle')).toEqual(false);
+        });
+
+      });
+
+      describe('when toggle function is supplied', function () {
+
+        it('does have a button class', function () {
+          expect(selectDisplay().children().hasClass('button')).toEqual(true);
+        });
+
+        it('does have a toggle class', function () {
+          expect(selectDisplay().children().hasClass('toggle')).toEqual(true);
+        });
+
+        describe('when it is clicked', function () {
+
+          it('calls the toggle function', function () {
+            expect(attributes.toggle).not.toHaveBeenCalled();
+
+            selectDisplay().children().click();
+
+            expect(attributes.toggle).toHaveBeenCalled();
+          });
+
+        });
+
+      });
+
+      it('reflects the active value', function () {
+        delete attributes.active;
+        $scope.$digest();
+        expect(selectDisplay().children().hasClass('active')).toEqual(false);
+
+
+        attributes.active = true;
+        $scope.$digest();
+        expect(selectDisplay().children().hasClass('active')).toEqual(true);
+
+        attributes.active = false;
+        $scope.$digest();
+        expect(selectDisplay().children().hasClass('active')).toEqual(false);
+      });
+
     });
 
     function selectDisplay() {
-      return $(element).find('.temperature .value');
+      return $(element).find('.temperature .section.main-display');
     }
 
   });
@@ -184,16 +262,6 @@
         return $(this).text().trim() === '+';
       });
     }
-
-  });
-
-  describe('the label', function () {
-
-    it('exists', function () {
-      var actual = $(element).find('.temperature .description').text().trim();
-
-      expect(actual).toEqual('thingy');
-    });
 
   });
 

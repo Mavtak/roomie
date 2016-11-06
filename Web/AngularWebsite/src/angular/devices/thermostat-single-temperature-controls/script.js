@@ -1,11 +1,15 @@
-﻿angular.module('roomie.devices').directive('thermostatSingleTemperatureControls', function () {
+﻿angular.module('roomie.devices').directive('thermostatSingleTemperatureControls', function (
+  getNewModeToToggleSetpoint
+) {
 
   return {
     restrict: 'E',
     scope: {
       'label': '@label',
       'set': '=set',
-      'temperature': '=temperature'
+      'temperature': '=temperature',
+      'toggle': '=toggle',
+      'active': '=active'
     },
     link: link,
     templateUrl: 'devices/thermostat-single-temperature-controls/template.html',

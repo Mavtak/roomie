@@ -75,6 +75,14 @@
     border-bottom: none;
 }
 
+.widget .thermostat-controls .temperature .section .toggle
+{
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    cursor: pointer;
+}
+
 .widget .content > :first-child,
 .widget .content > :first-child > :first-child,
 .widget .content thermostat-controls > :first-child > :first-child
@@ -292,32 +300,43 @@
     font-style: italic;
 }
 
+.widget .thermostat-controls *
+{
+    box-sizing: border-box;
+}
+
 .widget .thermostat-controls .temperature
 {
     display: inline-block;
     width: 33.333333%;
-    box-sizing: border-box;
     min-width: 50px;
-    vertical-align: middle;
+}
+
+.widget .thermostat-controls .temperature .section
+{
+    display: inline-block;
+    width: 30%;
     text-align: center;
+    vertical-align: top;
+}
+
+.widget .thermostat-controls .temperature .section.main-display
+{
+    width: 40%;
 }
 
 .widget .thermostat-controls .temperature .value,
 .widget .thermostat-controls .temperature .setpoint-button
 {
-    display: inline-block;
+    border: none;
     font-size: 150%;
-    width: 40%;
     height: 1.2em;
 }
 
-.widget .thermostat-controls .temperature .description
+.widget .thermostat-controls .temperature .section .description,
+.widget .thermostat-controls .temperature .section .value,
+.widget .thermostat-controls .temperature .section .button
 {
-    border: none;
-}
-
-.widget .thermostat-controls .temperature .setpoint-button
-{
-    border: none;
-    width: 30%;
+    display: block;
+    width: 100%;
 }

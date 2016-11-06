@@ -19,7 +19,8 @@
     background-color: transparent;
     float: none;
 }
-.widget .button.activated
+.widget .button.activated,
+.widget .thermostat-controls .temperature .toggle.active
 {
     background-color: rgba(0, 0, 0, .2);
 }

@@ -1,28 +1,45 @@
 <div
   class="temperature"
   >
-  <button
-    class="button setpoint-button"
-    ng-click="colder()"
-    ng-if="canSet()"
-    >
-    -
-  </button>
   <div
-    class="value"
+    class="section"
     >
-    {{format(temperature)}}
+    <button
+      class="button setpoint-button"
+      ng-click="colder()"
+      ng-if="canSet()"
+      >
+      -
+    </button>
   </div>
-  <button
-    class="button setpoint-button"
-    ng-click="hotter()"
-    ng-if="canSet()"
-    >
-    +
-  </button>
   <div
-    class="description"
+    class="section main-display"
     >
-    {{label}}
+    <div
+      ng-class="{active: active, button: toggle, toggle: toggle}"
+      ng-click="toggle()"
+      >
+      <div
+        class="value"
+        >
+        {{format(temperature)}}
+      </div>
+      <div
+        class="description"
+        >
+        {{label}}
+      </div>
+    </div>
+  </div>
+  <div
+    class="section"
+    >
+    <button
+      class="section button setpoint-button"
+      ng-click="hotter()"
+      ng-if="canSet()"
+      >
+      +
+    </button>
   </div>
 </div>
