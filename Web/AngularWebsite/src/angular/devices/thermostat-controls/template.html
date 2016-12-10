@@ -1,7 +1,8 @@
 <thermostat-temperature-controls
-  ng-if="!!thermostat.setpoints.cool || !!thermostat.setpoints.heat || !!temperatureSensor.value"
+  ng-if="!!thermostat.setpoints.cool || !!thermostat.setpoints.heat || !!temperatureSensor.value || !!thermostat.core.mode"
   temperature="temperatureSensor.value"
   setpoints="thermostat.setpoints"
+  core="thermostat.core"
   >
 </thermostat-temperature-controls>
 <thermostat-mode-controls

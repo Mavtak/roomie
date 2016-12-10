@@ -13,6 +13,7 @@
 
   beforeEach(function () {
     attributes = {
+      temperatureSensor: {},
       thermostat: {
         core: {},
         fan: {}
@@ -43,6 +44,17 @@
         attributes.thermostat = {
           setpoints: {
             heat: {}
+          }
+        };
+        $scope.$digest();
+
+        expect($(element).find('thermostat-temperature-controls').length).toEqual(1);
+      });
+
+      it('the "thermostat" attribute has a "core.mode" property', function () {
+        attributes.thermostat = {
+          core: {
+            mode: {}
           }
         };
         $scope.$digest();
