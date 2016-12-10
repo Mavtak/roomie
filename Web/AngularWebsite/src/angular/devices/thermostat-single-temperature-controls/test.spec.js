@@ -1,4 +1,4 @@
-﻿fdescribe('angular roomie.devices thermostat-single-temperature-controls (directive)', function () {
+﻿describe('angular roomie.devices thermostat-single-temperature-controls (directive)', function () {
   var $injector;
   var $scope;
   var attributes;
