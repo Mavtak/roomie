@@ -46,6 +46,7 @@ namespace Roomie.Web.Persistence.Models
             var result = new User
             {
                 Alias = username,
+                RegisteredTimestamp = DateTime.UtcNow,
                 Secret = secret,
                 Token = token
             };
