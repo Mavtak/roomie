@@ -3,8 +3,15 @@
   var $scope;
   var attributes;
   var element;
+  var getNewModeToToggleSetpoint;
 
-  beforeEach(angular.mock.module('roomie.devices'));
+  beforeEach(angular.mock.module('roomie.devices', function ($provide) {
+    getNewModeToToggleSetpoint = jasmine.createSpy('getNewModeToToggleSetpoint');
+
+    getNewModeToToggleSetpoint.and.returnValue('some-new-mode');
+
+    $provide.value('getNewModeToToggleSetpoint', getNewModeToToggleSetpoint);
+  }));
 
   beforeEach(angular.mock.inject(function (_$injector_) {
     $injector = _$injector_;
@@ -28,12 +35,16 @@
       temperature: {
         value: 30,
         units: 'McDerps'
+      },
+      core: {
+        mode: 'some-current-mode',
+        set: jasmine.createSpy()
       }
     };
 
     $scope.attributes = attributes;
 
-    element = compileDirective('<thermostat-temperature-controls setpoints="attributes.setpoints" temperature="attributes.temperature" ></thermostat-temperature-controls>');
+    element = compileDirective('<thermostat-temperature-controls setpoints="attributes.setpoints" temperature="attributes.temperature" core="attributes.core"></thermostat-temperature-controls>');
   });
 
   describe('the temperature displays', function () {
@@ -51,6 +62,50 @@
 
         expect(display.find('.value').text()).toContain('25');
         expect(display.find('.description').text()).toContain('Heat');
+      });
+
+      describe('the main button', function () {
+
+        it('toggles the setpoint by changing the mode', function () {
+            var button = selectTemperatureDisplay(0).find('.button');
+
+            button.click();
+
+            expect(getNewModeToToggleSetpoint).toHaveBeenCalledWith('some-current-mode', 'heat');
+            expect(attributes.core.set).toHaveBeenCalledWith('some-new-mode');
+        });
+
+        describe('active styling', function () {
+
+          it('shows as active when code.mode = "heat"', function () {
+            attributes.core.mode = 'heat';
+            var button = selectTemperatureDisplayButton(0);
+
+            $scope.$digest();
+
+            expect(button.hasClass('active')).toEqual(true);
+          });
+
+          it('shows as inactive when code.mode = "cool"', function () {
+            attributes.core.mode = 'cool';
+            var button = selectTemperatureDisplayButton(0);
+
+            $scope.$digest();
+
+            expect(button.hasClass('active')).toEqual(false);
+          });
+
+          it('shows as active when code.mode = "auto"', function () {
+            attributes.core.mode = 'auto';
+            var button = selectTemperatureDisplayButton(0);
+
+            $scope.$digest();
+
+            expect(button.hasClass('active')).toEqual(true);
+          });
+
+        });
+
       });
 
       describe('the cooler button', function () {
@@ -139,6 +194,50 @@
         expect(display.find('.description').text()).toContain('Cool');
       });
 
+      describe('the main button', function () {
+
+        it('toggles the setpoint by changing the mode', function () {
+            var button = selectTemperatureDisplayButton(2);
+
+            button.click();
+
+            expect(getNewModeToToggleSetpoint).toHaveBeenCalledWith('some-current-mode', 'cool');
+            expect(attributes.core.set).toHaveBeenCalledWith('some-new-mode');
+        });
+
+        describe('active styling', function () {
+
+          it('shows as inactive when code.mode = "heat"', function () {
+            attributes.core.mode = 'heat';
+            var button = selectTemperatureDisplayButton(2);
+
+            $scope.$digest();
+
+            expect(button.hasClass('active')).toEqual(false);
+          });
+
+          it('shows as active when code.mode = "cool"', function () {
+            attributes.core.mode = 'cool';
+            var button = selectTemperatureDisplayButton(2);
+
+            $scope.$digest();
+
+            expect(button.hasClass('active')).toEqual(true);
+          });
+
+          it('shows as active when code.mode = "auto"', function () {
+            attributes.core.mode = 'auto';
+            var button = selectTemperatureDisplayButton(2);
+
+            $scope.$digest();
+
+            expect(button.hasClass('active')).toEqual(true);
+          });
+
+        });
+
+      });
+
       describe('the cooler button', function () {
 
         it('sets the heat setpoint to cooler', function () {
@@ -201,6 +300,10 @@
 
   function selectTemperatureDisplay(index) {
     return selectTemperatureDisplays().eq(index);
+  }
+
+  function selectTemperatureDisplayButton(index) {
+    return selectTemperatureDisplay(index).find('.button');
   }
 
   function selectSetpointButton(index, label) {

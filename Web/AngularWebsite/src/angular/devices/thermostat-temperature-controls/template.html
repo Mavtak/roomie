@@ -5,6 +5,9 @@
     label="Heat"
     set="setHeat"
     temperature="setpoints.heat"
+    mode="core.mode"
+    toggle="toggleHeat"
+    active="core.mode === 'heat' || core.mode ==='auto'"
     >
   </thermostat-single-temperature-controls>
   <thermostat-single-temperature-controls
@@ -16,6 +19,9 @@
     label="Cool"
     set="setCool"
     temperature="setpoints.cool"
+    mode="core.mode"
+    toggle="toggleCool"
+    active="core.mode === 'cool' || core.mode ==='auto'"
     >
   </thermostat-single-temperature-controls>
 </div>
