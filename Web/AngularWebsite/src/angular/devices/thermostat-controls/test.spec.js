@@ -83,50 +83,6 @@
 
   });
 
-  describe('the thermostat-mode-controls element for the system mode', function () {
-
-    describe('existance criteria', function () {
-
-      it('the "thermostat" attribute has a "core.currentAction" property', function () {
-        attributes.thermostat.core.currentAction = 'derp';
-        $scope.$digest();
-
-        expect(selectModeControls('System Mode').length).toEqual(1);
-      });
-
-      it('the "thermostat" attribute has a "core.mode" property', function () {
-        attributes.thermostat.core.mode = 'derping';
-        $scope.$digest();
-
-        expect(selectModeControls('System Mode').length).toEqual(1);
-      });
-
-      it('the "thermostat" attribute has a "core.supportedModes" property that is an array with more than one item', function () {
-        attributes.thermostat.core.supportedModes = ['derp'];
-        $scope.$digest();
-
-        expect(selectModeControls('System Mode').length).toEqual(1);
-      });
-
-    });
-
-    describe('nonexistance criteria', function () {
-
-      it('none of the existance criteria are met', function () {
-        expect(selectModeControls('System Mode').length).toEqual(0);
-      });
-
-      it('none of the existance criteria are met, and the "thermostat" attribute has a "core.supportedModes" property is an empty array', function () {
-        attributes.thermostat.core.supportedModes = [];
-        $scope.$digest();
-
-        expect(selectModeControls('System Mode').length).toEqual(0);
-      });
-
-    });
-
-  });
-
   describe('the thermostat-mode-controls element for the fan mode', function () {
 
     describe('existance criteria', function () {
