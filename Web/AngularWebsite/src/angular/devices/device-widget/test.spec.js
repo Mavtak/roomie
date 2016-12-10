@@ -38,8 +38,24 @@ describe('angular roomie.devices device-widget (directive)', function () {
       expect($(element).find('.widget widget-header .header').attr('href')).toEqual('#/devices/123');
     });
 
-    it('has no subtitle', function () {
-      expect($(element).find('.widget widget-header .header .location').html().trim()).toEqual('');
+    describe('the subtitle', function () {
+
+      it('usually has none', function () {
+        expect($(element).find('.widget widget-header .header .location').html().trim()).toEqual('');
+      });
+
+      it('has one for thermostats', function () {
+        $scope.device.thermostat = {
+          core: {
+            currentAction: 'derping'
+          }
+        };
+
+        $scope.$digest();
+
+        expect($(element).find('.widget widget-header .header .location').html().trim()).toEqual('Currently Derping');
+      });
+
     });
 
     it('sets the disconnected property', function () {
