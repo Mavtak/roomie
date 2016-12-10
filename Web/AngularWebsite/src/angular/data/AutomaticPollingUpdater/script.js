@@ -53,7 +53,7 @@
 
     function wait() {
       return $timeout(function () {
-      }, 500);
+      }, 1000);
     }
   }
 
