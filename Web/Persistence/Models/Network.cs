@@ -63,7 +63,7 @@ namespace Roomie.Web.Persistence.Models
             Address = address;
             AttatchedComputer = attatchedComputer;
 
-            if (Devices != null)
+            if (devices != null)
             {
                 Devices = SortDevices(devices);
             }
