@@ -1,0 +1,34 @@
+<widget>
+  <widget-header
+    title="{{network.name}}"
+    description="{{network.address}}"
+    href="#/networks/{{network.id}}"
+    >
+  </widget-header>
+  <widget-data-section>
+    <key-value
+      key="Devices"
+      value="{{network.devices.length}}"
+      >
+    </key-value>
+    <key-value
+      key="Last Ping"
+      value="{{network.lastPing}}"
+      >
+    </key-value>
+    <key-value
+      key="Computer"
+      value="{{network.attatchedComputer.name}}"
+      href="/computer/{{network.attatchedComputer.id}}/{{network.attatchedComputer.name}}"
+      >
+    </key-value>
+  </widget-data-section>
+
+  <widget-header
+    title="{{device.name}}"
+    description="{{network.location}}"
+    href="#/devices/{{device.id}}"
+    ng-repeat="device in network.devices"
+    >
+  </widget-header>
+</widget>
