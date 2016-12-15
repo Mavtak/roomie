@@ -2,6 +2,7 @@
   'roomie.devices',
   'roomie.devices.pages',
   'roomie.help.pages',
+  'roomie.networks',
   'roomie.networks.pages',
   'roomie.tasks',
   'roomie.tasks.pages',
@@ -39,7 +40,13 @@ angular.module('roomie.help.pages', [
   'roomie.templates',
 ]);
 
+angular.module('roomie.networks', [
+  'roomie.common',
+  'roomie.templates',
+]);
+
 angular.module('roomie.networks.pages', [
+  'roomie.networks',
   'ui.router',
 ]);
 
