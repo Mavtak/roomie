@@ -31,4 +31,16 @@
     ng-repeat="device in network.devices"
     >
   </widget-header>
+  <widget-button-group>
+    <widget-button
+      label="Add Device"
+      activate="addDevice()"
+      >
+    </widget-button>
+    <widget-button
+      label="Remove Device"
+      activate="removeDevice()"
+      >
+    </widget-button>
+  </widget-button-group>
 </widget>
