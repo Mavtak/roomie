@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web.Http;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 
@@ -28,6 +30,57 @@ namespace Roomie.Web.Website.Controllers.Api
             var result = GetSerializableVersion(network);
 
             return result;
+        }
+
+        public void Put(int id, [FromBody] NetworkUpdateModel update)
+        {
+            update = update ?? new NetworkUpdateModel();
+
+            var network = this.SelectNetwork(id);
+
+            network.UpdateName(update.Name);
+            Database.Networks.Update(network);
+        }
+
+        public void Post(int id, string action)
+        {
+            var network = this.SelectNetwork(id);
+
+            switch (action)
+            {
+                case "add-device":
+                    NetworkAction(network, "AddDevice");
+                    break;
+
+                case "remove-device":
+                    NetworkAction(network, "RemoveDevice");
+                    break;
+
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        private void Delete(int id)
+        {
+            var network = this.SelectNetwork(id);
+
+            foreach (var device in Database.Devices.Get(network))
+            {
+                Database.Devices.Remove(device);
+            }
+
+            Database.Networks.Remove(network);
+
+        }
+
+        private void NetworkAction(Network network, string action)
+        {
+            this.AddTask(
+                computer: network.AttatchedComputer,
+                origin: "RoomieBot",
+                scriptText: $"<HomeAutomation.{action} Network=\"{network.Address}\" />\n<HomeAutomation.SyncWithCloud />"
+                );
         }
         
         private static Network GetSerializableVersion(Network network)
