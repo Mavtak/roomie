@@ -1,4 +1,5 @@
 ﻿angular.module('roomie.app', [
+  'roomie.computers.pages',
   'roomie.devices',
   'roomie.devices.pages',
   'roomie.help.pages',
@@ -12,6 +13,10 @@
 
 angular.module('roomie.common', [
    'roomie.templates',
+]);
+
+angular.module('roomie.computers.pages', [
+  'ui.router',
 ]);
 
 angular.module('roomie.data', [
