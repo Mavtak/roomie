@@ -53,11 +53,6 @@ namespace Roomie.Web.Website.Controllers
             throw new Exception("This exception is juuuust right!");
         }
 
-        public ActionResult MarkupTest()
-        {
-            return View();
-        }
-
         public ActionResult Serialize()
         {
             var builder = new System.Text.StringBuilder();
