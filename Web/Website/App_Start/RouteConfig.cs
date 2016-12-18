@@ -60,33 +60,6 @@ namespace Roomie.Web.Website
             );
 
             routes.MapRoute(
-                name: "Index shortcut",
-                url: "{controller}s",
-                defaults: new
-                {
-                    action = "Index"
-                },
-                constraints: new
-                {
-                    controller = ""
-                }
-            );
-
-            routes.MapRoute(
-                name: "Details Shortcut",
-                url: "{controller}/{id}/{name}",
-                defaults: new
-                {
-                    action = "Details",
-                    name = UrlParameter.Optional
-                },
-                constraints: new
-                {
-                    id = "[0-9]*"
-                }
-                );
-
-            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
