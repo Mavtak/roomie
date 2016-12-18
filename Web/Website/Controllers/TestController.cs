@@ -53,16 +53,6 @@ namespace Roomie.Web.Website.Controllers
             throw new Exception("This exception is juuuust right!");
         }
 
-        public ActionResult Serialize()
-        {
-            var builder = new System.Text.StringBuilder();
-            var writer = System.Xml.XmlWriter.Create(builder);            
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(User));
-            serializer.Serialize(writer, User);
-
-            return View(builder.ToString());
-        }
-
         public ActionResult DatabaseSchema()
         {
             var database = new EntityFrameworkRoomieDatabaseBackend("derp");
