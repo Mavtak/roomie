@@ -81,17 +81,5 @@ namespace Roomie.Web.Persistence.Models
 
             Id = id;
         }
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "task" + Id;
-            }
-        }
-
-        #endregion
     }
 }
