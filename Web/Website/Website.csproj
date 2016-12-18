@@ -167,6 +167,7 @@
     <Compile Include="Controllers\Api\DeviceUpdateModel.cs" />
     <Compile Include="Controllers\Api\Error.cs" />
     <Compile Include="Controllers\Api\NetworkUpdateModel.cs" />
+    <Compile Include="Controllers\Api\ScriptController.cs" />
     <Compile Include="Controllers\Api\TaskController.cs" />
     <Compile Include="Controllers\Api\UserAuthenticationController.cs" />
     <Compile Include="Controllers\Api\UserController.cs" />

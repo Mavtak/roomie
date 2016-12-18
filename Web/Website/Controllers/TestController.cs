@@ -60,32 +60,5 @@ namespace Roomie.Web.Website.Controllers
 
             return View(viewName: "PlainText", model: schema); 
         }
-
-        public ActionResult CleanUpScripts(int? timeout)
-        {
-            if (timeout < 1)
-            {
-                timeout = null;
-            }
-
-            var deleted = 0;
-            var skipped = 0;
-            ListFilter filter = null;
-
-            DoWork.UntilTimeout(timeout ?? 5, () =>
-                {
-                    var result = Database.Scripts.Clean(Database.Tasks, Database.Computers, filter);
-
-                    deleted += result.Deleted;
-                    skipped += result.Skipped;
-                    filter = result.NextFilter;
-
-                    return result.Done;
-                });
-
-            var message = deleted + " scripts cleaned up, " + skipped + " scripts skipped";
-
-            return View(viewName: "PlainText", model: message);
-        }
     }
 }
