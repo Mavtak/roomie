@@ -7,7 +7,7 @@ using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class Network : INetwork, IHasDivId
+    public class Network : INetwork
     {
 
         public string Address { get; private set; }
@@ -153,18 +153,6 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return Devices;
-            }
-        }
-
-        #endregion
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "network" + Id;
             }
         }
 

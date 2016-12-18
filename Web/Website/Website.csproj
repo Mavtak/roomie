@@ -177,7 +177,6 @@
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NetworkController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -250,8 +249,6 @@
     <Content Include="Views\Computer\Index.cshtml" />
     <Content Include="Views\Error\UnhandledException.cshtml" />
     <Content Include="Views\Error\UnknownError.cshtml" />
-    <Content Include="Views\Network\Details.cshtml" />
-    <Content Include="Views\Network\Index.cshtml" />
     <Content Include="Views\Shared\Partials\BotMessage\BaseBotMessage.cshtml" />
     <Content Include="Views\Shared\Partials\BotMessage\Empty.cshtml" />
     <Content Include="Views\Shared\Partials\BotMessage\Exception.cshtml" />
@@ -261,8 +258,6 @@
     <Content Include="Views\Shared\Partials\Computer\Create.cshtml" />
     <Content Include="Views\Shared\Partials\Computer\WebHookSettings.cshtml" />
     <Content Include="Views\Shared\Partials\Layout\Navigation.cshtml" />
-    <Content Include="Views\Shared\Partials\Network\Editor.cshtml" />
-    <Content Include="Views\Shared\Partials\Network\Network.cshtml" />
     <Content Include="Views\Shared\Partials\User\SignInForm.cshtml" />
     <Content Include="Views\Shared\Partials\WidgetEnd.cshtml" />
     <Content Include="Views\Shared\Partials\WidgetStart.cshtml" />
@@ -333,9 +328,6 @@
       <Project>{F1C594D7-933B-4E72-AE4A-CC47B82F0F3C}</Project>
       <Name>WebHook</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Partials\Network\AddRemoveDeviceButtons.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Partials\Layout\PrecacheScript.cshtml" />
