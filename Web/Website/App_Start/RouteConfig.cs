@@ -10,36 +10,6 @@ namespace Roomie.Web.Website
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Sign In Shortcut",
-                url: "SignIn",
-                defaults: new
-                {
-                    controller = "User",
-                    action = "SignIn"
-                }
-            );
-
-            routes.MapRoute(
-                name: "Sign Out Shortcut",
-                url: "SignOut",
-                defaults: new
-                {
-                    controller = "User",
-                    action = "SignOut"
-                }
-            );
-
-            routes.MapRoute(
-                name: "Authenticate Shortcut",
-                url: "Authenticate",
-                defaults: new
-                {
-                    controller = "User",
-                    action = "Authenticate"
-                }
-            );
-
-            routes.MapRoute(
                 name: "Account Settings Shortcut",
                 url: "Account",
                 defaults: new
