@@ -158,7 +158,9 @@
     <Content Include="content\Scripts\SoftNavigate.js" />
     <Content Include="content\styles\color\icons.css" />
     <Content Include="content\styles\structure\icons.css" />
+    <Compile Include="Controllers\Api\AddComputerModel.cs" />
     <Compile Include="Controllers\Api\CommandDocumentationController.cs" />
+    <Compile Include="Controllers\Api\ComputerActionOptions.cs" />
     <Compile Include="Controllers\Api\ComputerController.cs" />
     <Compile Include="Controllers\Api\DeviceActionOptions.cs" />
     <Compile Include="Controllers\Api\NetworkController.cs" />
