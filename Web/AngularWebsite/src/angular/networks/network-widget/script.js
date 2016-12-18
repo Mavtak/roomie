@@ -6,6 +6,7 @@ angular.module('roomie.networks').directive('networkWidget', function (
     restrict: 'E',
     scope: {
       network: '=network',
+      showEdit: '=showEdit'
     },
     templateUrl: 'networks/network-widget/template.html',
     link: link,
