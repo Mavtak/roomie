@@ -9,14 +9,6 @@ namespace Roomie.Web.Website.Controllers
 {
     public class TestController : RoomieBaseController
     {
-        //
-        // GET: /Test/
-
-        public ActionResult Index()
-        {
-            return View(this);
-        }
-
         public ActionResult ThrowException()
         {
             ExceptionLevel1();
