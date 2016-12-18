@@ -3,7 +3,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class Computer : IHasDivId
+    public class Computer
     {
         public string AccessKey {get; private set; }
         public string Address {get; private set; }
@@ -99,17 +99,5 @@ namespace Roomie.Web.Persistence.Models
 
             Id = id;
         }
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "computer" + Id;
-            }
-        }
-
-        #endregion
     }
 }

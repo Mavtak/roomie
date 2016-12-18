@@ -68,7 +68,7 @@ namespace Roomie.Web.Website
                 },
                 constraints: new
                 {
-                    controller = "(Computer)"
+                    controller = ""
                 }
             );
 

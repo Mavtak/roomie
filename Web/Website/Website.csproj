@@ -173,7 +173,6 @@
     <Compile Include="Controllers\Api\UserSessionController.cs" />
     <Compile Include="Controllers\Api\DeviceController.cs" />
     <Compile Include="Controllers\CommunicatorController.cs" />
-    <Compile Include="Controllers\ComputerController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -198,7 +197,6 @@
     <Compile Include="Helpers\WebHookViewResult.cs" />
     <Compile Include="Helpers\WebsiteRestrictedAccessAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ComputerViewModel.cs" />
     <Compile Include="ViewModels\RoomieBot.cs" />
     <Compile Include="ViewModels\WidgetData.cs" />
     <Compile Include="ViewModels\WidgetStatus.cs" />
@@ -245,8 +243,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Computer\Details.cshtml" />
-    <Content Include="Views\Computer\Index.cshtml" />
     <Content Include="Views\Error\UnhandledException.cshtml" />
     <Content Include="Views\Error\UnknownError.cshtml" />
     <Content Include="Views\Shared\Partials\BotMessage\BaseBotMessage.cshtml" />
@@ -254,9 +250,6 @@
     <Content Include="Views\Shared\Partials\BotMessage\Exception.cshtml" />
     <Content Include="Views\Shared\Partials\BotMessage\NotFound.cshtml" />
     <Content Include="Views\Shared\Partials\BotMessage\UnknownError.cshtml" />
-    <Content Include="Views\Shared\Partials\Computer\Computer.cshtml" />
-    <Content Include="Views\Shared\Partials\Computer\Create.cshtml" />
-    <Content Include="Views\Shared\Partials\Computer\WebHookSettings.cshtml" />
     <Content Include="Views\Shared\Partials\Layout\Navigation.cshtml" />
     <Content Include="Views\Shared\Partials\User\SignInForm.cshtml" />
     <Content Include="Views\Shared\Partials\WidgetEnd.cshtml" />
