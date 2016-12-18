@@ -21,7 +21,7 @@ angular.module('roomie.networks').directive('networkEditControls', function (
 
     function save() {
       $http.put('/api/network/' + scope.network.id, scope.model);
-    };
+    }
   }
 
   function waitUntilLoaded(scope, variableName, callback) {
