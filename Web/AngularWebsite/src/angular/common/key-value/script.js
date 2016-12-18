@@ -5,7 +5,8 @@
     scope: {
       key: '@key',
       value: '@value',
-      href: '@href'
+      href: '@href',
+      fullWidth: '=fullWidth'
     },
     templateUrl: 'common/key-value/template.html',
   };
