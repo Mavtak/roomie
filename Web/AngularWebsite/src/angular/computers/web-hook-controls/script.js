@@ -1,5 +1,6 @@
 angular.module('roomie.computers').directive('webHookControls', function (
   $http,
+  $state,
   $window
 ) {
 
@@ -29,11 +30,17 @@ angular.module('roomie.computers').directive('webHookControls', function (
     }
 
     function disable() {
-      $http.post('/api/computer/' + scope.computer.id + '?action=DisableWebHook');
+      $http.post('/api/computer/' + scope.computer.id + '?action=DisableWebHook')
+        .then(function () {
+          $state.reload();
+        });
     }
 
     function renew() {
-      $http.post('/api/computer/' + scope.computer.id + '?action=RenewWebHookKeys');
+      $http.post('/api/computer/' + scope.computer.id + '?action=RenewWebHookKeys')
+        .then(function () {
+          $state.reload();
+        });
     }
   }
 
