@@ -247,7 +247,6 @@
     <Content Include="Views\Shared\Partials\BotMessage\NotFound.cshtml" />
     <Content Include="Views\Shared\Partials\BotMessage\UnknownError.cshtml" />
     <Content Include="Views\Shared\Partials\Layout\Navigation.cshtml" />
-    <Content Include="Views\Shared\Partials\User\SignInForm.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Test\DisplayMessage.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
@@ -255,7 +254,6 @@
     <Content Include="Views\Test\PlainText.cshtml" />
     <Content Include="Views\Test\Serialize.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\User\SignIn.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
