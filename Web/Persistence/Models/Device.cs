@@ -16,7 +16,7 @@ using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class Device : IDevice, IHasDivId
+    public class Device : IDevice
     {
         public string Address { get; private set; }
         public string CurrentAction { get; private set; }
@@ -544,18 +544,6 @@ namespace Roomie.Web.Persistence.Models
             get
             {
                 return Keypad;
-            }
-        }
-
-        #endregion
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "device" + Id;
             }
         }
 
