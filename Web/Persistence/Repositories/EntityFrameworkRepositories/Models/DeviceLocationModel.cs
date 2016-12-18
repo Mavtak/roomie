@@ -5,7 +5,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
-    public class DeviceLocationModel : Location, IHasDivId
+    public class DeviceLocationModel : Location
     {
         [Key]
         public int Id { get; set; }
@@ -25,18 +25,5 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
         }
 
         public virtual ICollection<DeviceModel> Devices { get; set; }
-
-        #region HasId implementation
-
-        //TODO: explicitly emplement this interface (for the other models also)
-        public string DivId
-        {
-            get
-            {
-                return "location" + Id;
-            }
-        }
-
-        #endregion
     }
 }

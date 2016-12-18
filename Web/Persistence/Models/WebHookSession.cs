@@ -3,7 +3,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class WebHookSession : IHasDivId
+    public class WebHookSession
     {
         public virtual Computer Computer { get; private set; }
         public int Id { get; private set; }
@@ -70,17 +70,5 @@ namespace Roomie.Web.Persistence.Models
         {
             LastPing = DateTime.UtcNow;
         }
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "webhooksession" + Id;
-            }
-        }
-
-        #endregion
     }
 }

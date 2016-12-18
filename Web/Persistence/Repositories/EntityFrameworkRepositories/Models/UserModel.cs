@@ -9,7 +9,7 @@ using Roomie.Web.Persistence.Models;
 namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
 {
     [Table("UserModels")]
-    public class UserModel : IHasDivId
+    public class UserModel
     {
         [Key]
         public int Id { get; set; }
@@ -114,18 +114,6 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories.Models
         public override int GetHashCode()
         {
             return Id.GetHashCode();
-        }
-
-        #endregion
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "user" + Id;
-            }
         }
 
         #endregion

@@ -3,7 +3,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class Script : IHasDivId
+    public class Script
     {
         public DateTime? CreationTimestamp { get; private set; }
         public int Id { get; private set; }
@@ -58,17 +58,5 @@ namespace Roomie.Web.Persistence.Models
 
             Id = id;
         }
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "script" + Id;
-            }
-        }
-
-        #endregion
     }
 }

@@ -3,7 +3,7 @@ using Roomie.Web.Persistence.Helpers;
 
 namespace Roomie.Web.Persistence.Models
 {
-    public class UserSession : IHasDivId
+    public class UserSession
     {
         public DateTime CreationTimeStamp { get; private set; }
         public int Id { get; set; }
@@ -51,17 +51,5 @@ namespace Roomie.Web.Persistence.Models
 
             Id = id;
         }
-
-        #region HasId implementation
-
-        public string DivId
-        {
-            get
-            {
-                return "usersession" + Id;
-            }
-        }
-
-        #endregion
     }
 }
