@@ -1,0 +1,38 @@
+<widget-data-section>
+  <key-value
+    key="Access Key"
+    value="{{computer.accessKey}}"
+    full-width="true"
+    >
+  </key-value>
+  <key-value
+    key="Encryption Key"
+    value="{{computer.encryptionKey}}"
+    full-width="true"
+    >
+  </key-value>
+  <key-value
+    key="Last Ping"
+    value="{{computer.lastPing}}"
+    full-width="true"
+    >
+  </key-value>
+  <div class="item wide">
+    <div class="key ng-binding">Script Thing:</div>
+    <div class="value">
+      <textarea style="/* width: 510px; */" class="code">{{script}}</textarea>
+    </div>
+  </div>
+</widget-data-section>
+<widget-button-group>
+  <widget-button
+    label="Generate New Keys"
+    activate="renew()"
+    >
+  </widget-button>
+  <widget-button
+    label="Disable"
+    activate="disable()"
+    >
+  </widget-button>
+</widget-button-group>
