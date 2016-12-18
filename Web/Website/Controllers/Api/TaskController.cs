@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
@@ -22,6 +23,43 @@ namespace Roomie.Web.Website.Controllers.Api
                 .Transform(GetSerializableVersion);
 
             return result;
+        }
+
+        public object Post(string action, int? timeout = null)
+        {
+            switch(action)
+            {
+                case "Clean":
+                    return Clean(timeout);
+
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        private string Clean(int? timeout)
+        {
+            if (timeout < 1)
+            {
+                timeout = null;
+            }
+
+            var deleted = 0;
+            var skipped = 0;
+            ListFilter filter = null;
+
+            DoWork.UntilTimeout(timeout ?? 5, () =>
+            {
+                var result = Database.Tasks.Clean(User, filter);
+
+                deleted += result.Deleted;
+                skipped += result.Skipped;
+                filter = result.NextFilter;
+
+                return result.Done;
+            });
+
+            return deleted + " tasks cleaned up, " + skipped + " tasks skipped";
         }
 
         private Task GetSerializableVersion(Task task)
