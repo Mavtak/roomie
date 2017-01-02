@@ -228,7 +228,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -236,21 +235,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Error\UnhandledException.cshtml" />
-    <Content Include="Views\Error\UnknownError.cshtml" />
-    <Content Include="Views\Shared\Partials\BotMessage\BaseBotMessage.cshtml" />
-    <Content Include="Views\Shared\Partials\BotMessage\Empty.cshtml" />
-    <Content Include="Views\Shared\Partials\BotMessage\Exception.cshtml" />
-    <Content Include="Views\Shared\Partials\BotMessage\NotFound.cshtml" />
-    <Content Include="Views\Shared\Partials\BotMessage\UnknownError.cshtml" />
-    <Content Include="Views\Shared\Partials\Layout\Navigation.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Test\DisplayMessage.cshtml" />
-    <Content Include="Views\Test\PlainText.cshtml" />
-    <Content Include="Views\Test\Serialize.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CommandDefinitions\ComputerComands\ComputerComands.csproj">
@@ -309,12 +293,6 @@
       <Project>{F1C594D7-933B-4E72-AE4A-CC47B82F0F3C}</Project>
       <Name>WebHook</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Partials\Layout\PrecacheScript.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\Partials\RoomieBot.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="angular\script.js.map" />

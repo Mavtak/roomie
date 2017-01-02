@@ -44,7 +44,7 @@ namespace Roomie.Web.Website.Controllers
                 //TODO: smartly handle database errors.
             }
 
-            return View(exception);
+            return Content(exception.ToString());
         }
 
         public ActionResult Http404(HttpException exception)
