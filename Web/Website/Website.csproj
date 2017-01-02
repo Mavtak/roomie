@@ -225,7 +225,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="content\themes\base\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
