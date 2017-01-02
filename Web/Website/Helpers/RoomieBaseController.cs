@@ -39,8 +39,7 @@ namespace Roomie.Web.Website.Helpers
             }
             catch (Exception exception)
             {
-                if (!(this is ErrorController)
-                    && !(this is TestController))
+                if (!(this is ErrorController))
                 {
                     throw exception;
                 }
