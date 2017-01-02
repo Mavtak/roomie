@@ -10,16 +10,6 @@ namespace Roomie.Web.Website
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Account Settings Shortcut",
-                url: "Account",
-                defaults: new
-                {
-                    controller = "User",
-                    action = "Edit"
-                }
-            );
-
-            routes.MapRoute(
                 name: "Source code redirect shortcut",
                 url: "Source",
                 defaults: new
