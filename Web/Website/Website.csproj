@@ -176,7 +176,6 @@
     <Compile Include="Controllers\CommunicatorController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -251,7 +250,6 @@
     <Content Include="Views\Test\DisplayMessage.cshtml" />
     <Content Include="Views\Test\PlainText.cshtml" />
     <Content Include="Views\Test\Serialize.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
