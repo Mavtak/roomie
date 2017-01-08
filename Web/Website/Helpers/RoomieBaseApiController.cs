@@ -8,7 +8,7 @@ using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Website.Helpers
 {
-    public class RoomieBaseApiController : ApiController, IRoomieController
+    public class RoomieBaseApiController : ApiController
     {
         public static string SessionTokenCookieName = "roomie_session";
         public static string WebHookSessionTokenHeaderName = "x-roomie-webhook-session";
