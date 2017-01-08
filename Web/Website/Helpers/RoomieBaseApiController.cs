@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System.Linq;
+using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using Roomie.Web.Persistence.Database;
@@ -17,7 +19,7 @@ namespace Roomie.Web.Website.Helpers
         {
             Database = new RoomieDatabaseContext();
 
-            var userSession = GetCurrentUserSession();
+            var userSession = GetCurrentUserSession(controllerContext.Request);
 
             if (userSession != null)
             {
@@ -27,15 +29,17 @@ namespace Roomie.Web.Website.Helpers
             base.Initialize(controllerContext);
         }
 
-        private UserSession GetCurrentUserSession()
+        private UserSession GetCurrentUserSession(HttpRequestMessage request)
         {
-            var request = HttpContext.Current.Request;
-            if (request.Cookies[SessionTokenName] == null)
+            var cookie = request.Headers.GetCookies(SessionTokenName)
+                .FirstOrDefault();
+
+            if (cookie == null)
             {
                 return null;
             }
 
-            var token = request.Cookies[SessionTokenName].Value;
+            var token = cookie[SessionTokenName].Value;
 
             var session = Database.Sessions.GetUserSession(token);
 
