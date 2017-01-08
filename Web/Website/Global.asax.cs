@@ -2,7 +2,6 @@
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 using Roomie.Web.WebHook;
 
@@ -22,7 +21,6 @@ namespace Roomie.Web.Website
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundes(BundleTable.Bundles);
             DatabaseConfig.RegisterConnectionStrings();
             DependencyResolver.SetResolver(DependencyResolverConfig.CreateDependencyResolver());
 
