@@ -76,7 +76,7 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
         private void NetworkAction(Persistence.Models.Network network, string action)
         {
-            this.AddTask(
+            AddTask(
                 computer: network.AttatchedComputer,
                 origin: "RoomieBot",
                 scriptText: $"<HomeAutomation.{action} Network=\"{network.Address}\" />\n<HomeAutomation.SyncWithCloud />"

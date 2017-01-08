@@ -48,7 +48,7 @@ namespace Roomie.Web.Website.Controllers.Api.Device
 
             Database.Devices.Update(device);
 
-            this.AddTask(
+            AddTask(
                 computer: device.Network.AttatchedComputer,
                 origin: "RoomieBot",
                 scriptText: "HomeAutomation.SyncWithCloud Network=\"" + device.Network.Address + "\""

@@ -38,6 +38,16 @@ namespace Roomie.Web.Website.Helpers
             base.Initialize(controllerContext);
         }
 
+        protected void AddTask(Computer computer, string origin, string scriptText)
+        {
+            var script = Script.Create(false, scriptText);
+            Database.Scripts.Add(script);
+
+            var task = Task.Create(User, origin, computer, script);
+
+            Database.Tasks.Add(task);
+        }
+
         private UserSession GetCurrentUserSession(HttpRequestMessage request)
         {
             var cookie = request.Headers.GetCookies(SessionTokenCookieName)
