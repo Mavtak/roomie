@@ -15,7 +15,7 @@ namespace Roomie.Web.Website.Helpers
 
         public IRoomieDatabaseContext Database { get; set; }
         public Computer Computer { get; private set; }
-        public new User User { get; set; }
+        public new User User { get; private set; }
 
         protected override void Initialize(HttpControllerContext controllerContext)
         {
