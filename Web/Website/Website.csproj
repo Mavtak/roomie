@@ -171,7 +171,6 @@
     <Compile Include="Helpers\IRoomieController.cs" />
     <Compile Include="Helpers\RoomieBaseApiController.cs" />
     <Compile Include="Helpers\ApiRestrictedAccessAttribute.cs" />
-    <Compile Include="Helpers\UserUtilities.cs" />
     <Compile Include="Helpers\WebHookViewResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
