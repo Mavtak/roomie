@@ -166,22 +166,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\CacheCookie.cs" />
     <Compile Include="Helpers\DoWork.cs" />
-    <Compile Include="Helpers\HttpContextExtensions.cs" />
-    <Compile Include="Helpers\LocationHeaderPrinter.cs" />
     <Compile Include="Helpers\RoomieControllerExtensions.cs" />
-    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\IRoomieController.cs" />
     <Compile Include="Helpers\RoomieBaseApiController.cs" />
-    <Compile Include="Helpers\RoomieBaseController.cs" />
-    <Compile Include="Helpers\ScriptFormatter.cs" />
     <Compile Include="Helpers\ApiRestrictedAccessAttribute.cs" />
     <Compile Include="Helpers\UserUtilities.cs" />
     <Compile Include="Helpers\WebHookViewResult.cs" />
-    <Compile Include="Helpers\WebsiteRestrictedAccessAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\RoomieBot.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="content\images\hello.png" />
