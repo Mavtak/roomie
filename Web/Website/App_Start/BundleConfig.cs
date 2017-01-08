@@ -9,7 +9,6 @@ namespace Roomie.Web.Website
     public static class BundleConfig
     {
         private const string bundlesPath = "~/content/";
-        public const string StyleBundlePath = bundlesPath + "styles.css";
 
         private const string ResourceStrategyKey = "ResourceStrategy";
         private const string AlwaysInline = "inline";
@@ -19,37 +18,8 @@ namespace Roomie.Web.Website
         public static void RegisterBundes(BundleCollection bundles)
         {
             bundles.IgnoreList.Clear();
-
-            bundleStyles(bundles);
             
             //BundleTable.EnableOptimizations = true;
-        }
-
-        private static void bundleStyles(BundleCollection bundles)
-        {
-            var stylesDirectory = "~/content/Styles/";
-
-            var bundle = new StyleBundle(StyleBundlePath)
-                .Include(stylesDirectory + "structure/site.css")
-                .Include(stylesDirectory + "structure/content.css")
-                .Include(stylesDirectory + "structure/widget.css")
-                .Include(stylesDirectory + "structure/botMessage.css")
-                .Include(stylesDirectory + "structure/roomieBot.css")
-                .Include(stylesDirectory + "structure/icons.css")
-
-                .Include(stylesDirectory + "color/site.css")
-                .Include(stylesDirectory + "color/widget.css")
-                .Include(stylesDirectory + "color/content.css")
-                .Include(stylesDirectory + "color/roomieBot.css")
-                .Include(stylesDirectory + "color/icons.css")
-                ;
-
-            bundles.Add(bundle);
-        }
-
-        public static IHtmlString RenderStyles(this HtmlHelper htmlHelper)
-        {
-            return RenderBundle(htmlHelper, StyleBundlePath, false);
         }
 
         private static IHtmlString RenderBundle(this HtmlHelper htmlHelper, string bundlePath, bool javaScript)
