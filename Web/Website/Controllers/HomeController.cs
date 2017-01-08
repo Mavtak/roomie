@@ -14,10 +14,5 @@ namespace Roomie.Web.Website.Controllers
 
             return Redirect("/angular#/devices");
         }
-
-        public ActionResult Source()
-        {
-            return Redirect("http://github.com/Mavtak/Roomie");
-        }
     }
 }
