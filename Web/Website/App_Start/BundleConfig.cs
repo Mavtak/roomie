@@ -10,7 +10,6 @@ namespace Roomie.Web.Website
     {
         private const string bundlesPath = "~/content/";
         public const string StyleBundlePath = bundlesPath + "styles.css";
-        public const string ScriptBundlePath = bundlesPath + "scripts.js";
 
         private const string ResourceStrategyKey = "ResourceStrategy";
         private const string AlwaysInline = "inline";
@@ -22,7 +21,6 @@ namespace Roomie.Web.Website
             bundles.IgnoreList.Clear();
 
             bundleStyles(bundles);
-            bundleScripts(bundles);
             
             //BundleTable.EnableOptimizations = true;
         }
@@ -49,33 +47,9 @@ namespace Roomie.Web.Website
             bundles.Add(bundle);
         }
 
-        private static void bundleScripts(BundleCollection bundles)
-        {
-            var scriptDirectory = "~/content/Scripts/";
-
-            var bundle = new ScriptBundle(ScriptBundlePath)
-                .Include(scriptDirectory + "Libraries/jquery-1.5.1.min.js")
-                .Include(scriptDirectory + "Libraries/jquery.unobtrusive-ajax.min.js")
-                .Include(scriptDirectory + "Libraries/modernizr-1.7.min.js")
-                .Include(scriptDirectory + "CreateNamespace.js")
-                .Include(scriptDirectory + "SlideMenu.js")
-                .Include(scriptDirectory + "Notifications.js")
-                .Include(scriptDirectory + "SoftNavigate.js")
-                .Include(scriptDirectory + "DeviceIndex.js")
-                .Include(scriptDirectory + "PageReady.js")
-                ;
-
-            bundles.Add(bundle);
-        }
-
         public static IHtmlString RenderStyles(this HtmlHelper htmlHelper)
         {
             return RenderBundle(htmlHelper, StyleBundlePath, false);
-        }
-
-        public static IHtmlString RenderScripts(this HtmlHelper htmlHelper)
-        {
-            return RenderBundle(htmlHelper, ScriptBundlePath, true);
         }
 
         private static IHtmlString RenderBundle(this HtmlHelper htmlHelper, string bundlePath, bool javaScript)
