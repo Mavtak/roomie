@@ -55,7 +55,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
         private static CookieHeaderValue CreateSessionCookie(string token, DateTime expires)
         {
-            return new CookieHeaderValue(SessionTokenName, token)
+            return new CookieHeaderValue(SessionTokenCookieName, token)
             {
                 Expires = expires,
                 HttpOnly = true,

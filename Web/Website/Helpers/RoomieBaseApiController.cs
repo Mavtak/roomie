@@ -10,7 +10,7 @@ namespace Roomie.Web.Website.Helpers
 {
     public class RoomieBaseApiController : ApiController, IRoomieController
     {
-        public static string SessionTokenName = "roomie_session";
+        public static string SessionTokenCookieName = "roomie_session";
         public static string WebHookSessionTokenHeaderName = "x-roomie-webhook-session";
 
         public IRoomieDatabaseContext Database { get; set; }
@@ -40,7 +40,7 @@ namespace Roomie.Web.Website.Helpers
 
         private UserSession GetCurrentUserSession(HttpRequestMessage request)
         {
-            var cookie = request.Headers.GetCookies(SessionTokenName)
+            var cookie = request.Headers.GetCookies(SessionTokenCookieName)
                 .FirstOrDefault();
 
             if (cookie == null)
@@ -48,7 +48,7 @@ namespace Roomie.Web.Website.Helpers
                 return null;
             }
 
-            var token = cookie[SessionTokenName].Value;
+            var token = cookie[SessionTokenCookieName].Value;
 
             var session = Database.Sessions.GetUserSession(token);
 
