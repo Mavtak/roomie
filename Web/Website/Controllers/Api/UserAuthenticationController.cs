@@ -7,6 +7,11 @@ namespace Roomie.Web.Website.Controllers.Api
 {
     public class UserAuthenticationController : RoomieBaseApiController
     {
+        [ApiRestrictedAccess]
+        public void Get()
+        {
+        }
+
         public HttpResponseMessage Post(string username, string password)
         {
             var user = Database.Users.Get(username, password);
