@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Http.Headers;
-using System.Web;
+﻿using System.Web;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
 
@@ -8,17 +6,17 @@ namespace Roomie.Web.Website.Helpers
 {
     public class UserUtilities
     {
-        private static string sessionTokenName = "roomie_session";
+        public static string SessionTokenName = "roomie_session";
 
         public static UserSession GetCurrentUserSession(IRoomieDatabaseContext database)
         {
             var request = HttpContext.Current.Request;
-            if (request.Cookies[sessionTokenName] == null)
+            if (request.Cookies[SessionTokenName] == null)
             {
                 return null;
             }
 
-            var token = request.Cookies[sessionTokenName].Value;
+            var token = request.Cookies[SessionTokenName].Value;
 
             var session = database.Sessions.GetUserSession(token);
 
@@ -49,26 +47,6 @@ namespace Roomie.Web.Website.Helpers
             database.Sessions.Add(userSession);
 
             return userSession;
-        }
-
-        private static CookieHeaderValue CreateSessionCookie(string token, DateTime expires)
-        {
-            return new CookieHeaderValue(sessionTokenName, token)
-            {
-                Expires = expires,
-                HttpOnly = true,
-                Path = "/"
-            };
-        }
-
-        public static CookieHeaderValue CreateNewSessionCookie(UserSession userSession)
-        {
-            return CreateSessionCookie(userSession.Token, DateTime.UtcNow.AddYears(1));
-        }
-
-        public static CookieHeaderValue CreateExpiredSessionCookie()
-        {
-            return CreateSessionCookie("expired", DateTime.UtcNow.AddYears(-10));
         }
     }
 }
