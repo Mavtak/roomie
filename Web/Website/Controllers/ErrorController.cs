@@ -31,12 +31,6 @@ namespace Roomie.Web.Website.Controllers
             {
                 HttpException httpException = (HttpException)exception;
                 Response.StatusCode = httpException.GetHttpCode();
-
-                switch (httpException.GetHttpCode())
-                {
-                    case 404:
-                        return Http404(httpException);
-                }
             }
 
             if (exception.GetType().Equals(typeof(EntityCommandExecutionException)))
@@ -45,18 +39,6 @@ namespace Roomie.Web.Website.Controllers
             }
 
             return Content(exception.ToString());
-        }
-
-        public ActionResult Http404(HttpException exception)
-        {
-            var path = "/angular/#" + Request.Path;
-
-            if (Request.QueryString.Count > 0)
-            {
-                path += "?" + Request.QueryString;
-            }
-
-            return Redirect(path);
         }
     }
 }
