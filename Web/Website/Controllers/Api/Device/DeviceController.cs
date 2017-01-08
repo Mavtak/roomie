@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Http;
 using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation;
@@ -27,7 +28,7 @@ namespace Roomie.Web.Website.Controllers.Api.Device
 
         public Persistence.Models.Device Get(int id)
         {
-            var device = this.SelectDevice(id);
+            var device = SelectDevice(id);
             var result = GetSerializableVersion(device);
 
             return result;
@@ -37,7 +38,7 @@ namespace Roomie.Web.Website.Controllers.Api.Device
         {
             update = update ?? new DeviceUpdateModel();
 
-            var device = this.SelectDevice(id);
+            var device = SelectDevice(id);
 
             device.Update(
                 location: (update.Location == null) ? device.Location : new Location(update.Location),
@@ -133,6 +134,18 @@ namespace Roomie.Web.Website.Controllers.Api.Device
         private static Persistence.Models.Device GetSerializableVersion(Persistence.Models.Device device)
         {
             return Persistence.Models.Device.Create(device.Id, device);
+        }
+
+        private Persistence.Models.Device SelectDevice(int id)
+        {
+            var device = Database.Devices.Get(User, id);
+
+            if (device == null)
+            {
+                throw new HttpException(404, "Device not found");
+            }
+
+            return device;
         }
     }
 }

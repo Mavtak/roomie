@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Http;
 using Roomie.Web.Website.Helpers;
 
@@ -25,7 +26,7 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
         public Persistence.Models.Network Get(int id)
         {
-            var network = this.SelectNetwork(id);
+            var network = SelectNetwork(id);
             var result = GetSerializableVersion(network);
 
             return result;
@@ -35,7 +36,7 @@ namespace Roomie.Web.Website.Controllers.Api.Network
         {
             update = update ?? new NetworkUpdateModel();
 
-            var network = this.SelectNetwork(id);
+            var network = SelectNetwork(id);
 
             network.UpdateName(update.Name);
             Database.Networks.Update(network);
@@ -43,7 +44,7 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
         public void Post(int id, string action)
         {
-            var network = this.SelectNetwork(id);
+            var network = SelectNetwork(id);
 
             switch (action)
             {
@@ -62,7 +63,7 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
         private void Delete(int id)
         {
-            var network = this.SelectNetwork(id);
+            var network = SelectNetwork(id);
 
             foreach (var device in Database.Devices.Get(network))
             {
@@ -142,6 +143,20 @@ namespace Roomie.Web.Website.Controllers.Api.Network
                 name: network.Name,
                 owner: owner
             );
+        }
+
+        private Persistence.Models.Network SelectNetwork(int id)
+        {
+            var network = Database.Networks.Get(User, id);
+
+            if (network == null)
+            {
+                throw new HttpException(404, "Network not found");
+            }
+
+            network.LoadDevices(Database.Devices);
+
+            return network;
         }
     }
 }

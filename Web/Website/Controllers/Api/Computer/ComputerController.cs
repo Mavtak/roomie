@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Computer
@@ -18,7 +19,7 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
 
         public Persistence.Models.Computer Get(int id)
         {
-            var computer = this.SelectComputer(id);
+            var computer = SelectComputer(id);
             var result = GetSerializableVersion(computer);
 
             return result;
@@ -43,7 +44,7 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
         {
             options = options ?? new ComputerActionOptions();
 
-            var computer = this.SelectComputer(id);
+            var computer = SelectComputer(id);
 
             switch(action)
             {
@@ -101,6 +102,18 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
             );
 
             return result;
+        }
+
+        private Persistence.Models.Computer SelectComputer(int id)
+        {
+            var computer = Database.Computers.Get(User, id);
+
+            if (computer == null)
+            {
+                throw new HttpException(404, "Computer not found");
+            }
+
+            return computer;
         }
     }
 }

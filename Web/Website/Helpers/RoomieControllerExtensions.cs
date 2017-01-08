@@ -5,53 +5,6 @@ namespace Roomie.Web.Website.Helpers
 {
     public static class RoomieControllerExtensions
     {
-        public static Device SelectDevice(this IRoomieController controller, int id)
-        {
-            var database = controller.Database;
-            var user = controller.User;
-
-            var device = database.Devices.Get(user, id);
-
-            if (device == null)
-            {
-                throw new HttpException(404, "Device not found");
-            }
-
-            return device;
-        }
-
-        public static Network SelectNetwork(this IRoomieController controller, int id)
-        {
-            var database = controller.Database;
-            var user = controller.User;
-
-            var network = database.Networks.Get(user, id);
-
-            if (network == null)
-            {
-                throw new HttpException(404, "Network not found");
-            }
-
-            network.LoadDevices(database.Devices);
-
-            return network;
-        }
-
-        public static Computer SelectComputer(this IRoomieController controller, int id)
-        {
-            var database = controller.Database;
-            var user = controller.User;
-
-            var computer = database.Computers.Get(user, id);
-
-            if (computer == null)
-            {
-                throw new HttpException(404, "Computer not found");
-            }
-
-            return computer;
-        }
-
         public static Task SelectTask(this IRoomieController controller, int id)
         {
             var database = controller.Database;
