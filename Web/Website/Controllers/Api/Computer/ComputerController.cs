@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
-using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 
-namespace Roomie.Web.Website.Controllers.Api
+namespace Roomie.Web.Website.Controllers.Api.Computer
 {
     [ApiRestrictedAccess]
     public class ComputerController : RoomieBaseApiController
     {
-        public Computer[] Get()
+        public Persistence.Models.Computer[] Get()
         {
             var computers = Database.Computers.Get(User);
             var result = computers.Select(GetSerializableVersion)
@@ -17,7 +16,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public Computer Get(int id)
+        public Persistence.Models.Computer Get(int id)
         {
             var computer = this.SelectComputer(id);
             var result = GetSerializableVersion(computer);
@@ -25,7 +24,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public Computer Get(string accessKey)
+        public Persistence.Models.Computer Get(string accessKey)
         {
             var computer = Database.Computers.Get(accessKey);
             var result = GetSerializableVersion(computer);
@@ -36,7 +35,7 @@ namespace Roomie.Web.Website.Controllers.Api
         {
             add = add ?? new AddComputerModel();
 
-            var computer = Computer.Create(add.Name, User);
+            var computer = Persistence.Models.Computer.Create(add.Name, User);
             Database.Computers.Add(computer);
         }
 
@@ -59,10 +58,10 @@ namespace Roomie.Web.Website.Controllers.Api
                     break;
 
                 case "RunScript":
-                    var scriptObject = Script.Create(false, options.Script);
+                    var scriptObject = Persistence.Models.Script.Create(false, options.Script);
                     Database.Scripts.Add(scriptObject);
 
-                    var task = Task.Create(User, "Website", computer, scriptObject);
+                    var task = Persistence.Models.Task.Create(User, "Website", computer, scriptObject);
 
                     Database.Tasks.Add(task);
 
@@ -75,12 +74,12 @@ namespace Roomie.Web.Website.Controllers.Api
             }
         }
 
-        private static Computer GetSerializableVersion(Computer computer)
+        private static Persistence.Models.Computer GetSerializableVersion(Persistence.Models.Computer computer)
         {
-            User owner = null;
+            Persistence.Models.User owner = null;
             if (computer.Owner != null)
             {
-                owner = new User(
+                owner = new Persistence.Models.User(
                     alias: computer.Owner.Alias,
                     email: null,
                     id: computer.Owner.Id,
@@ -90,7 +89,7 @@ namespace Roomie.Web.Website.Controllers.Api
                 );
             }
 
-            var result = new Computer(
+            var result = new Persistence.Models.Computer(
                 accessKey: computer.AccessKey,
                 address: computer.Address,
                 encryptionKey: computer.EncryptionKey,

@@ -1,4 +1,4 @@
-﻿namespace Roomie.Web.Website.Controllers.Api
+﻿namespace Roomie.Web.Website.Controllers.Api.Computer
 {
     public class ComputerActionOptions
     {

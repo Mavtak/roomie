@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 
-namespace Roomie.Web.Website.Controllers.Api
+namespace Roomie.Web.Website.Controllers.Api.Network
 {
     [ApiRestrictedAccess]
     public class NetworkController : RoomieBaseApiController
     {
-        public IEnumerable<Network> Get()
+        public IEnumerable<Persistence.Models.Network> Get()
         {
             var networks = Database.Networks.Get(User);
 
@@ -24,7 +23,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public Network Get(int id)
+        public Persistence.Models.Network Get(int id)
         {
             var network = this.SelectNetwork(id);
             var result = GetSerializableVersion(network);
@@ -74,7 +73,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
         }
 
-        private void NetworkAction(Network network, string action)
+        private void NetworkAction(Persistence.Models.Network network, string action)
         {
             this.AddTask(
                 computer: network.AttatchedComputer,
@@ -83,13 +82,13 @@ namespace Roomie.Web.Website.Controllers.Api
                 );
         }
         
-        private static Network GetSerializableVersion(Network network)
+        private static Persistence.Models.Network GetSerializableVersion(Persistence.Models.Network network)
         {
-            Computer computer = null;
+            Persistence.Models.Computer computer = null;
 
             if (network.AttatchedComputer != null)
             {
-                computer = new Computer(
+                computer = new Persistence.Models.Computer(
                     accessKey: null,
                     address: null,
                     encryptionKey: null,
@@ -101,12 +100,12 @@ namespace Roomie.Web.Website.Controllers.Api
                 );
             }
 
-            Device[] devices = null;
+            Persistence.Models.Device[] devices = null;
 
             if(network.Devices != null)
             {
                 devices = network.Devices
-                    .Select(x => new Device(
+                    .Select(x => new Persistence.Models.Device(
                         address: x.Address,
                         id: x.Id,
                         lastPing: null,
@@ -120,11 +119,11 @@ namespace Roomie.Web.Website.Controllers.Api
                     .ToArray();
             }
 
-            User owner = null;
+            Persistence.Models.User owner = null;
 
             if (network.Owner != null)
             {
-                owner = new User(
+                owner = new Persistence.Models.User(
                     alias: network.Owner.Alias,
                     email: null,
                     id: network.Owner.Id,
@@ -134,7 +133,7 @@ namespace Roomie.Web.Website.Controllers.Api
                 );
             }
 
-            return new Network(
+            return new Persistence.Models.Network(
                 address: network.Address,
                 attatchedComputer: computer,
                 devices: devices,

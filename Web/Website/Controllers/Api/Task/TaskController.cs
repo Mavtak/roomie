@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Web.Http;
-using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
-namespace Roomie.Web.Website.Controllers.Api
+namespace Roomie.Web.Website.Controllers.Api.Task
 {
     [ApiRestrictedAccess]
     public class TaskController : RoomieBaseApiController
     {
-        public Task Get(int id)
+        public Persistence.Models.Task Get(int id)
         {
             var task = Database.Tasks.Get(id);
             var result = GetSerializableVersion(task);
@@ -17,7 +16,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public Page<Task> Get([FromUri] ListFilter filter)
+        public Page<Persistence.Models.Task> Get([FromUri] ListFilter filter)
         {
             var result = Database.Tasks.List(User, filter)
                 .Transform(GetSerializableVersion);
@@ -62,12 +61,12 @@ namespace Roomie.Web.Website.Controllers.Api
             return deleted + " tasks cleaned up, " + skipped + " tasks skipped";
         }
 
-        private Task GetSerializableVersion(Task task)
+        private Persistence.Models.Task GetSerializableVersion(Persistence.Models.Task task)
         {
-            User owner = null;
+            Persistence.Models.User owner = null;
             if (task.Owner != null)
             {
-                owner = new User(
+                owner = new Persistence.Models.User(
                     alias: task.Owner.Alias,
                     email: null,
                     id: task.Owner.Id,
@@ -77,10 +76,10 @@ namespace Roomie.Web.Website.Controllers.Api
                 );
             }
 
-            Computer target = null;
+            Persistence.Models.Computer target = null;
             if (task.Target != null)
             {
-                target = new Computer(
+                target = new Persistence.Models.Computer(
                     accessKey: null,
                     address: null,
                     encryptionKey: null,
@@ -92,7 +91,7 @@ namespace Roomie.Web.Website.Controllers.Api
                 );
             }
 
-            var result = new Task(
+            var result = new Persistence.Models.Task(
                 expiration: task.Expiration,
                 id: task.Id,
                 origin: task.Origin,

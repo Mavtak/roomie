@@ -2,7 +2,7 @@
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
-namespace Roomie.Web.Website.Controllers.Api
+namespace Roomie.Web.Website.Controllers.Api.Script
 {
     [ApiRestrictedAccess]
     public class ScriptController : RoomieBaseApiController

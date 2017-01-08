@@ -10,15 +10,14 @@ using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Database;
-using Roomie.Web.Persistence.Models;
 using Roomie.Web.Website.Helpers;
 
-namespace Roomie.Web.Website.Controllers.Api
+namespace Roomie.Web.Website.Controllers.Api.Device
 {
     [ApiRestrictedAccess]
     public class DeviceController : RoomieBaseApiController
     {
-        public IEnumerable<Device> Get(bool examples = false)
+        public IEnumerable<Persistence.Models.Device> Get(bool examples = false)
         {
             var devices = examples ? Persistence.Examples.Devices : Database.GetDevicesForUser(User);
             var result = devices.Select(GetSerializableVersion);
@@ -26,7 +25,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        public Device Get(int id)
+        public Persistence.Models.Device Get(int id)
         {
             var device = this.SelectDevice(id);
             var result = GetSerializableVersion(device);
@@ -131,9 +130,9 @@ namespace Roomie.Web.Website.Controllers.Api
             }
         }
 
-        private static Device GetSerializableVersion(Device device)
+        private static Persistence.Models.Device GetSerializableVersion(Persistence.Models.Device device)
         {
-            return Device.Create(device.Id, device);
+            return Persistence.Models.Device.Create(device.Id, device);
         }
     }
 }

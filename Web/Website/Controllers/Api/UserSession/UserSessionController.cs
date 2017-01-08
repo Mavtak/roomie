@@ -1,14 +1,13 @@
 ﻿using System.Web.Http;
-using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
-namespace Roomie.Web.Website.Controllers.Api
+namespace Roomie.Web.Website.Controllers.Api.UserSession
 {
     [ApiRestrictedAccess]
     public class UserSessionController : RoomieBaseApiController
     {
-        public UserSession Get(string token)
+        public Persistence.Models.UserSession Get(string token)
         {
             var result = Database.Sessions.GetUserSession(token);
 
@@ -24,7 +23,7 @@ namespace Roomie.Web.Website.Controllers.Api
             return result;
         }
 
-        private static object Transform(UserSession model)
+        private static object Transform(Persistence.Models.UserSession model)
         {
             var result = new
                 {

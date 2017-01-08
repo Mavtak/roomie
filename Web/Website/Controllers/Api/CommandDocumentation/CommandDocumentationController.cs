@@ -3,7 +3,7 @@ using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories.StaticRepositories;
 using Roomie.Web.Website.Helpers;
 
-namespace Roomie.Web.Website.Controllers.Api
+namespace Roomie.Web.Website.Controllers.Api.CommandDocumentation
 {
     public class CommandDocumentationController : RoomieBaseApiController
     {

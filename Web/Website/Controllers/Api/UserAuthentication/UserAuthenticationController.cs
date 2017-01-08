@@ -2,11 +2,10 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
-namespace Roomie.Web.Website.Controllers.Api
+namespace Roomie.Web.Website.Controllers.Api.UserAuthentication
 {
     public class UserAuthenticationController : RoomieBaseApiController
     {
@@ -31,7 +30,7 @@ namespace Roomie.Web.Website.Controllers.Api
                 });
             }
 
-            var session = UserSession.Create(user);
+            var session = Persistence.Models.UserSession.Create(user);
 
             Database.Sessions.Add(session);
 
