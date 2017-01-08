@@ -29,38 +29,9 @@ namespace Roomie.Web.Website
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            Exception exception = Server.GetLastError();
-
-            try
-            {
-                IController errorController = new Roomie.Web.Website.Controllers.ErrorController();
-                Response.Clear();
-                RouteData routeData = new RouteData();
-                routeData.Values.Add("controller", "Error");
-                routeData.Values.Add("action", "UnhandledException");
-                routeData.Values.Add("exception", exception);
-                Response.TrySkipIisCustomErrors = true;
-                errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
-            }
-            catch
-            {
-                try
-                {
-                    IController errorController = new Roomie.Web.Website.Controllers.ErrorController();
-                    Response.Clear();
-                    RouteData routeData = new RouteData();
-                    routeData.Values.Add("controller", "Error");
-                    routeData.Values.Add("action", "UnknownError");
-                    Response.TrySkipIisCustomErrors = true;
-                    errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
-                }
-                catch
-                {
-                    Response.Write("Totally unhandled error. " + exception);
-                }
-            }
+            var exception = Server.GetLastError();
+            Response.Write(exception);
             Server.ClearError();
-
         }
     }
 }

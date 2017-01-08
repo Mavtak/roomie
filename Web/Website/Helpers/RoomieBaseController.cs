@@ -39,10 +39,7 @@ namespace Roomie.Web.Website.Helpers
             }
             catch (Exception exception)
             {
-                if (!(this is ErrorController))
-                {
-                    throw exception;
-                }
+                throw exception;
             }
 
             if (HttpContext.Items[requestedControllerKey] == null)

@@ -163,7 +163,6 @@
     <Compile Include="Controllers\Api\UserSessionController.cs" />
     <Compile Include="Controllers\Api\DeviceController.cs" />
     <Compile Include="Controllers\CommunicatorController.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
