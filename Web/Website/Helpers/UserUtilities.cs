@@ -39,14 +39,5 @@ namespace Roomie.Web.Website.Helpers
 
             return session.User;
         }
-
-        public static UserSession CreateSession(IRoomieDatabaseContext database, User user)
-        {
-            var userSession = UserSession.Create(user);
-
-            database.Sessions.Add(userSession);
-
-            return userSession;
-        }
     }
 }
