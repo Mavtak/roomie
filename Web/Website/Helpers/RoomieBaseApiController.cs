@@ -11,8 +11,10 @@ namespace Roomie.Web.Website.Helpers
     public class RoomieBaseApiController : ApiController, IRoomieController
     {
         public static string SessionTokenName = "roomie_session";
+        public static string WebHookSessionTokenHeaderName = "x-roomie-webhook-session";
 
         public IRoomieDatabaseContext Database { get; set; }
+        public Computer Computer { get; private set; }
         public new User User { get; set; }
 
         protected override void Initialize(HttpControllerContext controllerContext)
@@ -24,6 +26,13 @@ namespace Roomie.Web.Website.Helpers
             if (userSession != null)
             {
                 User = userSession.User;
+            }
+
+            var webHookSession = GetCurrentWebHookSession(controllerContext.Request);
+
+            if (webHookSession != null)
+            {
+                Computer = webHookSession.Computer;
             }
 
             base.Initialize(controllerContext);
@@ -50,6 +59,34 @@ namespace Roomie.Web.Website.Helpers
 
             session.UpdateLastContact();
             Database.Sessions.Update(session);
+
+            return session;
+        }
+
+        private WebHookSession GetCurrentWebHookSession(HttpRequestMessage request)
+        {
+            if (!request.Headers.Contains(WebHookSessionTokenHeaderName))
+            {
+                return null;
+            }
+
+            var token = request.Headers.GetValues(WebHookSessionTokenHeaderName)
+                .FirstOrDefault();
+
+            if (token == null)
+            {
+                return null;
+            }
+
+            var session = Database.Sessions.GetWebHookSession(token);
+
+            if (session == null)
+            {
+                return null;
+            }
+
+            session.Computer.UpdatePing();
+            Database.Computers.Update(session.Computer);
 
             return session;
         }
