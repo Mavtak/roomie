@@ -8,7 +8,7 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api.Network
 {
     [ApiRestrictedAccess]
-    public class NetworkController : RoomieBaseApiController
+    public class NetworkController : BaseController
     {
         public IEnumerable<Persistence.Models.Network> Get()
         {

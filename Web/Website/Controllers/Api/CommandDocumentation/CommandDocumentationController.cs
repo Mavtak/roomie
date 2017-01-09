@@ -1,11 +1,10 @@
 ﻿using Roomie.Desktop.Engine;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories.StaticRepositories;
-using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.CommandDocumentation
 {
-    public class CommandDocumentationController : RoomieBaseApiController
+    public class CommandDocumentationController : BaseController
     {
         private CommandDocumentationRepository _commandDocumentationRepository;
 

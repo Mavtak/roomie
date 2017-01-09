@@ -16,7 +16,7 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api.Device
 {
     [ApiRestrictedAccess]
-    public class DeviceController : RoomieBaseApiController
+    public class DeviceController : BaseController
     {
         public IEnumerable<Persistence.Models.Device> Get(bool examples = false)
         {

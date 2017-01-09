@@ -7,7 +7,7 @@ using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.UserAuthentication
 {
-    public class UserAuthenticationController : RoomieBaseApiController
+    public class UserAuthenticationController : BaseController
     {
         [ApiRestrictedAccess]
         public void Get()

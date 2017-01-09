@@ -6,7 +6,7 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api.Computer
 {
     [ApiRestrictedAccess]
-    public class ComputerController : RoomieBaseApiController
+    public class ComputerController : BaseController
     {
         public Persistence.Models.Computer[] Get()
         {

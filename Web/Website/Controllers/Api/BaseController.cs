@@ -4,18 +4,17 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using Roomie.Web.Persistence.Database;
-using Roomie.Web.Persistence.Models;
 
-namespace Roomie.Web.Website.Helpers
+namespace Roomie.Web.Website.Controllers.Api
 {
-    public class RoomieBaseApiController : ApiController
+    public class BaseController : ApiController
     {
         public static string SessionTokenCookieName = "roomie_session";
         public static string WebHookSessionTokenHeaderName = "x-roomie-webhook-session";
 
         public IRoomieDatabaseContext Database { get; set; }
-        public Computer Computer { get; private set; }
-        public new User User { get; private set; }
+        public Persistence.Models.Computer Computer { get; private set; }
+        public new Persistence.Models.User User { get; private set; }
 
         protected override void Initialize(HttpControllerContext controllerContext)
         {
@@ -38,17 +37,17 @@ namespace Roomie.Web.Website.Helpers
             base.Initialize(controllerContext);
         }
 
-        protected void AddTask(Computer computer, string origin, string scriptText)
+        protected void AddTask(Persistence.Models.Computer computer, string origin, string scriptText)
         {
-            var script = Script.Create(false, scriptText);
+            var script = Persistence.Models.Script.Create(false, scriptText);
             Database.Scripts.Add(script);
 
-            var task = Task.Create(User, origin, computer, script);
+            var task = Persistence.Models.Task.Create(User, origin, computer, script);
 
             Database.Tasks.Add(task);
         }
 
-        private UserSession GetCurrentUserSession(HttpRequestMessage request)
+        private Persistence.Models.UserSession GetCurrentUserSession(HttpRequestMessage request)
         {
             var cookie = request.Headers.GetCookies(SessionTokenCookieName)
                 .FirstOrDefault();
@@ -73,7 +72,7 @@ namespace Roomie.Web.Website.Helpers
             return session;
         }
 
-        private WebHookSession GetCurrentWebHookSession(HttpRequestMessage request)
+        private Persistence.Models.WebHookSession GetCurrentWebHookSession(HttpRequestMessage request)
         {
             if (!request.Headers.Contains(WebHookSessionTokenHeaderName))
             {

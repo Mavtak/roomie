@@ -5,7 +5,7 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api.Script
 {
     [ApiRestrictedAccess]
-    public class ScriptController : RoomieBaseApiController
+    public class ScriptController : BaseController
     {
         public object Post(string action, int? timeout = null)
         {

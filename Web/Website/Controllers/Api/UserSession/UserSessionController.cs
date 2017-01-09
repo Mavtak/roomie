@@ -5,7 +5,7 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api.UserSession
 {
     [ApiRestrictedAccess]
-    public class UserSessionController : RoomieBaseApiController
+    public class UserSessionController : BaseController
     {
         public Persistence.Models.UserSession Get(string token)
         {

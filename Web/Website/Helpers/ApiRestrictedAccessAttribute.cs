@@ -10,7 +10,7 @@ namespace Roomie.Web.Website.Helpers
     {
         public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
-            var controller = actionContext.ControllerContext.Controller as RoomieBaseApiController;
+            var controller = actionContext.ControllerContext.Controller as BaseController;
 
             if (controller == null)
             {

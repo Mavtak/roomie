@@ -6,7 +6,7 @@ using Roomie.Web.Website.Helpers;
 namespace Roomie.Web.Website.Controllers.Api.Task
 {
     [ApiRestrictedAccess]
-    public class TaskController : RoomieBaseApiController
+    public class TaskController : BaseController
     {
         public Persistence.Models.Task Get(int id)
         {

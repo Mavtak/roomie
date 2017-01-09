@@ -3,7 +3,7 @@ using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.User
 {
-    public class UserController : RoomieBaseApiController
+    public class UserController : BaseController
     {
         public void Post(string username, string password)
         {
