@@ -167,7 +167,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DoWork.cs" />
-    <Compile Include="Helpers\RoomieBaseApiController.cs" />
+    <Compile Include="Controllers\Api\BaseController.cs" />
     <Compile Include="Helpers\ApiRestrictedAccessAttribute.cs" />
     <Compile Include="Helpers\WebHookViewResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
