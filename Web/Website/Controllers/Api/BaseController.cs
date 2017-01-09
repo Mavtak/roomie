@@ -11,6 +11,7 @@ namespace Roomie.Web.Website.Controllers.Api
     {
         public static string SessionTokenCookieName = "roomie_session";
         public static string WebHookSessionTokenHeaderName = "x-roomie-webhook-session";
+        public static string WebHookAccessKeyHeaderName = "x-roomie-webhook-key";
 
         public IRoomieDatabaseContext Database { get; set; }
         public Persistence.Models.Computer Computer { get; private set; }
@@ -32,6 +33,13 @@ namespace Roomie.Web.Website.Controllers.Api
             if (webHookSession != null)
             {
                 Computer = webHookSession.Computer;
+            }
+
+            var sessionlessWebHookComputer = GetSessionlessWebHookComputer(controllerContext.Request);
+
+            if (sessionlessWebHookComputer != null)
+            {
+                Computer = sessionlessWebHookComputer;
             }
 
             base.Initialize(controllerContext);
@@ -98,6 +106,26 @@ namespace Roomie.Web.Website.Controllers.Api
             Database.Computers.Update(session.Computer);
 
             return session;
+        }
+
+        private Persistence.Models.Computer GetSessionlessWebHookComputer(HttpRequestMessage request)
+        {
+            if(!request.Headers.Contains(WebHookAccessKeyHeaderName))
+            {
+                return null;
+            }
+
+            var accessKey = request.Headers.GetValues(WebHookAccessKeyHeaderName)
+                .FirstOrDefault();
+
+            if (accessKey == null)
+            {
+                return null;
+            }
+
+            var computer = Database.Computers.Get(accessKey);
+
+            return computer;
         }
     }
 }
