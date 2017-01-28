@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web;
+using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Computer
@@ -8,9 +9,20 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
     [ApiRestrictedAccess]
     public class ComputerController : BaseController
     {
+        private IComputerRepository _computerRepository;
+        private IScriptRepository _scriptRepository;
+        private ITaskRepository _taskRepository;
+
+        public ComputerController()
+        {
+            _computerRepository = RepositoryFactory.GetComputerRepository();
+            _scriptRepository = RepositoryFactory.GetScriptRepository();
+            _taskRepository = RepositoryFactory.GetTaskRepository();
+        }
+
         public Persistence.Models.Computer[] Get()
         {
-            var computers = Database.Computers.Get(User);
+            var computers = _computerRepository.Get(User);
             var result = computers.Select(GetSerializableVersion)
                 .ToArray();
 
@@ -27,7 +39,7 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
 
         public Persistence.Models.Computer Get(string accessKey)
         {
-            var computer = Database.Computers.Get(accessKey);
+            var computer = _computerRepository.Get(accessKey);
             var result = GetSerializableVersion(computer);
             return result;
         }
@@ -37,7 +49,7 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
             add = add ?? new AddComputerModel();
 
             var computer = Persistence.Models.Computer.Create(add.Name, User);
-            Database.Computers.Add(computer);
+            _computerRepository.Add(computer);
         }
 
         public void Post(int id, string action, ComputerActionOptions options)
@@ -50,24 +62,24 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
             {
                 case "DisableWebHook":
                     computer.DisableWebhook();
-                    Database.Computers.Update(computer);
+                    _computerRepository.Update(computer);
                     break;
 
                 case "RenewWebHookKeys":
                     computer.RenewWebhookKeys();
-                    Database.Computers.Update(computer);
+                    _computerRepository.Update(computer);
                     break;
 
                 case "RunScript":
                     var scriptObject = Persistence.Models.Script.Create(false, options.Script);
-                    Database.Scripts.Add(scriptObject);
+                    _scriptRepository.Add(scriptObject);
 
                     var task = Persistence.Models.Task.Create(User, "Website", computer, scriptObject);
 
-                    Database.Tasks.Add(task);
+                    _taskRepository.Add(task);
 
                     computer.UpdateLastScript(task.Script);
-                    Database.Computers.Update(computer);
+                    _computerRepository.Update(computer);
                     break;
 
                 default:
@@ -106,7 +118,7 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
 
         private Persistence.Models.Computer SelectComputer(int id)
         {
-            var computer = Database.Computers.Get(User, id);
+            var computer = _computerRepository.Get(User, id);
 
             if (computer == null)
             {

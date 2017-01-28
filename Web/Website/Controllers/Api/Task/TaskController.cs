@@ -8,9 +8,16 @@ namespace Roomie.Web.Website.Controllers.Api.Task
     [ApiRestrictedAccess]
     public class TaskController : BaseController
     {
+        private ITaskRepository _taskRepository;
+
+        public TaskController()
+        {
+            _taskRepository = RepositoryFactory.GetTaskRepository();
+        }
+
         public Persistence.Models.Task Get(int id)
         {
-            var task = Database.Tasks.Get(id);
+            var task = _taskRepository.Get(id);
             var result = GetSerializableVersion(task);
 
             return result;
@@ -18,7 +25,7 @@ namespace Roomie.Web.Website.Controllers.Api.Task
 
         public Page<Persistence.Models.Task> Get([FromUri] ListFilter filter)
         {
-            var result = Database.Tasks.List(User, filter)
+            var result = _taskRepository.List(User, filter)
                 .Transform(GetSerializableVersion);
 
             return result;
@@ -49,7 +56,7 @@ namespace Roomie.Web.Website.Controllers.Api.Task
 
             DoWork.UntilTimeout(timeout ?? 5, () =>
             {
-                var result = Database.Tasks.Clean(User, filter);
+                var result = _taskRepository.Clean(User, filter);
 
                 deleted += result.Deleted;
                 skipped += result.Skipped;

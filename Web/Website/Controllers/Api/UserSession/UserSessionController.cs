@@ -7,16 +7,23 @@ namespace Roomie.Web.Website.Controllers.Api.UserSession
     [ApiRestrictedAccess]
     public class UserSessionController : BaseController
     {
+        private ISessionRepository _sessionRepository;
+
+        public UserSessionController()
+        {
+            _sessionRepository = RepositoryFactory.GetSessionRepository();
+        }
+
         public Persistence.Models.UserSession Get(string token)
         {
-            var result = Database.Sessions.GetUserSession(token);
+            var result = _sessionRepository.GetUserSession(token);
 
             return result;
         }
 
         public Page<object> Get([FromUri] ListFilter filter)
         {
-            var sessions = Database.Sessions.ListUserSessions(User, filter);
+            var sessions = _sessionRepository.ListUserSessions(User, filter);
 
             var result = sessions.Transform(Transform);
 

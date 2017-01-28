@@ -11,6 +11,7 @@ using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Measurements.Temperature;
 using Roomie.Web.Persistence.Helpers;
+using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Device
@@ -18,6 +19,15 @@ namespace Roomie.Web.Website.Controllers.Api.Device
     [ApiRestrictedAccess]
     public class DeviceController : BaseController
     {
+        private IDeviceRepository _deviceRepository;
+        private INetworkRepository _networkRepository;
+
+        public DeviceController()
+        {
+            _deviceRepository = RepositoryFactory.GetDeviceRepository();
+            _networkRepository = RepositoryFactory.GetNetworkRepository();
+        }
+
         public IEnumerable<Persistence.Models.Device> Get(bool examples = false)
         {
             Persistence.Models.Device[] devices;
@@ -28,8 +38,8 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             }
             else
             {
-                var networks = Database.Networks.Get(User);
-                var unsortedDevices = networks.SelectMany(Database.Devices.Get).ToList();
+                var networks = _networkRepository.Get(User);
+                var unsortedDevices = networks.SelectMany(_deviceRepository.Get).ToList();
                 unsortedDevices.Sort(new DeviceSort());
                 devices = unsortedDevices.ToArray();
             }
@@ -59,7 +69,7 @@ namespace Roomie.Web.Website.Controllers.Api.Device
                 type: update.Type ?? device.Type
             );
 
-            Database.Devices.Update(device);
+            _deviceRepository.Update(device);
 
             AddTask(
                 computer: device.Network.AttatchedComputer,
@@ -151,7 +161,7 @@ namespace Roomie.Web.Website.Controllers.Api.Device
 
         private Persistence.Models.Device SelectDevice(int id)
         {
-            var device = Database.Devices.Get(User, id);
+            var device = _deviceRepository.Get(User, id);
 
             if (device == null)
             {

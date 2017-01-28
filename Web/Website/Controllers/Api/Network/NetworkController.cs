@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Network
@@ -10,13 +11,22 @@ namespace Roomie.Web.Website.Controllers.Api.Network
     [ApiRestrictedAccess]
     public class NetworkController : BaseController
     {
+        private IDeviceRepository _deviceRepository;
+        private INetworkRepository _networkRepository;
+
+        public NetworkController()
+        {
+            _deviceRepository = RepositoryFactory.GetDeviceRepository();
+            _networkRepository = RepositoryFactory.GetNetworkRepository();
+        }
+
         public IEnumerable<Persistence.Models.Network> Get()
         {
-            var networks = Database.Networks.Get(User);
+            var networks = _networkRepository.Get(User);
 
             foreach (var network in networks)
             {
-                network.LoadDevices(Database.Devices);
+                network.LoadDevices(_deviceRepository);
             }
 
             var result = networks.Select(GetSerializableVersion);
@@ -39,7 +49,7 @@ namespace Roomie.Web.Website.Controllers.Api.Network
             var network = SelectNetwork(id);
 
             network.UpdateName(update.Name);
-            Database.Networks.Update(network);
+            _networkRepository.Update(network);
         }
 
         public void Post(int id, string action)
@@ -65,12 +75,12 @@ namespace Roomie.Web.Website.Controllers.Api.Network
         {
             var network = SelectNetwork(id);
 
-            foreach (var device in Database.Devices.Get(network))
+            foreach (var device in _deviceRepository.Get(network))
             {
-                Database.Devices.Remove(device);
+                _deviceRepository.Remove(device);
             }
 
-            Database.Networks.Remove(network);
+            _networkRepository.Remove(network);
 
         }
 
@@ -147,14 +157,14 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
         private Persistence.Models.Network SelectNetwork(int id)
         {
-            var network = Database.Networks.Get(User, id);
+            var network = _networkRepository.Get(User, id);
 
             if (network == null)
             {
                 throw new HttpException(404, "Network not found");
             }
 
-            network.LoadDevices(Database.Devices);
+            network.LoadDevices(_deviceRepository);
 
             return network;
         }

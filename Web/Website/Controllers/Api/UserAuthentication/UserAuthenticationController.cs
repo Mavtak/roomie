@@ -9,6 +9,15 @@ namespace Roomie.Web.Website.Controllers.Api.UserAuthentication
 {
     public class UserAuthenticationController : BaseController
     {
+        private ISessionRepository _sessionRepository;
+        private IUserRepository _userRepository;
+
+        public UserAuthenticationController()
+        {
+            _sessionRepository = RepositoryFactory.GetSessionRepository();
+            _userRepository = RepositoryFactory.GetUserRepository();
+        }
+
         [ApiRestrictedAccess]
         public void Get()
         {
@@ -16,7 +25,7 @@ namespace Roomie.Web.Website.Controllers.Api.UserAuthentication
 
         public HttpResponseMessage Post(string username, string password)
         {
-            var user = Database.Users.Get(username, password);
+            var user = _userRepository.Get(username, password);
 
             if (user == null)
             {
@@ -32,7 +41,7 @@ namespace Roomie.Web.Website.Controllers.Api.UserAuthentication
 
             var session = Persistence.Models.UserSession.Create(user);
 
-            Database.Sessions.Add(session);
+            _sessionRepository.Add(session);
 
             var cookie = CreateSessionCookie(session.Token, DateTime.UtcNow.AddYears(1));
 

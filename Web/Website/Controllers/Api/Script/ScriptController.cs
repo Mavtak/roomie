@@ -7,6 +7,17 @@ namespace Roomie.Web.Website.Controllers.Api.Script
     [ApiRestrictedAccess]
     public class ScriptController : BaseController
     {
+        private IComputerRepository _computerRepository;
+        private IScriptRepository _scriptRepository;
+        private ITaskRepository _taskRepository;
+
+        public ScriptController()
+        {
+            _computerRepository = RepositoryFactory.GetComputerRepository();
+            _scriptRepository = RepositoryFactory.GetScriptRepository();
+            _taskRepository = RepositoryFactory.GetTaskRepository();
+        }
+
         public object Post(string action, int? timeout = null)
         {
             switch(action)
@@ -32,7 +43,7 @@ namespace Roomie.Web.Website.Controllers.Api.Script
 
             DoWork.UntilTimeout(timeout ?? 5, () =>
             {
-                var result = Database.Scripts.Clean(Database.Tasks, Database.Computers, filter);
+                var result = _scriptRepository.Clean(_taskRepository, _computerRepository, filter);
 
                 deleted += result.Deleted;
                 skipped += result.Skipped;
