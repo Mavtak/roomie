@@ -10,7 +10,7 @@ using Roomie.Common.HomeAutomation.Thermostats;
 using Roomie.Common.HomeAutomation.Thermostats.Fans;
 using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
 using Roomie.Common.Measurements.Temperature;
-using Roomie.Web.Persistence.Database;
+using Roomie.Web.Persistence.Helpers;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Device
@@ -20,7 +20,20 @@ namespace Roomie.Web.Website.Controllers.Api.Device
     {
         public IEnumerable<Persistence.Models.Device> Get(bool examples = false)
         {
-            var devices = examples ? Persistence.Examples.Devices : Database.GetDevicesForUser(User);
+            Persistence.Models.Device[] devices;
+
+            if (examples)
+            {
+                devices = Persistence.Examples.Devices.ToArray();
+            }
+            else
+            {
+                var networks = Database.Networks.Get(User);
+                var unsortedDevices = networks.SelectMany(Database.Devices.Get).ToList();
+                unsortedDevices.Sort(new DeviceSort());
+                devices = unsortedDevices.ToArray();
+            }
+            
             var result = devices.Select(GetSerializableVersion);
 
             return result;
