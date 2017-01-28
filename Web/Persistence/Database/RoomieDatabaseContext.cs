@@ -18,6 +18,8 @@ namespace Roomie.Web.Persistence.Database
 
         private readonly EntityFrameworkRoomieDatabaseBackend _database;
 
+        private IRepositoryFactory _repositoryFactory;
+
         public EntityFrameworkRoomieDatabaseBackend Backend
         {
             get
@@ -35,23 +37,16 @@ namespace Roomie.Web.Persistence.Database
         {
             _database = database;
 
-            Tasks = new TaskRepository(_database.Tasks, _database.Computers, SaveChanges,  _database.Scripts, _database.Users);
+            _repositoryFactory = new EntityFrameworkRepositoryFactory(database);
 
-            Scripts = new ScriptRepository(_database.Scripts, SaveChanges);
-
-            Computers = new ComputerRepository(_database.Computers, SaveChanges, _database.Scripts, _database.Users);
-
-            NetworkGuests = new NetworkGuestRepository(_database.NetworkGuests, _database.Networks, SaveChanges, _database.Users);
-
-            var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks, _database.Computers, SaveChanges, _database.Users);
-            Networks = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, NetworkGuests);
-
-            var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices, _database.Networks, SaveChanges, Scripts, Tasks);
-            Devices = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, NetworkGuests);
-
-            Users = new UserRepository(SaveChanges, _database.Users);
-
-            Sessions = new SessionRepository(_database.UserSessions, _database.WebHookSessions, _database.Computers, SaveChanges, _database.Users);
+            Tasks = _repositoryFactory.GetTaskRepository();
+            Scripts = _repositoryFactory.GetScriptRepository();
+            Computers = _repositoryFactory.GetComputerRepository();
+            NetworkGuests = _repositoryFactory.GetNetworkGuestRepository();
+            Networks = _repositoryFactory.GetNetworkRepository();
+            Devices = _repositoryFactory.GetDeviceRepository();
+            Users = _repositoryFactory.GetUserRepository();
+            Sessions = _repositoryFactory.GetSessionRepository();
         }
 
         public void Reset()
