@@ -144,5 +144,11 @@ namespace Roomie.Web.Website.Controllers.Api
 
             return computer;
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            _entityFrameworkRoomieDatabaseBackend.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }
