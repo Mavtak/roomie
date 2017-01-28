@@ -14,8 +14,6 @@ namespace Roomie.Web.Persistence.Database
         public IUserRepository Users { get; set; }
         public ISessionRepository Sessions { get; set; }
 
-        public static string ConnectionString { private get; set; }
-
         private readonly EntityFrameworkRoomieDatabaseBackend _database;
 
         private IRepositoryFactory _repositoryFactory;
@@ -29,7 +27,7 @@ namespace Roomie.Web.Persistence.Database
         }
 
         public RoomieDatabaseContext()
-            : this(new EntityFrameworkRoomieDatabaseBackend(ConnectionString ?? "RoomieDatabaseContext"))
+            : this(new EntityFrameworkRoomieDatabaseBackend())
         {
         }
 

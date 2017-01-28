@@ -17,7 +17,7 @@ namespace Roomie.Web.Website
                 if (settingsNode.Attribute(key) != null)
                 {
                     var connectionString = settingsNode.Attribute(key).Value;
-                    RoomieDatabaseContext.ConnectionString = connectionString;
+                    EntityFrameworkRoomieDatabaseBackend.ConnectionString = connectionString;
                 };
             }
             catch (IOException)

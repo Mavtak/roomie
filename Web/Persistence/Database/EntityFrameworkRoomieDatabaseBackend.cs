@@ -5,6 +5,8 @@ namespace Roomie.Web.Persistence.Database
 {
     public sealed class EntityFrameworkRoomieDatabaseBackend : DbContext
     {
+        public static string ConnectionString { private get; set; }
+
         public DbSet<UserModel> Users { get; set; }
         public DbSet<UserSessionModel> UserSessions { get; set; }
         public DbSet<ComputerModel> Computers { get; set; }
@@ -15,8 +17,8 @@ namespace Roomie.Web.Persistence.Database
         public DbSet<ScriptModel> Scripts { get; set; }
         public DbSet<WebHookSessionModel> WebHookSessions { get; set; }
 
-        public EntityFrameworkRoomieDatabaseBackend(string nameOrConnectionString)
-            : base(nameOrConnectionString)
+        public EntityFrameworkRoomieDatabaseBackend(string nameOrConnectionString = null)
+            : base(nameOrConnectionString ?? ConnectionString ?? "RoomieDatabaseContext")
         {
         }
 
