@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DatabaseConnectionFactory.cs" />
     <Compile Include="Database\DatabaseUtilities.cs" />
     <Compile Include="Database\DeviceTypeMapping.cs" />
     <Compile Include="Database\EntityFrameworkRoomieDatabaseBackend.cs" />

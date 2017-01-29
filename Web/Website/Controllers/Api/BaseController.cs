@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.SqlClient;
+using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
@@ -16,6 +17,7 @@ namespace Roomie.Web.Website.Controllers.Api
         public static string WebHookSessionTokenHeaderName = "x-roomie-webhook-session";
         public static string WebHookAccessKeyHeaderName = "x-roomie-webhook-key";
 
+        private SqlConnection _databaseConnection;
         private EntityFrameworkRoomieDatabaseBackend _entityFrameworkRoomieDatabaseBackend;
         protected IRepositoryFactory RepositoryFactory { get; private set; }
 
@@ -24,9 +26,10 @@ namespace Roomie.Web.Website.Controllers.Api
 
         protected BaseController()
         {
-            _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend();
+            _databaseConnection = DatabaseConnectionFactory.Connect();
+            _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend(_databaseConnection);
             RepositoryFactory = new CompositeImplementationRepositoryFactory(
-                new DapperRepositoryFactory(_entityFrameworkRoomieDatabaseBackend.Database.Connection),
+                new DapperRepositoryFactory(_databaseConnection),
                 new EntityFrameworkRepositoryFactory(_entityFrameworkRoomieDatabaseBackend)
             );
         }
@@ -151,6 +154,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
         protected override void Dispose(bool disposing)
         {
+            _databaseConnection.Dispose();
             _entityFrameworkRoomieDatabaseBackend.Dispose();
             base.Dispose(disposing);
         }
