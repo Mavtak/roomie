@@ -1,4 +1,7 @@
-﻿using Roomie.Web.Persistence.Repositories;
+﻿using System.Data.Common;
+using System.Data.SqlClient;
+using Roomie.Web.Persistence.Repositories;
+using Roomie.Web.Persistence.Repositories.DapperRepositories;
 using Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories;
 
 namespace Roomie.Web.Persistence.Database
@@ -14,28 +17,26 @@ namespace Roomie.Web.Persistence.Database
         public IUserRepository Users { get; set; }
         public ISessionRepository Sessions { get; set; }
 
-        private readonly EntityFrameworkRoomieDatabaseBackend _database;
-
+        private SqlConnection _databaseConnection;
+        private EntityFrameworkRoomieDatabaseBackend _entityFrameworkRoomieDatabaseBackend;
         private IRepositoryFactory _repositoryFactory;
 
         public EntityFrameworkRoomieDatabaseBackend Backend
         {
             get
             {
-                return _database;
+                return _entityFrameworkRoomieDatabaseBackend;
             }
         }
 
         public RoomieDatabaseContext()
-            : this(new EntityFrameworkRoomieDatabaseBackend())
         {
-        }
-
-        public RoomieDatabaseContext(EntityFrameworkRoomieDatabaseBackend database)
-        {
-            _database = database;
-
-            _repositoryFactory = new EntityFrameworkRepositoryFactory(database);
+            _databaseConnection = DatabaseConnectionFactory.Connect();
+            _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend(_databaseConnection);
+            _repositoryFactory = new CompositeImplementationRepositoryFactory(
+                new DapperRepositoryFactory(_databaseConnection),
+                new EntityFrameworkRepositoryFactory(_entityFrameworkRoomieDatabaseBackend)
+            );
 
             Tasks = _repositoryFactory.GetTaskRepository();
             Scripts = _repositoryFactory.GetScriptRepository();
@@ -49,17 +50,18 @@ namespace Roomie.Web.Persistence.Database
 
         public void Reset()
         {
-            DatabaseUtilities.Reset(_database);
+            DatabaseUtilities.Reset(_entityFrameworkRoomieDatabaseBackend);
         }
 
         private void SaveChanges()
         {
-            _database.SaveChanges();
+            _entityFrameworkRoomieDatabaseBackend.SaveChanges();
         }
 
         public void Dispose()
         {
-            _database.Dispose();
+            _databaseConnection.Dispose();
+            _entityFrameworkRoomieDatabaseBackend.Dispose();
         }
     }
 }
