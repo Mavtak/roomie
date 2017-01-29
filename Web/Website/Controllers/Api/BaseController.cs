@@ -5,6 +5,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Repositories;
+using Roomie.Web.Persistence.Repositories.DapperRepositories;
 using Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories;
 
 namespace Roomie.Web.Website.Controllers.Api
@@ -24,7 +25,10 @@ namespace Roomie.Web.Website.Controllers.Api
         protected BaseController()
         {
             _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend();
-            RepositoryFactory = new EntityFrameworkRepositoryFactory(_entityFrameworkRoomieDatabaseBackend);
+            RepositoryFactory = new CompositeImplementationRepositoryFactory(
+                new DapperRepositoryFactory(_entityFrameworkRoomieDatabaseBackend.Database.Connection),
+                new EntityFrameworkRepositoryFactory(_entityFrameworkRoomieDatabaseBackend)
+            );
         }
 
         protected override void Initialize(HttpControllerContext controllerContext)
