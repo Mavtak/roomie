@@ -81,6 +81,7 @@
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\MultilevelSensorModel.cs" />
+    <Compile Include="Repositories\DapperRepositories\DapperRepositoryFactory.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\UserModel.cs" />
     <Compile Include="Repositories\DapperRepositories\UserRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\EntityFrameworkRepositoryFactory.cs" />
