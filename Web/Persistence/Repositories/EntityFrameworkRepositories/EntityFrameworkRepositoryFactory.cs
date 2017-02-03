@@ -6,6 +6,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
     public class EntityFrameworkRepositoryFactory : IRepositoryFactory
     {
         private EntityFrameworkRoomieDatabaseBackend _database;
+        private Lazy<IRepositoryFactory> _parentFactory;
 
         private IComputerRepository _computerRepository;
         private IDeviceRepository _deviceRepository;
@@ -16,9 +17,10 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         private IUserRepository _userRepository;
         private ISessionRepository _sessionRepository;
 
-        public EntityFrameworkRepositoryFactory(EntityFrameworkRoomieDatabaseBackend database)
+        public EntityFrameworkRepositoryFactory(EntityFrameworkRoomieDatabaseBackend database, Lazy<IRepositoryFactory> parentFactory)
         {
             _database = database;
+            _parentFactory = parentFactory;
         }
 
         public IComputerRepository GetComputerRepository()
@@ -35,8 +37,8 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         {
             if (_deviceRepository == null)
             {
-                var scriptRepository = GetScriptRepository();
-                var taskRepository = GetTaskRepository();
+                var scriptRepository = GetRepository(x => x.GetScriptRepository());
+                var taskRepository = GetRepository(x => x.GetTaskRepository());
                 var entityFrameworkDeviceRepository = new DeviceRepository(_database.Devices, _database.Networks, SaveChanges, scriptRepository, taskRepository);
                 _deviceRepository = new GuestEnabledDeviceRepository(entityFrameworkDeviceRepository, _networkGuestRepository);
             }
@@ -58,7 +60,7 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
         {
             if (_networkRepository == null)
             {
-                var networkGuestRepository = GetNetworkGuestRepository();
+                var networkGuestRepository = GetRepository(x => x.GetNetworkGuestRepository());
                 var entityframeworkNetworkRepository = new NetworkRepository(_database.Networks, _database.Computers, SaveChanges, _database.Users);
                 _networkRepository = new GuestEnabledNetworkRepository(entityframeworkNetworkRepository, networkGuestRepository);
             }
@@ -104,6 +106,13 @@ namespace Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories
             }
 
             return _userRepository;
+        }
+
+        private T GetRepository<T>(Func<IRepositoryFactory, T> selector)
+        {
+            var factory = _parentFactory?.Value ?? this;
+
+            return selector(factory);
         }
 
         private void SaveChanges()
