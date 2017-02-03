@@ -29,22 +29,22 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
                 )
                 VALUES
                 (
-                    @alias,
-                    @email,
-                    @registeredTimestamp,
-                    @secret,
-                    @token
+                    @Alias,
+                    @Email,
+                    @RegisteredTimestamp,
+                    @Secret,
+                    @Token
                 )
 
                 SELECT CAST(IDENT_CURRENT('UserModels') as int)
             ";
             var parameters = new
             {
-                alias = model.Alias,
-                email = model.Email,
-                registeredTimestamp = model.RegisteredTimestamp,
-                secret = model.Secret,
-                token = model.Token,
+                Alias = model.Alias,
+                Email = model.Email,
+                RegisteredTimestamp = model.RegisteredTimestamp,
+                Secret = model.Secret,
+                Token = model.Token,
             };
 
             var id = _connection.QuerySingle<int>(sql, parameters);
@@ -57,11 +57,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             var sql = @"
                 SELECT *
                 FROM UserModels
-                WHERE Token = @token
+                WHERE Token = @Token
             ";
             var parameters = new
             {
-                token = token
+                Token = token
             };
 
             var model = _connection.QuerySingle<UserModel>(sql, parameters);
@@ -75,11 +75,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             var sql = @"
                 SELECT *
                 FROM UserModels
-                WHERE Id = @id
+                WHERE Id = @Id
             ";
             var parameters = new
             {
-                id = id
+                Id = id
             };
 
             var model = _connection.QuerySingle<UserModel>(sql, parameters);
@@ -94,19 +94,19 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             var sql = @"
                 UPDATE UserModels
                 SET
-                    Alias = @alias,
-                    Email = @email,
-                    Secret = @secret,
-                    Token = @token
-                WHERE Id = @id
+                    Alias = @Alias,
+                    Email = @Email,
+                    Secret = @Secret,
+                    Token = @Token
+                WHERE Id = @Id
             ";
             var parameters = new
             {
-                alias = model.Alias,
-                email = model.Email,
-                id = model.Id,
-                secret = model.Secret,
-                token = model.Token,
+                Alias = model.Alias,
+                Email = model.Email,
+                Id = model.Id,
+                Secret = model.Secret,
+                Token = model.Token,
             };
 
             _connection.Execute(sql, parameters);
