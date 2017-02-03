@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -30,7 +31,10 @@ namespace Roomie.Web.Website.Controllers.Api
             _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend(_databaseConnection);
             RepositoryFactory = new CompositeImplementationRepositoryFactory(
                 new DapperRepositoryFactory(_databaseConnection),
-                new EntityFrameworkRepositoryFactory(_entityFrameworkRoomieDatabaseBackend)
+                new EntityFrameworkRepositoryFactory(
+                    _entityFrameworkRoomieDatabaseBackend,
+                    new Lazy<IRepositoryFactory>(() => RepositoryFactory)
+                )
             );
         }
 

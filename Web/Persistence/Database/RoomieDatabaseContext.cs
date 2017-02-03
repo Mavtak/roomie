@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Persistence.Repositories.DapperRepositories;
@@ -35,7 +36,10 @@ namespace Roomie.Web.Persistence.Database
             _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend(_databaseConnection);
             _repositoryFactory = new CompositeImplementationRepositoryFactory(
                 new DapperRepositoryFactory(_databaseConnection),
-                new EntityFrameworkRepositoryFactory(_entityFrameworkRoomieDatabaseBackend)
+                new EntityFrameworkRepositoryFactory(
+                    _entityFrameworkRoomieDatabaseBackend,
+                    new Lazy<IRepositoryFactory>(() => _repositoryFactory)
+                )
             );
 
             Tasks = _repositoryFactory.GetTaskRepository();
