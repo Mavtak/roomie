@@ -6,6 +6,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
     {
         private IDbConnection _connection;
 
+        private IScriptRepository _scriptRepository;
         private IUserRepository _userRepository;
 
         public DapperRepositoryFactory(IDbConnection connection)
@@ -35,7 +36,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
         public IScriptRepository GetScriptRepository()
         {
-            return null;
+            if (_scriptRepository == null)
+            {
+                _scriptRepository = new ScriptRepository(_connection);
+            }
+
+            return _scriptRepository;
         }
 
         public ISessionRepository GetSessionRepository()
