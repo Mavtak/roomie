@@ -84,7 +84,9 @@
     <Compile Include="Models\MultilevelSensorModel.cs" />
     <Compile Include="Repositories\CompositeImplementationRepositoryFactory.cs" />
     <Compile Include="Repositories\DapperRepositories\DapperRepositoryFactory.cs" />
+    <Compile Include="Repositories\DapperRepositories\Models\ScriptModel.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\UserModel.cs" />
+    <Compile Include="Repositories\DapperRepositories\ScriptRepository.cs" />
     <Compile Include="Repositories\DapperRepositories\SqlUtilities.cs" />
     <Compile Include="Repositories\DapperRepositories\UserRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\EntityFrameworkRepositoryFactory.cs" />
