@@ -8,6 +8,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
         private IDbConnection _connection;
         private Lazy<IRepositoryFactory> _parentFactory;
 
+        private IComputerRepository _computerRepository;
         private IScriptRepository _scriptRepository;
         private IUserRepository _userRepository;
 
@@ -19,7 +20,14 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
         public IComputerRepository GetComputerRepository()
         {
-            return null;
+            if (_computerRepository == null)
+            {
+                var scriptRepository = GetRepository(x => x.GetScriptRepository());
+                var userRepository = GetRepository(x => x.GetUserRepository());
+                _computerRepository = new ComputerRepository(_connection, scriptRepository, userRepository);
+            }
+
+            return _computerRepository;
         }
 
         public IDeviceRepository GetDeviceRepository()
