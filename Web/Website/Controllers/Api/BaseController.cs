@@ -30,7 +30,10 @@ namespace Roomie.Web.Website.Controllers.Api
             _databaseConnection = DatabaseConnectionFactory.Connect();
             _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend(_databaseConnection);
             RepositoryFactory = new CompositeImplementationRepositoryFactory(
-                new DapperRepositoryFactory(_databaseConnection),
+                new DapperRepositoryFactory(
+                    _databaseConnection,
+                    new Lazy<IRepositoryFactory>(() => RepositoryFactory)
+                ),
                 new EntityFrameworkRepositoryFactory(
                     _entityFrameworkRoomieDatabaseBackend,
                     new Lazy<IRepositoryFactory>(() => RepositoryFactory)

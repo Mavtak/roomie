@@ -35,7 +35,10 @@ namespace Roomie.Web.Persistence.Database
             _databaseConnection = DatabaseConnectionFactory.Connect();
             _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend(_databaseConnection);
             _repositoryFactory = new CompositeImplementationRepositoryFactory(
-                new DapperRepositoryFactory(_databaseConnection),
+                new DapperRepositoryFactory(
+                    _databaseConnection,
+                    new Lazy<IRepositoryFactory>(() => _repositoryFactory)
+                ),
                 new EntityFrameworkRepositoryFactory(
                     _entityFrameworkRoomieDatabaseBackend,
                     new Lazy<IRepositoryFactory>(() => _repositoryFactory)

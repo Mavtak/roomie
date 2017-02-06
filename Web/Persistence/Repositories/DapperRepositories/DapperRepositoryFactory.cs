@@ -1,17 +1,20 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
 namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 {
     public class DapperRepositoryFactory : IRepositoryFactory
     {
         private IDbConnection _connection;
+        private Lazy<IRepositoryFactory> _parentFactory;
 
         private IScriptRepository _scriptRepository;
         private IUserRepository _userRepository;
 
-        public DapperRepositoryFactory(IDbConnection connection)
+        public DapperRepositoryFactory(IDbConnection connection, Lazy<IRepositoryFactory> parentFactory)
         {
             _connection = connection;
+            _parentFactory = parentFactory;
         }
 
         public IComputerRepository GetComputerRepository()
@@ -62,6 +65,13 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             }
 
             return _userRepository;
+        }
+
+        private T GetRepository<T>(Func<IRepositoryFactory, T> selector)
+        {
+            var factory = _parentFactory?.Value ?? this;
+
+            return selector(factory);
         }
     }
 }
