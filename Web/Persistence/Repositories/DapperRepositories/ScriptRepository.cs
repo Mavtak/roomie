@@ -22,19 +22,19 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             var sql = @"
                 INSERT INTO ScriptModels
                 (
-                    CreationTimestamp,
-                    LastRunTimestamp,
-                    Mutable,
-                    RunCount,
-                    Text
+                  CreationTimestamp,
+                  LastRunTimestamp,
+                  Mutable,
+                  RunCount,
+                  Text
                 )
                 VALUES
                 (
-                    @CreationTimestamp,
-                    @LastRunTimestamp,
-                    @Mutable,
-                    @RunCount,
-                    @Text
+                  @CreationTimestamp,
+                  @LastRunTimestamp,
+                  @Mutable,
+                  @RunCount,
+                  @Text
                 )
 
                 SELECT CAST(IDENT_CURRENT('ScriptModels') as int)

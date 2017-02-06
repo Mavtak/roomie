@@ -21,19 +21,19 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             var sql = @"
                 INSERT INTO UserModels
                 (
-                    Alias,
-                    Email,
-                    RegisteredTimestamp,
-                    Secret,
-                    Token
+                  Alias,
+                  Email,
+                  RegisteredTimestamp,
+                  Secret,
+                  Token
                 )
                 VALUES
                 (
-                    @Alias,
-                    @Email,
-                    @RegisteredTimestamp,
-                    @Secret,
-                    @Token
+                  @Alias,
+                  @Email,
+                  @RegisteredTimestamp,
+                  @Secret,
+                  @Token
                 )
 
                 SELECT CAST(IDENT_CURRENT('UserModels') as int)
@@ -94,10 +94,10 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             var sql = @"
                 UPDATE UserModels
                 SET
-                    Alias = @Alias,
-                    Email = @Email,
-                    Secret = @Secret,
-                    Token = @Token
+                  Alias = @Alias,
+                  Email = @Email,
+                  Secret = @Secret,
+                  Token = @Token
                 WHERE Id = @Id
             ";
             var parameters = new
