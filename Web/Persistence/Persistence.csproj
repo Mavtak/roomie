@@ -88,9 +88,11 @@
     <Compile Include="Repositories\DapperRepositories\Models\ComputerModel.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\ScriptModel.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\UserModel.cs" />
+    <Compile Include="Repositories\DapperRepositories\Models\UserSessionModel.cs" />
     <Compile Include="Repositories\DapperRepositories\ScriptRepository.cs" />
     <Compile Include="Repositories\DapperRepositories\SqlUtilities.cs" />
     <Compile Include="Repositories\DapperRepositories\UserRepository.cs" />
+    <Compile Include="Repositories\DapperRepositories\UserSessionRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\EntityFrameworkRepositoryFactory.cs" />
     <Compile Include="Repositories\Helpers.cs" />
     <Compile Include="Repositories\ICommandDocumentationRepository.cs" />
