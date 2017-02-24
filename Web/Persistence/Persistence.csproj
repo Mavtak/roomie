@@ -90,6 +90,7 @@
     <Compile Include="Repositories\DapperRepositories\Models\UserModel.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\UserSessionModel.cs" />
     <Compile Include="Repositories\DapperRepositories\ScriptRepository.cs" />
+    <Compile Include="Repositories\DapperRepositories\SessionRepository.cs" />
     <Compile Include="Repositories\DapperRepositories\SqlUtilities.cs" />
     <Compile Include="Repositories\DapperRepositories\UserRepository.cs" />
     <Compile Include="Repositories\DapperRepositories\UserSessionRepository.cs" />
