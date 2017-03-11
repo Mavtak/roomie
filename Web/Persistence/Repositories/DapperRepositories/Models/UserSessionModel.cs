@@ -32,16 +32,14 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 id: Id,
                 lastContactTimeStamp: LastContactTimeStamp,
                 token: Token,
-                user: UserToRepositoryType(userRepository)
+                user: UserToRepositoryType(User_Id, userRepository)
             );
 
             return result;
         }
 
-        private User UserToRepositoryType(IUserRepository userRepository)
+        private static User UserToRepositoryType(int? id, IUserRepository userRepository)
         {
-            var id = User_Id;
-
             if (id == null)
             {
                 return null;

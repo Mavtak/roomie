@@ -26,7 +26,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public WebHookSession ToRepositoryType(IComputerRepository computerRepository)
         {
             var result = new WebHookSession(
-                computer: ComputerToRepositoryType(computerRepository),
+                computer: ComputerToRepositoryType(Computer_Id, computerRepository),
                 id: Id,
                 lastPing: LastPing,
                 token: Token
@@ -35,10 +35,8 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return result;
         }
 
-        private Computer ComputerToRepositoryType(IComputerRepository computerRepository)
+        private static Computer ComputerToRepositoryType(int? id, IComputerRepository computerRepository)
         {
-            var id = Computer_Id;
-
             if (id == null)
             {
                 return null;

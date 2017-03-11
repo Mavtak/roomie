@@ -31,21 +31,19 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         {
             var result = new Network(
                 address: Address,
-                attatchedComputer: AttachedComputerToRepositoryType(computerRepository),
+                attatchedComputer: AttachedComputerToRepositoryType(AttatchedComputer_Id, computerRepository),
                 devices: null,
                 id: Id,
                 lastPing: LastPing,
                 name: Name,
-                owner: OwnerToRepositoryType(userRepository)
+                owner: OwnerToRepositoryType(Owner_Id, userRepository)
             );
 
             return result;
         }
 
-        private Computer AttachedComputerToRepositoryType(IComputerRepository computerRepository)
+        private static Computer AttachedComputerToRepositoryType(int? id, IComputerRepository computerRepository)
         {
-            var id = AttatchedComputer_Id;
-
             if (id == null)
             {
                 return null;
@@ -62,10 +60,8 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return computerRepository.Get(id.Value);
         }
 
-        private User OwnerToRepositoryType(IUserRepository userRepository)
+        private User OwnerToRepositoryType(int? id, IUserRepository userRepository)
         {
-            var id = Owner_Id;
-
             if (id == null)
             {
                 return null;
