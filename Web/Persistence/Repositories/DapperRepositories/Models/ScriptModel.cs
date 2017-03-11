@@ -40,5 +40,23 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
             return result;
         }
+
+        public static Script ToRepositoryType(int? id, IScriptRepository scriptRepository)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            if (scriptRepository == null)
+            {
+                return new ScriptModel
+                {
+                    Id = id.Value
+                }.ToRepositoryType();
+            }
+
+            return scriptRepository.Get(id.Value);
+        }
     }
 }

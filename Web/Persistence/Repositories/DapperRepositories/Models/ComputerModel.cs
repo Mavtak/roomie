@@ -39,7 +39,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 encryptionKey: EncryptionKey,
                 id: Id,
                 lastPing: LastPing,
-                lastScript: LastScriptToRepositoryType(LastScript_Id, scriptRepository),
+                lastScript: ScriptModel.ToRepositoryType(LastScript_Id, scriptRepository),
                 name: Name,
                 owner: UserModel.ToRepositoryType(Owner_Id, userRepository)
             );
@@ -63,24 +63,6 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             }
 
             return computerRepository.Get(id.Value);
-        }
-
-        private static Script LastScriptToRepositoryType(int? id, IScriptRepository scriptRepository)
-        {
-            if (id == null)
-            {
-                return null;
-            }
-
-            if (scriptRepository == null)
-            {
-                return new ScriptModel
-                {
-                    Id = id.Value
-                }.ToRepositoryType();
-            }
-
-            return scriptRepository.Get(id.Value);
         }
     }
 }
