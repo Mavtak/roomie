@@ -92,6 +92,7 @@
     <Compile Include="Repositories\DapperRepositories\Models\ScriptModel.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\UserModel.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\UserSessionModel.cs" />
+    <Compile Include="Repositories\DapperRepositories\NetworkGuestRepository.cs" />
     <Compile Include="Repositories\DapperRepositories\NetworkRepository.cs" />
     <Compile Include="Repositories\DapperRepositories\ScriptRepository.cs" />
     <Compile Include="Repositories\DapperRepositories\SessionRepository.cs" />
