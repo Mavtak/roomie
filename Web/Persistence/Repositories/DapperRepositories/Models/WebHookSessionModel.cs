@@ -12,6 +12,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         public static WebHookSessionModel FromRepositoryType(WebHookSession model)
         {
+            if (model == null)
+            {
+                return null;
+            }
+
             var result = new WebHookSessionModel
             {
                 Computer_Id = model.Computer.Id,

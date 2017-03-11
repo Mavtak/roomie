@@ -14,6 +14,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         public static ScriptModel FromRepositoryType(Script model)
         {
+            if (model == null)
+            {
+                return null;
+            }
+
             var result = new ScriptModel
             {
                 CreationTimestamp = model.CreationTimestamp,

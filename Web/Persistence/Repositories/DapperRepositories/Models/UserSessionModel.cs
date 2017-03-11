@@ -13,6 +13,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         public static UserSessionModel FromRepositoryType(UserSession model)
         {
+            if (model == null)
+            {
+                return null;
+            }
+
             var result = new UserSessionModel
             {
                 CreationTimeStamp = model.CreationTimeStamp,

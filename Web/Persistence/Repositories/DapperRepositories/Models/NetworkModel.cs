@@ -14,6 +14,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         public static NetworkModel FromRepositoryType(Network network)
         {
+            if (network == null)
+            {
+                return null;
+            }
+
             var result = new NetworkModel
             {
                 Address = network.Address,

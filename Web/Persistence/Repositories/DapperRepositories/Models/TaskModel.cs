@@ -15,6 +15,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         
         public static TaskModel FromRepositoryType(Task model)
         {
+            if (model == null)
+            {
+                return null;
+            }
+
             var ownerModel = UserModel.FromRepositoryType(model.Owner);
             var scriptModel = ScriptModel.FromRepositoryType(model.Script);
             var targetModel = ComputerModel.FromRepositoryType(model.Target);

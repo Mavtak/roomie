@@ -16,6 +16,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         public static ComputerModel FromRepositoryType(Computer model)
         {
+            if (model == null)
+            {
+                return null;
+            }
+
             var result = new ComputerModel
             {
                 AccessKey = model.AccessKey,

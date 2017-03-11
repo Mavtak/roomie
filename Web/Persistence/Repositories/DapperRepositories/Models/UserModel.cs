@@ -15,6 +15,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         public static UserModel FromRepositoryType(User model)
         {
+            if (model == null)
+            {
+                return null;
+            }
+
             var result = new UserModel
             {
                 Alias = model.Alias,

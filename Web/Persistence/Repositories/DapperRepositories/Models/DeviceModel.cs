@@ -18,6 +18,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         
         public static DeviceModel FromRepositoryType(Device model)
         {
+            if (model == null)
+            {
+                return null;
+            }
+
             var result = new DeviceModel
             {
                 Address = model.Address,
