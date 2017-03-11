@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Http;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
@@ -17,7 +18,13 @@ namespace Roomie.Web.Website.Controllers.Api.Task
 
         public Persistence.Models.Task Get(int id)
         {
-            var task = _taskRepository.Get(id);
+            var task = _taskRepository.Get(User, id);
+
+            if (task == null)
+            {
+                throw new HttpException(404, "Task not found");
+            }
+
             var result = GetSerializableVersion(task);
 
             return result;
