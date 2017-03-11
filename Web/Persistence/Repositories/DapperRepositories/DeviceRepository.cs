@@ -106,9 +106,10 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
         public Device Get(User user, int id)
         {
+            var userModel = UserModel.FromRepositoryType(user);
             var result = Get(id);
 
-            if (result?.Network?.Owner?.Id != user?.Id)
+            if (result?.Network?.Owner?.Id != userModel?.Id)
             {
                 return null;
             }
