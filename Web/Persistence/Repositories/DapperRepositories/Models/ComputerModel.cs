@@ -49,7 +49,9 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         private Script LastScriptToRepositoryType(IScriptRepository scriptRepository)
         {
-            if (LastScript_Id == null)
+            var id = LastScript_Id;
+
+            if (id == null)
             {
                 return null;
             }
@@ -58,16 +60,18 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             {
                 return new ScriptModel
                 {
-                    Id = LastScript_Id.Value
+                    Id = id.Value
                 }.ToRepositoryType();
             }
 
-            return scriptRepository.Get(LastScript_Id.Value);
+            return scriptRepository.Get(id.Value);
         }
 
         private User OwnerToRepositoryType(IUserRepository userRepository)
         {
-            if (Owner_Id == null)
+            var id = Owner_Id;
+
+            if (id == null)
             {
                 return null;
             }
@@ -76,11 +80,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             {
                 return new UserModel
                 {
-                    Id = Owner_Id.Value
+                    Id = id.Value
                 }.ToRepositoryType();
             }
 
-            return userRepository.Get(Owner_Id.Value);
+            return userRepository.Get(id.Value);
         }
     }
 }

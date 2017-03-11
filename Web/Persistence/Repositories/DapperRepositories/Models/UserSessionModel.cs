@@ -40,7 +40,9 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         private User UserToRepositoryType(IUserRepository userRepository)
         {
-            if (User_Id == null)
+            var id = User_Id;
+
+            if (id == null)
             {
                 return null;
             }
@@ -49,11 +51,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             {
                 return new UserModel
                 {
-                    Id = User_Id.Value
+                    Id = id.Value
                 }.ToRepositoryType();
             }
 
-            return userRepository.Get(User_Id.Value);
+            return userRepository.Get(id.Value);
         }
     }
 }

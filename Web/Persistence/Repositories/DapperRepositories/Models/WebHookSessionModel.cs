@@ -37,7 +37,9 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         private Computer ComputerToRepositoryType(IComputerRepository computerRepository)
         {
-            if (Computer_Id == null)
+            var id = Computer_Id;
+
+            if (id == null)
             {
                 return null;
             }
@@ -46,11 +48,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             {
                 return new ComputerModel
                 {
-                    Id = Computer_Id.Value
+                    Id = id.Value
                 }.ToRepositoryType(null, null);
             }
 
-            return computerRepository.Get(Computer_Id.Value);
+            return computerRepository.Get(id.Value);
         }
     }
 }

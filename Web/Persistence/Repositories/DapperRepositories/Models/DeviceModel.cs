@@ -60,7 +60,9 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
         private Network NetworkToRepositoryType(INetworkRepository networkRepository)
         {
-            if (Network_Id == null)
+            var id = Network_Id;
+
+            if (id == null)
             {
                 return null;
             }
@@ -69,11 +71,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             {
                 new NetworkModel
                 {
-                    Id = Network_Id.Value
+                    Id = id.Value
                 }.ToRepositoryType(null, null);
             }
 
-            return networkRepository.Get(Network_Id.Value);
+            return networkRepository.Get(id.Value);
         }
     }
 }
