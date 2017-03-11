@@ -26,7 +26,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 Id = model.Id,
                 LastContactTimeStamp = model.LastContactTimeStamp,
                 Token = model.Token,
-                User_Id = userModel.Id,
+                User_Id = userModel?.Id,
             };
 
             return result;

@@ -32,7 +32,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 IsConnected = model.IsConnected,
                 LastPing = model.LastPing,
                 Name = model.Name,
-                Network_Id = networkModel.Id,
+                Network_Id = networkModel?.Id,
                 Notes = model.ToXElement().ToString(),
                 Type_Name = model.Type.Name,
             };

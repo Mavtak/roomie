@@ -29,10 +29,10 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 Expiration = model.Expiration,
                 Id = model.Id,
                 Origin = model.Origin,
-                Owner_Id = ownerModel.Id,
+                Owner_Id = ownerModel?.Id,
                 ReceivedTimestamp = model.ReceivedTimestamp,
-                Script_Id = scriptModel.Id,
-                Target_Id = targetModel.Id,
+                Script_Id = scriptModel?.Id,
+                Target_Id = targetModel?.Id,
             };
 
             return result;
