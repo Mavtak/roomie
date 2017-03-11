@@ -10,7 +10,9 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
         private IComputerRepository _computerRepository;
         private IDeviceRepository _deviceRepository;
-        private INetworkRepository _networkRepository;
+        private INetworkGuestRepository _networkGuestRepository;
+        private INetworkRepository _networkRepositoryWithGuests;
+        private INetworkRepository _networkRepositoryWithoutGuests;
         private ISessionRepository _sessionRepository;
         private IScriptRepository _scriptRepository;
         private IUserRepository _userRepository;
@@ -48,22 +50,41 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
         public INetworkGuestRepository GetNetworkGuestRepository()
         {
-            return null;
+            if (_networkGuestRepository == null)
+            {
+                var networkRepository = GetNetworkRepositoryWithoutGuests();
+                var userRepository = GetRepository(x => x.GetUserRepository());
+
+                _networkGuestRepository = new NetworkGuestRepository(_connection, networkRepository, userRepository);
+            }
+
+            return _networkGuestRepository;
         }
 
         public INetworkRepository GetNetworkRepository()
         {
-            if (_networkRepository == null)
+            if (_networkRepositoryWithGuests == null)
+            {
+                var networkGuestRepository = GetRepository(x => x.GetNetworkGuestRepository());
+                var networkRepository = GetNetworkRepositoryWithoutGuests();
+
+                _networkRepositoryWithGuests = new GuestEnabledNetworkRepository(networkRepository, networkGuestRepository);
+            }
+
+            return _networkRepositoryWithGuests;
+        }
+
+        private INetworkRepository GetNetworkRepositoryWithoutGuests()
+        {
+            if (_networkRepositoryWithoutGuests == null)
             {
                 var computerRepository = GetRepository(x => x.GetComputerRepository());
                 var userRepository = GetRepository(x => x.GetUserRepository());
-                var networkGuestRepository = GetRepository(x => x.GetNetworkGuestRepository());
-                var networkRepository = new NetworkRepository(_connection, computerRepository, userRepository);
 
-                _networkRepository = new GuestEnabledNetworkRepository(networkRepository, networkGuestRepository);
+                _networkRepositoryWithoutGuests = new NetworkRepository(_connection, computerRepository, userRepository);
             }
 
-            return _networkRepository;
+            return _networkRepositoryWithoutGuests;
         }
 
         public IScriptRepository GetScriptRepository()
