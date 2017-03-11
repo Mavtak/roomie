@@ -41,5 +41,23 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
             return result;
         }
+
+        public static User ToRepositoryType(int? id, IUserRepository userRepository)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            if (userRepository == null)
+            {
+                return new UserModel
+                {
+                    Id = id.Value
+                }.ToRepositoryType();
+            }
+
+            return userRepository.Get(id.Value);
+        }
     }
 }

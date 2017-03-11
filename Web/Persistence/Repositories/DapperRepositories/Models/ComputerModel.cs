@@ -41,7 +41,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 lastPing: LastPing,
                 lastScript: LastScriptToRepositoryType(LastScript_Id, scriptRepository),
                 name: Name,
-                owner: OwnerToRepositoryType(Owner_Id, userRepository)
+                owner: UserModel.ToRepositoryType(Owner_Id, userRepository)
             );
 
             return result;
@@ -63,24 +63,6 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             }
 
             return scriptRepository.Get(id.Value);
-        }
-
-        private static User OwnerToRepositoryType(int? id, IUserRepository userRepository)
-        {
-            if (id == null)
-            {
-                return null;
-            }
-
-            if (userRepository == null)
-            {
-                return new UserModel
-                {
-                    Id = id.Value
-                }.ToRepositoryType();
-            }
-
-            return userRepository.Get(id.Value);
         }
     }
 }
