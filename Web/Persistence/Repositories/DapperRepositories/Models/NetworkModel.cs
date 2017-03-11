@@ -31,7 +31,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         {
             var result = new Network(
                 address: Address,
-                attatchedComputer: AttachedComputerToRepositoryType(AttatchedComputer_Id, computerRepository),
+                attatchedComputer: ComputerModel.ToRepositoryType(AttatchedComputer_Id, computerRepository),
                 devices: null,
                 id: Id,
                 lastPing: LastPing,
@@ -40,24 +40,6 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             );
 
             return result;
-        }
-
-        private static Computer AttachedComputerToRepositoryType(int? id, IComputerRepository computerRepository)
-        {
-            if (id == null)
-            {
-                return null;
-            }
-
-            if (computerRepository == null)
-            {
-                return new ComputerModel
-                {
-                    Id = id.Value
-                }.ToRepositoryType(null, null);
-            }
-
-            return computerRepository.Get(id.Value);
         }
     }
 }
