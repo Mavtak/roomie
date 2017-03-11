@@ -41,5 +41,22 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
             return result;
         }
+        public  static Network ToRepositoryType(int? id, INetworkRepository networkRepository)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            if (networkRepository == null)
+            {
+                new NetworkModel
+                {
+                    Id = id.Value
+                }.ToRepositoryType((IComputerRepository) null, (IUserRepository) null);
+            }
+
+            return networkRepository.Get(id.Value);
+        }
     }
 }

@@ -48,7 +48,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 lastPing: LastPing,
                 id: Id,
                 name: Name,
-                network: NetworkToRepositoryType(Network_Id, networkRepository),
+                network: NetworkModel.ToRepositoryType(Network_Id, networkRepository),
                 scripts: scriptRepository,
                 state: state,
                 tasks: taskRepository,
@@ -56,24 +56,6 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             );
 
             return result;
-        }
-
-        private static Network NetworkToRepositoryType(int? id, INetworkRepository networkRepository)
-        {
-            if (id == null)
-            {
-                return null;
-            }
-
-            if (networkRepository == null)
-            {
-                new NetworkModel
-                {
-                    Id = id.Value
-                }.ToRepositoryType(null, null);
-            }
-
-            return networkRepository.Get(id.Value);
         }
     }
 }
