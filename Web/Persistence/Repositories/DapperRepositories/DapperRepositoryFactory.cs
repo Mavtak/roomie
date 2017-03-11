@@ -15,6 +15,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
         private INetworkRepository _networkRepositoryWithoutGuests;
         private ISessionRepository _sessionRepository;
         private IScriptRepository _scriptRepository;
+        private ITaskRepository _taskRepository;
         private IUserRepository _userRepository;
 
         public DapperRepositoryFactory(IDbConnection connection, Lazy<IRepositoryFactory> parentFactory)
@@ -115,7 +116,16 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
         public ITaskRepository GetTaskRepository()
         {
-            return null;
+            if (_taskRepository == null)
+            {
+                var computerRepository = GetRepository(x => x.GetComputerRepository());
+                var scriptRepository = GetRepository(x => x.GetScriptRepository());
+                var userRepository = GetRepository(x => x.GetUserRepository());
+
+                _taskRepository = new TaskRepository(_connection, computerRepository, scriptRepository, userRepository);
+            }
+
+            return _taskRepository;
         }
 
         public IUserRepository GetUserRepository()
