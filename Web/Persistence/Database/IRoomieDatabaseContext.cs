@@ -5,8 +5,6 @@ namespace Roomie.Web.Persistence.Database
 {
     public interface IRoomieDatabaseContext : IDisposable
     {
-        void Reset();
-
         IComputerRepository Computers { get; }
         IDeviceRepository Devices { get; }
         INetworkGuestRepository NetworkGuests { get; }
@@ -15,8 +13,5 @@ namespace Roomie.Web.Persistence.Database
         ITaskRepository Tasks { get; }
         IUserRepository Users { get; }
         ISessionRepository Sessions { get; }
-
-        //TODO: remove after entity framework model migration
-        EntityFrameworkRoomieDatabaseBackend Backend { get; }
     }
 }

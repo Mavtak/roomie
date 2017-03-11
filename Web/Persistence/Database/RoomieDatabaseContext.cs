@@ -3,7 +3,6 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Persistence.Repositories.DapperRepositories;
-using Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories;
 
 namespace Roomie.Web.Persistence.Database
 {
@@ -19,28 +18,14 @@ namespace Roomie.Web.Persistence.Database
         public ISessionRepository Sessions { get; set; }
 
         private SqlConnection _databaseConnection;
-        private EntityFrameworkRoomieDatabaseBackend _entityFrameworkRoomieDatabaseBackend;
         private IRepositoryFactory _repositoryFactory;
-
-        public EntityFrameworkRoomieDatabaseBackend Backend
-        {
-            get
-            {
-                return _entityFrameworkRoomieDatabaseBackend;
-            }
-        }
 
         public RoomieDatabaseContext()
         {
             _databaseConnection = DatabaseConnectionFactory.Connect();
-            _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend(_databaseConnection);
             _repositoryFactory = new CompositeImplementationRepositoryFactory(
                 new DapperRepositoryFactory(
                     _databaseConnection,
-                    new Lazy<IRepositoryFactory>(() => _repositoryFactory)
-                ),
-                new EntityFrameworkRepositoryFactory(
-                    _entityFrameworkRoomieDatabaseBackend,
                     new Lazy<IRepositoryFactory>(() => _repositoryFactory)
                 )
             );
@@ -55,20 +40,9 @@ namespace Roomie.Web.Persistence.Database
             Sessions = _repositoryFactory.GetSessionRepository();
         }
 
-        public void Reset()
-        {
-            DatabaseUtilities.Reset(_entityFrameworkRoomieDatabaseBackend);
-        }
-
-        private void SaveChanges()
-        {
-            _entityFrameworkRoomieDatabaseBackend.SaveChanges();
-        }
-
         public void Dispose()
         {
             _databaseConnection.Dispose();
-            _entityFrameworkRoomieDatabaseBackend.Dispose();
         }
     }
 }

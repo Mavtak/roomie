@@ -8,7 +8,6 @@ using System.Web.Http.Controllers;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Persistence.Repositories.DapperRepositories;
-using Roomie.Web.Persistence.Repositories.EntityFrameworkRepositories;
 
 namespace Roomie.Web.Website.Controllers.Api
 {
@@ -19,7 +18,6 @@ namespace Roomie.Web.Website.Controllers.Api
         public static string WebHookAccessKeyHeaderName = "x-roomie-webhook-key";
 
         private SqlConnection _databaseConnection;
-        private EntityFrameworkRoomieDatabaseBackend _entityFrameworkRoomieDatabaseBackend;
         protected IRepositoryFactory RepositoryFactory { get; private set; }
 
         public Persistence.Models.Computer Computer { get; private set; }
@@ -28,14 +26,9 @@ namespace Roomie.Web.Website.Controllers.Api
         protected BaseController()
         {
             _databaseConnection = DatabaseConnectionFactory.Connect();
-            _entityFrameworkRoomieDatabaseBackend = new EntityFrameworkRoomieDatabaseBackend(_databaseConnection);
             RepositoryFactory = new CompositeImplementationRepositoryFactory(
                 new DapperRepositoryFactory(
                     _databaseConnection,
-                    new Lazy<IRepositoryFactory>(() => RepositoryFactory)
-                ),
-                new EntityFrameworkRepositoryFactory(
-                    _entityFrameworkRoomieDatabaseBackend,
                     new Lazy<IRepositoryFactory>(() => RepositoryFactory)
                 )
             );
@@ -162,7 +155,6 @@ namespace Roomie.Web.Website.Controllers.Api
         protected override void Dispose(bool disposing)
         {
             _databaseConnection.Dispose();
-            _entityFrameworkRoomieDatabaseBackend.Dispose();
             base.Dispose(disposing);
         }
     }
