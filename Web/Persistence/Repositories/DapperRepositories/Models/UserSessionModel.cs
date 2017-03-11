@@ -18,13 +18,15 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 return null;
             }
 
+            var userModel = UserModel.FromRepositoryType(model.User);
+
             var result = new UserSessionModel
             {
                 CreationTimeStamp = model.CreationTimeStamp,
                 Id = model.Id,
                 LastContactTimeStamp = model.LastContactTimeStamp,
                 Token = model.Token,
-                User_Id = model.User.Id,
+                User_Id = userModel.Id,
             };
 
             return result;

@@ -19,14 +19,17 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 return null;
             }
 
+            var attachedComputerModel = ComputerModel.FromRepositoryType(network.AttatchedComputer);
+            var ownerModel = UserModel.FromRepositoryType(network.Owner);
+
             var result = new NetworkModel
             {
                 Address = network.Address,
-                AttatchedComputer_Id = network?.AttatchedComputer?.Id,
+                AttatchedComputer_Id = attachedComputerModel?.Id,
                 Id = network.Id,
                 LastPing = network.LastPing,
                 Name = network.Name,
-                Owner_Id = network?.Owner?.Id,
+                Owner_Id = ownerModel?.Id,
             };
 
             return result;

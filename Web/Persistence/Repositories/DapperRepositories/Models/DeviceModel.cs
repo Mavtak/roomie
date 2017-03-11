@@ -23,6 +23,8 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 return null;
             }
 
+            var networkModel = NetworkModel.FromRepositoryType(model.Network);
+
             var result = new DeviceModel
             {
                 Address = model.Address,
@@ -30,7 +32,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 IsConnected = model.IsConnected,
                 LastPing = model.LastPing,
                 Name = model.Name,
-                Network_Id = model.Network.Id,
+                Network_Id = networkModel.Id,
                 Notes = model.ToXElement().ToString(),
                 Type_Name = model.Type.Name,
             };

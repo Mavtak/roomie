@@ -21,6 +21,9 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 return null;
             }
 
+            var lastScriptModel = ScriptModel.FromRepositoryType(model.LastScript);
+            var ownerModel = UserModel.FromRepositoryType(model.Owner);
+
             var result = new ComputerModel
             {
                 AccessKey = model.AccessKey,
@@ -28,9 +31,9 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 EncryptionKey = model.EncryptionKey,
                 Id = model.Id,
                 LastPing = model.LastPing,
-                LastScript_Id = model.LastScript?.Id,
+                LastScript_Id = lastScriptModel?.Id,
                 Name = model.Name,
-                Owner_Id = model.Owner?.Id
+                Owner_Id = ownerModel?.Id
             };
 
             return result;
