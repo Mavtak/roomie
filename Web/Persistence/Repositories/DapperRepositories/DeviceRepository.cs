@@ -68,6 +68,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
         public Device[] Get(Network network)
         {
+            var networkModel = NetworkModel.FromRepositoryType(network);
             var sql = @"
                 SELECT *
                 FROM DeviceModels
@@ -75,7 +76,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             ";
             var parameters = new
             {
-                Network_Id = network.Id,
+                Network_Id = networkModel.Id,
             };
 
             var models = _connection.Query<DeviceModel>(sql, parameters).ToArray();

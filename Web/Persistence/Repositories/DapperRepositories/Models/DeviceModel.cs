@@ -67,7 +67,10 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
             if (networkRepository == null)
             {
-                return new Network(null, null, null, Network_Id.Value, null, null, null);
+                new NetworkModel
+                {
+                    Id = Network_Id.Value
+                }.ToRepositoryType(null, null);
             }
 
             return networkRepository.Get(Network_Id.Value);
