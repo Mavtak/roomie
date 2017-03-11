@@ -85,7 +85,9 @@
     <Compile Include="Repositories\CompositeImplementationRepositoryFactory.cs" />
     <Compile Include="Repositories\DapperRepositories\ComputerRepository.cs" />
     <Compile Include="Repositories\DapperRepositories\DapperRepositoryFactory.cs" />
+    <Compile Include="Repositories\DapperRepositories\DeviceRepository.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\ComputerModel.cs" />
+    <Compile Include="Repositories\DapperRepositories\Models\DeviceModel.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\ScriptModel.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\UserModel.cs" />
     <Compile Include="Repositories\DapperRepositories\Models\UserSessionModel.cs" />
