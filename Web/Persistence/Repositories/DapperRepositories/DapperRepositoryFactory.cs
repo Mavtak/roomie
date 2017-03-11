@@ -10,6 +10,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
         private IComputerRepository _computerRepository;
         private IDeviceRepository _deviceRepository;
+        private INetworkRepository _networkRepository;
         private ISessionRepository _sessionRepository;
         private IScriptRepository _scriptRepository;
         private IUserRepository _userRepository;
@@ -52,7 +53,17 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
         public INetworkRepository GetNetworkRepository()
         {
-            return null;
+            if (_networkRepository == null)
+            {
+                var computerRepository = GetRepository(x => x.GetComputerRepository());
+                var userRepository = GetRepository(x => x.GetUserRepository());
+                var networkGuestRepository = GetRepository(x => x.GetNetworkGuestRepository());
+                var networkRepository = new NetworkRepository(_connection, computerRepository, userRepository);
+
+                _networkRepository = new GuestEnabledNetworkRepository(networkRepository, networkGuestRepository);
+            }
+
+            return _networkRepository;
         }
 
         public IScriptRepository GetScriptRepository()
