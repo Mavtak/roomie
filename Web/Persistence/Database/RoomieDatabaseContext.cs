@@ -8,14 +8,14 @@ namespace Roomie.Web.Persistence.Database
 {
     public sealed class RoomieDatabaseContext : IRoomieDatabaseContext
     {
-        public IComputerRepository Computers { get; set; }
-        public IDeviceRepository Devices { get; set; }
-        public INetworkGuestRepository NetworkGuests { get; set; }
-        public INetworkRepository Networks { get; set; }
-        public IScriptRepository Scripts { get; set; }
-        public ITaskRepository Tasks { get; set; }
-        public IUserRepository Users { get; set; }
-        public ISessionRepository Sessions { get; set; }
+        public IComputerRepository Computers => _repositoryFactory.GetComputerRepository();
+        public IDeviceRepository Devices => _repositoryFactory.GetDeviceRepository();
+        public INetworkGuestRepository NetworkGuests => _repositoryFactory.GetNetworkGuestRepository();
+        public INetworkRepository Networks => _repositoryFactory.GetNetworkRepository();
+        public IScriptRepository Scripts => _repositoryFactory.GetScriptRepository();
+        public ITaskRepository Tasks => _repositoryFactory.GetTaskRepository();
+        public IUserRepository Users => _repositoryFactory.GetUserRepository();
+        public ISessionRepository Sessions => _repositoryFactory.GetSessionRepository();
 
         private SqlConnection _databaseConnection;
         private IRepositoryFactory _repositoryFactory;
@@ -29,15 +29,6 @@ namespace Roomie.Web.Persistence.Database
                     new Lazy<IRepositoryFactory>(() => _repositoryFactory)
                 )
             );
-
-            Tasks = _repositoryFactory.GetTaskRepository();
-            Scripts = _repositoryFactory.GetScriptRepository();
-            Computers = _repositoryFactory.GetComputerRepository();
-            NetworkGuests = _repositoryFactory.GetNetworkGuestRepository();
-            Networks = _repositoryFactory.GetNetworkRepository();
-            Devices = _repositoryFactory.GetDeviceRepository();
-            Users = _repositoryFactory.GetUserRepository();
-            Sessions = _repositoryFactory.GetSessionRepository();
         }
 
         public void Dispose()
