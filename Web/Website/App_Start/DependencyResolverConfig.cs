@@ -21,7 +21,6 @@ namespace Roomie.Web.Website
 
         private static void BindAllTheThings(IKernel kernel)
         {
-            kernel.Bind<IRoomieDatabaseContext>().To<RoomieDatabaseContext>();
         }
 
         private static IKernel CreateKernel()
