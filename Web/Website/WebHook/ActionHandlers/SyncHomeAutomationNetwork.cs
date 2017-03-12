@@ -7,7 +7,7 @@ using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories;
 using WebCommunicator;
 
-namespace Roomie.Web.WebHook.ActionHandlers
+namespace Roomie.Web.Website.WebHook.ActionHandlers
 {
     //TODO: fix this awful class.  Better yet, replace it with a REST server.
     internal class SyncHomeAutomationNetwork : ActionHandler

@@ -7,7 +7,7 @@ using Roomie.Web.Persistence.Models;
 using WebCommunicator;
 using WebCommunicator.EventArgs;
 
-namespace Roomie.Web.WebHook
+namespace Roomie.Web.Website.WebHook
 {
     internal class WebHookServer
     {

@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Roomie.Web.WebHook
+namespace Roomie.Web.Website.WebHook
 {
     internal abstract class ActionHandler
     {

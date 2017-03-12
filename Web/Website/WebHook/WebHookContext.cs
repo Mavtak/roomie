@@ -6,7 +6,7 @@ using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Persistence.Repositories.DapperRepositories;
 using WebCommunicator;
 
-namespace Roomie.Web.WebHook
+namespace Roomie.Web.Website.WebHook
 {
     internal class WebHookContext : TransmissionContext, IDisposable
     {
