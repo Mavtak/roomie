@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Http;
 using Roomie.Web.Persistence.Repositories;
@@ -38,7 +39,7 @@ namespace Roomie.Web.Website.Controllers.Api.Task
             return result;
         }
 
-        public object Post(string action, int? timeout = null)
+        public object Post(string action, timeout = null)
         {
             switch(action)
             {
@@ -50,18 +51,13 @@ namespace Roomie.Web.Website.Controllers.Api.Task
             }
         }
 
-        private string Clean(int? timeout)
+        private string Clean(TimeSpan? timeout)
         {
-            if (timeout < 1)
-            {
-                timeout = null;
-            }
-
             var deleted = 0;
             var skipped = 0;
             ListFilter filter = null;
 
-            DoWork.UntilTimeout(timeout ?? 5, () =>
+            DoWork.UntilTimeout(timeout?.Seconds ?? 5, () =>
             {
                 var result = _taskRepository.Clean(User, filter);
 
