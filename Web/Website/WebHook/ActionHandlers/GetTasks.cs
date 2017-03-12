@@ -17,46 +17,17 @@ namespace Roomie.Web.Website.WebHook.ActionHandlers
             var computerRepository = context.RepositoryFactory.GetComputerRepository();
             var taskRepository = context.RepositoryFactory.GetTaskRepository();
 
-            //TODO: how big can I make this?
-            // well, not as big as three minutes
-            DateTime endTime = DateTime.Now.AddSeconds(90);
-
-            Task[] tasks = null;
-
-            //tasks = new List<TaskModel>
-            //{
-            //    new TaskModel
-            //    {
-            //        Script = new ScriptModel
-            //        {
-            //            Text = @"<Output.Speak Text=""Hello there!"" />"
-            //        }
-            //    }
-            //};
-
-            while ((tasks == null || tasks.Length == 0) && DateTime.Now <= endTime)
+            var getForComputer = new Controllers.Api.Task.Actions.GetForComputer(computerRepository, taskRepository);
+            Task[] tasks;
+            try
             {
-                computer.UpdatePing();
-                computerRepository.Update(computer);
-
-                var now = DateTime.UtcNow;
-                try
-                {
-                    tasks = taskRepository.ForComputer(computer, now);
-                    if (tasks.Length == 0)
-                    {
-                        System.Threading.Thread.Sleep(250);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    response.ErrorMessage = "Exception while getting tasks: " + exception;
-                    return;
-                }
+                tasks = getForComputer.Run(computer, TimeSpan.FromSeconds(90), TimeSpan.FromSeconds(1 / 4));
             }
-
-
-            //tasks have been found or the timer has run out
+            catch (Exception exception)
+            {
+                response.ErrorMessage = "Exception while getting tasks: " + exception;
+                return;
+            }
 
 
             if (tasks == null || tasks.Length == 0)
@@ -65,7 +36,8 @@ namespace Roomie.Web.Website.WebHook.ActionHandlers
             }
             else
             {
-                //add tasks to the response message and mark the tasks as sent
+                response.Values.Add("Response", "added " + tasks.Length + " task(s)");
+
                 foreach (var task in tasks)
                 {
                     try
@@ -74,16 +46,11 @@ namespace Roomie.Web.Website.WebHook.ActionHandlers
                             new XElement("Script",
                                 new XAttribute("Text", task.Script.Text)
                             ));
-                        task.MarkAsReceived();
-                        taskRepository.Update(task);
                     }
                     catch
                     { }
                 }
-
-                response.Values.Add("Response", "added " + tasks.Length + " task(s)");
             }
         }
-
     }
 }
