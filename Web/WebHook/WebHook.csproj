@@ -53,15 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionHandler.cs" />
-    <Compile Include="ActionHandlers\GetServerInfo.cs" />
-    <Compile Include="ActionHandlers\GetTasks.cs" />
-    <Compile Include="ActionHandlers\SendScript.cs" />
-    <Compile Include="ActionHandlers\SyncHomeAutomationNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebHookContext.cs" />
-    <Compile Include="WebHookServer.cs" />
-    <Compile Include="WebhookUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\WebCommunicator\WebCommunicator\WebCommunicator.csproj">
