@@ -41,10 +41,14 @@ namespace Roomie.Web.Website.Controllers.Api.Task
 
         public object Post(string action, string computerName = null, TimeSpan? pollInterval = null, TimeSpan ? timeout = null)
         {
+            object result;
+
             switch(action)
             {
                 case "Clean":
-                    return Clean(timeout);
+                    var clean = new Actions.Clean(_taskRepository);
+                    result = clean.Run(timeout, User);
+                    break;
 
                 case "GetForComputer":
                     var computerRepository = RepositoryFactory.GetComputerRepository();
@@ -52,35 +56,16 @@ namespace Roomie.Web.Website.Controllers.Api.Task
                     var computer = Computer ?? computerRepository.Get(User, computerName);
                     var getTasks = new Actions.GetForComputer(computerRepository, taskRepository);
                     var tasks = getTasks.Run(computer, timeout, pollInterval);
-                    var result = tasks
+                    result = tasks
                         .Select(GetSerializableVersion)
                         .ToArray();
-
-                    return result;
+                    break;
 
                 default:
                     throw new NotImplementedException();
             }
-        }
 
-        private string Clean(TimeSpan? timeout)
-        {
-            var deleted = 0;
-            var skipped = 0;
-            ListFilter filter = null;
-
-            DoWork.UntilTimeout(timeout?.Seconds ?? 5, () =>
-            {
-                var result = _taskRepository.Clean(User, filter);
-
-                deleted += result.Deleted;
-                skipped += result.Skipped;
-                filter = result.NextFilter;
-
-                return result.Done;
-            });
-
-            return deleted + " tasks cleaned up, " + skipped + " tasks skipped";
+            return result;
         }
 
         private Persistence.Models.Task GetSerializableVersion(Persistence.Models.Task task)
