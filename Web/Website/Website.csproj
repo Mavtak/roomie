@@ -259,10 +259,6 @@
       <Project>{B89555A4-7FBF-4B56-A040-B18445B4224B}</Project>
       <Name>Persistence</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebHook\WebHook.csproj">
-      <Project>{F1C594D7-933B-4E72-AE4A-CC47B82F0F3C}</Project>
-      <Name>WebHook</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\D Temp.pubxml" />
