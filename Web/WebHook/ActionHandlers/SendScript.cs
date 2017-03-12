@@ -11,9 +11,12 @@ namespace Roomie.Web.WebHook.ActionHandlers
         {
             var request = context.Request;
             var response = context.Response;
-            var database = context.Database;
             var user = context.User;
             var computer = context.Computer;
+
+            var computerRepository = context.RepositoryFactory.GetComputerRepository();
+            var scriptRepository = context.RepositoryFactory.GetScriptRepository();
+            var taskRepository = context.RepositoryFactory.GetTaskRepository();
 
             if (!request.Values.ContainsKey("TargetComputerName"))
             {
@@ -27,7 +30,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                 return;
             }
 
-            var targetComputer = database.Computers.Get(user, request.Values["TargetComputerName"]);
+            var targetComputer = computerRepository.Get(user, request.Values["TargetComputerName"]);
 
             if(targetComputer == null)
             {
@@ -36,11 +39,11 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
 
             var script = Script.Create(false, request.Values["ScriptText"]);
-            database.Scripts.Add(script);
+            scriptRepository.Add(script);
 
             var task = Task.Create(user, "WebHook, " + computer.Name, targetComputer, script);
 
-            database.Tasks.Add(task);
+            taskRepository.Add(task);
 
             response.Values.Add("Response", "Script queued for delivery to " + targetComputer.Name);
 

@@ -76,9 +76,9 @@ namespace Roomie.Web.WebHook
                 throw new Exception("Context not set.");
             }
 
-            context.Database = new RoomieDatabaseContext();
+            var computerRepository = context.RepositoryFactory.GetComputerRepository();
 
-            context.Computer = context.Database.Computers.Get(eventArgs.AccessKey);
+            context.Computer = computerRepository.Get(eventArgs.AccessKey);
             if (context.Computer == null)
             {
                 eventArgs.ErrorMessage = "Computer not found.";
@@ -106,7 +106,9 @@ namespace Roomie.Web.WebHook
                 throw new Exception("WebTransmission Context is null.");
             }
 
-            var session = context.Database.Sessions.GetWebHookSession(eventArgs.SessionKey);
+            var sessionRepository = context.RepositoryFactory.GetSessionRepository();
+
+            var session = sessionRepository.GetWebHookSession(eventArgs.SessionKey);
             if (session == null)
             {
                 //session does not exist.
@@ -145,8 +147,9 @@ namespace Roomie.Web.WebHook
                 return;
             }
 
+            var sessionRepository = context.RepositoryFactory.GetSessionRepository();
             var session = WebHookSession.Create(context.Computer);
-            context.Database.Sessions.Add(session);
+            sessionRepository.Add(session);
 
             eventArgs.Context.Session = session;
             eventArgs.NewSessionKey = session.Token; //TODO: is this necessary?
@@ -195,7 +198,7 @@ namespace Roomie.Web.WebHook
 
             actionHandlers[action].ProcessMessage(context);
 
-            context.Database.Dispose();
+            context.Dispose();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Text;
 using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Database;
 using Roomie.Web.Persistence.Models;
+using Roomie.Web.Persistence.Repositories;
 using WebCommunicator;
 
 namespace Roomie.Web.WebHook.ActionHandlers
@@ -18,10 +19,13 @@ namespace Roomie.Web.WebHook.ActionHandlers
         {
             var request = context.Request;
             var response = context.Response;
-            var database = context.Database;
             var computer = context.Computer;
             var user = context.User;
             var responseText = new StringBuilder();
+
+            var computerRepository = context.RepositoryFactory.GetComputerRepository();
+            var deviceRepository = context.RepositoryFactory.GetDeviceRepository();
+            var networkRepository = context.RepositoryFactory.GetNetworkRepository();
 
             if (!request.Values.ContainsKey("NetworkAddress"))
             {
@@ -30,39 +34,39 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
             var networkAddress = request.Values["NetworkAddress"];
 
-            var network = database.Networks.Get(user, networkAddress);
+            var network = networkRepository.Get(user, networkAddress);
 
             if (network == null)
             {
                 //responseText.Append("Adding network '" + networkAddress + "'");
                 network = Network.Create(networkAddress, user, networkAddress);
-                database.Networks.Add(network);
+                networkRepository.Add(network);
             }
 
             computer.UpdatePing();
-            database.Computers.Update(computer);
+            computerRepository.Update(computer);
 
             network.UpdatePing(computer);
-            database.Networks.Update(network);
+            networkRepository.Update(network);
 
             //responseText.Append("network: " + network);
 
-            var sentDevices = ProcessSentDevices(request, response, user, network, database).ToList();
+            var sentDevices = ProcessSentDevices(request, response, user, network).ToList();
 
-            var existingDevices = database.Devices.Get(network);
+            var existingDevices = deviceRepository.Get(network);
 
-            UpdateDevices(sentDevices, existingDevices, network, database);
+            UpdateDevices(sentDevices, existingDevices, network, deviceRepository);
 
             var devicesToRemove = GetRemovedDevices(sentDevices, existingDevices);
 
-            RemoveDevices(devicesToRemove, database);
+            RemoveDevices(devicesToRemove, deviceRepository);
 
             AddDevicesToResponse(response, existingDevices);
             
             response.Values.Add("Response", responseText.ToString());
         }
 
-        private static IEnumerable<IDeviceState> ProcessSentDevices(Message request, Message response, User user,  Network network, IRoomieDatabaseContext database)
+        private static IEnumerable<IDeviceState> ProcessSentDevices(Message request, Message response, User user,  Network network)
         {
             var sentDevices = request.Payload.Select(x => x.ToDeviceState());
             sentDevices = sentDevices.Select(x => x.NewWithNetwork(network));
@@ -70,7 +74,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
             return sentDevices;
         }
 
-        private static void UpdateDevices(IEnumerable<IDeviceState> sentDevices, IEnumerable<Device> registeredDevices, Network network, IRoomieDatabaseContext database)
+        private static void UpdateDevices(IEnumerable<IDeviceState> sentDevices, IEnumerable<Device> registeredDevices, Network network, IDeviceRepository deviceRepository)
         {
             // go through the devices from the client and update the entries in the database
             foreach (var sentDevice in sentDevices)
@@ -90,11 +94,11 @@ namespace Roomie.Web.WebHook.ActionHandlers
 
                     newDevice.Update(sentDevice);
 
-                    database.Devices.Add(newDevice);
+                    deviceRepository.Add(newDevice);
                 }
                 else
                 {
-                    database.Devices.Update(registeredDevice.Id, sentDevice);
+                    deviceRepository.Update(registeredDevice.Id, sentDevice);
                 }
             }
         }
@@ -110,11 +114,11 @@ namespace Roomie.Web.WebHook.ActionHandlers
             }
         }
 
-        private static void RemoveDevices(IEnumerable<Device> devicesToRemove, IRoomieDatabaseContext database)
+        private static void RemoveDevices(IEnumerable<Device> devicesToRemove, IDeviceRepository deviceRepository)
         {
             foreach (var device in devicesToRemove.ToArray())
             {
-                database.Devices.Remove(device);
+                deviceRepository.Remove(device);
             }
         }
 

@@ -13,7 +13,9 @@ namespace Roomie.Web.WebHook.ActionHandlers
         {
             var response = context.Response;
             var computer = context.Computer;
-            var database = context.Database;
+
+            var computerRepository = context.RepositoryFactory.GetComputerRepository();
+            var taskRepository = context.RepositoryFactory.GetTaskRepository();
 
             //TODO: how big can I make this?
             // well, not as big as three minutes
@@ -35,12 +37,12 @@ namespace Roomie.Web.WebHook.ActionHandlers
             while ((tasks == null || tasks.Length == 0) && DateTime.Now <= endTime)
             {
                 computer.UpdatePing();
-                database.Computers.Update(computer);
+                computerRepository.Update(computer);
 
                 var now = DateTime.UtcNow;
                 try
                 {
-                    tasks = database.Tasks.ForComputer(computer, now);
+                    tasks = taskRepository.ForComputer(computer, now);
                     if (tasks.Length == 0)
                     {
                         System.Threading.Thread.Sleep(250);
@@ -73,7 +75,7 @@ namespace Roomie.Web.WebHook.ActionHandlers
                                 new XAttribute("Text", task.Script.Text)
                             ));
                         task.MarkAsReceived();
-                        database.Tasks.Update(task);
+                        taskRepository.Update(task);
                     }
                     catch
                     { }
