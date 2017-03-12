@@ -32,18 +32,22 @@ namespace Roomie.Web.Website.WebHook.ActionHandlers
 
             var targetComputer = computerRepository.Get(user, request.Values["TargetComputerName"]);
 
-            if(targetComputer == null)
+            if (targetComputer == null)
             {
                 response.ErrorMessage = "Could not find computer \"" + request.Values["TargetComputerName"] + "\".";
                 return;
             }
 
-            var script = Script.Create(false, request.Values["ScriptText"]);
-            scriptRepository.Add(script);
+            var scriptText = request.Values["ScriptText"];
 
-            var task = Task.Create(user, "WebHook, " + computer.Name, targetComputer, script);
-
-            taskRepository.Add(task);
+            var runScript = new Controllers.Api.Computer.Actions.RunScript(computerRepository, scriptRepository, taskRepository);
+            runScript.Run(
+                computer: targetComputer,
+                scriptText: scriptText,
+                source: "WebHook, " + computer.Name,
+                updateLastRunScript: false,
+                user: user
+            );
 
             response.Values.Add("Response", "Script queued for delivery to " + targetComputer.Name);
 

@@ -136,6 +136,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\Computer\Actions\RunScript.cs" />
     <Compile Include="Controllers\Api\Task\Actions\Clean.cs" />
     <Compile Include="Controllers\Api\Task\Actions\GetForComputer.cs" />
     <Compile Include="WebHook\ActionHandler.cs" />

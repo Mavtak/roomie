@@ -71,15 +71,19 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
                     break;
 
                 case "RunScript":
-                    var scriptObject = Persistence.Models.Script.Create(false, options.Script);
-                    _scriptRepository.Add(scriptObject);
+                    var runScript = new Actions.RunScript(_computerRepository, _scriptRepository, _taskRepository);
+                    runScript.Run(
+                        computer: computer,
+                        scriptText: options.Script,
+                        source: "Website",
+                        updateLastRunScript: true,
+                        user: User
+                    );
+                    
+                    break;
 
-                    var task = Persistence.Models.Task.Create(User, "Website", computer, scriptObject);
+                case "SendScript":
 
-                    _taskRepository.Add(task);
-
-                    computer.UpdateLastScript(task.Script);
-                    _computerRepository.Update(computer);
                     break;
 
                 default:
