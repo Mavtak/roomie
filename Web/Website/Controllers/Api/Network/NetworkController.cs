@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Xml.Linq;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
@@ -52,7 +53,7 @@ namespace Roomie.Web.Website.Controllers.Api.Network
             _networkRepository.Update(network);
         }
 
-        public void Post(int id, string action)
+        public void Post(int id, string action, string computerName, string sentDevicesXml)
         {
             var network = SelectNetwork(id);
 
@@ -64,6 +65,20 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
                 case "remove-device":
                     NetworkAction(network, "RemoveDevice");
+                    break;
+
+                case "sync-whole-network":
+                    var computerRepository = RepositoryFactory.GetComputerRepository();
+                    var computer = computerRepository.Get(User, computerName);
+                    var syncWholeNetwork = new Actions.SyncWholeNetwork(computerRepository, _deviceRepository, _networkRepository);
+                    var sentDevices = XElement.Parse("<devices>" + sentDevicesXml + "</devices>").Descendants();
+
+                    syncWholeNetwork.Run(
+                        computer: computer,
+                        network: network,
+                        sentDevices: sentDevices,
+                        user: User
+                    );
                     break;
 
                 default:
