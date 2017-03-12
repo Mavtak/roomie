@@ -39,12 +39,24 @@ namespace Roomie.Web.Website.Controllers.Api.Task
             return result;
         }
 
-        public object Post(string action, timeout = null)
+        public object Post(string action, string computerName = null, TimeSpan? pollInterval = null, TimeSpan ? timeout = null)
         {
             switch(action)
             {
                 case "Clean":
                     return Clean(timeout);
+
+                case "GetForComputer":
+                    var computerRepository = RepositoryFactory.GetComputerRepository();
+                    var taskRepository = RepositoryFactory.GetTaskRepository();
+                    var computer = Computer ?? computerRepository.Get(User, computerName);
+                    var getTasks = new Actions.GetForComputer(computerRepository, taskRepository);
+                    var tasks = getTasks.Run(computer, timeout, pollInterval);
+                    var result = tasks
+                        .Select(GetSerializableVersion)
+                        .ToArray();
+
+                    return result;
 
                 default:
                     throw new NotImplementedException();
