@@ -14,26 +14,26 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public string Name { get; set; }
         public int? Owner_Id { get; set; }
 
-        public static ComputerModel FromRepositoryType(Computer model)
+        public static ComputerModel FromRepositoryType(Computer repositoryModel)
         {
-            if (model == null)
+            if (repositoryModel == null)
             {
                 return null;
             }
 
-            var lastScriptModel = ScriptModel.FromRepositoryType(model.LastScript);
-            var ownerModel = UserModel.FromRepositoryType(model.Owner);
+            var lastScriptRepositoryModel = ScriptModel.FromRepositoryType(repositoryModel.LastScript);
+            var ownerRepositoryModel = UserModel.FromRepositoryType(repositoryModel.Owner);
 
             var result = new ComputerModel
             {
-                AccessKey = model.AccessKey,
-                Address = model.Address,
-                EncryptionKey = model.EncryptionKey,
-                Id = model.Id,
-                LastPing = model.LastPing,
-                LastScript_Id = lastScriptModel?.Id,
-                Name = model.Name,
-                Owner_Id = ownerModel?.Id
+                AccessKey = repositoryModel.AccessKey,
+                Address = repositoryModel.Address,
+                EncryptionKey = repositoryModel.EncryptionKey,
+                Id = repositoryModel.Id,
+                LastPing = repositoryModel.LastPing,
+                LastScript_Id = lastScriptRepositoryModel?.Id,
+                Name = repositoryModel.Name,
+                Owner_Id = ownerRepositoryModel?.Id
             };
 
             return result;

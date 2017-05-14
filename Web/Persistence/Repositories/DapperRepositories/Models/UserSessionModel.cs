@@ -11,22 +11,22 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public string Token { get; set; }
         public int? User_Id { get; set; }
 
-        public static UserSessionModel FromRepositoryType(UserSession model)
+        public static UserSessionModel FromRepositoryType(UserSession repositoryModel)
         {
-            if (model == null)
+            if (repositoryModel == null)
             {
                 return null;
             }
 
-            var userModel = UserModel.FromRepositoryType(model.User);
+            var userRepositoryModel = UserModel.FromRepositoryType(repositoryModel.User);
 
             var result = new UserSessionModel
             {
-                CreationTimeStamp = model.CreationTimeStamp,
-                Id = model.Id,
-                LastContactTimeStamp = model.LastContactTimeStamp,
-                Token = model.Token,
-                User_Id = userModel?.Id,
+                CreationTimeStamp = repositoryModel.CreationTimeStamp,
+                Id = repositoryModel.Id,
+                LastContactTimeStamp = repositoryModel.LastContactTimeStamp,
+                Token = repositoryModel.Token,
+                User_Id = userRepositoryModel?.Id,
             };
 
             return result;

@@ -12,21 +12,21 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public int? RunCount { get; set; }
         public string Text { get; set; }
 
-        public static ScriptModel FromRepositoryType(Script model)
+        public static ScriptModel FromRepositoryType(Script repositoryModel)
         {
-            if (model == null)
+            if (repositoryModel == null)
             {
                 return null;
             }
 
             var result = new ScriptModel
             {
-                CreationTimestamp = model.CreationTimestamp,
-                Id = model.Id,
-                LastRunTimestamp = model.LastRunTimestamp,
-                Mutable = model.Mutable,
-                RunCount = model.RunCount,
-                Text = model.Text
+                CreationTimestamp = repositoryModel.CreationTimestamp,
+                Id = repositoryModel.Id,
+                LastRunTimestamp = repositoryModel.LastRunTimestamp,
+                Mutable = repositoryModel.Mutable,
+                RunCount = repositoryModel.RunCount,
+                Text = repositoryModel.Text
             };
 
             return result;

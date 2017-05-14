@@ -16,25 +16,25 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public string Notes { get; set; }
         public string Type_Name { get; set; }
         
-        public static DeviceModel FromRepositoryType(Device model)
+        public static DeviceModel FromRepositoryType(Device repositoryModel)
         {
-            if (model == null)
+            if (repositoryModel == null)
             {
                 return null;
             }
 
-            var networkModel = NetworkModel.FromRepositoryType(model.Network);
+            var networkRepositoryModel = NetworkModel.FromRepositoryType(repositoryModel.Network);
 
             var result = new DeviceModel
             {
-                Address = model.Address,
-                Id = model.Id,
-                IsConnected = model.IsConnected,
-                LastPing = model.LastPing,
-                Name = model.Name,
-                Network_Id = networkModel?.Id,
-                Notes = model.ToXElement().ToString(),
-                Type_Name = model.Type.Name,
+                Address = repositoryModel.Address,
+                Id = repositoryModel.Id,
+                IsConnected = repositoryModel.IsConnected,
+                LastPing = repositoryModel.LastPing,
+                Name = repositoryModel.Name,
+                Network_Id = networkRepositoryModel?.Id,
+                Notes = repositoryModel.ToXElement().ToString(),
+                Type_Name = repositoryModel.Type.Name,
             };
 
             return result;

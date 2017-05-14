@@ -13,21 +13,21 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public string Secret { get; set; }
         public DateTime? RegisteredTimestamp { get; set; }
 
-        public static UserModel FromRepositoryType(User model)
+        public static UserModel FromRepositoryType(User repositoryModel)
         {
-            if (model == null)
+            if (repositoryModel == null)
             {
                 return null;
             }
 
             var result = new UserModel
             {
-                Alias = model.Alias,
-                Email = model.Email,
-                Id = model.Id,
-                RegisteredTimestamp = model.RegisteredTimestamp,
-                Secret = (model.Secret == null) ? null : model.Secret.Format(),
-                Token = model.Token
+                Alias = repositoryModel.Alias,
+                Email = repositoryModel.Email,
+                Id = repositoryModel.Id,
+                RegisteredTimestamp = repositoryModel.RegisteredTimestamp,
+                Secret = (repositoryModel.Secret == null) ? null : repositoryModel.Secret.Format(),
+                Token = repositoryModel.Token
             };
 
             return result;

@@ -13,26 +13,26 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public int? Script_Id { get; set; }
         public int? Target_Id { get; set; }
         
-        public static TaskModel FromRepositoryType(Task model)
+        public static TaskModel FromRepositoryType(Task repositoryModel)
         {
-            if (model == null)
+            if (repositoryModel == null)
             {
                 return null;
             }
 
-            var ownerModel = UserModel.FromRepositoryType(model.Owner);
-            var scriptModel = ScriptModel.FromRepositoryType(model.Script);
-            var targetModel = ComputerModel.FromRepositoryType(model.Target);
+            var ownerRepositoryModel = UserModel.FromRepositoryType(repositoryModel.Owner);
+            var scriptRepositoryModel = ScriptModel.FromRepositoryType(repositoryModel.Script);
+            var targetRepositoryModel = ComputerModel.FromRepositoryType(repositoryModel.Target);
 
             var result = new TaskModel
             {
-                Expiration = model.Expiration,
-                Id = model.Id,
-                Origin = model.Origin,
-                Owner_Id = ownerModel?.Id,
-                ReceivedTimestamp = model.ReceivedTimestamp,
-                Script_Id = scriptModel?.Id,
-                Target_Id = targetModel?.Id,
+                Expiration = repositoryModel.Expiration,
+                Id = repositoryModel.Id,
+                Origin = repositoryModel.Origin,
+                Owner_Id = ownerRepositoryModel?.Id,
+                ReceivedTimestamp = repositoryModel.ReceivedTimestamp,
+                Script_Id = scriptRepositoryModel?.Id,
+                Target_Id = targetRepositoryModel?.Id,
             };
 
             return result;

@@ -10,19 +10,19 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public DateTime? LastPing { get; set; }
         public string Token { get; set; }
 
-        public static WebHookSessionModel FromRepositoryType(WebHookSession model)
+        public static WebHookSessionModel FromRepositoryType(WebHookSession repositoryModel)
         {
-            if (model == null)
+            if (repositoryModel == null)
             {
                 return null;
             }
 
             var result = new WebHookSessionModel
             {
-                Computer_Id = model.Computer.Id,
-                Id = model.Id,
-                LastPing = model.LastPing,
-                Token = model.Token,
+                Computer_Id = repositoryModel.Computer.Id,
+                Id = repositoryModel.Id,
+                LastPing = repositoryModel.LastPing,
+                Token = repositoryModel.Token,
             };
 
             return result;

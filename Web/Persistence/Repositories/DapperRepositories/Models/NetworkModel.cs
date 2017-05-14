@@ -12,24 +12,24 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public string Name { get; set; }
         public int? Owner_Id { get; set; }
 
-        public static NetworkModel FromRepositoryType(Network network)
+        public static NetworkModel FromRepositoryType(Network repositoryModel)
         {
-            if (network == null)
+            if (repositoryModel == null)
             {
                 return null;
             }
 
-            var attachedComputerModel = ComputerModel.FromRepositoryType(network.AttatchedComputer);
-            var ownerModel = UserModel.FromRepositoryType(network.Owner);
+            var attachedComputerRepositoryModel = ComputerModel.FromRepositoryType(repositoryModel.AttatchedComputer);
+            var ownerRepositoryModel = UserModel.FromRepositoryType(repositoryModel.Owner);
 
             var result = new NetworkModel
             {
-                Address = network.Address,
-                AttatchedComputer_Id = attachedComputerModel?.Id,
-                Id = network.Id,
-                LastPing = network.LastPing,
-                Name = network.Name,
-                Owner_Id = ownerModel?.Id,
+                Address = repositoryModel.Address,
+                AttatchedComputer_Id = attachedComputerRepositoryModel?.Id,
+                Id = repositoryModel.Id,
+                LastPing = repositoryModel.LastPing,
+                Name = repositoryModel.Name,
+                Owner_Id = ownerRepositoryModel?.Id,
             };
 
             return result;
