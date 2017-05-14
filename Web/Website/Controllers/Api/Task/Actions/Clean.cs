@@ -22,7 +22,7 @@ namespace Roomie.Web.Website.Controllers.Api.Task.Actions
             var skipped = 0;
             ListFilter filter = null;
 
-            DoWork.UntilTimeout(timeout?.Seconds ?? 5, () =>
+            DoWork.UntilTimeout(((int?)timeout?.TotalSeconds) ?? 5, () =>
             {
                 var result = _taskRepository.Clean(user, filter);
 
