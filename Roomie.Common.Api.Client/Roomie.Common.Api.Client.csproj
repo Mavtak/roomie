@@ -47,11 +47,19 @@
     <Compile Include="Http\HttpClientUtilities.cs" />
     <Compile Include="Http\IJsonHttpClient.cs" />
     <Compile Include="Http\JsonHttpClient.cs" />
+    <Compile Include="IRoomieApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomieApiClient.cs" />
     <Compile Include="RoomieApiClientException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Roomie.Common.Api\Roomie.Common.Api.csproj">
+      <Project>{51a64d6e-0082-424a-b7f8-8d46c8162287}</Project>
+      <Name>Roomie.Common.Api</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
