@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\WebHookSession\CreateSession\Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\WebHookSession\CreateSession\Response.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
