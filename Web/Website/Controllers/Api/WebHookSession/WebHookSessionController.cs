@@ -10,6 +10,15 @@ namespace Roomie.Web.Website.Controllers.Api.WebHookSession
 
             switch(action)
             {
+                case "create":
+                    var computerRepository = RepositoryFactory.GetComputerRepository();
+                    var sessionRepository = RepositoryFactory.GetSessionRepository();
+                    var create = new Actions.Create(computerRepository, sessionRepository);
+
+                    result = create.Run(requestData);
+
+                    break;
+
                 default:
                     result = Error($"Invalid action \"{action}\" for resource \"WebHookSession\"","programming-error", "invalid-action");
 
