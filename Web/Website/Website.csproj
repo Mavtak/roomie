@@ -259,6 +259,10 @@
       <Project>{a7cca3b4-f50b-43f0-9250-673c1d6ac351}</Project>
       <Name>WebCommunicator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Roomie.Common.Api\Roomie.Common.Api.csproj">
+      <Project>{51a64d6e-0082-424a-b7f8-8d46c8162287}</Project>
+      <Name>Roomie.Common.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{B89555A4-7FBF-4B56-A040-B18445B4224B}</Project>
       <Name>Persistence</Name>
