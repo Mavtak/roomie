@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A4DE8BD-5073-464F-BF77-71EFA6E07FD0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Roomie.CommandDefinitions.OpenZWaveCommands</RootNamespace>
+    <AssemblyName>Roomie.CommandDefinitions.OpenZWaveCommands</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenZWaveDotNet">
+      <HintPath>..\..\..\Libraries\External\OpenZWave\OpenZWaveDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandClass.cs" />
+    <Compile Include="Commands\OptimizeDevice.cs" />
+    <Compile Include="Commands\OptimizeNetwork.cs" />
+    <Compile Include="Commands\PrintData.cs" />
+    <Compile Include="Commands\RegisterNetwork.cs" />
+    <Compile Include="Commands\ResetNetwork.cs" />
+    <Compile Include="ControllerNotificationWatcher.cs" />
+    <Compile Include="NodeDataEntries\CannotSetValueException.cs" />
+    <Compile Include="OpenZWaveDeviceValueCollection.cs" />
+    <Compile Include="OpenZWaveEvent.cs" />
+    <Compile Include="OpenZWaveIlluminanceSensor.cs" />
+    <Compile Include="NodeDataEntries\Specific\BinarySensorDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\IlluminanceSensorDataEntry.cs" />
+    <Compile Include="OpenZWaveTemperatureSensor.cs" />
+    <Compile Include="OpenZWaveHumiditySensor.cs" />
+    <Compile Include="NodeDataEntries\General\HumidityNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\TemperatureNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\ShortNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\IntNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\DecimalNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\StringNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\WritableTemperatureNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\HumiditySensorDataEntry.cs" />
+    <Compile Include="OpenZWaveDeviceValueExtensions.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\CommandClassMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\CompositeMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\LabelMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\InstanceMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\IdMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\IndexMatcher.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\IOpenZWaveDeviceValueMatcher.cs" />
+    <Compile Include="NodeDataEntries\INodeDataEntryWithOptions.cs" />
+    <Compile Include="NodeDataEntries\IWritableNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\NodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ImmediatePowerDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermostatFanCurrentAction.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermostatFanModeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\SwitchBinaryDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\BoolNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\General\ByteNodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\INodeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\SwitchMultilevelDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermometerDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermostatCoreCurrentAction.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermostatModeDataEntry.cs" />
+    <Compile Include="NodeDataEntries\Specific\ThermostatSetpointDataEntry.cs" />
+    <Compile Include="OpenZWaveBinarySensor.cs" />
+    <Compile Include="OpenZWaveDeviceValue.cs" />
+    <Compile Include="OpenZWaveDeviceValueMatchers\UnitsMatcher.cs" />
+    <Compile Include="OpenZWaveDimmerSwitch.cs" />
+    <Compile Include="OpenZWaveDevice.cs" />
+    <Compile Include="OpenZWaveNetwork.cs" />
+    <Compile Include="OpenZWaveNotification.cs" />
+    <Compile Include="OpenZWaveNotificationProcessor.cs" />
+    <Compile Include="OpenZWavePowerSensor.cs" />
+    <Compile Include="OpenZWaveSetpointCollection.cs" />
+    <Compile Include="OpenZWaveThermostat.cs" />
+    <Compile Include="OpenZWaveThermostatFan.cs" />
+    <Compile Include="OpenZWaveThermostatCore.cs" />
+    <Compile Include="OpenZWaveToggleSwitch.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="ValueUpdateType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Roomie.Common\Roomie.Common.csproj">
+      <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common.TextUtilities\Roomie.Common.TextUtilities.csproj">
+      <Project>{BD67D062-FBD1-4A00-8A44-639CB8537AC8}</Project>
+      <Name>TextUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands.csproj">
+      <Project>{48e1a8a5-7204-4c21-a914-510933db87ea}</Project>
+      <Name>HomeAutomationCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common.Exceptions\Roomie.Common.Exceptions.csproj">
+      <Project>{157A5468-8614-4577-91B3-738D58BF8350}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common.HomeAutomation\Roomie.Common.HomeAutomation.csproj">
+      <Project>{F0B023B4-CCA4-419F-8963-862D3377A2F8}</Project>
+      <Name>HomeAutomation %28Common\HomeAutomation%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Desktop.Engine\Roomie.Desktop.Engine.csproj">
+      <Project>{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

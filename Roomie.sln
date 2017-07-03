@@ -23,9 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{290490
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Desktop\Engine\Engine.csproj", "{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Desktop.Engine", "Roomie.Desktop.Engine\Roomie.Desktop.Engine.csproj", "{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal", "Desktop\Terminal\Terminal.csproj", "{F4E218AF-2C16-4F57-B80A-52A1B2335D2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Desktop.Terminal", "Roomie.Desktop.Terminal\Roomie.Desktop.Terminal.csproj", "{F4E218AF-2C16-4F57-B80A-52A1B2335D2D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{52838530-5174-47D2-A029-2DDB7918C776} = {52838530-5174-47D2-A029-2DDB7918C776}
 		{C570365F-C569-46B3-B35F-12952F0ACDEE} = {C570365F-C569-46B3-B35F-12952F0ACDEE}
@@ -33,77 +33,75 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal", "Desktop\Termina
 		{91E5D2C3-D269-4FF9-8AB6-36926441F6B2} = {91E5D2C3-D269-4FF9-8AB6-36926441F6B2}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomationCommands", "CommandDefinitions\HomeAutomation\HomeAutomationCommands\HomeAutomationCommands.csproj", "{48E1A8A5-7204-4C21-A914-510933DB87EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands", "Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands.csproj", "{48E1A8A5-7204-4C21-A914-510933DB87EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailCommands", "CommandDefinitions\EmailCommands\EmailCommands.csproj", "{79C6296E-FE65-4441-8841-541C80F68623}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.EmailCommands", "Roomie.CommandDefinitions.EmailCommands\Roomie.CommandDefinitions.EmailCommands.csproj", "{79C6296E-FE65-4441-8841-541C80F68623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHookCommands", "CommandDefinitions\WebHookCommands\WebHookCommands.csproj", "{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHookCommands", "Roomie.CommandDefinitions.WebHookCommands\WebHookCommands.csproj", "{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerComands", "CommandDefinitions\ComputerComands\ComputerComands.csproj", "{C570365F-C569-46B3-B35F-12952F0ACDEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.ComputerComands", "Roomie.CommandDefinitions.ComputerComands\Roomie.CommandDefinitions.ComputerComands.csproj", "{C570365F-C569-46B3-B35F-12952F0ACDEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCommunicator", "Libraries\WebCommunicator\WebCommunicator\WebCommunicator.csproj", "{A7CCA3B4-F50B-43F0-9250-673C1D6AC351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Web\Persistence\Persistence.csproj", "{B89555A4-7FBF-4B56-A040-B18445B4224B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Web.Persistence", "Roomie.Web.Persistence\Roomie.Web.Persistence.csproj", "{B89555A4-7FBF-4B56-A040-B18445B4224B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHookTester", "Tests\WebHookTester\WebHookTester.csproj", "{11205505-93C9-47B1-98F9-6DE80095CD7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHookTester", "Roomie.Test.WebHookTester\WebHookTester.csproj", "{11205505-93C9-47B1-98F9-6DE80095CD7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlThinkCommands", "CommandDefinitions\HomeAutomation\ControlThinkCommands\ControlThinkCommands.csproj", "{F2A79F92-10A8-4327-8F67-B18E59A3988F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands", "Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands\Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands.csproj", "{F2A79F92-10A8-4327-8F67-B18E59A3988F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreCommands", "CommandDefinitions\CoreCommands\CoreCommands.csproj", "{FA68504D-927F-4A50-AD3A-A009A98AF836}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.CoreCommands", "Roomie.CommandDefinitions.CoreCommands\Roomie.CommandDefinitions.CoreCommands.csproj", "{FA68504D-927F-4A50-AD3A-A009A98AF836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Desktop\Service\Service.csproj", "{7F726E91-6B0D-44E6-82A3-6C5A9B22D325}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Desktop.Service", "Roomie.Desktop.Service\Roomie.Desktop.Service.csproj", "{7F726E91-6B0D-44E6-82A3-6C5A9B22D325}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomationCommands.Tests", "CommandDefinitions\HomeAutomation\HomeAutomationCommands.Tests\HomeAutomationCommands.Tests.csproj", "{F9399D06-4797-4BCB-9F3D-32E2E47E5EE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands.Tests", "Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands.Tests\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands.Tests.csproj", "{F9399D06-4797-4BCB-9F3D-32E2E47E5EE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptingLanguage", "Common\ScriptingLanguage\ScriptingLanguage.csproj", "{B8225CD9-0CDA-4022-BC70-DA6D0CF7E097}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.ScriptingLanguage", "Roomie.Common.ScriptingLanguage\Roomie.Common.ScriptingLanguage.csproj", "{B8225CD9-0CDA-4022-BC70-DA6D0CF7E097}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "Common\Exceptions\Exceptions.csproj", "{157A5468-8614-4577-91B3-738D58BF8350}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.Exceptions", "Roomie.Common.Exceptions\Roomie.Common.Exceptions.csproj", "{157A5468-8614-4577-91B3-738D58BF8350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextUtilities", "Common\TextUtilities\TextUtilities.csproj", "{BD67D062-FBD1-4A00-8A44-639CB8537AC8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.TextUtilities", "Roomie.Common.TextUtilities\Roomie.Common.TextUtilities.csproj", "{BD67D062-FBD1-4A00-8A44-639CB8537AC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTester", "Common\ConsoleTester\ConsoleTester.csproj", "{1FA21EA1-0A02-47D9-8415-0F9951ECD408}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.ConsoleTester", "Roomie.Common.ConsoleTester\Roomie.Common.ConsoleTester.csproj", "{1FA21EA1-0A02-47D9-8415-0F9951ECD408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation", "Common\HomeAutomation\HomeAutomation.csproj", "{F0B023B4-CCA4-419F-8963-862D3377A2F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.HomeAutomation", "Roomie.Common.HomeAutomation\Roomie.Common.HomeAutomation.csproj", "{F0B023B4-CCA4-419F-8963-862D3377A2F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Common\Logger\Logger.csproj", "{610FD55B-DE30-475D-AEBD-A5539815D056}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.Logger", "Roomie.Common.Logger\Roomie.Common.Logger.csproj", "{610FD55B-DE30-475D-AEBD-A5539815D056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Tests", "Common\HomeAutomation.Tests\HomeAutomation.Tests.csproj", "{E9421EEF-6269-4F5E-9893-5C0003B6E400}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.HomeAutomation.Tests", "Roomie.Common.HomeAutomation.Tests\Roomie.Common.HomeAutomation.Tests.csproj", "{E9421EEF-6269-4F5E-9893-5C0003B6E400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common\Common.csproj", "{96934CBD-3597-4432-AE32-ED730377D3AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common", "Roomie.Common\Roomie.Common.csproj", "{96934CBD-3597-4432-AE32-ED730377D3AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterCommands", "CommandDefinitions\TwitterCommands\TwitterCommands.csproj", "{F22862B7-CDB9-4D4E-83F3-9AA535DB5841}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.TwitterCommands", "Roomie.CommandDefinitions.TwitterCommands\Roomie.CommandDefinitions.TwitterCommands.csproj", "{F22862B7-CDB9-4D4E-83F3-9AA535DB5841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Web\Website\Website.csproj", "{8EB25CBD-C698-4ECD-AC94-6A38F2DA347F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Web.Website", "Roomie.Web.Website\Roomie.Web.Website.csproj", "{8EB25CBD-C698-4ECD-AC94-6A38F2DA347F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{52838530-5174-47D2-A029-2DDB7918C776} = {52838530-5174-47D2-A029-2DDB7918C776}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphical", "Desktop\Graphical\Graphical.csproj", "{8D346BF8-664E-4690-9EEF-CD24DB365273}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Desktop.Graphical", "Roomie.Desktop.Graphical\Roomie.Desktop.Graphical.csproj", "{8D346BF8-664E-4690-9EEF-CD24DB365273}"
 	ProjectSection(ProjectDependencies) = postProject
 		{52838530-5174-47D2-A029-2DDB7918C776} = {52838530-5174-47D2-A029-2DDB7918C776}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechRecognitionCommands", "CommandDefinitions\SpeechRecognitionCommands\SpeechRecognitionCommands.csproj", "{52838530-5174-47D2-A029-2DDB7918C776}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.SpeechRecognitionCommands", "Roomie.CommandDefinitions.SpeechRecognitionCommands\Roomie.CommandDefinitions.SpeechRecognitionCommands.csproj", "{52838530-5174-47D2-A029-2DDB7918C776}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptingLanguage.Tests", "Common\ScriptingLanguage.Tests\ScriptingLanguage.Tests.csproj", "{752F5DB0-48FA-4EF7-91D3-5776E35952A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.ScriptingLanguage.Tests", "Roomie.Common.ScriptingLanguage.Tests\Roomie.Common.ScriptingLanguage.Tests.csproj", "{752F5DB0-48FA-4EF7-91D3-5776E35952A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Tests", "Common\Common.Tests\Common.Tests.csproj", "{C37F4C26-67AD-401C-8EEB-FEB17918E9AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.Tests", "Roomie.Common.Tests\Roomie.Common.Tests.csproj", "{C37F4C26-67AD-401C-8EEB-FEB17918E9AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Tests", "Desktop\Engine.Tests\Engine.Tests.csproj", "{CA3D65A9-07C0-4453-8D4E-CCC9B39B22D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Desktop.Engine.Tests", "Roomie.Desktop.Engine.Tests\Roomie.Desktop.Engine.Tests.csproj", "{CA3D65A9-07C0-4453-8D4E-CCC9B39B22D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triggers", "Common\Triggers\Triggers.csproj", "{5F72C80F-4C92-46EE-931B-7676DD2824E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.Triggers", "Roomie.Common.Triggers\Roomie.Common.Triggers.csproj", "{5F72C80F-4C92-46EE-931B-7676DD2824E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triggers.Tests", "Common\Triggers.Tests\Triggers.Tests.csproj", "{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.Triggers.Tests", "Roomie.Common.Triggers.Tests\Roomie.Common.Triggers.Tests.csproj", "{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiEngineeringCommands", "CommandDefinitions\HomeAutomation\PiEngineeringCommands\PiEngineeringCommands.csproj", "{9F021646-9069-4B2C-A26A-D6386EE0ED90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.HomeAutomation.PiEngineeringCommands", "Roomie.CommandDefinitions.HomeAutomation.PiEngineeringCommands\Roomie.CommandDefinitions.HomeAutomation.PiEngineeringCommands.csproj", "{9F021646-9069-4B2C-A26A-D6386EE0ED90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiEngineeringCommands.Tests", "CommandDefinitions\HomeAutomation\PiEngineeringCommands.Tests\PiEngineeringCommands.Tests.csproj", "{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.HomeAutomation.OpenZWaveCommands", "Roomie.CommandDefinitions.HomeAutomation.OpenZWaveCommands\Roomie.CommandDefinitions.HomeAutomation.OpenZWaveCommands.csproj", "{8A4DE8BD-5073-464F-BF77-71EFA6E07FD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenZWaveCommands", "CommandDefinitions\HomeAutomation\OpenZWaveCommands\OpenZWaveCommands.csproj", "{8A4DE8BD-5073-464F-BF77-71EFA6E07FD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.HomeAutomation.Q42HueCommands", "Roomie.CommandDefinitions.HomeAutomation.Q42HueCommands\Roomie.CommandDefinitions.HomeAutomation.Q42HueCommands.csproj", "{9B945F89-B6B3-4E7E-B670-B9DB24AD00DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Q42HueCommands", "CommandDefinitions\HomeAutomation\Q42HueCommands\Q42HueCommands.csproj", "{9B945F89-B6B3-4E7E-B670-B9DB24AD00DF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeMoCommands", "CommandDefinitions\HomeAutomation\WeMoCommands\WeMoCommands.csproj", "{FEE36987-142C-4930-BA5F-A2C1EEF219AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.HomeAutomation.WeMoCommands", "Roomie.CommandDefinitions.HomeAutomation.WeMoCommands\Roomie.CommandDefinitions.HomeAutomation.WeMoCommands.csproj", "{FEE36987-142C-4930-BA5F-A2C1EEF219AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common.Api.Client", "Roomie.Common.Api.Client\Roomie.Common.Api.Client.csproj", "{F774A2C4-395F-49C4-8FFB-F15D0BCED1CF}"
 EndProject
@@ -587,21 +585,6 @@ Global
 		{9F021646-9069-4B2C-A26A-D6386EE0ED90}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9F021646-9069-4B2C-A26A-D6386EE0ED90}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9F021646-9069-4B2C-A26A-D6386EE0ED90}.Release|x86.ActiveCfg = Release|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug Roomie.Mvc3|Any CPU.ActiveCfg = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug Roomie.Mvc3|Any CPU.Build.0 = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug Roomie.Mvc3|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug Roomie.Mvc3|Mixed Platforms.Build.0 = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug Roomie.Mvc3|x86.ActiveCfg = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614}.Release|x86.ActiveCfg = Release|Any CPU
 		{8A4DE8BD-5073-464F-BF77-71EFA6E07FD0}.Debug Roomie.Mvc3|Any CPU.ActiveCfg = Debug|Any CPU
 		{8A4DE8BD-5073-464F-BF77-71EFA6E07FD0}.Debug Roomie.Mvc3|Any CPU.Build.0 = Debug|Any CPU
 		{8A4DE8BD-5073-464F-BF77-71EFA6E07FD0}.Debug Roomie.Mvc3|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -723,7 +706,6 @@ Global
 		{5F72C80F-4C92-46EE-931B-7676DD2824E9} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
 		{ACD40CA9-DE61-4438-8DC3-7727AEB6EF27} = {9CD26F6B-45B4-4D7C-87A6-96163B4C7489}
 		{9F021646-9069-4B2C-A26A-D6386EE0ED90} = {41DFF33E-037B-45F4-9B2A-E07068610978}
-		{65F7EC5E-59CD-4CD1-8907-40D56EBE8614} = {41DFF33E-037B-45F4-9B2A-E07068610978}
 		{8A4DE8BD-5073-464F-BF77-71EFA6E07FD0} = {41DFF33E-037B-45F4-9B2A-E07068610978}
 		{9B945F89-B6B3-4E7E-B670-B9DB24AD00DF} = {41DFF33E-037B-45F4-9B2A-E07068610978}
 		{FEE36987-142C-4930-BA5F-A2C1EEF219AB} = {41DFF33E-037B-45F4-9B2A-E07068610978}

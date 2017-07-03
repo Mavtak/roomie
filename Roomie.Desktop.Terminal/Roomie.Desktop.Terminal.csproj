@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F4E218AF-2C16-4F57-B80A-52A1B2335D2D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Roomie.Desktop.Terminal</RootNamespace>
+    <AssemblyName>Roomie.Desktop.Terminal</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ControlThink.ZWave">
+      <HintPath>..\3rd Party Libraries\ControlThink.ZWave\ControlThink.ZWave.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.OpenZWaveCommands\Roomie.CommandDefinitions.HomeAutomation.OpenZWaveCommands.csproj">
+      <Project>{8a4de8bd-5073-464f-bf77-71efa6e07fd0}</Project>
+      <Name>OpenZWaveCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.WeMoCommands\Roomie.CommandDefinitions.HomeAutomation.WeMoCommands.csproj">
+      <Project>{fee36987-142c-4930-ba5f-a2c1eef219ab}</Project>
+      <Name>WeMoCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common.ScriptingLanguage\Roomie.Common.ScriptingLanguage.csproj">
+      <Project>{B8225CD9-0CDA-4022-BC70-DA6D0CF7E097}</Project>
+      <Name>ScriptingLanguage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common.TextUtilities\Roomie.Common.TextUtilities.csproj">
+      <Project>{BD67D062-FBD1-4A00-8A44-639CB8537AC8}</Project>
+      <Name>TextUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.CoreCommands\Roomie.CommandDefinitions.CoreCommands.csproj">
+      <Project>{FA68504D-927F-4A50-AD3A-A009A98AF836}</Project>
+      <Name>CoreCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.PiEngineeringCommands\Roomie.CommandDefinitions.HomeAutomation.PiEngineeringCommands.csproj">
+      <Project>{9f021646-9069-4b2c-a26a-d6386ee0ed90}</Project>
+      <Name>PiEngineeringCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Desktop.Extensions.EmailCommands\EmailCommands.csproj">
+      <Project>{6AC4327B-9B8A-4967-89C6-5A219AFFC4FA}</Project>
+      <Name>EmailCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Desktop.Engine\Roomie.Desktop.Engine.csproj">
+      <Project>{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands.csproj">
+      <Project>{48E1A8A5-7204-4C21-A914-510933DB87EA}</Project>
+      <Name>HomeAutomationCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommandDefinitions\EmailCommands\EmailCommands.csproj">
+      <Project>{79C6296E-FE65-4441-8841-541C80F68623}</Project>
+      <Name>EmailCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.ComputerComands\Roomie.CommandDefinitions.ComputerComands.csproj">
+      <Project>{C570365F-C569-46B3-B35F-12952F0ACDEE}</Project>
+      <Name>ComputerComands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.WebHookCommands\WebHookCommands.csproj">
+      <Project>{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}</Project>
+      <Name>WebHookCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands\Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands.csproj">
+      <Project>{F2A79F92-10A8-4327-8F67-B18E59A3988F}</Project>
+      <Name>ControlThinkCommands</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9F021646-9069-4B2C-A26A-D6386EE0ED90}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Roomie.CommandDefinitions.PiEngineeringCommands</RootNamespace>
+    <AssemblyName>Roomie.CommandDefinitions.PiEngineeringCommands</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PIEHidDotNet">
+      <HintPath>..\..\..\Libraries\External\PiEngineering\PIEHidDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bank.cs" />
+    <Compile Include="BinaryConversions.cs" />
+    <Compile Include="Commands\SetLed.cs" />
+    <Compile Include="Commands\SetButtonLight.cs" />
+    <Compile Include="Commands\SetButtonLightIntensity.cs" />
+    <Compile Include="Commands\ReconnectDevice.cs" />
+    <Compile Include="Commands\RegisterNetwork.cs" />
+    <Compile Include="Commands\SetAllButtonLights.cs" />
+    <Compile Include="Led.cs" />
+    <Compile Include="LightStatus.cs" />
+    <Compile Include="PiEngineeringDevice.cs" />
+    <Compile Include="PiEngineeringKeypad.cs" />
+    <Compile Include="PiEngineeringNetwork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands.csproj">
+      <Project>{48e1a8a5-7204-4c21-a914-510933db87ea}</Project>
+      <Name>HomeAutomationCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common\Roomie.Common.csproj">
+      <Project>{96934cbd-3597-4432-ae32-ed730377d3aa}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common.Exceptions\Roomie.Common.Exceptions.csproj">
+      <Project>{157a5468-8614-4577-91b3-738d58bf8350}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common.HomeAutomation\Roomie.Common.HomeAutomation.csproj">
+      <Project>{f0b023b4-cca4-419f-8963-862d3377a2f8}</Project>
+      <Name>HomeAutomation %28Common\HomeAutomation%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Desktop.Engine\Roomie.Desktop.Engine.csproj">
+      <Project>{91e5d2c3-d269-4ff9-8ab6-36926441f6b2}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

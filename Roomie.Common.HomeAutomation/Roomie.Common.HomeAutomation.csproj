@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F0B023B4-CCA4-419F-8963-862D3377A2F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Roomie.Common.HomeAutomation</RootNamespace>
+    <AssemblyName>Roomie.Common.HomeAutomation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BinarySensors\BinarySensorType.cs" />
+    <Compile Include="BinarySensors\BinarySensorTypeParser.cs" />
+    <Compile Include="BinarySensors\BinarySwitchExtensions.cs" />
+    <Compile Include="BinarySensors\IBinarySensor.cs" />
+    <Compile Include="BinarySensors\IBinarySensorActions.cs" />
+    <Compile Include="BinarySensors\IBinarySensorState.cs" />
+    <Compile Include="BinarySensors\ReadOnlyBinarySensorState.cs" />
+    <Compile Include="ColorSwitch\ColorSwitchStateExtensions.cs" />
+    <Compile Include="ColorSwitch\IColorSwitch.cs" />
+    <Compile Include="ColorSwitch\IColorSwitchActions.cs" />
+    <Compile Include="ColorSwitch\IColorSwitchState.cs" />
+    <Compile Include="ColorSwitch\ReadOnlyColorSwitchState.cs" />
+    <Compile Include="DeviceStateCollectionExtensions.cs" />
+    <Compile Include="DeviceStateExtensions.cs" />
+    <Compile Include="Events\BinarySensorValueChanged.cs" />
+    <Compile Include="Events\DevicePowerSensorValueChanged.cs" />
+    <Compile Include="Events\CurrentActionChanged.cs" />
+    <Compile Include="Events\EventTypeParser.cs" />
+    <Compile Include="Events\Triggers\DeviceStateChangedTriggerBase.cs" />
+    <Compile Include="Events\Triggers\WhenHumidityFallsBelowValueTrigger.cs" />
+    <Compile Include="Events\Triggers\WhenHumidityRisesAboveValueTrigger.cs" />
+    <Compile Include="Events\Triggers\WhenTheCurrentActionChangesTrigger.cs" />
+    <Compile Include="MultilevelSensors\IMultilevelSensor.cs" />
+    <Compile Include="MultilevelSensors\IMultilevelSensorActions.cs" />
+    <Compile Include="MultilevelSensors\IMultilevelSensorState.cs" />
+    <Compile Include="MultilevelSensors\MultilevelSwitchStateExtensions.cs" />
+    <Compile Include="MultilevelSensors\ReadOnlyMultilevelSensorState.cs" />
+    <Compile Include="MultilevelSwitches\IMultilevelSwitchActions.cs" />
+    <Compile Include="MultilevelSwitches\IMultilevelSwitchState.cs" />
+    <Compile Include="MultilevelSwitches\ReadOnlyDimmerSwitchState.cs" />
+    <Compile Include="MultilevelSwitches\MultilevelSwitchStateExtensions.cs" />
+    <Compile Include="Events\DeviceStateChanged.cs" />
+    <Compile Include="Events\EventTypeExtensions.cs" />
+    <Compile Include="Events\PoweredOff.cs" />
+    <Compile Include="Events\PoweredOn.cs" />
+    <Compile Include="Events\StillnessDetected.cs" />
+    <Compile Include="Events\DeviceHistory.cs" />
+    <Compile Include="Events\DevicePowerChanged.cs" />
+    <Compile Include="Events\DeviceLost.cs" />
+    <Compile Include="Events\DeviceEvent.cs" />
+    <Compile Include="Events\DeviceFound.cs" />
+    <Compile Include="Events\History.cs" />
+    <Compile Include="Events\ExtensionsToIEvent.cs" />
+    <Compile Include="Events\IDeviceEvent.cs" />
+    <Compile Include="Events\IDeviceHistory.cs" />
+    <Compile Include="Events\IHistory.cs" />
+    <Compile Include="Events\IMasterHistory.cs" />
+    <Compile Include="Events\INetworkHistory.cs" />
+    <Compile Include="Events\INetworkEvent.cs" />
+    <Compile Include="Events\MasterHistory.cs" />
+    <Compile Include="Events\MotionDetected.cs" />
+    <Compile Include="Events\NetworkDisconnected.cs" />
+    <Compile Include="Events\IEventSource.cs" />
+    <Compile Include="Events\IEventType.cs" />
+    <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Events\NetworkConnected.cs" />
+    <Compile Include="Events\NetworkEvent.cs" />
+    <Compile Include="Events\NetworkHistory.cs" />
+    <Compile Include="Events\TemperatureChanged.cs" />
+    <Compile Include="MultilevelSwitches\IMultilevelSwitch.cs" />
+    <Compile Include="Events\Triggers\WhenAKeypadButtonIsPressedTrigger.cs" />
+    <Compile Include="Events\Triggers\WhenDeviceEventHappenedWithinTimespanTrigger.cs" />
+    <Compile Include="Events\Triggers\WhenDeviceEventHappensTrigger.cs" />
+    <Compile Include="IDevice.cs" />
+    <Compile Include="IDeviceActions.cs" />
+    <Compile Include="IDeviceState.cs" />
+    <Compile Include="IHasName.cs" />
+    <Compile Include="ILocation.cs" />
+    <Compile Include="INetwork.cs" />
+    <Compile Include="INetworkActions.cs" />
+    <Compile Include="INetworkState.cs" />
+    <Compile Include="Keypads\Buttons\IButton.cs" />
+    <Compile Include="Keypads\Buttons\IButtonActions.cs" />
+    <Compile Include="Keypads\Buttons\ReadOnlyButtonState.cs" />
+    <Compile Include="Keypads\Buttons\ButtonStateExtensions.cs" />
+    <Compile Include="Keypads\Buttons\IKeypadButtonState.cs" />
+    <Compile Include="Keypads\IKeypad.cs" />
+    <Compile Include="Keypads\IKeypadActions.cs" />
+    <Compile Include="Keypads\IKeypadState.cs" />
+    <Compile Include="Keypads\ReadOnlyKeypadState.cs" />
+    <Compile Include="Keypads\KeypadStateExtensions.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="LocationExtensions.cs" />
+    <Compile Include="NetworkCollectionExtensions.cs" />
+    <Compile Include="NetworkExtensions.cs" />
+    <Compile Include="NetworkStateExtensions.cs" />
+    <Compile Include="ReadOnlyDeviceState.cs" />
+    <Compile Include="ReadOnlyNetworkState.cs" />
+    <Compile Include="Thermostats\Cores\IThermostatCoreActions.cs" />
+    <Compile Include="Thermostats\Cores\IThermostatCoreState.cs" />
+    <Compile Include="Thermostats\Cores\IThermostatCore.cs" />
+    <Compile Include="Thermostats\Cores\ReadOnlyThermostatCoreState.cs" />
+    <Compile Include="Thermostats\Cores\ThermostatCoreStateExtensions.cs" />
+    <Compile Include="Thermostats\ThermostatCurrentActionParser.cs" />
+    <Compile Include="Thermostats\Fans\ThermostatFanCurrentAction.cs" />
+    <Compile Include="Thermostats\Fans\ThermostatFanCurrentActionParser.cs" />
+    <Compile Include="Thermostats\Fans\ThermostatFanStateExtensions.cs" />
+    <Compile Include="Thermostats\Fans\IThermostatFan.cs" />
+    <Compile Include="Thermostats\Fans\IThermostatFanActions.cs" />
+    <Compile Include="Thermostats\Fans\IThermostatFanState.cs" />
+    <Compile Include="Thermostats\SetpointCollections\IThermostatSetpointCollection.cs" />
+    <Compile Include="Thermostats\SetpointCollections\IThermostatSetpointCollectionActions.cs" />
+    <Compile Include="Thermostats\SetpointCollections\IThermostatSetpointCollectionState.cs" />
+    <Compile Include="Thermostats\IThermostat.cs" />
+    <Compile Include="Thermostats\IThermostatActions.cs" />
+    <Compile Include="Thermostats\Fans\ReadOnlyThermostatFanState.cs" />
+    <Compile Include="Thermostats\SetpointCollections\ReadOnlyThermostatSetpointCollection.cs" />
+    <Compile Include="Thermostats\SetpointCollections\ThermostatSetpointCollectionExtensions.cs" />
+    <Compile Include="Thermostats\ThermostatMode.cs" />
+    <Compile Include="Thermostats\ThermostatCurrentAction.cs" />
+    <Compile Include="Thermostats\ThermostatModeParser.cs" />
+    <Compile Include="BinarySwitches\IBinarySwitch.cs" />
+    <Compile Include="Thermostats\Fans\ThermostatFanModeParser.cs" />
+    <Compile Include="Thermostats\Fans\ThermostatFanMode.cs" />
+    <Compile Include="Thermostats\IThermostatState.cs" />
+    <Compile Include="Thermostats\ReadOnlyThermostatState.cs" />
+    <Compile Include="Thermostats\SetpointCollections\ThermostatSetpointTypeParser.cs" />
+    <Compile Include="Thermostats\SetpointCollections\ThermostatSetpointType.cs" />
+    <Compile Include="Thermostats\ThermostatStateExtensions.cs" />
+    <Compile Include="BinarySwitches\IBinarySwitchActions.cs" />
+    <Compile Include="BinarySwitches\IBinarySwitchState.cs" />
+    <Compile Include="BinarySwitches\ReadOnlyBinarySwitchSwitchState.cs" />
+    <Compile Include="BinarySwitches\BinarySwitchPower.cs" />
+    <Compile Include="BinarySwitches\BinarySwitchExtensions.cs" />
+    <Compile Include="BinarySwitches\BinarySwitchPowerParser.cs" />
+    <Compile Include="VirtualAddress.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="DeviceType.cs" />
+    <Compile Include="Exceptions\DeviceNotFoundException.cs" />
+    <Compile Include="Exceptions\HomeAutomationException.cs" />
+    <Compile Include="Exceptions\InvalidHomeAutomationAddressException.cs" />
+    <Compile Include="Exceptions\MultipleMatchingDevicesException.cs" />
+    <Compile Include="Exceptions\MultipleMatchingNetworksException.cs" />
+    <Compile Include="Exceptions\NoMatchingDeviceException.cs" />
+    <Compile Include="Exceptions\NoMatchingNetworkException.cs" />
+    <Compile Include="HomeAutomationEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Roomie.Common.Exceptions\Roomie.Common.Exceptions.csproj">
+      <Project>{157A5468-8614-4577-91B3-738D58BF8350}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common\Roomie.Common.csproj">
+      <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
+      <Name>Common %28Common\Common%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Roomie.Common.Triggers\Roomie.Common.Triggers.csproj">
+      <Project>{5f72c80f-4c92-46ee-931b-7676dd2824e9}</Project>
+      <Name>Triggers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
