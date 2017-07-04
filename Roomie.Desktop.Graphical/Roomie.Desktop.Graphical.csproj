@@ -150,10 +150,6 @@
       <Project>{f0b023b4-cca4-419f-8963-862d3377a2f8}</Project>
       <Name>HomeAutomation %28Common\HomeAutomation%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Roomie.Common.Logger\Roomie.Common.Logger.csproj">
-      <Project>{610fd55b-de30-475d-aebd-a5539815d056}</Project>
-      <Name>Logger</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Roomie.Common.ScriptingLanguage\Roomie.Common.ScriptingLanguage.csproj">
       <Project>{b8225cd9-0cda-4022-bc70-da6d0cf7e097}</Project>
       <Name>ScriptingLanguage</Name>
