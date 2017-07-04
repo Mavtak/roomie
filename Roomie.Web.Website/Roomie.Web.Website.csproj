@@ -241,7 +241,7 @@
       <Project>{f22862b7-cdb9-4d4e-83f3-9aa535db5841}</Project>
       <Name>Roomie.CommandDefinitions.TwitterCommands</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Roomie.CommandDefinitions.WebHookCommands\WebHookCommands.csproj">
+    <ProjectReference Include="..\Roomie.CommandDefinitions.WebHookCommands\Roomie.CommandDefinitions.WebHookCommands.csproj">
       <Project>{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}</Project>
       <Name>WebHookCommands</Name>
     </ProjectReference>

@@ -163,7 +163,7 @@
       <Project>{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}</Project>
       <Name>Roomie.Desktop.Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Roomie.CommandDefinitions.WebHookCommands\WebHookCommands.csproj">
+    <ProjectReference Include="..\Roomie.CommandDefinitions.WebHookCommands\Roomie.CommandDefinitions.WebHookCommands.csproj">
       <Project>{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}</Project>
       <Name>WebHookCommands</Name>
     </ProjectReference>

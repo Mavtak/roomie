@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.EmailCommands", "Roomie.CommandDefinitions.EmailCommands\Roomie.CommandDefinitions.EmailCommands.csproj", "{79C6296E-FE65-4441-8841-541C80F68623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHookCommands", "Roomie.CommandDefinitions.WebHookCommands\WebHookCommands.csproj", "{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.WebHookCommands", "Roomie.CommandDefinitions.WebHookCommands\Roomie.CommandDefinitions.WebHookCommands.csproj", "{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.ComputerComands", "Roomie.CommandDefinitions.ComputerComands\Roomie.CommandDefinitions.ComputerComands.csproj", "{C570365F-C569-46B3-B35F-12952F0ACDEE}"
 EndProject
