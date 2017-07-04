@@ -64,7 +64,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.Common.Triggers\Roomie.Common.Triggers.csproj">
       <Project>{5f72c80f-4c92-46ee-931b-7676dd2824e9}</Project>
-      <Name>Triggers</Name>
+      <Name>Roomie.Common.Triggers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

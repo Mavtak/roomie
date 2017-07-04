@@ -75,7 +75,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.Common\Roomie.Common.csproj">
       <Project>{96934cbd-3597-4432-ae32-ed730377d3aa}</Project>
-      <Name>Common %28Common\Common%29</Name>
+      <Name>Roomie.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

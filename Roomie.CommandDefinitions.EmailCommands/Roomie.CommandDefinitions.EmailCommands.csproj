@@ -68,11 +68,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.Common.Exceptions\Roomie.Common.Exceptions.csproj">
       <Project>{157A5468-8614-4577-91B3-738D58BF8350}</Project>
-      <Name>Exceptions</Name>
+      <Name>Roomie.Common.Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Desktop.Engine\Roomie.Desktop.Engine.csproj">
       <Project>{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}</Project>
-      <Name>Engine</Name>
+      <Name>Roomie.Desktop.Engine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

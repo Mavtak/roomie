@@ -60,7 +60,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.Common.Exceptions\Roomie.Common.Exceptions.csproj">
       <Project>{157A5468-8614-4577-91B3-738D58BF8350}</Project>
-      <Name>Exceptions</Name>
+      <Name>Roomie.Common.Exceptions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

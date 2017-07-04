@@ -78,11 +78,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.Common\Roomie.Common.csproj">
       <Project>{96934cbd-3597-4432-ae32-ed730377d3aa}</Project>
-      <Name>Common %28Common\Common%29</Name>
+      <Name>Roomie.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Common.HomeAutomation\Roomie.Common.HomeAutomation.csproj">
       <Project>{F0B023B4-CCA4-419F-8963-862D3377A2F8}</Project>
-      <Name>HomeAutomation %28Common\HomeAutomation%29</Name>
+      <Name>Roomie.Common.HomeAutomation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

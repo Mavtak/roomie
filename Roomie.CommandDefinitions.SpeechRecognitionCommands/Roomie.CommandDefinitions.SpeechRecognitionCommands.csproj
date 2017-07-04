@@ -61,11 +61,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.Common.ScriptingLanguage\Roomie.Common.ScriptingLanguage.csproj">
       <Project>{b8225cd9-0cda-4022-bc70-da6d0cf7e097}</Project>
-      <Name>ScriptingLanguage</Name>
+      <Name>Roomie.Common.ScriptingLanguage</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Desktop.Engine\Roomie.Desktop.Engine.csproj">
       <Project>{91e5d2c3-d269-4ff9-8ab6-36926441f6b2}</Project>
-      <Name>Engine</Name>
+      <Name>Roomie.Desktop.Engine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -53,7 +53,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.Common.ScriptingLanguage\Roomie.Common.ScriptingLanguage.csproj">
       <Project>{b8225cd9-0cda-4022-bc70-da6d0cf7e097}</Project>
-      <Name>ScriptingLanguage</Name>
+      <Name>Roomie.Common.ScriptingLanguage</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -58,15 +58,15 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.Common\Roomie.Common.csproj">
       <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
-      <Name>Common %28Common\Common%29</Name>
+      <Name>Roomie.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Common.HomeAutomation\Roomie.Common.HomeAutomation.csproj">
       <Project>{F0B023B4-CCA4-419F-8963-862D3377A2F8}</Project>
-      <Name>HomeAutomation %28Common\HomeAutomation%29</Name>
+      <Name>Roomie.Common.HomeAutomation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands.csproj">
       <Project>{48E1A8A5-7204-4C21-A914-510933DB87EA}</Project>
-      <Name>HomeAutomationCommands</Name>
+      <Name>Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

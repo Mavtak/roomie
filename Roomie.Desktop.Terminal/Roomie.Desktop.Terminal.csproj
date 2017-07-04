@@ -81,27 +81,27 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.OpenZWaveCommands\Roomie.CommandDefinitions.HomeAutomation.OpenZWaveCommands.csproj">
       <Project>{8a4de8bd-5073-464f-bf77-71efa6e07fd0}</Project>
-      <Name>OpenZWaveCommands</Name>
+      <Name>Roomie.CommandDefinitions.HomeAutomation.OpenZWaveCommands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.WeMoCommands\Roomie.CommandDefinitions.HomeAutomation.WeMoCommands.csproj">
       <Project>{fee36987-142c-4930-ba5f-a2c1eef219ab}</Project>
-      <Name>WeMoCommands</Name>
+      <Name>Roomie.CommandDefinitions.HomeAutomation.WeMoCommands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Common.ScriptingLanguage\Roomie.Common.ScriptingLanguage.csproj">
       <Project>{B8225CD9-0CDA-4022-BC70-DA6D0CF7E097}</Project>
-      <Name>ScriptingLanguage</Name>
+      <Name>Roomie.Common.ScriptingLanguage</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Common.TextUtilities\Roomie.Common.TextUtilities.csproj">
       <Project>{BD67D062-FBD1-4A00-8A44-639CB8537AC8}</Project>
-      <Name>TextUtilities</Name>
+      <Name>Roomie.Common.TextUtilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.CoreCommands\Roomie.CommandDefinitions.CoreCommands.csproj">
       <Project>{FA68504D-927F-4A50-AD3A-A009A98AF836}</Project>
-      <Name>CoreCommands</Name>
+      <Name>Roomie.CommandDefinitions.CoreCommands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.PiEngineeringCommands\Roomie.CommandDefinitions.HomeAutomation.PiEngineeringCommands.csproj">
       <Project>{9f021646-9069-4b2c-a26a-d6386ee0ed90}</Project>
-      <Name>PiEngineeringCommands</Name>
+      <Name>Roomie.CommandDefinitions.HomeAutomation.PiEngineeringCommands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Desktop.Extensions.EmailCommands\EmailCommands.csproj">
       <Project>{6AC4327B-9B8A-4967-89C6-5A219AFFC4FA}</Project>
@@ -109,11 +109,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Desktop.Engine\Roomie.Desktop.Engine.csproj">
       <Project>{91E5D2C3-D269-4FF9-8AB6-36926441F6B2}</Project>
-      <Name>Engine</Name>
+      <Name>Roomie.Desktop.Engine</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands\Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands.csproj">
       <Project>{48E1A8A5-7204-4C21-A914-510933DB87EA}</Project>
-      <Name>HomeAutomationCommands</Name>
+      <Name>Roomie.CommandDefinitions.HomeAutomation.HomeAutomationCommands</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\CommandDefinitions\EmailCommands\EmailCommands.csproj">
       <Project>{79C6296E-FE65-4441-8841-541C80F68623}</Project>
@@ -121,7 +121,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.ComputerComands\Roomie.CommandDefinitions.ComputerComands.csproj">
       <Project>{C570365F-C569-46B3-B35F-12952F0ACDEE}</Project>
-      <Name>ComputerComands</Name>
+      <Name>Roomie.CommandDefinitions.ComputerComands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.WebHookCommands\WebHookCommands.csproj">
       <Project>{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}</Project>
@@ -129,7 +129,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands\Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands.csproj">
       <Project>{F2A79F92-10A8-4327-8F67-B18E59A3988F}</Project>
-      <Name>ControlThinkCommands</Name>
+      <Name>Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

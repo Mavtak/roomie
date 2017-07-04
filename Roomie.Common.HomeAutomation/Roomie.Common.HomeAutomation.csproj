@@ -186,15 +186,15 @@
   <ItemGroup>
     <ProjectReference Include="..\Roomie.Common.Exceptions\Roomie.Common.Exceptions.csproj">
       <Project>{157A5468-8614-4577-91B3-738D58BF8350}</Project>
-      <Name>Exceptions</Name>
+      <Name>Roomie.Common.Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Common\Roomie.Common.csproj">
       <Project>{96934CBD-3597-4432-AE32-ED730377D3AA}</Project>
-      <Name>Common %28Common\Common%29</Name>
+      <Name>Roomie.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.Common.Triggers\Roomie.Common.Triggers.csproj">
       <Project>{5f72c80f-4c92-46ee-931b-7676dd2824e9}</Project>
-      <Name>Triggers</Name>
+      <Name>Roomie.Common.Triggers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
