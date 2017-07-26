@@ -37,13 +37,15 @@ namespace Roomie.Web.Website.Controllers.Api.Script
                 timeout = null;
             }
 
+            var cache = new InMemoryRepositoryModelCache();
             var deleted = 0;
             var skipped = 0;
             ListFilter filter = null;
 
+
             DoWork.UntilTimeout(timeout ?? 5, () =>
             {
-                var result = _scriptRepository.Clean(_taskRepository, _computerRepository, filter);
+                var result = _scriptRepository.Clean(_taskRepository, _computerRepository, filter, cache);
 
                 deleted += result.Deleted;
                 skipped += result.Skipped;

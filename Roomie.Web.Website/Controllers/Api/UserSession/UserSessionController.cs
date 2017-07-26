@@ -16,14 +16,16 @@ namespace Roomie.Web.Website.Controllers.Api.UserSession
 
         public Persistence.Models.UserSession Get(string token)
         {
-            var result = _sessionRepository.GetUserSession(token);
+            var cache = new InMemoryRepositoryModelCache();
+            var result = _sessionRepository.GetUserSession(token, cache);
 
             return result;
         }
 
         public Page<object> Get([FromUri] ListFilter filter)
         {
-            var sessions = _sessionRepository.ListUserSessions(User, filter);
+            var cache = new InMemoryRepositoryModelCache();
+            var sessions = _sessionRepository.ListUserSessions(User, filter, cache);
 
             var result = sessions.Transform(Transform);
 

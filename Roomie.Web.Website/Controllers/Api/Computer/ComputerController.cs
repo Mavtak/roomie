@@ -22,7 +22,8 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
 
         public Persistence.Models.Computer[] Get()
         {
-            var computers = _computerRepository.Get(User);
+            var cache = new InMemoryRepositoryModelCache();
+            var computers = _computerRepository.Get(User, cache);
             var result = computers.Select(GetSerializableVersion)
                 .ToArray();
 
@@ -31,7 +32,8 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
 
         public Persistence.Models.Computer Get(int id)
         {
-            var computer = SelectComputer(id);
+            var cache = new InMemoryRepositoryModelCache();
+            var computer = SelectComputer(id, cache);
             var result = GetSerializableVersion(computer);
 
             return result;
@@ -39,7 +41,8 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
 
         public Persistence.Models.Computer Get(string accessKey)
         {
-            var computer = _computerRepository.Get(accessKey);
+            var cache = new InMemoryRepositoryModelCache();
+            var computer = _computerRepository.Get(accessKey, cache);
             var result = GetSerializableVersion(computer);
             return result;
         }
@@ -54,9 +57,10 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
 
         public void Post(int id, string action, ComputerActionOptions options)
         {
+            var cache = new InMemoryRepositoryModelCache();
             options = options ?? new ComputerActionOptions();
 
-            var computer = SelectComputer(id);
+            var computer = SelectComputer(id, cache);
 
             switch(action)
             {
@@ -120,9 +124,9 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
             return result;
         }
 
-        private Persistence.Models.Computer SelectComputer(int id)
+        private Persistence.Models.Computer SelectComputer(int id, IRepositoryModelCache cache)
         {
-            var computer = _computerRepository.Get(User, id);
+            var computer = _computerRepository.Get(User, id, cache);
 
             if (computer == null)
             {

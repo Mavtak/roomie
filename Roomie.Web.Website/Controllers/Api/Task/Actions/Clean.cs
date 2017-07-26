@@ -18,13 +18,14 @@ namespace Roomie.Web.Website.Controllers.Api.Task.Actions
 
         public string Run(TimeSpan? timeout, Persistence.Models.User user)
         {
+            var cache = new InMemoryRepositoryModelCache();
             var deleted = 0;
             var skipped = 0;
             ListFilter filter = null;
 
             DoWork.UntilTimeout(((int?)timeout?.TotalSeconds) ?? 5, () =>
             {
-                var result = _taskRepository.Clean(user, filter);
+                var result = _taskRepository.Clean(user, filter, cache);
 
                 deleted += result.Deleted;
                 skipped += result.Skipped;

@@ -19,7 +19,8 @@ namespace Roomie.Web.Website.Controllers.Api.Task
 
         public Persistence.Models.Task Get(int id)
         {
-            var task = _taskRepository.Get(User, id);
+            var cache = new InMemoryRepositoryModelCache();
+            var task = _taskRepository.Get(User, id, cache);
 
             if (task == null)
             {
@@ -33,7 +34,8 @@ namespace Roomie.Web.Website.Controllers.Api.Task
 
         public Page<Persistence.Models.Task> Get([FromUri] ListFilter filter)
         {
-            var result = _taskRepository.List(User, filter)
+            var cache = new InMemoryRepositoryModelCache();
+            var result = _taskRepository.List(User, filter, cache)
                 .Transform(GetSerializableVersion);
 
             return result;
@@ -51,9 +53,10 @@ namespace Roomie.Web.Website.Controllers.Api.Task
                     break;
 
                 case "GetForComputer":
+                    var cache = new InMemoryRepositoryModelCache();
                     var computerRepository = RepositoryFactory.GetComputerRepository();
                     var taskRepository = RepositoryFactory.GetTaskRepository();
-                    var computer = Computer ?? computerRepository.Get(User, computerName);
+                    var computer = Computer ?? computerRepository.Get(User, computerName, cache);
                     var getTasks = new Actions.GetForComputer(computerRepository, taskRepository);
                     var tasks = getTasks.Run(computer, timeout, pollInterval);
                     result = tasks

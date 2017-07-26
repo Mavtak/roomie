@@ -23,7 +23,8 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
         public IEnumerable<Persistence.Models.Network> Get()
         {
-            var networks = _networkRepository.Get(User);
+            var cache = new InMemoryRepositoryModelCache();
+            var networks = _networkRepository.Get(User, cache);
 
             foreach (var network in networks)
             {
@@ -37,7 +38,8 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
         public Persistence.Models.Network Get(int id)
         {
-            var network = SelectNetwork(id);
+            var cache = new InMemoryRepositoryModelCache();
+            var network = SelectNetwork(id, cache);
             var result = GetSerializableVersion(network);
 
             return result;
@@ -47,7 +49,8 @@ namespace Roomie.Web.Website.Controllers.Api.Network
         {
             update = update ?? new NetworkUpdateModel();
 
-            var network = SelectNetwork(id);
+            var cache = new InMemoryRepositoryModelCache();
+            var network = SelectNetwork(id, cache);
 
             network.UpdateName(update.Name);
             _networkRepository.Update(network);
@@ -55,7 +58,8 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
         public void Post(int id, string action, string computerName, string sentDevicesXml)
         {
-            var network = SelectNetwork(id);
+            var cache = new InMemoryRepositoryModelCache();
+            var network = SelectNetwork(id, cache);
 
             switch (action)
             {
@@ -88,7 +92,8 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
         private void Delete(int id)
         {
-            var network = SelectNetwork(id);
+            var cache = new InMemoryRepositoryModelCache();
+            var network = SelectNetwork(id, cache);
 
             foreach (var device in _deviceRepository.Get(network))
             {
@@ -170,9 +175,9 @@ namespace Roomie.Web.Website.Controllers.Api.Network
             );
         }
 
-        private Persistence.Models.Network SelectNetwork(int id)
+        private Persistence.Models.Network SelectNetwork(int id, IRepositoryModelCache cache)
         {
-            var network = _networkRepository.Get(User, id);
+            var network = _networkRepository.Get(User, id, cache);
 
             if (network == null)
             {

@@ -29,7 +29,8 @@ namespace Roomie.Web.Website.Controllers.Api.Task.Actions
                 _computerRepository.Update(computer);
 
                 var now = DateTime.UtcNow;
-                tasks = _taskRepository.ForComputer(computer, now);
+                var cache = new InMemoryRepositoryModelCache();
+                tasks = _taskRepository.ForComputer(computer, now, cache);
 
                 if (tasks.Length > 0 || DateTime.Now >= endTime)
                 {

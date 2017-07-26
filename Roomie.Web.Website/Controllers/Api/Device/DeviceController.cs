@@ -38,8 +38,9 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             }
             else
             {
-                var networks = _networkRepository.Get(User);
-                var unsortedDevices = networks.SelectMany(_deviceRepository.Get).ToList();
+                var cache = new InMemoryRepositoryModelCache();
+                var networks = _networkRepository.Get(User, cache);
+                var unsortedDevices = networks.SelectMany((id) => _deviceRepository.Get(id, cache)).ToList();
                 unsortedDevices.Sort(new DeviceSort());
                 devices = unsortedDevices.ToArray();
             }
@@ -51,7 +52,8 @@ namespace Roomie.Web.Website.Controllers.Api.Device
 
         public Persistence.Models.Device Get(int id)
         {
-            var device = SelectDevice(id);
+            var cache = new InMemoryRepositoryModelCache();
+            var device = SelectDevice(id, cache);
             var result = GetSerializableVersion(device);
 
             return result;
@@ -61,7 +63,8 @@ namespace Roomie.Web.Website.Controllers.Api.Device
         {
             update = update ?? new DeviceUpdateModel();
 
-            var device = SelectDevice(id);
+            var cache = new InMemoryRepositoryModelCache();
+            var device = SelectDevice(id, cache);
 
             device.Update(
                 location: (update.Location == null) ? device.Location : new Location(update.Location),
@@ -92,8 +95,9 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             options.Power = options.Power ?? power;
             options.Temperature = options.Temperature ?? temperature;
             options.Type = options.Type ?? type;
-
-            IDevice device = this.SelectDevice(id);
+            
+            var cache = new InMemoryRepositoryModelCache();
+            IDevice device = this.SelectDevice(id, cache);
 
             switch (action)
             {
@@ -159,9 +163,9 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             return Persistence.Models.Device.Create(device.Id, device);
         }
 
-        private Persistence.Models.Device SelectDevice(int id)
+        private Persistence.Models.Device SelectDevice(int id, IRepositoryModelCache cache)
         {
-            var device = _deviceRepository.Get(User, id);
+            var device = _deviceRepository.Get(User, id, cache);
 
             if (device == null)
             {
