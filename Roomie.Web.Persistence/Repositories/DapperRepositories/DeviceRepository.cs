@@ -66,7 +66,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             device.SetId(id);
         }
 
-        public Device[] Get(Network network)
+        public Device[] Get(Network network, IRepositoryModelCache cache = null)
         {
             var networkModel = NetworkModel.FromRepositoryType(network);
             var sql = @"
@@ -81,13 +81,13 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
             var models = _connection.Query<DeviceModel>(sql, parameters).ToArray();
             var result = models
-                .Select(x => x.ToRepositoryType(_networkRepository, _scriptRepository, _taskRepository))
+                .Select(x => x.ToRepositoryType(cache, _networkRepository, _scriptRepository, _taskRepository))
                 .ToArray();
 
             return result;
         }
 
-        public Device Get(int id)
+        public Device Get(int id, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -100,15 +100,15 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<DeviceModel>(sql, parameters);
-            var result = model.ToRepositoryType(_networkRepository, _scriptRepository, _taskRepository);
+            var result = model.ToRepositoryType(cache, _networkRepository, _scriptRepository, _taskRepository);
 
             return result;
         }
 
-        public Device Get(User user, int id)
+        public Device Get(User user, int id, IRepositoryModelCache cache = null)
         {
             var userModel = UserModel.FromRepositoryType(user);
-            var result = Get(id);
+            var result = Get(id, cache);
 
             if (result?.Network?.Owner?.Id != userModel?.Id)
             {

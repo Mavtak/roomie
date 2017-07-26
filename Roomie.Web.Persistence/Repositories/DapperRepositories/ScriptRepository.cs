@@ -53,7 +53,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             script.SetId(id);
         }
 
-        public Script Get(int id)
+        public Script Get(int id, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -66,12 +66,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<ScriptModel>(sql, parameters);
-            var result = model.ToRepositoryType();
+            var result = model.ToRepositoryType(cache);
 
             return result;
         }
 
-        public Page<Script> List(ListFilter filter)
+        public Page<Script> List(ListFilter filter, IRepositoryModelCache cache = null)
         {
             var sql = $@"
                 SELECT COUNT(*)
@@ -103,7 +103,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
                 Count = filter.Count,
                 Sort = filter.SortDirection,
                 Items = models
-                    .Select(x => x.ToRepositoryType())
+                    .Select(x => x.ToRepositoryType(cache))
                     .ToArray(),
                 Start = filter.Start,
                 Total = total,

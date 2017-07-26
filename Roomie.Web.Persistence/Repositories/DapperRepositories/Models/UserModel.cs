@@ -33,7 +33,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return result;
         }
 
-        public User ToRepositoryType()
+        public User ToRepositoryType(IRepositoryModelCache cache)
         {
             var result = new User(
                 alias: Alias,
@@ -44,14 +44,23 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 token: Token
             );
 
+            cache?.Set(result.Id, result);
+
             return result;
         }
 
-        public static User ToRepositoryType(int? id, IUserRepository userRepository)
+        public static User ToRepositoryType(IRepositoryModelCache cache, int? id, IUserRepository userRepository)
         {
             if (id == null)
             {
                 return null;
+            }
+
+            var cachedValue = cache?.Get<User>(id);
+
+            if (cachedValue != null)
+            {
+                return cachedValue;
             }
 
             if (userRepository == null)
@@ -59,10 +68,14 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 return new UserModel
                 {
                     Id = id.Value
-                }.ToRepositoryType();
+                }.ToRepositoryType((IRepositoryModelCache)null);
             }
 
-            return userRepository.Get(id.Value);
+            var result = userRepository.Get(id.Value);
+
+            cache?.Set(result.Id, result);
+
+            return result;
         }
     }
 }

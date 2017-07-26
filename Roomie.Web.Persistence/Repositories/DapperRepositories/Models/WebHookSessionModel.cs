@@ -28,14 +28,16 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return result;
         }
 
-        public WebHookSession ToRepositoryType(IComputerRepository computerRepository)
+        public WebHookSession ToRepositoryType(IRepositoryModelCache cache, IComputerRepository computerRepository)
         {
             var result = new WebHookSession(
-                computer: ComputerModel.ToRepositoryType(Computer_Id, computerRepository),
+                computer: ComputerModel.ToRepositoryType(cache, Computer_Id, computerRepository),
                 id: Id,
                 lastPing: LastPing,
                 token: Token
             );
+
+            cache?.Set(result.Id, result);
 
             return result;
         }

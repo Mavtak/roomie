@@ -32,15 +32,17 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return result;
         }
 
-        public UserSession ToRepositoryType(IUserRepository userRepository)
+        public UserSession ToRepositoryType(IRepositoryModelCache cache, IUserRepository userRepository)
         {
             var result = new UserSession(
                 creationTimeStamp: CreationTimeStamp,
                 id: Id,
                 lastContactTimeStamp: LastContactTimeStamp,
                 token: Token,
-                user: UserModel.ToRepositoryType(User_Id, userRepository)
+                user: UserModel.ToRepositoryType(cache, User_Id, userRepository)
             );
+
+            cache?.Set(result.Id, result);
 
             return result;
         }

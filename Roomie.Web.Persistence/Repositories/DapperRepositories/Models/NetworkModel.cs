@@ -35,25 +35,34 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return result;
         }
 
-        public Network ToRepositoryType(IComputerRepository computerRepository, IUserRepository userRepository)
+        public Network ToRepositoryType(IRepositoryModelCache cache, IComputerRepository computerRepository, IUserRepository userRepository)
         {
             var result = new Network(
                 address: Address,
-                attatchedComputer: ComputerModel.ToRepositoryType(AttatchedComputer_Id, computerRepository),
+                attatchedComputer: ComputerModel.ToRepositoryType(cache, AttatchedComputer_Id, computerRepository),
                 devices: null,
                 id: Id,
                 lastPing: LastPing,
                 name: Name,
-                owner: UserModel.ToRepositoryType(Owner_Id, userRepository)
+                owner: UserModel.ToRepositoryType(cache, Owner_Id, userRepository)
             );
+
+            cache?.Set(result.Id, result);
 
             return result;
         }
-        public  static Network ToRepositoryType(int? id, INetworkRepository networkRepository)
+        public  static Network ToRepositoryType(IRepositoryModelCache cache, int? id, INetworkRepository networkRepository)
         {
             if (id == null)
             {
                 return null;
+            }
+
+            var cachedValue = cache?.Get<Network>(id);
+
+            if (cachedValue != null)
+            {
+                return cachedValue;
             }
 
             if (networkRepository == null)
@@ -61,10 +70,14 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 new NetworkModel
                 {
                     Id = id.Value
-                }.ToRepositoryType((IComputerRepository) null, (IUserRepository) null);
+                }.ToRepositoryType(cache, (IComputerRepository)null, (IUserRepository)null);
             }
 
-            return networkRepository.Get(id.Value);
+            var result = networkRepository.Get(id.Value);
+
+            cache?.Set(result.Id, result);
+
+            return result;
         }
     }
 }

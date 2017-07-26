@@ -57,7 +57,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             network.SetId(id);
         }
 
-        public Network[] Get(User user)
+        public Network[] Get(User user, IRepositoryModelCache cache = null)
         {
             var userModel = UserModel.FromRepositoryType(user);
             var sql = @"
@@ -72,13 +72,13 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
             var models = _connection.Query<NetworkModel>(sql, parameters).ToArray();
             var result = models
-                .Select(x => x.ToRepositoryType(_computerRepository, _userRepository))
+                .Select(x => x.ToRepositoryType(cache, _computerRepository, _userRepository))
                 .ToArray();
 
             return result;
         }
 
-        public Network Get(int id)
+        public Network Get(int id, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -91,12 +91,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<NetworkModel>(sql, parameters);
-            var result = model.ToRepositoryType(_computerRepository, _userRepository);
+            var result = model.ToRepositoryType(cache, _computerRepository, _userRepository);
 
             return result;
         }
 
-        public Network Get(User user, string address)
+        public Network Get(User user, string address, IRepositoryModelCache cache = null)
         {
             var userModel = UserModel.FromRepositoryType(user);
             var sql = @"
@@ -112,15 +112,15 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<NetworkModel>(sql, parameters);
-            var result = model.ToRepositoryType(_computerRepository, _userRepository);
+            var result = model.ToRepositoryType(cache, _computerRepository, _userRepository);
 
             return result;
         }
 
-        public Network Get(User user, int id)
+        public Network Get(User user, int id, IRepositoryModelCache cache = null)
         {
             var userModel = UserModel.FromRepositoryType(user);
-            var result = Get(id);
+            var result = Get(id, cache);
 
             if (result?.Owner?.Id != userModel?.Id)
             {

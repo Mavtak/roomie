@@ -68,7 +68,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             return count > 0;
         }
 
-        public User[] Get(Network network)
+        public User[] Get(Network network, IRepositoryModelCache cache = null)
         {
             var networkModel = NetworkModel.FromRepositoryType(network);
             var sql = @"
@@ -83,13 +83,13 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
             var userIds = _connection.Query<int>(sql, parameters).ToArray();
             var result = userIds
-                .Select(_userRepository.Get)
+                .Select((id) => _userRepository.Get(id, cache))
                 .ToArray();
 
             return result;
         }
 
-        public Network[] Get(User user)
+        public Network[] Get(User user, IRepositoryModelCache cache = null)
         {
             var userModel = UserModel.FromRepositoryType(user);
             var sql = @"
@@ -104,7 +104,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
             var networkIds = _connection.Query<int>(sql, parameters).ToArray();
             var result = networkIds
-                .Select(_networkRepository.Get)
+                .Select((id) => _networkRepository.Get(id, cache))
                 .ToArray();
 
             return result;

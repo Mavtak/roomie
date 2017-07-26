@@ -15,16 +15,16 @@ namespace Roomie.Web.Persistence.Repositories
             _guests = guests;
         }
 
-        public Network Get(int id)
+        public Network Get(int id, IRepositoryModelCache cache = null)
         {
-            var result = _networks.Get(id);
+            var result = _networks.Get(id, cache);
 
             return result;
         }
 
-        public Network Get(User user, int id)
+        public Network Get(User user, int id, IRepositoryModelCache cache = null)
         {
-            var result = Get(id);
+            var result = Get(id, cache);
 
             if (result == null)
             {
@@ -49,18 +49,18 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public Network[] Get(User user)
+        public Network[] Get(User user, IRepositoryModelCache cache = null)
         {
-            var primaryNetworks = _networks.Get(user);
+            var primaryNetworks = _networks.Get(user, cache);
             var guestNetworks = _guests.Get(user);
             var result = primaryNetworks.Concat(guestNetworks).ToArray();
 
             return result;
         }
 
-        public Network Get(User user, string address)
+        public Network Get(User user, string address, IRepositoryModelCache cache = null)
         {
-            var result = _networks.Get(user, address);
+            var result = _networks.Get(user, address, cache);
 
             if (result == null)
             {

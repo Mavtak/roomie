@@ -50,7 +50,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             session.SetId(id);
         }
 
-        public WebHookSession Get(string token)
+        public WebHookSession Get(string token, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -63,12 +63,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<WebHookSessionModel>(sql, parameters);
-            var result = model.ToRepositoryType(_computerRepository);
+            var result = model.ToRepositoryType(cache, _computerRepository);
 
             return result;
         }
 
-        public Page<WebHookSession> List(User user, ListFilter filter)
+        public Page<WebHookSession> List(User user, ListFilter filter, IRepositoryModelCache cache = null)
         {
             var model = UserModel.FromRepositoryType(user);
             var sql = $@"
@@ -108,7 +108,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
                 Count = filter.Count,
                 Sort = filter.SortDirection,
                 Items = models
-                    .Select(x => x.ToRepositoryType(_computerRepository))
+                    .Select(x => x.ToRepositoryType(cache, _computerRepository))
                     .ToArray(),
                 Start = filter.Start,
                 Total = total,

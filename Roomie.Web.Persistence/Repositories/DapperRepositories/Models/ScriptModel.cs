@@ -32,7 +32,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return result;
         }
 
-        public Script ToRepositoryType()
+        public Script ToRepositoryType(IRepositoryModelCache cache)
         {
             var result = new Script(
                 creationTimestamp: CreationTimestamp,
@@ -43,14 +43,23 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 text: Text
             );
 
+            cache?.Set(result.Id, result);
+
             return result;
         }
 
-        public static Script ToRepositoryType(int? id, IScriptRepository scriptRepository)
+        public static Script ToRepositoryType(IRepositoryModelCache cache, int? id, IScriptRepository scriptRepository)
         {
             if (id == null)
             {
                 return null;
+            }
+
+            var cachedValue = cache?.Get<Script>(id);
+
+            if (cachedValue != null)
+            {
+                return cachedValue;
             }
 
             if (scriptRepository == null)
@@ -58,10 +67,14 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 return new ScriptModel
                 {
                     Id = id.Value
-                }.ToRepositoryType();
+                }.ToRepositoryType((IRepositoryModelCache)null);
             }
 
-            return scriptRepository.Get(id.Value);
+            var result = scriptRepository.Get(id.Value);
+
+            cache?.Set(result.Id, result);
+
+            return result;
         }
     }
 }

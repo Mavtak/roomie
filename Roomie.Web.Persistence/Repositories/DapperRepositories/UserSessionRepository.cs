@@ -53,7 +53,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             session.SetId(id);
         }
 
-        public UserSession Get(string token)
+        public UserSession Get(string token, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -66,12 +66,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<UserSessionModel>(sql, parameters);
-            var result = model.ToRepositoryType(_userRepository);
+            var result = model.ToRepositoryType(cache, _userRepository);
 
             return result;
         }
 
-        public Page<UserSession> List(User user, ListFilter filter)
+        public Page<UserSession> List(User user, ListFilter filter, IRepositoryModelCache cache = null)
         {
             var model = UserModel.FromRepositoryType(user);
             var sql = $@"
@@ -107,7 +107,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
                 Count = filter.Count,
                 Sort = filter.SortDirection,
                 Items = models
-                    .Select(x => x.ToRepositoryType(_userRepository))
+                    .Select(x => x.ToRepositoryType(cache, _userRepository))
                     .ToArray(),
                 Start = filter.Start,
                 Total = total,

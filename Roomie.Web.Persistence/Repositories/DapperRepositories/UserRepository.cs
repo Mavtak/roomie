@@ -52,7 +52,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             user.SetId(id);
         }
 
-        public User Get(string token)
+        public User Get(string token, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -65,12 +65,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<UserModel>(sql, parameters);
-            var result = model.ToRepositoryType();
+            var result = model.ToRepositoryType(cache);
 
             return result;
         }
 
-        public User Get(int id)
+        public User Get(int id, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -83,7 +83,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<UserModel>(sql, parameters);
-            var result = model.ToRepositoryType();
+            var result = model.ToRepositoryType(cache);
 
             return result;
         }

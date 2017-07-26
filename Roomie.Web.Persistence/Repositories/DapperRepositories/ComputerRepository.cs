@@ -65,7 +65,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             computer.SetId(id);
         }
 
-        public Computer Get(string accessKey)
+        public Computer Get(string accessKey, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -78,12 +78,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<ComputerModel>(sql, parameters);
-            var result = model.ToRepositoryType(_scriptRepository, _userRepository);
+            var result = model.ToRepositoryType(cache, _scriptRepository, _userRepository);
 
             return result;
         }
 
-        public Computer[] Get(Script script)
+        public Computer[] Get(Script script, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -97,13 +97,13 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
             var models = _connection.Query<ComputerModel>(sql, parameters);
             var result = models
-                .Select(x => x.ToRepositoryType(_scriptRepository, _userRepository))
+                .Select(x => x.ToRepositoryType(cache, _scriptRepository, _userRepository))
                 .ToArray();
 
             return result;
         }
 
-        public Computer[] Get(User user)
+        public Computer[] Get(User user, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -117,13 +117,13 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
             var models = _connection.Query<ComputerModel>(sql, parameters);
             var result = models
-                .Select(x => x.ToRepositoryType(_scriptRepository, _userRepository))
+                .Select(x => x.ToRepositoryType(cache, _scriptRepository, _userRepository))
                 .ToArray();
 
             return result;
         }
 
-        public Computer Get(int id)
+        public Computer Get(int id, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -136,12 +136,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<ComputerModel>(sql, parameters);
-            var result = model.ToRepositoryType(_scriptRepository, _userRepository);
+            var result = model.ToRepositoryType(cache, _scriptRepository, _userRepository);
 
             return result;
         }
 
-        public Computer Get(User user, string name)
+        public Computer Get(User user, string name, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -156,12 +156,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<ComputerModel>(sql, parameters);
-            var result = model.ToRepositoryType(_scriptRepository, _userRepository);
+            var result = model.ToRepositoryType(cache, _scriptRepository, _userRepository);
 
             return result;
         }
 
-        public Computer Get(User user, int id)
+        public Computer Get(User user, int id, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -176,7 +176,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<ComputerModel>(sql, parameters);
-            var result = model.ToRepositoryType(_scriptRepository, _userRepository);
+            var result = model.ToRepositoryType(cache, _scriptRepository, _userRepository);
 
             return result;
         }

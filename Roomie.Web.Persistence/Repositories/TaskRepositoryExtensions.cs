@@ -5,7 +5,7 @@ namespace Roomie.Web.Persistence.Repositories
 {
     public static class TaskRepositoryExtensions
     {
-        public static CleaningResult Clean(this ITaskRepository repository, User user, ListFilter filter = null)
+        public static CleaningResult Clean(this ITaskRepository repository, User user, ListFilter filter = null, IRepositoryModelCache cache = null)
         {
             if (filter == null)
             {
@@ -15,7 +15,7 @@ namespace Roomie.Web.Persistence.Repositories
                     };
             }
 
-            var allTasks = repository.List(user, filter).Items;
+            var allTasks = repository.List(user, filter, cache).Items;
 
             var oldTasks = allTasks.Where(x => x.Received || x.Expired).ToArray();
 

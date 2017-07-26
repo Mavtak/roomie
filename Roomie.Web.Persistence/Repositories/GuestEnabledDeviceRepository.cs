@@ -15,16 +15,16 @@ namespace Roomie.Web.Persistence.Repositories
             _guests = guests;
         }
 
-        public Device Get(int id)
+        public Device Get(int id, IRepositoryModelCache cache = null)
         {
-            var result = _devices.Get(id);
+            var result = _devices.Get(id, cache);
 
             return result;
         }
 
-        public Device Get(User user, int id)
+        public Device Get(User user, int id, IRepositoryModelCache cache = null)
         {
-            var result = Get(id);
+            var result = Get(id, cache);
 
             if (result == null)
             {
@@ -54,9 +54,9 @@ namespace Roomie.Web.Persistence.Repositories
             return result;
         }
 
-        public Device[] Get(Network network)
+        public Device[] Get(Network network, IRepositoryModelCache cache = null)
         {
-            var result = _devices.Get(network);
+            var result = _devices.Get(network, cache);
 
             return result;
         }

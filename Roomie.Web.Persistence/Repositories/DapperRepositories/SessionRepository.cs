@@ -24,24 +24,24 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             _userSessionRepository.Add(session);
         }
 
-        public UserSession GetUserSession(string token)
+        public UserSession GetUserSession(string token, IRepositoryModelCache cache = null)
         {
-            return _userSessionRepository.Get(token);
+            return _userSessionRepository.Get(token, cache);
         }
 
-        public WebHookSession GetWebHookSession(string token)
+        public WebHookSession GetWebHookSession(string token, IRepositoryModelCache cache = null)
         {
-            return _webHookSessionRepository.Get(token);
+            return _webHookSessionRepository.Get(token, cache);
         }
 
-        public Page<UserSession> ListUserSessions(User user, ListFilter filter)
+        public Page<UserSession> ListUserSessions(User user, ListFilter filter, IRepositoryModelCache cache = null)
         {
-            return _userSessionRepository.List(user, filter);
+            return _userSessionRepository.List(user, filter, cache);
         }
 
-        public Page<WebHookSession> ListWebhookSessions(User user, ListFilter filter)
+        public Page<WebHookSession> ListWebhookSessions(User user, ListFilter filter, IRepositoryModelCache cache = null)
         {
-            return _webHookSessionRepository.List(user, filter);
+            return _webHookSessionRepository.List(user, filter, cache);
         }
 
         public void Update(UserSession session)

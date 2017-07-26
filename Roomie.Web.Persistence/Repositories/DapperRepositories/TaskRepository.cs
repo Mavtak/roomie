@@ -65,7 +65,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             task.SetId(id);
         }
 
-        public Task[] ForComputer(Computer computer, DateTime now)
+        public Task[] ForComputer(Computer computer, DateTime now, IRepositoryModelCache cache = null)
         {
             var computerModel = ComputerModel.FromRepositoryType(computer);
             var sql = @"
@@ -83,13 +83,13 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
             var models = _connection.Query<TaskModel>(sql, parameters).ToArray();
             var result = models
-                .Select(x => x.ToRepositoryType(_computerRepository, _scriptRepository, _userRepository))
+                .Select(x => x.ToRepositoryType(cache, _computerRepository, _scriptRepository, _userRepository))
                 .ToArray();
 
             return result;
         }
 
-        public Task[] Get(Script script)
+        public Task[] Get(Script script, IRepositoryModelCache cache = null)
         {
             var scriptModel = ScriptModel.FromRepositoryType(script);
             var sql = @"
@@ -104,13 +104,13 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
 
             var models = _connection.Query<TaskModel>(sql, parameters).ToArray();
             var result = models
-                .Select(x => x.ToRepositoryType(_computerRepository, _scriptRepository, _userRepository))
+                .Select(x => x.ToRepositoryType(cache, _computerRepository, _scriptRepository, _userRepository))
                 .ToArray();
 
             return result;
         }
 
-        public Task Get(int id)
+        public Task Get(int id, IRepositoryModelCache cache = null)
         {
             var sql = @"
                 SELECT *
@@ -123,12 +123,12 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             };
 
             var model = _connection.QuerySingle<TaskModel>(sql, parameters);
-            var result = model.ToRepositoryType(_computerRepository, _scriptRepository, _userRepository);
+            var result = model.ToRepositoryType(cache, _computerRepository, _scriptRepository, _userRepository);
 
             return result;
         }
 
-        public Task Get(User user, int id)
+        public Task Get(User user, int id, IRepositoryModelCache cache = null)
         {
             var userModel = UserModel.FromRepositoryType(user);
             var result = Get(id);
@@ -141,7 +141,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             return result;
         }
 
-        public Page<Task> List(User user, ListFilter filter)
+        public Page<Task> List(User user, ListFilter filter, IRepositoryModelCache cache = null)
         {
             var userModel = UserModel.FromRepositoryType(user);
             var sql = $@"
@@ -177,7 +177,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
                 Count = filter.Count,
                 Sort = filter.SortDirection,
                 Items = models
-                    .Select(x => x.ToRepositoryType(_computerRepository, _scriptRepository, _userRepository))
+                    .Select(x => x.ToRepositoryType(cache, _computerRepository, _scriptRepository, _userRepository))
                     .ToArray(),
                 Start = filter.Start,
                 Total = total,

@@ -39,7 +39,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return result;
         }
 
-        public Computer ToRepositoryType(IScriptRepository scriptRepository, IUserRepository userRepository)
+        public Computer ToRepositoryType(IRepositoryModelCache cache, IScriptRepository scriptRepository, IUserRepository userRepository)
         {
             var result = new Computer(
                 accessKey: AccessKey,
@@ -47,19 +47,28 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 encryptionKey: EncryptionKey,
                 id: Id,
                 lastPing: LastPing,
-                lastScript: ScriptModel.ToRepositoryType(LastScript_Id, scriptRepository),
+                lastScript: ScriptModel.ToRepositoryType(cache, LastScript_Id, scriptRepository),
                 name: Name,
-                owner: UserModel.ToRepositoryType(Owner_Id, userRepository)
+                owner: UserModel.ToRepositoryType(cache, Owner_Id, userRepository)
             );
+
+            cache?.Set(result.Id, result);
 
             return result;
         }
 
-        public static Computer ToRepositoryType(int? id, IComputerRepository computerRepository)
+        public static Computer ToRepositoryType(IRepositoryModelCache cache, int? id, IComputerRepository computerRepository)
         {
             if (id == null)
             {
                 return null;
+            }
+
+            var cachedValue = cache?.Get<Computer>(id);
+
+            if (cachedValue != null)
+            {
+                return cachedValue;
             }
 
             if (computerRepository == null)
@@ -67,10 +76,14 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 return new ComputerModel
                 {
                     Id = id.Value
-                }.ToRepositoryType((IScriptRepository) null, (IUserRepository) null);
+                }.ToRepositoryType(cache, (IScriptRepository)null, (IUserRepository)null);
             }
 
-            return computerRepository.Get(id.Value);
+            var result = computerRepository.Get(id.Value);
+
+            cache?.Set(result.Id, result);
+
+            return result;
         }
     }
 }

@@ -11,10 +11,10 @@ namespace Roomie.Web.Persistence.Repositories
             repository.Add(user);
         }
 
-        public static User Get(this IUserRepository repository, string username, string password)
+        public static User Get(this IUserRepository repository, string username, string password, IRepositoryModelCache cache = null)
         {
             var token = BuildInternalUserToken(username);
-            var result = repository.Get(token);
+            var result = repository.Get(token, cache);
 
             if (result == null)
             {

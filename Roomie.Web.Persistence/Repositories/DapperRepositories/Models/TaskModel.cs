@@ -38,17 +38,26 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return result;
         }
 
-        public Task ToRepositoryType(IComputerRepository computerRepository, IScriptRepository scriptRepository, IUserRepository userRepository)
+        public Task ToRepositoryType(IRepositoryModelCache cache, IComputerRepository computerRepository, IScriptRepository scriptRepository, IUserRepository userRepository)
         {
+            var cachedValue = cache?.Get<Task>(Id);
+
+            if (cachedValue != null)
+            {
+                return cachedValue;
+            }
+
             var result = new Task(
                 expiration: Expiration,
                 id: Id,
                 origin: Origin,
-                owner: UserModel.ToRepositoryType(Owner_Id, userRepository),
+                owner: UserModel.ToRepositoryType(cache, Owner_Id, userRepository),
                 receivedTimestamp: ReceivedTimestamp,
-                script: ScriptModel.ToRepositoryType(Script_Id, scriptRepository),
-                target: ComputerModel.ToRepositoryType(Target_Id, computerRepository)
+                script: ScriptModel.ToRepositoryType(cache, Script_Id, scriptRepository),
+                target: ComputerModel.ToRepositoryType(cache, Target_Id, computerRepository)
             );
+
+            cache?.Set(result.Id, result);
 
             return result;
         }

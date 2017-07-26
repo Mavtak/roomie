@@ -94,7 +94,9 @@
     <Compile Include="Repositories\DapperRepositories\WebHookSessionRepository.cs" />
     <Compile Include="Repositories\Helpers.cs" />
     <Compile Include="Repositories\ICommandDocumentationRepository.cs" />
+    <Compile Include="Repositories\InMemoryRepositoryItemCache.cs" />
     <Compile Include="Repositories\IRepositoryFactory.cs" />
+    <Compile Include="Repositories\IRepositoryModelCache.cs" />
     <Compile Include="Repositories\NetworkGuestRepositoryExtensions.cs" />
     <Compile Include="Models\Network.cs" />
     <Compile Include="Models\Script.cs" />

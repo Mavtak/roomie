@@ -40,7 +40,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
             return result;
         }
 
-        public Device ToRepositoryType(INetworkRepository networkRepository, IScriptRepository scriptRepository, ITaskRepository taskRepository)
+        public Device ToRepositoryType(IRepositoryModelCache cache, INetworkRepository networkRepository, IScriptRepository scriptRepository, ITaskRepository taskRepository)
         {
             IDeviceState state = null;
 
@@ -55,12 +55,14 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 lastPing: LastPing,
                 id: Id,
                 name: Name,
-                network: NetworkModel.ToRepositoryType(Network_Id, networkRepository),
+                network: NetworkModel.ToRepositoryType(cache, Network_Id, networkRepository),
                 scripts: scriptRepository,
                 state: state,
                 tasks: taskRepository,
                 type: DeviceType.GetTypeFromString(Type_Name)
             );
+
+            cache?.Set(result.Id, result);
 
             return result;
         }
