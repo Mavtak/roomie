@@ -133,7 +133,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             var userModel = UserModel.FromRepositoryType(user);
             var result = Get(id);
 
-            if(result?.Owner?.Id != user.Id)
+            if (result?.Owner?.Id != user.Id)
             {
                 return null;
             }

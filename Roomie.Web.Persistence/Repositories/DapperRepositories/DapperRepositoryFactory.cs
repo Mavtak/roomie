@@ -104,11 +104,11 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
             {
                 var computerRepository = GetRepository(x => x.GetComputerRepository());
                 var userRepository = GetRepository(x => x.GetUserRepository());
-                
+
                 _sessionRepository = new SessionRepository(
                     new UserSessionRepository(_connection, userRepository),
                     new WebHookSessionRepository(_connection, computerRepository)
-                ); 
+                );
             }
 
             return _sessionRepository;

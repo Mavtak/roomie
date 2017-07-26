@@ -51,7 +51,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
 
             return result;
         }
-        public  static Network ToRepositoryType(IRepositoryModelCache cache, int? id, INetworkRepository networkRepository)
+        public static Network ToRepositoryType(IRepositoryModelCache cache, int? id, INetworkRepository networkRepository)
         {
             if (id == null)
             {

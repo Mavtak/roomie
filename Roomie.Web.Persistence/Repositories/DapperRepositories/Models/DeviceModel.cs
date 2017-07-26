@@ -15,7 +15,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public int? Network_Id { get; set; }
         public string Notes { get; set; }
         public string Type_Name { get; set; }
-        
+
         public static DeviceModel FromRepositoryType(Device repositoryModel)
         {
             if (repositoryModel == null)

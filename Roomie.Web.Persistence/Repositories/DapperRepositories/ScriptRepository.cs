@@ -88,7 +88,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories
                 Count = filter.Count,
                 Start = filter.Start,
             };
-            
+
             int total;
             ScriptModel[] models;
 

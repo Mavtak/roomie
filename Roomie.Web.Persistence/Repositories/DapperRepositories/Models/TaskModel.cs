@@ -12,7 +12,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
         public DateTime? ReceivedTimestamp { get; set; }
         public int? Script_Id { get; set; }
         public int? Target_Id { get; set; }
-        
+
         public static TaskModel FromRepositoryType(Task repositoryModel)
         {
             if (repositoryModel == null)
