@@ -13,7 +13,7 @@
       expired: false
     });
 
-    expect(result).toEqual('2/4/2015, 10:39:25 PM');
+    expect(result).toEqual('2/5/2015, 3:39:25 AM');
   });
 
   it('works when given {receivedTimestamp: undefined, expired: true}', function () {
@@ -32,7 +32,7 @@
         expired: false
       });
 
-      expect(result).toEqual('2/4/2015, 10:39:25 PM');
+      expect(result).toEqual('2/5/2015, 3:39:25 AM');
     });
 
     it('works when given {receivedTimestamp: undefined, expired: false}', function () {
