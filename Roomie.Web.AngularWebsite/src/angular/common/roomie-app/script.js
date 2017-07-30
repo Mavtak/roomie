@@ -1,4 +1,5 @@
 ﻿angular.module('roomie.common').directive('roomieApp', function (
+  $timeout,
   $window,
   signInState,
   pageMenuItems
@@ -65,11 +66,19 @@
     function openNavigationMenu() {
       scope.contentStyle.left = scope.navigationMenu.calculatedWidth;
       scope.navigationMenu.isOpen = true;
+
+      if (scope.contentStyle.left === '0px') {
+        $timeout(openNavigationMenu);
+      }
     }
 
     function openPageMenu() {
       scope.contentStyle.right = scope.pageMenu.calculatedWidth;
       scope.pageMenu.isOpen = true;
+
+      if (scope.contentStyle.right === '0px') {
+        $timeout(openPageMenu);
+      }
     }
 
     function closeNavigationMenu() {
