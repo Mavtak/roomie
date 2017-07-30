@@ -79,11 +79,7 @@ namespace Roomie.Web.Persistence.Repositories.DapperRepositories.Models
                 }.ToRepositoryType(cache, (IScriptRepository)null, (IUserRepository)null);
             }
 
-            var result = computerRepository.Get(id.Value);
-
-            cache?.Set(result.Id, result);
-
-            return result;
+            return computerRepository.Get(id.Value, cache);
         }
     }
 }
