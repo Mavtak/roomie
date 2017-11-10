@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlThink.ZWave">
-      <HintPath>..\..\..\Libraries\External\ControlThink.ZWave\ControlThink.ZWave.dll</HintPath>
+      <HintPath>..\Libraries\External\ControlThink.ZWave\ControlThink.ZWave.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
