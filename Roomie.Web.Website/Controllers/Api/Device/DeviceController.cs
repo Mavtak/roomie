@@ -22,6 +22,11 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             );
         }
 
+        public object Post([FromBody] Request request)
+        {
+            return RpcRequestRouter.Route(_rpcDeviceRepository, request);
+        }
+
         public IEnumerable<Persistence.Models.Device> Get(bool examples = false)
         {
             var result = _rpcDeviceRepository.List(examples);
