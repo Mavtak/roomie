@@ -21,18 +21,12 @@ angular.module('roomie.devices.data').factory('deviceUtilities', function (
     }
 
     function doAction(device, action, args) {
-      var url = buildUrl({
-        path: [
-          'api',
-          'device',
-          device.id,
-        ],
-        querystring: _.extend({
-          action: action
-        }, args)
+      $http.post('/api/device', {
+        action: action,
+        parameters: Object.assign({
+          id: device.id,
+        }, args),
       });
-
-      $http.post(url);
     }
 
     function parseTimestamp(device, property) {
@@ -83,19 +77,21 @@ angular.module('roomie.devices.data').factory('deviceUtilities', function (
 
       if (device.binarySensor) {
         device.binarySensor.poll = function () {
-          doAction(device, 'PollBinarySensor');
+          doAction(device, 'binarySensorPoll');
         };
       }
 
       if (device.binarySwitch) {
         device.binarySwitch.setPower = function (power) {
-          doAction(device, 'Power' + power);
+          doAction(device, 'binarySwitchSetPower', {
+            power: power
+          });
         };
       }
 
       if (device.colorSwitch) {
         device.colorSwitch.setValue = function (color) {
-          doAction(device, 'SetColor', {
+          doAction(device, 'colorSwitchSetValue', {
             color: color,
           });
         };
@@ -103,19 +99,19 @@ angular.module('roomie.devices.data').factory('deviceUtilities', function (
 
       if (device.humiditySensor) {
         device.humiditySensor.poll = function () {
-          doAction(device, 'PollHumiditySensor');
+          doAction(device, 'humiditySensorPoll');
         };
       }
 
       if (device.illuminanceSensor) {
         device.illuminanceSensor.poll = function () {
-          doAction(device, 'PollIlluminanceSensor');
+          doAction(device, 'illuminanceSensorPoll');
         };
       }
 
       if (device.multilevelSwitch) {
         device.multilevelSwitch.setPower = function (power) {
-          doAction(device, 'Dim', {
+          doAction(device, 'multilevelSwitchSetPower', {
             power: power,
           });
         };
@@ -123,20 +119,20 @@ angular.module('roomie.devices.data').factory('deviceUtilities', function (
 
       if (device.powerSensor) {
         device.powerSensor.poll = function () {
-          doAction(device, 'PollPowerSensor');
+          doAction(device, 'powerSensorPoll');
         };
       }
 
       if (device.temperatureSensor) {
         device.temperatureSensor.poll = function () {
-          doAction(device, 'PollTemperatureSensor');
+          doAction(device, 'temperatureSensorPoll');
         };
       }
 
       if (device.thermostat) {
         if (device.thermostat.core) {
           device.thermostat.core.set = function (mode) {
-            doAction(device, 'SetThermostatMode', {
+            doAction(device, 'thermostatCoreSetMode', {
               mode: mode,
             });
           };
@@ -144,7 +140,7 @@ angular.module('roomie.devices.data').factory('deviceUtilities', function (
 
         if (device.thermostat.fan) {
           device.thermostat.fan.set = function (mode) {
-            doAction(device, 'SetThermostatFanMode', {
+            doAction(device, 'thermostatFanSetMode', {
               mode: mode,
             });
           };
@@ -152,7 +148,7 @@ angular.module('roomie.devices.data').factory('deviceUtilities', function (
 
         if (device.thermostat.setpoints) {
           device.thermostat.setpoints.set = function (type, temperature) {
-            doAction(device, 'SetThermostatSetpoint', {
+            doAction(device, 'thermostatSetpointsSetSetpoint', {
               type: type,
               temperature: temperature.value + ' ' + temperature.units,
             });

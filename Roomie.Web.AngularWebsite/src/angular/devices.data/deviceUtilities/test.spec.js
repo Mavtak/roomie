@@ -136,25 +136,40 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
 
           device.binarySensor.poll();
 
-          expectApiCall('/api/device/the-device-id?action=PollBinarySensor');
+          expectApiCall({
+            action: 'binarySensorPoll',
+            parameters: {
+              id: 'the-device-id',
+            },
+          });
         });
 
         it('adds binarySwitch.setPower', function () {
-          var onOrOff = 'On';
-
           subject.setActions(device);
 
-          device.binarySwitch.setPower(onOrOff);
+          device.binarySwitch.setPower('on-or-off');
 
-          expectApiCall('/api/device/the-device-id?action=PowerOn');
+          expectApiCall({
+            action: 'binarySwitchSetPower',
+            parameters: {
+              id: 'the-device-id',
+              power: 'on-or-off',
+            },
+          });
         });
 
         it('adds colorSwitch.setValue', function () {
           subject.setActions(device);
 
-          device.colorSwitch.setValue('some color');
+          device.colorSwitch.setValue('some-color');
 
-          expectApiCall('/api/device/the-device-id?action=SetColor&color=some%20color');
+          expectApiCall({
+            action: 'colorSwitchSetValue',
+            parameters: {
+              id: 'the-device-id',
+              color: 'some-color',
+            },
+          });
         });
 
         it('adds humiditySensor.poll', function () {
@@ -162,7 +177,12 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
 
           device.humiditySensor.poll();
 
-          expectApiCall('/api/device/the-device-id?action=PollHumiditySensor');
+          expectApiCall({
+            action: 'humiditySensorPoll',
+            parameters: {
+              id: 'the-device-id',
+            },
+          });
         });
 
         it('adds illuminanceSensor.poll', function () {
@@ -170,15 +190,26 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
 
           device.illuminanceSensor.poll();
 
-          expectApiCall('/api/device/the-device-id?action=PollIlluminanceSensor');
+          expectApiCall({
+            action: 'illuminanceSensorPoll',
+            parameters: {
+              id: 'the-device-id',
+            },
+          });
         });
 
         it('adds multilevelSwitch.setPower', function () {
           subject.setActions(device);
 
-          device.multilevelSwitch.setPower('bright or something');
+          device.multilevelSwitch.setPower('some-value');
 
-          expectApiCall('/api/device/the-device-id?action=Dim&power=bright%20or%20something');
+          expectApiCall({
+            action: 'multilevelSwitchSetPower',
+            parameters: {
+              id: 'the-device-id',
+              power: 'some-value',
+            },
+          });
         });
 
         it('adds powerSensor.poll', function () {
@@ -186,7 +217,12 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
 
           device.powerSensor.poll();
 
-          expectApiCall('/api/device/the-device-id?action=PollPowerSensor');
+          expectApiCall({
+            action: 'powerSensorPoll',
+            parameters: {
+              id: 'the-device-id',
+            },
+          });
         });
 
         it('adds temperatureSensor.poll', function () {
@@ -194,40 +230,62 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
 
           device.temperatureSensor.poll();
 
-          expectApiCall('/api/device/the-device-id?action=PollTemperatureSensor');
+          expectApiCall({
+            action: 'temperatureSensorPoll',
+            parameters: {
+              id: 'the-device-id',
+            },
+          });
         });
 
         it('adds thermostat.core.set', function () {
           subject.setActions(device);
 
-          device.thermostat.core.set('some mode');
+          device.thermostat.core.set('some-mode');
 
-          expectApiCall('/api/device/the-device-id?action=SetThermostatMode&mode=some%20mode');
+          expectApiCall({
+            action: 'thermostatCoreSetMode',
+            parameters: {
+              id: 'the-device-id',
+              mode: 'some-mode',
+            },
+          });
         });
 
         it('adds thermostat.fan.set', function () {
           subject.setActions(device);
 
-          device.thermostat.fan.set('some mode');
+          device.thermostat.fan.set('some-mode');
 
-          expectApiCall('/api/device/the-device-id?action=SetThermostatFanMode&mode=some%20mode');
+          expectApiCall({
+            action: 'thermostatFanSetMode',
+            parameters: {
+              id: 'the-device-id',
+              mode: 'some-mode',
+            },
+          });
         });
 
         it('adds thermostat.setpoints.set', function () {
-          var temperature = {
-            value: 70,
-            units: 'Derps',
-          };
-
           subject.setActions(device);
 
-          device.thermostat.setpoints.set('some-type', temperature);
+          device.thermostat.setpoints.set('some-type', {
+            value: 70,
+            units: 'some-temeprature-unit',
+          });
 
-          expectApiCall('/api/device/the-device-id?action=SetThermostatSetpoint&type=some-type&temperature=70%20Derps');
+          expectApiCall({
+            action: 'thermostatSetpointsSetSetpoint',
+            parameters: {
+              id: 'the-device-id',
+              type: 'some-type',
+              temperature: '70 some-temeprature-unit',
+            },
+          });
         });
 
-        function expectApiCall(path) {
-          expect($http.post).toHaveBeenCalledWith(path);
+        function expectApiCall(request) {
+          expect($http.post).toHaveBeenCalledWith('/api/device', request);
           expect($http.post.calls.count()).toEqual(1);
         }
 
