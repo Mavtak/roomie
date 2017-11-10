@@ -38,10 +38,5 @@ namespace Roomie.Web.Website.Controllers.Api.Device
 
             return result;
         }
-
-        public void Put(int id, [FromBody] DeviceUpdateModel update)
-        {
-            _rpcDeviceRepository.Update(id, update?.Location, update?.Name, update?.Type);
-        }
     }
 }
