@@ -160,7 +160,6 @@
     <Compile Include="Controllers\Api\CommandDocumentation\CommandDocumentationController.cs" />
     <Compile Include="Controllers\Api\Computer\ComputerActionOptions.cs" />
     <Compile Include="Controllers\Api\Computer\ComputerController.cs" />
-    <Compile Include="Controllers\Api\Device\DeviceActionOptions.cs" />
     <Compile Include="Controllers\Api\Network\NetworkController.cs" />
     <Compile Include="Controllers\Api\Device\DeviceUpdateModel.cs" />
     <Compile Include="Controllers\Api\Error.cs" />
