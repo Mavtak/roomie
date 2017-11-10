@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
-using Roomie.Common.Color;
-using Roomie.Common.HomeAutomation;
+using System.Web.Http.Controllers;
 using Roomie.Common.HomeAutomation.BinarySwitches;
-using Roomie.Common.HomeAutomation.Thermostats;
-using Roomie.Common.HomeAutomation.Thermostats.Fans;
-using Roomie.Common.HomeAutomation.Thermostats.SetpointCollections;
-using Roomie.Common.Measurements.Temperature;
-using Roomie.Web.Persistence.Helpers;
-using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Device
@@ -19,66 +10,35 @@ namespace Roomie.Web.Website.Controllers.Api.Device
     [ApiRestrictedAccess]
     public class DeviceController : BaseController
     {
-        private IDeviceRepository _deviceRepository;
-        private INetworkRepository _networkRepository;
+        RpcDeviceRepository _rpcDeviceRepository;
 
-        public DeviceController()
+        protected override void Initialize(HttpControllerContext controllerContext)
         {
-            _deviceRepository = RepositoryFactory.GetDeviceRepository();
-            _networkRepository = RepositoryFactory.GetNetworkRepository();
+            base.Initialize(controllerContext);
+
+            _rpcDeviceRepository = new RpcDeviceRepository(
+                repositoryFactory: RepositoryFactory,
+                user: User
+            );
         }
 
         public IEnumerable<Persistence.Models.Device> Get(bool examples = false)
         {
-            Persistence.Models.Device[] devices;
-
-            if (examples)
-            {
-                devices = Persistence.Examples.Devices.ToArray();
-            }
-            else
-            {
-                var cache = new InMemoryRepositoryModelCache();
-                var networks = _networkRepository.Get(User, cache);
-                var unsortedDevices = networks.SelectMany((id) => _deviceRepository.Get(id, cache)).ToList();
-                unsortedDevices.Sort(new DeviceSort());
-                devices = unsortedDevices.ToArray();
-            }
-            
-            var result = devices.Select(GetSerializableVersion);
+            var result = _rpcDeviceRepository.List(examples);
 
             return result;
         }
 
         public Persistence.Models.Device Get(int id)
         {
-            var cache = new InMemoryRepositoryModelCache();
-            var device = SelectDevice(id, cache);
-            var result = GetSerializableVersion(device);
+            var result = _rpcDeviceRepository.Read(id);
 
             return result;
         }
 
         public void Put(int id, [FromBody] DeviceUpdateModel update)
         {
-            update = update ?? new DeviceUpdateModel();
-
-            var cache = new InMemoryRepositoryModelCache();
-            var device = SelectDevice(id, cache);
-
-            device.Update(
-                location: (update.Location == null) ? device.Location : new Location(update.Location),
-                name: update.Name ?? device.Name,
-                type: update.Type ?? device.Type
-            );
-
-            _deviceRepository.Update(device);
-
-            AddTask(
-                computer: device.Network.AttatchedComputer,
-                origin: "RoomieBot",
-                scriptText: "HomeAutomation.SyncWithCloud Network=\"" + device.Network.Address + "\""
-            );
+            _rpcDeviceRepository.Update(id, update?.Location, update?.Name, update?.Type);
         }
 
         public void Post(int id, string action, [FromBody] DeviceActionOptions options,
@@ -95,62 +55,59 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             options.Power = options.Power ?? power;
             options.Temperature = options.Temperature ?? temperature;
             options.Type = options.Type ?? type;
-            
-            var cache = new InMemoryRepositoryModelCache();
-            IDevice device = this.SelectDevice(id, cache);
 
             switch (action)
             {
                 case "Dim":
-                    device.MultilevelSwitch.SetPower(options.Power.Value);
+                    _rpcDeviceRepository.MultilevelSwitchSetPower(id, options.Power.Value);
                     break;
 
                 case "PollBinarySensor":
-                    device.BinarySensor.Poll();
+                    _rpcDeviceRepository.BinarySensorPoll(id);
                     break;
 
                 case "PollDevice":
-                    device.Poll();
+                    _rpcDeviceRepository.Poll(id);
                     break;
 
                 case "PollHumiditySensor":
-                    device.HumiditySensor.Poll();
+                    _rpcDeviceRepository.HumiditySensorPoll(id);
                     break;
 
                 case "PollIlluminanceSensor":
-                    device.IlluminanceSensor.Poll();
+                    _rpcDeviceRepository.IlluminanceSensorPoll(id);
                     break;
 
                 case "PollPowerSensor":
-                    device.PowerSensor.Poll();
+                    _rpcDeviceRepository.PowerSensorPoll(id);
                     break;
 
                 case "PollTemperatureSensor":
-                    device.TemperatureSensor.Poll();
+                    _rpcDeviceRepository.TemperatureSensorPoll(id);
                     break;
 
                 case "PowerOn":
-                    device.BinarySwitch.SetPower(BinarySwitchPower.On);
+                    _rpcDeviceRepository.BinarySwitchSetPower(id, BinarySwitchPower.On.ToString());
                     break;
 
                 case "PowerOff":
-                    device.BinarySwitch.SetPower(BinarySwitchPower.Off);
+                    _rpcDeviceRepository.BinarySwitchSetPower(id, BinarySwitchPower.Off.ToString());
                     break;
 
                 case "SetColor":
-                    device.ColorSwitch.SetValue(options.Color.ToColor());
+                    _rpcDeviceRepository.ColorSwitchSetValue(id, options.Color);
                     break;
 
                 case "SetThermostatFanMode":
-                    device.Thermostat.Fan.SetMode(options.Mode.ToThermostatFanMode());
+                    _rpcDeviceRepository.ThermostatFanSetMode(id, options.Mode);
                     break;
 
                 case "SetThermostatMode":
-                    device.Thermostat.Core.SetMode(options.Mode.ToThermostatMode());
+                    _rpcDeviceRepository.ThermostatCoreSetMode(id, options.Mode);
                     break;
 
                 case "SetThermostatSetpoint":
-                    device.Thermostat.Setpoints.SetSetpoint(options.Type.ToSetpointType(), options.Temperature.ToTemperature());
+                    _rpcDeviceRepository.ThermostatSetpointsSetSetpoint(id, options.Type, options.Temperature);
                     break;
 
                 default:
@@ -158,21 +115,6 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             }
         }
 
-        private static Persistence.Models.Device GetSerializableVersion(Persistence.Models.Device device)
-        {
-            return Persistence.Models.Device.Create(device.Id, device);
-        }
-
-        private Persistence.Models.Device SelectDevice(int id, IRepositoryModelCache cache)
-        {
-            var device = _deviceRepository.Get(User, id, cache);
-
-            if (device == null)
-            {
-                throw new HttpException(404, "Device not found");
-            }
-
-            return device;
-        }
+        
     }
 }

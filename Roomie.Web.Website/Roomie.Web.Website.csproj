@@ -137,6 +137,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\Computer\Actions\RunScript.cs" />
+    <Compile Include="Controllers\Api\Device\RpcDeviceRepository.cs" />
     <Compile Include="Controllers\Api\Network\Actions\SyncWholeNetwork.cs" />
     <Compile Include="Controllers\Api\Request.cs" />
     <Compile Include="Controllers\Api\RpcRequestRouter.cs" />
