@@ -21,7 +21,7 @@ namespace Roomie.Web.Website.WebHook.ActionHandlers
             Task[] tasks;
             try
             {
-                tasks = getForComputer.Run(computer, TimeSpan.FromSeconds(90), TimeSpan.FromSeconds(1 / 4));
+                tasks = getForComputer.Run(computer, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(1 / 4));
             }
             catch (Exception exception)
             {
