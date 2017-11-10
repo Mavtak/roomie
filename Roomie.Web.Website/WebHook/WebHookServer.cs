@@ -106,25 +106,6 @@ namespace Roomie.Web.Website.WebHook
                 throw new Exception("WebTransmission Context is null.");
             }
 
-            var sessionRepository = context.RepositoryFactory.GetSessionRepository();
-
-            var session = sessionRepository.GetWebHookSession(eventArgs.SessionKey);
-            if (session == null)
-            {
-                //session does not exist.
-                eventArgs.IsValid = false;
-                return;
-            }
-
-            //TODO: IP address checking?
-
-            if (session.Computer.Equals(context.Computer))
-            {
-                context.Session = session; //TODO: why does WebCommunicator need to know the SessionRecord?
-                eventArgs.IsValid = true;
-                return;
-            }
-
             eventArgs.IsValid = false;
         }
 
@@ -132,27 +113,6 @@ namespace Roomie.Web.Website.WebHook
         {
             //at this point the user is authenticated.
 
-            var context = eventArgs.Context;
-
-            if (context == null)
-            {
-                eventArgs.ErrorMessage = "UserRecord is null.";
-                eventArgs.SessionCreated = false;
-                return;
-            }
-            if (context.Computer == null)
-            {
-                eventArgs.ErrorMessage = "Computer is null.";
-                eventArgs.SessionCreated = false;
-                return;
-            }
-
-            var sessionRepository = context.RepositoryFactory.GetSessionRepository();
-            var session = WebHookSession.Create(context.Computer);
-            sessionRepository.Add(session);
-
-            eventArgs.Context.Session = session;
-            eventArgs.NewSessionKey = session.Token; //TODO: is this necessary?
             eventArgs.SessionCreated = true;
         }
 
