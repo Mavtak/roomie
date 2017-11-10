@@ -28,7 +28,12 @@ angular.module('roomie.devices').directive('deviceEditControls', function (
     scope.types = deviceTypes;
 
     scope.save = function () {
-      $http.put('/api/device/' + scope.device.id, scope.model);
+      $http.post('/api/device', {
+        action: 'update',
+        parameters: Object.assign({
+          id: scope.device.id
+        }, scope.model),
+      });
     };
   }
 

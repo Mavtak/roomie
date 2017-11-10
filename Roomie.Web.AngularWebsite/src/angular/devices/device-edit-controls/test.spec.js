@@ -189,7 +189,7 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
 
           beforeEach(function () {
             $httpBackend
-              .when('PUT', '/api/device/5')
+              .when('POST', '/api/device')
               .respond({});
           });
 
@@ -199,10 +199,14 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
           });
 
           it('should submit an API request', function () {
-            $httpBackend.expectPUT('/api/device/5', {
-              name: 'Lamp Or Something',
-              location: 'some/place',
-              type: 'Kinda Cool',
+            $httpBackend.expectPOST('/api/device', {
+              action: 'update',
+              parameters: {
+                id: 5,
+                name: 'Lamp Or Something',
+                location: 'some/place',
+                type: 'Kinda Cool',
+              }
             });
 
             selectInput(3).click();
@@ -215,10 +219,14 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
               .val('Probably a Lamp')
               .triggerHandler('input');
 
-            $httpBackend.expectPUT('/api/device/5', {
-              name: 'Probably a Lamp',
-              location: 'some/place',
-              type: 'Kinda Cool',
+            $httpBackend.expectPOST('/api/device', {
+              action: 'update',
+              parameters: {
+                id: 5,
+                name: 'Probably a Lamp',
+                location: 'some/place',
+                type: 'Kinda Cool',
+              }
             });
 
             selectInput(3).click();
@@ -231,10 +239,14 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
               .val('some/place/else')
               .triggerHandler('input');
 
-            $httpBackend.expectPUT('/api/device/5', {
-              name: 'Lamp Or Something',
-              location: 'some/place/else',
-              type: 'Kinda Cool',
+            $httpBackend.expectPOST('/api/device', {
+              action: 'update',
+              parameters: {
+                id: 5,
+                name: 'Lamp Or Something',
+                location: 'some/place/else',
+                type: 'Kinda Cool',
+              }
             });
 
             selectInput(3).click();
@@ -247,10 +259,14 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
               .val('string:Just Terrible')
               .triggerHandler('change');
 
-            $httpBackend.expectPUT('/api/device/5', {
-              name: 'Lamp Or Something',
-              location: 'some/place',
-              type: 'Just Terrible',
+            $httpBackend.expectPOST('/api/device', {
+              action: 'update',
+              parameters: {
+                id: 5,
+                name: 'Lamp Or Something',
+                location: 'some/place',
+                type: 'Just Terrible',
+              }
             });
 
             selectInput(3).click();
