@@ -143,6 +143,7 @@
     <Compile Include="Controllers\Api\RpcRequestRouter.cs" />
     <Compile Include="Controllers\Api\Task\Actions\Clean.cs" />
     <Compile Include="Controllers\Api\Task\Actions\GetForComputer.cs" />
+    <Compile Include="Controllers\Api\Task\RpcTaskRepository.cs" />
     <Compile Include="Controllers\Api\WebHookSession\Actions\Create.cs" />
     <Compile Include="Controllers\Api\WebHookSession\WebHookSessionController.cs" />
     <Compile Include="WebHook\ActionHandler.cs" />
