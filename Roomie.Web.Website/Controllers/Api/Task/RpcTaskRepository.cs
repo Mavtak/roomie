@@ -30,12 +30,12 @@ namespace Roomie.Web.Website.Controllers.Api.Task
             return result;
         }
 
-        public Page<Persistence.Models.Task> List(int count = 50, string sortDirection = "Descending", int start = 0)
+        public Page<Persistence.Models.Task> List(int count = 50, string sortDirection = null, int start = 0)
         {
             var filter = new ListFilter
             {
                 Count = count,
-                SortDirection = EnumParser.Parse<SortDirection>(sortDirection),
+                SortDirection = sortDirection == null ? SortDirection.Descending : EnumParser.Parse<SortDirection>(sortDirection),
                 Start = start,
             };
 
