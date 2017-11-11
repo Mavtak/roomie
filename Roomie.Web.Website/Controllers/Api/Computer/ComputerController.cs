@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.Http;
 using System.Web.Http.Controllers;
 using Roomie.Web.Website.Helpers;
 
@@ -18,6 +19,11 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
                 repositoryFactory: RepositoryFactory,
                 user: User
             );
+        }
+
+        public object Post([FromBody] Request request)
+        {
+            return RpcRequestRouter.Route(_rpcComputerRepository, request);
         }
 
         public Persistence.Models.Computer[] Get()
