@@ -5,12 +5,16 @@
   return ManualPoller;
 
   function ManualPoller(options) {
-    var url = options.url;
+    var repository = options.repository;
+    var filter = options.filter;
     var processErrors = options.processErrors;
     var selectItems = options.itemSelector || defaultItemSelector;
 
     this.run = function () {
-      var result = $http.get(url);
+      var result = $http.post('/api/' + repository, {
+        action: 'list',
+        parameters: filter,
+      });
 
       if (processErrors) {
         result = result.error(processErrors);
@@ -24,7 +28,7 @@
     };
 
     function selectHttpBody(response) {
-      return response.data;
+      return response.data.data;
     }
 
     function defaultItemSelector(page) {

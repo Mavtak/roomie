@@ -15,15 +15,17 @@
     items = [];
   });
 
-  it('GETs the provided URL', function () {
+  it('POSTs the provided resource', function () {
     var manualPoller = new ManualPoller({
-      url: '/herp/derp.json'
+      repository: 'derp'
     });
 
-    $httpBackend.when('GET', '/herp/derp.json')
-      .respond({});
+    $httpBackend.when('POST', '/api/derp')
+      .respond({
+        data: {}
+      });
 
-    $httpBackend.expectGET('/herp/derp.json');
+    $httpBackend.expectPOST('/api/derp');
 
     manualPoller.run();
 
@@ -35,12 +37,14 @@
     it('selects the items property by default.', function () {
       var actual;
       var manualPoller = new ManualPoller({
-        url: '/herp/derp.json'
+        repository: 'derp'
       });
 
-      $httpBackend.when('GET', '/herp/derp.json')
+      $httpBackend.when('POST', '/api/derp')
         .respond({
-          items: [{ id: 'a' }, { id: 'b' }]
+          data: {
+            items: [{ id: 'a' }, { id: 'b' }],
+          }
         });
 
       manualPoller.run().then(function (x) {
@@ -55,14 +59,16 @@
     it('selects the items property with an optional override when provided.', function () {
       var actual;
       var manualPoller = new ManualPoller({
-        url: '/herp/derp.json',
+        repository: 'derp',
         itemSelector: function (response) {
           return response;
         }
       });
 
-      $httpBackend.when('GET', '/herp/derp.json')
-        .respond([{ id: 'a' }, { id: 'b' }]);
+      $httpBackend.when('POST', '/api/derp')
+        .respond({
+          data: [{ id: 'a' }, { id: 'b' }],
+        });
 
       manualPoller.run().then(function (x) {
         actual = x;
@@ -79,7 +85,7 @@
     var theError;
 
     beforeEach(function () {
-      $httpBackend.when('GET', '/herp/derp.json')
+      $httpBackend.when('POST', '/api/derp')
         .respond(500, {
           something: 'a message maybe'
         });
@@ -89,7 +95,7 @@
 
       it('does not break', function () {
           var manualPoller = new ManualPoller({
-            url: '/herp/derp.json'
+            repository: 'derp',
           });
 
           manualPoller.run();
@@ -105,7 +111,7 @@
         var processErrors = jasmine.createSpy('processErrors');
 
         var manualPoller = new ManualPoller({
-          url: '/herp/derp.json',
+          repository: 'derp',
           processErrors: processErrors
         });
 

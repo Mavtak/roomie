@@ -37,7 +37,7 @@ angular.module('roomie.devices.data').factory('AutomaticPollingDeviceListing', f
       }
 
       var options = {
-        url: path,
+        repository: 'device',
         originals: _page.items,
         ammendOriginal: function (x) {
           deviceUtilities.setActions(x);

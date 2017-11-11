@@ -34,7 +34,11 @@
     }
 
     var data = new ManualPollingUpdater({
-      url: '/api/task?start=' + start + '&count=' + count,
+      repository: 'task',
+      filter: {
+        start: start,
+        count: count,
+      },
       originals: controller.page.items,
       ammendOriginal: processTask,
       processErrors: processErrors
