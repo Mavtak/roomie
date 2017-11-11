@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Web;
-using Roomie.Web.Persistence.Repositories;
+using System.Web.Http.Controllers;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Computer
@@ -9,41 +8,46 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
     [ApiRestrictedAccess]
     public class ComputerController : BaseController
     {
-        private IComputerRepository _computerRepository;
-        private IScriptRepository _scriptRepository;
-        private ITaskRepository _taskRepository;
+        private RpcComputerRepository _rpcComputerRepository;
 
-        public ComputerController()
+        protected override void Initialize(HttpControllerContext controllerContext)
         {
-            _computerRepository = RepositoryFactory.GetComputerRepository();
-            _scriptRepository = RepositoryFactory.GetScriptRepository();
-            _taskRepository = RepositoryFactory.GetTaskRepository();
+            base.Initialize(controllerContext);
+
+            _rpcComputerRepository = new RpcComputerRepository(
+                repositoryFactory: RepositoryFactory,
+                user: User
+            );
         }
 
         public Persistence.Models.Computer[] Get()
         {
-            var cache = new InMemoryRepositoryModelCache();
-            var computers = _computerRepository.Get(User, cache);
-            var result = computers.Select(GetSerializableVersion)
-                .ToArray();
+            var result = _rpcComputerRepository.List();
 
             return result;
         }
 
         public Persistence.Models.Computer Get(int id)
         {
-            var cache = new InMemoryRepositoryModelCache();
-            var computer = SelectComputer(id, cache);
-            var result = GetSerializableVersion(computer);
+            var result = _rpcComputerRepository.Read(id);
+
+            if (result == null)
+            {
+                throw new HttpException(404, "Computer not found");
+            }
 
             return result;
         }
 
         public Persistence.Models.Computer Get(string accessKey)
         {
-            var cache = new InMemoryRepositoryModelCache();
-            var computer = _computerRepository.Get(accessKey, cache);
-            var result = GetSerializableVersion(computer);
+            var result = _rpcComputerRepository.Read(accessKey);
+
+            if (result == null)
+            {
+                throw new HttpException(404, "Computer not found");
+            }
+
             return result;
         }
 
@@ -51,39 +55,25 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
         {
             add = add ?? new AddComputerModel();
 
-            var computer = Persistence.Models.Computer.Create(add.Name, User);
-            _computerRepository.Add(computer);
+            _rpcComputerRepository.Create(add.Name);
         }
 
         public void Post(int id, string action, ComputerActionOptions options)
         {
-            var cache = new InMemoryRepositoryModelCache();
             options = options ?? new ComputerActionOptions();
-
-            var computer = SelectComputer(id, cache);
 
             switch(action)
             {
                 case "DisableWebHook":
-                    computer.DisableWebhook();
-                    _computerRepository.Update(computer);
+                    _rpcComputerRepository.DisableWebHook(id);
                     break;
 
                 case "RenewWebHookKeys":
-                    computer.RenewWebhookKeys();
-                    _computerRepository.Update(computer);
+                    _rpcComputerRepository.RenewWebHookKeys(id);
                     break;
 
                 case "RunScript":
-                    var runScript = new Actions.RunScript(_computerRepository, _scriptRepository, _taskRepository);
-                    runScript.Run(
-                        computer: computer,
-                        scriptText: options.Script,
-                        source: "Website",
-                        updateLastRunScript: true,
-                        user: User
-                    );
-                    
+                    _rpcComputerRepository.RunScript(id, options.Script);
                     break;
 
                 case "SendScript":
@@ -93,47 +83,6 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
                 default:
                     throw new NotImplementedException();
             }
-        }
-
-        private static Persistence.Models.Computer GetSerializableVersion(Persistence.Models.Computer computer)
-        {
-            Persistence.Models.User owner = null;
-            if (computer.Owner != null)
-            {
-                owner = new Persistence.Models.User(
-                    alias: computer.Owner.Alias,
-                    email: null,
-                    id: computer.Owner.Id,
-                    registeredTimestamp: null,
-                    secret: null,
-                    token: null
-                );
-            }
-
-            var result = new Persistence.Models.Computer(
-                accessKey: computer.AccessKey,
-                address: computer.Address,
-                encryptionKey: computer.EncryptionKey,
-                id: computer.Id,
-                lastPing: computer.LastPing,
-                lastScript: computer.LastScript,
-                name: computer.Name,
-                owner: owner
-            );
-
-            return result;
-        }
-
-        private Persistence.Models.Computer SelectComputer(int id, IRepositoryModelCache cache)
-        {
-            var computer = _computerRepository.Get(User, id, cache);
-
-            if (computer == null)
-            {
-                throw new HttpException(404, "Computer not found");
-            }
-
-            return computer;
         }
     }
 }
