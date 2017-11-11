@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Http.Controllers;
-using Roomie.Web.Persistence.Repositories;
+﻿using System.Web.Http;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Task

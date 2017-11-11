@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
-using System.Web.Http.Controllers;
+﻿using System.Web.Http;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Device
