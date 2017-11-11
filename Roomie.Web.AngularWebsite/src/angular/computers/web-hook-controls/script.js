@@ -30,14 +30,24 @@ angular.module('roomie.computers').directive('webHookControls', function (
     }
 
     function disable() {
-      $http.post('/api/computer/' + scope.computer.id + '?action=DisableWebHook')
+      $http.post('/api/computer', {
+        action: 'disableWebHook',
+        parameters: {
+          id: scope.computer.id,
+        }
+      })
         .then(function () {
           $state.reload();
         });
     }
 
     function renew() {
-      $http.post('/api/computer/' + scope.computer.id + '?action=RenewWebHookKeys')
+      $http.post('/api/computer', {
+        action: 'renewWebHookKeys',
+        parameters: {
+          id: scope.computer.id,
+        }
+      })
         .then(function () {
           $state.reload();
         });

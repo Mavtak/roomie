@@ -10,9 +10,11 @@ angular.module('roomie.computers.pages').controller('ComputerListController', fu
   wholePageStatus.set('loading');
   pageMenuItems.reset();
 
-  $http.get('/api/computer/')
+  $http.post('/api/computer', {
+    action: 'list'
+  })
     .then(function (result) {
-      controller.computers = result.data;
+      controller.computers = result.data.data;
 
       signInState.set('signed-in');
       wholePageStatus.set('ready');

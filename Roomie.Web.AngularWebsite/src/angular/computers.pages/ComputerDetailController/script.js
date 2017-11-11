@@ -11,9 +11,14 @@ angular.module('roomie.computers.pages').controller('ComputerDetailController', 
   wholePageStatus.set('loading');
   pageMenuItems.reset();
 
-  $http.get('/api/computer/' + $state.params.id)
+  $http.post('/api/computer', {
+    action: 'read',
+    parameters: {
+      id: +$state.params.id
+    }
+  })
     .then(function (result) {
-      controller.computer = result.data;
+      controller.computer = result.data.data;
 
       signInState.set('signed-in');
       wholePageStatus.set('ready');

@@ -24,7 +24,12 @@ angular.module('roomie.computers').directive('runScriptControls', function (
     });
 
     function runScript() {
-      $http.post('/api/computer/' + scope.computer.id + '?action=RunScript', scope.model);
+      $http.post('/api/computer', {
+        action: 'runScript',
+        parameters: Object.assign({}, {
+           id: scope.computer.id
+        }, scope.model),
+      });
     }
   }
 

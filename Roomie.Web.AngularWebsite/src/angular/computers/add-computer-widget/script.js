@@ -14,7 +14,10 @@ angular.module('roomie.computers').directive('addComputerWidget', function (
     scope.model = {};
 
     function add() {
-      $http.post('/api/computer', scope.model);
+      $http.post('/api/computer', {
+        action: 'create',
+        parameters: scope.model,
+      });
     }
   }
 
