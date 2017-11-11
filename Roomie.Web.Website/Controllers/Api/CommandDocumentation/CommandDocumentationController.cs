@@ -1,5 +1,4 @@
 ﻿using System.Web.Http;
-using Roomie.Web.Persistence.Models;
 
 namespace Roomie.Web.Website.Controllers.Api.CommandDocumentation
 {
@@ -15,11 +14,6 @@ namespace Roomie.Web.Website.Controllers.Api.CommandDocumentation
         public object Post([FromBody] Request request)
         {
             return RpcRequestRouter.Route(_rpcCommandDocumentationRepository, request);
-        }
-
-        public Command[] Get()
-        {
-            return _rpcCommandDocumentationRepository.List();
         }
     }
 }
