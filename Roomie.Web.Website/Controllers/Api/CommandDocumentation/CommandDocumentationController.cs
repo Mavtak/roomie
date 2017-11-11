@@ -12,6 +12,11 @@ namespace Roomie.Web.Website.Controllers.Api.CommandDocumentation
             _rpcCommandDocumentationRepository = new RpcCommandDocumentationRepository();
         }
 
+        public object Post([FromBody] Request request)
+        {
+            return RpcRequestRouter.Route(_rpcCommandDocumentationRepository, request);
+        }
+
         public Command[] Get()
         {
             return _rpcCommandDocumentationRepository.List();
