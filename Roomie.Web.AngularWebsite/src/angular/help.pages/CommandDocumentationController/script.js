@@ -7,9 +7,11 @@ angular.module('roomie.help.pages').controller('CommandDocumentationController',
 
   wholePageStatus.set('loading');
 
-  $http.get('/api/commandDocumentation')
+  $http.post('/api/commandDocumentation', {
+    action: 'list',
+  })
     .then(function (response) {
-      controller.commands = response.data;
+      controller.commands = response.data.data;
 
       wholePageStatus.set('ready');
     });
