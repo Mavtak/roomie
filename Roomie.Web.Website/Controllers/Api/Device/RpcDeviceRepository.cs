@@ -71,10 +71,17 @@ namespace Roomie.Web.Website.Controllers.Api.Device
 
             _deviceRepository.Update(device);
 
-            AddTask(
+            var computerRepository = _repositoryFactory.GetComputerRepository();
+            var scriptRepository = _repositoryFactory.GetScriptRepository();
+            var taskRepository = _repositoryFactory.GetTaskRepository();
+            var runScript = new Computer.Actions.RunScript(computerRepository, scriptRepository, taskRepository);
+
+            runScript.Run(
                 computer: device.Network.AttatchedComputer,
-                origin: "RoomieBot",
-                scriptText: "HomeAutomation.SyncWithCloud Network=\"" + device.Network.Address + "\""
+                scriptText: "HomeAutomation.SyncWithCloud Network=\"" + device.Network.Address + "\"",
+                source: "RoomieBot",
+                updateLastRunScript: false,
+                user: _user
             );
         }
 
@@ -175,18 +182,6 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             var device = _deviceRepository.Get(_user, id, cache);
 
             device.Thermostat.Setpoints.SetSetpoint(parsedType, parsedTemperature);
-        }
-
-        private void AddTask(Persistence.Models.Computer computer, string origin, string scriptText)
-        {
-            var scriptRepository = _repositoryFactory.GetScriptRepository();
-            var taskRepository = _repositoryFactory.GetTaskRepository();
-
-            var script = Persistence.Models.Script.Create(false, scriptText);
-            scriptRepository.Add(script);
-
-            var task = Persistence.Models.Task.Create(_user, origin, computer, script);
-            taskRepository.Add(task);
         }
 
         private static Persistence.Models.Device GetSerializableVersion(Persistence.Models.Device device)
