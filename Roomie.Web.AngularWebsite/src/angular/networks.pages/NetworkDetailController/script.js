@@ -11,9 +11,14 @@ angular.module('roomie.networks.pages').controller('NetworkDetailController', fu
   wholePageStatus.set('loading');
   pageMenuItems.reset();
 
-  $http.get('/api/network/' + $state.params.id)
+  $http.post('/api/network', {
+    action: 'read',
+    parameters: {
+      id: +$state.params.id,
+    },
+  })
     .then(function (result) {
-      controller.network = result.data;
+      controller.network = result.data.data;
 
       signInState.set('signed-in');
       wholePageStatus.set('ready');

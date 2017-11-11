@@ -17,11 +17,21 @@ angular.module('roomie.networks').directive('networkWidget', function (
     scope.removeDevice = removeDevice;
 
     function addDevice() {
-      $http.post('/api/network/' + scope.network.id + '?action=AddDevice');
+      $http.post('/api/network', {
+        action: 'addDevice',
+        parameters: {
+          id: scope.network.id
+        }
+      });
     }
 
     function removeDevice() {
-      $http.post('/api/network/' + scope.network.id + '?action=RemoveDevice');
+      $http.post('/api/network', {
+        action: 'removeDevice',
+        parameters: {
+          id: scope.network.id
+        }
+      });
     }
   }
 

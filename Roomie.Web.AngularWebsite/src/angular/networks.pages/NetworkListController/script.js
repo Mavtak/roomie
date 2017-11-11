@@ -10,9 +10,11 @@ angular.module('roomie.networks.pages').controller('NetworkListController', func
   wholePageStatus.set('loading');
   pageMenuItems.reset();
 
-  $http.get('/api/network')
+  $http.post('/api/network', {
+    action: 'list',
+  })
     .then(function (result) {
-      controller.networks = result.data;
+      controller.networks = result.data.data;
 
       signInState.set('signed-in');
       wholePageStatus.set('ready');
