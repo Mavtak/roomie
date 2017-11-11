@@ -29,23 +29,6 @@ namespace Roomie.Web.Website.Controllers.Api.Task
             return RpcRequestRouter.Route(_rpcTaskRepository, request);
         }
 
-        public Persistence.Models.Task Get(int id)
-        {
-            var result = _rpcTaskRepository.Read(id);
-
-            if (result == null)
-            {
-                throw new HttpException(404, "Task not found");
-            }
-
-            return result;
-        }
-
-        public Page<Persistence.Models.Task> Get([FromUri] ListFilter filter)
-        {
-            return _rpcTaskRepository.List(filter.Count, filter.SortDirection.ToString(), filter.Start);
-        }
-
         public object Post(string action, string computerName = null, TimeSpan? pollInterval = null, TimeSpan ? timeout = null)
         {
             switch(action)

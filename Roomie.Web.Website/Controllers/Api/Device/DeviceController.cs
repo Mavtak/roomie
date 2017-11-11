@@ -24,19 +24,5 @@ namespace Roomie.Web.Website.Controllers.Api.Device
         {
             return RpcRequestRouter.Route(_rpcDeviceRepository, request);
         }
-
-        public IEnumerable<Persistence.Models.Device> Get(bool examples = false)
-        {
-            var result = _rpcDeviceRepository.List(examples);
-
-            return result;
-        }
-
-        public Persistence.Models.Device Get(int id)
-        {
-            var result = _rpcDeviceRepository.Read(id);
-
-            return result;
-        }
     }
 }
