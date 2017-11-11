@@ -28,20 +28,5 @@ namespace Roomie.Web.Website.Controllers.Api.Task
         {
             return RpcRequestRouter.Route(_rpcTaskRepository, request);
         }
-
-        public object Post(string action, string computerName = null, TimeSpan? pollInterval = null, TimeSpan ? timeout = null)
-        {
-            switch(action)
-            {
-                case "Clean":
-                    return _rpcTaskRepository.Clean(timeout);
-
-                case "GetForComputer":
-                    return _rpcTaskRepository.GetForComputer(computerName, timeout, pollInterval);
-
-                default:
-                    throw new NotImplementedException();
-            }
-        }
     }
 }
