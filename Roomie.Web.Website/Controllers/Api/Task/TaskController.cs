@@ -24,6 +24,11 @@ namespace Roomie.Web.Website.Controllers.Api.Task
             );
         }
 
+        public object Post([FromBody] Request request)
+        {
+            return RpcRequestRouter.Route(_rpcTaskRepository, request);
+        }
+
         public Persistence.Models.Task Get(int id)
         {
             var result = _rpcTaskRepository.Read(id);
