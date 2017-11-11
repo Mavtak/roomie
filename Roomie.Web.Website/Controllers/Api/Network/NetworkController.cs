@@ -22,6 +22,11 @@ namespace Roomie.Web.Website.Controllers.Api.Network
             );
         }
 
+        public object Post([FromBody] Request request)
+        {
+            return RpcRequestRouter.Route(_rpcNetworkRepository, request);
+        }
+
         public IEnumerable<Persistence.Models.Network> Get()
         {
             var result = _rpcNetworkRepository.List();
