@@ -163,7 +163,6 @@
     <Compile Include="Controllers\Api\Computer\ComputerController.cs" />
     <Compile Include="Controllers\Api\Network\NetworkController.cs" />
     <Compile Include="Controllers\Api\Error.cs" />
-    <Compile Include="Controllers\Api\Network\NetworkUpdateModel.cs" />
     <Compile Include="Controllers\Api\Script\ScriptController.cs" />
     <Compile Include="Controllers\Api\Task\TaskController.cs" />
     <Compile Include="Controllers\Api\UserAuthentication\UserAuthenticationController.cs" />
