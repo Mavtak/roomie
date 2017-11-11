@@ -1,25 +1,20 @@
-﻿using Roomie.Desktop.Engine;
+﻿using System.Web.Http;
 using Roomie.Web.Persistence.Models;
-using Roomie.Web.Persistence.Repositories.StaticRepositories;
 
 namespace Roomie.Web.Website.Controllers.Api.CommandDocumentation
 {
     public class CommandDocumentationController : BaseController
     {
-        private CommandDocumentationRepository _commandDocumentationRepository;
+        private RpcCommandDocumentationRepository _rpcCommandDocumentationRepository;
 
         public CommandDocumentationController()
         {
-            var binPath = System.Web.Hosting.HostingEnvironment.MapPath("~/bin");
-            var library = new RoomieCommandLibrary();
-            library.AddCommandsFromPluginFolder(binPath);
-
-            _commandDocumentationRepository = new CommandDocumentationRepository(library);
+            _rpcCommandDocumentationRepository = new RpcCommandDocumentationRepository();
         }
 
         public Command[] Get()
         {
-            return _commandDocumentationRepository.Get();
+            return _rpcCommandDocumentationRepository.List();
         }
     }
 }
