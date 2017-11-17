@@ -1,4 +1,5 @@
-﻿using Roomie.Desktop.Engine;
+﻿using Roomie.Common.Api.Models;
+using Roomie.Desktop.Engine;
 using Roomie.Web.Persistence.Models;
 using Roomie.Web.Persistence.Repositories.StaticRepositories;
 
@@ -17,9 +18,11 @@ namespace Roomie.Web.Website.Controllers.Api.CommandDocumentation
             _commandDocumentationRepository = new CommandDocumentationRepository(library);
         }
 
-        public Command[] List()
+        public Response<Command[]> List()
         {
-            return _commandDocumentationRepository.Get();
+            var result = _commandDocumentationRepository.Get();
+
+            return Response.Create(result);
         }
     }
 }

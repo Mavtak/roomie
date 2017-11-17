@@ -1,4 +1,5 @@
-﻿using Roomie.Web.Persistence.Repositories;
+﻿using Roomie.Common.Api.Models;
+using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Website.Controllers.Api.WebHookSession
 {
@@ -16,7 +17,7 @@ namespace Roomie.Web.Website.Controllers.Api.WebHookSession
             _sessionRepository = _repositoryFactory.GetSessionRepository();
         }
 
-        public string Create(string accessKey)
+        public Response<string> Create(string accessKey)
         {
             var computerRepository = _repositoryFactory.GetComputerRepository();
             var computer = computerRepository.Get(accessKey);
@@ -25,7 +26,7 @@ namespace Roomie.Web.Website.Controllers.Api.WebHookSession
 
             _sessionRepository.Add(session);
 
-            return session.Token;
+            return Response.Create(session.Token);
         }
     }
 }

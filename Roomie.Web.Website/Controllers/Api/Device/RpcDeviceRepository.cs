@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Roomie.Common;
+using Roomie.Common.Api.Models;
 using Roomie.Common.Color;
 using Roomie.Common.HomeAutomation;
 using Roomie.Common.HomeAutomation.BinarySwitches;
@@ -26,7 +27,7 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             _deviceRepository = _repositoryFactory.GetDeviceRepository();
         }
 
-        public Persistence.Models.Device[] List(bool examples = false)
+        public Response<Persistence.Models.Device[]> List(bool examples = false)
         {
             Persistence.Models.Device[] devices;
 
@@ -46,16 +47,16 @@ namespace Roomie.Web.Website.Controllers.Api.Device
 
             var result = devices.Select(GetSerializableVersion).ToArray();
 
-            return result;
+            return Response.Create(result);
         }
 
-        public Persistence.Models.Device Read(int id)
+        public Response<Persistence.Models.Device> Read(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
             var result = GetSerializableVersion(device);
 
-            return result;
+            return Response.Create(result);
         }
 
         public void Update(int id, string location, string name, string type)

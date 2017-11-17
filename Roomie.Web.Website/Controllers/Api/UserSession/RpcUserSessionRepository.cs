@@ -1,4 +1,5 @@
 ﻿using Roomie.Common;
+using Roomie.Common.Api.Models;
 using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Website.Controllers.Api.UserSession
@@ -17,16 +18,16 @@ namespace Roomie.Web.Website.Controllers.Api.UserSession
             _sessionRepository = _repositoryFactory.GetSessionRepository();
         }
 
-        public Persistence.Models.UserSession Read(string token)
+        public Response<Persistence.Models.UserSession> Read(string token)
         {
             var cache = new InMemoryRepositoryModelCache();
             var session = _sessionRepository.GetUserSession(token, cache);
             var result = GetSerializableVersion(session);
 
-            return result;
+            return Response.Create(result);
         }
 
-        public Page<Persistence.Models.UserSession> List(int count = 50, string sortDirection = null, int start = 0)
+        public Response<Page<Persistence.Models.UserSession>> List(int count = 50, string sortDirection = null, int start = 0)
         {
             var filter = new ListFilter
             {
@@ -40,7 +41,7 @@ namespace Roomie.Web.Website.Controllers.Api.UserSession
 
             var result = sessions.Transform(GetSerializableVersion);
 
-            return result;
+            return Response.Create(result);
         }
 
         private static Persistence.Models.UserSession GetSerializableVersion(Persistence.Models.UserSession model)

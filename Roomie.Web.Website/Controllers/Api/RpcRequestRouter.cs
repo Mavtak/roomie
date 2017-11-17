@@ -8,7 +8,7 @@ namespace Roomie.Web.Website.Controllers.Api
 {
     public static class RpcRequestRouter
     {
-        public static Response<object> Route(object repository, Request request)
+        public static object Route(object repository, Request request)
         {
             if (request == null)
             {
@@ -63,10 +63,12 @@ namespace Roomie.Web.Website.Controllers.Api
 
             var result = method.Invoke(repository, orderedParameterValues);
 
-            return new Response<object>
+            if (result == null)
             {
-                Data = result,
-            };
+                return new Response<object>();
+            }
+
+            return result;
         }
 
         private static object GetValue(ParameterInfo parameter, Dictionary<string, object> providedParameters)
@@ -204,9 +206,9 @@ namespace Roomie.Web.Website.Controllers.Api
             return value;
         }
 
-        private static ApiModels.Response<object> Error(string message, params string[] types)
+        private static Response<object> Error(string message, params string[] types)
         {
-            return new ApiModels.Response<object>
+            return new Response<object>
             {
                 Error = new Common.Api.Models.Error
                 {

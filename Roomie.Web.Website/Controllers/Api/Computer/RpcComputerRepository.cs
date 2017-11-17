@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Roomie.Common.Api.Models;
 using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Website.Controllers.Api.Computer
@@ -17,32 +18,32 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
             _computerRepository = _repositoryFactory.GetComputerRepository();
         }
 
-        public Persistence.Models.Computer[] List()
+        public Response<Persistence.Models.Computer[]> List()
         {
             var cache = new InMemoryRepositoryModelCache();
             var computers = _computerRepository.Get(_user, cache);
             var result = computers.Select(GetSerializableVersion)
                 .ToArray();
 
-            return result;
+            return Response.Create(result);
         }
 
-        public Persistence.Models.Computer Read(int id)
+        public Response<Persistence.Models.Computer> Read(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var computer = _computerRepository.Get(_user, id, cache);
             var result = GetSerializableVersion(computer);
 
-            return result;
+            return Response.Create(result);
         }
 
-        public Persistence.Models.Computer Read(string accessKey)
+        public Response<Persistence.Models.Computer> Read(string accessKey)
         {
             var cache = new InMemoryRepositoryModelCache();
             var computer = _computerRepository.Get(accessKey, cache);
             var result = GetSerializableVersion(computer);
 
-            return result;
+            return Response.Create(result);
         }
 
         public void Create(string name)

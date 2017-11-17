@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Roomie.Common;
+using Roomie.Common.Api.Models;
 using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Website.Controllers.Api.Task
@@ -21,16 +22,16 @@ namespace Roomie.Web.Website.Controllers.Api.Task
             _taskRepository = _repositoryFactory.GetTaskRepository();
         }
 
-        public Persistence.Models.Task Read(int id)
+        public Response<Persistence.Models.Task> Read(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var task = _taskRepository.Get(_user, id, cache);
             var result = GetSerializableVersion(task);
 
-            return result;
+            return Response.Create(result);
         }
 
-        public Page<Persistence.Models.Task> List(int count = 50, string sortDirection = null, int start = 0)
+        public Response<Page<Persistence.Models.Task>> List(int count = 50, string sortDirection = null, int start = 0)
         {
             var filter = new ListFilter
             {
@@ -43,18 +44,18 @@ namespace Roomie.Web.Website.Controllers.Api.Task
             var result = _taskRepository.List(_user, filter, cache)
                 .Transform(GetSerializableVersion);
 
-            return result;
+            return Response.Create(result);
         }
 
-        public string Clean(TimeSpan? timeout = null)
+        public Response<string> Clean(TimeSpan? timeout = null)
         {
             var clean = new Actions.Clean(_taskRepository);
             var result = clean.Run(timeout, _user);
 
-            return result;
+            return Response.Create(result);
         }
 
-        public Persistence.Models.Task[] GetForComputer(string computerName, TimeSpan? timeout = null, TimeSpan? pollInterval = null)
+        public Response<Persistence.Models.Task[]> GetForComputer(string computerName, TimeSpan? timeout = null, TimeSpan? pollInterval = null)
         {
             var cache = new InMemoryRepositoryModelCache();
             var computerRepository = _repositoryFactory.GetComputerRepository();
@@ -67,7 +68,7 @@ namespace Roomie.Web.Website.Controllers.Api.Task
                 .Select(GetSerializableVersion)
                 .ToArray();
 
-            return result;
+            return Response.Create(result);
         }
 
         private Persistence.Models.Task GetSerializableVersion(Persistence.Models.Task task)

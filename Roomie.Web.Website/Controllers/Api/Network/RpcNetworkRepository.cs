@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
+using Roomie.Common.Api.Models;
 using Roomie.Web.Persistence.Repositories;
 
 namespace Roomie.Web.Website.Controllers.Api.Network
@@ -18,7 +19,7 @@ namespace Roomie.Web.Website.Controllers.Api.Network
             _networkRepository = _repositoryFactory.GetNetworkRepository();
         }
 
-        public Persistence.Models.Network[] List()
+        public Response<Persistence.Models.Network[]> List()
         {
             var cache = new InMemoryRepositoryModelCache();
             var networks = _networkRepository.Get(_user, cache);
@@ -33,16 +34,16 @@ namespace Roomie.Web.Website.Controllers.Api.Network
             var result = networks.Select(GetSerializableVersion)
                 .ToArray();
 
-            return result;
+            return Response.Create(result);
         }
 
-        public Persistence.Models.Network Read(int id)
+        public Response<Persistence.Models.Network> Read(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var network = _networkRepository.Get(_user, id, cache);
             var result = GetSerializableVersion(network);
 
-            return result;
+            return Response.Create(result);
         }
 
         public void Update(int id, string name)
