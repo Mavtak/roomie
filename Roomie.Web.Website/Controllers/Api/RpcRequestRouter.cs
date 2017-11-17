@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using ApiModels = Roomie.Common.Api.Models;
+using Roomie.Common.Api.Models;
 
 namespace Roomie.Web.Website.Controllers.Api
 {
     public static class RpcRequestRouter
     {
-        public static ApiModels.Response<object> Route(object repository, Request request)
+        public static Response<object> Route(object repository, Request request)
         {
             if (request == null)
             {
@@ -63,7 +63,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
             var result = method.Invoke(repository, orderedParameterValues);
 
-            return new ApiModels.Response<object>
+            return new Response<object>
             {
                 Data = result,
             };
