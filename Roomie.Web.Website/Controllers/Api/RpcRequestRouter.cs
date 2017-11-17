@@ -12,12 +12,12 @@ namespace Roomie.Web.Website.Controllers.Api
         {
             if (request == null)
             {
-                return Error("No request specified", "no-request", "programming-error", "invalid-request");
+                return Response.CreateError("No request specified", "no-request", "programming-error", "invalid-request");
             }
 
             if (request.Action == null)
             {
-                return Error("Action not specified", "no-action", "programming-error", "invalid-request");
+                return Response.CreateError("Action not specified", "no-action", "programming-error", "invalid-request");
             }
 
             var allMethods = repository
@@ -27,7 +27,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
             if (allMethods.Length == 0)
             {
-                return Error("There are no actions on this repository", "programming-error", "invalid-request");
+                return Response.CreateError("There are no actions on this repository", "programming-error", "invalid-request");
             }
 
             var methodsMatchingActionName = allMethods
@@ -36,7 +36,7 @@ namespace Roomie.Web.Website.Controllers.Api
 
             if (methodsMatchingActionName.Length == 0)
             {
-                return Error("Action not found that matches the provided name", "programming-error", "no-matching-action-name", "no-matching-action", "invalid-request");
+                return Response.CreateError("Action not found that matches the provided name", "programming-error", "no-matching-action-name", "no-matching-action", "invalid-request");
             }
 
             var providedParameters = request.Parameters ?? new Dictionary<string, object>();
@@ -47,12 +47,12 @@ namespace Roomie.Web.Website.Controllers.Api
 
             if (methodsMatchingSignature.Length == 0)
             {
-                return Error("Action not found that matches the provided signature.", "programming-error", "no-matching-action-signature", "no-matching-action", "invalid-request");
+                return Response.CreateError("Action not found that matches the provided signature.", "programming-error", "no-matching-action-signature", "no-matching-action", "invalid-request");
             }
 
             if (methodsMatchingSignature.Length > 1)
             {
-                return Error("Multiple actions found that match the provided signature", "programming-error", "multiple-matching-actions", "invalid-request");
+                return Response.CreateError("Multiple actions found that match the provided signature", "programming-error", "multiple-matching-actions", "invalid-request");
             }
 
             var method = methodsMatchingSignature[0];
@@ -204,18 +204,6 @@ namespace Roomie.Web.Website.Controllers.Api
             }
 
             return value;
-        }
-
-        private static Response<object> Error(string message, params string[] types)
-        {
-            return new Response<object>
-            {
-                Error = new Common.Api.Models.Error
-                {
-                    Message = message,
-                    Types = types,
-                }
-            };
         }
     }
 }
