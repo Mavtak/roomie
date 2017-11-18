@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 using Roomie.Common.Api.Models;
+using Roomie.Common.HomeAutomation;
 using Roomie.Web.Persistence.Repositories;
 using Roomie.Web.Website.Controllers.Api.Computer;
 
@@ -92,10 +93,31 @@ namespace Roomie.Web.Website.Controllers.Api.Network
             return Response.Empty();
         }
 
-        public Response SyncWholeNetwork(int id, string computerName, string sentDevicesXml)
+        public Response SyncWholeNetwork(int id, int computerId, string[] devicesXml)
         {
             var cache = new InMemoryRepositoryModelCache();
             var network = _networkRepository.Get(_user, id, cache);
+
+            if (network == null)
+            {
+                return RpcNetworkRepositoryHelpers.CreateNotFoundError();
+            }
+
+            var computerRepository = _repositoryFactory.GetComputerRepository();
+            var computer = computerRepository.Get(_user, computerId, cache);
+
+            if (computer == null)
+            {
+                return RpcComputerRepositoryHelpers.CreateNotFoundError();
+            }
+
+            return SyncWholeNetwork(network, computer, devicesXml);
+        }
+
+        public Response SyncWholeNetwork(string networkAddress, string computerName, string[] devicesXml)
+        {
+            var cache = new InMemoryRepositoryModelCache();
+            var network = _networkRepository.Get(_user, networkAddress, cache);
 
             if (network == null)
             {
@@ -110,10 +132,18 @@ namespace Roomie.Web.Website.Controllers.Api.Network
                 return RpcComputerRepositoryHelpers.CreateNotFoundError();
             }
 
+            return SyncWholeNetwork(network, computer, devicesXml);
+        }
+
+        private Response SyncWholeNetwork(Persistence.Models.Network network, Persistence.Models.Computer computer, string[] devicesXml)
+        {
+            var computerRepository = _repositoryFactory.GetComputerRepository();
             var deviceRepository = _repositoryFactory.GetDeviceRepository();
             var syncWholeNetwork = new Actions.SyncWholeNetwork(computerRepository, deviceRepository, _networkRepository);
 
-            var sentDevices = XElement.Parse("<devices>" + sentDevicesXml + "</devices>").Descendants();
+            var sentDevices = devicesXml
+                .Select(x => XElement.Parse(x))
+                .ToArray();
 
             syncWholeNetwork.Run(
                 computer: computer,
