@@ -42,5 +42,16 @@
                 }
             };
         }
+
+        public static Response<TData> Empty<TData>()
+          where TData : class
+        {
+            return new Response<TData>();
+        }
+
+        public static Response Empty()
+        {
+            return new Response();
+        }
     }
 }
