@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Roomie.Common.Api.Models;
 using Roomie.Web.Website.Helpers;
 
 namespace Roomie.Web.Website.Controllers.Api.Computer

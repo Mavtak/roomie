@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Roomie.Web.Website.Controllers.Api
+namespace Roomie.Common.Api.Models
 {
     public class Request
     {

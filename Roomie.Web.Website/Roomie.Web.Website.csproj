@@ -145,7 +145,6 @@
     <Compile Include="Controllers\Api\Network\Actions\SyncWholeNetwork.cs" />
     <Compile Include="Controllers\Api\Network\RpcNetworkRepository.cs" />
     <Compile Include="Controllers\Api\Network\RpcNetworkRepositoryHelpers.cs" />
-    <Compile Include="Controllers\Api\Request.cs" />
     <Compile Include="Controllers\Api\RpcRequestRouter.cs" />
     <Compile Include="Controllers\Api\Task\Actions\Clean.cs" />
     <Compile Include="Controllers\Api\Task\Actions\GetForComputer.cs" />
