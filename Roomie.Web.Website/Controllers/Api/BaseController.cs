@@ -48,6 +48,7 @@ namespace Roomie.Web.Website.Controllers.Api
             if (webHookSession != null)
             {
                 Computer = webHookSession.Computer;
+                User = Computer.Owner;
             }
 
             var sessionlessWebHookComputer = GetSessionlessWebHookComputer(controllerContext.Request);
@@ -55,6 +56,7 @@ namespace Roomie.Web.Website.Controllers.Api
             if (sessionlessWebHookComputer != null)
             {
                 Computer = sessionlessWebHookComputer;
+                User = Computer.Owner;
             }
 
             base.Initialize(controllerContext);
