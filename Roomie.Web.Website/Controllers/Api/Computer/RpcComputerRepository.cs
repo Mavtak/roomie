@@ -95,6 +95,24 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
                 return RpcComputerRepositoryHelpers.CreateNotFoundError();
             }
 
+            return RunScript(computer, script);
+        }
+
+        public Response RunScript(string computerName, string script)
+        {
+            var cache = new InMemoryRepositoryModelCache();
+            var computer = _computerRepository.Get(_user, computerName, cache);
+
+            if (computer == null)
+            {
+                return RpcComputerRepositoryHelpers.CreateNotFoundError();
+            }
+
+            return RunScript(computer, script);
+        }
+
+        private Response RunScript(Persistence.Models.Computer computer, string script)
+        {
             var scriptRepository = _repositoryFactory.GetScriptRepository();
             var taskRepository = _repositoryFactory.GetTaskRepository();
 
