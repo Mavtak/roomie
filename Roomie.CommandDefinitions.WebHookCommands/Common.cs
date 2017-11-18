@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Roomie.Common.Api.Models;
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
-using WebCommunicator;
 
 namespace Roomie.CommandDefinitions.WebHookCommands
 {
@@ -16,15 +17,7 @@ namespace Roomie.CommandDefinitions.WebHookCommands
             }
         }
 
-        // Access the dictionary of mailers from the central data store
-        public static Dictionary<string, WebHookEngine> GetWebhookEngines(DataStore dataStore)
-        {
-            var key = typeof(InternalLibraryVersion);
-            var value = dataStore.GetAdd<Dictionary<string, WebHookEngine>>(key);
-            return value;
-        }
-
-        public static Message SendMessage(DataStore dataStore, Message outMessage)
+        public static string GetComputerName(DataStore dataStore)
         {
             var engines = GetWebhookEngines(dataStore);
 
@@ -34,13 +27,33 @@ namespace Roomie.CommandDefinitions.WebHookCommands
             if (engines.Count > 1)
                 throw new RoomieRuntimeException("Multiple WebHook engines not yet supported.");
 
-            WebHookEngine engine = null;
+            var engine = engines.Values.First();
 
-            //TODO: I know, I know... this is awful.
-            foreach (WebHookEngine firstEngine in engines.Values)
-                engine = firstEngine;
+            return engine.ComputerName;
+        }
 
-            return engine.SendMessage(outMessage);
+        // Access the dictionary of mailers from the central data store
+        public static Dictionary<string, WebHookEngine> GetWebhookEngines(DataStore dataStore)
+        {
+            var key = typeof(InternalLibraryVersion);
+            var value = dataStore.GetAdd<Dictionary<string, WebHookEngine>>(key);
+            return value;
+        }
+
+        public static Response<TData> Send<TData>(DataStore dataStore, string repository, Request request)
+            where TData : class
+        {
+            var engines = GetWebhookEngines(dataStore);
+
+            if (engines.Count == 0)
+                throw new RoomieRuntimeException("No WebHook engines present.");
+
+            if (engines.Count > 1)
+                throw new RoomieRuntimeException("Multiple WebHook engines not yet supported.");
+
+            var engine = engines.Values.First();
+
+            return engine.Send<TData>(repository, request);
         }
     }
 }

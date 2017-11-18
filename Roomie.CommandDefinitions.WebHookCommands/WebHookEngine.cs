@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
 using System.Text;
-using System.Xml;
+using Newtonsoft.Json;
+using Roomie.Common.Api.Models;
 using Roomie.Common.Exceptions;
 using Roomie.Common.ScriptingLanguage;
 using Roomie.Desktop.Engine;
-using WebCommunicator;
-using WebCommunicator.Exceptions;
 
 namespace Roomie.CommandDefinitions.WebHookCommands
 {
@@ -16,25 +17,23 @@ namespace Roomie.CommandDefinitions.WebHookCommands
         private ThreadPool threadPool;
         private System.Threading.Thread parallelThread;
         private string computerName;
-        private string communicationUrl;
+        private string apiBaseUrl;
         private string accessKey;
         private string encryptionKey;
         bool running;
+        
+        private HttpClient httpClient;
 
-        private Queue<OutputEvent> events;
-
-        private WebCommunicator.CommunicatorClient communicator;
-
-        public WebHookEngine(RoomieEngine roomieController, string computerName, string communicationUrl, string accessKey, string encryptionKey)
+        public WebHookEngine(RoomieEngine roomieController, string computerName, string apiBaseUrl, string accessKey, string encryptionKey)
         {
             this.roomieController = roomieController;
             this.computerName = computerName;
-            this.communicationUrl = communicationUrl;
+            this.apiBaseUrl = apiBaseUrl;
             this.accessKey = accessKey;
             this.encryptionKey = encryptionKey;
 
             //TODO: reintroduce multiple webhook engines?
-            string threadPoolName = "Web Hook (to " + communicationUrl + ")";
+            string threadPoolName = "Web Hook (to " + apiBaseUrl + ")";
             //int engineCount = Common.GetWebHookEngines(this.roomieController).Count;
             //if (engineCount > 0)
             //    threadPoolName += "(" + engineCount + ")";
@@ -42,49 +41,7 @@ namespace Roomie.CommandDefinitions.WebHookCommands
             this.threadPool = roomieController.CreateThreadPool(threadPoolName);
 
             this.running = false;
-            communicator = new WebCommunicator.CommunicatorClient(communicationUrl, accessKey, encryptionKey);
-
-
-            bool serverFound = false;
-
-            while (!serverFound)
-            {
-                try
-                {
-                    print("pinging Webhook server at " + communicationUrl + "...");
-                    Message pingResponse = communicator.PingServer();
-                    //TODO: should we look at the result?
-                    print("Webhook server found!");
-                    serverFound = true;
-
-                }
-                catch (CommunicationException exception)
-                {
-                    print("Error contacting server: " + exception.Message);
-                    System.Threading.Thread.Sleep(new TimeSpan(0, 0, 10));
-                }
-            }
-            ////initialize connection
-            //Dictionary<string, string> sendValues = new Dictionary<string, string>(1);
-            //sendValues.Add("action", "start session");
-            //sendValues.Add("ComputerName", computerName);
-            //SecureHttpCommunication.RecievedPackage package = SendMessage(sendValues, null);
-            //if (package.HasErrorMessage)
-            //    throw new ScriptException("Error starting webhook session");
-            //foreach (SecureHttpCommunication.Message message in package)
-            //{
-            //    if (message.ContainsParameter("NewSessionToken"))
-            //        sessionToken = message.GetValue("NewSessionToken");
-            //    break;
-            //}
-            //if (String.IsNullOrEmpty(sessionToken))
-            //    throw new ScriptException("Did not recieve a new SessionID");
-
-            //print("Webhook Session Token: " + sessionToken);
-
-            events = new Queue<OutputEvent>();
-            //TODO: make this work!
-            //this.roomieController.ScriptMessageSent += new Scope scopeScriptMessageEventHandler(roomieController_ScriptMessageSent);
+            httpClient = new HttpClient();
         }
 
         public void RunAsync()
@@ -115,33 +72,31 @@ namespace Roomie.CommandDefinitions.WebHookCommands
             }
 
             //create an outgoing message to request tasks.  This message object will be reused for every transmission.
-            Message outMessage = new Message();
-            outMessage.Values.Add("Action", "GetTasks");
 
             while (true)
             {
                 try
                 {
-                    Message response = SendMessage(outMessage);
-
-                    //TODO: use LINQ?
-                    foreach (var payloadNode in response.Payload)
+                    var response = Send<Task[]>("task", new Request
                     {
-                        if (payloadNode.Name.LocalName.Equals("Script"))
+                        Action = "GetForComputer",
+                        Parameters = new Dictionary<string, object>
                         {
-                            if (payloadNode.Attribute("Text") == null)
-                            {
-                                throw new RoomieRuntimeException("'Text' attribute not specified for WebHook script response.");
-                            }
+                            { "computerName", computerName }
+                        },
+                    });
 
-                            var commands = ScriptCommandList.FromText(payloadNode.Attribute("Text").Value);
+                    if (response.Data.Length == 0)
+                    {
+                        print("no tasks");
+                    }
+                    else
+                    {
+                        foreach (var task in response.Data)
+                        {
+                            var commands = ScriptCommandList.FromText(task.Script.Text);
                             AddCommands(commands);
                         }
-                        else
-                        {
-                            throw new RoomieRuntimeException("Received unexpected data while gettings tasks.  Node named \"" + payloadNode.Name.LocalName + "\"");
-                        }
-                        
                     }
                 }
                 catch (RoomieRuntimeException exception)
@@ -153,51 +108,37 @@ namespace Roomie.CommandDefinitions.WebHookCommands
             }
         }
 
-        private void SendMessageAsync(Dictionary<string, string> values)
-        {
-            //TODO: rewrite this using the data structures in Roomie.Common.ScriptingLanguage
-            StringBuilder builder = new StringBuilder();
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.OmitXmlDeclaration = true;
-            XmlWriter writer = XmlWriter.Create(builder, settings);
-
-            writer.WriteStartElement("WebHook.SendMessage");
-            foreach (string key in values.Keys)
-                writer.WriteAttributeString(key, values[key]);
-            writer.WriteEndElement();
-
-            writer.Close();
-
-            var commands = ScriptCommandList.FromText(builder.ToString());
-            AddCommands(commands);
-        }
-        
-        public WebCommunicator.Message SendMessage(WebCommunicator.Message outMessage)
+        public Response<TData> Send<TData>(string repository, Request request)
+            where TData : class
         {
             try
             {
-                WebCommunicator.Message response = communicator.SendMessage(outMessage, true);
+                var serializer = new JsonSerializer();
+                var httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{apiBaseUrl}/{repository}")
+                {
+                    Content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"),
+                };
+                
+                httpRequest.Headers.Add("x-roomie-webhook-key", accessKey);
+                httpRequest.Headers.Add("Accept", "application/json");
 
-                if (response == null)
-                    throw new RoomieRuntimeException("NULL response!");
+                using (var httpResponse = httpClient.SendAsync(httpRequest).Result)
+                {
+                    var responseString = httpResponse.Content.ReadAsStringAsync().Result;
+                    var response = JsonConvert.DeserializeObject<Response<TData>>(responseString);
 
-                if (!String.IsNullOrEmpty(response.ErrorMessage))
-                    throw new RoomieRuntimeException("Server returned error: " + response.ErrorMessage);
+                    if (response == null)
+                    {
+                        throw new RoomieRuntimeException("null response from API");
+                    }
 
-                if (response.Values.ContainsKey("Response"))
-                    print("Server response text: " + response.Values["Response"]);
-                else
-                    print("No server response text.");
+                    if (response.Error != null)
+                    {
+                        throw new RoomieRuntimeException($"error from API: {response.Error.Message}.  error tags: {string.Join(",", response.Error.Types)}");
+                    }
 
-                return response;
-            }
-            catch (CommunicationException exception)
-            {
-                throw new RoomieRuntimeException("WebHook Error: " + exception.Message, exception);
-            }
-            catch (RoomieRuntimeException exception)
-            {
-                throw;
+                    return response;
+                }
             }
             catch (Exception exception)
             {
@@ -207,7 +148,6 @@ namespace Roomie.CommandDefinitions.WebHookCommands
 
                 throw new RoomieRuntimeException("REALLY unexpected error transmitting: " + exception.ToString(), exception);
             }
-            
         }
 
         private void print(string text)

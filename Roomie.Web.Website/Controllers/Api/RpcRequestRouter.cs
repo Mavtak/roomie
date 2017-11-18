@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
 using Roomie.Common.Api.Models;
 
 namespace Roomie.Web.Website.Controllers.Api
@@ -154,6 +155,12 @@ namespace Roomie.Web.Website.Controllers.Api
             {
                 return true;
             }
+            
+            if(a.IsArray && b == typeof (JArray))
+            {
+                //TODO check type of elements in array
+                return true;
+            }
 
             if (IsNumber(a) && IsNumber(b))
             {
@@ -201,6 +208,26 @@ namespace Roomie.Web.Website.Controllers.Api
             if (type == typeof(Int32))
             {
                 return Convert.ToInt32(value);
+            }
+
+            if(value.GetType() == typeof(JArray))
+            {
+                var elementType = type.GetElementType();
+                var jArray = (JArray)value;
+                
+                if (elementType == typeof(string))
+                {
+                    var result = jArray
+                        .ToArray()
+                        .Select(x => x.ToString())
+                        .ToArray();
+
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("could not convert array type");
+                }
             }
 
             return value;

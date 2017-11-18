@@ -10,7 +10,6 @@ namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
 
             interpreter.WriteEvent("WebHook Stats:");
             interpreter.WriteEvent("--Library Version: " + Common.LibraryVersion);
-            interpreter.WriteEvent("--Web Communicator Version: " + WebCommunicator.Common.LibraryVersion);
         }
     }
 }

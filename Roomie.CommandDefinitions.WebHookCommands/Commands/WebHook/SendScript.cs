@@ -1,5 +1,4 @@
 ﻿using Roomie.Desktop.Engine.Commands;
-using WebCommunicator;
 
 namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
 {
@@ -17,13 +16,6 @@ namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
 
             var computerName = context.ReadParameter("ComputerName").Value;
 
-            var outMessage = new Message();
-
-            //Dictionary<string, string> values = new Dictionary<string, string>();
-            outMessage.Values.Add("Action", "SendScript");
-            outMessage.Values.Add("TargetComputerName", computerName);
-            outMessage.Values.Add("ScriptText", innerCommands.OriginalText);
-
             foreach (var webHookEngine in webHookEngines.Values)
             {
                 if (webHookEngine.ComputerName.Equals(computerName))
@@ -34,7 +26,16 @@ namespace Roomie.CommandDefinitions.WebHookCommands.Commands.WebHook
                 }
                 else
                 {
-                    webHookEngine.SendMessage(outMessage);
+                    webHookEngine.Send<object>("computer", new Roomie.Common.Api.Models.Request
+                    {
+                        Action = "RunScript",
+                        Parameters = new System.Collections.Generic.Dictionary<string, object>
+                        {
+                            {"computerName", computerName },
+                            {"script", innerCommands.OriginalText },
+                            {"source", "Roomie Desktop" },
+                        },
+                    });
                 }
             }
         }

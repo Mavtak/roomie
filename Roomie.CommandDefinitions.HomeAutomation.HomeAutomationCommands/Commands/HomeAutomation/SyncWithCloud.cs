@@ -1,4 +1,7 @@
-﻿using Roomie.Common.Exceptions;
+﻿using System.Linq;
+using System.Xml.Linq;
+using Roomie.Common.Api.Models;
+using Roomie.Common.Exceptions;
 using Roomie.Common.HomeAutomation;
 using WebCommunicator;
 
@@ -6,18 +9,25 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 {
     public class SyncWithCloud : HomeAutomationNetworkCommand
     {
-        private Message buildRequest(INetwork network)
+        private Request buildRequest(INetwork network, HomeAutomationCommandContext context)
         {
-            var message = new Message();
-            message.Values.Add("Action", "SyncHomeAutomationNetwork");
-            message.Values.Add("NetworkAddress", network.Name);
+            var sentDevicesXml = network.Devices
+                .Select(x => x.ToXElement())
+                .Select(x => x.ToString())
+                .ToArray();
 
-            foreach (var device in network.Devices)
+            var request = new Request
             {
-                message.Payload.Add(device.ToXElement());
-            }
+                Action = "SyncWholeNetwork",
+                Parameters = new System.Collections.Generic.Dictionary<string, object>
+                {
+                    {"networkAddress", network.Address },
+                    {"computerName", WebHookConnector.GetComputerName(context)},
+                    {"devicesXml",  sentDevicesXml},
+                },
+            };            
 
-            return message;
+            return request;
         }
 
         protected override void Execute_HomeAutomationNetworkDefinition(HomeAutomationCommandContext context)
@@ -27,12 +37,11 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
 
             interpreter.WriteEvent("Syncing Home Automation Devices with the cloud...");
 
-            Message request = buildRequest(network);
-
-            Message response = WebHookConnector.SendMessage(context, request);
+            var request = buildRequest(network, context);
+            var response = WebHookConnector.Send<string[]>(context, "network", request);
 
             //TODO: use LINQ?
-            foreach (var deviceElement in response.Payload)
+            foreach (var deviceElement in response.Data.Select(x => XElement.Parse(x)))
             {
                 if (deviceElement.Name.LocalName != "HomeAutomationDevice")
                 {
@@ -40,7 +49,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                 }
 
                 string networkAddress = deviceElement.Attribute("Address").Value;
-                
+
                 if (network.Devices.ContainsAddress(networkAddress))
                 {
                     var device = network.Devices.GetDevice(networkAddress);
@@ -54,7 +63,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomati
                         device.Location.Update(deviceElement.Attribute("Location").Value);
 
                     //TODO: type checking
-                    if(deviceElement.Attribute("Type") != null)
+                    if (deviceElement.Attribute("Type") != null)
                         device.Type = DeviceType.GetTypeFromString(deviceElement.Attribute("Type").Value);
                 }
                 else

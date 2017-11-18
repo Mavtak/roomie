@@ -1,4 +1,6 @@
-﻿using Roomie.Common.Exceptions;
+﻿using System.Linq;
+using Roomie.Common.Api.Models;
+using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
 using WebCommunicator;
 
@@ -18,7 +20,18 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
             return result;
         }
 
-        internal static Message SendMessage(RoomieCommandContext context, Message outMessage)
+        internal static string GetComputerName(RoomieCommandContext context)
+        {
+            if (!WebHookPresent(context))
+            {
+                throw new RoomieRuntimeException("WebHook not present.");
+            }
+
+            return WebHookCommands.Common.GetComputerName(context.DataStore);
+        }
+
+        internal static Response<TData> Send<TData>(RoomieCommandContext context, string repository, Request request)
+            where TData : class
         {
             //TODO: that's not too conclusive. 
             if (!WebHookPresent(context))
@@ -26,9 +39,7 @@ namespace Roomie.CommandDefinitions.HomeAutomationCommands
                 throw new RoomieRuntimeException("WebHook not present.");
             }
 
-            Message response = WebHookCommands.Common.SendMessage(context.DataStore, outMessage);
-
-            return response;
+            return WebHookCommands.Common.Send<TData>(context.DataStore, repository, request);
         }
     }
 }

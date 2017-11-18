@@ -131,6 +131,10 @@
     <Compile Include="DeviceCollection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Roomie.Common.Api\Roomie.Common.Api.csproj">
+      <Project>{51a64d6e-0082-424a-b7f8-8d46c8162287}</Project>
+      <Name>Roomie.Common.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Roomie.Common.Triggers\Roomie.Common.Triggers.csproj">
       <Project>{5f72c80f-4c92-46ee-931b-7676dd2824e9}</Project>
       <Name>Roomie.Common.Triggers</Name>
