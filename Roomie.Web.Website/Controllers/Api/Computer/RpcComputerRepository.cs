@@ -53,28 +53,47 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
             _computerRepository.Add(computer);
         }
 
-        public void DisableWebHook(int id)
+        public Response DisableWebHook(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var computer = _computerRepository.Get(_user, id, cache);
+
+            if (computer == null)
+            {
+                return RpcComputerRepositoryHelpers.CreateNotFoundError();
+            }
 
             computer.DisableWebhook();
             _computerRepository.Update(computer);
+
+            return Response.Empty();
         }
 
-        public void RenewWebHookKeys(int id)
+        public Response RenewWebHookKeys(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var computer = _computerRepository.Get(_user, id, cache);
+
+            if (computer == null)
+            {
+                return RpcComputerRepositoryHelpers.CreateNotFoundError();
+            }
 
             computer.RenewWebhookKeys();
             _computerRepository.Update(computer);
+
+            return Response.Empty();
         }
 
-        public void RunScript(int id, string script)
+        public Response RunScript(int id, string script)
         {
             var cache = new InMemoryRepositoryModelCache();
             var computer = _computerRepository.Get(_user, id, cache);
+
+            if (computer == null)
+            {
+                return RpcComputerRepositoryHelpers.CreateNotFoundError();
+            }
 
             var scriptRepository = _repositoryFactory.GetScriptRepository();
             var taskRepository = _repositoryFactory.GetTaskRepository();
@@ -88,6 +107,8 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
                 updateLastRunScript: true,
                 user: _user
             );
+
+            return Response.Empty();
         }
 
         private static Persistence.Models.Computer GetSerializableVersion(Persistence.Models.Computer computer)

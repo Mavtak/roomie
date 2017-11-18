@@ -139,9 +139,12 @@
     <Compile Include="Controllers\Api\CommandDocumentation\RpcCommandDocumentationRepository.cs" />
     <Compile Include="Controllers\Api\Computer\Actions\RunScript.cs" />
     <Compile Include="Controllers\Api\Computer\RpcComputerRepository.cs" />
+    <Compile Include="Controllers\Api\Computer\RpcComputerRepositoryHelpers.cs" />
     <Compile Include="Controllers\Api\Device\RpcDeviceRepository.cs" />
+    <Compile Include="Controllers\Api\Device\RpcDeviceRepositoryHelpers.cs" />
     <Compile Include="Controllers\Api\Network\Actions\SyncWholeNetwork.cs" />
     <Compile Include="Controllers\Api\Network\RpcNetworkRepository.cs" />
+    <Compile Include="Controllers\Api\Network\RpcNetworkRepositoryHelpers.cs" />
     <Compile Include="Controllers\Api\Request.cs" />
     <Compile Include="Controllers\Api\RpcRequestRouter.cs" />
     <Compile Include="Controllers\Api\Task\Actions\Clean.cs" />

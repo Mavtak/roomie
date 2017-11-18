@@ -2,6 +2,7 @@
 using System.Xml.Linq;
 using Roomie.Common.Api.Models;
 using Roomie.Web.Persistence.Repositories;
+using Roomie.Web.Website.Controllers.Api.Computer;
 
 namespace Roomie.Web.Website.Controllers.Api.Network
 {
@@ -46,37 +47,68 @@ namespace Roomie.Web.Website.Controllers.Api.Network
             return Response.Create(result);
         }
 
-        public void Update(int id, string name)
+        public Response Update(int id, string name)
         {
             var cache = new InMemoryRepositoryModelCache();
             var network = _networkRepository.Get(_user, id, cache);
+
+            if (network == null)
+            {
+                return RpcNetworkRepositoryHelpers.CreateNotFoundError();
+            }
 
             network.UpdateName(name);
             _networkRepository.Update(network);
+
+            return Response.Empty();
         }
 
-        public void AddDevice(int id)
+        public Response AddDevice(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var network = _networkRepository.Get(_user, id, cache);
+
+            if (network == null)
+            {
+                return RpcNetworkRepositoryHelpers.CreateNotFoundError();
+            }
 
             NetworkAction(network, "AddDevice");
+
+            return Response.Empty();
         }
-        public void RemoveDevice(int id)
+        public Response RemoveDevice(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var network = _networkRepository.Get(_user, id, cache);
+
+            if (network == null)
+            {
+                return RpcNetworkRepositoryHelpers.CreateNotFoundError();
+            }
 
             NetworkAction(network, "RemoveDevice");
+
+            return Response.Empty();
         }
 
-        public void SyncWholeNetwork(int id, string computerName, string sentDevicesXml)
+        public Response SyncWholeNetwork(int id, string computerName, string sentDevicesXml)
         {
             var cache = new InMemoryRepositoryModelCache();
             var network = _networkRepository.Get(_user, id, cache);
+
+            if (network == null)
+            {
+                return RpcNetworkRepositoryHelpers.CreateNotFoundError();
+            }
 
             var computerRepository = _repositoryFactory.GetComputerRepository();
             var computer = computerRepository.Get(_user, computerName, cache);
+
+            if (computer == null)
+            {
+                return RpcComputerRepositoryHelpers.CreateNotFoundError();
+            }
 
             var deviceRepository = _repositoryFactory.GetDeviceRepository();
             var syncWholeNetwork = new Actions.SyncWholeNetwork(computerRepository, deviceRepository, _networkRepository);
@@ -89,12 +121,19 @@ namespace Roomie.Web.Website.Controllers.Api.Network
                 sentDevices: sentDevices,
                 user: _user
             );
+
+            return Response.Empty();
         }
 
-        public void Delete(int id)
+        public Response Delete(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var network = _networkRepository.Get(_user, id, cache);
+
+            if (network == null)
+            {
+                return RpcNetworkRepositoryHelpers.CreateNotFoundError();
+            }
 
             var deviceRepository = _repositoryFactory.GetDeviceRepository();
 
@@ -105,6 +144,7 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
             _networkRepository.Remove(network);
 
+            return Response.Empty();
         }
 
         private void NetworkAction(Persistence.Models.Network network, string action)

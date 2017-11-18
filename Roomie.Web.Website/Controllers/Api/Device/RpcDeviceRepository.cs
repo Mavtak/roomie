@@ -86,103 +86,187 @@ namespace Roomie.Web.Website.Controllers.Api.Device
             );
         }
 
-        public void MultilevelSwitchSetPower(int id, int power)
+        public Response MultilevelSwitchSetPower(int id, int power)
         {
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
+
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
 
             device.MultilevelSwitch.SetPower(power);
+
+            return Response.Empty();
         }
 
-        public void BinarySensorPoll(int id)
+        public Response BinarySensorPoll(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
+
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
 
             device.BinarySensor.Poll();
+
+            return Response.Empty();
         }
 
-        public void Poll(int id)
+        public Response Poll(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
+
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
 
             device.Poll();
+
+            return Response.Empty();
         }
 
-        public void HumiditySensorPoll(int id)
+        public Response HumiditySensorPoll(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
+
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
 
             device.HumiditySensor.Poll();
+
+            return Response.Empty();
         }
 
-        public void IlluminanceSensorPoll(int id)
+        public Response IlluminanceSensorPoll(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
+
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
 
             device.IlluminanceSensor.Poll();
+
+            return Response.Empty();
         }
 
-        public void PowerSensorPoll(int id)
+        public Response PowerSensorPoll(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
+
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
 
             device.PowerSensor.Poll();
+
+            return Response.Empty();
         }
 
-        public void TemperatureSensorPoll(int id)
+        public Response TemperatureSensorPoll(int id)
         {
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
 
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
+
             device.TemperatureSensor.Poll();
+
+            return Response.Empty();
         }
-        public void BinarySwitchSetPower(int id, string power)
+        public Response BinarySwitchSetPower(int id, string power)
         {
             var parsedPower = power.ToToggleSwitchPower();
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
 
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
+
             device.BinarySwitch.SetPower(parsedPower);
+
+            return Response.Empty();
         }
 
-        public void ColorSwitchSetValue(int id, string color)
+        public Response ColorSwitchSetValue(int id, string color)
         {
             var parsedColor = color.ToColor();
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
 
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
+
             device.ColorSwitch.SetValue(parsedColor);
+
+            return Response.Empty();
         }
 
-        public void ThermostatFanSetMode(int id, string mode)
+        public Response ThermostatFanSetMode(int id, string mode)
         {
             var parsedMode = mode.ToThermostatFanMode();
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
 
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
+
             device.Thermostat.Fan.SetMode(parsedMode);
+
+            return Response.Empty();
         }
-        public void ThermostatCoreSetMode(int id, string mode)
+        public Response ThermostatCoreSetMode(int id, string mode)
         {
             var parsedMode = mode.ToThermostatMode();
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
 
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
+
             device.Thermostat.Core.SetMode(parsedMode);
+
+            return Response.Empty();
         }
-        public void ThermostatSetpointsSetSetpoint(int id, string type, string temperature)
+        public Response ThermostatSetpointsSetSetpoint(int id, string type, string temperature)
         {
             var parsedType = type.ToSetpointType();
             var parsedTemperature = temperature.ToTemperature();
             var cache = new InMemoryRepositoryModelCache();
             var device = _deviceRepository.Get(_user, id, cache);
 
+            if (device == null)
+            {
+                return RpcDeviceRepositoryHelpers.CreateNotFoundError();
+            }
+
             device.Thermostat.Setpoints.SetSetpoint(parsedType, parsedTemperature);
+
+            return Response.Empty();
         }
 
         private static Persistence.Models.Device GetSerializableVersion(Persistence.Models.Device device)
