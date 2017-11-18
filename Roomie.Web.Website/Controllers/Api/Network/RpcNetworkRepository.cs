@@ -93,14 +93,14 @@ namespace Roomie.Web.Website.Controllers.Api.Network
             return Response.Empty();
         }
 
-        public Response SyncWholeNetwork(int id, int computerId, string[] devicesXml)
+        public Response<string[]> SyncWholeNetwork(int id, int computerId, string[] devicesXml)
         {
             var cache = new InMemoryRepositoryModelCache();
             var network = _networkRepository.Get(_user, id, cache);
 
             if (network == null)
             {
-                return RpcNetworkRepositoryHelpers.CreateNotFoundError();
+                return RpcNetworkRepositoryHelpers.CreateNotFoundError<string[]>();
             }
 
             var computerRepository = _repositoryFactory.GetComputerRepository();
@@ -108,20 +108,20 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
             if (computer == null)
             {
-                return RpcComputerRepositoryHelpers.CreateNotFoundError();
+                return RpcComputerRepositoryHelpers.CreateNotFoundError<string[]>();
             }
 
             return SyncWholeNetwork(network, computer, devicesXml);
         }
 
-        public Response SyncWholeNetwork(string networkAddress, string computerName, string[] devicesXml)
+        public Response<string[]> SyncWholeNetwork(string networkAddress, string computerName, string[] devicesXml)
         {
             var cache = new InMemoryRepositoryModelCache();
             var network = _networkRepository.Get(_user, networkAddress, cache);
 
             if (network == null)
             {
-                return RpcNetworkRepositoryHelpers.CreateNotFoundError();
+                return RpcNetworkRepositoryHelpers.CreateNotFoundError<string[]>();
             }
 
             var computerRepository = _repositoryFactory.GetComputerRepository();
@@ -129,13 +129,13 @@ namespace Roomie.Web.Website.Controllers.Api.Network
 
             if (computer == null)
             {
-                return RpcComputerRepositoryHelpers.CreateNotFoundError();
+                return RpcComputerRepositoryHelpers.CreateNotFoundError<string[]>();
             }
 
             return SyncWholeNetwork(network, computer, devicesXml);
         }
 
-        private Response SyncWholeNetwork(Persistence.Models.Network network, Persistence.Models.Computer computer, string[] devicesXml)
+        private Response<string[]> SyncWholeNetwork(Persistence.Models.Network network, Persistence.Models.Computer computer, string[] devicesXml)
         {
             var computerRepository = _repositoryFactory.GetComputerRepository();
             var deviceRepository = _repositoryFactory.GetDeviceRepository();
@@ -145,14 +145,19 @@ namespace Roomie.Web.Website.Controllers.Api.Network
                 .Select(x => XElement.Parse(x))
                 .ToArray();
 
-            syncWholeNetwork.Run(
+            var existingDevices = syncWholeNetwork.Run(
                 computer: computer,
                 network: network,
                 sentDevices: sentDevices,
                 user: _user
             );
 
-            return Response.Empty();
+            var existingDevicesXml = existingDevices
+                .Select(x => x.ToXElement())
+                .Select(x => x.ToString())
+                .ToArray();
+
+            return Response.Create(existingDevicesXml);
         }
 
         public Response Delete(int id)
