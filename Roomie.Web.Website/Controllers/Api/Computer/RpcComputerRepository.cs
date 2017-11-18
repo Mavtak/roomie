@@ -85,7 +85,7 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
             return Response.Empty();
         }
 
-        public Response RunScript(int id, string script)
+        public Response RunScript(int id, string script, string source = null)
         {
             var cache = new InMemoryRepositoryModelCache();
             var computer = _computerRepository.Get(_user, id, cache);
@@ -95,10 +95,10 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
                 return RpcComputerRepositoryHelpers.CreateNotFoundError();
             }
 
-            return RunScript(computer, script);
+            return RunScript(computer, script, source);
         }
 
-        public Response RunScript(string computerName, string script)
+        public Response RunScript(string computerName, string script, string source = null)
         {
             var cache = new InMemoryRepositoryModelCache();
             var computer = _computerRepository.Get(_user, computerName, cache);
@@ -108,10 +108,10 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
                 return RpcComputerRepositoryHelpers.CreateNotFoundError();
             }
 
-            return RunScript(computer, script);
+            return RunScript(computer, script, source);
         }
 
-        private Response RunScript(Persistence.Models.Computer computer, string script)
+        private Response RunScript(Persistence.Models.Computer computer, string script, string source)
         {
             var scriptRepository = _repositoryFactory.GetScriptRepository();
             var taskRepository = _repositoryFactory.GetTaskRepository();
@@ -121,7 +121,7 @@ namespace Roomie.Web.Website.Controllers.Api.Computer
             runScript.Run(
                 computer: computer,
                 scriptText: script,
-                source: "Website",
+                source: source ?? "Website",
                 updateLastRunScript: true,
                 user: _user
             );
