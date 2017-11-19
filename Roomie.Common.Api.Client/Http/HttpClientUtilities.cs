@@ -42,7 +42,8 @@ namespace Roomie.Common.Api.Client.Http
             return new Uri(
                 string.IsNullOrEmpty(querystring)
                     ? path
-                    : $"{path}?{querystring}"
+                    : $"{path}?{querystring}",
+                UriKind.Relative
             );
         }
     }
