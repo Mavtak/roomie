@@ -2,7 +2,6 @@
 using Roomie.Common.Api.Models;
 using Roomie.Common.Exceptions;
 using Roomie.Desktop.Engine;
-using WebCommunicator;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands
 {

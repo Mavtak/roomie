@@ -170,10 +170,6 @@
       <Project>{91e5d2c3-d269-4ff9-8ab6-36926441f6b2}</Project>
       <Name>Roomie.Desktop.Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Libraries\WebCommunicator\WebCommunicator\WebCommunicator.csproj">
-      <Project>{a7cca3b4-f50b-43f0-9250-673c1d6ac351}</Project>
-      <Name>WebCommunicator</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

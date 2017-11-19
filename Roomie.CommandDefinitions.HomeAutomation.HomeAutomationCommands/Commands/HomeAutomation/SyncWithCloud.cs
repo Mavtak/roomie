@@ -3,7 +3,6 @@ using System.Xml.Linq;
 using Roomie.Common.Api.Models;
 using Roomie.Common.Exceptions;
 using Roomie.Common.HomeAutomation;
-using WebCommunicator;
 
 namespace Roomie.CommandDefinitions.HomeAutomationCommands.Commands.HomeAutomation
 {

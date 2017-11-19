@@ -3,7 +3,6 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Roomie.Web.Website.WebHook;
 
 namespace Roomie.Web.Website
 {
@@ -23,8 +22,6 @@ namespace Roomie.Web.Website
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             DatabaseConfig.RegisterConnectionStrings();
             DependencyResolver.SetResolver(DependencyResolverConfig.CreateDependencyResolver());
-
-            WebhookUtilities.StartServer();
         }
 
         protected void Application_Error(object sender, EventArgs e)
