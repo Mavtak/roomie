@@ -71,6 +71,10 @@
     <Compile Include="WebHookEngine.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Roomie.Common.Api.Client\Roomie.Common.Api.Client.csproj">
+      <Project>{f774a2c4-395f-49c4-8ffb-f15d0bced1cf}</Project>
+      <Name>Roomie.Common.Api.Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Roomie.Common.Api\Roomie.Common.Api.csproj">
       <Project>{51a64d6e-0082-424a-b7f8-8d46c8162287}</Project>
       <Name>Roomie.Common.Api</Name>

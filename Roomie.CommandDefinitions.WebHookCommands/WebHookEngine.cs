@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using Newtonsoft.Json;
+using Roomie.Common.Api.Client;
 using Roomie.Common.Api.Models;
 using Roomie.Common.Exceptions;
 using Roomie.Common.ScriptingLanguage;
@@ -17,20 +14,14 @@ namespace Roomie.CommandDefinitions.WebHookCommands
         private ThreadPool threadPool;
         private System.Threading.Thread parallelThread;
         private string computerName;
-        private string apiBaseUrl;
-        private string accessKey;
-        private string encryptionKey;
         bool running;
-        
-        private HttpClient httpClient;
+
+        private IRoomieApiClient apiClient;
 
         public WebHookEngine(RoomieEngine roomieController, string computerName, string apiBaseUrl, string accessKey, string encryptionKey)
         {
             this.roomieController = roomieController;
             this.computerName = computerName;
-            this.apiBaseUrl = apiBaseUrl;
-            this.accessKey = accessKey;
-            this.encryptionKey = encryptionKey;
 
             //TODO: reintroduce multiple webhook engines?
             string threadPoolName = "Web Hook (to " + apiBaseUrl + ")";
@@ -41,7 +32,8 @@ namespace Roomie.CommandDefinitions.WebHookCommands
             this.threadPool = roomieController.CreateThreadPool(threadPoolName);
 
             this.running = false;
-            httpClient = new HttpClient();
+
+            apiClient = new RoomieApiClient(apiBaseUrl, accessKey);
         }
 
         public void RunAsync()
@@ -113,32 +105,19 @@ namespace Roomie.CommandDefinitions.WebHookCommands
         {
             try
             {
-                var serializer = new JsonSerializer();
-                var httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{apiBaseUrl}/{repository}")
+                var response = apiClient.Send<TData>(repository, request).Result;
+
+                if (response == null)
                 {
-                    Content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json"),
-                };
-                
-                httpRequest.Headers.Add("x-roomie-webhook-key", accessKey);
-                httpRequest.Headers.Add("Accept", "application/json");
-
-                using (var httpResponse = httpClient.SendAsync(httpRequest).Result)
-                {
-                    var responseString = httpResponse.Content.ReadAsStringAsync().Result;
-                    var response = JsonConvert.DeserializeObject<Response<TData>>(responseString);
-
-                    if (response == null)
-                    {
-                        throw new RoomieRuntimeException("null response from API");
-                    }
-
-                    if (response.Error != null)
-                    {
-                        throw new RoomieRuntimeException($"error from API: {response.Error.Message}.  error tags: {string.Join(",", response.Error.Types)}");
-                    }
-
-                    return response;
+                    throw new RoomieRuntimeException("null response from API");
                 }
+
+                if (response.Error != null)
+                {
+                    throw new RoomieRuntimeException($"error from API: {response.Error.Message}.  error tags: {string.Join(",", response.Error.Types)}");
+                }
+
+                return response;
             }
             catch (Exception exception)
             {
