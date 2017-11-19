@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Roomie.Common.Api.Models;
 
 namespace Roomie.Common.Api.Client
 {
     public interface IRoomieApiClient
     {
-        Task Send(string resource, string action, object data = null);
-        Task<TResposneData> Send<TResposneData>(string resource, string action, object data = null)
-            where TResposneData : class;
-        void SetSessionToken(string sessionToken);
-
+        Task<Response> Send(string repository, Request request);
+        Task<Response<TResponseData>> Send<TResponseData>(string repository, Request request)
+            where TResponseData : class;
     }
 }
