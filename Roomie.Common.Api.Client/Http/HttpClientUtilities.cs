@@ -32,10 +32,12 @@ namespace Roomie.Common.Api.Client.Http
                 "/",
                 pathSegments.Select(WebUtility.UrlEncode)
             );
-            var querystring = string.Join(
-                "&",
-                queryParameters.Select(x => $"{WebUtility.UrlEncode(x.Key)}={WebUtility.UrlEncode(x.Value)}")
-            );
+            var querystring = queryParameters == null
+                ? null
+                : string.Join(
+                    "&",
+                    queryParameters.Select(x => $"{WebUtility.UrlEncode(x.Key)}={WebUtility.UrlEncode(x.Value)}")
+                );
 
             return new Uri(
                 string.IsNullOrEmpty(querystring)
