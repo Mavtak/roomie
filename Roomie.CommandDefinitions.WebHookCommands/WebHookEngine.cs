@@ -22,12 +22,7 @@ namespace Roomie.CommandDefinitions.WebHookCommands
         {
             this.roomieController = roomieController;
             this.computerName = computerName;
-
-            //TODO: reintroduce multiple webhook engines?
             string threadPoolName = "Web Hook (to " + apiBaseUrl + ")";
-            //int engineCount = Common.GetWebHookEngines(this.roomieController).Count;
-            //if (engineCount > 0)
-            //    threadPoolName += "(" + engineCount + ")";
 
             this.threadPool = roomieController.CreateThreadPool(threadPoolName);
 
@@ -62,8 +57,6 @@ namespace Roomie.CommandDefinitions.WebHookCommands
                     AddCommand(command.BlankCommandCall());
                 }
             }
-
-            //create an outgoing message to request tasks.  This message object will be reused for every transmission.
 
             while (true)
             {
