@@ -11,11 +11,15 @@ namespace Roomie.Common.Api.Client.Http
     {
         public static HttpRequestMessage BuildRequest(string verbString, string[] pathSegments, IEnumerable<KeyValuePair<string, string>> queryParameters, IEnumerable<KeyValuePair<string, string>> headers, string body, string encoding)
         {
+            var method = new HttpMethod(verbString);
+            var path = BuildUri(pathSegments, queryParameters);
+            var content = new StringContent(body, Encoding.UTF8, encoding);
+
             var result = new HttpRequestMessage
             {
-                Method = new HttpMethod(verbString),
-                RequestUri = BuildUri(pathSegments, queryParameters),
-                Content = new StringContent(body, Encoding.UTF8, encoding),
+                Content = content,
+                Method = method,
+                RequestUri = path,
             };
 
             foreach (var header in headers)
