@@ -1,9 +1,11 @@
+import template from './template.html';
+
 function appContent() {
   return {
     restrict: 'E',
     replace: true,
     link: link,
-    templateUrl: 'common/app-content/template.html',
+    template: template,
   };
 
   function link(scope, element) {

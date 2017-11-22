@@ -1,4 +1,6 @@
-﻿function appHorizontalSection() {
+﻿import template from './template.html';
+
+function appHorizontalSection() {
 
   return {
     restrict: 'E',
@@ -6,7 +8,7 @@
     scope: {
       rowId: '@rowId'
     },
-    templateUrl: 'common/app-horizontal-section/template.html',
+    template: template,
   };
 
 }

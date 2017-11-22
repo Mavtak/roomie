@@ -1,4 +1,6 @@
-﻿function sideMenuButton() {
+﻿import template from './template.html';
+
+function sideMenuButton() {
 
   return {
     restrict: 'E',
@@ -8,7 +10,7 @@
       'open': '&open'
     },
     link: link,
-    templateUrl: 'common/side-menu-button/template.html',
+    template: template,
   };
 
   function link(scope) {

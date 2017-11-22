@@ -1,4 +1,6 @@
-﻿function locationHeaderGroup(
+﻿import template from './template.html';
+
+function locationHeaderGroup(
   LocationHeaderLabelGenerator
 ) {
 
@@ -9,7 +11,7 @@
       previousLocation: '=previousLocation'
     },
     link: link,
-    templateUrl: 'devices/location-header-group/template.html',
+    template: template,
   };
 
   function link(scope) {

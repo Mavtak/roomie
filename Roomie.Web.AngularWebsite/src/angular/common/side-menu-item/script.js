@@ -1,4 +1,6 @@
-﻿function sideMenuItem() {
+﻿import template from './template.html';
+
+function sideMenuItem() {
 
   return {
     restrict: 'E',
@@ -9,7 +11,7 @@
       target: '=target'
     },
     link: link,
-    templateUrl: 'common/side-menu-item/template.html',
+    template: template,
   };
 
   function link(scope) {

@@ -1,4 +1,6 @@
-﻿function deviceWidget() {
+﻿import template from './template.html';
+
+function deviceWidget() {
 
   return {
     restrict: 'E',
@@ -6,7 +8,7 @@
       device: '=device',
       showEdit: '=showEdit'
     },
-    templateUrl: 'devices/device-widget/template.html',
+    template: template,
     link: link
   };
 

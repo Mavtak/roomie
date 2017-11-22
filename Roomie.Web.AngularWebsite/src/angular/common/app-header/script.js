@@ -1,4 +1,6 @@
-﻿function appHeader(
+﻿import template from './template.html';
+
+function appHeader(
   pageMenuItems
 ) {
 
@@ -9,7 +11,7 @@
       pageMenu: '=pageMenu',
     },
     link: link,
-    templateUrl: 'common/app-header/template.html',
+    template: template,
   };
 
   function link(scope) {

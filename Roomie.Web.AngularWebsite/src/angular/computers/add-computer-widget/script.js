@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function addComputerWidget(
   $http
 ) {
@@ -5,7 +7,7 @@ function addComputerWidget(
   return {
     restrict: 'E',
     scope: {},
-    templateUrl: 'computers/add-computer-widget/template.html',
+    template: template,
     link: link
   };
 

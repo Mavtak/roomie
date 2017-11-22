@@ -1,4 +1,6 @@
-﻿function sideMenuSet() {
+﻿import template from './template.html';
+
+function sideMenuSet() {
 
   return {
     restrict: 'E',
@@ -9,7 +11,7 @@
       width: '=width'
     },
     link: link,
-    templateUrl: 'common/side-menu-set/template.html',
+    template: template,
   };
 
   function link(scope) {

@@ -1,4 +1,6 @@
-﻿function thermostatTemperatureControls(
+﻿import template from './template.html';
+
+function thermostatTemperatureControls(
   getNewModeToToggleSetpoint
 ) {
 
@@ -10,7 +12,7 @@
       'core': '=core',
     },
     link: link,
-    templateUrl: 'devices/thermostat-temperature-controls/template.html',
+    template: template,
   };
 
   function link(scope) {

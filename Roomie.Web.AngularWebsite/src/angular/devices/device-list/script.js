@@ -1,4 +1,6 @@
-﻿function deviceList() {
+﻿import template from './template.html';
+
+function deviceList() {
 
   return {
     restrict: 'E',
@@ -7,7 +9,7 @@
       include: '=include'
     },
     link: link,
-    templateUrl: 'devices/device-list/template.html',
+    template: template,
   };
 
   function link(scope) {

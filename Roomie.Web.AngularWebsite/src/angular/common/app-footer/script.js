@@ -1,8 +1,10 @@
-﻿function appFooter() {
+﻿import template from './template.html';
+
+function appFooter() {
 
   return {
     restrict: 'E',
-    templateUrl: 'common/app-footer/template.html',
+    template: template,
   };
 
 }

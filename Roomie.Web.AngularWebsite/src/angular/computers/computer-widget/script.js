@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function computerWidget() {
 
   return {
@@ -6,7 +8,7 @@ function computerWidget() {
       computer: '=computer',
       showEdit: '=showEdit'
     },
-    templateUrl: 'computers/computer-widget/template.html'
+    template: template,
   };
 
 }

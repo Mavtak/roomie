@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function roomieBot() {
 
   return {
@@ -5,7 +7,7 @@ function roomieBot() {
     scope: {
       mood: '=mood',
     },
-    templateUrl: 'common/roomie-bot/template.html',
+    template: template,
   };
 
 }

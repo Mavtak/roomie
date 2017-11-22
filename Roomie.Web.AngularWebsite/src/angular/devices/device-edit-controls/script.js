@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function deviceEditControls(
   $http,
   deviceTypes
@@ -9,7 +11,7 @@ function deviceEditControls(
       device: '=device'
     },
     link: link,
-    templateUrl: 'devices/device-edit-controls/template.html'
+    template: template,
   };
 
   function link(scope) {

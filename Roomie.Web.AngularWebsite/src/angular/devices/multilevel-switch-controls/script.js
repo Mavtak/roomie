@@ -1,4 +1,6 @@
-﻿function multilevelSwitchControls(
+﻿import template from './template.html';
+
+function multilevelSwitchControls(
   MultilevelSwitchButtonGenerator
   ) {
 
@@ -8,7 +10,7 @@
       multilevelSwitch: '=multilevelSwitch'
     },
     link: link,
-    templateUrl: 'devices/multilevel-switch-controls/template.html',
+    template: template,
     };
 
   function link(scope) {

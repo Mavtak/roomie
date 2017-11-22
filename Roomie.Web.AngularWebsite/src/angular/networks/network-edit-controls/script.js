@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function networkEditControls(
   $http
 ) {
@@ -8,7 +10,7 @@ function networkEditControls(
       network: '=network'
     },
     link: link,
-    templateUrl: 'networks/network-edit-controls/template.html'
+    template: template,
   };
 
   function link(scope) {

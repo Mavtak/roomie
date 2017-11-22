@@ -1,4 +1,6 @@
-﻿function thermostatModeControls() {
+﻿import template from './template.html';
+
+function thermostatModeControls() {
 
   return {
     restrict: 'E',
@@ -7,7 +9,7 @@
       'modes': '=modes'
     },
     link: link,
-    templateUrl: 'devices/thermostat-mode-controls/template.html',
+    template: template,
   };
 
   function link(scope) {

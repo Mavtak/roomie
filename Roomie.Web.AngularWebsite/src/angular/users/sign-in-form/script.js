@@ -1,4 +1,6 @@
-﻿function signInForm() {
+﻿import template from './template.html';
+
+function signInForm() {
 
   return {
     restrict: 'E',
@@ -7,7 +9,7 @@
       username: '=username',
       submit: '=submit'
     },
-    templateUrl: 'users/sign-in-form/template.html',
+    template: template,
   };
 
 }

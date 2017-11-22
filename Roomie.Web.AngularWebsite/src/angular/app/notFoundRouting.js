@@ -1,9 +1,11 @@
+import notFoundTemplate from './not-found.html';
+
 function routing(
   $stateProvider,
   $urlRouterProvider
 ) {
   $stateProvider.state('not found', {
-    templateUrl: 'not-found.html',
+    template: notFoundTemplate,
   });
 
   $urlRouterProvider.otherwise(function ($injector) {

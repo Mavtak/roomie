@@ -1,4 +1,6 @@
-﻿function colorSwitchControls(
+﻿import template from './template.html';
+
+function colorSwitchControls(
   ColorSwitchButtonGenerator
 ) {
 
@@ -8,7 +10,7 @@
       colorSwitch: '=colorSwitch'
     },
     link: link,
-    templateUrl: 'devices/color-switch-controls/template.html',
+    template: template,
   };
 
   function link(scope) {

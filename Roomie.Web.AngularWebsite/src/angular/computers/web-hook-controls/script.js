@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function webHookControls(
   $http,
   $state,
@@ -9,7 +11,7 @@ function webHookControls(
     scope: {
       computer: '=computer'
     },
-    templateUrl: 'computers/web-hook-controls/template.html',
+    template: template,
     link: link
   };
 

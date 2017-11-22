@@ -1,4 +1,6 @@
-﻿function routing(
+﻿import indexTemplate from './index.html';
+
+function routing(
   $stateProvider
 ) {
 
@@ -6,7 +8,7 @@
     url: '/tasks?start&count',
     controller: 'TasksController',
     controllerAs: 'controller',
-    templateUrl: 'tasks.pages/index.html',
+    template: indexTemplate,
   });
 
 }

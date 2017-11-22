@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function appContentLoadingIndicator(
   wholePageStatus
 ) {
@@ -5,7 +7,7 @@ function appContentLoadingIndicator(
   return {
     restrict: 'E',
     link: link,
-    templateUrl: 'common/app-content-loading-indicator/template.html',
+    template: template,
   };
 
   function link(scope) {

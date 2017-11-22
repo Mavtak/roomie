@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function networkWidget(
   $http
 ) {
@@ -8,7 +10,7 @@ function networkWidget(
       network: '=network',
       showEdit: '=showEdit'
     },
-    templateUrl: 'networks/network-widget/template.html',
+    template: template,
     link: link,
   };
 

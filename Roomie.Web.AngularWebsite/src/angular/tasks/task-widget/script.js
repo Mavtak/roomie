@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function taskWidget() {
 
   return {
@@ -5,7 +7,7 @@ function taskWidget() {
     scope: {
       task: '=task'
     },
-    templateUrl: 'tasks/task-widget/template.html',
+    template: template,
   };
 
 }

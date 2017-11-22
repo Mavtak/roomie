@@ -1,4 +1,6 @@
-﻿function roomieApp(
+﻿import template from './template.html';
+
+function roomieApp(
   $timeout,
   $window,
   signInState,
@@ -8,7 +10,7 @@
   return {
     restrict: 'E',
     link: link,
-    templateUrl: 'common/roomie-app/template.html',
+    template: template,
   };
 
   function link(scope) {

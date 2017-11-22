@@ -1,9 +1,11 @@
-﻿function widgetDataSection() {
+﻿import template from './template.html';
+
+function widgetDataSection() {
 
   return {
     restrict: 'E',
     transclude: true,
-    templateUrl: 'common/widget-data-section/template.html',
+    template: template,
   };
 
 }

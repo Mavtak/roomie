@@ -1,3 +1,5 @@
+import template from './template.html';
+
 function runScriptControls(
   $http
 ) {
@@ -7,7 +9,7 @@ function runScriptControls(
     scope: {
       computer: '=computer'
     },
-    templateUrl: 'computers/run-script-controls/template.html',
+    template: template,
     link: link
   };
 

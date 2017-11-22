@@ -1,4 +1,7 @@
-﻿function routing(
+﻿import signInTemplate from './sign-in.html';
+import signOutTemplate from './sign-out.html';
+
+function routing(
   $stateProvider
 ) {
 
@@ -6,13 +9,13 @@
     url: '/sign-in',
     controller: 'SignInController',
     controllerAs: 'controller',
-    templateUrl: 'users.pages/sign-in.html'
+    template: signInTemplate,
   });
 
   $stateProvider.state('sign-out', {
     url: '/sign-out',
     controller: 'SignOutController',
-    templateUrl: 'users.pages/sign-out.html'
+    template: signOutTemplate,
   });
 
 }
