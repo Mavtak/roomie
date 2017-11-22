@@ -86,19 +86,22 @@
 
     beforeEach(function () {
       $httpBackend.when('POST', '/api/derp')
-        .respond(500, {
-          something: 'a message maybe'
+        .respond(200, {
+            error: {
+              something: 'a message maybe'
+            }
         });
     });
 
     describe('when the processErrors option is not set', function () {
 
-      it('does not break', function () {
+      it('does not break', function (done) {
           var manualPoller = new ManualPoller({
             repository: 'derp',
           });
 
-          manualPoller.run();
+          manualPoller.run()
+            .catch(done);
 
           $httpBackend.flush();
       });

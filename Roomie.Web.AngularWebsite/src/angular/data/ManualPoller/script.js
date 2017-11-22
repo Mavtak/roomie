@@ -14,15 +14,16 @@
       var result = $http.post('/api/' + repository, {
         action: 'list',
         parameters: filter,
-      });
+      }).then(function (response) {
+        if (processErrors && response.data.error) {
+          return processErrors(response.data.error);
+        }
 
-      if (processErrors) {
-        result = result.error(processErrors);
-      }
+        var body = selectHttpBody(response);
+        var items = selectItems(body);
 
-      result = result
-        .then(selectHttpBody)
-        .then(selectItems);
+        return items;
+      });      
 
       return result;
     };
