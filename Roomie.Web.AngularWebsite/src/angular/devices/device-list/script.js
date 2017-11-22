@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('deviceList', function () {
+﻿function deviceList() {
 
   return {
     restrict: 'E',
@@ -26,4 +26,6 @@
     }
   }
 
-});
+}
+
+export default deviceList;

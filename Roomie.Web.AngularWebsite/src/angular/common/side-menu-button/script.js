@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('sideMenuButton', function () {
+﻿function sideMenuButton() {
 
   return {
     restrict: 'E',
@@ -25,4 +25,6 @@
     }
   }
 
-});
+}
+
+export default sideMenuButton;

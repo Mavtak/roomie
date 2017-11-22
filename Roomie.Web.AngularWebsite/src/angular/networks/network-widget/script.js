@@ -1,4 +1,4 @@
-angular.module('roomie.networks').directive('networkWidget', function (
+function networkWidget(
   $http
 ) {
 
@@ -35,4 +35,6 @@ angular.module('roomie.networks').directive('networkWidget', function (
     }
   }
 
-});
+}
+
+export default networkWidget;

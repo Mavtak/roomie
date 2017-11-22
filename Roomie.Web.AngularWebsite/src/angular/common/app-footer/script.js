@@ -1,8 +1,10 @@
-﻿angular.module('roomie.common').directive('appFooter', function () {
+﻿function appFooter() {
 
   return {
     restrict: 'E',
     templateUrl: 'common/app-footer/template.html',
   };
 
-});
+}
+
+export default appFooter;

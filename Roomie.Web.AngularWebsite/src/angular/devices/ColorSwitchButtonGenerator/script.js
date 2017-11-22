@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').factory('ColorSwitchButtonGenerator', function (
+﻿function ColorSwitchButtonGenerator(
   RainbowColorsGenerator
 ) {
 
@@ -27,4 +27,6 @@
     };
   }
 
-});
+}
+
+export default ColorSwitchButtonGenerator;

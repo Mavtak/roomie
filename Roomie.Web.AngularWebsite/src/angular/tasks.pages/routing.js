@@ -1,4 +1,4 @@
-﻿angular.module('roomie.tasks.pages').config(function (
+﻿function routing(
   $stateProvider
 ) {
 
@@ -9,4 +9,6 @@
     templateUrl: 'tasks.pages/index.html',
   });
 
-});
+}
+
+export default routing;

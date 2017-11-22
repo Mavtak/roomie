@@ -1,4 +1,4 @@
-angular.module('roomie.devices.data').factory('AutomaticPollingDeviceListing', function (
+function AutomaticPollingDeviceListing(
   AutomaticPollingUpdater,
   deviceUtilities,
   signInState,
@@ -76,4 +76,6 @@ angular.module('roomie.devices.data').factory('AutomaticPollingDeviceListing', f
     }
   }
 
-});
+}
+
+export default AutomaticPollingDeviceListing;

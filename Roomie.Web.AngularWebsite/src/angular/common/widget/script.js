@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('widget', function () {
+﻿function widget() {
 
   return {
     restrict: 'E',
@@ -6,4 +6,6 @@
     templateUrl: 'common/widget/template.html',
   };
 
-});
+};
+
+export default widget;

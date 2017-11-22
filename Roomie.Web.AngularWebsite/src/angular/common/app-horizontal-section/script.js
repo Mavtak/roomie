@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('appHorizontalSection', function () {
+﻿function appHorizontalSection() {
 
   return {
     restrict: 'E',
@@ -9,4 +9,6 @@
     templateUrl: 'common/app-horizontal-section/template.html',
   };
 
-});
+}
+
+export default appHorizontalSection;

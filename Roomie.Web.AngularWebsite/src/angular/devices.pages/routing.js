@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices.pages').config(function (
+﻿function routing(
   $stateProvider
 ) {
 
@@ -16,4 +16,6 @@
     templateUrl: 'devices.pages/detail.html'
   });
 
-});
+}
+
+export default routing;

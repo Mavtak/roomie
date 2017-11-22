@@ -1,6 +1,4 @@
-//TODO: update nested controlers to not rely on root scope
-angular.module('roomie.common').directive('appContent', function () {
-
+function appContent() {
   return {
     restrict: 'E',
     replace: true,
@@ -23,4 +21,6 @@ angular.module('roomie.common').directive('appContent', function () {
     }
   }
 
-});
+}
+
+export default appContent;

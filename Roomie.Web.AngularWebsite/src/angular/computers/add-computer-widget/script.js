@@ -1,4 +1,4 @@
-angular.module('roomie.computers').directive('addComputerWidget', function (
+function addComputerWidget(
   $http
 ) {
 
@@ -21,4 +21,6 @@ angular.module('roomie.computers').directive('addComputerWidget', function (
     }
   }
 
-});
+}
+
+export default addComputerWidget;

@@ -1,4 +1,4 @@
-angular.module('roomie.computers').directive('computerWidget', function () {
+function computerWidget() {
 
   return {
     restrict: 'E',
@@ -9,4 +9,6 @@ angular.module('roomie.computers').directive('computerWidget', function () {
     templateUrl: 'computers/computer-widget/template.html'
   };
 
-});
+}
+
+export default computerWidget;

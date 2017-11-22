@@ -1,4 +1,4 @@
-﻿angular.module('roomie.users.pages').config(function (
+﻿function routing(
   $stateProvider
 ) {
 
@@ -15,4 +15,6 @@
     templateUrl: 'users.pages/sign-out.html'
   });
 
-});
+}
+
+export default routing;

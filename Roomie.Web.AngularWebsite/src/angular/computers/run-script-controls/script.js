@@ -1,4 +1,4 @@
-angular.module('roomie.computers').directive('runScriptControls', function (
+function runScriptControls(
   $http
 ) {
 
@@ -44,4 +44,6 @@ angular.module('roomie.computers').directive('runScriptControls', function (
     });
   }
 
-});
+}
+
+export default runScriptControls;

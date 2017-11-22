@@ -1,4 +1,4 @@
-﻿angular.module('roomie.data').factory('ManualPollingUpdater', function (
+﻿function ManualPollingUpdater(
   ManualPoller,
   ManualUpdater
 ) {
@@ -15,4 +15,6 @@
     };
   }
 
-});
+}
+
+export default ManualPollingUpdater;

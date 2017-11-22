@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('binarySensorControls', function () {
+﻿function binarySensorControls() {
 
   return {
     restrict: 'E',
@@ -30,4 +30,6 @@
     return sensor.value ? 'True' : 'False';
   }
 
-});
+}
+
+export default binarySensorControls;

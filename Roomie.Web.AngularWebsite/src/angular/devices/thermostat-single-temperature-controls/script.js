@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('thermostatSingleTemperatureControls', function (
+﻿function thermostatSingleTemperatureControls(
   getNewModeToToggleSetpoint
 ) {
 
@@ -69,4 +69,6 @@
     return result;
   }
 
-});
+}
+
+export default thermostatSingleTemperatureControls;

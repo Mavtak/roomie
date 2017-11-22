@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('widgetHeader', function () {
+﻿function widgetHeader() {
 
   return {
     restrict: 'E',
@@ -11,4 +11,6 @@
     templateUrl: 'common/widget-header/template.html',
   };
 
-});
+};
+
+export default widgetHeader;

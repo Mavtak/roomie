@@ -1,4 +1,4 @@
-﻿angular.module('roomie.data').factory('ManualUpdater', function () {
+﻿function ManualUpdater() {
 
   return ManualUpdater;
 
@@ -50,4 +50,6 @@
     }
   }
 
-});
+}
+
+export default ManualUpdater;

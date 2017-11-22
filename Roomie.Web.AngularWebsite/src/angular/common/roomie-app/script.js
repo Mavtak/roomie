@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('roomieApp', function (
+﻿function roomieApp(
   $timeout,
   $window,
   signInState,
@@ -97,4 +97,6 @@
     }
   }
 
-});
+};
+
+export default roomieApp;

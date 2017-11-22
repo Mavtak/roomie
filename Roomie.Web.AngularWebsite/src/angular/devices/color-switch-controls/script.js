@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('colorSwitchControls', function (
+﻿function colorSwitchControls(
   ColorSwitchButtonGenerator
 ) {
 
@@ -23,4 +23,6 @@
     }
   }
 
-});
+}
+
+export default colorSwitchControls;

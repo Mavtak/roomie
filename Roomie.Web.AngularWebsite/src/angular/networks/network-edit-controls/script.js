@@ -1,4 +1,4 @@
-angular.module('roomie.networks').directive('networkEditControls', function (
+function networkEditControls(
   $http
 ) {
 
@@ -35,4 +35,6 @@ angular.module('roomie.networks').directive('networkEditControls', function (
     });
   }
 
-});
+}
+
+export default networkEditControls;

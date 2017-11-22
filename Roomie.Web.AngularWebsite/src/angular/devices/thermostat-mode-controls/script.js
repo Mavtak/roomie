@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('thermostatModeControls', function () {
+﻿function thermostatModeControls() {
 
   return {
     restrict: 'E',
@@ -29,4 +29,6 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-});
+}
+
+export default thermostatModeControls;

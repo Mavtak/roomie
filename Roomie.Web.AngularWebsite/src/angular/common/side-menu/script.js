@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('sideMenu', function (
+﻿function sideMenu(
   $window
 ) {
 
@@ -51,4 +51,6 @@
     }
   }
 
-});
+}
+
+export default sideMenu;

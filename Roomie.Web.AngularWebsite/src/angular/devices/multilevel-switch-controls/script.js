@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('multilevelSwitchControls', function (
+﻿function multilevelSwitchControls(
   MultilevelSwitchButtonGenerator
   ) {
 
@@ -23,4 +23,6 @@
     }
   }
 
-});
+}
+
+export default multilevelSwitchControls;

@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('widgetButtonGroup', function () {
+﻿function widgetButtonGroup() {
 
   return {
     restrict: 'E',
@@ -6,4 +6,6 @@
     templateUrl: 'common/widget-button-group/template.html',
   };
 
-});
+}
+
+export default widgetButtonGroup;

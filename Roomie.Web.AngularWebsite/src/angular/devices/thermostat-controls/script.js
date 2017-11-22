@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('thermostatControls', function () {
+﻿function thermostatControls() {
 
   return {
     restrict: 'E',
@@ -9,4 +9,6 @@
     templateUrl: 'devices/thermostat-controls/template.html',
   };
 
-});
+}
+
+export default thermostatControls;

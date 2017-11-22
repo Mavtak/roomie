@@ -1,4 +1,4 @@
-angular.module('roomie.common').directive('appContentLoadingIndicator', function (
+function appContentLoadingIndicator(
   wholePageStatus
 ) {
 
@@ -12,4 +12,6 @@ angular.module('roomie.common').directive('appContentLoadingIndicator', function
     scope.wholePageStatus = wholePageStatus;
   }
 
-});
+}
+
+export default appContentLoadingIndicator;

@@ -1,4 +1,4 @@
-﻿angular.module('roomie.users').directive('signInForm', function () {
+﻿function signInForm() {
 
   return {
     restrict: 'E',
@@ -10,4 +10,6 @@
     templateUrl: 'users/sign-in-form/template.html',
   };
 
-});
+}
+
+export default signInForm;

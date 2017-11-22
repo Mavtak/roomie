@@ -1,4 +1,4 @@
-﻿angular.module('roomie.data').factory('ManualPoller', function (
+﻿function ManualPoller(
   $http
 ) {
 
@@ -37,4 +37,6 @@
     }
   }
 
-});
+}
+
+export default ManualPoller;

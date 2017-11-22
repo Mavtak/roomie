@@ -1,4 +1,4 @@
-angular.module('roomie.common').directive('roomieBot', function () {
+function roomieBot() {
 
   return {
     restrict: 'E',
@@ -8,4 +8,6 @@ angular.module('roomie.common').directive('roomieBot', function () {
     templateUrl: 'common/roomie-bot/template.html',
   };
 
-});
+}
+
+export default roomieBot;

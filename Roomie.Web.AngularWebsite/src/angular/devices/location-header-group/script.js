@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('locationHeaderGroup', function (
+﻿function locationHeaderGroup(
   LocationHeaderLabelGenerator
 ) {
 
@@ -17,4 +17,6 @@
     scope.parts = labelGenerator.getParts();
   }
 
-});
+}
+
+export default locationHeaderGroup;

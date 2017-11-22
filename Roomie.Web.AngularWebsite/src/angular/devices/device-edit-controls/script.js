@@ -1,4 +1,4 @@
-angular.module('roomie.devices').directive('deviceEditControls', function (
+function deviceEditControls(
   $http,
   deviceTypes
 ) {
@@ -37,4 +37,6 @@ angular.module('roomie.devices').directive('deviceEditControls', function (
     };
   }
 
-});
+}
+
+export default deviceEditControls;

@@ -1,4 +1,4 @@
-angular.module('roomie.common').factory('wholePageStatus', function () {
+function wholePageStatus() {
 
   return new WholePageLoaderControls();
 
@@ -19,4 +19,6 @@ angular.module('roomie.common').factory('wholePageStatus', function () {
     };
   }
 
-});
+}
+
+export default wholePageStatus;

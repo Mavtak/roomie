@@ -1,4 +1,4 @@
-angular.module('roomie.common').factory('signInState', function () {
+function signInState() {
   return new SignInState();
 
   function SignInState() {
@@ -21,4 +21,6 @@ angular.module('roomie.common').factory('signInState', function () {
     }
   }
 
-});
+}
+
+export default signInState;

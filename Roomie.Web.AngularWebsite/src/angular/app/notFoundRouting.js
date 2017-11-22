@@ -1,4 +1,4 @@
-angular.module('roomie.app').config(function (
+function routing(
   $stateProvider,
   $urlRouterProvider
 ) {
@@ -14,4 +14,6 @@ angular.module('roomie.app').config(function (
     });
   });
 
-});
+}
+
+export default routing;

@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('thermostatTemperatureControls', function (
+﻿function thermostatTemperatureControls(
   getNewModeToToggleSetpoint
 ) {
 
@@ -47,4 +47,6 @@
     }
   }
 
-});
+}
+
+export default thermostatTemperatureControls;

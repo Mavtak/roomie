@@ -1,4 +1,4 @@
-angular.module('roomie.computers').directive('webHookControls', function (
+function webHookControls(
   $http,
   $state,
   $window
@@ -54,4 +54,6 @@ angular.module('roomie.computers').directive('webHookControls', function (
     }
   }
 
-});
+}
+
+export default webHookControls;

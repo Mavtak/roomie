@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('currentActionControls', function () {
+﻿function currentActionControls() {
 
   return {
     restrict: 'E',
@@ -8,4 +8,6 @@
     templateUrl: 'devices/current-action-controls/template.html',
   };
 
-});
+}
+
+export default currentActionControls;

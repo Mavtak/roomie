@@ -1,4 +1,4 @@
-angular.module('roomie.users.pages').controller('SignOutController', function (
+function SignOutController(
   $http,
   $state,
   signInState,
@@ -25,4 +25,6 @@ angular.module('roomie.users.pages').controller('SignOutController', function (
     $http.delete(path).then(handleSuccessResponse, handleErrorResponse);
   }
 
-});
+}
+
+export default SignOutController;

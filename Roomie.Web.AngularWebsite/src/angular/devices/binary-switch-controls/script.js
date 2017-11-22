@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').directive('binarySwitchControls', function () {
+﻿function binarySwitchControls() {
 
   return {
     restrict: 'E',
@@ -8,4 +8,6 @@
     templateUrl: 'devices/binary-switch-controls/template.html',
   };
 
-});
+}
+
+export default binarySwitchControls;

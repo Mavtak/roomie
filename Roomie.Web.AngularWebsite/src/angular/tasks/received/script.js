@@ -1,4 +1,4 @@
-﻿angular.module('roomie.tasks').filter('received', function () {
+﻿function received() {
 
   return function (task) {
     if (task.receivedTimestamp) {
@@ -12,4 +12,6 @@
     return '';
   };
 
-});
+}
+
+export default received;

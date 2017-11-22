@@ -1,4 +1,4 @@
-angular.module('roomie.devices.data').factory('devices', function (
+function devices(
   AutomaticPollingDeviceListing
 ) {
 
@@ -10,4 +10,6 @@ angular.module('roomie.devices.data').factory('devices', function (
 
   return result;
 
-});
+}
+
+export default devices;

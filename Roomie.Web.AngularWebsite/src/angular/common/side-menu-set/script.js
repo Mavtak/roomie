@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('sideMenuSet', function () {
+﻿function sideMenuSet() {
 
   return {
     restrict: 'E',
@@ -30,4 +30,6 @@
     }
   }
 
-});
+}
+
+export default sideMenuSet;

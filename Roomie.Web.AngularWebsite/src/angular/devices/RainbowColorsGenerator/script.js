@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').factory('RainbowColorsGenerator', function () {
+﻿function RainbowColorsGenerator() {
 
   return RainbowColorsGenerator;
 
@@ -35,4 +35,6 @@
     };
   }
 
-});
+}
+
+export default RainbowColorsGenerator;

@@ -1,4 +1,4 @@
-angular.module('roomie.tasks').directive('taskWidget', function () {
+function taskWidget() {
 
   return {
     restrict: 'E',
@@ -8,4 +8,6 @@ angular.module('roomie.tasks').directive('taskWidget', function () {
     templateUrl: 'tasks/task-widget/template.html',
   };
 
-});
+}
+
+export default taskWidget;

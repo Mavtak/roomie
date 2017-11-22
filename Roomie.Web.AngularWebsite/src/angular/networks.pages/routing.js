@@ -1,4 +1,4 @@
-angular.module('roomie.networks.pages').config(function (
+function routing(
   $stateProvider
 ) {
 
@@ -16,4 +16,6 @@ angular.module('roomie.networks.pages').config(function (
     templateUrl: 'networks.pages/detail.html',
   });
 
-});
+}
+
+export default routing;

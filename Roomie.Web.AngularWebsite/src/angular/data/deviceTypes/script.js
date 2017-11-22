@@ -1,4 +1,4 @@
-angular.module('roomie.data').value('deviceTypes', [
+let deviceTypes = [
   'Binary Sensor',
   'Binary Switch',
   'Controller',
@@ -8,4 +8,6 @@ angular.module('roomie.data').value('deviceTypes', [
   'Multilevel Switch',
   'Relay',
   'Thermostat',
-]);
+];
+
+export default deviceTypes;

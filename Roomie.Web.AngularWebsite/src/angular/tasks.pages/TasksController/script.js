@@ -1,4 +1,4 @@
-﻿angular.module('roomie.tasks.pages').controller('TasksController', function (
+﻿function TasksController(
   $http,
   $state,
   ManualPollingUpdater,
@@ -80,4 +80,6 @@
     }
   }
 
-});
+}
+
+export default TasksController;

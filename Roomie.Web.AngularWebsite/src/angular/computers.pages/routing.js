@@ -1,4 +1,4 @@
-angular.module('roomie.computers.pages').config(function (
+function routing(
   $stateProvider
 ) {
 
@@ -16,4 +16,6 @@ angular.module('roomie.computers.pages').config(function (
     templateUrl: 'computers.pages/detail.html',
   });
 
-});
+}
+
+export default routing;

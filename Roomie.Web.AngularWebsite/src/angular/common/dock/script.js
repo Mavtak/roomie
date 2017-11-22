@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('dock', function () {
+﻿function dock() {
 
   return {
     transclude: true,
@@ -28,4 +28,6 @@
     }
   }
 
-});
+}
+
+export default dock;

@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('widgetDataSection', function () {
+﻿function widgetDataSection() {
 
   return {
     restrict: 'E',
@@ -6,4 +6,6 @@
     templateUrl: 'common/widget-data-section/template.html',
   };
 
-});
+}
+
+export default widgetDataSection;

@@ -1,4 +1,4 @@
-angular.module('roomie.help.pages').config(function (
+function routing(
   $stateProvider
   ) {
 
@@ -29,4 +29,6 @@ angular.module('roomie.help.pages').config(function (
     templateUrl: 'help.pages/hardware.html'
   });
 
-});
+}
+
+export default routing;

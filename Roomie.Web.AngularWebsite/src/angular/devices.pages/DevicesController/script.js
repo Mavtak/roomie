@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices.pages').controller('DevicesController', function (
+﻿function DevicesController(
   $http,
   $scope,
   $state,
@@ -135,4 +135,6 @@
     }
   }
 
-});
+}
+
+export default DevicesController;

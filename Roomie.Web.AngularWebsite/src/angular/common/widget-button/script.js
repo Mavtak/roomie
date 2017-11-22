@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').directive('widgetButton', function () {
+﻿function widgetButton() {
 
   return {
     restrict: 'E',
@@ -24,4 +24,6 @@
     }
   }
 
-});
+};
+
+export default widgetButton;
