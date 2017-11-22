@@ -12,6 +12,16 @@ module.exports = {
   module: {  
     rules: [
       {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            minimize: true,
+            conservativeCollapse: false,
+          },
+        },
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
