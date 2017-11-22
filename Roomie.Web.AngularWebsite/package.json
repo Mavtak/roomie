@@ -25,6 +25,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.5",
+    "html-loader": "^0.5.1",
     "jasmine-core": "^2.3.4",
     "jquery": "^2.1.4",
     "karma": "^0.13.9",
