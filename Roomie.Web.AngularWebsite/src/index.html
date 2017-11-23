@@ -115,8 +115,6 @@
             path: '/style.css?v=i-should-automate-this',
             type: 'style',
           },
-          'script':   {},
-          'templates':   {},
         });
 
         appLoader.run();
@@ -252,20 +250,6 @@
       src="/content/scripts/libraries/angular-ui-router-0.2.13.min.js"
       onload="updateLoadStatus('angular-ui-router', 'success')"
       onerror="updateLoadStatus('angular-ui-router', 'error')"
-      >
-    </script>
-    <script
-      type="text/javascript"
-      src="/script.js"
-      onload="updateLoadStatus('script', 'success')"
-      onerror="updateLoadStatus('script', 'error')"
-      >
-    </script>
-    <script
-      type="text/javascript"
-      src="/templates.js"
-      onload="updateLoadStatus('templates', 'success')"
-      onerror="updateLoadStatus('templates', 'error')"
       >
     </script>
   </body>
