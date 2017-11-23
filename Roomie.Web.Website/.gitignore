@@ -1,7 +1,6 @@
 /index.html
 /*.Publish.xml
-/script.js
-/script.js.map
-/style.css
+/app.js
+/app.js.map
 /templates.js
 *.pubxml
