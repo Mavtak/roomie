@@ -1,4 +1,4 @@
-angular.module('roomie.help.pages').controller('CommandDocumentationController', function (
+function CommandDocumentationController(
   $http,
   wholePageStatus
 ) {
@@ -16,4 +16,6 @@ angular.module('roomie.help.pages').controller('CommandDocumentationController',
       wholePageStatus.set('ready');
     });
 
-});
+}
+
+export default CommandDocumentationController;

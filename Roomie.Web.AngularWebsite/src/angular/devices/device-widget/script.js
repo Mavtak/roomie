@@ -1,4 +1,6 @@
-﻿angular.module('roomie.devices').directive('deviceWidget', function () {
+﻿import template from './template.html';
+
+function deviceWidget() {
 
   return {
     restrict: 'E',
@@ -6,7 +8,7 @@
       device: '=device',
       showEdit: '=showEdit'
     },
-    templateUrl: 'devices/device-widget/template.html',
+    template: template,
     link: link
   };
 
@@ -24,4 +26,6 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-});
+}
+
+export default deviceWidget;

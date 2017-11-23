@@ -1,4 +1,6 @@
-﻿angular.module('roomie.common').directive('dock', function () {
+﻿import template from './template.html';
+
+function dock() {
 
   return {
     transclude: true,
@@ -8,7 +10,7 @@
       pixelHeight: '=?pixelHeight'
     },
     link: link,
-    templateUrl: 'common/dock/template.html',
+    template: template,
   };
 
   function link(scope, element) {
@@ -28,4 +30,6 @@
     }
   }
 
-});
+}
+
+export default dock;

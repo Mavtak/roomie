@@ -1,4 +1,4 @@
-var paths = require('./paths');
+let webpackConfig = require('./webpack.config.js');
 
 module.exports = function (config) {
   config.set({
@@ -6,11 +6,21 @@ module.exports = function (config) {
       'jasmine',
     ],
     preprocessors: {
-      'src/angular/**/*.html': [
-        'ng-html2js',
-      ],
+      'src/**/*.js': ['webpack']
     },
-    files: paths.tests.in,
+    webpack: webpackConfig,
+    files: [
+      'node_modules/angular/angular.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/angular-ui-router/release/angular-ui-router.js',
+      'node_modules/jquery/dist/jquery.js',
+      'node_modules/lodash/index.js',
+      'src/index.js',
+      {
+        pattern: 'src/**/*.spec.js',
+        watched: false,
+      },
+    ],
     reports: [
       'spec',
     ],

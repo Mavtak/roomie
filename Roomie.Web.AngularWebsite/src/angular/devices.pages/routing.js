@@ -1,4 +1,7 @@
-﻿angular.module('roomie.devices.pages').config(function (
+﻿import detailTemplate from './detail.html';
+import indexTemplate from './index.html';
+
+function routing(
   $stateProvider
 ) {
 
@@ -6,14 +9,16 @@
     url: '/devices?examples&location',
     controller: 'DevicesController',
     controllerAs: 'controller',
-    templateUrl: 'devices.pages/index.html'
+    template: indexTemplate,
   });
 
   $stateProvider.state('device detail', {
     url: '/devices/:id',
     controller: 'DevicesController',
     controllerAs: 'controller',
-    templateUrl: 'devices.pages/detail.html'
+    template: detailTemplate,
   });
 
-});
+}
+
+export default routing;

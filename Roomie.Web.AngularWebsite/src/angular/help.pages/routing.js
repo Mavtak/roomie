@@ -1,32 +1,40 @@
-angular.module('roomie.help.pages').config(function (
+import aboutTemplate from './about.html';
+import commandDocumentationTemplate from './command-documentation.html';
+import deviceAddressesTemplate from './device-addresses.html';
+import hardwareTemplate from './hardware.html';
+import indexTemplate from './index.html';
+
+function routing(
   $stateProvider
   ) {
 
   $stateProvider.state('help', {
     url: '/help',
-    templateUrl: 'help.pages/index.html'
+    template: indexTemplate,
   });
 
   $stateProvider.state('help/about', {
     url: '/help/about',
-    templateUrl: 'help.pages/about.html'
+    template: aboutTemplate,
   });
 
   $stateProvider.state('/help/command-documentation', {
     url: '/help/command-documentation',
     controller: 'CommandDocumentationController',
     controllerAs: 'controller',
-    templateUrl: 'help.pages/command-documentation.html'
+    template: commandDocumentationTemplate,
   });
 
   $stateProvider.state('help/device-addresses', {
     url: '/help/device-addresses',
-    templateUrl: 'help.pages/device-addresses.html'
+    template: deviceAddressesTemplate,
   });
 
   $stateProvider.state('help/hardware', {
     url: '/help/hardware',
-    templateUrl: 'help.pages/hardware.html'
+    template: hardwareTemplate,
   });
 
-});
+}
+
+export default routing;

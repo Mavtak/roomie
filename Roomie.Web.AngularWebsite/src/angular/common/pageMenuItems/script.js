@@ -1,4 +1,4 @@
-﻿angular.module('roomie.common').factory('pageMenuItems', function () {
+﻿function pageMenuItems() {
 
   return new PageMenuItems();
 
@@ -26,4 +26,6 @@
     };
   }
 
-});
+};
+
+export default pageMenuItems;

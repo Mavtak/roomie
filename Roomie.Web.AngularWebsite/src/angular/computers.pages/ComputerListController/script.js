@@ -1,4 +1,4 @@
-angular.module('roomie.computers.pages').controller('ComputerListController', function (
+function ComputerListController(
   $http,
   pageMenuItems,
   signInState,
@@ -33,4 +33,6 @@ angular.module('roomie.computers.pages').controller('ComputerListController', fu
 
       //TODO: handle other errors
     });
-});
+}
+
+export default ComputerListController;

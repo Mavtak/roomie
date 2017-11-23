@@ -1,11 +1,15 @@
-﻿angular.module('roomie.devices').directive('currentActionControls', function () {
+﻿import template from './template.html';
+
+function currentActionControls() {
 
   return {
     restrict: 'E',
     scope: {
       currentAction: '=currentAction'
     },
-    templateUrl: 'devices/current-action-controls/template.html',
+    template: template,
   };
 
-});
+}
+
+export default currentActionControls;

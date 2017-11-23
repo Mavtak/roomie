@@ -1,4 +1,6 @@
-﻿angular.module('roomie.common').directive('appHeader', function (
+﻿import template from './template.html';
+
+function appHeader(
   pageMenuItems
 ) {
 
@@ -9,11 +11,13 @@
       pageMenu: '=pageMenu',
     },
     link: link,
-    templateUrl: 'common/app-header/template.html',
+    template: template,
   };
 
   function link(scope) {
     scope.pageMenuItems = pageMenuItems;
   }
 
-});
+};
+
+export default appHeader;

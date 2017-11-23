@@ -1,4 +1,4 @@
-﻿angular.module('roomie.users.pages').controller('SignInController', function (
+﻿function SignInController(
   $http,
   $scope,
   $state,
@@ -38,4 +38,6 @@
     $http.post(path).then(handleSuccessResponse, handleErrorResponse);
   }
 
-});
+}
+
+export default SignInController;

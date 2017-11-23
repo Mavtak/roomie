@@ -1,4 +1,7 @@
-angular.module('roomie.networks.pages').config(function (
+import detailTemplate from './detail.html';
+import indexTemplate from './index.html';
+
+function routing(
   $stateProvider
 ) {
 
@@ -6,14 +9,16 @@ angular.module('roomie.networks.pages').config(function (
     url: '/networks',
     controller: 'NetworkListController',
     controllerAs: 'controller',
-    templateUrl: 'networks.pages/index.html',
+    template: indexTemplate,
   });
 
   $stateProvider.state('network detail', {
     url: '/networks/:id',
     controller: 'NetworkDetailController',
     controllerAs: 'controller',
-    templateUrl: 'networks.pages/detail.html',
+    template: detailTemplate,
   });
 
-});
+}
+
+export default routing;

@@ -1,4 +1,6 @@
-﻿angular.module('roomie.common').directive('keyValue', function () {
+﻿import template from './template.html';
+
+function keyValue() {
 
   return {
     restrict: 'E',
@@ -8,7 +10,9 @@
       href: '@href',
       fullWidth: '=fullWidth'
     },
-    templateUrl: 'common/key-value/template.html',
+    template: template,
   };
 
-});
+};
+
+export default keyValue;

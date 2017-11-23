@@ -1,4 +1,6 @@
-angular.module('roomie.devices').directive('deviceEditControls', function (
+import template from './template.html';
+
+function deviceEditControls(
   $http,
   deviceTypes
 ) {
@@ -9,7 +11,7 @@ angular.module('roomie.devices').directive('deviceEditControls', function (
       device: '=device'
     },
     link: link,
-    templateUrl: 'devices/device-edit-controls/template.html'
+    template: template,
   };
 
   function link(scope) {
@@ -37,4 +39,6 @@ angular.module('roomie.devices').directive('deviceEditControls', function (
     };
   }
 
-});
+}
+
+export default deviceEditControls;

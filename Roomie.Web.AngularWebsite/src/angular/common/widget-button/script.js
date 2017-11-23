@@ -1,4 +1,6 @@
-﻿angular.module('roomie.common').directive('widgetButton', function () {
+﻿import template from './template.html';
+
+function widgetButton() {
 
   return {
     restrict: 'E',
@@ -9,7 +11,7 @@
       color: "@color"
     },
     link: link,
-    templateUrl: 'common/widget-button/template.html',
+    template: template,
   };
 
   function link(scope) {
@@ -24,4 +26,6 @@
     }
   }
 
-});
+};
+
+export default widgetButton;

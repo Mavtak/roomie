@@ -1,11 +1,15 @@
-angular.module('roomie.common').directive('roomieBot', function () {
+import template from './template.html';
+
+function roomieBot() {
 
   return {
     restrict: 'E',
     scope: {
       mood: '=mood',
     },
-    templateUrl: 'common/roomie-bot/template.html',
+    template: template,
   };
 
-});
+}
+
+export default roomieBot;

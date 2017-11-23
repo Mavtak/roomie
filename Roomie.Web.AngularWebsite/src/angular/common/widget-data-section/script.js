@@ -1,9 +1,13 @@
-﻿angular.module('roomie.common').directive('widgetDataSection', function () {
+﻿import template from './template.html';
+
+function widgetDataSection() {
 
   return {
     restrict: 'E',
     transclude: true,
-    templateUrl: 'common/widget-data-section/template.html',
+    template: template,
   };
 
-});
+}
+
+export default widgetDataSection;

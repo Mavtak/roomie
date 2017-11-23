@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').factory('MultilevelSwitchButtonGenerator', function () {
+﻿function MultilevelSwitchButtonGenerator() {
 
   return MultilevelSwitchButtonGenerator;
 
@@ -52,4 +52,6 @@
     }
   }
 
-});
+}
+
+export default MultilevelSwitchButtonGenerator;

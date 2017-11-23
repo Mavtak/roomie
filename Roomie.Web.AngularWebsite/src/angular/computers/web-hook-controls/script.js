@@ -1,4 +1,6 @@
-angular.module('roomie.computers').directive('webHookControls', function (
+import template from './template.html';
+
+function webHookControls(
   $http,
   $state,
   $window
@@ -9,7 +11,7 @@ angular.module('roomie.computers').directive('webHookControls', function (
     scope: {
       computer: '=computer'
     },
-    templateUrl: 'computers/web-hook-controls/template.html',
+    template: template,
     link: link
   };
 
@@ -54,4 +56,6 @@ angular.module('roomie.computers').directive('webHookControls', function (
     }
   }
 
-});
+}
+
+export default webHookControls;

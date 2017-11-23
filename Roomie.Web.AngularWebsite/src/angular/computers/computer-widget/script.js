@@ -1,4 +1,6 @@
-angular.module('roomie.computers').directive('computerWidget', function () {
+import template from './template.html';
+
+function computerWidget() {
 
   return {
     restrict: 'E',
@@ -6,7 +8,9 @@ angular.module('roomie.computers').directive('computerWidget', function () {
       computer: '=computer',
       showEdit: '=showEdit'
     },
-    templateUrl: 'computers/computer-widget/template.html'
+    template: template,
   };
 
-});
+}
+
+export default computerWidget;

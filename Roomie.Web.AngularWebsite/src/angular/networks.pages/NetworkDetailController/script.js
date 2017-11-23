@@ -1,4 +1,4 @@
-angular.module('roomie.networks.pages').controller('NetworkDetailController', function (
+function NetworkDetailController(
   $http,
   $state,
   pageMenuItems,
@@ -37,4 +37,6 @@ angular.module('roomie.networks.pages').controller('NetworkDetailController', fu
 
       //TODO: handle other errors
     });
-});
+}
+
+export default NetworkDetailController;

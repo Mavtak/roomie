@@ -1,8 +1,12 @@
-angular.module('roomie.common').directive('widgetDisconnectedIcon', function () {
+import template from './template.html';
+
+function widgetDisconnectedIcon() {
 
   return {
     restrict: 'E',
-    templateUrl: 'common/widget-disconnected-icon/template.html',
+    template: template,
   };
 
-});
+}
+
+export default widgetDisconnectedIcon;

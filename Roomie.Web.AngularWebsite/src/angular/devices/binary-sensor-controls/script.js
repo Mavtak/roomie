@@ -1,4 +1,6 @@
-﻿angular.module('roomie.devices').directive('binarySensorControls', function () {
+﻿import template from './template.html';
+
+function binarySensorControls() {
 
   return {
     restrict: 'E',
@@ -7,7 +9,7 @@
       sensor: '=sensor'
     },
     link: link,
-    templateUrl: 'devices/binary-sensor-controls/template.html',
+    template: template,
   };
 
   function link(scope) {
@@ -30,4 +32,6 @@
     return sensor.value ? 'True' : 'False';
   }
 
-});
+}
+
+export default binarySensorControls;

@@ -1,4 +1,4 @@
-﻿angular.module('roomie.devices').factory('LocationHeaderLabelGenerator', function () {
+﻿function LocationHeaderLabelGenerator() {
 
   return function LocationHeaderLabelGenerator(previousLocation, currentLocation) {
     this.getParts = function () {
@@ -47,4 +47,6 @@
     return common;
   }
 
-});
+}
+
+export default LocationHeaderLabelGenerator;

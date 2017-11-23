@@ -1,4 +1,4 @@
-angular.module('roomie.devices.data').factory('locationUtilities', function (
+function locationUtilities(
   LocationHeaderLabelGenerator
 ) {
 
@@ -42,4 +42,6 @@ angular.module('roomie.devices.data').factory('locationUtilities', function (
       return result;
     }
   }
-});
+}
+
+export default locationUtilities;

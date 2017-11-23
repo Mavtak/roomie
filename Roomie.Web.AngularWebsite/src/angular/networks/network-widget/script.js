@@ -1,4 +1,6 @@
-angular.module('roomie.networks').directive('networkWidget', function (
+import template from './template.html';
+
+function networkWidget(
   $http
 ) {
 
@@ -8,7 +10,7 @@ angular.module('roomie.networks').directive('networkWidget', function (
       network: '=network',
       showEdit: '=showEdit'
     },
-    templateUrl: 'networks/network-widget/template.html',
+    template: template,
     link: link,
   };
 
@@ -35,4 +37,6 @@ angular.module('roomie.networks').directive('networkWidget', function (
     }
   }
 
-});
+}
+
+export default networkWidget;

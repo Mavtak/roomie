@@ -1,4 +1,6 @@
-﻿angular.module('roomie.devices').directive('thermostatSingleTemperatureControls', function (
+﻿import template from './template.html';
+
+function thermostatSingleTemperatureControls(
   getNewModeToToggleSetpoint
 ) {
 
@@ -12,7 +14,7 @@
       'active': '=active'
     },
     link: link,
-    templateUrl: 'devices/thermostat-single-temperature-controls/template.html',
+    template: template,
   };
 
   function link(scope) {
@@ -69,4 +71,6 @@
     return result;
   }
 
-});
+}
+
+export default thermostatSingleTemperatureControls;

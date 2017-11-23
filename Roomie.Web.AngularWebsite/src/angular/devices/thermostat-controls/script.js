@@ -1,4 +1,6 @@
-﻿angular.module('roomie.devices').directive('thermostatControls', function () {
+﻿import template from './template.html';
+
+function thermostatControls() {
 
   return {
     restrict: 'E',
@@ -6,7 +8,9 @@
       temperatureSensor: '=temperatureSensor',
       thermostat: '=thermostat'
     },
-    templateUrl: 'devices/thermostat-controls/template.html',
+    template: template,
   };
 
-});
+}
+
+export default thermostatControls;

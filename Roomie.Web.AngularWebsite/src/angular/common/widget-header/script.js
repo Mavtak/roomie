@@ -1,4 +1,6 @@
-﻿angular.module('roomie.common').directive('widgetHeader', function () {
+﻿import template from './template.html';
+
+function widgetHeader() {
 
   return {
     restrict: 'E',
@@ -8,7 +10,9 @@
       subtitle: '@subtitle',
       href: '@href'
     },
-    templateUrl: 'common/widget-header/template.html',
+    template: template,
   };
 
-});
+};
+
+export default widgetHeader;

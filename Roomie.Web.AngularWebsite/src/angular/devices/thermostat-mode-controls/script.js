@@ -1,4 +1,6 @@
-﻿angular.module('roomie.devices').directive('thermostatModeControls', function () {
+﻿import template from './template.html';
+
+function thermostatModeControls() {
 
   return {
     restrict: 'E',
@@ -7,7 +9,7 @@
       'modes': '=modes'
     },
     link: link,
-    templateUrl: 'devices/thermostat-mode-controls/template.html',
+    template: template,
   };
 
   function link(scope) {
@@ -29,4 +31,6 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-});
+}
+
+export default thermostatModeControls;

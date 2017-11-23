@@ -1,11 +1,13 @@
-angular.module('roomie.computers').directive('addComputerWidget', function (
+import template from './template.html';
+
+function addComputerWidget(
   $http
 ) {
 
   return {
     restrict: 'E',
     scope: {},
-    templateUrl: 'computers/add-computer-widget/template.html',
+    template: template,
     link: link
   };
 
@@ -21,4 +23,6 @@ angular.module('roomie.computers').directive('addComputerWidget', function (
     }
   }
 
-});
+}
+
+export default addComputerWidget;

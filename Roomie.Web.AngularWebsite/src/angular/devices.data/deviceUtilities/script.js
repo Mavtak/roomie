@@ -1,4 +1,4 @@
-angular.module('roomie.devices.data').factory('deviceUtilities', function (
+function deviceUtilities(
   $http
 ) {
 
@@ -182,4 +182,6 @@ angular.module('roomie.devices.data').factory('deviceUtilities', function (
     }
   }
 
-});
+}
+
+export default deviceUtilities;

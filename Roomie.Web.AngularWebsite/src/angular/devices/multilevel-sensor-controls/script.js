@@ -1,4 +1,6 @@
-﻿angular.module('roomie.devices').directive('multilevelSensorControls', function () {
+﻿import template from './template.html';
+
+function multilevelSensorControls() {
 
   return {
     restrict: 'E',
@@ -6,7 +8,9 @@
       label: '@label',
       sensor: '=sensor'
     },
-    templateUrl: 'devices/multilevel-sensor-controls/template.html',
+    template: template,
   };
 
-});
+}
+
+export default multilevelSensorControls;

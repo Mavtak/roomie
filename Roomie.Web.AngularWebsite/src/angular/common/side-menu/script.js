@@ -1,4 +1,6 @@
-﻿angular.module('roomie.common').directive('sideMenu', function (
+﻿import template from './template.html';
+
+function sideMenu(
   $window
 ) {
 
@@ -10,7 +12,7 @@
       side: '@side'
     },
     link: link,
-    templateUrl: 'common/side-menu/template.html',
+    template: template,
   };
 
   function link(scope, element, attributes) {
@@ -51,4 +53,6 @@
     }
   }
 
-});
+}
+
+export default sideMenu;

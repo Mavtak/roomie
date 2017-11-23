@@ -1,4 +1,7 @@
-angular.module('roomie.computers.pages').config(function (
+import detailTemplate from './detail.html';
+import indexTemplate from './index.html';
+
+function routing(
   $stateProvider
 ) {
 
@@ -6,14 +9,16 @@ angular.module('roomie.computers.pages').config(function (
     url: '/computers',
     controller: 'ComputerListController',
     controllerAs: 'controller',
-    templateUrl: 'computers.pages/index.html',
+    template: indexTemplate,
   });
 
   $stateProvider.state('computer detail', {
     url: '/computers/:id',
     controller: 'ComputerDetailController',
     controllerAs: 'controller',
-    templateUrl: 'computers.pages/detail.html',
+    template: detailTemplate,
   });
 
-});
+}
+
+export default routing;

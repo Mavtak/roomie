@@ -1,15 +1,19 @@
-angular.module('roomie.common').directive('appContentLoadingIndicator', function (
+import template from './template.html';
+
+function appContentLoadingIndicator(
   wholePageStatus
 ) {
 
   return {
     restrict: 'E',
     link: link,
-    templateUrl: 'common/app-content-loading-indicator/template.html',
+    template: template,
   };
 
   function link(scope) {
     scope.wholePageStatus = wholePageStatus;
   }
 
-});
+}
+
+export default appContentLoadingIndicator;

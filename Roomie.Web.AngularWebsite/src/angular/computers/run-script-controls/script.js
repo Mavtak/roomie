@@ -1,4 +1,6 @@
-angular.module('roomie.computers').directive('runScriptControls', function (
+import template from './template.html';
+
+function runScriptControls(
   $http
 ) {
 
@@ -7,7 +9,7 @@ angular.module('roomie.computers').directive('runScriptControls', function (
     scope: {
       computer: '=computer'
     },
-    templateUrl: 'computers/run-script-controls/template.html',
+    template: template,
     link: link
   };
 
@@ -44,4 +46,6 @@ angular.module('roomie.computers').directive('runScriptControls', function (
     });
   }
 
-});
+}
+
+export default runScriptControls;

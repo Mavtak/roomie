@@ -1,4 +1,4 @@
-angular.module('roomie.data').factory('getNewModeToToggleSetpoint', function () {
+function getNewModeToToggleSetpoint() {
 
   return function getNewModeToToggleSetpoint(currentMode, toggledSetpoint) {
     if (currentMode === undefined || toggledSetpoint === undefined) {
@@ -50,4 +50,6 @@ angular.module('roomie.data').factory('getNewModeToToggleSetpoint', function () 
         break;
     }
   };
-});
+}
+
+export default getNewModeToToggleSetpoint;

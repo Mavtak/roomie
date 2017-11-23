@@ -1,9 +1,13 @@
-﻿angular.module('roomie.common').directive('widgetButtonGroup', function () {
+﻿import template from './template.html';
+
+function widgetButtonGroup() {
 
   return {
     restrict: 'E',
     transclude: true,
-    templateUrl: 'common/widget-button-group/template.html',
+    template: template,
   };
 
-});
+}
+
+export default widgetButtonGroup;

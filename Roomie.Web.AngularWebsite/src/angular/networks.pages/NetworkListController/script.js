@@ -1,4 +1,4 @@
-angular.module('roomie.networks.pages').controller('NetworkListController', function (
+function NetworkListController(
   $http,
   pageMenuItems,
   signInState,
@@ -33,4 +33,6 @@ angular.module('roomie.networks.pages').controller('NetworkListController', func
 
       //TODO: handle other errors
     });
-});
+}
+
+export default NetworkListController;

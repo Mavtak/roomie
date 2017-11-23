@@ -1,4 +1,4 @@
-angular.module('roomie.computers.pages').controller('ComputerDetailController', function (
+function ComputerDetailController(
   $http,
   $state,
   pageMenuItems,
@@ -37,4 +37,6 @@ angular.module('roomie.computers.pages').controller('ComputerDetailController', 
 
       //TODO: handle other errors
     });
-});
+}
+
+export default ComputerDetailController;

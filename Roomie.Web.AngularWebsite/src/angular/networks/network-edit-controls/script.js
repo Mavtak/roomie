@@ -1,4 +1,6 @@
-angular.module('roomie.networks').directive('networkEditControls', function (
+import template from './template.html';
+
+function networkEditControls(
   $http
 ) {
 
@@ -8,7 +10,7 @@ angular.module('roomie.networks').directive('networkEditControls', function (
       network: '=network'
     },
     link: link,
-    templateUrl: 'networks/network-edit-controls/template.html'
+    template: template,
   };
 
   function link(scope) {
@@ -35,4 +37,6 @@ angular.module('roomie.networks').directive('networkEditControls', function (
     });
   }
 
-});
+}
+
+export default networkEditControls;
