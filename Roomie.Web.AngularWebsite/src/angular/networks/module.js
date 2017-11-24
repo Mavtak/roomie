@@ -1,16 +1,18 @@
 import commonModule from '../common/module.js';
-import setUpModule from '../setUpModule.js';
+import defineModule from '../defineModule.js';
 import networkEditControls from './network-edit-controls/index.js';
 import networkWidget from './network-widget/index.js';
 
 
-let module = angular.module('roomie.networks', [
-  commonModule.name,
-]);
-
-setUpModule(module, [
-  networkEditControls,
-  networkWidget,
-]);
+let module = defineModule({
+  name: 'roomie.networks',
+  dependencies: [
+    commonModule,
+  ],
+  definitions: [
+    networkEditControls,
+    networkWidget,
+  ],
+});
 
 export default module;

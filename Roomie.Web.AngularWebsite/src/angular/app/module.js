@@ -9,24 +9,29 @@ import tasksModule from '../tasks/module.js';
 import tasksPagesModule from '../tasks.pages/module.js';
 import userModule from '../users/module.js';
 import usersPagesModule from '../users.pages/module.js';
+import defineModule from '../defineModule.js';
 import defaultRouting from './defaultRouting.js';
 import notFoundROuting from './notFoundRouting.js';
 
-let module = angular.module('roomie.app', [
-  computersModule.name,
-  computersPagesModule.name,
-  devicesModule.name,
-  devicesPagesModule.name,
-  helpPagesModule.name,
-  networksModule.name,
-  networksPagesModule.name,
-  tasksModule.name,
-  tasksPagesModule.name,
-  userModule.name,
-  usersPagesModule.name,
-]);
-
-module.config(defaultRouting);
-module.config(notFoundROuting);
+let module = defineModule({
+  name: 'roomie.app',
+  config: [
+    defaultRouting,
+    notFoundROuting,
+  ],
+  dependencies: [
+    computersModule,
+    computersPagesModule,
+    devicesModule,
+    devicesPagesModule,
+    helpPagesModule,
+    networksModule,
+    networksPagesModule,
+    tasksModule,
+    tasksPagesModule,
+    userModule,
+    usersPagesModule,
+  ],
+});
 
 export default module;

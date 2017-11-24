@@ -1,4 +1,4 @@
-import setUpModule from '../setUpModule.js';
+import defineModule from '../defineModule.js';
 import appContent from './app-content/index.js';
 import appContentLoadingIndicator from './app-content-loading-indicator/index.js';
 import appFooter from './app-footer/index.js';
@@ -22,32 +22,32 @@ import widgetDataSection from './widget-data-section/index.js';
 import widgetDisconnectedIcon from './widget-disconnected-icon/index.js';
 import widgetHeader from './widget-header/index.js';
 
-let module = angular.module('roomie.common', [
-]);
-
-setUpModule(module, [
-  appContent,
-  appContentLoadingIndicator,
-  appFooter,
-  appHeader,
-  appHorizontalSection,
-  dock,
-  keyValue,
-  pageMenuItems,
-  roomieApp,
-  roomieBot,
-  sideMenu,
-  sideMenuButton,
-  sideMenuItem,
-  sideMenuSet,
-  signInState,
-  wholePageStatus,
-  widget,
-  widgetButton,
-  widgetButtonGroup,
-  widgetDataSection,
-  widgetDisconnectedIcon,
-  widgetHeader,
-]);
+let module = defineModule({
+  name: 'roomie.common', 
+  definitions: [
+    appContent,
+    appContentLoadingIndicator,
+    appFooter,
+    appHeader,
+    appHorizontalSection,
+    dock,
+    keyValue,
+    pageMenuItems,
+    roomieApp,
+    roomieBot,
+    sideMenu,
+    sideMenuButton,
+    sideMenuItem,
+    sideMenuSet,
+    signInState,
+    wholePageStatus,
+    widget,
+    widgetButton,
+    widgetButtonGroup,
+    widgetDataSection,
+    widgetDisconnectedIcon,
+    widgetHeader,
+  ],
+});
 
 export default module;

@@ -1,11 +1,11 @@
-import setUpModule from '../setUpModule.js';
+import defineModule from '../defineModule.js';
 import signInForm from './sign-in-form/index.js';
 
-let module = angular.module('roomie.users', [
-]);
-
-setUpModule(module, [
-  signInForm,
-]);
+let module = defineModule({
+  name: 'roomie.users', 
+  definitions: [
+    signInForm,
+  ],
+});
 
 export default module;

@@ -1,16 +1,19 @@
 import commonModule from '../common/module.js';
-import setUpModule from '../setUpModule.js';
+import defineModule from '../defineModule.js';
 import CommandDocumentationController from './CommandDocumentationController/index.js';
 import routing from './routing.js';
 
-let module = angular.module('roomie.help.pages', [
-  commonModule.name,
-]);
-
-setUpModule(module, [
-  CommandDocumentationController,
-]);
-
-module.config(routing);
+let module = defineModule({
+  name: 'roomie.help.pages',
+  dependencies: [
+    commonModule,
+  ],
+  definitions: [
+    CommandDocumentationController,
+  ],
+  config: [
+    routing,
+  ],
+});
 
 export default module;
