@@ -15,8 +15,12 @@
         action: 'list',
         parameters: filter,
       }).then(function (response) {
-        if (processErrors && response.data.error) {
-          return processErrors(response.data.error);
+        if (response.data.error) {
+          if (processErrors) {
+            return processErrors(response.data.error);
+          } else {
+            return;
+          }
         }
 
         var body = selectHttpBody(response);

@@ -95,13 +95,12 @@
 
     describe('when the processErrors option is not set', function () {
 
-      it('does not break', function (done) {
+      it('does not break', function () {
           var manualPoller = new ManualPoller({
             repository: 'derp',
           });
 
           manualPoller.run()
-            .catch(done);
 
           $httpBackend.flush();
       });
