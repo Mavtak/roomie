@@ -21,55 +21,55 @@
   </head>
   <body>
     <roomie-app>
-    </roomie-app>
-    <div id="loading-screen">
-      <div class="vertical-support"></div>
-      <div class="centered-content">
-        <div class="text">
-          <noscript>seriously?</noscript>
+      <div id="loading-screen">
+        <div class="vertical-support"></div>
+        <div class="centered-content">
+          <div class="text">
+            <noscript>seriously?</noscript>
+          </div>
+          <div class="indicators">
+            <noscript>did 2010 happen yet?  take off your tinfoil hat, enable JavaScript, and rejoin civilization.</noscript>
+          </div>
         </div>
-        <div class="indicators">
-          <noscript>did 2010 happen yet?  take off your tinfoil hat, enable JavaScript, and rejoin civilization.</noscript>
-        </div>
+        <style type="text/css">
+          #loading-screen
+          {
+            text-align: center;
+            font-family: sans-serif;
+            color: white;
+            background-color: #4d007f;
+          }
+
+          #loading-screen > *
+          {
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          #loading-screen .text
+          {
+            font-size: 200%;
+            font-weight: bold;
+          }
+
+          #loading-screen > .vertical-support
+          {
+            height: 100%;
+          }
+
+          #loading-screen > style,
+          #loading-screen > script
+          {
+            display: none
+          }
+        </style>
+        <script type="text/javascript">
+          (function () {
+            var text = document.getElementById('loading-screen').getElementsByClassName('text')[0];
+            text.appendChild(document.createTextNode('loading'));
+          })();
+        </script>
       </div>
-      <style type="text/css">
-        #loading-screen
-        {
-          text-align: center;
-          font-family: sans-serif;
-          color: white;
-          background-color: #4d007f;
-        }
-
-        #loading-screen > *
-        {
-          display: inline-block;
-          vertical-align: middle;
-        }
-
-        #loading-screen .text
-        {
-          font-size: 200%;
-          font-weight: bold;
-        }
-
-        #loading-screen > .vertical-support
-        {
-          height: 100%;
-        }
-
-        #loading-screen > style,
-        #loading-screen > script
-        {
-          display: none
-        }
-      </style>
-      <script type="text/javascript">
-        (function () {
-          var text = document.getElementById('loading-screen').getElementsByClassName('text')[0];
-          text.appendChild(document.createTextNode('loading'));
-        })();
-      </script>
-    </div>
+    </roomie-app>
   </body>
 </html>
