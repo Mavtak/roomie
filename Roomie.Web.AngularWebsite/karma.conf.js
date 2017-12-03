@@ -13,7 +13,6 @@ module.exports = function (config) {
       'src/index.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/jquery/dist/jquery.js',
-      'node_modules/lodash/index.js',
       {
         pattern: 'src/**/*.spec.js',
         watched: false,
