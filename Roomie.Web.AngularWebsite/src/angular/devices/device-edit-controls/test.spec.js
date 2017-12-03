@@ -256,7 +256,7 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
 
           it('submits the latest type input', function () {
             angular.element(selectRow(2).find('select')[0])
-              .val('string:Just Terrible')
+              .val(2)
               .triggerHandler('change');
 
             $httpBackend.expectPOST('/api/device', {
