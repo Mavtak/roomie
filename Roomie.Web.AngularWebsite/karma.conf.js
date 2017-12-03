@@ -10,12 +10,10 @@ module.exports = function (config) {
     },
     webpack: webpackConfig,
     files: [
-      'node_modules/angular/angular.js',
+      'src/index.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'node_modules/angular-ui-router/release/angular-ui-router.js',
       'node_modules/jquery/dist/jquery.js',
       'node_modules/lodash/index.js',
-      'src/index.js',
       {
         pattern: 'src/**/*.spec.js',
         watched: false,
