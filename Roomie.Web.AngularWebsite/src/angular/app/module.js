@@ -31,6 +31,7 @@ let module = defineModule({
     tasksPagesModule,
     userModule,
     usersPagesModule,
+    'ui.router',
   ],
 });
 
