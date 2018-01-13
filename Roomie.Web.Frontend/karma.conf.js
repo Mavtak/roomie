@@ -10,6 +10,7 @@ module.exports = function (config) {
     },
     webpack: webpackConfig,
     files: [
+      './node_modules/phantomjs-polyfill-object-assign/object-assign-polyfill.js',
       'src/index.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/jquery/dist/jquery.js',
@@ -24,7 +25,7 @@ module.exports = function (config) {
     colors: true,
     autoWatch: true,
     browsers: [
-      'Chrome',
+      'PhantomJS',
     ],
     singleRun: false,
     ngHtml2JsPreprocessor: {
