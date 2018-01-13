@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
+using Roomie.Common.Api.Models;
 using Roomie.Web.Backend.Controllers.Api;
 
 namespace Roomie.Web.Backend.Helpers
@@ -19,14 +20,9 @@ namespace Roomie.Web.Backend.Helpers
 
             if (controller.User == null)
             {
-                var errorObject = new[]
-                {
-                    new Error
-                    {
-                        FriendlyMessage = "Access denied.  Please sign in.",
-                        Type = "must-sign-in",
-                    }
-                };
+                var errorObject = Response.CreateError("Access denied.  Please sign in.",
+                    "must-sign-in"
+                );
 
                 actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
                 {
