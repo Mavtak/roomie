@@ -46,12 +46,10 @@
     data.run();
   }
 
-  function processErrors(errors) {
+  function processErrors(error) {
     wholePageStatus.set('ready');
 
-    var signInError = _.isArray(errors) && _.some(errors, {
-      type: 'must-sign-in'
-    });
+    var signInError = _.isArray(error.types) && _.includes(error.types, 'must-sign-in');
 
     if (signInError) {
       signInState.set('signed-out');
