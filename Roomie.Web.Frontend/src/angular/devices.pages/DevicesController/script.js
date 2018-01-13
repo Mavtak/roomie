@@ -1,5 +1,4 @@
 ﻿function DevicesController(
-  $http,
   $scope,
   $state,
   AutomaticPollingDeviceListing,

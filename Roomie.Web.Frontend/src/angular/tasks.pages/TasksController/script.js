@@ -1,5 +1,4 @@
 ﻿function TasksController(
-  $http,
   $state,
   ManualPollingUpdater,
   pageMenuItems,
