@@ -2,7 +2,7 @@ import Headers from './globals/Headers.js';
 import fetch from './globals/fetch.js';
 import JSON from './globals/JSON.js';
 
-function jsonFetch({
+function api({
   action,
   parameters,
   repository,
@@ -27,4 +27,4 @@ function jsonFetch({
     });
 };
 
-export default jsonFetch;
+export default api;
