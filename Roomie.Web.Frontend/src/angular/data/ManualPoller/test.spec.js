@@ -1,35 +1,43 @@
 ﻿describe('angular roomie.data ManualPoller (factory)', function () {
 
-  var $httpBackend;
+  var $q;
+  var $timeout;
+  var api;
   var ManualPoller;
   var items;
 
   beforeEach(angular.mock.module('roomie.data'));
+  
+  beforeEach(angular.mock.module(function ($provide) {
+    api = jasmine.createSpy('api');
+
+    $provide.value('api', api);
+  }));
 
   beforeEach(angular.mock.inject(function ($injector) {
-    $httpBackend = $injector.get('$httpBackend');
+    $q = $injector.get('$q');
+    $timeout = $injector.get('$timeout');
     ManualPoller = $injector.get('ManualPoller');
   }));
 
   beforeEach(function () {
+    api.and.returnValue($q.when({}));
+
     items = [];
   });
 
-  it('POSTs the provided resource', function () {
+  it('submits the API request', function () {
     var manualPoller = new ManualPoller({
       repository: 'derp'
     });
 
-    $httpBackend.when('POST', '/api/derp')
-      .respond({
-        data: {}
-      });
-
-    $httpBackend.expectPOST('/api/derp');
-
     manualPoller.run();
 
-    $httpBackend.flush();
+    expect(api).toHaveBeenCalledWith({
+      repository: 'derp',
+      action: 'list',
+      parameters: undefined,
+    })
   });
 
   describe('item selection', function () {
@@ -40,20 +48,19 @@
         repository: 'derp'
       });
 
-      $httpBackend.when('POST', '/api/derp')
-        .respond({
-          data: {
-            items: [{ id: 'a' }, { id: 'b' }],
-          }
-        });
+      api.and.returnValue($q.when({
+        data: {
+          items: [{ id: 'a' }, { id: 'b' }],
+        }
+      }));
 
       manualPoller.run().then(function (x) {
         actual = x;
       });
 
-      $httpBackend.flush();
+      $timeout.flush();
 
-      expect(actual).toEqual([{ id: 'a' }, { id: 'b' }]);
+      expect(actual).toEqual([{ id: 'a' }, { id: 'b' }]);      
     });
 
     it('selects the items property with an optional override when provided.', function () {
@@ -65,16 +72,15 @@
         }
       });
 
-      $httpBackend.when('POST', '/api/derp')
-        .respond({
-          data: [{ id: 'a' }, { id: 'b' }],
-        });
+      api.and.returnValue($q.when({
+        data: [{ id: 'a' }, { id: 'b' }],
+      }));
 
       manualPoller.run().then(function (x) {
         actual = x;
       });
 
-      $httpBackend.flush();
+      $timeout.flush();
 
       expect(actual).toEqual([{ id: 'a' }, { id: 'b' }]);
     });
@@ -85,12 +91,11 @@
     var theError;
 
     beforeEach(function () {
-      $httpBackend.when('POST', '/api/derp')
-        .respond(200, {
-            error: {
-              something: 'a message maybe'
-            }
-        });
+      api.and.returnValue($q.when({
+        error: {
+          something: 'a message maybe'
+        }
+      }));
     });
 
     describe('when the processErrors option is not set', function () {
@@ -102,7 +107,7 @@
 
           manualPoller.run()
 
-          $httpBackend.flush();
+          $timeout.flush();
       });
 
     });
@@ -119,7 +124,7 @@
 
         manualPoller.run();
 
-        $httpBackend.flush();
+        $timeout.flush();
 
         expect(processErrors.calls.count()).toEqual(1);
         expect(processErrors.calls.mostRecent().args[0]).toEqual({

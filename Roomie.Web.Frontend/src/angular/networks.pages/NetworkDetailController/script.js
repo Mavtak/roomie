@@ -1,6 +1,6 @@
 function NetworkDetailController(
-  $http,
   $state,
+  api,
   pageMenuItems,
   signInState,
   wholePageStatus
@@ -11,14 +11,15 @@ function NetworkDetailController(
   wholePageStatus.set('loading');
   pageMenuItems.reset();
 
-  $http.post('/api/network', {
+  api({
+    repository: 'network',
     action: 'read',
     parameters: {
       id: +$state.params.id,
     },
   })
     .then(function (result) {
-      controller.network = result.data.data;
+      controller.network = result.data;
 
       signInState.set('signed-in');
       wholePageStatus.set('ready');
@@ -35,7 +36,6 @@ function NetworkDetailController(
 
       wholePageStatus.set('ready');
 
-      //TODO: handle other errors
     });
 }
 

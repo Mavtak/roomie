@@ -1,7 +1,7 @@
 import template from './template.html';
 
 function networkEditControls(
-  $http
+  api
 ) {
 
   return {
@@ -22,7 +22,11 @@ function networkEditControls(
     });
 
     function save() {
-      $http.put('/api/network/' + scope.network.id, scope.model);
+      api({
+        repository: 'network',
+        action: 'update',
+        parameters: scope.model,
+      });
     }
   }
 

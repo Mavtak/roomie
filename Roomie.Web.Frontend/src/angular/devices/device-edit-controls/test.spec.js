@@ -1,10 +1,13 @@
 describe('angular roomie.devices device-edit-controls (directive)', function () {
   var $injector;
-  var $httpBackend;
   var $scope;
+  var api;
   var element;
 
   beforeEach(angular.mock.module('roomie.devices', function ($provide) {
+    api = jasmine.createSpy('api');
+
+    $provide.value('api', api);
     $provide.value('deviceTypes', [
       'Really Neat',
       'Kinda Cool',
@@ -14,7 +17,6 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
 
   beforeEach(angular.mock.inject(function (_$injector_) {
     $injector = _$injector_;
-    $httpBackend = $injector.get('$httpBackend');
     $scope = $injector.get('$rootScope').$new();
   }));
 
@@ -187,19 +189,15 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
 
         describe('clicking', function () {
 
-          beforeEach(function () {
-            $httpBackend
-              .when('POST', '/api/device')
-              .respond({});
-          });
-
-          afterEach(function () {
-            $httpBackend.verifyNoOutstandingExpectation();
-            $httpBackend.verifyNoOutstandingRequest();
+          afterEach(() => {
+            expect(api.calls.count()).toBe(1);
           });
 
           it('should submit an API request', function () {
-            $httpBackend.expectPOST('/api/device', {
+            selectInput(3).click();
+
+            expect(api).toHaveBeenCalledWith({
+              repository: 'device',
               action: 'update',
               parameters: {
                 id: 5,
@@ -207,11 +205,7 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
                 location: 'some/place',
                 type: 'Kinda Cool',
               }
-            });
-
-            selectInput(3).click();
-
-            $httpBackend.flush();
+            })
           });
 
           it('submits the latest name input', function () {
@@ -219,7 +213,10 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
               .val('Probably a Lamp')
               .triggerHandler('input');
 
-            $httpBackend.expectPOST('/api/device', {
+            selectInput(3).click();
+
+            expect(api).toHaveBeenCalledWith({
+              repository: 'device',
               action: 'update',
               parameters: {
                 id: 5,
@@ -228,10 +225,6 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
                 type: 'Kinda Cool',
               }
             });
-
-            selectInput(3).click();
-
-            $httpBackend.flush();
           });
 
           it('submits the latest location input', function () {
@@ -239,7 +232,10 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
               .val('some/place/else')
               .triggerHandler('input');
 
-            $httpBackend.expectPOST('/api/device', {
+            selectInput(3).click();
+
+            expect(api).toHaveBeenCalledWith({
+              repository: 'device',
               action: 'update',
               parameters: {
                 id: 5,
@@ -248,10 +244,6 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
                 type: 'Kinda Cool',
               }
             });
-
-            selectInput(3).click();
-
-            $httpBackend.flush();
           });
 
           it('submits the latest type input', function () {
@@ -259,7 +251,10 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
               .val(2)
               .triggerHandler('change');
 
-            $httpBackend.expectPOST('/api/device', {
+            selectInput(3).click();
+
+            expect(api).toHaveBeenCalledWith({
+              repository: 'device',
               action: 'update',
               parameters: {
                 id: 5,
@@ -268,10 +263,6 @@ describe('angular roomie.devices device-edit-controls (directive)', function () 
                 type: 'Just Terrible',
               }
             });
-
-            selectInput(3).click();
-
-            $httpBackend.flush();
           });
 
         });

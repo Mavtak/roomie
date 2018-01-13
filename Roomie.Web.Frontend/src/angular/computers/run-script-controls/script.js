@@ -1,7 +1,7 @@
 import template from './template.html';
 
 function runScriptControls(
-  $http
+  api
 ) {
 
   return {
@@ -26,7 +26,8 @@ function runScriptControls(
     });
 
     function runScript() {
-      $http.post('/api/computer', {
+      api({
+        repository: 'computer',
         action: 'runScript',
         parameters: Object.assign({}, {
            id: scope.computer.id

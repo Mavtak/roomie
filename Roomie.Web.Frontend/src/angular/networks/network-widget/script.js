@@ -1,7 +1,7 @@
 import template from './template.html';
 
 function networkWidget(
-  $http
+  api
 ) {
 
   return {
@@ -19,7 +19,8 @@ function networkWidget(
     scope.removeDevice = removeDevice;
 
     function addDevice() {
-      $http.post('/api/network', {
+      api({
+        repository: 'network',
         action: 'addDevice',
         parameters: {
           id: scope.network.id
@@ -28,7 +29,8 @@ function networkWidget(
     }
 
     function removeDevice() {
-      $http.post('/api/network', {
+      api({
+        repository: 'network',
         action: 'removeDevice',
         parameters: {
           id: scope.network.id

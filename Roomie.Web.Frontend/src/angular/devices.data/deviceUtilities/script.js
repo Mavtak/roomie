@@ -1,5 +1,5 @@
 function deviceUtilities(
-  $http
+  api
 ) {
 
   return new DeviceUtilities();
@@ -21,7 +21,8 @@ function deviceUtilities(
     }
 
     function doAction(device, action, args) {
-      $http.post('/api/device', {
+      api({
+        repository: 'device',
         action: action,
         parameters: Object.assign({
           id: device.id,

@@ -1,7 +1,7 @@
 import template from './template.html';
 
 function addComputerWidget(
-  $http
+  api
 ) {
 
   return {
@@ -16,7 +16,8 @@ function addComputerWidget(
     scope.model = {};
 
     function add() {
-      $http.post('/api/computer', {
+      api({
+        repository: 'computer',
         action: 'create',
         parameters: scope.model,
       });

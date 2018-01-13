@@ -1,5 +1,5 @@
 function ComputerListController(
-  $http,
+  api,
   pageMenuItems,
   signInState,
   wholePageStatus
@@ -10,11 +10,12 @@ function ComputerListController(
   wholePageStatus.set('loading');
   pageMenuItems.reset();
 
-  $http.post('/api/computer', {
+  api({
+    repository: 'computer',
     action: 'list'
   })
     .then(function (result) {
-      controller.computers = result.data.data;
+      controller.computers = result.data;
 
       signInState.set('signed-in');
       wholePageStatus.set('ready');
