@@ -125,7 +125,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.WebHookCommands\Roomie.CommandDefinitions.WebHookCommands.csproj">
       <Project>{7E42B977-82F5-49E2-99F8-DF84A72AA9E1}</Project>
-      <Name>WebHookCommands</Name>
+      <Name>Roomie.CommandDefinitions.WebHookCommands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands\Roomie.CommandDefinitions.HomeAutomation.ControlThinkCommands.csproj">
       <Project>{F2A79F92-10A8-4327-8F67-B18E59A3988F}</Project>
