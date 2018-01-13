@@ -31,16 +31,16 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
               timeStamp: '2016-04-14T12:57:22.8413439Z',
           },
           humiditySensor: {
-              timeStamp: '2016-04-1Z',
+              timeStamp: '2016-04-01T00:00:00.0000000Z',
           },
           illuminanceSensor: {
-              timeStamp: '2016-04-2Z',
+              timeStamp: '2016-04-02T00:00:00.0000000Z',
           },
           powerSensor: {
-              timeStamp: '2016-04-3Z',
+              timeStamp: '2016-04-03T00:00:00.0000000Z',
           },
           temperatureSensor: {
-              timeStamp: '2016-04-4Z',
+              timeStamp: '2016-04-04T00:00:00.0000000Z',
           },
         };
 

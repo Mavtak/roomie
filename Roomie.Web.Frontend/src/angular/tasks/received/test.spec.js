@@ -9,7 +9,7 @@
 
   it('works when given {receivedTimestamp: some date, expired: false}', function () {
     var result = filter({
-      receivedTimestamp: new Date('2015-02-05T03:39:25.682'),
+      receivedTimestamp: new Date(2015, 1, 5, 3, 39, 25),
       expired: false
     });
 
@@ -28,7 +28,7 @@
 
     it('works when given {receivedTimestamp: some date, expired: true}', function () {
       var result = filter({
-        receivedTimestamp: new Date('2015-02-05T03:39:25.682'),
+        receivedTimestamp: new Date(2015, 1, 5, 3, 39, 25),
         expired: false
       });
 
