@@ -1,5 +1,5 @@
 function CommandDocumentationController(
-  $http,
+  api,
   wholePageStatus
 ) {
 
@@ -7,11 +7,12 @@ function CommandDocumentationController(
 
   wholePageStatus.set('loading');
 
-  $http.post('/api/commandDocumentation', {
+  api({
+    repository: 'commandDocumentation',
     action: 'list',
   })
     .then(function (response) {
-      controller.commands = response.data.data;
+      controller.commands = response.data;
 
       wholePageStatus.set('ready');
     });

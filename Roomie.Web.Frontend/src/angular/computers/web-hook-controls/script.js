@@ -1,9 +1,9 @@
 import template from './template.html';
 
 function webHookControls(
-  $http,
   $state,
-  $window
+  $window,
+  api
 ) {
 
   return {
@@ -32,7 +32,8 @@ function webHookControls(
     }
 
     function disable() {
-      $http.post('/api/computer', {
+      api({
+        repository: 'computer',
         action: 'disableWebHook',
         parameters: {
           id: scope.computer.id,
@@ -44,7 +45,8 @@ function webHookControls(
     }
 
     function renew() {
-      $http.post('/api/computer', {
+      api({
+        repository: 'computer',
         action: 'renewWebHookKeys',
         parameters: {
           id: scope.computer.id,

@@ -1,13 +1,13 @@
 describe('angular roomie.devices.data deviceUtilities (factory)', function () {
-  var $http;
+  var api;
   var subject;
 
   beforeEach(angular.mock.module('roomie.devices.data'));
 
   beforeEach(angular.mock.module(function ($provide) {
-    $http = jasmine.createSpyObj('$http', ['post']);
+    api = jasmine.createSpy('api');
 
-    $provide.value('$http', $http);
+    $provide.value('api', api);
   }));
 
   beforeEach(angular.mock.inject(function ($injector) {
@@ -137,6 +137,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.binarySensor.poll();
 
           expectApiCall({
+            repository: 'device',
             action: 'binarySensorPoll',
             parameters: {
               id: 'the-device-id',
@@ -150,6 +151,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.binarySwitch.setPower('on-or-off');
 
           expectApiCall({
+            repository: 'device',
             action: 'binarySwitchSetPower',
             parameters: {
               id: 'the-device-id',
@@ -164,6 +166,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.colorSwitch.setValue('some-color');
 
           expectApiCall({
+            repository: 'device',
             action: 'colorSwitchSetValue',
             parameters: {
               id: 'the-device-id',
@@ -178,6 +181,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.humiditySensor.poll();
 
           expectApiCall({
+            repository: 'device',
             action: 'humiditySensorPoll',
             parameters: {
               id: 'the-device-id',
@@ -191,6 +195,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.illuminanceSensor.poll();
 
           expectApiCall({
+            repository: 'device',
             action: 'illuminanceSensorPoll',
             parameters: {
               id: 'the-device-id',
@@ -204,6 +209,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.multilevelSwitch.setPower('some-value');
 
           expectApiCall({
+            repository: 'device',
             action: 'multilevelSwitchSetPower',
             parameters: {
               id: 'the-device-id',
@@ -218,6 +224,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.powerSensor.poll();
 
           expectApiCall({
+            repository: 'device',
             action: 'powerSensorPoll',
             parameters: {
               id: 'the-device-id',
@@ -231,6 +238,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.temperatureSensor.poll();
 
           expectApiCall({
+            repository: 'device',
             action: 'temperatureSensorPoll',
             parameters: {
               id: 'the-device-id',
@@ -244,6 +252,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.thermostat.core.set('some-mode');
 
           expectApiCall({
+            repository: 'device',
             action: 'thermostatCoreSetMode',
             parameters: {
               id: 'the-device-id',
@@ -258,6 +267,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           device.thermostat.fan.set('some-mode');
 
           expectApiCall({
+            repository: 'device',
             action: 'thermostatFanSetMode',
             parameters: {
               id: 'the-device-id',
@@ -275,6 +285,7 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
           });
 
           expectApiCall({
+            repository: 'device',
             action: 'thermostatSetpointsSetSetpoint',
             parameters: {
               id: 'the-device-id',
@@ -285,8 +296,8 @@ describe('angular roomie.devices.data deviceUtilities (factory)', function () {
         });
 
         function expectApiCall(request) {
-          expect($http.post).toHaveBeenCalledWith('/api/device', request);
-          expect($http.post.calls.count()).toEqual(1);
+          expect(api).toHaveBeenCalledWith(request);
+          expect(api.calls.count()).toEqual(1);
         }
 
       });

@@ -1,5 +1,5 @@
 ﻿function ManualPoller(
-  $http
+  api
 ) {
 
   return ManualPoller;
@@ -11,13 +11,14 @@
     var selectItems = options.itemSelector || defaultItemSelector;
 
     this.run = function () {
-      var result = $http.post('/api/' + repository, {
+      var result = api({
+        repository: repository,
         action: 'list',
         parameters: filter,
       }).then(function (response) {
-        if (response.data.error) {
+        if (response.error) {
           if (processErrors) {
-            return processErrors(response.data.error);
+            return processErrors(response.error);
           } else {
             return;
           }
@@ -33,7 +34,7 @@
     };
 
     function selectHttpBody(response) {
-      return response.data.data;
+      return response.data;
     }
 
     function defaultItemSelector(page) {

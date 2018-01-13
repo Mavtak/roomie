@@ -1,6 +1,6 @@
 function ComputerDetailController(
-  $http,
   $state,
+  api,
   pageMenuItems,
   signInState,
   wholePageStatus
@@ -11,14 +11,15 @@ function ComputerDetailController(
   wholePageStatus.set('loading');
   pageMenuItems.reset();
 
-  $http.post('/api/computer', {
+  api({
+    repository: 'computer',
     action: 'read',
     parameters: {
       id: +$state.params.id
     }
   })
     .then(function (result) {
-      controller.computer = result.data.data;
+      controller.computer = result.data;
 
       signInState.set('signed-in');
       wholePageStatus.set('ready');

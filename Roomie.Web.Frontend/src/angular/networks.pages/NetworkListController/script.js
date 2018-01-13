@@ -1,5 +1,5 @@
 function NetworkListController(
-  $http,
+  api,
   pageMenuItems,
   signInState,
   wholePageStatus
@@ -10,11 +10,12 @@ function NetworkListController(
   wholePageStatus.set('loading');
   pageMenuItems.reset();
 
-  $http.post('/api/network', {
+  api({
+    repository: 'network',
     action: 'list',
   })
     .then(function (result) {
-      controller.networks = result.data.data;
+      controller.networks = result.data;
 
       signInState.set('signed-in');
       wholePageStatus.set('ready');

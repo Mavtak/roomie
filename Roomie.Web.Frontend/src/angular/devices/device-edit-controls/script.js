@@ -1,7 +1,7 @@
 import template from './template.html';
 
 function deviceEditControls(
-  $http,
+  api,
   deviceTypes
 ) {
 
@@ -30,7 +30,8 @@ function deviceEditControls(
     scope.types = deviceTypes;
 
     scope.save = function () {
-      $http.post('/api/device', {
+      api({
+        repository: 'device',
         action: 'update',
         parameters: Object.assign({
           id: scope.device.id

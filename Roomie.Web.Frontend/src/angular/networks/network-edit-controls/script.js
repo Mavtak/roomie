@@ -1,7 +1,7 @@
 import template from './template.html';
 
 function networkEditControls(
-  $http
+  api
 ) {
 
   return {
@@ -22,7 +22,8 @@ function networkEditControls(
     });
 
     function save() {
-      $http.post('/api/network', {
+      api({
+        repository: 'network',
         action: 'update',
         parameters: scope.model,
       });
