@@ -22,7 +22,10 @@ function networkEditControls(
     });
 
     function save() {
-      $http.put('/api/network/' + scope.network.id, scope.model);
+      $http.post('/api/network', {
+        action: 'update',
+        parameters: scope.model,
+      });
     }
   }
 
