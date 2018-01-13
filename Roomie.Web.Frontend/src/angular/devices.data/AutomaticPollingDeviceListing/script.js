@@ -42,12 +42,10 @@ function AutomaticPollingDeviceListing(
         ammendOriginal: function (x) {
           deviceUtilities.setActions(x);
         },
-        processErrors: function (x) {
+        processErrors: function (error) {
           wholePageStatus.set('ready');
 
-          var signInError = _.isArray(x) && _.some(x, {
-            type: 'must-sign-in'
-          });
+          var signInError = _.isArray(error.types) && _.includes(error.types, 'must-sign-in');          
 
           if (signInError) {
             signInState.set('signed-out');

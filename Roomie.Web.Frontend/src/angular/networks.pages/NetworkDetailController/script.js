@@ -19,23 +19,26 @@ function NetworkDetailController(
     },
   })
     .then(function (result) {
-      controller.network = result.data;
+      if (result.data) {
+        controller.network = result.data;
 
-      signInState.set('signed-in');
-      wholePageStatus.set('ready');
-    }, function (result) {
-      var errors = result.data;
-
-      var signInError = _.isArray(errors) && _.some(errors, {
-        type: 'must-sign-in'
-      });
-
-      if (signInError) {
-        signInState.set('signed-out');
+        signInState.set('signed-in');
+        wholePageStatus.set('ready');
       }
 
-      wholePageStatus.set('ready');
-
+      if (result.error) {
+        var error = result.error;
+        
+        var signInError = _.isArray(error.types) && _.includes(error.types, 'must-sign-in');
+  
+        if (signInError) {
+          signInState.set('signed-out');
+        }
+  
+        wholePageStatus.set('ready');
+  
+        //TODO: handle other errors
+      }
     });
 }
 

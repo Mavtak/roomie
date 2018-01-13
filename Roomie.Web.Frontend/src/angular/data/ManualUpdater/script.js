@@ -9,6 +9,10 @@
     var updateComplete = options.updateComplete;
 
     this.run = function (updates) {
+      if (!updates) {
+        return;
+      }
+
       for (var i = 0; i < updates.length; i++) {
         var update = updates[i];
 
