@@ -28,7 +28,7 @@ function webHookControls(
         return;
       }
 
-      return '<WebHook.Connect ComputerName="' + scope.computer.name + '" CommunicationURL="' + $window.location.origin + '/communicator/" AccessKey="' + scope.computer.accessKey + '" EncryptionKey="' + scope.computer.encryptionKey + '" />';
+      return '<WebHook.Connect ComputerName="' + scope.computer.name + '" CommunicationURL="' + $window.location.origin + '/api/" AccessKey="' + scope.computer.accessKey + '" EncryptionKey="' + scope.computer.encryptionKey + '" />';
     }
 
     function disable() {
