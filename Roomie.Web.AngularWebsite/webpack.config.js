@@ -9,7 +9,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, '..', 'Roomie.Web.Website'),
+    path: path.resolve(__dirname, '..', 'Roomie.Web.Backend'),
   },
   module: {  
     rules: [

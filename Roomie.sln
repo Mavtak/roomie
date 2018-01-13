@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2904903F-DF9C-460C-806F-151515323B3E}"
 	ProjectSection(SolutionItems) = preProject
@@ -51,7 +51,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Common", "Roomie.Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.CommandDefinitions.TwitterCommands", "Roomie.CommandDefinitions.TwitterCommands\Roomie.CommandDefinitions.TwitterCommands.csproj", "{F22862B7-CDB9-4D4E-83F3-9AA535DB5841}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Web.Website", "Roomie.Web.Website\Roomie.Web.Website.csproj", "{8EB25CBD-C698-4ECD-AC94-6A38F2DA347F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomie.Web.Backend", "Roomie.Web.Backend\Roomie.Web.Backend.csproj", "{8EB25CBD-C698-4ECD-AC94-6A38F2DA347F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{52838530-5174-47D2-A029-2DDB7918C776} = {52838530-5174-47D2-A029-2DDB7918C776}
 	EndProjectSection
@@ -590,6 +590,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {046A9881-ABC2-483C-BA20-237BEA5FFF87}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Roomie1.vsmdi
